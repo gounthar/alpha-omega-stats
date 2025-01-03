@@ -61,11 +61,28 @@ echo "Month name: $MONTH_NAME"
 # Output Markdown file with year and month
 OUTPUT_MD="jenkins-csp-${MONTH_NAME,,}-${YEAR}-report.md"
 
+# Cache for first names
+declare -A FIRST_NAME_CACHE
+
 # Function to get the first name of a GitHub user
 get_first_name() {
   local github_handle=$1
+
+  # Check if the first name is already cached
+  if [[ -n "${FIRST_NAME_CACHE[$github_handle]}" ]]; then
+    echo "${FIRST_NAME_CACHE[$github_handle]}"
+    return
+  fi
+
+  # Fetch the full name from the GitHub API
   local full_name=$(gh api users/$github_handle --jq .name)
+
+  # Extract the first name (first word of the full name)
   local first_name=$(echo "$full_name" | cut -d' ' -f1)
+
+  # Cache the first name
+  FIRST_NAME_CACHE[$github_handle]=$first_name
+
   echo "$first_name"
 }
 
@@ -75,7 +92,6 @@ generate_report() {
   echo "" >> "$OUTPUT_MD"
 
   # Summary section
-  # Combine all calculations into a single jq query for better performance
   if ! SUMMARY=$(jq -r '{
     prs: length,
     repos: (group_by(.repository) | length),
@@ -113,30 +129,54 @@ generate_report() {
       # Step 2: Group PRs by user within each repository
       group_by(.user)[] |
       "#### User: \(.[0].user)\n" + (
-        # Step 3: List all PRs for the user
+        # Step 3: List all PRs for the user with the new format
         .[] |
-        "- [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state // "null")\n" + (
-          # Detailed section for each PR
-          "  - Description: \(if .body then (.body | sub("[\\n\\r]"; " ") | sub("\\|"; "\\\\|") | sub("([*_`])"; "\\\\$1")) else "[No description]" end)\n" +
-          "  - Labels: \(if (.labels | length) > 0 then (.labels | map(.name) | join(", ")) else "[No labels]" end)\n" +
-          "  - Comments: \(.comments // 0)\n"
-        ) + "\n"
+        if .state == "OPEN" then
+          "- \(.user) is working on [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt))\n"
+        elif .state == "CLOSED" or .state == "MERGED" then
+          "- \(.user) has worked on [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt))\n"
+        else
+          "- [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state // "null")\n"
+        end
       )
     )
-  ' "$INPUT_JSON" >> "$OUTPUT_MD"
+  ' "$INPUT_JSON" | while read -r line; do
+    # Replace GitHub handle with the user's first name
+    if [[ $line =~ ^####\ User:\ (.+)$ ]]; then
+      github_handle=${BASH_REMATCH[1]}
+      first_name=$(get_first_name "$github_handle")
+      echo "#### User: $first_name" >> "$OUTPUT_MD"
+    elif [[ $line =~ ^-\ (.+)\ (is working on|has worked on)\ \[(.+)\]\((https:\/\/github\.com\/.+)\)\ \((.+)\)$ ]]; then
+      github_handle=${BASH_REMATCH[1]}
+      action=${BASH_REMATCH[2]}
+      title=${BASH_REMATCH[3]}
+      url=${BASH_REMATCH[4]}
+      date=${BASH_REMATCH[5]}
+      first_name=$(get_first_name "$github_handle")
+      echo "- $first_name $action [$title]($url) ($date)" >> "$OUTPUT_MD"
+    else
+      echo "$line" >> "$OUTPUT_MD"
+    fi
+  done
 
   echo "" >> "$OUTPUT_MD"
-  echo "## Key Highlights" >> "$OUTPUT_MD"
-  echo "- Continued progress in modernizing Jenkins plugins" >> "$OUTPUT_MD"
-  echo "- Systematic removal of legacy JavaScript and inline event handlers" >> "$OUTPUT_MD"
-  echo "- Enhanced Content Security Policy (CSP) compatibility" >> "$OUTPUT_MD"
-  echo "- Proactive identification and resolution of potential security vulnerabilities" >> "$OUTPUT_MD"
-  echo "" >> "$OUTPUT_MD"
-  echo "## Next Steps" >> "$OUTPUT_MD"
-  echo "- Continue plugin modernization efforts" >> "$OUTPUT_MD"
-  echo "- Prioritize plugins with known CSP challenges" >> "$OUTPUT_MD"
-  echo "- Expand CSP scanner capabilities" >> "$OUTPUT_MD"
-  echo "- Collaborate with plugin maintainers to implement best practices" >> "$OUTPUT_MD"
+  # Read template sections from file
+  if [ -f "report-template.md" ]; then
+   cat "report-template.md" >> "$OUTPUT_MD"
+ else
+     echo "" >> "$OUTPUT_MD"
+     echo "## Key Highlights" >> "$OUTPUT_MD"
+     echo "- Continued progress in modernizing Jenkins plugins" >> "$OUTPUT_MD"
+     echo "- Systematic removal of legacy JavaScript and inline event handlers" >> "$OUTPUT_MD"
+     echo "- Enhanced Content Security Policy (CSP) compatibility" >> "$OUTPUT_MD"
+     echo "- Proactive identification and resolution of potential security vulnerabilities" >> "$OUTPUT_MD"
+     echo "" >> "$OUTPUT_MD"
+     echo "## Next Steps" >> "$OUTPUT_MD"
+     echo "- Continue plugin modernization efforts" >> "$OUTPUT_MD"
+     echo "- Prioritize plugins with known CSP challenges" >> "$OUTPUT_MD"
+     echo "- Expand CSP scanner capabilities" >> "$OUTPUT_MD"
+     echo "- Collaborate with plugin maintainers to implement best practices" >> "$OUTPUT_MD"
+  fi
 }
 
 # Run the report generation
