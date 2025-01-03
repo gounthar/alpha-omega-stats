@@ -40,8 +40,8 @@ generate_report() {
   echo "## Pull Requests by Repository" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
 
-  # Group PRs by repository
-  jq -r 'group_by(.repository)[] | "### \(.[0].repository)\n" + (.[] | "- [\(.title)](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt))") + "\n"' "$INPUT_JSON" >> "$OUTPUT_MD"
+  # Group PRs by repository and then by user
+  jq -r 'group_by(.repository)[] | "### \(.[0].repository)\n" + (group_by(.user)[] | "#### User: \(.[0].user)\n" + (.[] | "- [\(.title)](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt))") + "\n")' "$INPUT_JSON" >> "$OUTPUT_MD"
 
   echo "" >> "$OUTPUT_MD"
   echo "## Key Highlights" >> "$OUTPUT_MD"
