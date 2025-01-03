@@ -9,6 +9,24 @@ fi
 # Input JSON file (passed as a parameter)
 INPUT_JSON="$1"
 
+# Validate that the file exists and is readable
+if [ ! -r "$INPUT_JSON" ]; then
+  echo "Error: Input file '$INPUT_JSON' does not exist or is not readable" >&2
+  exit 1
+fi
+
+# Validate JSON structure
+if ! jq empty "$INPUT_JSON" 2>/dev/null; then
+  echo "Error: Invalid JSON format in '$INPUT_JSON'" >&2
+  exit 1
+fi
+
+# Validate required fields are present
+if ! jq -e 'all(has("repository") and has("user") and has("title") and has("number"))' "$INPUT_JSON" >/dev/null; then
+  echo "Error: JSON is missing required fields (repository, user, title, or number)" >&2
+  exit 1
+fi
+
 # Debugging: Print the input filename
 echo "Input filename: $INPUT_JSON"
 
@@ -57,9 +75,18 @@ generate_report() {
   echo "" >> "$OUTPUT_MD"
 
   # Summary section
-  TOTAL_PRS=$(jq '. | length' "$INPUT_JSON")
-  TOTAL_REPOS=$(jq 'group_by(.repository) | length' "$INPUT_JSON")
-  TOTAL_USERS=$(jq 'group_by(.user) | length' "$INPUT_JSON")
+  # Combine all calculations into a single jq query for better performance
+  if ! SUMMARY=$(jq -r '{
+    prs: length,
+    repos: (group_by(.repository) | length),
+    users: (group_by(.user) | length)
+  }' "$INPUT_JSON"); then
+    echo "Error: Failed to process JSON data for summary" >&2
+    exit 1
+  fi
+  TOTAL_PRS=$(echo "$SUMMARY" | jq '.prs')
+  TOTAL_REPOS=$(echo "$SUMMARY" | jq '.repos')
+  TOTAL_USERS=$(echo "$SUMMARY" | jq '.users')
   echo "## Summary" >> "$OUTPUT_MD"
   echo "- Total PRs: $TOTAL_PRS" >> "$OUTPUT_MD"
   echo "- Total Repositories: $TOTAL_REPOS" >> "$OUTPUT_MD"
