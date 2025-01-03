@@ -15,7 +15,7 @@ ORGS=("jenkinsci" "jenkins-infra")
 fetch_prs_for_org() {
   local org=$1
   local user=$2
-  gh pr list --state all --author "$user" --json number,title,createdAt,headRepository --search "org:$org created:$START_DATE..$END_DATE"
+  gh pr list --state all --author "$user" --json number,title,createdAt,headRepository,state --search "org:$org created:$START_DATE..$END_DATE"
 }
 
 # Main script
