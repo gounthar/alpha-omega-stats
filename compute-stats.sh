@@ -27,6 +27,8 @@ for USER in "${USERS[@]}"; do
   for ORG in "${ORGS[@]}"; do
     echo "Fetching PRs for organization: $ORG"
     PRS=$(fetch_prs_for_org "$ORG" "$USER")
+    # Add the user information to each PR
+    PRS=$(echo "$PRS" | jq --arg user "$USER" 'map(. + {user: $user})')
     PR_LIST=$(echo "$PR_LIST" | jq --argjson prs "$PRS" --arg org "$ORG" '. + ($prs | map(.repository = "\($org)/\(.headRepository.name)"))')
   done
 done
