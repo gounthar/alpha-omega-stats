@@ -78,12 +78,11 @@ generate_report() {
       "#### User: \(.[0].user)\n" + (
         # Step 3: List all PRs for the user
         .[] |
-        "- [\(.title)](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state)\n" + (
+        "- [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state)\n" + (
           # Detailed section for each PR
-          "  - Description: \(.body)\n" +
-          "  - Labels: \(.labels | map(.name) | join(", "))\n" +
-          "  - Comments: \(.comments)\n"
-        )
+          "  - Description: \(if .body then (.body | gsub("[\\n\\r]"; " ") | gsub("\\|"; "\\\\|") | gsub("([*_`])", "\\\\$1")) else "[No description]" end)\n" +
+          "  - Labels: \(if (.labels | length) > 0 then (.labels | map(.name) | join(", ")) else "[No labels]" end)\n" +
+          "  - Comments: \(.comments // 0)\n"
       ) + "\n"
     )
   ' "$INPUT_JSON" >> "$OUTPUT_MD"
