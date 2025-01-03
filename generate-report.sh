@@ -1,13 +1,41 @@
 #!/bin/bash
 
-# Input JSON file
-INPUT_JSON="prs_yaroslavafenkin_2024-12-01_to_2024-12-31.json"
+# Check if the input JSON file is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <input-json-file>"
+  exit 1
+fi
+
+# Input JSON file (passed as a parameter)
+INPUT_JSON="$1"
+
+# Extract the month number from the filename
+# Assuming the filename format is prs_<username>_<year>-<month>-<day>_to_<year>-<month>-<day>.json
+MONTH=$(basename "$INPUT_JSON" | cut -d'_' -f3 | cut -d'-' -f2)
+
+# Map month number to month name
+case $MONTH in
+  01) MONTH_NAME="January" ;;
+  02) MONTH_NAME="February" ;;
+  03) MONTH_NAME="March" ;;
+  04) MONTH_NAME="April" ;;
+  05) MONTH_NAME="May" ;;
+  06) MONTH_NAME="June" ;;
+  07) MONTH_NAME="July" ;;
+  08) MONTH_NAME="August" ;;
+  09) MONTH_NAME="September" ;;
+  10) MONTH_NAME="October" ;;
+  11) MONTH_NAME="November" ;;
+  12) MONTH_NAME="December" ;;
+  *) MONTH_NAME="Unknown" ;;
+esac
+
 # Output Markdown file
-OUTPUT_MD="jenkins-csp-december-report.md"
+OUTPUT_MD="jenkins-csp-${MONTH_NAME,,}-report.md"
 
 # Function to generate the Markdown report
 generate_report() {
-  echo "# December 2024 - Jenkins CSP Project Update" > "$OUTPUT_MD"
+  echo "# ${MONTH_NAME} 2024 - Jenkins CSP Project Update" > "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
   echo "## Pull Requests by Repository" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
