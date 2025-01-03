@@ -18,6 +18,23 @@ fetch_prs_for_org() {
   gh pr list --state all --author "$user" --json number,title,createdAt,headRepository,state --search "org:$org created:$START_DATE..$END_DATE"
 }
 
+# Function to fetch repositories with releases during the specified timeframe
+fetch_repos_with_releases() {
+  local start_date=$1
+  local end_date=$2
+  local repos=()
+  for org in "${ORGS[@]}"; do
+    local org_repos=$(gh repo list "$org" --json name --jq '.[].name')
+    for repo in $org_repos; do
+      local releases=$(gh release list -R "$org/$repo" --json tagName,publishedAt --jq ".[] | select(.publishedAt > \"$start_date\" and .publishedAt < \"$end_date\")")
+      if [[ -n "$releases" ]]; then
+        repos+=("$org/$repo")
+      fi
+    done
+  done
+  echo "${repos[@]}" | tr ' ' '\n' | sort -u
+}
+
 # Main script
 echo "Fetching PRs for users: ${USERS[*]}"
 
@@ -50,3 +67,12 @@ echo "$SORTED_PR_LIST"
 OUTPUT_FILE="prs_${USERS[0]}_and_others_${START_DATE}_to_${END_DATE}.json"
 echo "$SORTED_PR_LIST" > "$OUTPUT_FILE"
 echo "Sorted PRs have been saved to $OUTPUT_FILE"
+
+# Fetch and store the list of repositories with releases during the specified timeframe
+REPOS_WITH_RELEASES=$(fetch_repos_with_releases "$START_DATE" "$END_DATE")
+REPOS_FILE="repos_with_releases_${START_DATE}_to_${END_DATE}.txt"
+echo "$REPOS_WITH_RELEASES" > "$REPOS_FILE"
+echo "Repositories with releases have been saved to $REPOS_FILE"
+
+# Pass the list of repositories to the generate-report.sh script
+./generate-report.sh "$OUTPUT_FILE" "$REPOS_FILE"

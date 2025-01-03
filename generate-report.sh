@@ -2,16 +2,25 @@
 
 # Check if the input JSON file is provided
 if [ -z "$1" ]; then
-  echo "Usage: $0 <input-json-file>"
+  echo "Usage: $0 <input-json-file> <repos-file>"
   exit 1
 fi
 
 # Input JSON file (passed as a parameter)
 INPUT_JSON="$1"
 
+# Repositories file (passed as a parameter)
+REPOS_FILE="$2"
+
 # Validate that the file exists and is readable
 if [ ! -r "$INPUT_JSON" ]; then
   echo "Error: Input file '$INPUT_JSON' does not exist or is not readable" >&2
+  exit 1
+fi
+
+# Validate that the repositories file exists and is readable
+if [ ! -r "$REPOS_FILE" ]; then
+  echo "Error: Repositories file '$REPOS_FILE' does not exist or is not readable" >&2
   exit 1
 fi
 
@@ -189,6 +198,14 @@ generate_report() {
      echo "- Expand CSP scanner capabilities" >> "$OUTPUT_MD"
      echo "- Collaborate with plugin maintainers to implement best practices" >> "$OUTPUT_MD"
   fi
+
+  # Include the list of repositories with releases
+  echo "" >> "$OUTPUT_MD"
+  echo "## Repositories with Releases" >> "$OUTPUT_MD"
+  echo "" >> "$OUTPUT_MD"
+  while IFS= read -r repo; do
+    echo "- $repo" >> "$OUTPUT_MD"
+  done < "$REPOS_FILE"
 }
 
 # Run the report generation
