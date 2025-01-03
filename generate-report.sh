@@ -75,14 +75,22 @@ get_first_name() {
   fi
 
   # Fetch the full name from the GitHub API
-  local full_name=$(gh api users/$github_handle --jq .name)
+  local full_name
+  if ! full_name=$(gh api users/"$github_handle" --jq '.name // empty' 2>/dev/null); then
+    echo "$github_handle"  # Fallback to GitHub handle on API error
+    return
+  fi
 
   # Extract the first name (first word of the full name)
-  local first_name=$(echo "$full_name" | cut -d' ' -f1)
+  local first_name
+  if [[ -z "$full_name" ]]; then
+    first_name="$github_handle"  # Fallback to GitHub handle if no name
+  else
+    first_name=$(echo "$full_name" | cut -d' ' -f1)
+  fi
 
   # Cache the first name
   FIRST_NAME_CACHE[$github_handle]=$first_name
-
   echo "$first_name"
 }
 
