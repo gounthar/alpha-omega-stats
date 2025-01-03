@@ -107,7 +107,11 @@ generate_report() {
     open: map(select(.state == "OPEN")) | length,
     closed: map(select(.state == "CLOSED")) | length,
     merged: map(select(.state == "MERGED")) | length
-  }' "$INPUT_JSON"); then
+  } | . += {
+    open_percent: (.open / .prs * 100 | floor),
+    closed_percent: (.closed / .prs * 100 | floor),
+    merged_percent: (.merged / .prs * 100 | floor)
+  }' "$INPUT_JSON" 2>/dev/null); then
     echo "Error: Failed to process JSON data for summary" >&2
     exit 1
   fi
@@ -122,9 +126,9 @@ generate_report() {
   echo "- Total PRs: $TOTAL_PRS" >> "$OUTPUT_MD"
   echo "- Total Repositories: $TOTAL_REPOS" >> "$OUTPUT_MD"
   echo "- Total Users: $TOTAL_USERS" >> "$OUTPUT_MD"
-  echo "- Open PRs: $OPEN_PRS" >> "$OUTPUT_MD"
-  echo "- Closed PRs: $CLOSED_PRS" >> "$OUTPUT_MD"
-  echo "- Merged PRs: $MERGED_PRS" >> "$OUTPUT_MD"
+  echo "- Open PRs: $OPEN_PRS ($(echo "$SUMMARY" | jq '.open_percent')%)" >> "$OUTPUT_MD"
+  echo "- Closed PRs: $CLOSED_PRS ($(echo "$SUMMARY" | jq '.closed_percent')%)" >> "$OUTPUT_MD"
+  echo "- Merged PRs: $MERGED_PRS ($(echo "$SUMMARY" | jq '.merged_percent')%)" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
 
   echo "## Pull Requests by Repository" >> "$OUTPUT_MD"
