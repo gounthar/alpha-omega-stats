@@ -61,39 +61,6 @@ echo "Month name: $MONTH_NAME"
 # Output Markdown file with year and month
 OUTPUT_MD="jenkins-csp-${MONTH_NAME,,}-${YEAR}-report.md"
 
-# Cache for first names
-declare -A FIRST_NAME_CACHE
-
-# Function to get the first name of a GitHub user
-get_first_name() {
-  local github_handle=$1
-
-  # Check if the first name is already cached
-  if [[ -n "${FIRST_NAME_CACHE[$github_handle]}" ]]; then
-    echo "${FIRST_NAME_CACHE[$github_handle]}"
-    return
-  fi
-
-  # Fetch the full name from the GitHub API
-  local full_name
-  if ! full_name=$(gh api users/"$github_handle" --jq '.name // empty' 2>/dev/null); then
-    echo "$github_handle"  # Fallback to GitHub handle on API error
-    return
-  fi
-
-  # Extract the first name (first word of the full name)
-  local first_name
-  if [[ -z "$full_name" ]]; then
-    first_name="$github_handle"  # Fallback to GitHub handle if no name
-  else
-    first_name=$(echo "$full_name" | cut -d' ' -f1)
-  fi
-
-  # Cache the first name
-  FIRST_NAME_CACHE[$github_handle]=$first_name
-  echo "$first_name"
-}
-
 # Function to generate the Markdown report
 generate_report() {
   echo "# ${MONTH_NAME} ${YEAR} - Jenkins CSP Project Update" > "$OUTPUT_MD"
@@ -136,6 +103,23 @@ generate_report() {
 
   # Step 1: Group PRs by repository
   jq -r '
+    def get_first_name(handle):
+      handle as $original |
+      try (
+        $first_names[handle] // 
+        empty
+      ) // $original;
+
+    reduce (inputs | split("\n")[]) as $line (
+      [];
+      . + [
+        if $line | test("^#### User: ") then
+          sub("^#### User: "; "") | get_first_name(.)
+        else
+          $line
+        end
+      ]
+    ) | .[] |
     group_by(.repository)[] |
     "### \(.[0].repository)\n" + (
       # Step 2: Group PRs by user within each repository
@@ -152,24 +136,7 @@ generate_report() {
         end
       )
     )
-  ' "$INPUT_JSON" | while read -r line; do
-    # Replace GitHub handle with the user's first name
-    if [[ $line =~ ^####\ User:\ (.+)$ ]]; then
-      github_handle=${BASH_REMATCH[1]}
-      first_name=$(get_first_name "$github_handle")
-      echo "#### User: $first_name" >> "$OUTPUT_MD"
-    elif [[ $line =~ ^-\ (.+)\ (is working on|has worked on)\ \[(.+)\]\((https:\/\/github\.com\/.+)\)\ \((.+)\)$ ]]; then
-      github_handle=${BASH_REMATCH[1]}
-      action=${BASH_REMATCH[2]}
-      title=${BASH_REMATCH[3]}
-      url=${BASH_REMATCH[4]}
-      date=${BASH_REMATCH[5]}
-      first_name=$(get_first_name "$github_handle")
-      echo "- $first_name $action [$title]($url) ($date)" >> "$OUTPUT_MD"
-    else
-      echo "$line" >> "$OUTPUT_MD"
-    fi
-  done
+  ' "$INPUT_JSON" > "$OUTPUT_MD"
 
   echo "" >> "$OUTPUT_MD"
   # Read template sections from file
