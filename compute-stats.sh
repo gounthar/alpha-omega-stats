@@ -32,8 +32,12 @@ FILTERED_PR_LIST=$(echo "$PR_LIST" | jq "[.[] | select(.createdAt >= \"$START_DA
 echo "Filtered PR list:"
 echo "$FILTERED_PR_LIST"
 
-# Filter PRs by organization
-for ORG in "${ORGS[@]}"; do
-  echo "Filtering PRs for organization: $ORG"
-  echo "$FILTERED_PR_LIST" | jq -c ".[] | select(.repository | startswith(\"$ORG/\"))"
-done
+# Sort PRs by creation date (ascending order)
+SORTED_PR_LIST=$(echo "$FILTERED_PR_LIST" | jq 'sort_by(.createdAt)')
+echo "Sorted PR list (by createdAt):"
+echo "$SORTED_PR_LIST"
+
+# Save the sorted PR list to a JSON file
+OUTPUT_FILE="prs_${USER}_${START_DATE}_to_${END_DATE}.json"
+echo "$SORTED_PR_LIST" > "$OUTPUT_FILE"
+echo "Sorted PRs have been saved to $OUTPUT_FILE"
