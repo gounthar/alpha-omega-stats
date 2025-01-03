@@ -22,8 +22,8 @@ if ! jq empty "$INPUT_JSON" 2>/dev/null; then
 fi
 
 # Validate required fields are present
-if ! jq -e 'all(has("repository") and has("user") and has("title") and has("number"))' "$INPUT_JSON" >/dev/null; then
-  echo "Error: JSON is missing required fields (repository, user, title, or number)" >&2
+if ! jq -e 'all(has("repository") and has("user") and has("title") and has("number") and has("state"))' "$INPUT_JSON" >/dev/null; then
+  echo "Error: JSON is missing required fields (repository, user, title, number, or state)" >&2
   exit 1
 fi
 
@@ -79,7 +79,10 @@ generate_report() {
   if ! SUMMARY=$(jq -r '{
     prs: length,
     repos: (group_by(.repository) | length),
-    users: (group_by(.user) | length)
+    users: (group_by(.user) | length),
+    open: map(select(.state == "OPEN")) | length,
+    closed: map(select(.state == "CLOSED")) | length,
+    merged: map(select(.state == "MERGED")) | length
   }' "$INPUT_JSON"); then
     echo "Error: Failed to process JSON data for summary" >&2
     exit 1
@@ -87,10 +90,17 @@ generate_report() {
   TOTAL_PRS=$(echo "$SUMMARY" | jq '.prs')
   TOTAL_REPOS=$(echo "$SUMMARY" | jq '.repos')
   TOTAL_USERS=$(echo "$SUMMARY" | jq '.users')
+  OPEN_PRS=$(echo "$SUMMARY" | jq '.open')
+  CLOSED_PRS=$(echo "$SUMMARY" | jq '.closed')
+  MERGED_PRS=$(echo "$SUMMARY" | jq '.merged')
+
   echo "## Summary" >> "$OUTPUT_MD"
   echo "- Total PRs: $TOTAL_PRS" >> "$OUTPUT_MD"
   echo "- Total Repositories: $TOTAL_REPOS" >> "$OUTPUT_MD"
   echo "- Total Users: $TOTAL_USERS" >> "$OUTPUT_MD"
+  echo "- Open PRs: $OPEN_PRS" >> "$OUTPUT_MD"
+  echo "- Closed PRs: $CLOSED_PRS" >> "$OUTPUT_MD"
+  echo "- Merged PRs: $MERGED_PRS" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
 
   echo "## Pull Requests by Repository" >> "$OUTPUT_MD"
@@ -105,12 +115,13 @@ generate_report() {
       "#### User: \(.[0].user)\n" + (
         # Step 3: List all PRs for the user
         .[] |
-        "- [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state)\n" + (
+        "- [\(.title // "[No title]")](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state // "null")\n" + (
           # Detailed section for each PR
-          "  - Description: \(if .body then (.body | gsub("[\\n\\r]"; " ") | gsub("\\|"; "\\\\|") | gsub("([*_`])", "\\\\$1")) else "[No description]" end)\n" +
+          "  - Description: \(if .body then (.body | sub("[\\n\\r]"; " ") | sub("\\|"; "\\\\|") | sub("([*_`])"; "\\\\$1")) else "[No description]" end)\n" +
           "  - Labels: \(if (.labels | length) > 0 then (.labels | map(.name) | join(", ")) else "[No labels]" end)\n" +
           "  - Comments: \(.comments // 0)\n"
-      ) + "\n"
+        ) + "\n"
+      )
     )
   ' "$INPUT_JSON" >> "$OUTPUT_MD"
 
