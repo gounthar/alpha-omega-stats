@@ -55,6 +55,17 @@ get_first_name() {
 generate_report() {
   echo "# ${MONTH_NAME} ${YEAR} - Jenkins CSP Project Update" > "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
+
+  # Summary section
+  TOTAL_PRS=$(jq '. | length' "$INPUT_JSON")
+  TOTAL_REPOS=$(jq 'group_by(.repository) | length' "$INPUT_JSON")
+  TOTAL_USERS=$(jq 'group_by(.user) | length' "$INPUT_JSON")
+  echo "## Summary" >> "$OUTPUT_MD"
+  echo "- Total PRs: $TOTAL_PRS" >> "$OUTPUT_MD"
+  echo "- Total Repositories: $TOTAL_REPOS" >> "$OUTPUT_MD"
+  echo "- Total Users: $TOTAL_USERS" >> "$OUTPUT_MD"
+  echo "" >> "$OUTPUT_MD"
+
   echo "## Pull Requests by Repository" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
 
@@ -67,7 +78,12 @@ generate_report() {
       "#### User: \(.[0].user)\n" + (
         # Step 3: List all PRs for the user
         .[] |
-        "- [\(.title)](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt))"
+        "- [\(.title)](https://github.com/\(.repository)/pull/\(.number)) (\(.createdAt)) - Status: \(.state)\n" + (
+          # Detailed section for each PR
+          "  - Description: \(.body)\n" +
+          "  - Labels: \(.labels | map(.name) | join(", "))\n" +
+          "  - Comments: \(.comments)\n"
+        )
       ) + "\n"
     )
   ' "$INPUT_JSON" >> "$OUTPUT_MD"
