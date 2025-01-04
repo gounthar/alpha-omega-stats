@@ -118,11 +118,26 @@ OUTPUT_FILE="prs_${USERS[0]}_and_others_${START_DATE}_to_${END_DATE}.json"
 echo "$SORTED_PR_LIST" > "$OUTPUT_FILE"
 echo "Sorted PRs have been saved to $OUTPUT_FILE"
 
+# Clean up temporary files on exit
+cleanup() {
+  local exit_code=$?
+  rm -f "$REPOS_FILE"
+  exit $exit_code
+}
+trap cleanup EXIT
+
 # Fetch and store the list of repositories with releases during the specified timeframe
-REPOS_WITH_RELEASES=$(fetch_repos_with_releases "$START_DATE" "$END_DATE")
+if ! REPOS_WITH_RELEASES=$(fetch_repos_with_releases "$START_DATE" "$END_DATE" "$OUTPUT_FILE"); then
+  echo "Error: Failed to fetch repositories with releases" >&2
+  exit 1
+fi
+
 REPOS_FILE="repos_with_releases_${START_DATE}_to_${END_DATE}.txt"
 echo "$REPOS_WITH_RELEASES" > "$REPOS_FILE"
 echo "Repositories with releases have been saved to $REPOS_FILE"
 
 # Pass the list of repositories to the generate-report.sh script
-./generate-report.sh "$OUTPUT_FILE" "$REPOS_FILE"
+if ! ./generate-report.sh "$OUTPUT_FILE" "$REPOS_FILE"; then
+  echo "Error: Failed to generate report" >&2
+  exit 1
+fi
