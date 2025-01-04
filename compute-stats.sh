@@ -23,10 +23,24 @@ fetch_repos_with_releases() {
   local start_date=$1
   local end_date=$2
   local repos=()
+  # Add inclusive date comparison
+  local end_date_inclusive=$(date -d "$end_date + 1 day" +%Y-%m-%d)
+
   for org in "${ORGS[@]}"; do
-    local org_repos=$(gh repo list "$org" --json name --jq '.[].name')
+    # Declare and assign separately to handle errors
+    local org_repos
+    if ! org_repos=$(gh repo list "$org" --json name --jq '.[].name'); then
+      echo "Error: Failed to fetch repositories for $org" >&2
+      continue
+    fi
+
     for repo in $org_repos; do
-      local releases=$(gh release list -R "$org/$repo" --json tagName,publishedAt --jq ".[] | select(.publishedAt > \"$start_date\" and .publishedAt < \"$end_date\")")
+      local releases
+      if ! releases=$(gh release list -R "$org/$repo" --json tagName,publishedAt \
+        --jq ".[] | select(.publishedAt >= \"$start_date\" and .publishedAt < \"$end_date_inclusive\")"); then
+        echo "Warning: Failed to fetch releases for $org/$repo" >&2
+        continue
+      fi
       if [[ -n "$releases" ]]; then
         repos+=("$org/$repo")
       fi
