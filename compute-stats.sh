@@ -22,18 +22,48 @@ fetch_prs_for_org() {
 fetch_repos_with_releases() {
   local start_date=$1
   local end_date=$2
+
+  # Validate input parameters
+  if [[ ! $start_date =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] || \
+     [[ ! $end_date =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    echo "Error: Invalid date format. Expected YYYY-MM-DD" >&2
+    return 1
+  fi
+
   local repos=()
   # Add inclusive date comparison
-  local end_date_inclusive=$(date -d "$end_date + 1 day" +%Y-%m-%d)
+  local end_date_inclusive
+  end_date_inclusive=$(date -d "$end_date + 1 day" +%Y-%m-%d) || {
+    echo "Error: Failed to process end date" >&2
+    return 1
+  }
+
+  # Function to check rate limit
+  check_rate_limit() {
+    local remaining
+    remaining=$(gh api rate_limit --jq '.rate.remaining') || return 1
+    if ((remaining < 100)); then
+      echo "Warning: GitHub API rate limit is low ($remaining remaining). Waiting..." >&2
+      sleep 60  # Wait for rate limit to refresh
+    fi
+  }
 
   # Get the list of repositories where users have created PRs
-  local pr_repos=$(jq -r '.[].repository' "$OUTPUT_FILE" | sort -u)
+  local pr_repos
+  pr_repos=$(jq -r '.[].repository' "$OUTPUT_FILE" | sort -u) || {
+    echo "Error: Failed to extract repositories from $OUTPUT_FILE" >&2
+    return 1
+  }
 
   for repo in $pr_repos; do
-    local org=$(echo "$repo" | cut -d'/' -f1)
-    local repo_name=$(echo "$repo" | cut -d'/' -f2)
+    local org repo_name
+    org=$(echo "$repo" | cut -d'/' -f1)
+    repo_name=$(echo "$repo" | cut -d'/' -f2)
 
-    echo "Checking releases for repository: $org/$repo_name"
+    echo "Info: Checking releases for repository: $org/$repo_name" >&2
+
+    # Check rate limit before making API calls
+    check_rate_limit || continue
 
     # Fetch releases for the repository
     local releases
@@ -45,10 +75,10 @@ fetch_repos_with_releases() {
 
     # If there are releases, add the repository to the list
     if [[ -n "$releases" ]]; then
-      echo "Found releases for $org/$repo_name"
+      echo "Info: Found releases for $org/$repo_name" >&2
       repos+=("$org/$repo_name")
     else
-      echo "No releases found for $org/$repo_name"
+      echo "Info: No releases found for $org/$repo_name" >&2
     fi
   done
 
