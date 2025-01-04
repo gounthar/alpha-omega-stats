@@ -26,26 +26,32 @@ fetch_repos_with_releases() {
   # Add inclusive date comparison
   local end_date_inclusive=$(date -d "$end_date + 1 day" +%Y-%m-%d)
 
-  for org in "${ORGS[@]}"; do
-    # Declare and assign separately to handle errors
-    local org_repos
-    if ! org_repos=$(gh repo list "$org" --json name --jq '.[].name'); then
-      echo "Error: Failed to fetch repositories for $org" >&2
+  # Get the list of repositories where users have created PRs
+  local pr_repos=$(jq -r '.[].repository' "$OUTPUT_FILE" | sort -u)
+
+  for repo in $pr_repos; do
+    local org=$(echo "$repo" | cut -d'/' -f1)
+    local repo_name=$(echo "$repo" | cut -d'/' -f2)
+
+    echo "Checking releases for repository: $org/$repo_name"
+
+    # Fetch releases for the repository
+    local releases
+    if ! releases=$(gh release list -R "$org/$repo_name" --json tagName,publishedAt \
+      --jq ".[] | select(.publishedAt >= \"$start_date\" and .publishedAt < \"$end_date_inclusive\")"); then
+      echo "Warning: Failed to fetch releases for $org/$repo_name" >&2
       continue
     fi
 
-    for repo in $org_repos; do
-      local releases
-      if ! releases=$(gh release list -R "$org/$repo" --json tagName,publishedAt \
-        --jq ".[] | select(.publishedAt >= \"$start_date\" and .publishedAt < \"$end_date_inclusive\")"); then
-        echo "Warning: Failed to fetch releases for $org/$repo" >&2
-        continue
-      fi
-      if [[ -n "$releases" ]]; then
-        repos+=("$org/$repo")
-      fi
-    done
+    # If there are releases, add the repository to the list
+    if [[ -n "$releases" ]]; then
+      echo "Found releases for $org/$repo_name"
+      repos+=("$org/$repo_name")
+    else
+      echo "No releases found for $org/$repo_name"
+    fi
   done
+
   echo "${repos[@]}" | tr ' ' '\n' | sort -u
 }
 
