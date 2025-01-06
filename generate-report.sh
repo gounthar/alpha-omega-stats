@@ -237,6 +237,7 @@ generate_report() {
     repo=$(echo "$line" | awk '{print $2}')
     # echo "$line Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
     repo_name=${repo#*/}
+    repo_name=${repo_name//-plugin/ plugin}
     echo "${line%% *} Released the [$repo_name](https://github.com/$repo)" >> "$OUTPUT_MD"
   done
 }
