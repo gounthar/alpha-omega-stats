@@ -236,7 +236,8 @@ generate_report() {
     # corresponds to the repository name.
     repo=$(echo "$line" | awk '{print $2}')
     # echo "$line Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
-      echo "${line%% *} Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
+    repo_name=${repo#*/}
+    echo "${line%% *} Released the [$repo_name](https://github.com/$repo)" >> "$OUTPUT_MD"
   done
 }
 
