@@ -104,7 +104,7 @@ echo "Raw PR list:"
 echo "$PR_LIST"
 
 # Filter PRs by date and ensure repository is not null
-FILTERED_PR_LIST=$(echo "$PR_LIST" | jq "[.[] | select((.createdAt >= \"$START_DATE\" and .createdAt <= \"$END_DATE\") or (.updatedAt >= \"$START_DATE\" and .updatedAt <= \"$END_DATE\") and .repository != null)]")
+FILTERED_PR_LIST=$(echo "$PR_LIST" | jq "[.[] | select((.createdAt >= \"$START_DATE\" and .createdAt <= \"$END_DATE\" and .repository != null) or (.updatedAt >= \"$START_DATE\" and .updatedAt <= \"$END_DATE\" and .repository != null))]")
 echo "Filtered PR list:"
 echo "$FILTERED_PR_LIST"
 
