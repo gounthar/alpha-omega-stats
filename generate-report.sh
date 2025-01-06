@@ -201,11 +201,12 @@ generate_report() {
 
   # Include the list of repositories with releases
   echo "" >> "$OUTPUT_MD"
-  echo "## Repositories with Releases" >> "$OUTPUT_MD"
+  echo "### Released plugins" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
-  while IFS= read -r repo; do
-    echo "- $repo" >> "$OUTPUT_MD"
-  done < "$REPOS_FILE"
+  sort "$REPOS_FILE" | nl -w1 -s'. ' | while IFS= read -r line; do
+    repo=$(echo "$line" | awk '{print $2}')
+    echo "$line Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
+  done
 }
 
 # Run the report generation
