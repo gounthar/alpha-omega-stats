@@ -9,11 +9,11 @@ The Markdown report now includes a list of repositories that supplied a release 
 The new output format for the list of repositories with releases is as follows:
 
 ### Released plugins
-1. Released the [claim plugin](https://github.com/jenkinsci/jenkinsci/claim-plugin)
-2. Released the [email-ext plugin](https://github.com/jenkinsci/jenkinsci/email-ext-plugin)
-3. Released the [last-changes plugin](https://github.com/jenkinsci/jenkinsci/last-changes-plugin)
-4. Released the [pipeline-aggregator-view plugin](https://github.com/jenkinsci/jenkinsci/pipeline-aggregator-view-plugin)
-5. Released the [pollscm plugin](https://github.com/jenkinsci/jenkinsci/pollscm-plugin)
-6. Released the [port-allocator plugin](https://github.com/jenkinsci/jenkinsci/port-allocator-plugin)
+1. Released the [claim plugin](https://github.com/jenkinsci/claim-plugin)
+2. Released the [email-ext plugin](https://github.com/jenkinsci/email-ext-plugin)
+3. Released the [last-changes plugin](https://github.com/jenkinsci/last-changes-plugin)
+4. Released the [pipeline-aggregator-view plugin](https://github.com/jenkinsci/pipeline-aggregator-view-plugin)
+5. Released the [pollscm plugin](https://github.com/jenkinsci/pollscm-plugin)
+6. Released the [port-allocator plugin](https://github.com/jenkinsci/port-allocator-plugin)
 
 The repository names in the new format are sorted alphabetically to maintain consistency and readability.
