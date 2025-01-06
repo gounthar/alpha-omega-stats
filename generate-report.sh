@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script generates a Markdown report for Jenkins CSP project updates based on input JSON data and a list of repositories with releases.
+
 # Check if the input JSON file is provided
 if [ -z "$1" ]; then
   echo "Usage: $0 <input-json-file> <repos-file>"
@@ -12,7 +14,7 @@ INPUT_JSON="$1"
 # Repositories file (passed as a parameter)
 REPOS_FILE="$2"
 
-# Validate that the file exists and is readable
+# Validate that the input JSON file exists and is readable
 if [ ! -r "$INPUT_JSON" ]; then
   echo "Error: Input file '$INPUT_JSON' does not exist or is not readable" >&2
   exit 1
@@ -30,7 +32,7 @@ if ! jq empty "$INPUT_JSON" 2>/dev/null; then
   exit 1
 fi
 
-# Validate required fields are present
+# Validate required fields are present in the JSON
 if ! jq -e 'all(has("repository") and has("user") and has("title") and has("number") and has("state"))' "$INPUT_JSON" >/dev/null; then
   echo "Error: JSON is missing required fields (repository, user, title, number, or state)" >&2
   exit 1
@@ -74,6 +76,10 @@ OUTPUT_MD="jenkins-csp-${MONTH_NAME,,}-${YEAR}-report.md"
 declare -A FIRST_NAME_CACHE
 
 # Function to get the first name of a GitHub user
+# Arguments:
+#   $1 - GitHub handle of the user
+# Returns:
+#   First name of the user
 get_first_name() {
   local github_handle=$1
 
@@ -200,12 +206,37 @@ generate_report() {
   fi
 
   # Include the list of repositories with releases
+  # Default to alphabetical sorting unless PRESERVE_ORDER is set
+  if [ "${PRESERVE_ORDER:-0}" = "1" ]; then
+   SORT_CMD="cat"
+  else
+    SORT_CMD="sort"
+  fi
+
   echo "" >> "$OUTPUT_MD"
   echo "### Released plugins" >> "$OUTPUT_MD"
   echo "" >> "$OUTPUT_MD"
-  sort "$REPOS_FILE" | nl -w1 -s'. ' | while IFS= read -r line; do
+  if [ ! -s "$REPOS_FILE" ]; then
+    echo "No plugins were released during this period." >> "$OUTPUT_MD"
+    return
+  fi
+  # The output of the SORT_CMD command is piped into the nl command,
+  # which numbers each line.
+  # The -w1 option specifies the width of the line numbers,
+  # and the -s'. ' option sets the separator between the line number and the line
+  # content to a period followed by a space.
+  # The while IFS= read -r line; do loop iterates over each line of the numbered
+  # and sorted file.
+  # The IFS= ensures that leading and trailing whitespace is preserved, and
+  # read -r line reads each line into the variable line.
+  $SORT_CMD "$REPOS_FILE" | nl -w1 -s'. ' | while IFS= read -r line; do
+    # Within the loop, the repo=$(echo "$line" | awk '{print $2}') command
+    # extracts the repository name from each line.
+    # The awk '{print $2}' command prints the second field of the line, which
+    # corresponds to the repository name.
     repo=$(echo "$line" | awk '{print $2}')
-    echo "$line Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
+    # echo "$line Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
+      echo "${line%% *} Released the [$repo](https://github.com/$repo)" >> "$OUTPUT_MD"
   done
 }
 
