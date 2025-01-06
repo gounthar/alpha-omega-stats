@@ -9,7 +9,7 @@
 IFS=',' read -r -a USERS <<< "$1"  # Split the comma-separated list of users into an array
 START_DATE=$2
 END_DATE=$3
-ORGS=("jenkinsci" "jenkins-infra")
+ORGS=("jenkinsci" "jenkins-infra" "jenkins-docs")
 
 # Function to fetch PRs for a specific organization and user
 fetch_prs_for_org() {
