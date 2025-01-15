@@ -53,6 +53,20 @@ for pr in grouped_prs:
         # Update the sheet with the data, treating hyperlinks as formulas
         sheet.update(range_name="A1", values=data, value_input_option="USER_ENTERED")
 
+        # Format the column titles (bold font and background color)
+        sheet.format("A1:E1", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,  # Light gray background
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"  # Center-align the text
+        })
+
         # Apply conditional formatting based on PR state
         # Green for merged, orange for open, red for closed
         format_requests = []
