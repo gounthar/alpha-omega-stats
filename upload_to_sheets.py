@@ -12,7 +12,7 @@ creds = ServiceAccountCredentials.from_json_keyfile_name('concise-complex-344219
 client = gspread.authorize(creds)
 
 # Open the Google Sheet
-sheet = client.open("Your Google Sheet Name").sheet1
+sheet = client.open("Jenkins PR Tracker").sheet1
 
 # Load the grouped PRs JSON file
 with open('grouped_prs_prs_gounthar_and_others_2025-01-01_to_2025-01-15.json') as f:
