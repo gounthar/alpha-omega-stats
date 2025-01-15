@@ -38,12 +38,15 @@ fi
 PLUGIN_REPOS_JSON=$(echo "$PLUGIN_REPOS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
 
 # Filter PRs that are related to Jenkins plugins
-FILTERED_PRS=$(jq --argjson plugin_repos "$PLUGIN_REPOS_JSON" '
+if ! FILTERED_PRS=$(jq --argjson plugin_repos "$PLUGIN_REPOS_JSON" '
   map(select(
     .repository as $repo |
     $plugin_repos | index($repo) != null
   ))
-' "$INPUT_JSON")
+' "$INPUT_JSON"); then
+    echo "Error: Failed to filter PRs from $INPUT_JSON" >&2
+    exit 1
+fi
 
 # Output the filtered PRs to a new JSON file
 FILTERED_JSON="filtered_prs_$(basename "$INPUT_JSON")"
