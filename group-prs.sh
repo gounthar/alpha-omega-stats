@@ -15,9 +15,12 @@ if [ ! -r "$INPUT_JSON" ]; then
 fi
 
 # Check if the plugins JSON file exists and is less than one day old
-if [ ! -f "$PLUGINS_JSON" ] || [ $(find "$PLUGINS_JSON" -mtime +1 -print) ]; then
+if [ ! -f "$PLUGINS_JSON" ] || [ "$(find "$PLUGINS_JSON" -mtime +1 -print)" ]; then
   echo "Downloading plugins.json..."
-  curl -L https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"
+  if ! curl -L --fail https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"; then
+    echo "Error: Failed to download plugins.json" >&2
+    exit 1
+  fi
 fi
 
 # Validate that the plugins JSON file exists and is readable
