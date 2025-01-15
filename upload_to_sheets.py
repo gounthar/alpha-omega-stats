@@ -1,4 +1,5 @@
 import gspread
+import gspread.exceptions  # Ensure exceptions are properly referenced if not already imported
 from google.oauth2.service_account import Credentials
 import json
 import time
@@ -88,7 +89,12 @@ summary_data = [
 
 # Add plugin-specific stats and links to individual sheets
 for plugin, stats in plugin_stats.items():
-    link = f'=HYPERLINK("#gid={spreadsheet.worksheet(plugin).id}"; "{plugin}")'
+    try:
+        plugin_sheet = spreadsheet.worksheet(plugin)
+    except gspread.exceptions.WorksheetNotFound:
+        plugin_sheet = spreadsheet.add_worksheet(title=plugin, rows=100, cols=10)
+
+    link = f'=HYPERLINK("#gid={plugin_sheet.id}"; "{plugin}")'
     summary_data.append([
         plugin,
         stats["total"],
