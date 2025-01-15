@@ -37,7 +37,7 @@ while IFS= read -r repo; do
         fi
 
         # Count the number of PRs on the current page
-        COUNT=$(echo "$PRS" | jq -s length)
+        COUNT=$(echo "$PRS" | wc -l)
         REPO_PR_COUNT=$((REPO_PR_COUNT + COUNT))
 
         # Increment the page number
