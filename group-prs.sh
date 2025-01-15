@@ -44,7 +44,7 @@ fi
 FILTERED_JSON="filtered_prs_$(basename "$INPUT_JSON")"
 
 # Group PRs by title and status
-GROUPED_PRS=$(jq '
+if ! GROUPED_PRS=$(jq '
   group_by(.title) |
   map({
     title: .[0].title,
@@ -52,7 +52,10 @@ GROUPED_PRS=$(jq '
     open: map(select(.state == "OPEN")) | length,
     closed: map(select(.state == "CLOSED")) | length,
     prs: .
-  })' "$FILTERED_JSON")
+  })' "$FILTERED_JSON"); then
+    echo "Error: Failed to group PRs from $FILTERED_JSON" >&2
+    exit 1
+fi
 
 # Output the grouped PRs to a new JSON file
 OUTPUT_JSON="grouped_prs_$(basename "$INPUT_JSON")"
