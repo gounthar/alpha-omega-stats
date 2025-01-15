@@ -29,7 +29,7 @@ while IFS= read -r repo; do
     PAGE=1
     while true; do
         # Fetch PRs for the current page using gh api
-        PRS=$(gh api -X GET "repos/$repo/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=$PAGE" --jq '.[] | select(.merged_at != null) | select(.merged_at | startswith("'"$YEAR"'"))')
+        PRS=$(gh api -X GET "repos/$repo/pulls?state=closed&sort=updated&direction=desc&per_page=100&page=$PAGE" --jq '.[] | select(.merged_at != null) | select(.merged_at | startswith("'"$YEAR"'")) | .number')
 
         # Check if there are no more PRs
         if [ -z "$PRS" ]; then
