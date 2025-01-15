@@ -3,6 +3,7 @@ from google.oauth2.service_account import Credentials
 import json
 import time
 import logging
+from datetime import datetime
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -38,6 +39,8 @@ open_prs = 0
 closed_prs = 0
 merged_prs = 0
 plugin_stats = {}
+earliest_date = None
+latest_date = None
 
 for pr in grouped_prs:
     title = pr["title"]
@@ -55,6 +58,16 @@ for pr in grouped_prs:
         "merged": pr["merged"]
     }
 
+    # Find the earliest and latest dates
+    for p in prs:
+        created_at = datetime.fromisoformat(p["createdAt"].replace("Z", "+00:00"))
+        updated_at = datetime.fromisoformat(p["updatedAt"].replace("Z", "+00:00"))
+
+        if earliest_date is None or created_at < earliest_date:
+            earliest_date = created_at
+        if latest_date is None or updated_at > latest_date:
+            latest_date = updated_at
+
 # Calculate percentages
 open_percentage = (open_prs / total_prs) * 100 if total_prs > 0 else 0
 closed_percentage = (closed_prs / total_prs) * 100 if total_prs > 0 else 0
@@ -62,13 +75,14 @@ merged_percentage = (merged_prs / total_prs) * 100 if total_prs > 0 else 0
 
 # Prepare summary data for the sheet
 summary_data = [
-    ["Overall PR Statistics", "", "", ""],
-    ["Total PRs", total_prs, "", ""],
-    ["Open PRs", open_prs, f"{open_percentage:.2f}%", ""],
-    ["Closed PRs", closed_prs, f"{closed_percentage:.2f}%", ""],
-    ["Merged PRs", merged_prs, f"{merged_percentage:.2f}%", ""],
-    ["", "", "", ""],
-    ["Plugin-Specific Statistics", "", "", ""],
+    ["PR Date Range", f"{earliest_date.strftime('%Y-%m-%d')} to {latest_date.strftime('%Y-%m-%d')}", "", "", "", ""],
+    ["Overall PR Statistics", "", "", "", "", ""],
+    ["Total PRs", total_prs, "", "", "", ""],
+    ["Open PRs", open_prs, f"{open_percentage:.2f}%", "", "", ""],
+    ["Closed PRs", closed_prs, f"{closed_percentage:.2f}%", "", "", ""],
+    ["Merged PRs", merged_prs, f"{merged_percentage:.2f}%", "", "", ""],
+    ["", "", "", "", "", ""],
+    ["Plugin-Specific Statistics", "", "", "", "", ""],
     ["Plugin", "Total PRs", "Open PRs", "Closed PRs", "Merged PRs", "Link to Sheet"]
 ]
 
@@ -101,6 +115,13 @@ summary_sheet.format("A1:F1", {
     },
     "horizontalAlignment": "CENTER"  # Center-align the text
 })
+
+# Reorder sheets to make the Summary sheet first
+sheets = spreadsheet.worksheets()
+if sheets[0].title != "Summary":
+    summary_sheet_index = next((i for i, sheet in enumerate(sheets) if sheet.title == "Summary"), None)
+    if summary_sheet_index is not None:
+        spreadsheet.reorder_worksheets([sheets[summary_sheet_index]] + [sheet for i, sheet in enumerate(sheets) if i != summary_sheet_index])
 
 # Iterate through each PR group and create a new sheet for each title
 for pr in grouped_prs:
