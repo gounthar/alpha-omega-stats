@@ -1,9 +1,8 @@
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.service_account import Credentials
 import json
 import time
 import logging
-from tqdm import tqdm
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -13,7 +12,7 @@ logging.info("Starting script...")
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 # Add your service account credentials
-creds = ServiceAccountCredentials.from_json_keyfile_name('concise-complex-344219-062a255ca56f.json', scope)
+creds = Credentials.from_service_account_file('concise-complex-344219-062a255ca56f.json', scopes=scope)
 
 # Authorize the client
 client = gspread.authorize(creds)
@@ -27,7 +26,7 @@ with open('grouped_prs_prs_gounthar_and_others_2024-12-01_to_2025-01-15.json') a
     grouped_prs = json.load(f)
 
 # Iterate through each PR group and create a new sheet for each title
-for pr in tqdm(grouped_prs, desc="Processing PRs"):
+for pr in grouped_prs:
     title = pr["title"]
     prs = pr["prs"]
 
