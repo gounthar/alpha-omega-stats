@@ -40,6 +40,8 @@ FILTERED_PRS=$(jq --argjson plugin_repos "$PLUGIN_REPOS_JSON" '
 
 # Output the filtered PRs to a new JSON file
 FILTERED_JSON="filtered_prs_$(basename "$INPUT_JSON")"
-echo "$FILTERED_PRS" > "$FILTERED_JSON"
-
+if ! echo "$FILTERED_PRS" > "$FILTERED_JSON"; then
+    echo "Error: Failed to write filtered PRs to $FILTERED_JSON" >&2
+    exit 1
+fi
 echo "Filtered PRs have been saved to $FILTERED_JSON"
