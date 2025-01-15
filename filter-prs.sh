@@ -17,7 +17,12 @@ if [ ! -r "$PLUGINS_JSON" ]; then
 fi
 
 # Extract the list of Jenkins plugin repositories from plugins.json
-PLUGIN_REPOS=$(jq -r '.plugins | to_entries[] | select(.value.scm != null) | .value.scm | sub("https://github.com/"; "")' "$PLUGINS_JSON")
+# PLUGIN_REPOS=$(jq -r '.plugins | to_entries[] | select(.value.scm != null) | .value.scm | sub("https://github.com/"; "")' "$PLUGINS_JSON")
+PLUGIN_REPOS=$(jq -r '.plugins | to_entries[] | select(.value.scm != null) | .value.scm | sub("https://github.com/"; "")' "$PLUGINS_JSON") || {
+    echo "Error: Failed to parse plugins JSON file" >&2
+    exit 1
+}
+
 echo "Extracted plugin repositories:"
 echo "$PLUGIN_REPOS"
 
