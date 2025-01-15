@@ -1,9 +1,16 @@
 #!/bin/bash
 
+# Check if both parameters are provided
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <input-json-file> <plugins-json-file>" >&2
+    echo "  <input-json-file>: Path to the JSON file containing PR data" >&2
+    echo "  <plugins-json-file>: Path to the plugins.json file" >&2
+    exit 1
+fi
+
 # Input JSON file (passed as a parameter)
 INPUT_JSON="$1"
 PLUGINS_JSON="$2"
-
 # Validate that the input JSON file exists and is readable
 if [ ! -r "$INPUT_JSON" ]; then
   echo "Error: Input file '$INPUT_JSON' does not exist or is not readable" >&2
