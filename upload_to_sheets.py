@@ -18,7 +18,6 @@ creds = Credentials.from_service_account_file('concise-complex-344219-062a255ca5
 client = gspread.authorize(creds)
 
 # Open the Google Sheet by name or ID
-# Replace "Your Google Sheet Name" with the actual name or ID of your Google Sheet
 spreadsheet = client.open("Jenkins PR Tracker")  # or use client.open_by_key("YOUR_SHEET_ID")
 
 # Load the grouped PRs JSON file
@@ -33,7 +32,10 @@ for pr in grouped_prs:
     # Prepare the data for the sheet
     data = [["Repository", "PR Number", "State", "Created At", "Updated At"]]
     for p in prs:
-        data.append([p["repository"], p["number"], p["state"], p["createdAt"], p["updatedAt"]])
+        # Add hyperlinks to the Repository and PR Number columns
+        repo_link = f'=HYPERLINK("https://github.com/{p["repository"]}"; "{p["repository"]}")'
+        pr_link = f'=HYPERLINK("https://github.com/{p["repository"]}/pull/{p["number"]}"; "{p["number"]}")'
+        data.append([repo_link, pr_link, p["state"], p["createdAt"], p["updatedAt"]])
 
     try:
         # Check if a sheet with the same title already exists
@@ -45,12 +47,35 @@ for pr in grouped_prs:
             logging.info(f"Creating new sheet for '{title}'...")
             sheet = spreadsheet.add_worksheet(title=title, rows=100, cols=10)
 
-        # Update the sheet with the new data
+        # Clear the sheet and update it with the new data
         sheet.clear()
-        sheet.update(range_name='A1', values=data)  # Fix the deprecation warning
+
+        # Update the sheet with the data, treating hyperlinks as formulas
+        sheet.update("A1", data, value_input_option="USER_ENTERED")
+
+        # Apply conditional formatting based on PR state
+        # Green for merged, orange for open, red for closed
+        format_requests = []
+        for row_idx, p in enumerate(prs, start=2):  # Start from row 2 (skip header)
+            color = {
+                "MERGED": {"red": 0.0, "green": 1.0, "blue": 0.0, "alpha": 1.0},  # Green
+                "OPEN": {"red": 1.0, "green": 0.5, "blue": 0.0, "alpha": 1.0},    # Orange
+                "CLOSED": {"red": 1.0, "green": 0.0, "blue": 0.0, "alpha": 1.0},  # Red
+            }.get(p["state"], {"red": 1.0, "green": 1.0, "blue": 1.0, "alpha": 1.0})  # Default to white
+
+            format_requests.append({
+                "range": f"A{row_idx}:E{row_idx}",
+                "format": {
+                    "backgroundColor": color
+                }
+            })
+
+        # Apply all formatting requests in a single batch
+        if format_requests:
+            sheet.batch_format(format_requests)
 
         # Add a delay to avoid hitting the quota limit
-        time.sleep(2)  # Pause for 2 seconds between requests
+        time.sleep(5)  # Pause for 5 seconds between requests
 
     except gspread.exceptions.APIError as e:
         logging.error(f"Failed to update sheet '{title}': {e}")
