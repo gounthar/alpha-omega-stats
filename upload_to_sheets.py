@@ -123,13 +123,20 @@ if sheets[0].title != "Summary":
     if summary_sheet_index is not None:
         spreadsheet.reorder_worksheets([sheets[summary_sheet_index]] + [sheet for i, sheet in enumerate(sheets) if i != summary_sheet_index])
 
+# Get the Summary sheet ID for the "Back to Summary" link
+summary_sheet_id = summary_sheet.id
+
 # Iterate through each PR group and create a new sheet for each title
 for pr in grouped_prs:
     title = pr["title"]
     prs = pr["prs"]
 
     # Prepare the data for the sheet
-    data = [["Repository", "PR Number", "State", "Created At", "Updated At"]]
+    data = [
+        ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+        ["", "", "", "", ""],  # Empty row for spacing
+        ["Repository", "PR Number", "State", "Created At", "Updated At"]
+    ]
     for p in prs:
         # Add hyperlinks to the Repository and PR Number columns
         repo_link = f'=HYPERLINK("https://github.com/{p["repository"]}"; "{p["repository"]}")'
@@ -151,7 +158,7 @@ for pr in grouped_prs:
         sheet.update(range_name="A1", values=data, value_input_option="USER_ENTERED")
 
         # Format the column titles (bold font and background color)
-        sheet.format("A1:E1", {
+        sheet.format("A3:E3", {  # Format only the column titles (row 3)
             "textFormat": {
                 "bold": True
             },
@@ -167,7 +174,7 @@ for pr in grouped_prs:
         # Apply conditional formatting based on PR state
         # Green for merged, orange for open, red for closed
         format_requests = []
-        for row_idx, p in enumerate(prs, start=2):  # Start from row 2 (skip header)
+        for row_idx, p in enumerate(prs, start=4):  # Start from row 4 (skip header and "Back to Summary" row)
             color = {
                 "MERGED": {"red": 0.0, "green": 1.0, "blue": 0.0, "alpha": 1.0},  # Green
                 "OPEN": {"red": 1.0, "green": 0.5, "blue": 0.0, "alpha": 1.0},    # Orange
