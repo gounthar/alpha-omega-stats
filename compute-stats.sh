@@ -15,7 +15,20 @@ ORGS=("jenkinsci" "jenkins-infra" "jenkins-docs")
 fetch_prs_for_org() {
   local org=$1
   local user=$2
-  gh pr list --state all --author "$user" --json number,title,createdAt,updatedAt,headRepository,state --search "org:$org created:$START_DATE..$END_DATE updated:$START_DATE..$END_DATE"
+  local page=1
+  local prs="[]"
+
+  while true; do
+    local result
+    result=$(gh pr list --state all --author "$user" --json number,title,createdAt,updatedAt,headRepository,state --search "org:$org created:$START_DATE..$END_DATE updated:$START_DATE..$END_DATE" --per-page 100 --page $page)
+    if [[ -z "$result" || "$result" == "[]" ]]; then
+      break
+    fi
+    prs=$(echo "$prs" | jq --argjson new_prs "$result" '. + $new_prs')
+    ((page++))
+  done
+
+  echo "$prs"
 }
 
 # Function to fetch repositories with releases during the specified timeframe
