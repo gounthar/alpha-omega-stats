@@ -17,3 +17,10 @@ The new output format for the list of repositories with releases is as follows:
 6. Released the [port-allocator plugin](https://github.com/jenkinsci/port-allocator-plugin)
 
 The repository names in the new format are sorted alphabetically to maintain consistency and readability.
+
+
+```
+./count_prs.sh repos.txt 2024
+./compute-stats.sh gounthar,jonesbusy 2024-12-01 2025-01-15
+./group-prs.sh prs_gounthar_and_others_2024-12-01_to_2025-01-15.json plugins.json
+```
