@@ -180,10 +180,9 @@ if failing_prs:
         "horizontalAlignment": "CENTER"  # Center-align the text
     })
 
+    # Calculate failing PRs count (structure already validated above)
     failing_prs_count = 0
-    if failing_prs and isinstance(failing_prs, dict) and "data" in failing_prs and \
-        isinstance(failing_prs["data"], dict) and "search" in failing_prs["data"] and \
-        isinstance(failing_prs["data"]["search"], dict) and "nodes" in failing_prs["data"]["search"]:
+    if failing_prs and 'data' in failing_prs and 'search' in failing_prs['data'] and 'nodes' in failing_prs['data']['search']:
         failing_prs_count = len(failing_prs["data"]["search"]["nodes"])
 
 # Add a link to the "Failing PRs" sheet in the "Summary" sheet and include the count
