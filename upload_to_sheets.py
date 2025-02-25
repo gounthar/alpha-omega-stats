@@ -186,13 +186,11 @@ if failing_prs:
         isinstance(failing_prs["data"]["search"], dict) and "nodes" in failing_prs["data"]["search"]:
         failing_prs_count = len(failing_prs["data"]["search"]["nodes"])
 
-# Add a link to the "Failing PRs" sheet in the "Summary" sheet and  include the count
-summary_data.append(["Failing PRs", failing_prs_count, "", "", "", f'=HYPERLINK("#gid={failing_prs_sheet.id}"; "Failing PRs")'])
+# Add a link to the "Failing PRs" sheet in the "Summary" sheet and include the count
 if failing_prs and 'failing_prs_sheet' in locals():
     summary_data.append(["Failing PRs", failing_prs_count, "", "", "", f'=HYPERLINK("#gid={failing_prs_sheet.id}"; "Failing PRs")'])
 else:
     summary_data.append(["Failing PRs", failing_prs_count, "", "", "", "No failing PRs data available"])
-
 summary_sheet.update(range_name="A1", values=summary_data, value_input_option="USER_ENTERED")
 
 # Format the summary sheet
