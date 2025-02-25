@@ -61,7 +61,8 @@ if [ -z "${JAVA_HOME-}" ]; then
   warning "Warning: JAVA_HOME environment variable is not set." >&2
   # Try to infer JAVA_HOME from java command path
   if command -v java >/dev/null; then
-    temp_java=$(command -v java) && export JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$temp_java")")")
+    temp_java=$(command -v java)
+    export JAVA_HOME=$(dirname "$(dirname "$(readlink -f "$temp_java")")")
     # Print a success message in green
     success "JAVA_HOME set to $JAVA_HOME"
   else
