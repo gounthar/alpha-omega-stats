@@ -1,68 +1,115 @@
 #!/bin/bash
 
-# Function to create the GraphQL query with pagination
-create_query() {
-    local after="$1"
-    local cursor_param=""
-    if [ ! -z "$after" ]; then
-        cursor_param=", after: \"$after\""
-    fi
-    
-    echo "query {
-        search(query: \"is:pr author:gounthar updated:2024-12-01T00:00:00Z..2025-02-14T23:59:59Z status:failure\", type: ISSUE, first: 100${cursor_param}) {
-            pageInfo {
-                hasNextPage
-                endCursor
-            }
-            nodes {
-                ... on PullRequest {
-                    title
-                    url
-                    commits(last: 1) {
-                        nodes {
-                            commit {
-                                statusCheckRollup {
-                                    state
+# Source the required scripts
+source check-env.sh
+
+    # Function to create the GraphQL query with pagination
+    # Arguments:
+    #   $1 - The cursor for pagination (optional)
+    # Returns:
+    #   The GraphQL query string
+    create_query() {
+        local after="$1"
+        local cursor_param=""
+        if [ ! -z "$after" ]; then
+            cursor_param=", after: \"$after\""
+        fi
+
+        echo "query {
+            search(query: \"is:pr author:gounthar updated:2024-12-01T00:00:00Z..2025-02-14T23:59:59Z status:failure\", type: ISSUE, first: 100${cursor_param}) {
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ... on PullRequest {
+                        title
+                        url
+                        commits(last: 1) {
+                            nodes {
+                                commit {
+                                    statusCheckRollup {
+                                        state
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-    }"
+        }"
+    }
+
+# Function to check the rate limit status of the GitHub API
+check_rate_limit() {
+  # Make a request to the GitHub API to get the rate limit status
+  rate_limit_response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/rate_limit")
+
+  # Extract the remaining, reset, and limit values from the response using jq
+  remaining=$(echo "$rate_limit_response" | jq '.resources.graphql.remaining')
+  reset=$(echo "$rate_limit_response" | jq '.resources.graphql.reset')
+  limit=$(echo "$rate_limit_response" | jq '.resources.graphql.limit')
+
+  # Check if the remaining requests are less than 5% of the limit
+  if [ "$remaining" -lt $((limit / 20)) ]; then
+    # Calculate the current time and the wait time until the rate limit resets
+    current_time=$(date +%s)
+    wait_time=$((reset - current_time))
+    end_time=$(date -d "@$reset" +"%H:%M")
+
+    # Log an error message indicating the rate limit has been exceeded
+    error "API rate limit exceeded for GraphQL. Please wait $wait_time seconds before retrying. Come back at $end_time."
+
+    # Initialize progress bar
+    start_time=$(date +%s)
+    while [ $((current_time + wait_time)) -gt $(date +%s) ]; do
+      # Calculate the elapsed time and progress percentage
+      elapsed_time=$(( $(date +%s) - start_time ))
+      progress=$(printf "%d" $(( 100 * elapsed_time / wait_time )))
+
+
+      # Print the progress bar
+      printf "\rProgress: [%-50s] %d%%" $(printf "%0.s#" $(seq 1 $(( progress / 2 )))) $progress
+      sleep 1
+    done
+
+    # Log a message indicating the wait time is completed
+    info -e "\nWait time completed. Resuming..."
+  fi
 }
+    # Initialize an empty file for results
+    # Creates a JSON structure to store the results
+    echo "{ \"data\": { \"search\": { \"nodes\": [" > all_results.json
+    first_result=true
 
-# Initialize an empty file for results
-echo "{ \"data\": { \"search\": { \"nodes\": [" > all_results.json
-first_result=true
+    # Initialize cursor and pagination status
+    cursor=""
+    has_next_page="true"
 
-# Initialize cursor
-cursor=""
-has_next_page="true"
+    # Loop to fetch all pages of results
+    while [ "$has_next_page" = "true" ]; do
+        check_rate_limit
+        # Get the query result
+        query=$(create_query "$cursor")
+        result=$(gh api graphql -f query="$query")
 
-while [ "$has_next_page" = "true" ]; do
-    # Get the query result
-    query=$(create_query "$cursor")
-    result=$(gh api graphql -f query="$query")
-    
-    # Extract new cursor and hasNextPage status
-    cursor=$(echo "$result" | jq -r '.data.search.pageInfo.endCursor')
-    has_next_page=$(echo "$result" | jq -r '.data.search.pageInfo.hasNextPage')
-    
-    # Extract and append nodes
-    nodes=$(echo "$result" | jq -r '.data.search.nodes')
-    if [ "$first_result" = "true" ]; then
-        echo "${nodes:1:${#nodes}-2}" >> all_results.json
-        first_result=false
-    else
-        echo "," >> all_results.json
-        echo "${nodes:1:${#nodes}-2}" >> all_results.json
-    fi
-done
+        # Extract new cursor and hasNextPage status
+        cursor=$(echo "$result" | jq -r '.data.search.pageInfo.endCursor')
+        has_next_page=$(echo "$result" | jq -r '.data.search.pageInfo.hasNextPage')
 
-# Close the JSON structure
-echo "]} } }" >> all_results.json
+        # Extract and append nodes to the results file
+        nodes=$(echo "$result" | jq -r '.data.search.nodes')
+        if [ "$first_result" = "true" ]; then
+            echo "${nodes:1:${#nodes}-2}" >> all_results.json
+            first_result=false
+        else
+            echo "," >> all_results.json
+            echo "${nodes:1:${#nodes}-2}" >> all_results.json
+        fi
+    done
 
-# Pretty print the results
-jq '.' all_results.json
+    # Close the JSON structure
+    echo "]} } }" >> all_results.json
+
+    # Pretty print the results
+    jq '.' all_results.json
