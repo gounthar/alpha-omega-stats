@@ -98,13 +98,17 @@ while [ "$has_next_page" = "true" ]; do
 
     # Extract new cursor and hasNextPage status
     cursor=$(echo "$result" | jq -r '.data.search.pageInfo.endCursor')
-    info "cursor now is $cursor"
+    debug "cursor now is $cursor"
     has_next_page=$(echo "$result" | jq -r '.data.search.pageInfo.hasNextPage')
-    info "Do we have a next page? $has_next_page"
+    debug "Do we have a next page? $has_next_page"
 
     # Extract and filter nodes from the GraphQL query result
+    total_nodes=$(echo "$result" | jq '.data.search.nodes | length')
     nodes=$(echo "$result" | jq '.data.search.nodes | map(select(.commits.nodes[0].commit.statusCheckRollup.state == "FAILURE" and .merged == false))')
-    info "Number of nodes fetched: $(echo "$nodes" | jq length)"
+    filtered_nodes=$(echo "$nodes" | jq length)
+    removed_nodes=$((total_nodes - filtered_nodes))
+    info "Number of interesting nodes fetched: $filtered_nodes"
+    info "Number of nodes removed: $removed_nodes"
 
     # Concatenate the new nodes with the existing ones using jq
     all_nodes=$(echo "$all_nodes" "$nodes" | jq -s '.[0] + .[1]')
@@ -112,4 +116,3 @@ done
 
 # Create the final JSON structure and save it to the file
 echo "$all_nodes" | jq '{"data": {"search": {"nodes": .}}}' > all_results.json
-
