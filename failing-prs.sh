@@ -113,5 +113,3 @@ done
 # Create the final JSON structure and save it to the file
 echo "$all_nodes" | jq '{"data": {"search": {"nodes": .}}}' > all_results.json
 
-# Close the JSON structure
-echo "]} } }" >> all_results.json
