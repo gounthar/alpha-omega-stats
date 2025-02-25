@@ -117,28 +117,14 @@ for plugin, stats in plugin_stats.items():
 
 # Update the summary sheet
 summary_sheet.clear()
-summary_sheet.update(range_name="A1", values=summary_data, value_input_option="USER_ENTERED")
-
-# Format the summary sheet
-summary_sheet.format("A1:F1", {
-    "textFormat": {
-        "bold": True
-    },
-    "backgroundColor": {
-        "red": 0.9,  # Light gray background
-        "green": 0.9,
-        "blue": 0.9,
-        "alpha": 1.0
-    },
-    "horizontalAlignment": "CENTER"  # Center-align the text
-})
 
 # Reorder sheets to make the Summary sheet first
 sheets = spreadsheet.worksheets()
 if sheets[0].title != "Summary":
     summary_sheet_index = next((i for i, sheet in enumerate(sheets) if sheet.title == "Summary"), None)
     if summary_sheet_index is not None:
-        spreadsheet.reorder_worksheets([sheets[summary_sheet_index]] + [sheet for i, sheet in enumerate(sheets) if i != summary_sheet_index])
+        spreadsheet.reorder_worksheets(
+            [sheets[summary_sheet_index]] + [sheet for i, sheet in enumerate(sheets) if i != summary_sheet_index])
 
 # Get the Summary sheet ID for the "Back to Summary" link
 summary_sheet_id = summary_sheet.id
@@ -158,12 +144,27 @@ if failing_prs:
         ["", "", "", "", ""],  # Empty row for spacing
         ["Title", "URL", "Status"]
     ]
-    for pr in failing_prs["data"]["search"]["nodes"]:
-        failing_prs_data.append([pr["title"], f'=HYPERLINK("{pr["url"]}"; "{pr["url"]}")', pr["commits"]["nodes"][0]["commit"]["statusCheckRollup"]["state"]])
+    if (
+            isinstance(failing_prs, dict) and
+            "data" in failing_prs and
+            isinstance(failing_prs["data"], dict) and
+            "search" in failing_prs["data"] and
+            isinstance(failing_prs["data"]["search"], dict) and
+            "nodes" in failing_prs["data"]["search"]
+    ):
+
+        # process each PR
+        for pr in failing_prs["data"]["search"]["nodes"]:
+            failing_prs_data.append([pr["title"], f'=HYPERLINK("{pr["url"]}"; "{pr["url"]}")',
+                                 pr["commits"]["nodes"][0]["commit"]["statusCheckRollup"]["state"]])
+    else:
+        logging.error("Unexpected structure in failing_prs JSON data.")
 
     # Clear the sheet and update it with the new data
     failing_prs_sheet.clear()
     failing_prs_sheet.update(range_name="A1", values=failing_prs_data, value_input_option="USER_ENTERED")
+    # Add a delay to avoid hitting the quota limit
+    time.sleep(5)  # Pause for 5 seconds between requests
 
     # Format the column titles (bold font and background color)
     failing_prs_sheet.format("A3:C3", {  # Format only the column titles (row 3)
@@ -181,6 +182,21 @@ if failing_prs:
 
     # Add a link to the "Failing PRs" sheet in the "Summary" sheet
     summary_data.append(["Failing PRs", "", "", "", "", f'=HYPERLINK("#gid={failing_prs_sheet.id}"; "Failing PRs")'])
+summary_sheet.update(range_name="A1", values=summary_data, value_input_option="USER_ENTERED")
+
+# Format the summary sheet
+summary_sheet.format("A1:F1", {
+    "textFormat": {
+        "bold": True
+    },
+    "backgroundColor": {
+        "red": 0.9,  # Light gray background
+        "green": 0.9,
+        "blue": 0.9,
+        "alpha": 1.0
+    },
+    "horizontalAlignment": "CENTER"  # Center-align the text
+})
 
 # Iterate through each PR group and create a new sheet for each title
 for pr in grouped_prs:
@@ -233,7 +249,7 @@ for pr in grouped_prs:
         for row_idx, p in enumerate(prs, start=4):  # Start from row 4 (skip header and "Back to Summary" row)
             color = {
                 "MERGED": {"red": 0.0, "green": 1.0, "blue": 0.0, "alpha": 1.0},  # Green
-                "OPEN": {"red": 1.0, "green": 0.5, "blue": 0.0, "alpha": 1.0},    # Orange
+                "OPEN": {"red": 1.0, "green": 0.5, "blue": 0.0, "alpha": 1.0},  # Orange
                 "CLOSED": {"red": 1.0, "green": 0.0, "blue": 0.0, "alpha": 1.0},  # Red
             }.get(p["state"], {"red": 1.0, "green": 1.0, "blue": 1.0, "alpha": 1.0})  # Default to white
 
