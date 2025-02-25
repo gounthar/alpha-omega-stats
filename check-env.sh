@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-set -x -o errexit -o nounset -o pipefail
+# set -x -o errexit -o nounset -o pipefail
+set -euo pipefail
 
 source log-utils.sh
 
 # Check if the DEBUG_MODE environment variable is set
-if [ "$DEBUG_MODE" = "true" ]; then
+if [ "${DEBUG_MODE:-false}" = "true" ]; then
   # If DEBUG_MODE is set to true, print a debug message
   debug "Debug mode is on."
 else
