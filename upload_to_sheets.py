@@ -180,8 +180,14 @@ if failing_prs:
         "horizontalAlignment": "CENTER"  # Center-align the text
     })
 
-    # Add a link to the "Failing PRs" sheet in the "Summary" sheet
-    summary_data.append(["Failing PRs", "", "", "", "", f'=HYPERLINK("#gid={failing_prs_sheet.id}"; "Failing PRs")'])
+    failing_prs_count = 0
+    if failing_prs and isinstance(failing_prs, dict) and "data" in failing_prs and \
+        isinstance(failing_prs["data"], dict) and "search" in failing_prs["data"] and \
+        isinstance(failing_prs["data"]["search"], dict) and "nodes" in failing_prs["data"]["search"]:
+        failing_prs_count = len(failing_prs["data"]["search"]["nodes"])
+
+# Add a link to the "Failing PRs" sheet in the "Summary" sheet and  include the count
+summary_data.append(["Failing PRs", failing_prs_count, "", "", "", f'=HYPERLINK("#gid={failing_prs_sheet.id}"; "Failing PRs")'])
 summary_sheet.update(range_name="A1", values=summary_data, value_input_option="USER_ENTERED")
 
 # Format the summary sheet
