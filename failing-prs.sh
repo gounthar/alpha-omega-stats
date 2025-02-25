@@ -16,7 +16,7 @@ create_query() {
     fi
 
     echo "query {
-        search(query: \"is:pr author:gounthar updated:2024-12-01T00:00:00Z..2025-02-14T23:59:59Z\", type: ISSUE, first: 100${cursor_param}) {
+        search(query: \"is:pr is:open author:gounthar updated:2024-12-01T00:00:00Z..2025-02-14T23:59:59Z\", type: ISSUE, first: 100${cursor_param}) {
             pageInfo {
                 hasNextPage
                 endCursor
