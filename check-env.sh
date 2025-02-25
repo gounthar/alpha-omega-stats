@@ -43,12 +43,6 @@ if ! [ -x "$(command -v gh)" ]; then
   exit 1
 fi
 
-# Ensure parallel is installed
-if ! [ -x "$(command -v parallel)" ]; then
-  error 'Error: parallel is not installed.' >&2
-  exit 1
-fi
-
 # Ensure mvn is installed
 if ! [ -x "$(command -v mvn)" ]; then
   error 'Error: mvn is not installed.' >&2
