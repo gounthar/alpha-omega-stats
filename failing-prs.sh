@@ -86,6 +86,8 @@ first_result=true
 # Initialize cursor and pagination status
 cursor=""
 has_next_page="true"
+# Initialize an empty array to collect all nodes
+all_nodes="[]"
 
 # Loop to fetch all pages of results
 while [ "$has_next_page" = "true" ]; do
@@ -100,23 +102,16 @@ while [ "$has_next_page" = "true" ]; do
     has_next_page=$(echo "$result" | jq -r '.data.search.pageInfo.hasNextPage')
     info "Do we have a next page? $has_next_page"
 
-    # Extract and append nodes to the results file
     # Extract and filter nodes from the GraphQL query result
-    # Filters out nodes where the commit status is not "FAILURE" or the PR is merged
-    nodes=$(echo "$result" | jq -r '.data.search.nodes | map(select(.commits.nodes[0].commit.statusCheckRollup.state == "FAILURE" and .merged == false))')
+    nodes=$(echo "$result" | jq '.data.search.nodes | map(select(.commits.nodes[0].commit.statusCheckRollup.state == "FAILURE" and .merged == false))')
     info "Number of nodes fetched: $(echo "$nodes" | jq length)"
 
-    # Check if this is the first result being processed
-    if [ "$first_result" = "true" ]; then
-        # Append the filtered nodes to the results file, removing the surrounding brackets
-        echo "${nodes:1:${#nodes}-2}" >> all_results.json
-        first_result=false
-    else
-        # Append a comma and the filtered nodes to the results file, removing the surrounding brackets
-        echo "," >> all_results.json
-        echo "${nodes:1:${#nodes}-2}" >> all_results.json
-    fi
+    # Concatenate the new nodes with the existing ones using jq
+    all_nodes=$(echo "$all_nodes" "$nodes" | jq -s '.[0] + .[1]')
 done
+
+# Create the final JSON structure and save it to the file
+echo "$all_nodes" | jq '{"data": {"search": {"nodes": .}}}' > all_results.json
 
 # Close the JSON structure
 echo "]} } }" >> all_results.json
