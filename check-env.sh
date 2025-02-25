@@ -43,16 +43,6 @@ if ! [ -x "$(command -v gh)" ]; then
   exit 1
 fi
 
-
-# Check if the DEBUG_MODE environment variable is set
-if [ "$DEBUG_MODE" = "true" ]; then
-  # If DEBUG_MODE is set to true, print a debug message
-  debug "Debug mode is on."
-else
-  # If DEBUG_MODE is not set to true, print an info message
-  info "Debug mode is off. To turn it on, set the DEBUG_MODE environment variable to true."
-fi
-
 # Ensure parallel is installed
 if ! [ -x "$(command -v parallel)" ]; then
   error 'Error: parallel is not installed.' >&2
