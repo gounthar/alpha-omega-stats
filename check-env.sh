@@ -11,6 +11,8 @@ if [ "${DEBUG_MODE:-false}" = "true" ]; then
 else
   # If DEBUG_MODE is not set to true, print an info message
   info "Debug mode is off. To turn it on, set the DEBUG_MODE environment variable to true."
+  DEBUG_MODE=false
+  export DEBUG_MODE
 fi
 
 
