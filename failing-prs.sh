@@ -69,7 +69,7 @@ check_rate_limit() {
       progress=$(printf "%d" $(( 100 * elapsed_time / wait_time )))
 
       # Print the progress bar
-      printf "\rProgress: [%-50s] %d%%" $(printf "%0.s#" $(seq 1 $(( progress / 2 )))) $progress
+      printf "\rProgress: [%-50s] %d%%" "$(printf "%0.s#" "$(seq 1 "$(( progress / 2 ))")")" "$progress"
       sleep 1
     done
 
@@ -120,6 +120,3 @@ done
 
 # Close the JSON structure
 echo "]} } }" >> all_results.json
-
-# Pretty print the results
-jq '.' all_results.json
