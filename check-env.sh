@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -x -o errexit -o nounset -o pipefail
 
 source log-utils.sh
 
@@ -10,7 +11,7 @@ else
   # If DEBUG_MODE is not set to true, print an info message
   info "Debug mode is off. To turn it on, set the DEBUG_MODE environment variable to true."
 fi
-# set -x -o errexit -o nounset -o pipefail
+
 
 # Ensure jq is installed. jq is a command-line JSON processor.
 # We use it to parse the JSON response from the GitHub API.
