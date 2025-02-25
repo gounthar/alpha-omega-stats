@@ -26,6 +26,17 @@ spreadsheet = client.open("Jenkins PR Tracker")  # or use client.open_by_key("YO
 with open('grouped_prs_prs_gounthar_and_others_2024-12-01_to_2025-01-22.json') as f:
     grouped_prs = json.load(f)
 
+# Load the failing PRs JSON file
+try:
+    with open('failing-prs.json') as f:
+        failing_prs = json.load(f)
+except FileNotFoundError:
+    logging.error("failing-prs.json file not found.")
+    failing_prs = None
+except json.JSONDecodeError:
+    logging.error("Error decoding failing-prs.json.")
+    failing_prs = None
+
 # Create a summary sheet
 try:
     summary_sheet = spreadsheet.worksheet("Summary")
@@ -131,6 +142,45 @@ if sheets[0].title != "Summary":
 
 # Get the Summary sheet ID for the "Back to Summary" link
 summary_sheet_id = summary_sheet.id
+
+# Create a new sheet for failing PRs
+if failing_prs:
+    try:
+        failing_prs_sheet = spreadsheet.worksheet("Failing PRs")
+        logging.info("Failing PRs sheet already exists. Updating it...")
+    except gspread.exceptions.WorksheetNotFound:
+        logging.info("Creating new Failing PRs sheet...")
+        failing_prs_sheet = spreadsheet.add_worksheet(title="Failing PRs", rows=100, cols=10)
+
+    # Prepare the data for the failing PRs sheet
+    failing_prs_data = [
+        ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+        ["", "", "", "", ""],  # Empty row for spacing
+        ["Title", "URL", "Status"]
+    ]
+    for pr in failing_prs["data"]["search"]["nodes"]:
+        failing_prs_data.append([pr["title"], f'=HYPERLINK("{pr["url"]}"; "{pr["url"]}")', pr["commits"]["nodes"][0]["commit"]["statusCheckRollup"]["state"]])
+
+    # Clear the sheet and update it with the new data
+    failing_prs_sheet.clear()
+    failing_prs_sheet.update(range_name="A1", values=failing_prs_data, value_input_option="USER_ENTERED")
+
+    # Format the column titles (bold font and background color)
+    failing_prs_sheet.format("A3:C3", {  # Format only the column titles (row 3)
+        "textFormat": {
+            "bold": True
+        },
+        "backgroundColor": {
+            "red": 0.9,  # Light gray background
+            "green": 0.9,
+            "blue": 0.9,
+            "alpha": 1.0
+        },
+        "horizontalAlignment": "CENTER"  # Center-align the text
+    })
+
+    # Add a link to the "Failing PRs" sheet in the "Summary" sheet
+    summary_data.append(["Failing PRs", "", "", "", "", f'=HYPERLINK("#gid={failing_prs_sheet.id}"; "Failing PRs")'])
 
 # Iterate through each PR group and create a new sheet for each title
 for pr in grouped_prs:
