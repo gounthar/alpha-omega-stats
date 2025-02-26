@@ -15,30 +15,32 @@ create_query() {
         cursor_param=", after: \"$after\""
     fi
 
-    echo "query {
-        search(query: \"is:pr is:open author:gounthar updated:2024-12-01T00:00:00Z..2025-02-14T23:59:59Z\", type: ISSUE, first: 100${cursor_param}) {
-            pageInfo {
-                hasNextPage
-                endCursor
-            }
-            nodes {
-                ... on PullRequest {
-                    title
-                    url
-                    merged
-                    commits(last: 1) {
-                        nodes {
-                            commit {
-                                statusCheckRollup {
-                                    state
-                                }
+    cat <<EOF
+query {
+    search(query: "is:pr is:open author:gounthar updated:2024-12-01T00:00:00Z..2025-02-25T23:59:59Z", type: ISSUE, first: 100${cursor_param}) {
+        pageInfo {
+            hasNextPage
+            endCursor
+        }
+        nodes {
+            ... on PullRequest {
+                title
+                url
+                merged
+                commits(last: 1) {
+                    nodes {
+                        commit {
+                            statusCheckRollup {
+                                state
                             }
                         }
                     }
                 }
             }
         }
-    }"
+    }
+}
+EOF
 }
 
 # Function to check the rate limit status of the GitHub API
