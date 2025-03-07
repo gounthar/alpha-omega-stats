@@ -25,4 +25,4 @@ ENV START_DATE="2024-08-01"
 # Ensure the entrypoint script is executable
 RUN chmod +x /app/entrypoint.sh
 
-ENTRYPOINT ["/app/entrypoint.sh"] 
+ENTRYPOINT ["/app/entrypoint.sh"]
