@@ -77,7 +77,9 @@ type GraphQLResponse struct {
 
 // GraphQLError represents a GitHub GraphQL API error
 type GraphQLError struct {
-	Message string `json:"message"`
+	Message string   `json:"message"`
+	Type    string   `json:"type"`
+	Path    []string `json:"path,omitempty"`
 }
 
 // GraphQLSearchResponse represents the response structure for the search query
@@ -293,22 +295,32 @@ func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variab
 		return fmt.Errorf("failed to read response body: %v", err)
 	}
 
+	// Debug response
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("HTTP error: %d, Body: %s", resp.StatusCode, string(body))
+	}
+
 	// Parse response
 	var graphqlResp GraphQLResponse
 	err = json.Unmarshal(body, &graphqlResp)
 	if err != nil {
-		return fmt.Errorf("failed to parse GraphQL response: %v", err)
+		return fmt.Errorf("failed to parse GraphQL response: %v, Body: %s", err, string(body))
 	}
 
 	// Check for GraphQL errors
 	if len(graphqlResp.Errors) > 0 {
-		return fmt.Errorf("GraphQL error: %s", graphqlResp.Errors[0].Message)
+		errorMsg := fmt.Sprintf("GraphQL error: %s", graphqlResp.Errors[0].Message)
+		return fmt.Errorf(errorMsg)
 	}
 
 	// Parse data
+	if graphqlResp.Data == nil {
+		return fmt.Errorf("no data in GraphQL response")
+	}
+
 	err = json.Unmarshal(graphqlResp.Data, result)
 	if err != nil {
-		return fmt.Errorf("failed to parse GraphQL data: %v", err)
+		return fmt.Errorf("failed to parse GraphQL data: %v, Data: %s", err, string(graphqlResp.Data))
 	}
 
 	return nil
@@ -345,7 +357,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					author {
 						login
 					}
-					bodyText
+					body
 					labels(first: 100) {
 						nodes {
 							name
@@ -356,8 +368,14 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 		}
 	}`
 
+	// Debug: Print the search parameters
+	log.Printf("Searching for PRs in org %s from %s to %s",
+		org,
+		config.StartDate.Format("2006-01-02"),
+		config.EndDate.Format("2006-01-02"))
+
 	// GitHub search query format for PRs
-	searchQuery := fmt.Sprintf("org:%s type:pr created:%s..%s",
+	searchQuery := fmt.Sprintf("org:%s is:pr created:%s..%s",
 		org,
 		config.StartDate.Format("2006-01-02"),
 		config.EndDate.Format("2006-01-02"))
@@ -369,12 +387,16 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 	}
 
 	hasNextPage := true
+	totalFound := 0
 
 	for hasNextPage {
 		// Respect rate limit
 		if err := limiter.Wait(ctx); err != nil {
 			return nil, fmt.Errorf("rate limiter error: %v", err)
 		}
+
+		// Debug: Print current cursor position
+		log.Printf("Fetching page with cursor: %v", variables["cursor"])
 
 		// Implement retry logic with exponential backoff
 		var response GraphQLSearchResponse
@@ -393,13 +415,23 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 				continue
 			}
 
-			log.Printf("Error executing GraphQL query: %v", err)
-			return nil, err
+			log.Printf("Error executing GraphQL query (attempt %d/5): %v", attempt+1, err)
+			if attempt == 4 {
+				return nil, err
+			}
+
+			// Wait before retry
+			waitTime := time.Duration(attempt+1) * time.Second * 2
+			time.Sleep(waitTime)
 		}
 
 		if err != nil {
 			return nil, fmt.Errorf("error executing GraphQL query after retries: %v", err)
 		}
+
+		// Debug: Print number of results in this page
+		log.Printf("Received %d results in this page", len(response.Search.Nodes))
+		totalFound += len(response.Search.Nodes)
 
 		// Process search results
 		for _, node := range response.Search.Nodes {
@@ -414,8 +446,11 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 				continue
 			}
 
+			// Debug: log repository match
+			log.Printf("Found PR #%d in plugin repository: %s", pr.Number, repoName)
+
 			// Check if "odernizer" can be found in the PR body
-			if strings.Contains(pr.BodyText, "odernizer") {
+			if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "modernizer") {
 				// Collect labels
 				var labels []string
 				for _, label := range pr.Labels.Nodes {
@@ -439,6 +474,9 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 				mutex.Lock()
 				allPRs = append(allPRs, prData)
 				mutex.Unlock()
+
+				// Debug: log match found
+				log.Printf("Matched PR #%d in repository %s with 'odernizer' in body", pr.Number, repoName)
 			}
 		}
 
@@ -446,9 +484,11 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 		hasNextPage = response.Search.PageInfo.HasNextPage
 		if hasNextPage {
 			variables["cursor"] = response.Search.PageInfo.EndCursor
+			log.Printf("Moving to next page with cursor: %s", response.Search.PageInfo.EndCursor)
 		}
 	}
 
+	log.Printf("Total PRs found before filtering: %d", totalFound)
 	return allPRs, nil
 }
 
