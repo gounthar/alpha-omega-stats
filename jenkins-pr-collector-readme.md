@@ -41,7 +41,7 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 - `-start`: Start date in YYYY-MM-DD format
 - `-end`: End date in YYYY-MM-DD format (inclusive)
 - `-output`: Output JSON file name (default: jenkins_prs.json)
-- `-update-center`: Jenkins update center URL (default: https://updates.jenkins.io/current/update-center.actual.json)
+- `-update-center`: Jenkins update center URL (default: [https://updates.jenkins.io/current/update-center.actual.json](https://updates.jenkins.io/current/update-center.actual.json))
 
 ### Example
 
