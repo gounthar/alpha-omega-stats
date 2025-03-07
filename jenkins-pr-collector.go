@@ -13,9 +13,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/google/go-github/v47/github"
 	"golang.org/x/oauth2"
 	"golang.org/x/time/rate"
+	"github.com/shurcooL/githubv4"
 )
 
 // PullRequestData represents the data we want to collect about PRs
@@ -99,11 +99,11 @@ func main() {
 
 	// Initialize GitHub client
 	ctx := context.Background()
-	ts := oauth2.StaticTokenSource(
+	src := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: config.GithubToken},
 	)
-	tc := oauth2.NewClient(ctx, ts)
-	client := github.NewClient(tc)
+	httpClient := oauth2.NewClient(ctx, src)
+	client := githubv4.NewClient(httpClient)
 
 	// Create a rate limiter
 	limiter := rate.NewLimiter(config.RateLimit, 1)
@@ -201,7 +201,7 @@ func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, erro
 	return pluginRepos, nil
 }
 
-func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
+func fetchPullRequests(ctx context.Context, client *githubv4.Client, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
 	var wg sync.WaitGroup
@@ -219,16 +219,38 @@ func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate
 		defer wg.Done()
 		defer func() { <-semaphore }() // Release semaphore
 
-		// GitHub search query format
-		query := fmt.Sprintf("org:%s type:pr created:%s..%s",
-			org,
-			config.StartDate.Format("2006-01-02"),
-			config.EndDate.Format("2006-01-02"))
+		var query struct {
+			Search struct {
+				PageInfo struct {
+					HasNextPage bool
+					EndCursor   githubv4.String
+				}
+				Nodes []struct {
+					Title     string
+					URL       string
+					Number    int
+					State     string
+					CreatedAt time.Time
+					UpdatedAt time.Time
+					Author    struct {
+						Login string
+					}
+					Repository struct {
+						Name string
+					}
+					Labels struct {
+						Nodes []struct {
+							Name string
+						}
+					} `graphql:"labels(first: 10)"`
+					Body string
+				}
+			} `graphql:"search(query: $query, type: ISSUE, first: 100, after: $endCursor)"`
+		}
 
-		opts := &github.SearchOptions{
-			ListOptions: github.ListOptions{PerPage: 100},
-			Sort:        "created",
-			Order:       "asc",
+		variables := map[string]interface{}{
+			"query":     githubv4.String(fmt.Sprintf("org:%s type:pr created:%s..%s", org, config.StartDate.Format("2006-01-02"), config.EndDate.Format("2006-01-02"))),
+			"endCursor": (*githubv4.String)(nil),
 		}
 
 		for {
@@ -238,42 +260,16 @@ func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate
 				return
 			}
 
-			var result *github.IssuesSearchResult
-			var resp *github.Response
-			var err error
-
-			// Implement retry logic with exponential backoff
-			for attempt := 0; attempt < 5; attempt++ {
-				result, resp, err = client.Search.Issues(ctx, query, opts)
-				if err == nil {
-					break
-				}
-
-				if _, ok := err.(*github.RateLimitError); ok {
-					waitTime := time.Duration(attempt+1) * time.Second
-					log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
-					time.Sleep(waitTime)
-					continue
-				}
-
-				log.Printf("Error searching PRs: %v", err)
-				return
-			}
-
+			err := client.Query(ctx, &query, variables)
 			if err != nil {
-				log.Printf("Error searching PRs after retries: %v", err)
+				log.Printf("Error querying GitHub GraphQL API: %v", err)
 				return
 			}
 
-			for _, issue := range result.Issues {
-				// Make sure it's a PR and not an issue
-				if issue.PullRequestLinks == nil {
-					continue
-				}
-
+			for _, node := range query.Search.Nodes {
 				// Extract repository name from PR URL
 				// URL format: https://github.com/jenkinsci/repo-name/pull/123
-				urlParts := strings.Split(*issue.HTMLURL, "/")
+				urlParts := strings.Split(node.URL, "/")
 				if len(urlParts) < 5 {
 					continue
 				}
@@ -289,36 +285,33 @@ func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate
 
 				// Collect labels
 				var labels []string
-				for _, label := range issue.Labels {
-					labels = append(labels, *label.Name)
+				for _, label := range node.Labels.Nodes {
+					labels = append(labels, label.Name)
 				}
 
-				// Filter PRs where "odernizer" can be found in the PR body
-				if issue.Body != nil && strings.Contains(*issue.Body, "odernizer") {
-					pr := PullRequestData{
-						Number:      *issue.Number,
-						Title:       *issue.Title,
-						State:       *issue.State,
-						CreatedAt:   *issue.CreatedAt,
-						UpdatedAt:   *issue.UpdatedAt,
-						User:        *issue.User.Login,
-						Repository:  fmt.Sprintf("%s/%s", org, repoName),
-						PluginName:  pluginInfo.Name,
-						Labels:      labels,
-						URL:         *issue.HTMLURL,
-						Description: *issue.Body,
-					}
-
-					mutex.Lock()
-					allPRs = append(allPRs, pr)
-					mutex.Unlock()
+				pr := PullRequestData{
+					Number:      node.Number,
+					Title:       node.Title,
+					State:       node.State,
+					CreatedAt:   node.CreatedAt,
+					UpdatedAt:   node.UpdatedAt,
+					User:        node.Author.Login,
+					Repository:  fmt.Sprintf("%s/%s", org, repoName),
+					PluginName:  pluginInfo.Name,
+					Labels:      labels,
+					URL:         node.URL,
+					Description: node.Body,
 				}
+
+				mutex.Lock()
+				allPRs = append(allPRs, pr)
+				mutex.Unlock()
 			}
 
-			if resp.NextPage == 0 {
+			if !query.Search.PageInfo.HasNextPage {
 				break
 			}
-			opts.Page = resp.NextPage
+			variables["endCursor"] = githubv4.String(query.Search.PageInfo.EndCursor)
 		}
 	}()
 
