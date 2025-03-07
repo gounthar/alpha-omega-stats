@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"flag"
@@ -13,10 +14,69 @@ import (
 	"sync"
 	"time"
 
-	"github.com/google/go-github/v47/github"
 	"golang.org/x/oauth2"
 	"golang.org/x/time/rate"
 )
+
+// PullRequest represents a GitHub pull request
+type PullRequest struct {
+	Number     int       `json:"number"`
+	Title      string    `json:"title"`
+	State      string    `json:"state"`
+	CreatedAt  time.Time `json:"createdAt"`
+	UpdatedAt  time.Time `json:"updatedAt"`
+	URL        string    `json:"url"`
+	Repository struct {
+		Name  string `json:"name"`
+		Owner struct {
+			Login string `json:"login"`
+		} `json:"owner"`
+	} `json:"repository"`
+	Author struct {
+		Login string `json:"login"`
+	} `json:"author"`
+	BodyText string `json:"bodyText"`
+	Labels   struct {
+		Nodes []struct {
+			Name string `json:"name"`
+		} `json:"nodes"`
+	} `json:"labels"`
+}
+
+// GraphQLSearchResponse represents the response structure for the search query
+// Update GraphQLSearchResponse struct
+type GraphQLSearchResponse struct {
+	Search struct {
+		PageInfo struct {
+			HasNextPage bool   `json:"hasNextPage"`
+			EndCursor   string `json:"endCursor"`
+		} `json:"pageInfo"`
+		Nodes []struct {
+			// Remove the nested PullRequest struct and flatten the fields
+			Number     int       `json:"number"`
+			Title      string    `json:"title"`
+			State      string    `json:"state"`
+			CreatedAt  time.Time `json:"createdAt"`
+			UpdatedAt  time.Time `json:"updatedAt"`
+			URL        string    `json:"url"`
+			Repository struct {
+				Name  string `json:"name"`
+				Owner struct {
+					Login string `json:"login"`
+				} `json:"owner"`
+			} `json:"repository"`
+			Author struct {
+				Login string `json:"login"`
+			} `json:"author"`
+			BodyText string `json:"bodyText"`
+			Labels   struct {
+				Nodes []struct {
+					Name string `json:"name"`
+				} `json:"nodes"`
+			} `json:"labels"`
+		} `json:"nodes"`
+	} `json:"search"`
+}
 
 // PullRequestData represents the data we want to collect about PRs
 type PullRequestData struct {
@@ -49,12 +109,38 @@ type UpdateCenter struct {
 
 // Config holds the application configuration
 type Config struct {
-	GithubToken     string
-	StartDate       time.Time
-	EndDate         time.Time
-	OutputFile      string
-	UpdateCenterURL string
-	RateLimit       rate.Limit
+	GithubToken           string
+	StartDate             time.Time
+	EndDate               time.Time
+	OutputFile            string
+	FoundPullRequestsFile string
+	UpdateCenterURL       string
+	RateLimit             rate.Limit
+}
+
+// GraphQLClient represents a simple GitHub GraphQL API client
+type GraphQLClient struct {
+	httpClient *http.Client
+	endpoint   string
+}
+
+// GraphQLRequest represents a GitHub GraphQL API request
+type GraphQLRequest struct {
+	Query     string                 `json:"query"`
+	Variables map[string]interface{} `json:"variables,omitempty"`
+}
+
+// GraphQLResponse represents a GitHub GraphQL API response
+type GraphQLResponse struct {
+	Data   json.RawMessage `json:"data"`
+	Errors []GraphQLError  `json:"errors,omitempty"`
+}
+
+// GraphQLError represents a GitHub GraphQL API error
+type GraphQLError struct {
+	Message string   `json:"message"`
+	Type    string   `json:"type"`
+	Path    []string `json:"path,omitempty"`
 }
 
 func main() {
@@ -63,6 +149,7 @@ func main() {
 	startDateFlag := flag.String("start", "", "Start date in YYYY-MM-DD format")
 	endDateFlag := flag.String("end", "", "End date in YYYY-MM-DD format")
 	outputFileFlag := flag.String("output", "jenkins_prs.json", "Output file name")
+	foundPRsFileFlag := flag.String("found-prs", "found_prs.json", "File to write found PRs")
 	updateCenterURLFlag := flag.String("update-center", "https://updates.jenkins.io/current/update-center.actual.json", "Jenkins update center URL")
 	flag.Parse()
 
@@ -89,21 +176,25 @@ func main() {
 
 	// Create configuration
 	config := Config{
-		GithubToken:     *githubToken,
-		StartDate:       startDate,
-		EndDate:         endDate,
-		OutputFile:      *outputFileFlag,
-		UpdateCenterURL: *updateCenterURLFlag,
-		RateLimit:       rate.Limit(1), // 1 request per second is conservative
+		GithubToken:           *githubToken,
+		StartDate:             startDate,
+		EndDate:               endDate,
+		OutputFile:            *outputFileFlag,
+		FoundPullRequestsFile: *foundPRsFileFlag,
+		UpdateCenterURL:       *updateCenterURLFlag,
+		RateLimit:             rate.Limit(1), // 1 request per second is conservative
 	}
 
-	// Initialize GitHub client
+	// Initialize GraphQL client
 	ctx := context.Background()
 	ts := oauth2.StaticTokenSource(
 		&oauth2.Token{AccessToken: config.GithubToken},
 	)
 	tc := oauth2.NewClient(ctx, ts)
-	client := github.NewClient(tc)
+	graphqlClient := &GraphQLClient{
+		httpClient: tc,
+		endpoint:   "https://api.github.com/graphql",
+	}
 
 	// Create a rate limiter
 	limiter := rate.NewLimiter(config.RateLimit, 1)
@@ -116,9 +207,9 @@ func main() {
 	}
 	log.Printf("Found %d plugins in the update center", len(pluginRepos))
 
-	// Fetch PRs for each plugin repository
-	log.Println("Fetching pull requests...")
-	pullRequests, err := fetchPullRequests(ctx, client, limiter, config, pluginRepos)
+	// Fetch PRs using GraphQL
+	log.Println("Fetching pull requests using GraphQL...")
+	pullRequests, err := fetchPullRequestsGraphQL(ctx, graphqlClient, limiter, config, pluginRepos)
 	if err != nil {
 		log.Fatalf("Failed to fetch pull requests: %v", err)
 	}
@@ -130,15 +221,54 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to write output file: %v", err)
 	}
+
+	// Write found PRs to another file if any PRs were found
+	if len(pullRequests) > 0 {
+		log.Printf("Writing found PRs to %s...", config.FoundPullRequestsFile)
+		err = writeJSONFile(config.FoundPullRequestsFile, pullRequests)
+		if err != nil {
+			log.Fatalf("Failed to write found PRs file: %v", err)
+		}
+	} else {
+		log.Printf("No pull requests found, not writing to %s", config.FoundPullRequestsFile)
+	}
+
 	log.Println("Done!")
 }
 
 // fetchJenkinsPluginInfo fetches plugin information from the Jenkins update center
 func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, error) {
-	// Make HTTP request to update center
-	resp, err := http.Get(updateCenterURL)
+	// Create an HTTP client that follows redirects
+	client := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return nil
+		},
+	}
+
+	var resp *http.Response
+	var err error
+
+	// Implement retry logic with exponential backoff
+	for attempt := 0; attempt < 5; attempt++ {
+		// Make HTTP request to update center
+		resp, err = client.Get(updateCenterURL)
+		if err == nil && resp.StatusCode == http.StatusOK {
+			break
+		}
+
+		if err != nil {
+			log.Printf("Failed to fetch update center data (attempt %d/5): %v", attempt+1, err)
+		} else {
+			log.Printf("HTTP error (attempt %d/5): %d", attempt+1, resp.StatusCode)
+		}
+
+		// Wait before retry
+		waitTime := time.Duration(attempt+1) * time.Second * 2
+		time.Sleep(waitTime)
+	}
+
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch update center data: %v", err)
+		return nil, fmt.Errorf("failed to fetch update center data after retries: %v", err)
 	}
 	defer resp.Body.Close()
 
@@ -201,129 +331,230 @@ func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, erro
 	return pluginRepos, nil
 }
 
-func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
+// ExecuteGraphQL executes a GraphQL query against the GitHub API
+func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variables map[string]interface{}, result interface{}) error {
+	// Create request
+	reqBody, err := json.Marshal(GraphQLRequest{
+		Query:     query,
+		Variables: variables,
+	})
+	if err != nil {
+		return fmt.Errorf("failed to marshal GraphQL request: %v", err)
+	}
+
+	// Create HTTP request
+	req, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(reqBody))
+	if err != nil {
+		return fmt.Errorf("failed to create HTTP request: %v", err)
+	}
+	req.Header.Set("Content-Type", "application/json")
+
+	// Execute request
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		return fmt.Errorf("failed to execute HTTP request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// Read response
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return fmt.Errorf("failed to read response body: %v", err)
+	}
+
+	// Debug response
+	if resp.StatusCode != http.StatusOK {
+		return fmt.Errorf("HTTP error: %d, Body: %s", resp.StatusCode, string(body))
+	}
+
+	// Parse response
+	var graphqlResp GraphQLResponse
+	err = json.Unmarshal(body, &graphqlResp)
+	if err != nil {
+		return fmt.Errorf("failed to parse GraphQL response: %v, Body: %s", err, string(body))
+	}
+
+	// Check for GraphQL errors
+	if len(graphqlResp.Errors) > 0 {
+		errorMsg := fmt.Sprintf("GraphQL error: %s", graphqlResp.Errors[0].Message)
+		return fmt.Errorf(errorMsg)
+	}
+
+	// Parse data
+	if graphqlResp.Data == nil {
+		return fmt.Errorf("no data in GraphQL response")
+	}
+
+	err = json.Unmarshal(graphqlResp.Data, result)
+	if err != nil {
+		return fmt.Errorf("failed to parse GraphQL data: %v, Data: %s", err, string(graphqlResp.Data))
+	}
+
+	return nil
+}
+
+func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
-	var wg sync.WaitGroup
-
-	// Create a semaphore to limit the number of concurrent goroutines
-	semaphore := make(chan struct{}, 5) // Max 5 concurrent API calls
-
 	org := "jenkinsci"
 
-	// Create a search query for all PRs in the date range for the organization
-	wg.Add(1)
-	semaphore <- struct{}{} // Acquire semaphore
+	// Define the GraphQL query for searching PRs
+	query := `
+        query SearchPullRequests($query: String!, $cursor: String) {
+            search(query: $query, type: ISSUE, first: 100, after: $cursor) {
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ... on PullRequest {
+                        number
+                        title
+                        state
+                        createdAt
+                        updatedAt
+                        url
+                        repository {
+                            name
+                            owner {
+                                login
+                            }
+                        }
+                        author {
+                            login
+                        }
+                        bodyText
+                        labels(first: 100) {
+                            nodes {
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }`
 
-	go func() {
-		defer wg.Done()
-		defer func() { <-semaphore }() // Release semaphore
+	// Debug: Print the search parameters
+	log.Printf("Searching for PRs in org %s from %s to %s",
+		org,
+		config.StartDate.Format("2006-01-02"),
+		config.EndDate.Format("2006-01-02"))
 
-		// GitHub search query format
-		query := fmt.Sprintf("org:%s type:pr created:%s..%s",
-			org,
-			config.StartDate.Format("2006-01-02"),
-			config.EndDate.Format("2006-01-02"))
+	// GitHub search query format for PRs
+	searchQuery := fmt.Sprintf("org:%s is:pr created:%s..%s",
+		org,
+		config.StartDate.Format("2006-01-02"),
+		config.EndDate.Format("2006-01-02"))
 
-		opts := &github.SearchOptions{
-			ListOptions: github.ListOptions{PerPage: 100},
-			Sort:        "created",
-			Order:       "asc",
+	// Variables for the GraphQL query
+	variables := map[string]interface{}{
+		"query":  searchQuery,
+		"cursor": nil,
+	}
+
+	hasNextPage := true
+	totalFound := 0
+
+	for hasNextPage {
+		// Respect rate limit
+		if err := limiter.Wait(ctx); err != nil {
+			return nil, fmt.Errorf("rate limiter error: %v", err)
 		}
 
-		for {
-			// Respect rate limit
-			if err := limiter.Wait(ctx); err != nil {
-				log.Printf("Rate limiter error: %v", err)
-				return
-			}
+		// Debug: Print current cursor position
+		log.Printf("Fetching page with cursor: %v", variables["cursor"])
 
-			var result *github.IssuesSearchResult
-			var resp *github.Response
-			var err error
-
-			// Implement retry logic with exponential backoff
-			for attempt := 0; attempt < 5; attempt++ {
-				result, resp, err = client.Search.Issues(ctx, query, opts)
-				if err == nil {
-					break
-				}
-
-				if _, ok := err.(*github.RateLimitError); ok {
-					waitTime := time.Duration(attempt+1) * time.Second
-					log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
-					time.Sleep(waitTime)
-					continue
-				}
-
-				log.Printf("Error searching PRs: %v", err)
-				return
-			}
-
-			if err != nil {
-				log.Printf("Error searching PRs after retries: %v", err)
-				return
-			}
-
-			for _, issue := range result.Issues {
-				// Make sure it's a PR and not an issue
-				if issue.PullRequestLinks == nil {
-					continue
-				}
-
-				// Extract repository name from PR URL
-				// URL format: https://github.com/jenkinsci/repo-name/pull/123
-				urlParts := strings.Split(*issue.HTMLURL, "/")
-				if len(urlParts) < 5 {
-					continue
-				}
-				repoName := urlParts[4]
-
-				// Check if this is a plugin repository from our list
-				pluginInfo, isPlugin := pluginRepos[repoName]
-
-				// Only process plugin repositories
-				if !isPlugin {
-					continue
-				}
-
-				// Collect labels
-				var labels []string
-				for _, label := range issue.Labels {
-					labels = append(labels, *label.Name)
-				}
-
-				// Filter PRs where "odernizer" can be found in the PR body
-				if issue.Body != nil && strings.Contains(*issue.Body, "odernizer") {
-					pr := PullRequestData{
-						Number:      *issue.Number,
-						Title:       *issue.Title,
-						State:       *issue.State,
-						CreatedAt:   *issue.CreatedAt,
-						UpdatedAt:   *issue.UpdatedAt,
-						User:        *issue.User.Login,
-						Repository:  fmt.Sprintf("%s/%s", org, repoName),
-						PluginName:  pluginInfo.Name,
-						Labels:      labels,
-						URL:         *issue.HTMLURL,
-						Description: *issue.Body,
-					}
-
-					mutex.Lock()
-					allPRs = append(allPRs, pr)
-					mutex.Unlock()
-				}
-			}
-
-			if resp.NextPage == 0 {
+		// Implement retry logic with exponential backoff
+		var response GraphQLSearchResponse
+		var err error
+		for attempt := 0; attempt < 5; attempt++ {
+			err = client.ExecuteGraphQL(ctx, query, variables, &response)
+			if err == nil {
 				break
 			}
-			opts.Page = resp.NextPage
+
+			// Check if it's a rate limit error
+			if strings.Contains(err.Error(), "rate limit") {
+				waitTime := time.Duration(attempt+1) * time.Second * 5
+				log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
+				time.Sleep(waitTime)
+				continue
+			}
+
+			log.Printf("Error executing GraphQL query (attempt %d/5): %v", attempt+1, err)
+			if attempt == 4 {
+				return nil, err
+			}
+
+			// Wait before retry
+			waitTime := time.Duration(attempt+1) * time.Second * 2
+			time.Sleep(waitTime)
 		}
-	}()
 
-	wg.Wait()
+		if err != nil {
+			return nil, fmt.Errorf("error executing GraphQL query after retries: %v", err)
+		}
 
+		// Debug: Print number of results in this page
+		log.Printf("Received %d results in this page", len(response.Search.Nodes))
+		totalFound += len(response.Search.Nodes)
+
+		// Process search results
+		for _, pr := range response.Search.Nodes {
+			repoName := pr.Repository.Name
+
+			// Log details of each pull request
+			log.Printf("PR #%d: %s in repository %s/%s by %s",
+				pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
+
+			// Check if this is a plugin repository from our list
+			pluginInfo, isPlugin := pluginRepos[repoName]
+
+			// Only process plugin repositories
+			if !isPlugin {
+				continue
+			}
+
+			// Check if "odernizer" can be found in the PR body
+			if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "recipe") {
+				// Collect labels
+				var labels []string
+				for _, label := range pr.Labels.Nodes {
+					labels = append(labels, label.Name)
+				}
+
+				prData := PullRequestData{
+					Number:      pr.Number,
+					Title:       pr.Title,
+					State:       pr.State,
+					CreatedAt:   pr.CreatedAt,
+					UpdatedAt:   pr.UpdatedAt,
+					User:        pr.Author.Login,
+					Repository:  fmt.Sprintf("%s/%s", pr.Repository.Owner.Login, pr.Repository.Name),
+					PluginName:  pluginInfo.Name,
+					Labels:      labels,
+					URL:         pr.URL,
+					Description: pr.BodyText,
+				}
+
+				mutex.Lock()
+				allPRs = append(allPRs, prData)
+				mutex.Unlock()
+
+				// Debug: log match found
+				log.Printf("Matched PR #%d in repository %s with 'plugin-modernizer' traces", pr.Number, repoName)
+			}
+		}
+
+		// Check if there are more pages
+		hasNextPage = response.Search.PageInfo.HasNextPage
+		if hasNextPage {
+			variables["cursor"] = response.Search.PageInfo.EndCursor
+			log.Printf("Moving to next page with cursor: %s", response.Search.PageInfo.EndCursor)
+		}
+	}
+
+	log.Printf("Total PRs found before filtering: %d", totalFound)
 	return allPRs, nil
 }
 
