@@ -143,6 +143,8 @@ type GraphQLError struct {
 	Path    []string `json:"path,omitempty"`
 }
 
+var allFoundPRs []PullRequestData
+
 func main() {
 	// Parse command line arguments
 	githubToken := flag.String("token", os.Getenv("GITHUB_TOKEN"), "GitHub API token")
@@ -223,9 +225,9 @@ func main() {
 	}
 
 	// Write found PRs to another file if any PRs were found
-	if len(pullRequests) > 0 {
-		log.Printf("Writing found PRs to %s...", config.FoundPullRequestsFile)
-		err = writeJSONFile(config.FoundPullRequestsFile, pullRequests)
+	if len(allFoundPRs) > 0 {
+		log.Printf("Writing all found PRs to %s...", config.FoundPullRequestsFile)
+		err = writeJSONFile(config.FoundPullRequestsFile, allFoundPRs)
 		if err != nil {
 			log.Fatalf("Failed to write found PRs file: %v", err)
 		}
@@ -509,6 +511,25 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 
 			// Check if this is a plugin repository from our list
 			pluginInfo, isPlugin := pluginRepos[repoName]
+
+			// Add all found PRs to the global array
+			prData := PullRequestData{
+				Number:      pr.Number,
+				Title:       pr.Title,
+				State:       pr.State,
+				CreatedAt:   pr.CreatedAt,
+				UpdatedAt:   pr.UpdatedAt,
+				User:        pr.Author.Login,
+				Repository:  fmt.Sprintf("%s/%s", pr.Repository.Owner.Login, pr.Repository.Name),
+				PluginName:  pluginInfo.Name,
+				Labels:      []string{},
+				URL:         pr.URL,
+				Description: pr.BodyText,
+			}
+
+			mutex.Lock()
+			allFoundPRs = append(allFoundPRs, prData)
+			mutex.Unlock()
 
 			// Only process plugin repositories
 			if !isPlugin {
