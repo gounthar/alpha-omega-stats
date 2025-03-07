@@ -31,7 +31,10 @@ jobs:
         run: |
           docker run \
             -e GITHUB_TOKEN=$GITHUB_TOKEN \
+            -v ${{ github.workspace }}/plugins.json:/app/plugins.json:ro \
             -v ${{ github.workspace }}/report.json:/app/report.json \
+            -v ${{ github.workspace }}/found_prs.json:/app/found_prs.json \
+            -v ${{ github.workspace }}/jenkins_prs.json:/app/jenkins_prs.json \
             jenkins-pr-collector
 
       - name: Create Pull Request
