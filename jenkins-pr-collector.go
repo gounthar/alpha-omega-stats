@@ -373,7 +373,7 @@ func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variab
 	var graphqlResp GraphQLResponse
 	err = json.Unmarshal(body, &graphqlResp)
 	if err != nil {
-		return fmt.Errorf("failed to parse GraphQL response: %v", err, string(body))
+		return fmt.Errorf("failed to parse GraphQL response: %v, Body: %s", err, string(body))
 	}
 
 	// Check for GraphQL errors
@@ -547,7 +547,9 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 				}
 
 				// Filter out PRs created by Dependabot and Renovate
-				if pr.Author.Login == "dependabot" || pr.Author.Login == "renovate" {
+				dependabotUser := "dependabot"
+				renovateUser := "renovate"
+				if pr.Author.Login == dependabotUser || pr.Author.Login == renovateUser {
 					continue
 				}
 
