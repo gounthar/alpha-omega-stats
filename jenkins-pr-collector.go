@@ -507,9 +507,6 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 			log.Printf("PR #%d: %s in repository %s/%s by %s",
 				pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
 
-			// Rest of the code remains the same but use pr directly instead of pr.PullRequest
-			// ...
-
 			// Check if this is a plugin repository from our list
 			pluginInfo, isPlugin := pluginRepos[repoName]
 
