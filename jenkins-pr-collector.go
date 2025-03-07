@@ -414,6 +414,26 @@ func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variab
 	return nil
 }
 
+func getCommitStatus(commits struct {
+	Nodes []struct {
+		Commit struct {
+			StatusCheckRollup struct {
+				State string `json:"state"`
+			} `json:"statusCheckRollup"`
+		} `json:"commit"`
+	} `json:"nodes"`
+}) string {
+	if len(commits.Nodes) == 0 {
+		return "UNKNOWN"
+	}
+
+	if commits.Nodes[0].Commit.StatusCheckRollup.State == "" {
+		return "UNKNOWN"
+	}
+
+	return commits.Nodes[0].Commit.StatusCheckRollup.State
+}
+
 func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
@@ -564,16 +584,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					URL:         pr.URL,
 					Description: pr.BodyText,
 					// Replace line 566 with:
-					CheckStatus: func() string {
-						if len(pr.Commits.Nodes) == 0 {
-							return "UNKNOWN"
-						}
-						commit := pr.Commits.Nodes[0].Commit
-						if commit.StatusCheckRollup.State == "" {
-							return "UNKNOWN"
-						}
-						return commit.StatusCheckRollup.State
-					}(),
+					CheckStatus: getCommitStatus(pr.Commits),
 				}
 
 				mutex.Lock()
@@ -612,19 +623,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 						Labels:      labels,
 						URL:         pr.URL,
 						Description: pr.BodyText,
-						CheckStatus: func() string {
-							if len(pr.Commits.Nodes) == 0 {
-								return "UNKNOWN"
-							}
-
-							// Make sure everything in the chain is valid
-							node := pr.Commits.Nodes[0]
-							if node.Commit.StatusCheckRollup.State == "" {
-								return "UNKNOWN"
-							}
-
-							return node.Commit.StatusCheckRollup.State
-						}(),
+						CheckStatus: getCommitStatus(pr.Commits),
 					}
 
 					mutex.Lock()
