@@ -94,8 +94,8 @@ The tool follows these steps to collect pull request data:
 6. **Output results**: The collected data is written to a JSON file for further analysis.
 
 ## Rate Limiting
-
-The tool implements a conservative rate limiting strategy to avoid hitting GitHub's API rate limits. By default, it makes at most 1 request per second, which is well below GitHub's limit of 5,000 requests per hour for authenticated users.
+The tool implements a conservative rate-limiting strategy to avoid hitting GitHub's API rate limits.
+By default, it makes at most one request per second, which is well below GitHub's limit of 5,000 requests per hour for authenticated users.
 
 ## Extending the Tool
 
