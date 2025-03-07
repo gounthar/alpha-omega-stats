@@ -8,7 +8,7 @@ RUN go mod download
 COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o jenkins-pr-collector
 
-FROM alpine:3.19.1
+FROM alpine:3.21.3
 
 RUN mkdir -p /app
 WORKDIR /app
