@@ -20,6 +20,13 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o jenkins-pr-collector
 # Use the official Alpine image as the base for the final stage
 FROM alpine:3.21.3
 
+# Install required packages
+RUN apk add --no-cache \
+    bash \
+    curl \
+    ca-certificates \
+    tzdata
+
 # Create and set the working directory
 RUN mkdir -p /app
 WORKDIR /app
