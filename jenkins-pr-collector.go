@@ -240,7 +240,7 @@ func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate
 			result, resp, err := client.Search.Issues(ctx, query, opts)
 			if err != nil {
 				log.Printf("Error searching PRs: %v", err)
-				return
+				return nil, err // Return the error to the caller
 			}
 
 			for _, issue := range result.Issues {
