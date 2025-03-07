@@ -545,7 +545,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 				mutex.Unlock()
 
 				// Debug: log match found
-				log.Printf("Matched PR #%d in repository %s with 'odernizer' in body", pr.Number, repoName)
+				log.Printf("Matched PR #%d in repository %s with 'plugin-modernizer' traces", pr.Number, repoName)
 			}
 		}
 
