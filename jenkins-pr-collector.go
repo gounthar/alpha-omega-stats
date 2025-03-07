@@ -44,6 +44,7 @@ type PullRequest struct {
 }
 
 // GraphQLSearchResponse represents the response structure for the search query
+// Update GraphQLSearchResponse struct
 type GraphQLSearchResponse struct {
 	Search struct {
 		PageInfo struct {
@@ -51,29 +52,28 @@ type GraphQLSearchResponse struct {
 			EndCursor   string `json:"endCursor"`
 		} `json:"pageInfo"`
 		Nodes []struct {
-			PullRequest struct {
-				Number     int       `json:"number"`
-				Title      string    `json:"title"`
-				State      string    `json:"state"`
-				CreatedAt  time.Time `json:"createdAt"`
-				UpdatedAt  time.Time `json:"updatedAt"`
-				URL        string    `json:"url"`
-				Repository struct {
-					Name  string `json:"name"`
-					Owner struct {
-						Login string `json:"login"`
-					} `json:"owner"`
-				} `json:"repository"`
-				Author struct {
+			// Remove the nested PullRequest struct and flatten the fields
+			Number     int       `json:"number"`
+			Title      string    `json:"title"`
+			State      string    `json:"state"`
+			CreatedAt  time.Time `json:"createdAt"`
+			UpdatedAt  time.Time `json:"updatedAt"`
+			URL        string    `json:"url"`
+			Repository struct {
+				Name  string `json:"name"`
+				Owner struct {
 					Login string `json:"login"`
-				} `json:"author"`
-				BodyText string `json:"bodyText"`
-				Labels   struct {
-					Nodes []struct {
-						Name string `json:"name"`
-					} `json:"nodes"`
-				} `json:"labels"`
-			} `json:"... on PullRequest"`
+				} `json:"owner"`
+			} `json:"repository"`
+			Author struct {
+				Login string `json:"login"`
+			} `json:"author"`
+			BodyText string `json:"bodyText"`
+			Labels   struct {
+				Nodes []struct {
+					Name string `json:"name"`
+				} `json:"nodes"`
+			} `json:"labels"`
 		} `json:"nodes"`
 	} `json:"search"`
 }
@@ -500,13 +500,15 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 		totalFound += len(response.Search.Nodes)
 
 		// Process search results
-		for _, node := range response.Search.Nodes {
-			pr := node.PullRequest
+		for _, pr := range response.Search.Nodes {
 			repoName := pr.Repository.Name
 
 			// Log details of each pull request
 			log.Printf("PR #%d: %s in repository %s/%s by %s",
 				pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
+
+			// Rest of the code remains the same but use pr directly instead of pr.PullRequest
+			// ...
 
 			// Check if this is a plugin repository from our list
 			pluginInfo, isPlugin := pluginRepos[repoName]
