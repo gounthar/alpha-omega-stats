@@ -53,6 +53,7 @@ type Config struct {
 	StartDate       time.Time
 	EndDate         time.Time
 	OutputFile      string
+	FoundPRsFile    string
 	UpdateCenterURL string
 	RateLimit       rate.Limit
 }
@@ -123,6 +124,7 @@ func main() {
 	startDateFlag := flag.String("start", "", "Start date in YYYY-MM-DD format")
 	endDateFlag := flag.String("end", "", "End date in YYYY-MM-DD format")
 	outputFileFlag := flag.String("output", "jenkins_prs.json", "Output file name")
+	foundPRsFileFlag := flag.String("found-prs", "found_prs.json", "File to write found PRs")
 	updateCenterURLFlag := flag.String("update-center", "https://updates.jenkins.io/current/update-center.actual.json", "Jenkins update center URL")
 	flag.Parse()
 
@@ -153,6 +155,7 @@ func main() {
 		StartDate:       startDate,
 		EndDate:         endDate,
 		OutputFile:      *outputFileFlag,
+		FoundPRsFile:    *foundPRsFileFlag,
 		UpdateCenterURL: *updateCenterURLFlag,
 		RateLimit:       rate.Limit(1), // 1 request per second is conservative
 	}
@@ -193,15 +196,54 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to write output file: %v", err)
 	}
+
+	// Write found PRs to another file if any PRs were found
+	if len(pullRequests) > 0 {
+		log.Printf("Writing found PRs to %s...", config.FoundPRsFile)
+		err = writeJSONFile(config.FoundPRsFile, pullRequests)
+		if err != nil {
+			log.Fatalf("Failed to write found PRs file: %v", err)
+		}
+	} else {
+		log.Printf("No pull requests found, not writing to %s", config.FoundPRsFile)
+	}
+
 	log.Println("Done!")
 }
 
 // fetchJenkinsPluginInfo fetches plugin information from the Jenkins update center
 func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, error) {
-	// Make HTTP request to update center
-	resp, err := http.Get(updateCenterURL)
+	// Create an HTTP client that follows redirects
+	client := &http.Client{
+		CheckRedirect: func(req *http.Request, via []*http.Request) error {
+			return nil
+		},
+	}
+
+	var resp *http.Response
+	var err error
+
+	// Implement retry logic with exponential backoff
+	for attempt := 0; attempt < 5; attempt++ {
+		// Make HTTP request to update center
+		resp, err = client.Get(updateCenterURL)
+		if err == nil && resp.StatusCode == http.StatusOK {
+			break
+		}
+
+		if err != nil {
+			log.Printf("Failed to fetch update center data (attempt %d/5): %v", attempt+1, err)
+		} else {
+			log.Printf("HTTP error (attempt %d/5): %d", attempt+1, resp.StatusCode)
+		}
+
+		// Wait before retry
+		waitTime := time.Duration(attempt+1) * time.Second * 2
+		time.Sleep(waitTime)
+	}
+
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch update center data: %v", err)
+		return nil, fmt.Errorf("failed to fetch update center data after retries: %v", err)
 	}
 	defer resp.Body.Close()
 
@@ -326,7 +368,6 @@ func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variab
 	return nil
 }
 
-// fetchPullRequestsGraphQL fetches pull requests using the GitHub GraphQL API
 func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
@@ -334,39 +375,39 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 
 	// Define the GraphQL query for searching PRs
 	query := `
-	query SearchPullRequests($query: String!, $cursor: String) {
-		search(query: $query, type: ISSUE, first: 100, after: $cursor) {
-			pageInfo {
-				hasNextPage
-				endCursor
-			}
-			nodes {
-				... on PullRequest {
-					number
-					title
-					state
-					createdAt
-					updatedAt
-					url
-					repository {
-						name
-						owner {
-							login
-						}
-					}
-					author {
-						login
-					}
-					body
-					labels(first: 100) {
-						nodes {
-							name
-						}
-					}
-				}
-			}
-		}
-	}`
+    query SearchPullRequests($query: String!, $cursor: String) {
+        search(query: $query, type: ISSUE, first: 100, after: $cursor) {
+            pageInfo {
+                hasNextPage
+                endCursor
+            }
+            nodes {
+                ... on PullRequest {
+                    number
+                    title
+                    state
+                    createdAt
+                    updatedAt
+                    url
+                    repository {
+                        name
+                        owner {
+                            login
+                        }
+                    }
+                    author {
+                        login
+                    }
+                    bodyText
+                    labels(first: 100) {
+                        nodes {
+                            name
+                        }
+                    }
+                }
+            }
+        }
+    }`
 
 	// Debug: Print the search parameters
 	log.Printf("Searching for PRs in org %s from %s to %s",
@@ -438,6 +479,10 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 			pr := node.PullRequest
 			repoName := pr.Repository.Name
 
+			// Log details of each pull request
+			log.Printf("PR #%d: %s in repository %s/%s by %s",
+				pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
+
 			// Check if this is a plugin repository from our list
 			pluginInfo, isPlugin := pluginRepos[repoName]
 
@@ -445,9 +490,6 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 			if !isPlugin {
 				continue
 			}
-
-			// Debug: log repository match
-			log.Printf("Found PR #%d in plugin repository: %s", pr.Number, repoName)
 
 			// Check if "odernizer" can be found in the PR body
 			if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "modernizer") {
