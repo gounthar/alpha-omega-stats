@@ -38,7 +38,6 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 ### Command-line Arguments
 
 - `-token`: GitHub API token (or set GITHUB_TOKEN environment variable)
-- `-users`: Comma-separated list of GitHub users to track PRs for
 - `-start`: Start date in YYYY-MM-DD format
 - `-end`: End date in YYYY-MM-DD format (inclusive)
 - `-output`: Output JSON file name (default: jenkins_prs.json)
@@ -85,7 +84,7 @@ The tool follows these steps to collect pull request data:
 
 2. **Parse plugin repositories**: From the update center data, the tool extracts repository names and creates a mapping between repository names and plugin information.
 
-3. **Search for pull requests**: Using GitHub's Search API, the tool finds all pull requests created by the specified users within the given date range.
+3. **Search for pull requests**: Using GitHub's Search API, the tool finds all pull requests within the given date range.
 
 4. **Filter for plugin repositories**: Each pull request is checked against the list of known plugin repositories, and only those in plugin repositories are processed.
 
