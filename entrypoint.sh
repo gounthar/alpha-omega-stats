@@ -27,6 +27,14 @@ if ! echo "$START_DATE" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
     exit 1
 fi
 
+# Validate required files exist and are writable
+for file in "plugins.json" "report.json" "found_prs.json" "jenkins_prs.json"; do
+    if [ ! -f "$file" ]; then
+        echo "Error: Required file '$file' does not exist or is not a regular file"
+        exit 1
+    fi
+done
+
 # Set end date to current date
 END_DATE=$(date +%Y-%m-%d)
 
