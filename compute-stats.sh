@@ -46,8 +46,22 @@ check_rate_limit() {
 fetch_prs_for_org() {
   local org=$1
   local user=$2
-  local date=$3
-  gh pr list --state all --author "$user" --json number,title,createdAt,updatedAt,headRepository,state --search "org:$org created:$date..$date updated:$date..$date"
+  local start_date=$3
+  local end_date=$4
+  local page=1
+  local prs="[]"
+
+  while true; do
+    local result
+    result=$(gh api -X GET "search/issues?q=org:$org+type:pr+author:$user+created:$start_date..$end_date+updated:$start_date..$end_date&per_page=100&page=$page" --jq '.items')
+    if [ -z "$result" ] || [ "$result" == "[]" ]; then
+      break
+    fi
+    prs=$(echo "$prs" | jq --argjson new_prs "$result" '. + $new_prs')
+    page=$((page + 1))
+  done
+
+  echo "$prs"
 }
 
 # Function to generate a list of dates between start and end dates
@@ -70,15 +84,12 @@ for USER in "${USERS[@]}"; do
   echo "Fetching PRs for user: $USER"
   for ORG in "${ORGS[@]}"; do
     echo "Fetching PRs for organization: $ORG"
-    for DATE in $(generate_date_range "$START_DATE" "$END_DATE"); do
-      echo "Fetching PRs for date: $DATE"
-      # Check rate limit before making API calls
-      check_rate_limit || continue
-      PRS=$(fetch_prs_for_org "$ORG" "$USER" "$DATE")
-      # Add the user information to each PR
-      PRS=$(echo "$PRS" | jq --arg user "$USER" 'map(. + {user: $user})')
-      PR_LIST=$(echo "$PR_LIST" | jq --argjson prs "$PRS" --arg org "$ORG" '. + ($prs | map(.repository = "\($org)/\(.headRepository.name)"))')
-    done
+    # Check rate limit before making API calls
+    check_rate_limit || continue
+    PRS=$(fetch_prs_for_org "$ORG" "$USER" "$START_DATE" "$END_DATE")
+    # Add the user information to each PR
+    PRS=$(echo "$PRS" | jq --arg user "$USER" 'map(. + {user: $user})')
+    PR_LIST=$(echo "$PR_LIST" | jq --argjson prs "$PRS" --arg org "$ORG" '. + ($prs | map(.repository = "\($org)/\(.repository.name)"))')
   done
 done
 
