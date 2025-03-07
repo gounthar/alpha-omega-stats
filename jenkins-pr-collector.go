@@ -41,6 +41,15 @@ type PullRequest struct {
 			Name string `json:"name"`
 		} `json:"nodes"`
 	} `json:"labels"`
+	Commits struct {
+		Nodes []struct {
+			Commit struct {
+				StatusCheckRollup struct {
+					State string `json:"state"`
+				} `json:"statusCheckRollup"`
+			} `json:"commit"`
+		} `json:"nodes"`
+	} `json:"commits"`
 }
 
 // GraphQLSearchResponse represents the response structure for the search query
@@ -74,6 +83,15 @@ type GraphQLSearchResponse struct {
 					Name string `json:"name"`
 				} `json:"nodes"`
 			} `json:"labels"`
+			Commits struct {
+				Nodes []struct {
+					Commit struct {
+						StatusCheckRollup struct {
+							State string `json:"state"`
+						} `json:"statusCheckRollup"`
+					} `json:"commit"`
+				} `json:"nodes"`
+			} `json:"commits"`
 		} `json:"nodes"`
 	} `json:"search"`
 }
@@ -91,6 +109,7 @@ type PullRequestData struct {
 	Labels      []string  `json:"labels"`
 	URL         string    `json:"url"`
 	Description string    `json:"description,omitempty"`
+	CheckStatus string    `json:"checkStatus,omitempty"`
 }
 
 // PluginInfo represents the information we need from the plugins.json file
@@ -395,6 +414,26 @@ func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variab
 	return nil
 }
 
+func getCommitStatus(commits struct {
+	Nodes []struct {
+		Commit struct {
+			StatusCheckRollup struct {
+				State string `json:"state"`
+			} `json:"statusCheckRollup"`
+		} `json:"commit"`
+	} `json:"nodes"`
+}) string {
+	if len(commits.Nodes) == 0 {
+		return "UNKNOWN"
+	}
+
+	if commits.Nodes[0].Commit.StatusCheckRollup.State == "" {
+		return "UNKNOWN"
+	}
+
+	return commits.Nodes[0].Commit.StatusCheckRollup.State
+}
+
 func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
@@ -429,6 +468,15 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
                         labels(first: 100) {
                             nodes {
                                 name
+                            }
+                        }
+                        commits(last: 1) {
+                            nodes {
+                                commit {
+                                    statusCheckRollup {
+                                        state
+                                    }
+                                }
                             }
                         }
                     }
@@ -535,6 +583,8 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					Labels:      []string{},
 					URL:         pr.URL,
 					Description: pr.BodyText,
+					// Replace line 566 with:
+					CheckStatus: getCommitStatus(pr.Commits),
 				}
 
 				mutex.Lock()
@@ -573,6 +623,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 						Labels:      labels,
 						URL:         pr.URL,
 						Description: pr.BodyText,
+						CheckStatus: getCommitStatus(pr.Commits),
 					}
 
 					mutex.Lock()
