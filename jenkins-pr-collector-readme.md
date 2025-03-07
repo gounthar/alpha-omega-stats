@@ -51,7 +51,7 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 export GITHUB_TOKEN=ghp_your_token_here
 
 # Run the collector for January 2023
-./jenkins-pr-collector -users daniel-beck,jglick,timja -start 2023-01-01 -end 2023-01-31 -output jan_2023_prs.json
+./jenkins-pr-collector -start 2023-01-01 -end 2023-01-31 -output jan_2023_prs.json
 ```
 
 ## Output Format
