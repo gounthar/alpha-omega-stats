@@ -36,6 +36,20 @@ query {
                         }
                     }
                 }
+                createdAt
+                updatedAt
+                author {
+                    login
+                }
+                repository {
+                    name
+                }
+                labels(first: 10) {
+                    nodes {
+                        name
+                    }
+                }
+                body
             }
         }
     }
