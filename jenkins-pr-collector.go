@@ -519,7 +519,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 			}
 
 			// Check if "odernizer" can be found in the PR body
-			if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "modernizer") {
+			if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "recipe") {
 				// Collect labels
 				var labels []string
 				for _, label := range pr.Labels.Nodes {
