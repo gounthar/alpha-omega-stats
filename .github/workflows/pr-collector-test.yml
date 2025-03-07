@@ -24,7 +24,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker run \
-            -e GITHUB_TOKEN=$GITHUB_TOKEN \
+            -e GITHUB_TOKEN="$GITHUB_TOKEN" \
             -v ${{ github.workspace }}/report.json:/app/report.json \
             jenkins-pr-collector
 
