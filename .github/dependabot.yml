@@ -7,3 +7,16 @@ updates:
     commit-message:
       prefix: "deps"
     open-pull-requests-limit: 5
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "docker"
+      include: "scope"
+    open-pull-requests-limit: 5
+    ignore:
+      # Ignore patch updates for golang image as they're typically not critical
+      - dependency-name: "golang"
+        update-types: ["version-update:semver-patch"]
