@@ -5,14 +5,16 @@ FROM golang:1.24.1-alpine AS builder
 RUN mkdir -p /app
 WORKDIR /app
 
-# Copy go.mod first
-COPY go.mod ./
-
-# Generate go.sum if it doesn't exist and download dependencies
-RUN go mod tidy && go mod download
-
-# Copy the entire project and build the application
+# Copy source code first to get dependencies
 COPY . .
+
+# Initialize Go modules and get dependencies
+RUN go mod init jenkins.io/alpha-omega-stats || true && \
+    go mod tidy && \
+    go get -d ./... && \
+    go mod download
+
+# Build the application
 RUN CGO_ENABLED=0 GOOS=linux go build -o jenkins-pr-collector
 
 # Use the official Alpine image as the base for the final stage
