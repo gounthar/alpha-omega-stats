@@ -7,7 +7,7 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 - Uses the official Jenkins update center to identify plugin repositories
 - Maps pull requests to their corresponding plugins
 - Collects comprehensive pull request data within a specified date range
-- Handles GitHub API rate limits gracefully with built-in rate limiting
+- Handles GitHub API rate limits gracefully with built-in rate-limiting
 - Concurrent processing for faster data collection
 - Outputs structured JSON data for further analysis
 
