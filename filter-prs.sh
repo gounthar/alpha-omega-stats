@@ -35,11 +35,12 @@ fi
 # Convert the list of repository names into a JSON array for use with --argjson
 PLUGIN_REPOS_JSON=$(echo "$PLUGIN_REPOS" | jq -R -s -c 'split("\n") | map(select(. != ""))')
 
-# Filter PRs that are related to Jenkins plugins
+# Filter PRs that are related to Jenkins plugins and exclude those created by Dependabot and Renovate
 FILTERED_PRS=$(jq --argjson plugin_repos "$PLUGIN_REPOS_JSON" '
   map(select(
     .repository as $repo |
-    $plugin_repos | index($repo) != null
+    $plugin_repos | index($repo) != null and
+    .user != "dependabot" and .user != "renovate"
   ))
 ' "$INPUT_JSON")
 
