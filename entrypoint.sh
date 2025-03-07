@@ -34,4 +34,9 @@ END_DATE=$(date +%Y-%m-%d)
 echo "Running jenkins-pr-collector with date range: $START_DATE to $END_DATE"
 
 # Execute the jenkins-pr-collector command with the provided GitHub token and date range
-./jenkins-pr-collector -github-token "$GITHUB_TOKEN" -start-date "$START_DATE" -end-date "$END_DATE"
+./jenkins-pr-collector \
+    -token "$GITHUB_TOKEN" \
+    -start "$START_DATE" \
+    -end "$END_DATE" \
+    -found-prs "found_prs.json" \
+    -output "jenkins_prs.json"
