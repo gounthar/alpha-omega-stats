@@ -109,13 +109,13 @@ type UpdateCenter struct {
 
 // Config holds the application configuration
 type Config struct {
-	GithubToken     string
-	StartDate       time.Time
-	EndDate         time.Time
-	OutputFile      string
-	FoundPRsFile    string
-	UpdateCenterURL string
-	RateLimit       rate.Limit
+	GithubToken           string
+	StartDate             time.Time
+	EndDate               time.Time
+	OutputFile            string
+	FoundPullRequestsFile string
+	UpdateCenterURL       string
+	RateLimit             rate.Limit
 }
 
 // GraphQLClient represents a simple GitHub GraphQL API client
@@ -176,13 +176,13 @@ func main() {
 
 	// Create configuration
 	config := Config{
-		GithubToken:     *githubToken,
-		StartDate:       startDate,
-		EndDate:         endDate,
-		OutputFile:      *outputFileFlag,
-		FoundPRsFile:    *foundPRsFileFlag,
-		UpdateCenterURL: *updateCenterURLFlag,
-		RateLimit:       rate.Limit(1), // 1 request per second is conservative
+		GithubToken:           *githubToken,
+		StartDate:             startDate,
+		EndDate:               endDate,
+		OutputFile:            *outputFileFlag,
+		FoundPullRequestsFile: *foundPRsFileFlag,
+		UpdateCenterURL:       *updateCenterURLFlag,
+		RateLimit:             rate.Limit(1), // 1 request per second is conservative
 	}
 
 	// Initialize GraphQL client
@@ -224,13 +224,13 @@ func main() {
 
 	// Write found PRs to another file if any PRs were found
 	if len(pullRequests) > 0 {
-		log.Printf("Writing found PRs to %s...", config.FoundPRsFile)
-		err = writeJSONFile(config.FoundPRsFile, pullRequests)
+		log.Printf("Writing found PRs to %s...", config.FoundPullRequestsFile)
+		err = writeJSONFile(config.FoundPullRequestsFile, pullRequests)
 		if err != nil {
 			log.Fatalf("Failed to write found PRs file: %v", err)
 		}
 	} else {
-		log.Printf("No pull requests found, not writing to %s", config.FoundPRsFile)
+		log.Printf("No pull requests found, not writing to %s", config.FoundPullRequestsFile)
 	}
 
 	log.Println("Done!")
