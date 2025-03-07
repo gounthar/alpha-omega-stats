@@ -76,11 +76,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("Invalid start date format. Expected YYYY-MM-DD: %v", err)
 	}
+	log.Printf("Parsed start date: %s", startDate.Format("2006-01-02"))
 
 	endDate, err := time.Parse("2006-01-02", *endDateFlag)
 	if err != nil {
 		log.Fatalf("Invalid end date format. Expected YYYY-MM-DD: %v", err)
 	}
+	log.Printf("Parsed end date: %s", endDate.Format("2006-01-02"))
 
 	// Make sure endDate is inclusive by setting it to the end of the day
 	endDate = endDate.Add(24*time.Hour - 1*time.Second)
