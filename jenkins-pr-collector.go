@@ -291,8 +291,8 @@ func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate
 					labels = append(labels, *label.Name)
 				}
 
-				// Filter PRs where "pluginmodernizer" can be found in the PR body
-				if issue.Body != nil && strings.Contains(*issue.Body, "pluginmodernizer") {
+				// Filter PRs where "odernizer" can be found in the PR body
+				if issue.Body != nil && strings.Contains(*issue.Body, "odernizer") {
 					pr := PullRequestData{
 						Number:      *issue.Number,
 						Title:       *issue.Title,
