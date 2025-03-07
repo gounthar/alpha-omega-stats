@@ -16,6 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download latest plugins data
+        run: |
+          echo "Downloading latest Jenkins plugins data..."
+          curl -L https://updates.jenkins.io/current/update-center.actual.json -o plugins.json
+          echo "Download completed. File size: $(stat -c%s plugins.json) bytes"
+
       - name: Build Docker image
         run: docker build -t jenkins-pr-collector .
 
@@ -24,7 +30,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           docker run \
-            -e GITHUB_TOKEN="$GITHUB_TOKEN" \
+            -e GITHUB_TOKEN=$GITHUB_TOKEN \
             -v ${{ github.workspace }}/report.json:/app/report.json \
             jenkins-pr-collector
 
@@ -35,8 +41,10 @@ jobs:
           title: 'Update PR statistics report'
           body: |
             This PR updates the PR statistics report using the jenkins-pr-collector.
+            
             - Generated automatically by the PR Collector Test workflow
             - Data collection period: From August 2024 to current date
+            - Using latest Jenkins plugins data from update-center.actual.json
           branch: update-pr-stats
           delete-branch: true
           base: main
