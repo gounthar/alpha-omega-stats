@@ -1,5 +1,6 @@
 FROM golang:1.23.2-alpine AS builder
 
+RUN mkdir -p /app
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
@@ -9,6 +10,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o jenkins-pr-collector
 
 FROM alpine:3.19.1
 
+RUN mkdir -p /app
 WORKDIR /app
 COPY --from=builder /app/jenkins-pr-collector .
 
