@@ -18,6 +18,66 @@ import (
 	"golang.org/x/time/rate"
 )
 
+// PullRequest represents a GitHub pull request
+type PullRequest struct {
+	Number     int       `json:"number"`
+	Title      string    `json:"title"`
+	State      string    `json:"state"`
+	CreatedAt  time.Time `json:"createdAt"`
+	UpdatedAt  time.Time `json:"updatedAt"`
+	URL        string    `json:"url"`
+	Repository struct {
+		Name  string `json:"name"`
+		Owner struct {
+			Login string `json:"login"`
+		} `json:"owner"`
+	} `json:"repository"`
+	Author struct {
+		Login string `json:"login"`
+	} `json:"author"`
+	BodyText string `json:"bodyText"`
+	Labels   struct {
+		Nodes []struct {
+			Name string `json:"name"`
+		} `json:"nodes"`
+	} `json:"labels"`
+}
+
+// GraphQLSearchResponse represents the response structure for the search query
+type GraphQLSearchResponse struct {
+	Search struct {
+		PageInfo struct {
+			HasNextPage bool   `json:"hasNextPage"`
+			EndCursor   string `json:"endCursor"`
+		} `json:"pageInfo"`
+		Nodes []struct {
+			PullRequest struct {
+				Number     int       `json:"number"`
+				Title      string    `json:"title"`
+				State      string    `json:"state"`
+				CreatedAt  time.Time `json:"createdAt"`
+				UpdatedAt  time.Time `json:"updatedAt"`
+				URL        string    `json:"url"`
+				Repository struct {
+					Name  string `json:"name"`
+					Owner struct {
+						Login string `json:"login"`
+					} `json:"owner"`
+				} `json:"repository"`
+				Author struct {
+					Login string `json:"login"`
+				} `json:"author"`
+				BodyText string `json:"bodyText"`
+				Labels   struct {
+					Nodes []struct {
+						Name string `json:"name"`
+					} `json:"nodes"`
+				} `json:"labels"`
+			} `json:"... on PullRequest"`
+		} `json:"nodes"`
+	} `json:"search"`
+}
+
 // PullRequestData represents the data we want to collect about PRs
 type PullRequestData struct {
 	Number      int       `json:"number"`
@@ -81,41 +141,6 @@ type GraphQLError struct {
 	Message string   `json:"message"`
 	Type    string   `json:"type"`
 	Path    []string `json:"path,omitempty"`
-}
-
-// GraphQLSearchResponse represents the response structure for the search query
-type GraphQLSearchResponse struct {
-	Search struct {
-		PageInfo struct {
-			HasNextPage bool   `json:"hasNextPage"`
-			EndCursor   string `json:"endCursor"`
-		} `json:"pageInfo"`
-		Nodes []struct {
-			PullRequest struct {
-				Number     int       `json:"number"`
-				Title      string    `json:"title"`
-				State      string    `json:"state"`
-				CreatedAt  time.Time `json:"createdAt"`
-				UpdatedAt  time.Time `json:"updatedAt"`
-				URL        string    `json:"url"`
-				Repository struct {
-					Name  string `json:"name"`
-					Owner struct {
-						Login string `json:"login"`
-					} `json:"owner"`
-				} `json:"repository"`
-				Author struct {
-					Login string `json:"login"`
-				} `json:"author"`
-				BodyText string `json:"bodyText"`
-				Labels   struct {
-					Nodes []struct {
-						Name string `json:"name"`
-					} `json:"nodes"`
-				} `json:"labels"`
-			} `json:"... on PullRequest"`
-		} `json:"nodes"`
-	} `json:"search"`
 }
 
 func main() {
@@ -375,39 +400,39 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 
 	// Define the GraphQL query for searching PRs
 	query := `
-    query SearchPullRequests($query: String!, $cursor: String) {
-        search(query: $query, type: ISSUE, first: 100, after: $cursor) {
-            pageInfo {
-                hasNextPage
-                endCursor
-            }
-            nodes {
-                ... on PullRequest {
-                    number
-                    title
-                    state
-                    createdAt
-                    updatedAt
-                    url
-                    repository {
-                        name
-                        owner {
+        query SearchPullRequests($query: String!, $cursor: String) {
+            search(query: $query, type: ISSUE, first: 100, after: $cursor) {
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ... on PullRequest {
+                        number
+                        title
+                        state
+                        createdAt
+                        updatedAt
+                        url
+                        repository {
+                            name
+                            owner {
+                                login
+                            }
+                        }
+                        author {
                             login
                         }
-                    }
-                    author {
-                        login
-                    }
-                    bodyText
-                    labels(first: 100) {
-                        nodes {
-                            name
+                        bodyText
+                        labels(first: 100) {
+                            nodes {
+                                name
+                            }
                         }
                     }
                 }
             }
-        }
-    }`
+        }`
 
 	// Debug: Print the search parameters
 	log.Printf("Searching for PRs in org %s from %s to %s",
