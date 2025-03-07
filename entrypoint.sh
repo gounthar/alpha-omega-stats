@@ -1,9 +1,26 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
+# Validate required environment variables
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "Error: GITHUB_TOKEN environment variable is required"
     exit 1
 fi
 
+if [ -z "$START_DATE" ]; then
+    echo "Error: START_DATE environment variable is required (format: YYYY-MM-DD)"
+    echo "Note: While a default is set in the Dockerfile (2024-08-01), you can override it by setting START_DATE"
+    exit 1
+fi
+
+# Validate START_DATE format
+if ! echo "$START_DATE" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+    echo "Error: START_DATE must be in YYYY-MM-DD format"
+    echo "Current value: $START_DATE"
+    exit 1
+fi
+
+# Set end date to current date
 END_DATE=$(date +%Y-%m-%d)
+
+echo "Running jenkins-pr-collector with date range: $START_DATE to $END_DATE"
 ./jenkins-pr-collector -github-token "$GITHUB_TOKEN" -start-date "$START_DATE" -end-date "$END_DATE"
