@@ -25,7 +25,7 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 
 1. Clone this repository
 2. Install dependencies:
-   ```
+   ```bash
    go mod tidy
    ```
 
