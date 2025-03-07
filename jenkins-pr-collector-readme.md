@@ -31,7 +31,7 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 
 ## Usage
 
-```
+```bash
 ./jenkins-pr-collector -token <github-token> -start 2024-12-01 -end 2025-01-31 -output report.json
 ```
 
