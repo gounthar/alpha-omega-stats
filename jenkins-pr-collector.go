@@ -57,8 +57,8 @@ type PullRequest struct {
 type GraphQLSearchResponse struct {
 	Search struct {
 		PageInfo struct {
-				HasNextPage bool   `json:"hasNextPage"`
-				EndCursor   string `json:"endCursor"`
+			HasNextPage bool   `json:"hasNextPage"`
+			EndCursor   string `json:"endCursor"`
 		} `json:"pageInfo"`
 		Nodes []struct {
 			// Remove the nested PullRequest struct and flatten the fields
@@ -563,7 +563,17 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					Labels:      []string{},
 					URL:         pr.URL,
 					Description: pr.BodyText,
-					CheckStatus: pr.Commits.Nodes[0].Commit.StatusCheckRollup.State,
+					// Replace line 566 with:
+					CheckStatus: func() string {
+						if len(pr.Commits.Nodes) == 0 {
+							return "UNKNOWN"
+						}
+						commit := pr.Commits.Nodes[0].Commit
+						if commit.StatusCheckRollup.State == "" {
+							return "UNKNOWN"
+						}
+						return commit.StatusCheckRollup.State
+					}(),
 				}
 
 				mutex.Lock()
@@ -602,7 +612,19 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 						Labels:      labels,
 						URL:         pr.URL,
 						Description: pr.BodyText,
-						CheckStatus: pr.Commits.Nodes[0].Commit.StatusCheckRollup.State,
+						CheckStatus: func() string {
+							if len(pr.Commits.Nodes) == 0 {
+								return "UNKNOWN"
+							}
+
+							// Make sure everything in the chain is valid
+							node := pr.Commits.Nodes[0]
+							if node.Commit.StatusCheckRollup.State == "" {
+								return "UNKNOWN"
+							}
+
+							return node.Commit.StatusCheckRollup.State
+						}(),
 					}
 
 					mutex.Lock()
