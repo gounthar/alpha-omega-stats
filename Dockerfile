@@ -19,7 +19,9 @@ COPY plugins.json .
 COPY report.json .
 COPY entrypoint.sh .
 
-# Set non-sensitive environment variable with default value
+# Default start date for PR collection
+# This can be overridden at runtime by setting the START_DATE environment variable
+# Format: YYYY-MM-DD (e.g., 2024-08-01)
 ENV START_DATE="2024-08-01"
 
 # Ensure the entrypoint script is executable
