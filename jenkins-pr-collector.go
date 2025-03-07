@@ -442,108 +442,87 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 		config.StartDate.Format("2006-01-02"),
 		config.EndDate.Format("2006-01-02"))
 
-	// GitHub search query format for PRs
-	searchQuery := fmt.Sprintf("org:%s is:pr created:%s..%s",
-		org,
-		config.StartDate.Format("2006-01-02"),
-		config.EndDate.Format("2006-01-02"))
-
-	// Variables for the GraphQL query
-	variables := map[string]interface{}{
-		"query":  searchQuery,
-		"cursor": nil,
-	}
-
-	hasNextPage := true
-	totalFound := 0
-
-	for hasNextPage {
-		// Respect rate limit
-		if err := limiter.Wait(ctx); err != nil {
-			return nil, fmt.Errorf("rate limiter error: %v", err)
+	// Split the date range into monthly chunks
+	startDate := config.StartDate
+	endDate := config.EndDate
+	for startDate.Before(endDate) {
+		// Calculate the end of the current month
+		currentEndDate := startDate.AddDate(0, 1, -startDate.Day())
+		if currentEndDate.After(endDate) {
+			currentEndDate = endDate
 		}
 
-		// Debug: Print current cursor position
-		log.Printf("Fetching page with cursor: %v", variables["cursor"])
+		// GitHub search query format for PRs
+		searchQuery := fmt.Sprintf("org:%s is:pr created:%s..%s",
+			org,
+			startDate.Format("2006-01-02"),
+			currentEndDate.Format("2006-01-02"))
 
-		// Implement retry logic with exponential backoff
-		var response GraphQLSearchResponse
-		var err error
-		for attempt := 0; attempt < 5; attempt++ {
-			err = client.ExecuteGraphQL(ctx, query, variables, &response)
-			if err == nil {
-				break
-			}
-
-			// Check if it's a rate limit error
-			if strings.Contains(err.Error(), "rate limit") {
-				waitTime := time.Duration(attempt+1) * time.Second * 5
-				log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
-				time.Sleep(waitTime)
-				continue
-			}
-
-			log.Printf("Error executing GraphQL query (attempt %d/5): %v", attempt+1, err)
-			if attempt == 4 {
-				return nil, err
-			}
-
-			// Wait before retry
-			waitTime := time.Duration(attempt+1) * time.Second * 2
-			time.Sleep(waitTime)
+		// Variables for the GraphQL query
+		variables := map[string]interface{}{
+			"query":  searchQuery,
+			"cursor": nil,
 		}
 
-		if err != nil {
-			return nil, fmt.Errorf("error executing GraphQL query after retries: %v", err)
-		}
+		hasNextPage := true
+		totalFound := 0
 
-		// Debug: Print number of results in this page
-		log.Printf("Received %d results in this page", len(response.Search.Nodes))
-		totalFound += len(response.Search.Nodes)
-
-		// Process search results
-		for _, pr := range response.Search.Nodes {
-			repoName := pr.Repository.Name
-
-			// Log details of each pull request
-			log.Printf("PR #%d: %s in repository %s/%s by %s",
-				pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
-
-			// Check if this is a plugin repository from our list
-			pluginInfo, isPlugin := pluginRepos[repoName]
-
-			// Add all found PRs to the global array
-			prData := PullRequestData{
-				Number:      pr.Number,
-				Title:       pr.Title,
-				State:       pr.State,
-				CreatedAt:   pr.CreatedAt,
-				UpdatedAt:   pr.UpdatedAt,
-				User:        pr.Author.Login,
-				Repository:  fmt.Sprintf("%s/%s", pr.Repository.Owner.Login, pr.Repository.Name),
-				PluginName:  pluginInfo.Name,
-				Labels:      []string{},
-				URL:         pr.URL,
-				Description: pr.BodyText,
+		for hasNextPage {
+			// Respect rate limit
+			if err := limiter.Wait(ctx); err != nil {
+				return nil, fmt.Errorf("rate limiter error: %v", err)
 			}
 
-			mutex.Lock()
-			allFoundPRs = append(allFoundPRs, prData)
-			mutex.Unlock()
+			// Debug: Print current cursor position
+			log.Printf("Fetching page with cursor: %v", variables["cursor"])
 
-			// Only process plugin repositories
-			if !isPlugin {
-				continue
-			}
-
-			// Check if "odernizer" can be found in the PR body
-			if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "recipe") {
-				// Collect labels
-				var labels []string
-				for _, label := range pr.Labels.Nodes {
-					labels = append(labels, label.Name)
+			// Implement retry logic with exponential backoff
+			var response GraphQLSearchResponse
+			var err error
+			for attempt := 0; attempt < 5; attempt++ {
+				err = client.ExecuteGraphQL(ctx, query, variables, &response)
+				if err == nil {
+					break
 				}
 
+				// Check if it's a rate limit error
+				if strings.Contains(err.Error(), "rate limit") {
+					waitTime := time.Duration(attempt+1) * time.Second * 5
+					log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
+					time.Sleep(waitTime)
+					continue
+				}
+
+				log.Printf("Error executing GraphQL query (attempt %d/5): %v", attempt+1, err)
+				if attempt == 4 {
+					return nil, err
+				}
+
+				// Wait before retry
+				waitTime := time.Duration(attempt+1) * time.Second * 2
+				time.Sleep(waitTime)
+			}
+
+			if err != nil {
+				return nil, fmt.Errorf("error executing GraphQL query after retries: %v", err)
+			}
+
+			// Debug: Print number of results in this page
+			log.Printf("Received %d results in this page", len(response.Search.Nodes))
+			totalFound += len(response.Search.Nodes)
+
+			// Process search results
+			for _, pr := range response.Search.Nodes {
+				repoName := pr.Repository.Name
+
+				// Log details of each pull request
+				log.Printf("PR #%d: %s in repository %s/%s by %s",
+					pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
+
+				// Check if this is a plugin repository from our list
+				pluginInfo, isPlugin := pluginRepos[repoName]
+
+				// Add all found PRs to the global array
 				prData := PullRequestData{
 					Number:      pr.Number,
 					Title:       pr.Title,
@@ -553,29 +532,65 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					User:        pr.Author.Login,
 					Repository:  fmt.Sprintf("%s/%s", pr.Repository.Owner.Login, pr.Repository.Name),
 					PluginName:  pluginInfo.Name,
-					Labels:      labels,
+					Labels:      []string{},
 					URL:         pr.URL,
 					Description: pr.BodyText,
 				}
 
 				mutex.Lock()
-				allPRs = append(allPRs, prData)
+				allFoundPRs = append(allFoundPRs, prData)
 				mutex.Unlock()
 
-				// Debug: log match found
-				log.Printf("Matched PR #%d in repository %s with 'plugin-modernizer' traces", pr.Number, repoName)
+				// Only process plugin repositories
+				if !isPlugin {
+					continue
+				}
+
+				// Check if "odernizer" can be found in the PR body
+				if strings.Contains(pr.BodyText, "odernizer") || strings.Contains(pr.BodyText, "recipe") {
+					// Collect labels
+					var labels []string
+					for _, label := range pr.Labels.Nodes {
+						labels = append(labels, label.Name)
+					}
+
+					prData := PullRequestData{
+						Number:      pr.Number,
+						Title:       pr.Title,
+						State:       pr.State,
+						CreatedAt:   pr.CreatedAt,
+						UpdatedAt:   pr.UpdatedAt,
+						User:        pr.Author.Login,
+						Repository:  fmt.Sprintf("%s/%s", pr.Repository.Owner.Login, pr.Repository.Name),
+						PluginName:  pluginInfo.Name,
+						Labels:      labels,
+						URL:         pr.URL,
+						Description: pr.BodyText,
+					}
+
+					mutex.Lock()
+					allPRs = append(allPRs, prData)
+					mutex.Unlock()
+
+					// Debug: log match found
+					log.Printf("Matched PR #%d in repository %s with 'plugin-modernizer' traces", pr.Number, repoName)
+				}
+			}
+
+			// Check if there are more pages
+			hasNextPage = response.Search.PageInfo.HasNextPage
+			if hasNextPage {
+				variables["cursor"] = response.Search.PageInfo.EndCursor
+				log.Printf("Moving to next page with cursor: %s", response.Search.PageInfo.EndCursor)
 			}
 		}
 
-		// Check if there are more pages
-		hasNextPage = response.Search.PageInfo.HasNextPage
-		if hasNextPage {
-			variables["cursor"] = response.Search.PageInfo.EndCursor
-			log.Printf("Moving to next page with cursor: %s", response.Search.PageInfo.EndCursor)
-		}
+		log.Printf("Total PRs found before filtering: %d", totalFound)
+
+		// Move to the next month
+		startDate = currentEndDate.AddDate(0, 0, 1)
 	}
 
-	log.Printf("Total PRs found before filtering: %d", totalFound)
 	return allPRs, nil
 }
 
