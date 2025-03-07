@@ -13,7 +13,7 @@ This tool efficiently collects pull request data from Jenkins plugin repositorie
 
 ## Requirements
 
-- Go 1.16 or higher
+- Go 1.23.2 or higher
 - GitHub personal access token with `repo` scope
 - Internet access to fetch the Jenkins update center data
 - Dependencies:
