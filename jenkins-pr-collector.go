@@ -199,7 +199,6 @@ func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, erro
 	return pluginRepos, nil
 }
 
-// fetchPullRequests fetches pull requests for each repository within the date range
 func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
@@ -237,10 +236,31 @@ func fetchPullRequests(ctx context.Context, client *github.Client, limiter *rate
 				return
 			}
 
-			result, resp, err := client.Search.Issues(ctx, query, opts)
-			if err != nil {
+			var result *github.IssuesSearchResult
+			var resp *github.Response
+			var err error
+
+			// Implement retry logic with exponential backoff
+			for attempt := 0; attempt < 5; attempt++ {
+				result, resp, err = client.Search.Issues(ctx, query, opts)
+				if err == nil {
+					break
+				}
+
+				if _, ok := err.(*github.RateLimitError); ok {
+					waitTime := time.Duration(attempt+1) * time.Second
+					log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
+					time.Sleep(waitTime)
+					continue
+				}
+
 				log.Printf("Error searching PRs: %v", err)
-				return nil, err // Return the error to the caller
+				return
+			}
+
+			if err != nil {
+				log.Printf("Error searching PRs after retries: %v", err)
+				return
 			}
 
 			for _, issue := range result.Issues {
