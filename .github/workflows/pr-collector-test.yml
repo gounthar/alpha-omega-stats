@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}  # Use PAT for checkout to enable PR creation
 
       - name: Download latest plugins data
         run: |
@@ -38,7 +40,7 @@ jobs:
 
       - name: Run PR collector
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}  # Use PAT for API calls
         run: |
           docker run \
             -e GITHUB_TOKEN=$GITHUB_TOKEN \
@@ -51,7 +53,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_TOKEN }}  # Use PAT for PR creation
           commit-message: 'Update PR statistics report'
           title: 'Update PR statistics report'
           body: |
@@ -63,3 +65,5 @@ jobs:
           branch: update-pr-stats
           delete-branch: true
           base: main
+          committer: GitHub <noreply@github.com>
+          author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
