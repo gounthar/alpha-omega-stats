@@ -5,12 +5,14 @@ on:
     - cron: '18 07 * * 2'  # Run every Tuesday at 07:18 UTC
   workflow_dispatch:  # Allow manual trigger
 
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
 jobs:
   test-pr-collector:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -49,6 +51,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Update PR statistics report'
           title: 'Update PR statistics report'
           body: |
