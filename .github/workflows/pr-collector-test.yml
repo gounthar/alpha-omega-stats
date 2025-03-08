@@ -22,6 +22,15 @@ jobs:
           curl -L https://updates.jenkins.io/current/update-center.actual.json -o plugins.json
           echo "Download completed. File size: $(stat -c%s plugins.json) bytes"
 
+      - name: Prepare output files
+        run: |
+          # Create empty files if they don't exist
+          touch report.json found_prs.json jenkins_prs.json
+          # Ensure they are files, not directories
+          [ -f report.json ] || (rm -rf report.json && touch report.json)
+          [ -f found_prs.json ] || (rm -rf found_prs.json && touch found_prs.json)
+          [ -f jenkins_prs.json ] || (rm -rf jenkins_prs.json && touch jenkins_prs.json)
+
       - name: Build Docker image
         run: docker build -t jenkins-pr-collector .
 
