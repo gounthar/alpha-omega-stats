@@ -85,13 +85,135 @@ def batch_format_with_retry(sheet, format_requests):
     
     retry_with_backoff(batch_format)
 
-# Check if input file is provided
+def validate_pr_data(pr):
+    """
+    Validate PR data structure and required fields.
+    Returns (is_valid, error_message)
+    """
+    required_fields = {
+        "title": str,
+        "repository": str,
+        "number": (int, str),  # Allow both int and str
+        "state": str,
+        "createdAt": str,
+        "updatedAt": str,
+        "checkStatus": (str, type(None))  # Allow string or None
+    }
+    
+    for field, field_type in required_fields.items():
+        if field not in pr:
+            return False, f"Missing required field: {field}"
+        if not isinstance(pr[field], field_type):
+            if isinstance(field_type, tuple):
+                if not any(isinstance(pr[field], t) for t in field_type):
+                    return False, f"Invalid type for {field}: expected {field_type}, got {type(pr[field])}"
+            else:
+                return False, f"Invalid type for {field}: expected {field_type}, got {type(pr[field])}"
+    
+    # Validate state values
+    if pr["state"] not in ["OPEN", "CLOSED", "MERGED"]:
+        return False, f"Invalid state value: {pr['state']}"
+    
+    # Validate date formats
+    try:
+        datetime.fromisoformat(pr["createdAt"].replace("Z", "+00:00"))
+        datetime.fromisoformat(pr["updatedAt"].replace("Z", "+00:00"))
+    except ValueError as e:
+        return False, f"Invalid date format: {e}"
+    
+    return True, None
+
+def group_prs_by_title(prs):
+    """
+    Group PRs by title and calculate statistics.
+    """
+    title_groups = {}
+    for pr in prs:
+        title = pr["title"]
+        if title not in title_groups:
+            title_groups[title] = {
+                "title": title,
+                "prs": [],
+                "open": 0,
+                "closed": 0,
+                "merged": 0
+            }
+        
+        group = title_groups[title]
+        group["prs"].append(pr)
+        if pr["state"] == "OPEN":
+            group["open"] += 1
+        elif pr["state"] == "CLOSED":
+            group["closed"] += 1
+        elif pr["state"] == "MERGED":
+            group["merged"] += 1
+    
+    return list(title_groups.values())
+
+def process_consolidated_data(consolidated_file):
+    """
+    Process consolidated PR data and validate it.
+    Returns (grouped_prs, failing_prs, errors)
+    """
+    errors = []
+    valid_prs = []
+    
+    try:
+        with open(consolidated_file) as f:
+            prs = json.load(f)
+    except FileNotFoundError:
+        return None, None, [f"File {consolidated_file} not found."]
+    except json.JSONDecodeError:
+        return None, None, [f"Error decoding {consolidated_file}."]
+    
+    if not isinstance(prs, list):
+        return None, None, ["Consolidated data must be a list of PRs."]
+    
+    # Validate each PR
+    for i, pr in enumerate(prs):
+        is_valid, error = validate_pr_data(pr)
+        if is_valid:
+            valid_prs.append(pr)
+        else:
+            errors.append(f"PR at index {i}: {error}")
+    
+    if not valid_prs:
+        return None, None, ["No valid PRs found in consolidated data."]
+    
+    # Group valid PRs by title
+    grouped_prs = group_prs_by_title(valid_prs)
+    
+    # Extract failing PRs
+    failing_prs = [
+        {
+            "title": pr["title"],
+            "url": f"https://github.com/{pr['repository']}/pull/{pr['number']}",
+            "status": pr["checkStatus"]
+        }
+        for pr in valid_prs
+        if pr["state"] == "OPEN" and pr["checkStatus"] == "FAILURE"
+    ]
+    
+    return grouped_prs, failing_prs, errors
+
+# Main execution
 if len(sys.argv) != 3:
-    print("Usage: python3 upload_to_sheets.py <grouped-prs-json-file> <failing-prs-error-state>")
+    print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state>")
     sys.exit(1)
 
-GROUPED_PRS_FILE = sys.argv[1]
+CONSOLIDATED_FILE = sys.argv[1]
 FAILING_PRS_ERROR = sys.argv[2].lower() == 'true'
+
+# Process consolidated data
+grouped_prs, failing_prs, errors = process_consolidated_data(CONSOLIDATED_FILE)
+
+if errors:
+    for error in errors:
+        logging.error(error)
+    if not grouped_prs:  # Fatal errors
+        sys.exit(1)
+    else:  # Non-fatal errors
+        logging.warning("Some PRs were invalid but processing will continue.")
 
 # Define the scope
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -104,34 +226,6 @@ client = gspread.authorize(creds)
 
 # Open the Google Sheet by name or ID
 spreadsheet = client.open("Jenkins PR Tracker")  # or use client.open_by_key("YOUR_SHEET_ID")
-
-# Load the grouped PRs JSON file
-try:
-    with open(GROUPED_PRS_FILE) as f:
-        grouped_prs = json.load(f)
-    logging.info(f"Successfully loaded grouped PRs from {GROUPED_PRS_FILE}")
-except FileNotFoundError:
-    logging.error(f"File {GROUPED_PRS_FILE} not found.")
-    sys.exit(1)
-except json.JSONDecodeError:
-    logging.error(f"Error decoding {GROUPED_PRS_FILE}.")
-    sys.exit(1)
-
-# Load the failing PRs JSON file
-if not FAILING_PRS_ERROR:
-    try:
-        with open('all_results.json') as f:
-            failing_prs = json.load(f)
-        logging.info("Successfully loaded failing PRs data")
-    except FileNotFoundError:
-        logging.warning("all_results.json file not found. Skipping failing PRs sheet.")
-        failing_prs = None
-    except json.JSONDecodeError:
-        logging.warning("Error decoding all_results.json. Skipping failing PRs sheet.")
-        failing_prs = None
-else:
-    logging.warning("Failing PRs collection failed. Skipping failing PRs sheet.")
-    failing_prs = None
 
 # Create a summary sheet
 try:
