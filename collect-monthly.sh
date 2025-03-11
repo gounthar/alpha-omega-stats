@@ -88,6 +88,21 @@ jq '[.[] | select(.state == "OPEN" and .checkStatus == "FAILURE")]' \
 echo "Archiving old files..."
 find data/monthly -name "prs_*.json" -type f -mtime +180 -exec mv {} data/archive/ \;
 
+# Update Google Sheets with consolidated data
+echo "Updating Google Sheets with consolidated data..."
+if [ -d "venv" ]; then
+    source venv/bin/activate
+else
+    echo "Virtual environment not found. Please create it first."
+    exit 1
+fi
+
+# Run the Python script with consolidated data
+python3 upload_to_sheets.py "data/consolidated/all_prs.json" "$FAILING_PRS_ERROR"
+
+# Deactivate the virtual environment
+deactivate
+
 echo "Monthly collection completed successfully!"
 echo "Files generated:"
 echo "  - $RAW_FILE"
@@ -96,4 +111,5 @@ echo "  - $GROUPED_FILE"
 echo "Consolidated files updated:"
 echo "  - data/consolidated/all_prs.json"
 echo "  - data/consolidated/open_prs.json"
-echo "  - data/consolidated/failing_prs.json" 
+echo "  - data/consolidated/failing_prs.json"
+echo "Google Sheets dashboard has been updated with consolidated data." 
