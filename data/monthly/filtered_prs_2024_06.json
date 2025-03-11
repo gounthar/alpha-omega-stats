@@ -1,0 +1,50 @@
+[
+  {
+    "number": 397,
+    "title": "refactor: Remove unused imports",
+    "state": "MERGED",
+    "createdAt": "2024-06-25T14:00:17Z",
+    "updatedAt": "2024-06-25T14:15:51Z",
+    "user": "sghill-rewrite",
+    "repository": "jenkinsci/stashnotifier-plugin",
+    "pluginName": "stashNotifier",
+    "labels": [
+      "skip-changelog"
+    ],
+    "url": "https://github.com/jenkinsci/stashnotifier-plugin/pull/397",
+    "description": "Use this link to re-run the recipe: https://app.moderne.io/recipes/org.openrewrite.java.RemoveUnusedImports?organizationId=OGNmNDQwZGEtMzJkNC00Y2RhLTk1MTctNmMyYjBjM2VlMzY0",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 112,
+    "title": "refactor: Remove unused imports",
+    "state": "MERGED",
+    "createdAt": "2024-06-25T13:47:29Z",
+    "updatedAt": "2024-06-25T13:57:06Z",
+    "user": "sghill-rewrite",
+    "repository": "jenkinsci/naginator-plugin",
+    "pluginName": "naginator",
+    "labels": [
+      "skip-changelog"
+    ],
+    "url": "https://github.com/jenkinsci/naginator-plugin/pull/112",
+    "description": "Use this link to re-run the recipe: https://app.moderne.io/recipes/org.openrewrite.java.RemoveUnusedImports?organizationId=OGNmNDQwZGEtMzJkNC00Y2RhLTk1MTctNmMyYjBjM2VlMzY0",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 89,
+    "title": "Add codeowner",
+    "state": "MERGED",
+    "createdAt": "2024-06-23T09:54:21Z",
+    "updatedAt": "2024-06-23T10:09:16Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/extension-filter-plugin",
+    "pluginName": "extension-filter",
+    "labels": [
+      "chore"
+    ],
+    "url": "https://github.com/jenkinsci/extension-filter-plugin/pull/89",
+    "description": "After seeing on one of my plugin\n\nI've used the tool https://github.com/jenkinsci/plugin-modernizer-tool\nFor the moment is rather a manual process because we don't have any git/jgit or github integration but the concept seems to work\n# Build it because we don't have releases yet\nmvn clean install \n\n# Clone the forked repo\ngit clone git@github.com:jonesbusy/extension-filter-plugin.git test-plugins/extension-filter-plugin\n\n# The the recipe\njava -jar plugin-modernizer-cli/target/jenkins-plugin-modernizer-999999-SNAPSHOT.jar --plugins extension-filter-plugin --recipes AddCodeOwner\n\n# Commit and push\ngit -C test-plugins/extension-filter-plugin checkout -b feature/code-owner\ngit -C test-plugins/extension-filter-plugin add .\ngit -C test-plugins/extension-filter-plugin commit -m \"Add codeowner\"\ngit -C test-plugins/extension-filter-plugin push origin feature/code-owner \nTesting done\n\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+    "checkStatus": "SUCCESS"
+  }
+]

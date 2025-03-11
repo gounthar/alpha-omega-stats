@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"strings"
@@ -94,6 +95,9 @@ type GraphQLSearchResponse struct {
 			} `json:"commits"`
 		} `json:"nodes"`
 	} `json:"search"`
+	Errors []struct {
+		Message string `json:"message"`
+	} `json:"errors,omitempty"`
 }
 
 // PullRequestData represents the data we want to collect about PRs
@@ -160,6 +164,13 @@ type GraphQLError struct {
 	Message string   `json:"message"`
 	Type    string   `json:"type"`
 	Path    []string `json:"path,omitempty"`
+}
+
+// Add these new types for partial data saving
+type PartialData struct {
+	LastCursor string        `json:"last_cursor"`
+	PRs        []PullRequest `json:"prs"`
+	Timestamp  time.Time     `json:"timestamp"`
 }
 
 var allFoundPRs []PullRequestData
@@ -352,66 +363,105 @@ func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, erro
 	return pluginRepos, nil
 }
 
-// ExecuteGraphQL executes a GraphQL query against the GitHub API
+// Add isRetryableError function to check if an error should be retried
+func isRetryableError(err error) bool {
+	if err == nil {
+		return false
+	}
+	errStr := err.Error()
+	return strings.Contains(errStr, "502") || // Bad Gateway
+		strings.Contains(errStr, "503") || // Service Unavailable
+		strings.Contains(errStr, "504") || // Gateway Timeout
+		strings.Contains(errStr, "Something went wrong") || // GitHub's generic error
+		strings.Contains(errStr, "rate limit") // Rate limit errors
+}
+
+// Modify ExecuteGraphQL to handle retries internally
 func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variables map[string]interface{}, result interface{}) error {
-	// Create request
-	reqBody, err := json.Marshal(GraphQLRequest{
-		Query:     query,
-		Variables: variables,
-	})
-	if err != nil {
-		return fmt.Errorf("failed to marshal GraphQL request: %v", err)
+	var lastErr error
+	maxAttempts := 5
+	baseDelay := time.Second * 2
+
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		err := func() error {
+			// Create request
+			reqBody, err := json.Marshal(GraphQLRequest{
+				Query:     query,
+				Variables: variables,
+			})
+			if err != nil {
+				return fmt.Errorf("failed to marshal GraphQL request: %v", err)
+			}
+
+			// Create HTTP request
+			req, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(reqBody))
+			if err != nil {
+				return fmt.Errorf("failed to create HTTP request: %v", err)
+			}
+			req.Header.Set("Content-Type", "application/json")
+
+			// Execute request
+			resp, err := c.httpClient.Do(req)
+			if err != nil {
+				return err
+			}
+			defer resp.Body.Close()
+
+			// Read response
+			body, err := io.ReadAll(resp.Body)
+			if err != nil {
+				return fmt.Errorf("failed to read response body: %v", err)
+			}
+
+			// Check for HTTP errors
+			if resp.StatusCode != http.StatusOK {
+				return fmt.Errorf("HTTP error: %d, Body: %s", resp.StatusCode, string(body))
+			}
+
+			// Parse response
+			var graphqlResp GraphQLResponse
+			if err := json.Unmarshal(body, &graphqlResp); err != nil {
+				return fmt.Errorf("failed to parse GraphQL response: %v", err)
+			}
+
+			// Check for GraphQL errors
+			if len(graphqlResp.Errors) > 0 {
+				errMsg := graphqlResp.Errors[0].Message
+				return fmt.Errorf("GraphQL error: %s", errMsg)
+			}
+
+			// Parse data
+			if graphqlResp.Data == nil {
+				return fmt.Errorf("no data in GraphQL response")
+			}
+
+			return json.Unmarshal(graphqlResp.Data, result)
+		}()
+
+		if err == nil {
+			return nil
+		}
+
+		lastErr = err
+		if !isRetryableError(err) {
+			return err
+		}
+
+		if attempt < maxAttempts-1 {
+			// Exponential backoff with jitter
+			delay := baseDelay * time.Duration(1<<uint(attempt))
+			jitter := time.Duration(rand.Int63n(int64(delay) / 2))
+			delay = delay + jitter
+			if delay > 30*time.Second {
+				delay = 30 * time.Second
+			}
+			log.Printf("Retrying request in %v (attempt %d/%d): %v", delay, attempt+1, maxAttempts, lastErr)
+			time.Sleep(delay)
+			continue
+		}
 	}
 
-	// Create HTTP request
-	req, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(reqBody))
-	if err != nil {
-		return fmt.Errorf("failed to create HTTP request: %v", err)
-	}
-	req.Header.Set("Content-Type", "application/json")
-
-	// Execute request
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return fmt.Errorf("failed to execute HTTP request: %v", err)
-	}
-	defer resp.Body.Close()
-
-	// Read response
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return fmt.Errorf("failed to read response body: %v", err)
-	}
-
-	// Debug response
-	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("HTTP error: %d, Body: %s", resp.StatusCode, string(body))
-	}
-
-	// Parse response
-	var graphqlResp GraphQLResponse
-	err = json.Unmarshal(body, &graphqlResp)
-	if err != nil {
-		return fmt.Errorf("failed to parse GraphQL response: %v, Body: %s", err, string(body))
-	}
-
-	// Check for GraphQL errors
-	if len(graphqlResp.Errors) > 0 {
-		errorMsg := fmt.Sprintf("GraphQL error: %s", graphqlResp.Errors[0].Message)
-		return fmt.Errorf(errorMsg)
-	}
-
-	// Parse data
-	if graphqlResp.Data == nil {
-		return fmt.Errorf("no data in GraphQL response")
-	}
-
-	err = json.Unmarshal(graphqlResp.Data, result)
-	if err != nil {
-		return fmt.Errorf("failed to parse GraphQL data: %v, Data: %s", err, string(graphqlResp.Data))
-	}
-
-	return nil
+	return fmt.Errorf("failed after %d attempts, last error: %v", maxAttempts, lastErr)
 }
 
 func getCommitStatus(commits struct {
@@ -434,65 +484,330 @@ func getCommitStatus(commits struct {
 	return commits.Nodes[0].Commit.StatusCheckRollup.State
 }
 
+// Add exponential backoff function
+func getBackoffDuration(attempt int) time.Duration {
+	// Start with 5 seconds, double each time, max 5 minutes
+	duration := time.Duration(5*(1<<attempt)) * time.Second
+	maxDuration := 5 * time.Minute
+	if duration > maxDuration {
+		return maxDuration
+	}
+	return duration
+}
+
+// Add function to save partial data
+func savePartialData(prs []PullRequest, cursor string, outputFile string) error {
+	partial := PartialData{
+		LastCursor: cursor,
+		PRs:        prs,
+		Timestamp:  time.Now(),
+	}
+
+	// Create temp file
+	tmpFile := outputFile + ".tmp"
+	data, err := json.MarshalIndent(partial, "", "  ")
+	if err != nil {
+		return fmt.Errorf("error marshaling partial data: %v", err)
+	}
+
+	if err := os.WriteFile(tmpFile, data, 0644); err != nil {
+		return fmt.Errorf("error writing partial data: %v", err)
+	}
+
+	// Atomic rename
+	if err := os.Rename(tmpFile, outputFile+".partial"); err != nil {
+		return fmt.Errorf("error saving partial data: %v", err)
+	}
+
+	return nil
+}
+
+// Add function to load partial data
+func loadPartialData(outputFile string) (*PartialData, error) {
+	partialFile := outputFile + ".partial"
+	data, err := os.ReadFile(partialFile)
+	if err != nil {
+		if os.IsNotExist(err) {
+			return nil, nil
+		}
+		return nil, fmt.Errorf("error reading partial data: %v", err)
+	}
+
+	var partial PartialData
+	if err := json.Unmarshal(data, &partial); err != nil {
+		return nil, fmt.Errorf("error parsing partial data: %v", err)
+	}
+
+	// Check if partial data is too old (> 24 hours)
+	if time.Since(partial.Timestamp) > 24*time.Hour {
+		os.Remove(partialFile)
+		return nil, nil
+	}
+
+	return &partial, nil
+}
+
+// Modify executeGraphQLQuery to use exponential backoff
+func executeGraphQLQuery(client *http.Client, query string, variables map[string]interface{}) (*GraphQLSearchResponse, error) {
+	var lastErr error
+	maxAttempts := 10 // Increase max attempts
+
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		resp, err := sendGraphQLRequest(client, query, variables)
+		if err == nil {
+			// Check for specific error types in the response
+			if resp.Search.Nodes == nil && len(resp.Errors) > 0 {
+				// Handle specific GitHub API errors
+				if strings.Contains(resp.Errors[0].Message, "rate limit") {
+					waitTime := getBackoffDuration(attempt)
+					log.Printf("Rate limit hit. Waiting %v before retry...", waitTime)
+					time.Sleep(waitTime)
+					continue
+				}
+				if strings.Contains(resp.Errors[0].Message, "Something went wrong") {
+					waitTime := getBackoffDuration(attempt)
+					log.Printf("GitHub API error. Waiting %v before retry...", waitTime)
+					time.Sleep(waitTime)
+					continue
+				}
+			}
+			return resp, nil
+		}
+
+		lastErr = err
+		waitTime := getBackoffDuration(attempt)
+		log.Printf("Error executing query (attempt %d/%d): %v. Waiting %v...",
+			attempt+1, maxAttempts, err, waitTime)
+		time.Sleep(waitTime)
+	}
+
+	return nil, fmt.Errorf("failed after %d attempts: %v", maxAttempts, lastErr)
+}
+
+// Modify fetchPullRequests to use partial data
+func fetchPullRequests(client *http.Client, startDate, endDate string, outputFile string) error {
+	var allPRs []PullRequest
+	var cursor string
+
+	// Try to load partial data
+	partial, err := loadPartialData(outputFile)
+	if err != nil {
+		log.Printf("Warning: Could not load partial data: %v", err)
+	} else if partial != nil {
+		log.Printf("Resuming from cursor: %s with %d PRs", partial.LastCursor, len(partial.PRs))
+		allPRs = partial.PRs
+		cursor = partial.LastCursor
+	}
+
+	for {
+		variables := map[string]interface{}{
+			"queryString": buildSearchQuery(startDate, endDate),
+			"cursor":      cursor,
+		}
+
+		resp, err := executeGraphQLQuery(client, searchQuery, variables)
+		if err != nil {
+			return fmt.Errorf("error executing query: %v", err)
+		}
+
+		// Process the page of results
+		for _, node := range resp.Search.Nodes {
+			pr := convertNodeToPR(node)
+			allPRs = append(allPRs, pr)
+		}
+
+		// Save partial data after each successful page
+		if err := savePartialData(allPRs, cursor, outputFile); err != nil {
+			log.Printf("Warning: Could not save partial data: %v", err)
+		}
+
+		if !resp.Search.PageInfo.HasNextPage {
+			break
+		}
+		cursor = resp.Search.PageInfo.EndCursor
+		log.Printf("Fetched %d PRs so far...", len(allPRs))
+	}
+
+	// Save final data
+	finalData, err := json.MarshalIndent(allPRs, "", "  ")
+	if err != nil {
+		return fmt.Errorf("error marshaling final data: %v", err)
+	}
+
+	if err := os.WriteFile(outputFile, finalData, 0644); err != nil {
+		return fmt.Errorf("error writing final data: %v", err)
+	}
+
+	// Clean up partial file
+	os.Remove(outputFile + ".partial")
+	return nil
+}
+
+// writeJSONFile writes data to a JSON file
+func writeJSONFile(filename string, data interface{}) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	encoder := json.NewEncoder(file)
+	encoder.SetIndent("", "  ")
+	return encoder.Encode(data)
+}
+
+// Add these helper functions
+func sendGraphQLRequest(client *http.Client, query string, variables map[string]interface{}) (*GraphQLSearchResponse, error) {
+	// Prepare the request body
+	requestBody := map[string]interface{}{
+		"query":     query,
+		"variables": variables,
+	}
+
+	jsonBody, err := json.Marshal(requestBody)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling request: %v", err)
+	}
+
+	req, err := http.NewRequest("POST", "https://api.github.com/graphql", bytes.NewBuffer(jsonBody))
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %v", err)
+	}
+
+	// Add GitHub token header
+	token := os.Getenv("GITHUB_TOKEN")
+	if token == "" {
+		return nil, fmt.Errorf("GITHUB_TOKEN environment variable not set")
+	}
+	req.Header.Set("Authorization", "Bearer "+token)
+	req.Header.Set("Content-Type", "application/json")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("HTTP error: %d, Body: %s", resp.StatusCode, string(body))
+	}
+
+	var response GraphQLSearchResponse
+	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
+		return nil, fmt.Errorf("error decoding response: %v", err)
+	}
+
+	return &response, nil
+}
+
+func buildSearchQuery(startDate, endDate string) string {
+	return fmt.Sprintf("org:jenkinsci is:pr created:%s..%s", startDate, endDate)
+}
+
+// GraphQL query for searching PRs
+const searchQuery = `
+query SearchPullRequests($queryString: String!, $cursor: String) {
+	search(query: $queryString, type: ISSUE, first: 100, after: $cursor) {
+		pageInfo {
+			hasNextPage
+			endCursor
+		}
+		nodes {
+			... on PullRequest {
+				number
+				title
+				state
+				createdAt
+				updatedAt
+				url
+				repository {
+					name
+					owner {
+						login
+					}
+				}
+				author {
+					login
+				}
+				bodyText
+				labels(first: 100) {
+					nodes {
+						name
+					}
+				}
+				commits(last: 1) {
+					nodes {
+						commit {
+							statusCheckRollup {
+								state
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}`
+
+func convertNodeToPR(node struct {
+	Number     int       `json:"number"`
+	Title      string    `json:"title"`
+	State      string    `json:"state"`
+	CreatedAt  time.Time `json:"createdAt"`
+	UpdatedAt  time.Time `json:"updatedAt"`
+	URL        string    `json:"url"`
+	Repository struct {
+		Name  string `json:"name"`
+		Owner struct {
+			Login string `json:"login"`
+		} `json:"owner"`
+	} `json:"repository"`
+	Author struct {
+		Login string `json:"login"`
+	} `json:"author"`
+	BodyText string `json:"bodyText"`
+	Labels   struct {
+		Nodes []struct {
+			Name string `json:"name"`
+		} `json:"nodes"`
+	} `json:"labels"`
+	Commits struct {
+		Nodes []struct {
+			Commit struct {
+				StatusCheckRollup struct {
+					State string `json:"state"`
+				} `json:"statusCheckRollup"`
+			} `json:"commit"`
+		} `json:"nodes"`
+	} `json:"commits"`
+}) PullRequest {
+	pr := PullRequest{
+		Number:     node.Number,
+		Title:      node.Title,
+		State:      node.State,
+		CreatedAt:  node.CreatedAt,
+		UpdatedAt:  node.UpdatedAt,
+		URL:        node.URL,
+		Repository: node.Repository,
+		Author:     node.Author,
+		BodyText:   node.BodyText,
+		Labels:     node.Labels,
+		Commits:    node.Commits,
+	}
+	return pr
+}
+
+// Add fetchPullRequestsGraphQL function
 func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
 	var mutex sync.Mutex
-	org := "jenkinsci"
-
-	// Define the GraphQL query for searching PRs
-	query := `
-        query SearchPullRequests($query: String!, $cursor: String) {
-            search(query: $query, type: ISSUE, first: 100, after: $cursor) {
-                pageInfo {
-                    hasNextPage
-                    endCursor
-                }
-                nodes {
-                    ... on PullRequest {
-                        number
-                        title
-                        state
-                        createdAt
-                        updatedAt
-                        url
-                        repository {
-                            name
-                            owner {
-                                login
-                            }
-                        }
-                        author {
-                            login
-                        }
-                        bodyText
-                        labels(first: 100) {
-                            nodes {
-                                name
-                            }
-                        }
-                        commits(last: 1) {
-                            nodes {
-                                commit {
-                                    statusCheckRollup {
-                                        state
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }`
-
-	// Debug: Print the search parameters
-	log.Printf("Searching for PRs in org %s from %s to %s",
-		org,
-		config.StartDate.Format("2006-01-02"),
-		config.EndDate.Format("2006-01-02"))
+	var lastError error
 
 	// Split the date range into monthly chunks
 	startDate := config.StartDate
 	endDate := config.EndDate
+
 	for startDate.Before(endDate) {
 		// Calculate the end of the current month
 		currentEndDate := startDate.AddDate(0, 1, -startDate.Day())
@@ -501,73 +816,43 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 		}
 
 		// GitHub search query format for PRs
-		searchQuery := fmt.Sprintf("org:%s is:pr created:%s..%s",
-			org,
+		queryString := fmt.Sprintf("org:jenkinsci is:pr created:%s..%s",
 			startDate.Format("2006-01-02"),
 			currentEndDate.Format("2006-01-02"))
 
 		// Variables for the GraphQL query
 		variables := map[string]interface{}{
-			"query":  searchQuery,
-			"cursor": nil,
+			"queryString": queryString,
+			"cursor":      nil,
 		}
 
 		hasNextPage := true
-		totalFound := 0
-
 		for hasNextPage {
 			// Respect rate limit
 			if err := limiter.Wait(ctx); err != nil {
-				return nil, fmt.Errorf("rate limiter error: %v", err)
+				log.Printf("Warning: Rate limit error: %v", err)
+				time.Sleep(5 * time.Second)
+				continue
 			}
 
-			// Debug: Print current cursor position
-			log.Printf("Fetching page with cursor: %v", variables["cursor"])
-
-			// Implement retry logic with exponential backoff
 			var response GraphQLSearchResponse
-			var err error
-			for attempt := 0; attempt < 5; attempt++ {
-				err = client.ExecuteGraphQL(ctx, query, variables, &response)
-				if err == nil {
-					break
-				}
-
-				// Check if it's a rate limit error
-				if strings.Contains(err.Error(), "rate limit") {
-					waitTime := time.Duration(attempt+1) * time.Second * 5
-					log.Printf("Rate limit exceeded, retrying in %v...", waitTime)
-					time.Sleep(waitTime)
-					continue
-				}
-
-				log.Printf("Error executing GraphQL query (attempt %d/5): %v", attempt+1, err)
-				if attempt == 4 {
-					return nil, err
-				}
-
-				// Wait before retry
-				waitTime := time.Duration(attempt+1) * time.Second * 2
-				time.Sleep(waitTime)
-			}
-
+			err := client.ExecuteGraphQL(ctx, searchQuery, variables, &response)
 			if err != nil {
-				return nil, fmt.Errorf("error executing GraphQL query after retries: %v", err)
+				log.Printf("Warning: GraphQL query error: %v", err)
+				lastError = err
+				// Save what we have so far before continuing
+				if len(allPRs) > 0 {
+					if err := writeJSONFile(config.OutputFile+".partial", allPRs); err != nil {
+						log.Printf("Warning: Failed to save partial results: %v", err)
+					}
+				}
+				time.Sleep(5 * time.Second)
+				continue
 			}
-
-			// Debug: Print number of results in this page
-			log.Printf("Received %d results in this page", len(response.Search.Nodes))
-			totalFound += len(response.Search.Nodes)
 
 			// Process search results
 			for _, pr := range response.Search.Nodes {
 				repoName := pr.Repository.Name
-
-				// Log details of each pull request
-				log.Printf("PR #%d: %s in repository %s/%s by %s",
-					pr.Number, pr.Title, pr.Repository.Owner.Login, pr.Repository.Name, pr.Author.Login)
-
-				// Check if this is a plugin repository from our list
 				pluginInfo, isPlugin := pluginRepos[repoName]
 
 				// Add all found PRs to the global array
@@ -583,7 +868,6 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					Labels:      []string{},
 					URL:         pr.URL,
 					Description: pr.BodyText,
-					// Replace line 566 with:
 					CheckStatus: getCommitStatus(pr.Commits),
 				}
 
@@ -597,9 +881,7 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 				}
 
 				// Filter out PRs created by Dependabot and Renovate
-				dependabotUser := "dependabot"
-				renovateUser := "renovate"
-				if pr.Author.Login == dependabotUser || pr.Author.Login == renovateUser {
+				if pr.Author.Login == "dependabot" || pr.Author.Login == "renovate" {
 					continue
 				}
 
@@ -610,28 +892,10 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 					for _, label := range pr.Labels.Nodes {
 						labels = append(labels, label.Name)
 					}
-
-					prData := PullRequestData{
-						Number:      pr.Number,
-						Title:       pr.Title,
-						State:       pr.State,
-						CreatedAt:   pr.CreatedAt,
-						UpdatedAt:   pr.UpdatedAt,
-						User:        pr.Author.Login,
-						Repository:  fmt.Sprintf("%s/%s", pr.Repository.Owner.Login, pr.Repository.Name),
-						PluginName:  pluginInfo.Name,
-						Labels:      labels,
-						URL:         pr.URL,
-						Description: pr.BodyText,
-						CheckStatus: getCommitStatus(pr.Commits),
-					}
-
+					prData.Labels = labels
 					mutex.Lock()
 					allPRs = append(allPRs, prData)
 					mutex.Unlock()
-
-					// Debug: log match found
-					log.Printf("Matched PR #%d in repository %s with 'plugin-modernizer' traces", pr.Number, repoName)
 				}
 			}
 
@@ -639,28 +903,22 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 			hasNextPage = response.Search.PageInfo.HasNextPage
 			if hasNextPage {
 				variables["cursor"] = response.Search.PageInfo.EndCursor
-				log.Printf("Moving to next page with cursor: %s", response.Search.PageInfo.EndCursor)
 			}
 		}
-
-		log.Printf("Total PRs found before filtering: %d", totalFound)
 
 		// Move to the next month
 		startDate = currentEndDate.AddDate(0, 0, 1)
 	}
 
-	return allPRs, nil
-}
-
-// writeJSONFile writes data to a JSON file
-func writeJSONFile(filename string, data interface{}) error {
-	file, err := os.Create(filename)
-	if err != nil {
-		return err
+	// If we have any results but also had errors, return what we have
+	if len(allPRs) > 0 && lastError != nil {
+		log.Printf("Warning: Completed with partial results due to errors: %v", lastError)
+		return allPRs, nil
 	}
-	defer file.Close()
 
-	encoder := json.NewEncoder(file)
-	encoder.SetIndent("", "  ")
-	return encoder.Encode(data)
+	if lastError != nil {
+		return nil, lastError
+	}
+
+	return allPRs, nil
 }
