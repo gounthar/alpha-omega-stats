@@ -94,16 +94,5 @@ fi
 
 FAILING_PRS_ERROR=false
 
-# Activate the virtual environment (if it exists)
-if [ -d "venv" ]; then
-  source venv/bin/activate
-else
-  echo "Virtual environment not found. Please create it first."
-  exit 1
-fi
-
-# Run the Python script to upload data to Google Sheets, passing the grouped PRs JSON file and failing PRs error state
-python3 upload_to_sheets.py "$OUTPUT_JSON" "$FAILING_PRS_ERROR"
-
-# Deactivate the virtual environment (optional)
-deactivate
+# Don't update Google Sheets here - let collect-monthly.sh handle it after consolidation
+# This script should only handle grouping and filtering
