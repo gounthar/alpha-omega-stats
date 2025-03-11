@@ -49,6 +49,51 @@ echo "$GROUPED_PRS" > "$OUTPUT_JSON"
 
 echo "Grouped PRs have been saved to $OUTPUT_JSON"
 
+# Extract failing PRs from the filtered JSON
+echo "Extracting failing PRs from filtered data..."
+
+# Debug: Show the first few PRs from filtered JSON to check their structure
+echo "Debug: First few PRs from filtered JSON:"
+jq '.[0:3]' "$FILTERED_JSON"
+
+# Debug: Count PRs by state
+echo "Debug: PRs by state:"
+jq -r 'group_by(.state) | map({state: .[0].state, count: length})' "$FILTERED_JSON"
+
+# Debug: Count PRs by checkStatus
+echo "Debug: PRs by checkStatus:"
+jq -r 'group_by(.checkStatus) | map({checkStatus: .[0].checkStatus, count: length})' "$FILTERED_JSON"
+
+# Debug: Show PRs that are OPEN
+echo "Debug: First few OPEN PRs:"
+jq '[.[] | select(.state == "OPEN")][0:3]' "$FILTERED_JSON"
+
+# Debug: Show PRs that have FAILURE checkStatus
+echo "Debug: First few PRs with FAILURE checkStatus:"
+jq '[.[] | select(.checkStatus == "FAILURE")][0:3]' "$FILTERED_JSON"
+
+# Now try to extract failing PRs
+FAILING_PRS=$(jq '
+  [.[] | select(.state == "OPEN" and .checkStatus == "FAILURE") |
+  {
+    title: .title,
+    url: "https://github.com/\(.repository)/pull/\(.number)",
+    status: .checkStatus
+  }]' "$FILTERED_JSON")
+
+# Debug: Show what we found
+echo "Debug: Number of failing PRs found:"
+echo "$FAILING_PRS" | jq length
+
+# Save failing PRs to a JSON file, ensuring it's a valid array even if empty
+if [ -z "$FAILING_PRS" ]; then
+    echo "[]" > "all_results.json"
+else
+    echo "$FAILING_PRS" > "all_results.json"
+fi
+
+FAILING_PRS_ERROR=false
+
 # Activate the virtual environment (if it exists)
 if [ -d "venv" ]; then
   source venv/bin/activate
@@ -57,8 +102,8 @@ else
   exit 1
 fi
 
-# Run the Python script to upload data to Google Sheets
-python3 upload_to_sheets.py
+# Run the Python script to upload data to Google Sheets, passing the grouped PRs JSON file and failing PRs error state
+python3 upload_to_sheets.py "$OUTPUT_JSON" "$FAILING_PRS_ERROR"
 
 # Deactivate the virtual environment (optional)
 deactivate
