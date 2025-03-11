@@ -16,6 +16,13 @@ fi
 
 echo "Collecting PRs for $YEAR-$MONTH"
 
+# Calculate start and end dates for the month
+START_DATE="$YEAR-$MONTH-01"
+# Calculate last day of the month
+END_DATE=$(date -d "$YEAR-$MONTH-01 +1 month -1 day" +%Y-%m-%d)
+
+echo "Date range: $START_DATE to $END_DATE"
+
 # Set file names
 BASE_NAME="prs_${YEAR}_${MONTH}"
 RAW_FILE="data/monthly/${BASE_NAME}.json"
@@ -24,14 +31,17 @@ GROUPED_FILE="data/monthly/grouped_${BASE_NAME}.json"
 
 # Run the Go collector for the specified month
 echo "Running PR collector..."
-go run jenkins-pr-collector.go -year "$YEAR" -month "$MONTH" -output "$RAW_FILE"
+go run jenkins-pr-collector.go \
+    -start "$START_DATE" \
+    -end "$END_DATE" \
+    -output "$RAW_FILE"
 
 # Filter and group the PRs
 echo "Filtering PRs..."
 jq '.' "$RAW_FILE" > "$FILTERED_FILE"
 
 echo "Grouping PRs..."
-./group-prs.sh "$FILTERED_FILE"
+./group-prs.sh "$FILTERED_FILE" "plugins.json"
 
 # Update consolidated files
 echo "Updating consolidated files..."
