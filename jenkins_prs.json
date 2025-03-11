@@ -2519,7 +2519,7 @@
     "title": "Require 2.414.3",
     "state": "OPEN",
     "createdAt": "2025-01-29T18:48:50Z",
-    "updatedAt": "2025-01-29T18:48:50Z",
+    "updatedAt": "2025-03-10T21:39:53Z",
     "user": "gounthar",
     "repository": "jenkinsci/octoperf-plugin",
     "pluginName": "octoperf",
@@ -2867,9 +2867,9 @@
   {
     "number": 10,
     "title": "Require 2.375.4",
-    "state": "OPEN",
+    "state": "CLOSED",
     "createdAt": "2025-01-29T15:27:04Z",
-    "updatedAt": "2025-02-14T14:30:20Z",
+    "updatedAt": "2025-03-10T19:12:08Z",
     "user": "gounthar",
     "repository": "jenkinsci/rich-text-publisher-plugin",
     "pluginName": "rich-text-publisher-plugin",
@@ -5780,6 +5780,34 @@
     "checkStatus": "SUCCESS"
   },
   {
+    "number": 12,
+    "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
+    "state": "OPEN",
+    "createdAt": "2025-03-10T19:14:48Z",
+    "updatedAt": "2025-03-10T19:16:16Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/rich-text-publisher-plugin",
+    "pluginName": "rich-text-publisher-plugin",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/rich-text-publisher-plugin/pull/12",
+    "description": "Hello rich-text-publisher-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "PENDING"
+  },
+  {
+    "number": 28,
+    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
+    "state": "OPEN",
+    "createdAt": "2025-03-10T17:57:48Z",
+    "updatedAt": "2025-03-10T18:57:31Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/appspider-build-scanner-plugin",
+    "pluginName": "jenkinsci-appspider-plugin",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/appspider-build-scanner-plugin/pull/28",
+    "description": "Hello jenkinsci-appspider-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
+    "checkStatus": "SUCCESS"
+  },
+  {
     "number": 82,
     "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
     "state": "CLOSED",
@@ -6097,40 +6125,6 @@
     ],
     "url": "https://github.com/jenkinsci/gitlab-plugin/pull/1749",
     "description": "Use Java 17 language features\nUse Java 17 pattern matching instanceof.  Makes the code easier to read by avoding the cast that often follows an instanceof.\nUse Java 17 string formatting.  Slight simplification of the code through OpenRewrite.\nUse Java 17 @serial annotation.  Annotation that may allow future checks for serialization.  No real benefit today as far as I can tell.\nSpecial thanks to OpenRewrite for https://docs.openrewrite.org/recipes/java/migrate/upgradetojava17\nTesting done\nConfirmed that automated tests pass.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 32,
-    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
-    "state": "MERGED",
-    "createdAt": "2025-03-01T12:53:38Z",
-    "updatedAt": "2025-03-01T13:01:36Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/mysql-api-plugin",
-    "pluginName": "mysql-api",
-    "labels": [
-      "dependencies",
-      "developer"
-    ],
-    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/32",
-    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 131,
-    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
-    "state": "MERGED",
-    "createdAt": "2025-03-01T12:46:40Z",
-    "updatedAt": "2025-03-01T13:02:06Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/database-mysql-plugin",
-    "pluginName": "database-mysql",
-    "labels": [
-      "dependencies",
-      "developer"
-    ],
-    "url": "https://github.com/jenkinsci/database-mysql-plugin/pull/131",
-    "description": "Hello database-mysql developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
     "checkStatus": "SUCCESS"
   }
 ]
