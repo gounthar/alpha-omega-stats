@@ -43,7 +43,7 @@ jobs:
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
       
       - name: Monthly Collection
-        if: github.event_name == 'schedule' && github.event.schedule == '0 0 2 * *'
+        if: github.event_name == 'schedule' && startsWith(github.event.schedule, '0 0 2')
         run: |
           chmod +x collect-monthly.sh
           ./collect-monthly.sh
