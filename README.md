@@ -167,6 +167,52 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 ./collect-monthly.sh "YYYY-MM" true
 ```
 
+## Sequence Diagram(s)
+
+```mermaid
+sequenceDiagram
+    participant GitHub as GitHub Actions
+    participant Runner as Workflow Runner
+    participant Checkout as Checkout Code
+    participant EnvSetup as Environment Setup (Go, Python, CLI)
+    participant Script as Collection/Update Script
+    participant Artifact as Data Artifacts
+
+    GitHub->>Runner: Trigger workflow (Scheduled/Manual)
+    Runner->>Checkout: Checkout repository
+    Runner->>EnvSetup: Set up environments & install dependencies (jq, GitHub CLI, Python deps)
+    EnvSetup-->>Runner: Environment ready
+    Runner->>Script: Execute script based on event type
+    alt Scheduled Monthly
+        Script->>Script: Run collect-monthly.sh
+    else Daily/Manual
+        Script->>Script: Run update-daily.sh
+    end
+    Script->>Artifact: Upload updated PR JSON artifacts
+    Artifact-->>Runner: Artifacts stored
+```
+
+```mermaid
+sequenceDiagram
+    participant Client as GraphQLClient
+    participant API as GitHub GraphQL API
+    participant Retry as Retry Logic
+    participant Storage as Partial Data Storage
+
+    Client->>API: Execute GraphQL query
+    API-->>Client: Response/Error
+    alt Error is retryable?
+        Client->>Retry: Call isRetryableError
+        Retry-->>Client: Error qualifies, initiate exponential backoff
+        loop Up to max attempts
+            Client->>API: Retry GraphQL query
+        end
+    else Successful Response
+        Client->>Storage: Save partial data if needed
+        Client-->>Client: Process and return data
+    end
+```
+
 ## Maintenance Tasks
 
 ### Monthly Tasks
