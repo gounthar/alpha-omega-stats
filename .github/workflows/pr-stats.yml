@@ -1,4 +1,5 @@
 name: PR Stats
+
 on:
   schedule:
     - cron: '0 0 2 * *'  # Run monthly collection on 2nd of each month
@@ -10,15 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Set up Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: '1.21'
-      
+
       - name: Install jq
         run: sudo apt-get install -y jq
-      
+
       - name: Install GitHub CLI
         run: |
           type -p curl >/dev/null || (sudo apt-get update && sudo apt-get install curl -y)
@@ -27,43 +28,43 @@ jobs:
           && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
           && sudo apt-get update \
           && sudo apt-get install gh -y
-      
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      
+
       - name: Configure GitHub CLI
         run: |
           echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
-      
+
       - name: Monthly Collection
         if: github.event_name == 'schedule' && contains(github.workflow_ref, '/pr-stats.yml') && github.event.schedule == '0 0 2 * *'
         run: |
           chmod +x collect-monthly.sh
           ./collect-monthly.sh
-      
+
       - name: Daily Update
         if: github.event_name == 'schedule' && github.event.schedule == '0 0 * * *'
         run: |
           chmod +x update-daily.sh
           ./update-daily.sh
-      
+
       - name: Manual Run
         if: github.event_name == 'workflow_dispatch'
         run: |
           chmod +x update-daily.sh
           ./update-daily.sh
-      
+
       - name: Archive PR data
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pr-data
           path: |
             data/consolidated/*.json
-            data/monthly/*.json 
+            data/monthly/*.json
