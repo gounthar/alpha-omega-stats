@@ -31,67 +31,30 @@ cleanup() {
     echo "Cleanup: Removed temporary files"
 }
 
-# Function to process PRs and update their status
-process_prs() {
-    local pr_list_file="$1"
-    local output_file="$2"
-    
-    echo "Updating PR statuses..."
-    total_prs=$(jq -r '[.[] | select(.state == "OPEN")] | length' "data/consolidated/open_prs.json")
-    current_pr=0
-    
-    echo "Preparing PR list..."
-    jq -r '.[] | select(.state == "OPEN") | "\(.repository) \(.number)"' "data/consolidated/open_prs.json" > "$pr_list_file"
-    
-    # Verify PR list was created and has content
-    if [ ! -s "$pr_list_file" ]; then
-        echo "Error: Failed to create PR list"
-        return 1
-    fi
-    
-    # Count PRs to process
-    PR_COUNT=$(wc -l < "$pr_list_file")
-    echo "Processing $PR_COUNT PRs..."
-    
-    # Process each PR using a while loop with manual counter
-    local i=1
-    while [ $i -le $PR_COUNT ]; do
-        # Get the i-th line from the PR list file
-        LINE=$(sed -n "${i}p" "$pr_list_file")
-        # Extract repo and number
-        repo=$(echo "$LINE" | cut -d' ' -f1)
-        number=$(echo "$LINE" | cut -d' ' -f2)
-        
-        ((current_pr++))
-        echo "[$current_pr/$total_prs] Checking $repo PR #$number..."
-        
-        # Use GitHub CLI to get current PR status
-        PR_INFO=$(gh pr view "$number" --repo "$repo" --json state,statusCheckRollup,title,url)
-        if [ $? -eq 0 ]; then
-            # Validate JSON structure before appending
-            if echo "$PR_INFO" | jq -e '. | has("state") and has("url")' > /dev/null; then
-                echo "$PR_INFO" >> "$output_file"
-                echo "  ✓ Successfully updated PR info"
-            else
-                echo "  ✗ Warning: Invalid JSON structure for $repo PR #$number, skipping"
-            fi
-        else
-            echo "  ✗ Warning: Failed to get status for $repo PR #$number"
-        fi
-        
-        # Increment counter manually
-        i=$((i+1))
-    done
-    
-    return 0
-}
+# Prepare for PR processing
+echo "Updating PR statuses..."
 
-# Call the function to process PRs
-process_prs "$PR_LIST_FILE" "$TEMP_FILE"
-if [ $? -ne 0 ]; then
-    echo "Error processing PRs"
+echo "Preparing PR list..."
+jq -r '.[] | select(.state == "OPEN") | "\(.repository) \(.number)"' "data/consolidated/open_prs.json" > "$PR_LIST_FILE"
+
+# Verify PR list was created and has content
+if [ ! -s "$PR_LIST_FILE" ]; then
+    echo "Error: Failed to create PR list"
     exit 1
 fi
+
+# Make the PR processing script executable
+chmod +x process_prs.sh
+
+# Call the separate script to process PRs
+echo "Calling PR processing script..."
+./process_prs.sh "$PR_LIST_FILE" "$TEMP_FILE"
+if [ $? -ne 0 ]; then
+    echo "Error: PR processing script failed"
+    exit 1
+fi
+
+echo "PR processing completed successfully"
 
 # Debug: Print the contents of the temporary file
 echo "Validating collected PR data..."
