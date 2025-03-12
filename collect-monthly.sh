@@ -143,7 +143,17 @@ jq -r 'group_by(.state) | map({state: .[0].state, count: length}) | sort_by(-.co
 
 # Archive old files (older than 6 months)
 echo "Archiving old files..."
-find data/monthly -name "prs_*.json" -type f -mtime +180 -exec mv {} data/archive/ \;
+# Ensure archive directory exists and handle errors
+if [ ! -d "data/archive" ]; then
+    mkdir -p data/archive || {
+        echo "Error: Failed to create archive directory" >&2
+        exit 1
+    }
+fi
+
+find data/monthly -name "prs_*.json" -type f -mtime +180 -exec mv {} data/archive/ \; || {
+    echo "Warning: Some files could not be archived" >&2
+}
 
 # Update Google Sheets only if requested
 if [ "$UPDATE_SHEETS" = "true" ]; then
