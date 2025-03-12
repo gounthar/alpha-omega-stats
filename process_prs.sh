@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Enable debug output
-set -x
+# set -x
 
 # Check arguments
 if [ $# -ne 2 ]; then
