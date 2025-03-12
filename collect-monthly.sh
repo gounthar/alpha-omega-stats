@@ -74,8 +74,11 @@ merge_json_arrays() {
 
 # Update all_prs.json with unique PRs from all monthly files
 echo "Updating all_prs.json..."
-find data/monthly -name "prs_*.json" -type f | xargs cat | \
-    jq -s 'add | unique_by(.url)' > "data/consolidated/all_prs.json"
+find data/monthly -name "prs_*.json" -type f -print0 | xargs -0 cat | \
+    jq -s 'add | unique_by(.url)' > "data/consolidated/all_prs.json" || {
+        echo "Error: Failed to update all_prs.json" >&2
+        exit 1
+    }
 
 # Extract open PRs
 echo "Updating open_prs.json..."
