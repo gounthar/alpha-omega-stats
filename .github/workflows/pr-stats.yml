@@ -41,7 +41,7 @@ jobs:
 
       - name: Configure GitHub CLI
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.PAT_TOKEN }}" | gh auth login --with-token
 
       - name: Monthly Collection
         if: github.event_name == 'schedule' && contains(github.workflow_ref, '/pr-stats.yml') && github.event.schedule == '0 0 2 * *'
