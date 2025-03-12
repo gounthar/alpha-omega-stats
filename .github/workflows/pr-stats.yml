@@ -43,6 +43,15 @@ jobs:
         run: |
           echo "${{ secrets.PAT_TOKEN }}" | gh auth login --with-token
 
+      - name: Set up Google credentials
+        id: create-json
+        run: |
+          # Write the service account json file
+          echo "$GOOGLE_CREDENTIALS" > google-credentials.json
+        shell: bash
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
       - name: Monthly Collection
         if: github.event_name == 'schedule' && contains(github.workflow_ref, '/pr-stats.yml') && github.event.schedule == '0 0 2 * *'
         run: |
