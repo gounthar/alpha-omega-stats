@@ -70,6 +70,12 @@ if ! jq -s '.' "$TEMP_FILE" > "$TEMP_VALID_JSON" 2>/dev/null; then
     exit 1
 fi
 
+# Verify the JSON array has content
+if [ ! -s "$TEMP_VALID_JSON" ] || ! jq -e '. | length > 0' "$TEMP_VALID_JSON" > /dev/null; then
+    echo "Error: No valid PR data collected. Keeping existing consolidated files."
+    exit 1
+fi
+
 # Function to safely update JSON files
 update_json_file() {
     local source="$1"
@@ -79,13 +85,13 @@ update_json_file() {
     
     # First verify the source file is valid JSON
     if ! jq '.' "$source" > /dev/null 2>&1; then
-        echo "Error: Source file $source is not valid JSON"
+        echo "Error: Source file '$source' is not valid JSON or cannot be read" >&2
         return 1
     fi
     
     # Then verify the temp file is valid JSON
     if ! jq '.' "$temp" > /dev/null 2>&1; then
-        echo "Error: Temp file $temp is not valid JSON"
+        echo "Error: Temp file '$temp' is not valid JSON or cannot be read" >&2
         return 1
     fi
     
