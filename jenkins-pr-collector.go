@@ -19,6 +19,11 @@ import (
 	"golang.org/x/time/rate"
 )
 
+func init() {
+	// Seed the random number generator for more unpredictable jitter
+	rand.Seed(time.Now().UnixNano())
+}
+
 // PullRequest represents a GitHub pull request
 type PullRequest struct {
 	Number     int       `json:"number"`
