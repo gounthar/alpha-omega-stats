@@ -8,28 +8,91 @@ from datetime import datetime
 import sys
 import re
 from time import sleep
+import random
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logging.info("Starting script...")
 
+def get_backoff_duration(attempt, base_delay=5, max_delay=300):
+    """
+    Calculate exponential backoff duration with jitter.
+    
+    Args:
+        attempt: The current retry attempt number (0-based)
+        base_delay: The base delay in seconds (default: 5)
+        max_delay: Maximum delay in seconds (default: 300)
+    
+    Returns:
+        Delay duration in seconds
+    """
+    delay = min(base_delay * (2 ** attempt), max_delay)
+    jitter = random.uniform(0, 0.1 * delay)  # Add up to 10% jitter
+    return delay + jitter
+
+def handle_google_api_error(e, attempt, max_retries):
+    """
+    Handle different types of Google Sheets API errors.
+    
+    Returns:
+        tuple: (should_retry, wait_time)
+    """
+    error_str = str(e).lower()
+    
+    # Rate limit errors
+    if "429" in error_str or "quota" in error_str:
+        wait_time = get_backoff_duration(attempt)
+        logging.warning(f"Rate limit exceeded. Attempt {attempt + 1}/{max_retries}. Waiting {wait_time:.1f} seconds...")
+        return True, wait_time
+    
+    # Backend errors (500s)
+    if any(code in error_str for code in ["500", "502", "503", "504"]):
+        wait_time = get_backoff_duration(attempt, base_delay=10)
+        logging.warning(f"Backend error encountered. Attempt {attempt + 1}/{max_retries}. Waiting {wait_time:.1f} seconds...")
+        return True, wait_time
+    
+    # Authorization errors
+    if "401" in error_str or "403" in error_str:
+        logging.error("Authorization error. Please check your credentials.")
+        return False, 0
+    
+    # Invalid request errors
+    if "400" in error_str:
+        logging.error("Invalid request error. Please check your input data.")
+        return False, 0
+    
+    # Default case - retry with standard backoff
+    wait_time = get_backoff_duration(attempt)
+    logging.warning(f"Unexpected error. Attempt {attempt + 1}/{max_retries}. Waiting {wait_time:.1f} seconds...")
+    return True, wait_time
+
 def retry_with_backoff(func, max_retries=5, initial_delay=5):
     """
-    Retry a function with exponential backoff.
+    Retry a function with exponential backoff and improved error handling.
     """
-    delay = initial_delay
+    last_error = None
+    
     for attempt in range(max_retries):
         try:
             return func()
         except gspread.exceptions.APIError as e:
-            if "429" in str(e):  # Rate limit error
-                if attempt == max_retries - 1:
-                    raise
-                logging.warning(f"Rate limit hit. Waiting {delay} seconds before retry {attempt + 1}/{max_retries}")
-                sleep(delay)
-                delay *= 2  # Exponential backoff
-            else:
+            should_retry, wait_time = handle_google_api_error(e, attempt, max_retries)
+            if not should_retry or attempt == max_retries - 1:
                 raise
+            time.sleep(wait_time)
+            last_error = e
+        except gspread.exceptions.SpreadsheetNotFound:
+            logging.error("Spreadsheet not found. Please check the spreadsheet ID or name.")
+            raise
+        except gspread.exceptions.WorksheetNotFound:
+            logging.error("Worksheet not found. Please check the worksheet name.")
+            raise
+        except Exception as e:
+            logging.error(f"Unexpected error: {str(e)}")
+            raise
+    
+    if last_error:
+        raise last_error
     return None
 
 def sanitize_sheet_name(title, max_length=100):
@@ -53,37 +116,60 @@ def sanitize_sheet_name(title, max_length=100):
 
 def update_sheet_with_retry(sheet, data, range_name="A1"):
     """
-    Update a sheet with retry logic and rate limiting.
+    Update a sheet with enhanced retry logic and rate limiting.
     """
     def update():
-        # First clear the entire sheet
-        sheet.clear()
-        time.sleep(1)  # Add a small delay after clearing
-        # Then update with new data
-        sheet.update(range_name=range_name, values=data, value_input_option="USER_ENTERED")
-        time.sleep(2)  # Add delay between operations
+        try:
+            # First clear the entire sheet
+            sheet.clear()
+            time.sleep(1)  # Add a small delay after clearing
+            
+            # Validate data before updating
+            if not data or not isinstance(data, (list, tuple)):
+                raise ValueError("Invalid data format. Expected non-empty list or tuple.")
+            
+            # Then update with new data
+            sheet.update(range_name=range_name, values=data, value_input_option="USER_ENTERED")
+            logging.info(f"Successfully updated sheet with {len(data)} rows of data")
+            time.sleep(2)  # Add delay between operations
+        except gspread.exceptions.APIError as e:
+            logging.error(f"API error during sheet update: {str(e)}")
+            raise
+        except Exception as e:
+            logging.error(f"Error during sheet update: {str(e)}")
+            raise
     
-    retry_with_backoff(update)
+    return retry_with_backoff(update)
 
 def format_sheet_with_retry(sheet, range_name, format_dict):
     """
-    Format a sheet with retry logic and rate limiting.
+    Format a sheet with enhanced retry logic and rate limiting.
     """
     def format():
-        sheet.format(range_name, format_dict)
-        time.sleep(2)  # Add delay between operations
+        try:
+            sheet.format(range_name, format_dict)
+            logging.info(f"Successfully formatted range {range_name}")
+            time.sleep(2)  # Add delay between operations
+        except Exception as e:
+            logging.error(f"Error during sheet formatting: {str(e)}")
+            raise
     
-    retry_with_backoff(format)
+    return retry_with_backoff(format)
 
 def batch_format_with_retry(sheet, format_requests):
     """
-    Batch format a sheet with retry logic and rate limiting.
+    Batch format a sheet with enhanced retry logic and rate limiting.
     """
     def batch_format():
-        sheet.batch_format(format_requests)
-        time.sleep(2)  # Add delay between operations
+        try:
+            sheet.batch_format(format_requests)
+            logging.info(f"Successfully applied {len(format_requests)} format requests")
+            time.sleep(2)  # Add delay between operations
+        except Exception as e:
+            logging.error(f"Error during batch formatting: {str(e)}")
+            raise
     
-    retry_with_backoff(batch_format)
+    return retry_with_backoff(batch_format)
 
 def validate_pr_data(pr):
     """
@@ -291,9 +377,14 @@ summary_data = [
 # Add plugin-specific stats and links to individual sheets
 for plugin, stats in plugin_stats.items():
     sheet_name = sanitize_sheet_name(plugin)
+    if not sheet_name:
+        logging.error(f"Invalid sheet name generated for plugin '{plugin}'. Skipping sheet creation.")
+        continue
+
     try:
         plugin_sheet = spreadsheet.worksheet(sheet_name)
     except gspread.exceptions.WorksheetNotFound:
+        logging.info(f"Creating new sheet for '{sheet_name}'...")
         plugin_sheet = spreadsheet.add_worksheet(title=sheet_name, rows=100, cols=10)
 
     link = f'=HYPERLINK("#gid={plugin_sheet.id}"; "{plugin}")'
