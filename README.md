@@ -72,7 +72,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
   - Updates Google Sheets
   - Creates a backup of all data before running
   - Logs available in GitHub Actions run history
-  - Expected duration: 15-30 minutes
+  - Expected duration: 15–30 minutes
 
 - **Daily Updates** (midnight UTC)
   - Updates current month's data
@@ -80,7 +80,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
   - Updates Google Sheets with latest data
   - Creates a backup of current data
   - Logs available in GitHub Actions run history
-  - Expected duration: 5-10 minutes
+  - Expected duration: 5–10 minutes
 
 ### PR Collector Test (`pr-collector-test.yml`)
 - Runs every Tuesday at 07:18 UTC
@@ -88,7 +88,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 - Creates a pull request with updated statistics
 - Uses Docker for isolated testing environment
 - Logs available in GitHub Actions run history
-- Expected duration: 10-15 minutes
+- Expected duration: 10–15 minutes
 
 ## Logging and Monitoring
 
@@ -166,6 +166,39 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 # Collect data for a specific month
 ./collect-monthly.sh "YYYY-MM" true
 ```
+
+## Example Usage
+
+Here are some common usage examples:
+
+```bash
+# Count PRs for repositories listed in repos.txt for the year 2024
+./count_prs.sh repos.txt 2024
+
+# Compute statistics for specified users between dates
+./compute-stats.sh gounthar,jonesbusy 2024-12-01 2025-01-15
+
+# Group PRs by plugin using the plugins.json configuration
+./group-prs.sh prs_gounthar_and_others_2024-12-01_to_2025-01-15.json plugins.json
+```
+
+### Command Explanations
+
+#### Count PRs
+The `count_prs.sh` script counts pull requests for a list of repositories:
+- First argument: Path to a text file containing repository names
+- Second argument: Year to analyze
+
+#### Compute Statistics
+The `compute-stats.sh` script generates detailed statistics for specific users:
+- First argument: Comma-separated list of GitHub usernames
+- Second argument: Start date in YYYY-MM-DD format
+- Third argument: End date in YYYY-MM-DD format
+
+#### Group PRs
+The `group-prs.sh` script organizes pull requests by plugin:
+- First argument: JSON file containing PR data
+- Second argument: Plugin configuration file
 
 ## Sequence Diagram(s)
 
@@ -283,9 +316,3 @@ sequenceDiagram
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-
-```
-./count_prs.sh repos.txt 2024
-./compute-stats.sh gounthar,jonesbusy 2024-12-01 2025-01-15
-./group-prs.sh prs_gounthar_and_others_2024-12-01_to_2025-01-15.json plugins.json
-```
