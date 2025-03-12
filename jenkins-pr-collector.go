@@ -415,17 +415,6 @@ func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, erro
 	return pluginRepos, nil
 }
 
-// Add exponential backoff function
-func getBackoffDuration(attempt int) time.Duration {
-	// Start with 5 seconds, double each time, max 5 minutes
-	duration := time.Duration(5*(1<<attempt)) * time.Second
-	maxDuration := 5 * time.Minute
-	if duration > maxDuration {
-		return maxDuration
-	}
-	return duration
-}
-
 // Modify ExecuteGraphQL to handle retries internally
 func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, req *GraphQLRequest, result interface{}) error {
 	var lastErr error
@@ -628,13 +617,13 @@ func executeGraphQLQuery(client *http.Client, query string, variables map[string
 			if resp.Search.Nodes == nil && len(resp.Errors) > 0 {
 				// Handle specific GitHub API errors
 				if strings.Contains(resp.Errors[0].Message, "rate limit") {
-					waitTime := getBackoffDuration(attempt)
+					waitTime := calculateBackoffDuration(attempt)
 					log.Printf("Rate limit hit. Waiting %v before retry...", waitTime)
 					time.Sleep(waitTime)
 					continue
 				}
 				if strings.Contains(resp.Errors[0].Message, "Something went wrong") {
-					waitTime := getBackoffDuration(attempt)
+					waitTime := calculateBackoffDuration(attempt)
 					log.Printf("GitHub API error. Waiting %v before retry...", waitTime)
 					time.Sleep(waitTime)
 					continue
@@ -644,7 +633,7 @@ func executeGraphQLQuery(client *http.Client, query string, variables map[string
 		}
 
 		lastErr = err
-		waitTime := getBackoffDuration(attempt)
+		waitTime := calculateBackoffDuration(attempt)
 		log.Printf("Error executing query (attempt %d/%d): %v. Waiting %v...",
 			attempt+1, maxAttempts, err, waitTime)
 		time.Sleep(waitTime)
