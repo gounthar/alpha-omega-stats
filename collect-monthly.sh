@@ -168,7 +168,10 @@ if [ "$UPDATE_SHEETS" = "true" ]; then
     if [ -d "venv" ]; then
         source venv/bin/activate
         # Run the Python script with consolidated data
-        python3 upload_to_sheets.py "data/consolidated/all_prs.json"
+        python3 upload_to_sheets.py "data/consolidated/all_prs.json" || {
+            echo "Error: Google Sheets update failed" >&2
+            exit 1
+        }
         deactivate
     else
         echo "Virtual environment not found. Skipping Google Sheets update."
