@@ -83,9 +83,60 @@ jq '[.[] | select(.state == "OPEN")]' "data/consolidated/all_prs.json" > \
     "data/consolidated/open_prs.json"
 
 # Extract failing PRs
-echo "Updating failing_prs.json..."
+echo "Extracting failing PRs..."
 jq '[.[] | select(.state == "OPEN" and .checkStatus == "FAILURE")]' \
-    "data/consolidated/all_prs.json" > "data/consolidated/failing_prs.json"
+    "data/consolidated/all_prs.json" > "data/consolidated/failing_prs.json" || {
+    echo "Error: Failed to extract failing PRs" >&2
+    exit 1
+}
+
+# Group PRs by repository
+echo "Grouping PRs by repository..."
+jq -r 'group_by(.repository) | map({repository: .[0].repository, count: length}) | sort_by(-.count)' \
+    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_repo.json" || {
+    echo "Error: Failed to group PRs by repository" >&2
+    exit 1
+}
+
+# Group PRs by user
+echo "Grouping PRs by user..."
+jq -r 'group_by(.user) | map({user: .[0].user, count: length}) | sort_by(-.count)' \
+    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_user.json" || {
+    echo "Error: Failed to group PRs by user" >&2
+    exit 1
+}
+
+# Group PRs by plugin
+echo "Grouping PRs by plugin..."
+jq -r 'group_by(.pluginName) | map({plugin: .[0].pluginName, count: length}) | sort_by(-.count)' \
+    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_plugin.json" || {
+    echo "Error: Failed to group PRs by plugin" >&2
+    exit 1
+}
+
+# Group PRs by label
+echo "Grouping PRs by label..."
+jq -r '[.[].labels[]] | group_by(.) | map({label: .[0], count: length}) | sort_by(-.count)' \
+    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_label.json" || {
+    echo "Error: Failed to group PRs by label" >&2
+    exit 1
+}
+
+# Group PRs by check status
+echo "Grouping PRs by check status..."
+jq -r 'group_by(.checkStatus) | map({status: .[0].checkStatus, count: length}) | sort_by(-.count)' \
+    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_status.json" || {
+    echo "Error: Failed to group PRs by check status" >&2
+    exit 1
+}
+
+# Group PRs by state
+echo "Grouping PRs by state..."
+jq -r 'group_by(.state) | map({state: .[0].state, count: length}) | sort_by(-.count)' \
+    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_state.json" || {
+    echo "Error: Failed to group PRs by state" >&2
+    exit 1
+}
 
 # Archive old files (older than 6 months)
 echo "Archiving old files..."
@@ -114,4 +165,10 @@ echo "  - $GROUPED_FILE"
 echo "Consolidated files updated:"
 echo "  - data/consolidated/all_prs.json"
 echo "  - data/consolidated/open_prs.json"
-echo "  - data/consolidated/failing_prs.json" 
+echo "  - data/consolidated/failing_prs.json"
+echo "  - data/consolidated/prs_by_repo.json"
+echo "  - data/consolidated/prs_by_user.json"
+echo "  - data/consolidated/prs_by_plugin.json"
+echo "  - data/consolidated/prs_by_label.json"
+echo "  - data/consolidated/prs_by_status.json"
+echo "  - data/consolidated/prs_by_state.json" 
