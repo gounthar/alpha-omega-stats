@@ -14,6 +14,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
    - Main data collection script written in Go
    - Queries GitHub's GraphQL API to fetch PR data for Jenkins plugins
    - Usage: `go run jenkins-pr-collector.go -start "YYYY-MM-DD" -end "YYYY-MM-DD" -output "output_file.json"`
+   - Logs output to stdout/stderr for monitoring
 
 2. `collect-monthly.sh`
    - Collects PR data for a specific month
@@ -23,12 +24,14 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
    - Creates monthly data files in `data/monthly/`
    - Updates consolidated data files in `data/consolidated/`
    - Usage: `./collect-monthly.sh "2024-03" true`
+   - Logs progress and errors to stdout
 
 3. `group-prs.sh`
    - Processes and groups PR data by title and status
    - Called by `collect-monthly.sh`
    - Requires `plugins.json` file for plugin information
    - Usage: `./group-prs.sh "input_file.json" "plugins.json"`
+   - Logs grouping statistics to stdout
 
 4. `retry-collection.sh`
    - Bulk data collection script with retry mechanism
@@ -36,6 +39,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
    - Implements exponential backoff for failed attempts
    - Updates Google Sheets only after all data is collected
    - Usage: `./retry-collection.sh`
+   - Logs retry attempts and progress to stdout
 
 ### Supporting Scripts
 
@@ -43,6 +47,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
    - Python script for uploading data to Google Sheets
    - Requires Google Sheets API credentials
    - Called by other scripts when `UPDATE_SHEETS` is true
+   - Logs upload status and any API errors to stdout
 
 ## Directory Structure
 
@@ -65,17 +70,62 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
   - Runs full data collection for the previous month
   - Updates consolidated statistics
   - Updates Google Sheets
+  - Creates a backup of all data before running
+  - Logs available in GitHub Actions run history
+  - Expected duration: 15-30 minutes
 
 - **Daily Updates** (midnight UTC)
   - Updates current month's data
   - Updates open and failing PR statistics
   - Updates Google Sheets with latest data
+  - Creates a backup of current data
+  - Logs available in GitHub Actions run history
+  - Expected duration: 5-10 minutes
 
 ### PR Collector Test (`pr-collector-test.yml`)
 - Runs every Tuesday at 07:18 UTC
 - Tests the PR collector functionality
 - Creates a pull request with updated statistics
 - Uses Docker for isolated testing environment
+- Logs available in GitHub Actions run history
+- Expected duration: 10-15 minutes
+
+## Logging and Monitoring
+
+### GitHub Actions Logs
+- All automated runs log their output to GitHub Actions
+- Access logs through the "Actions" tab in the repository
+- Logs are retained for 90 days
+- Each run includes:
+  - Setup steps
+  - Script execution output
+  - Error messages (if any)
+  - Completion status
+
+### Data Collection Logs
+- Scripts log to stdout/stderr
+- Key information logged includes:
+  - Start and end times of operations
+  - Number of PRs processed
+  - API rate limit status
+  - Error messages and retry attempts
+  - Google Sheets update status
+
+### Monitoring Points
+1. **GitHub Actions Status**
+   - Check Actions tab for failed runs
+   - Review logs for rate limit warnings
+   - Verify backup creation
+
+2. **Data Integrity**
+   - Verify monthly files are created
+   - Check consolidated data updates
+   - Confirm Google Sheets updates
+
+3. **Storage Management**
+   - Monitor backup directory size
+   - Check archive rotation
+   - Verify data retention policies
 
 ## Getting Started
 
@@ -121,13 +171,35 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 
 ### Monthly Tasks
 1. Check the automated collection ran successfully on the 2nd
+   - Review GitHub Actions logs
+   - Verify data files are created
+   - Check Google Sheets updates
+
 2. Verify data in Google Sheets is updated
+   - Check latest data timestamp
+   - Verify all sheets are updated
+   - Review data consistency
+
 3. Review any failed collections in the GitHub Actions logs
+   - Check for rate limit issues
+   - Review error messages
+   - Plan retries if needed
 
 ### As-Needed Tasks
 1. Review and clean up archived data
+   - Verify archive rotation
+   - Check storage usage
+   - Clean up old backups
+
 2. Verify backup integrity
+   - Test backup restoration
+   - Check backup completeness
+   - Update backup strategy if needed
+
 3. Update dependencies as needed
+   - Check for security updates
+   - Review dependency versions
+   - Test updates in development
 
 ## Troubleshooting
 
@@ -135,16 +207,25 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
    - The scripts include built-in retry mechanisms with exponential backoff
    - Check GitHub API quota in the logs
    - Adjust collection timing if needed
+   - Monitor rate limit headers in responses
 
 2. **Failed Collections**
    - Check the logs in `data/monthly/` for specific errors
    - Use `retry-collection.sh` to retry failed periods
    - Verify GitHub token permissions
+   - Review network connectivity issues
 
 3. **Google Sheets Issues**
    - Verify API credentials are valid
    - Check Python virtual environment is activated
    - Review logs for API errors
+   - Verify sheet permissions
+
+4. **Data Inconsistencies**
+   - Compare monthly and consolidated data
+   - Check for missing or duplicate entries
+   - Verify data format consistency
+   - Review archive integrity
 
 ## Contributing
 
