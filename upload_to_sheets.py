@@ -9,6 +9,7 @@ import sys
 import re
 from time import sleep
 import random
+import os
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -305,7 +306,16 @@ if errors:
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
 
 # Add your service account credentials
-creds = Credentials.from_service_account_file('concise-complex-344219-062a255ca56f.json', scopes=scope)
+# Check for environment variable first, then fall back to local file
+credentials_file = os.environ.get('GOOGLE_APPLICATION_CREDENTIALS', 'concise-complex-344219-062a255ca56f.json')
+try:
+    creds = Credentials.from_service_account_file(credentials_file, scopes=scope)
+    logging.info(f"Using credentials from: {credentials_file}")
+except FileNotFoundError:
+    # For GitHub Actions, try the file we created in the workflow
+    fallback_file = 'google-credentials.json'
+    logging.info(f"Credentials file {credentials_file} not found, trying {fallback_file}")
+    creds = Credentials.from_service_account_file(fallback_file, scopes=scope)
 
 # Authorize the client
 client = gspread.authorize(creds)
