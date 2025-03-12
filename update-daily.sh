@@ -4,7 +4,7 @@
 set -e
 
 # Enable debug output
-set -x
+# set -x
 
 echo "Starting daily PR status update..."
 
