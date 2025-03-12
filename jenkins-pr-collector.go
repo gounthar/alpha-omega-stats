@@ -175,6 +175,58 @@ type PartialData struct {
 
 var allFoundPRs []PullRequestData
 
+// Add these new types and constants
+const (
+	maxRetries = 5
+	baseDelay  = 2 * time.Second
+	maxDelay   = 5 * time.Minute
+)
+
+type RetryableError struct {
+	Err       error
+	ShouldLog bool
+}
+
+func (e *RetryableError) Error() string {
+	return e.Err.Error()
+}
+
+func calculateBackoffDuration(attempt int) time.Duration {
+	// Calculate exponential backoff with jitter
+	delay := baseDelay * time.Duration(1<<uint(attempt))
+	if delay > maxDelay {
+		delay = maxDelay
+	}
+	// Add jitter (±10%)
+	jitter := time.Duration(rand.Float64()*0.2-0.1) * delay
+	return delay + jitter
+}
+
+func isRateLimitError(err error) bool {
+	if err == nil {
+		return false
+	}
+	errStr := strings.ToLower(err.Error())
+	return strings.Contains(errStr, "rate limit") ||
+		strings.Contains(errStr, "rate_limit") ||
+		strings.Contains(errStr, "secondary rate limit")
+}
+
+func isTransientError(err error) bool {
+	if err == nil {
+		return false
+	}
+	errStr := strings.ToLower(err.Error())
+	return strings.Contains(errStr, "timeout") ||
+		strings.Contains(errStr, "temporary") ||
+		strings.Contains(errStr, "500") ||
+		strings.Contains(errStr, "502") ||
+		strings.Contains(errStr, "503") ||
+		strings.Contains(errStr, "504") ||
+		strings.Contains(errStr, "connection") ||
+		isRateLimitError(err)
+}
+
 func main() {
 	// Parse command line arguments
 	githubToken := flag.String("token", os.Getenv("GITHUB_TOKEN"), "GitHub API token")
@@ -377,91 +429,121 @@ func isRetryableError(err error) bool {
 }
 
 // Modify ExecuteGraphQL to handle retries internally
-func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, query string, variables map[string]interface{}, result interface{}) error {
+func (c *GraphQLClient) ExecuteGraphQL(ctx context.Context, req *GraphQLRequest, result interface{}) error {
 	var lastErr error
-	maxAttempts := 5
-	baseDelay := time.Second * 2
 
-	for attempt := 0; attempt < maxAttempts; attempt++ {
-		err := func() error {
-			// Create request
-			reqBody, err := json.Marshal(GraphQLRequest{
-				Query:     query,
-				Variables: variables,
-			})
-			if err != nil {
-				return fmt.Errorf("failed to marshal GraphQL request: %v", err)
-			}
+	for attempt := 0; attempt < maxRetries; attempt++ {
+		if attempt > 0 {
+			waitTime := calculateBackoffDuration(attempt - 1)
+			log.Printf("Retrying request (attempt %d/%d) after %v...", attempt+1, maxRetries, waitTime)
+			time.Sleep(waitTime)
+		}
 
-			// Create HTTP request
-			req, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(reqBody))
-			if err != nil {
-				return fmt.Errorf("failed to create HTTP request: %v", err)
-			}
-			req.Header.Set("Content-Type", "application/json")
-
-			// Execute request
-			resp, err := c.httpClient.Do(req)
-			if err != nil {
-				return err
-			}
-			defer resp.Body.Close()
-
-			// Read response
-			body, err := io.ReadAll(resp.Body)
-			if err != nil {
-				return fmt.Errorf("failed to read response body: %v", err)
-			}
-
-			// Check for HTTP errors
-			if resp.StatusCode != http.StatusOK {
-				return fmt.Errorf("HTTP error: %d, Body: %s", resp.StatusCode, string(body))
-			}
-
-			// Parse response
-			var graphqlResp GraphQLResponse
-			if err := json.Unmarshal(body, &graphqlResp); err != nil {
-				return fmt.Errorf("failed to parse GraphQL response: %v", err)
-			}
-
-			// Check for GraphQL errors
-			if len(graphqlResp.Errors) > 0 {
-				errMsg := graphqlResp.Errors[0].Message
-				return fmt.Errorf("GraphQL error: %s", errMsg)
-			}
-
-			// Parse data
-			if graphqlResp.Data == nil {
-				return fmt.Errorf("no data in GraphQL response")
-			}
-
-			return json.Unmarshal(graphqlResp.Data, result)
-		}()
-
+		err := c.executeGraphQLRequest(ctx, req, result)
 		if err == nil {
 			return nil
 		}
 
 		lastErr = err
-		if !isRetryableError(err) {
+
+		// Check if it's a retryable error
+		if !isTransientError(err) {
+			log.Printf("Non-retryable error encountered: %v", err)
 			return err
 		}
 
-		if attempt < maxAttempts-1 {
-			// Exponential backoff with jitter
-			delay := baseDelay * time.Duration(1<<uint(attempt))
-			jitter := time.Duration(rand.Int63n(int64(delay) / 2))
-			delay = delay + jitter
-			if delay > 30*time.Second {
-				delay = 30 * time.Second
-			}
-			log.Printf("Retrying request in %v (attempt %d/%d): %v", delay, attempt+1, maxAttempts, lastErr)
-			time.Sleep(delay)
+		// Handle rate limit specifically
+		if isRateLimitError(err) {
+			log.Printf("Rate limit exceeded on attempt %d/%d", attempt+1, maxRetries)
+			// Use a longer backoff for rate limits
+			waitTime := calculateBackoffDuration(attempt) * 2
+			log.Printf("Rate limit exceeded, waiting %v before retry...", waitTime)
+			time.Sleep(waitTime)
 			continue
+		}
+
+		log.Printf("Retryable error encountered on attempt %d/%d: %v", attempt+1, maxRetries, err)
+	}
+
+	return fmt.Errorf("failed after %d retries, last error: %v", maxRetries, lastErr)
+}
+
+func (c *GraphQLClient) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest, result interface{}) error {
+	// Convert request to JSON
+	reqBody, err := json.Marshal(req)
+	if err != nil {
+		return fmt.Errorf("failed to marshal request: %v", err)
+	}
+
+	// Create HTTP request
+	httpReq, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(reqBody))
+	if err != nil {
+		return fmt.Errorf("failed to create request: %v", err)
+	}
+	httpReq.Header.Set("Content-Type", "application/json")
+
+	// Execute request
+	resp, err := c.httpClient.Do(httpReq)
+	if err != nil {
+		return &RetryableError{Err: fmt.Errorf("failed to execute request: %v", err), ShouldLog: true}
+	}
+	defer resp.Body.Close()
+
+	// Check response status
+	if resp.StatusCode != http.StatusOK {
+		body, _ := io.ReadAll(resp.Body)
+		err := fmt.Errorf("unexpected status code %d: %s", resp.StatusCode, string(body))
+
+		// Check for specific status codes
+		switch resp.StatusCode {
+		case http.StatusUnauthorized, http.StatusForbidden:
+			return fmt.Errorf("authentication error: %v", err)
+		case http.StatusNotFound:
+			return fmt.Errorf("resource not found: %v", err)
+		case http.StatusTooManyRequests:
+			return &RetryableError{Err: fmt.Errorf("rate limit exceeded: %v", err), ShouldLog: true}
+		case http.StatusInternalServerError,
+			http.StatusBadGateway,
+			http.StatusServiceUnavailable,
+			http.StatusGatewayTimeout:
+			return &RetryableError{Err: fmt.Errorf("server error: %v", err), ShouldLog: true}
+		default:
+			return fmt.Errorf("request failed: %v", err)
 		}
 	}
 
-	return fmt.Errorf("failed after %d attempts, last error: %v", maxAttempts, lastErr)
+	// Parse response
+	var graphqlResp GraphQLResponse
+	if err := json.NewDecoder(resp.Body).Decode(&graphqlResp); err != nil {
+		return fmt.Errorf("failed to decode response: %v", err)
+	}
+
+	// Check for GraphQL errors
+	if len(graphqlResp.Errors) > 0 {
+		// Check if any of the errors are rate limit related
+		for _, gqlErr := range graphqlResp.Errors {
+			if isRateLimitError(fmt.Errorf(gqlErr.Message)) {
+				return &RetryableError{
+					Err:       fmt.Errorf("graphql rate limit error: %s", gqlErr.Message),
+					ShouldLog: true,
+				}
+			}
+		}
+
+		// If we get here, these are other GraphQL errors
+		var errMsgs []string
+		for _, err := range graphqlResp.Errors {
+			errMsgs = append(errMsgs, err.Message)
+		}
+		return fmt.Errorf("graphql errors: %s", strings.Join(errMsgs, "; "))
+	}
+
+	// Decode the actual result
+	if err := json.Unmarshal(graphqlResp.Data, result); err != nil {
+		return fmt.Errorf("failed to unmarshal data: %v", err)
+	}
+
+	return nil
 }
 
 func getCommitStatus(commits struct {
@@ -801,6 +883,12 @@ func convertNodeToPR(node struct {
 // Add fetchPullRequestsGraphQL function
 func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limiter *rate.Limiter, config Config, pluginRepos map[string]PluginInfo) ([]PullRequestData, error) {
 	var allPRs []PullRequestData
+	// mutex protects concurrent access to shared data structures:
+	// - allPRs: The slice containing all collected PRs that match our criteria
+	// - allFoundPRs: The global slice containing all PRs found during collection
+	// This mutex is necessary because multiple goroutines may be processing PRs concurrently
+	// when handling paginated GraphQL responses, and we need to ensure thread-safe
+	// appending to these slices to prevent race conditions and data corruption.
 	var mutex sync.Mutex
 	var lastError error
 
@@ -836,7 +924,10 @@ func fetchPullRequestsGraphQL(ctx context.Context, client *GraphQLClient, limite
 			}
 
 			var response GraphQLSearchResponse
-			err := client.ExecuteGraphQL(ctx, searchQuery, variables, &response)
+			err := client.ExecuteGraphQL(ctx, &GraphQLRequest{
+				Query:     searchQuery,
+				Variables: variables,
+			}, &response)
 			if err != nil {
 				log.Printf("Warning: GraphQL query error: %v", err)
 				lastError = err
