@@ -415,17 +415,15 @@ func fetchJenkinsPluginInfo(updateCenterURL string) (map[string]PluginInfo, erro
 	return pluginRepos, nil
 }
 
-// Add isRetryableError function to check if an error should be retried
-func isRetryableError(err error) bool {
-	if err == nil {
-		return false
+// Add exponential backoff function
+func getBackoffDuration(attempt int) time.Duration {
+	// Start with 5 seconds, double each time, max 5 minutes
+	duration := time.Duration(5*(1<<attempt)) * time.Second
+	maxDuration := 5 * time.Minute
+	if duration > maxDuration {
+		return maxDuration
 	}
-	errStr := err.Error()
-	return strings.Contains(errStr, "502") || // Bad Gateway
-		strings.Contains(errStr, "503") || // Service Unavailable
-		strings.Contains(errStr, "504") || // Gateway Timeout
-		strings.Contains(errStr, "Something went wrong") || // GitHub's generic error
-		strings.Contains(errStr, "rate limit") // Rate limit errors
+	return duration
 }
 
 // Modify ExecuteGraphQL to handle retries internally
@@ -564,17 +562,6 @@ func getCommitStatus(commits struct {
 	}
 
 	return commits.Nodes[0].Commit.StatusCheckRollup.State
-}
-
-// Add exponential backoff function
-func getBackoffDuration(attempt int) time.Duration {
-	// Start with 5 seconds, double each time, max 5 minutes
-	duration := time.Duration(5*(1<<attempt)) * time.Second
-	maxDuration := 5 * time.Minute
-	if duration > maxDuration {
-		return maxDuration
-	}
-	return duration
 }
 
 // Add function to save partial data
