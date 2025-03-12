@@ -28,6 +28,13 @@ echo "Date range: $START_DATE to $END_DATE"
 
 # Set file names
 BASE_NAME="prs_${YEAR}_${MONTH}"
+
+# Ensure required directories exist
+mkdir -p data/monthly data/consolidated data/archive || {
+    echo "Error: Failed to create required directories" >&2
+    exit 1
+}
+
 RAW_FILE="data/monthly/${BASE_NAME}.json"
 FILTERED_FILE="data/monthly/filtered_${BASE_NAME}.json"
 GROUPED_FILE="data/monthly/grouped_${BASE_NAME}.json"
