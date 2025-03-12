@@ -80,10 +80,15 @@ jobs:
 
       - name: Create Pull Request with updated data
         if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
-          # Configure git
+          # Configure git with token-based authentication
           git config user.name "GitHub Actions Bot" || { echo "Failed to configure git username"; exit 1; }
           git config user.email "actions@github.com" || { echo "Failed to configure git email"; exit 1; }
+          
+          # Set up token-based authentication for pushing
+          git config --global url."https://${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/" || { echo "Failed to configure git authentication"; exit 1; }
           
           # Create a new branch with timestamp and random component for uniqueness
           BRANCH_NAME="auto-update-pr-data-$(date +%Y%m%d-%H%M%S)-$RANDOM"
