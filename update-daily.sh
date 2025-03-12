@@ -48,9 +48,8 @@ chmod +x process_prs.sh
 
 # Call the separate script to process PRs
 echo "Calling PR processing script..."
-./process_prs.sh "$PR_LIST_FILE" "$TEMP_FILE"
-if [ $? -ne 0 ]; then
-    echo "Error: PR processing script failed"
+if ! ./process_prs.sh "$PR_LIST_FILE" "$TEMP_FILE"; then
+    echo "Error: PR processing script failed" >&2
     exit 1
 fi
 
