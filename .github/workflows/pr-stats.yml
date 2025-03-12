@@ -41,7 +41,7 @@ jobs:
 
       - name: Configure GitHub CLI
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | gh auth login --with-token
+          echo "${{ secrets.PAT_TOKEN }}" | gh auth login --with-token
 
       - name: Set up Google credentials
         id: create-json
