@@ -155,7 +155,7 @@ mv "data/consolidated/open_prs.json.tmp" "data/consolidated/open_prs.json"
 
 # Update failing_prs.json
 echo "Updating failing_prs.json..."
-if ! jq '[.[] | select(.state == "OPEN" and .checkStatus == "FAILURE")]' "data/consolidated/all_prs.json" > "data/consolidated/failing_prs.json.tmp" && \
+if ! jq '[.[] | select(.state == "OPEN" and .checkStatus == "ERROR")]' "data/consolidated/all_prs.json" > "data/consolidated/failing_prs.json.tmp" && \
    jq -e '. | length >= 0' "data/consolidated/failing_prs.json.tmp" > /dev/null; then
     echo "Error: Failed to update failing_prs.json. Restoring from backup."
     latest_backup=$(ls -t data/consolidated/failing_prs.json.*.bak | head -1)
