@@ -772,46 +772,46 @@ func buildSearchQuery(startDate, endDate string) string {
 const searchQuery = `
 query SearchPullRequests($queryString: String!, $cursor: String) {
 	search(query: $queryString, type: ISSUE, first: 100, after: $cursor) {
-		pageInfo {
-			hasNextPage
-			endCursor
-		}
-		nodes {
-			... on PullRequest {
-				number
-				title
-				state
-				createdAt
-				updatedAt
-				url
-				repository {
-					name
-					owner {
-						login
-					}
-				}
-				author {
-					login
-				}
-				bodyText
-				labels(first: 100) {
-					nodes {
-						name
-					}
-				}
-				commits(last: 1) {
-					nodes {
-						commit {
-							statusCheckRollup {
-								state
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-}`
+                pageInfo {
+                    hasNextPage
+                    endCursor
+                }
+                nodes {
+                    ... on PullRequest {
+                        number
+                        title
+                        state
+                        createdAt
+                        updatedAt
+                        url
+                        repository {
+                            name
+                            owner {
+                                login
+                            }
+                        }
+                        author {
+                            login
+                        }
+                        bodyText
+                        labels(first: 100) {
+                            nodes {
+                                name
+                            }
+                        }
+                        commits(last: 1) {
+                            nodes {
+                                commit {
+                                    statusCheckRollup {
+                                        state
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }`
 
 func convertNodeToPR(node struct {
 	Number     int       `json:"number"`
