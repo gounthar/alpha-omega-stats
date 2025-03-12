@@ -21,7 +21,7 @@ jq -r '.[] | select(.state == "OPEN") | "\(.repository) \(.number)"' "data/conso
 while read -r repo number; do
     echo "Checking $repo PR #$number..."
     # Use GitHub CLI to get current PR status
-    PR_INFO=$(gh pr view "$number" --repo "jenkinsci/$repo" --json state,statusCheckRollup,title,url)
+    PR_INFO=$(gh pr view "$number" --repo "$repo" --json state,statusCheckRollup,title,url)
     if [ $? -eq 0 ]; then
         echo "$PR_INFO" >> "$TEMP_FILE"
     else
