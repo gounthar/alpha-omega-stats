@@ -118,7 +118,7 @@ update_json_file() {
             )
         )
     ' "$source" "$temp" > "$temp_output" 2>/dev/null; then
-        echo "Error: Failed to update $target"
+        echo "Error: Failed to update $target - jq merge operation failed" >&2
         return 1
     fi
     
