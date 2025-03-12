@@ -26,14 +26,30 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
    - Usage: `./collect-monthly.sh "2024-03" true`
    - Logs progress and errors to stdout
 
-3. `group-prs.sh`
+3. `count_prs.sh`
+   - Counts pull requests for specified repositories
+   - Takes a text file containing repository names and a year
+   - Generates repository-specific PR statistics
+   - Usage: `./count_prs.sh repos.txt 2024`
+   - Outputs counts to stdout and generates summary report
+
+4. `compute-stats.sh`
+   - Generates detailed PR statistics for specific users
+   - Analyzes PR patterns and contributions
+   - Parameters:
+     - List of GitHub usernames (comma-separated)
+     - Date range (start and end dates)
+   - Usage: `./compute-stats.sh user1,user2 YYYY-MM-DD YYYY-MM-DD`
+   - Outputs detailed statistics report
+
+5. `group-prs.sh`
    - Processes and groups PR data by title and status
    - Called by `collect-monthly.sh`
    - Requires `plugins.json` file for plugin information
    - Usage: `./group-prs.sh "input_file.json" "plugins.json"`
    - Logs grouping statistics to stdout
 
-4. `retry-collection.sh`
+6. `retry-collection.sh`
    - Bulk data collection script with retry mechanism
    - Collects data from July 2024 onwards
    - Implements exponential backoff for failed attempts
@@ -43,7 +59,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 
 ### Supporting Scripts
 
-5. `upload_to_sheets.py`
+7. `upload_to_sheets.py`
    - Python script for uploading data to Google Sheets
    - Requires Google Sheets API credentials
    - Called by other scripts when `UPDATE_SHEETS` is true
@@ -172,33 +188,33 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 Here are some common usage examples:
 
 ```bash
-# Count PRs for repositories listed in repos.txt for the year 2024
-./count_prs.sh repos.txt 2024
+# Collect PR data for March 2024 and update Google Sheets
+./collect-monthly.sh "2024-03" true
 
-# Compute statistics for specified users between dates
-./compute-stats.sh gounthar,jonesbusy 2024-12-01 2025-01-15
+# Process and group PRs from a JSON file
+./group-prs.sh "data/monthly/prs_2024_03.json" "plugins.json"
 
-# Group PRs by plugin using the plugins.json configuration
-./group-prs.sh prs_gounthar_and_others_2024-12-01_to_2025-01-15.json plugins.json
+# Collect historical data with automatic retries
+./retry-collection.sh
 ```
 
 ### Command Explanations
 
-#### Count PRs
-The `count_prs.sh` script counts pull requests for a list of repositories:
-- First argument: Path to a text file containing repository names
-- Second argument: Year to analyze
-
-#### Compute Statistics
-The `compute-stats.sh` script generates detailed statistics for specific users:
-- First argument: Comma-separated list of GitHub usernames
-- Second argument: Start date in YYYY-MM-DD format
-- Third argument: End date in YYYY-MM-DD format
+#### Monthly Collection
+The `collect-monthly.sh` script collects PR data for a specific month:
+- First argument: Month in YYYY-MM format (optional, defaults to last month)
+- Second argument: Whether to update Google Sheets (optional, defaults to false)
 
 #### Group PRs
 The `group-prs.sh` script organizes pull requests by plugin:
 - First argument: JSON file containing PR data
 - Second argument: Plugin configuration file
+
+#### Retry Collection
+The `retry-collection.sh` script performs bulk data collection with retry mechanism:
+- No arguments required
+- Collects all data from July 2024 onwards
+- Implements automatic retries with exponential backoff
 
 ## Sequence Diagram(s)
 
