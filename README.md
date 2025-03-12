@@ -98,6 +98,25 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
   - Logs available in GitHub Actions run history
   - Expected duration: 5–10 minutes
 
+### Required Secrets and Permissions
+
+The workflows require proper authentication to access GitHub's API. Set up the following:
+
+1. **GitHub Token**:
+   - Go to repository Settings → Secrets and variables → Actions
+   - Add a new repository secret named `GITHUB_TOKEN`
+   - Use a Personal Access Token (PAT) with the following permissions:
+     - `repo` (Full repository access)
+     - `read:org` (Read organization data)
+     - `read:user` (Read user data)
+   - The token should have sufficient scope to access Jenkins organization repositories
+
+2. **Workflow Permissions**:
+   - Go to repository Settings → Actions → General
+   - Under "Workflow permissions", select:
+     - "Read and write permissions"
+     - Check "Allow GitHub Actions to create and approve pull requests"
+
 ### PR Collector Test (`pr-collector-test.yml`)
 - Runs every Tuesday at 07:18 UTC
 - Tests the PR collector functionality
@@ -331,4 +350,5 @@ sequenceDiagram
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
 
