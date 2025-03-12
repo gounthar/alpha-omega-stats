@@ -104,7 +104,7 @@ The workflows require proper authentication to access GitHub's API. Set up the f
 
 1. **GitHub Token**:
    - Go to repository Settings → Secrets and variables → Actions
-   - Add a new repository secret named `GITHUB_TOKEN`
+   - Add a new repository secret named `GH_TOKEN` or `PAT_TOKEN`
    - Use a Personal Access Token (PAT) with the following permissions:
      - `repo` (Full repository access)
      - `read:org` (Read organization data)
