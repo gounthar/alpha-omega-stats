@@ -47,7 +47,7 @@ while [ $i -le $PR_COUNT ]; do
     
     if [ $gh_status -eq 0 ]; then
         # Validate JSON structure before appending
-        if echo "$PR_INFO" | jq -e '. | has("state") and has("url")' > /dev/null; then
+        if echo "$PR_INFO" | jq -e '.state != null and .url != null and .title != null' > /dev/null; then
             echo "$PR_INFO" >> "$OUTPUT_FILE"
             echo "  ✓ Successfully updated PR info"
         else
