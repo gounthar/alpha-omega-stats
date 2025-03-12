@@ -524,7 +524,7 @@ func (c *GraphQLClient) executeGraphQLRequest(ctx context.Context, req *GraphQLR
 		for _, gqlErr := range graphqlResp.Errors {
 			if isRateLimitError(fmt.Errorf(gqlErr.Message)) {
 				return &RetryableError{
-					Err:       fmt.Errorf("graphql rate limit error: %s", gqlErr.Message),
+					Err:       fmt.Errorf("graphql rate limit error: %q", gqlErr.Message),
 					ShouldLog: true,
 				}
 			}
