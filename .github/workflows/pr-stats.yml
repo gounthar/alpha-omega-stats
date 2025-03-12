@@ -85,8 +85,8 @@ jobs:
           git config user.name "GitHub Actions Bot" || { echo "Failed to configure git username"; exit 1; }
           git config user.email "actions@github.com" || { echo "Failed to configure git email"; exit 1; }
           
-          # Create a new branch with timestamp
-          BRANCH_NAME="auto-update-pr-data-$(date +%Y%m%d-%H%M%S)"
+          # Create a new branch with timestamp and random component for uniqueness
+          BRANCH_NAME="auto-update-pr-data-$(date +%Y%m%d-%H%M%S)-$RANDOM"
           git checkout -b $BRANCH_NAME || { echo "Failed to create branch $BRANCH_NAME"; exit 1; }
           
           # Add the updated JSON files
