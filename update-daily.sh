@@ -164,9 +164,41 @@ if ! jq '[.[] | select(.state == "OPEN" and .checkStatus == "ERROR")]' "data/con
 fi
 mv "data/consolidated/failing_prs.json.tmp" "data/consolidated/failing_prs.json"
 
-# Update Google Sheets with the latest data
-echo "Updating Google Sheets..."
-python3 upload_to_sheets.py "data/consolidated/all_prs.json" false
+# Function to check if files have changed
+check_files_changed() {
+    local file="$1"
+    local backup_file="$2"
+    
+    # If backup doesn't exist, consider it as changed
+    if [ ! -f "$backup_file" ]; then
+        return 0
+    fi
+    
+    # Compare current file with backup
+    if ! cmp -s "$file" "$backup_file"; then
+        return 0
+    fi
+    
+    return 1
+}
+
+# Check if any consolidated files have changed
+files_changed=false
+for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
+    backup_file="data/consolidated/$file.$(date +%Y%m%d_%H%M%S).bak"
+    if check_files_changed "data/consolidated/$file" "$backup_file"; then
+        files_changed=true
+        break
+    fi
+done
+
+# Update Google Sheets only if files have changed
+if [ "$files_changed" = true ]; then
+    echo "Changes detected in consolidated files. Updating Google Sheets..."
+    python3 upload_to_sheets.py "data/consolidated/all_prs.json" false
+else
+    echo "No changes detected in consolidated files. Skipping Google Sheets update."
+fi
 
 echo "Daily update completed successfully!"
 echo "Updated files:"
