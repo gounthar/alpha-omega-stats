@@ -186,7 +186,7 @@ check_files_changed() {
 files_changed=false
 for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
     backup_file="data/consolidated/$file.$(date +%Y%m%d_%H%M%S).bak"
-    if check_files_changed "data/consolidated/$file" "$backup_file"; then
+    if ! check_files_changed "data/consolidated/$file" "$backup_file"; then
         files_changed=true
         break
     fi
