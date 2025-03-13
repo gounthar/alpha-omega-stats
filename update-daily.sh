@@ -185,7 +185,8 @@ check_files_changed() {
 # Check if any consolidated files have changed
 files_changed=false
 for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
-    backup_file="data/consolidated/$file.$(date +%Y%m%d_%H%M%S).bak"
+    # Use the most recent backup file for comparison
+    backup_file=$(ls -t data/consolidated/$file.*.bak | head -1)
     if ! check_files_changed "data/consolidated/$file" "$backup_file"; then
         files_changed=true
         break
