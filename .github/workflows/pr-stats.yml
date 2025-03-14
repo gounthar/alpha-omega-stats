@@ -106,7 +106,7 @@ jobs:
           # Commit the changes
           git commit -m "Update PR data $(date +%Y-%m-%d)" || { echo "Failed to commit changes"; exit 1; }
           
-          # Push the branch with explicit authentication
+          # Push the branch with explicit authentication and set the upstream branch for future pushes
           git push -u origin $BRANCH_NAME || { echo "Failed to push branch $BRANCH_NAME"; exit 1; }
           
           # Create a PR using the GitHub CLI (which is already authenticated)
