@@ -278,7 +278,7 @@ def process_consolidated_data(consolidated_file):
             "status": pr["checkStatus"]
         }
         for pr in valid_prs
-        if pr["state"] == "OPEN" and pr["checkStatus"] == "FAILURE"
+        if pr["state"] == "OPEN" and pr["checkStatus"] in ["ERROR", "FAILURE"]
     ]
     
     return grouped_prs, failing_prs, errors
