@@ -87,8 +87,15 @@ jobs:
           git config user.name "GitHub Actions Bot" || { echo "Failed to configure git username"; exit 1; }
           git config user.email "actions@github.com" || { echo "Failed to configure git email"; exit 1; }
           
+          # Debug: Print repository and token info (without exposing the token)
+          echo "Repository: ${GITHUB_REPOSITORY}"
+          echo "Token length: ${#GITHUB_TOKEN}"
+          
           # Configure git to use the PAT token for all GitHub operations
-          git remote set-url origin "https://${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" || { echo "Failed to configure git remote URL"; exit 1; }
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" || { echo "Failed to configure git remote URL"; exit 1; }
+          
+          # Debug: Verify remote URL (without exposing the token)
+          git remote -v | sed 's/https:\/\/[^@]*@/https:\/\/***@/'
           
           # Create a new branch with timestamp and random component for uniqueness
           BRANCH_NAME="auto-update-pr-data-$(date +%Y%m%d-%H%M%S)-$RANDOM"
