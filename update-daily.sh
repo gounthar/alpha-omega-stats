@@ -204,6 +204,11 @@ fi
 # Run JUnit 5 migration PR analysis
 echo "Running JUnit 5 migration PR analysis..."
 ./junit5-migration-prs.sh
+if [ $? -eq 0 ]; then
+    echo " JUnit 5 migration PR analysis completed successfully"
+else
+    echo " JUnit 5 migration PR analysis failed"
+fi
 
 # Clean up temporary files
 trap cleanup EXIT INT TERM
