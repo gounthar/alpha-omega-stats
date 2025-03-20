@@ -46,12 +46,13 @@ jobs:
           gh auth login --with-token <<< "$GH_TOKEN"
 
       - name: Set up Google credentials
-        id: create-json
+        id: google-credentials
         env:
-          GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          GOOGLE_CREDS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
           # Write the service account json file
           echo "$GOOGLE_CREDS" > google-credentials.json
+          echo "::set-output name=credentials_file::google-credentials.json"
         shell: bash
 
       - name: Monthly Collection
