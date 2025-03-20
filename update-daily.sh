@@ -211,11 +211,24 @@ fi
 
 # Run JUnit 5 migration PR analysis (run this regardless of other errors)
 echo "Running JUnit 5 migration PR analysis..."
-./junit5-migration-prs.sh
-if [ $? -eq 0 ]; then
-    echo "✓ JUnit 5 migration PR analysis completed successfully"
+if [ -f "./find-junit5-prs.go.sh" ] && command -v go &> /dev/null; then
+    # Use Go-based finder if Go is available
+    chmod +x ./find-junit5-prs.go.sh
+    ./find-junit5-prs.go.sh
+    if [ $? -eq 0 ]; then
+        echo "✓ JUnit 5 migration PR analysis (Go) completed successfully"
+    else
+        echo "✗ JUnit 5 migration PR analysis (Go) failed, falling back to shell script"
+        ./junit5-migration-prs.sh
+    fi
 else
-    echo "✗ JUnit 5 migration PR analysis failed"
+    # Fall back to shell script if Go is not available
+    ./junit5-migration-prs.sh
+    if [ $? -eq 0 ]; then
+        echo "✓ JUnit 5 migration PR analysis completed successfully"
+    else
+        echo "✗ JUnit 5 migration PR analysis failed"
+    fi
 fi
 
 # Clean up temporary files
