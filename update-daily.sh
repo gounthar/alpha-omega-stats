@@ -201,7 +201,14 @@ else
     echo "No changes detected in consolidated files. Skipping Google Sheets update."
 fi
 
-echo "Daily update completed successfully!"
+# Run JUnit 5 migration PR analysis
+echo "Running JUnit 5 migration PR analysis..."
+./junit5-migration-prs.sh
+
+# Clean up temporary files
+trap cleanup EXIT INT TERM
+cleanup
+echo "Daily PR status update completed successfully!"
 echo "Updated files:"
 echo "  - data/consolidated/all_prs.json"
 echo "  - data/consolidated/open_prs.json"
@@ -209,6 +216,3 @@ echo "  - data/consolidated/failing_prs.json"
 echo "Backups created:"
 echo "  - data/consolidated/*.bak"
 echo "Google Sheets dashboard has been updated."
-
-# Now set the trap for cleanup only at the very end
-trap cleanup EXIT INT TERM
