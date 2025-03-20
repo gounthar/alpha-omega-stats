@@ -134,12 +134,14 @@ update_json_file() {
 # Update the consolidated files with new status information
 echo "Updating consolidated files with new status information..."
 
+update_failed=false
+
 if ! update_json_file "data/consolidated/all_prs.json" "$TEMP_VALID_JSON" "data/consolidated/all_prs.json"; then
     # Restore from most recent backup
     latest_backup=$(ls -t data/consolidated/all_prs.json.*.bak | head -1)
     echo "Restoring all_prs.json from backup: $latest_backup"
     cp "$latest_backup" "data/consolidated/all_prs.json"
-    exit 1
+    update_failed=true
 fi
 
 # Update open_prs.json
@@ -149,9 +151,10 @@ if ! jq '[.[] | select(.state == "OPEN")]' "data/consolidated/all_prs.json" > "d
     echo "Error: Failed to update open_prs.json. Restoring from backup."
     latest_backup=$(ls -t data/consolidated/open_prs.json.*.bak | head -1)
     cp "$latest_backup" "data/consolidated/open_prs.json"
-    exit 1
+    update_failed=true
+else
+    mv "data/consolidated/open_prs.json.tmp" "data/consolidated/open_prs.json"
 fi
-mv "data/consolidated/open_prs.json.tmp" "data/consolidated/open_prs.json"
 
 # Update failing_prs.json
 echo "Updating failing_prs.json..."
@@ -160,9 +163,10 @@ if ! jq '[.[] | select(.state == "OPEN" and .checkStatus == "ERROR")]' "data/con
     echo "Error: Failed to update failing_prs.json. Restoring from backup."
     latest_backup=$(ls -t data/consolidated/failing_prs.json.*.bak | head -1)
     cp "$latest_backup" "data/consolidated/failing_prs.json"
-    exit 1
+    update_failed=true
+else
+    mv "data/consolidated/failing_prs.json.tmp" "data/consolidated/failing_prs.json"
 fi
-mv "data/consolidated/failing_prs.json.tmp" "data/consolidated/failing_prs.json"
 
 # Function to check if files have changed
 check_files_changed() {
@@ -187,27 +191,31 @@ files_changed=false
 for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
     # Use the most recent backup file for comparison
     backup_file=$(ls -t data/consolidated/$file.*.bak | head -1)
-    if ! check_files_changed "data/consolidated/$file" "$backup_file"; then
+    if check_files_changed "data/consolidated/$file" "$backup_file"; then
         files_changed=true
         break
     fi
 done
 
-# Update Google Sheets only if files have changed
-if [ "$files_changed" = true ]; then
+# Update Google Sheets only if files have changed and update didn't fail
+if [ "$files_changed" = true ] && [ "$update_failed" != true ]; then
     echo "Changes detected in consolidated files. Updating Google Sheets..."
-    python3 upload_to_sheets.py "data/consolidated/all_prs.json" false
+    python3 upload_to_sheets.py "data/consolidated/all_prs.json" false || echo "✗ Warning: Failed to update Google Sheets. Continuing with JUnit 5 migration PR analysis..."
 else
-    echo "No changes detected in consolidated files. Skipping Google Sheets update."
+    if [ "$update_failed" = true ]; then
+        echo "✗ Skipping Google Sheets update due to previous errors."
+    else
+        echo "No changes detected in consolidated files. Skipping Google Sheets update."
+    fi
 fi
 
-# Run JUnit 5 migration PR analysis
+# Run JUnit 5 migration PR analysis (run this regardless of other errors)
 echo "Running JUnit 5 migration PR analysis..."
 ./junit5-migration-prs.sh
 if [ $? -eq 0 ]; then
-    echo " JUnit 5 migration PR analysis completed successfully"
+    echo "✓ JUnit 5 migration PR analysis completed successfully"
 else
-    echo " JUnit 5 migration PR analysis failed"
+    echo "✗ JUnit 5 migration PR analysis failed"
 fi
 
 # Clean up temporary files
