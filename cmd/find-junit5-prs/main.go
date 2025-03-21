@@ -67,6 +67,7 @@ func main() {
 	outputDir := flag.String("output-dir", "data/junit5", "Directory to store output files")
 	candidateFile := flag.String("candidate-file", "junit5_candidate_prs.txt", "File to store candidate PR URLs")
 	existingFile := flag.String("existing-file", "junit5_pr_urls.txt", "File containing existing PR URLs")
+	startDate := flag.String("start-date", "2024-07-01", "Start date for PR search (YYYY-MM-DD)")
 	flag.Parse()
 
 	// Get GitHub token from environment
@@ -75,6 +76,14 @@ func main() {
 		fmt.Println("GITHUB_TOKEN environment variable is required")
 		os.Exit(1)
 	}
+
+	// Parse start date
+	startDateTime, err := time.Parse("2006-01-02", *startDate)
+	if err != nil {
+		fmt.Printf("Error parsing start date: %v\n", err)
+		os.Exit(1)
+	}
+	fmt.Printf("Searching for PRs created on or after: %s\n", startDateTime.Format("2006-01-02"))
 
 	// Create output directory if it doesn't exist
 	os.MkdirAll(*outputDir, 0755)
@@ -106,19 +115,19 @@ func main() {
 
 		// Search in title
 		titleQuery := fmt.Sprintf("org:jenkinsci is:pr in:title %s", term)
-		prs := searchPRs(client, titleQuery)
+		prs := searchPRs(client, titleQuery, startDateTime)
 		result.PRs = append(result.PRs, prs...)
 
 		// Search in body
 		bodyQuery := fmt.Sprintf("org:jenkinsci is:pr in:body %s", term)
-		prs = searchPRs(client, bodyQuery)
+		prs = searchPRs(client, bodyQuery, startDateTime)
 		result.PRs = append(result.PRs, prs...)
 	}
 
 	// Search for PRs by specific authors known for JUnit 5 migrations
 	fmt.Println("Searching for PRs by known JUnit 5 migration authors...")
 	authorQuery := "org:jenkinsci is:pr author:strangelookingnerd"
-	prs := searchPRs(client, authorQuery)
+	prs := searchPRs(client, authorQuery, startDateTime)
 	result.PRs = append(result.PRs, prs...)
 
 	// Remove duplicates
@@ -149,7 +158,7 @@ func main() {
 }
 
 // searchPRs performs a GitHub search and returns PRs matching the query
-func searchPRs(client *githubv4.Client, query string) []JUnit5PR {
+func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUnit5PR {
 	var q searchQuery
 	variables := map[string]interface{}{
 		"query": githubv4.String(query),
@@ -187,6 +196,11 @@ func searchPRs(client *githubv4.Client, query string) []JUnit5PR {
 				CreatedAt:  pr.CreatedAt.Format(time.RFC3339),
 			}
 
+			// Only include PRs created on or after the start date
+			if pr.CreatedAt.Before(startDate) {
+				continue
+			}
+
 			// Only include PRs that are likely related to JUnit 5 migration
 			if isJUnit5MigrationPR(newPR) {
 				allPRs = append(allPRs, newPR)
@@ -204,41 +218,60 @@ func searchPRs(client *githubv4.Client, query string) []JUnit5PR {
 
 // isJUnit5MigrationPR checks if a PR is likely related to JUnit 5 migration
 func isJUnit5MigrationPR(pr JUnit5PR) bool {
-	// Define patterns for JUnit 5 migration PRs
+	// Exclude dependency bumps
+	if strings.HasPrefix(pr.Title, "Bump") || strings.HasPrefix(pr.Title, "bump") {
+		return false
+	}
+
+	// Exclude PRs with specific JIRA ticket prefixes that are known not to be JUnit 5 related
+	// These are examples of tickets that were incorrectly included
+	excludePatterns := []string{
+		`(?i)JENKINS-70560`,         // Improve test coverage
+		`(?i)JENKINS-75447`,         // Fix Snippetizer rendering
+		`(?i)JENKINS-\d+.*fix`,      // General fixes
+		`(?i)fix`,                   // General fixes
+		`(?i)improve test coverage`, // Test coverage improvements not related to JUnit 5
+	}
+
+	for _, pattern := range excludePatterns {
+		matched, _ := regexp.MatchString(pattern, pr.Title)
+		if matched {
+			return false
+		}
+	}
+
+	// Define more specific patterns for JUnit 5 migration PRs
 	titlePatterns := []string{
 		`(?i)migrate tests? to junit ?5`,
-		`(?i)junit ?5`,
-		`(?i)migrate to junit`,
+		`(?i)\bjunit ?5\b`, // Word boundary to ensure "junit5" is a standalone term
+		`(?i)migrate to junit ?5`,
 		`(?i)junit.*(4|four).*(5|five)`,
-		`(?i)junit.*(migration|upgrade)`,
-		`(?i)openrewrite.*junit`,
+		`(?i)junit ?5.*(migration|upgrade)`,
+		`(?i)openrewrite.*junit ?5`,
 	}
 
 	bodyPatterns := []string{
 		`(?i)migrate (all )?tests? to junit ?5`,
-		`(?i)junit ?5`,
-		`(?i)migrate to junit`,
+		`(?i)\bjunit ?5\b`, // Word boundary to ensure "junit5" is a standalone term
+		`(?i)migrate to junit ?5`,
 		`(?i)junit.*(4|four).*(5|five)`,
-		`(?i)junit.*(migration|upgrade)`,
-		`(?i)openrewrite.*junit`,
+		`(?i)junit ?5.*(migration|upgrade)`,
+		`(?i)openrewrite.*junit ?5`,
 		`(?i)org\.junit\.jupiter`,
 		`(?i)junit-jupiter`,
 	}
 
 	labelPatterns := []string{
-		`junit5`,
-		`junit-5`,
-		`junit-migration`,
-		`openrewrite`,
-		`tests?`,
-		`test-migration`,
+		`(?i)\bjunit ?5\b`,
+		`(?i)junit-5`,
+		`(?i)junit-migration`,
 	}
 
 	authorPatterns := []string{
 		`strangelookingnerd`,
 	}
 
-	// Check title
+	// Check title with more specific matching
 	for _, pattern := range titlePatterns {
 		matched, _ := regexp.MatchString(pattern, pr.Title)
 		if matched {
@@ -246,12 +279,20 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 		}
 	}
 
-	// Check body
+	// For body matches, require stronger evidence
+	// Count how many patterns match in the body
+	bodyMatchCount := 0
 	for _, pattern := range bodyPatterns {
 		matched, _ := regexp.MatchString(pattern, pr.Body)
 		if matched {
-			return true
+			bodyMatchCount++
 		}
+	}
+
+	// Require at least 2 body pattern matches for a positive identification
+	// This helps avoid false positives from PRs that mention JUnit in passing
+	if bodyMatchCount >= 2 {
+		return true
 	}
 
 	// Check labels
@@ -264,11 +305,16 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 		}
 	}
 
-	// Check author
+	// Check author - but only if there's at least some mention of JUnit in the body
+	// This avoids including all PRs from certain authors
 	for _, pattern := range authorPatterns {
 		matched, _ := regexp.MatchString(pattern, pr.Author)
 		if matched {
-			return true
+			// Check if there's at least some mention of JUnit in the body
+			junitmatch, _ := regexp.MatchString(`(?i)junit`, pr.Body)
+			if junitmatch {
+				return true
+			}
 		}
 	}
 
