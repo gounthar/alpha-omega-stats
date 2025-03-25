@@ -6,8 +6,10 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"math"
 	"math/rand"
+	"net/http"
 	"os"
 	"regexp"
 	"strings"
@@ -173,55 +175,132 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 	initialBackoff := 2 * time.Second
 	maxBackoff := 60 * time.Second
 
+	// Log the query being executed
+	fmt.Printf("Executing GitHub GraphQL query: %s\n", query)
+
+	pageCount := 0
 	for {
 		// Add a small delay between requests to respect rate limits
 		time.Sleep(1 * time.Second)
-		
+
 		// Create a context with timeout
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 		defer cancel()
-		
+
 		var err error
 		success := false
-		
+
 		// Implement retry with exponential backoff
 		for attempt := 0; attempt < maxRetries && !success; attempt++ {
+			// Log attempt information
+			if attempt > 0 {
+				fmt.Printf("Retry attempt %d/%d for page %d\n", attempt+1, maxRetries, pageCount+1)
+			}
+
+			// Get current rate limit information before making the request
+			var rateLimit struct {
+				RateLimit struct {
+					Limit     githubv4.Int
+					Remaining githubv4.Int
+					ResetAt   githubv4.DateTime
+				}
+			}
+
+			rateLimitErr := client.Query(context.Background(), &rateLimit, nil)
+			if rateLimitErr == nil {
+				fmt.Printf("GitHub API rate limit: %d/%d remaining, resets at %s\n",
+					rateLimit.RateLimit.Remaining,
+					rateLimit.RateLimit.Limit,
+					rateLimit.RateLimit.ResetAt.Format(time.RFC3339))
+
+				// Check if we're close to hitting the rate limit
+				if rateLimit.RateLimit.Remaining < 100 {
+					resetTime := time.Until(rateLimit.RateLimit.ResetAt.Time)
+					fmt.Printf("WARNING: Rate limit is low (%d remaining). Limit resets in %s\n",
+						rateLimit.RateLimit.Remaining,
+						resetTime.Round(time.Second))
+
+					if rateLimit.RateLimit.Remaining < 10 {
+						fmt.Println("Rate limit critically low, waiting until reset...")
+						waitTime := time.Until(rateLimit.RateLimit.ResetAt.Time) + 10*time.Second
+						time.Sleep(waitTime)
+					}
+				}
+			} else {
+				fmt.Printf("Could not fetch rate limit info: %v\n", rateLimitErr)
+			}
+
+			// Execute the actual query
+			startTime := time.Now()
 			err = client.Query(ctx, &q, variables)
+			queryDuration := time.Since(startTime)
+
 			if err == nil {
 				success = true
+				fmt.Printf("Query succeeded in %s\n", queryDuration.Round(time.Millisecond))
 				break
 			}
-			
+
+			// Log detailed error information
+			fmt.Printf("GitHub API error on attempt %d/%d: %v\n", attempt+1, maxRetries, err)
+			fmt.Printf("Query duration before error: %s\n", queryDuration.Round(time.Millisecond))
+
+			// Try to parse and log more details from the error
+			var errorDetails struct {
+				Data   interface{}              `json:"data"`
+				Errors []map[string]interface{} `json:"errors"`
+			}
+
+			if strings.Contains(err.Error(), "{") {
+				errorJSON := err.Error()[strings.Index(err.Error(), "{"):]
+				if jsonErr := json.Unmarshal([]byte(errorJSON), &errorDetails); jsonErr == nil {
+					if errorDetails.Errors != nil && len(errorDetails.Errors) > 0 {
+						fmt.Println("Detailed error information:")
+						for i, errDetail := range errorDetails.Errors {
+							fmt.Printf("  Error %d:\n", i+1)
+							for k, v := range errDetail {
+								fmt.Printf("    %s: %v\n", k, v)
+							}
+						}
+					}
+				}
+			}
+
 			// Check if this is a retryable error (like 502)
-			if strings.Contains(err.Error(), "502") || 
-			   strings.Contains(err.Error(), "timeout") ||
-			   strings.Contains(err.Error(), "Something went wrong") {
-				
+			if strings.Contains(err.Error(), "502") ||
+				strings.Contains(err.Error(), "timeout") ||
+				strings.Contains(err.Error(), "Something went wrong") {
+
 				// Calculate backoff duration with exponential increase and jitter
 				backoffTime := float64(initialBackoff) * math.Pow(2, float64(attempt))
 				if backoffTime > float64(maxBackoff) {
 					backoffTime = float64(maxBackoff)
 				}
-				
+
 				// Add jitter (±20%)
 				jitter := (rand.Float64() * 0.4) - 0.2 // -20% to +20%
 				backoffTime = backoffTime * (1 + jitter)
-				
+
 				sleepDuration := time.Duration(backoffTime)
-				fmt.Printf("GitHub API error on attempt %d/%d: %v\n", attempt+1, maxRetries, err)
 				fmt.Printf("Retrying in %v...\n", sleepDuration)
 				time.Sleep(sleepDuration)
 			} else {
 				// Non-retryable error, break out
+				fmt.Println("Non-retryable error encountered, stopping retry attempts")
 				break
 			}
 		}
-		
+
 		if !success {
 			fmt.Printf("Failed after %d attempts: %v\n", maxRetries, err)
 			fmt.Println("Continuing with results collected so far...")
 			return allPRs
 		}
+
+		// Log information about the results
+		resultCount := len(q.Search.Nodes)
+		fmt.Printf("Received %d results for page %d\n", resultCount, pageCount+1)
+		pageCount++
 
 		for _, node := range q.Search.Nodes {
 			pr := node.PullRequest
@@ -256,13 +335,16 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 		}
 
 		if !q.Search.PageInfo.HasNextPage {
+			fmt.Printf("No more pages available, completed after %d pages\n", pageCount)
 			break
 		}
-		
-		fmt.Printf("Fetched page of results, found %d matching PRs so far\n", len(allPRs))
+
+		fmt.Printf("Fetched page %d of results, found %d matching PRs so far\n", pageCount, len(allPRs))
+		fmt.Printf("Moving to next page with cursor: %s\n", q.Search.PageInfo.EndCursor)
 		variables["after"] = githubv4.NewString(q.Search.PageInfo.EndCursor)
 	}
 
+	fmt.Printf("Search completed. Found %d matching PRs for query: %s\n", len(allPRs), query)
 	return allPRs
 }
 
