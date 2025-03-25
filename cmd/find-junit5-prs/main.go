@@ -6,6 +6,8 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
+	"math"
+	"math/rand"
 	"os"
 	"regexp"
 	"strings"
@@ -162,16 +164,62 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 	var q searchQuery
 	variables := map[string]interface{}{
 		"query": githubv4.String(query),
-		"first": githubv4.Int(100),
+		"first": githubv4.Int(25), // Reduced from 100 to 25 to make queries less complex
 		"after": (*githubv4.String)(nil),
 	}
 
 	var allPRs []JUnit5PR
+	maxRetries := 5
+	initialBackoff := 2 * time.Second
+	maxBackoff := 60 * time.Second
 
 	for {
-		err := client.Query(context.Background(), &q, variables)
-		if err != nil {
-			fmt.Printf("Error querying GitHub: %v\n", err)
+		// Add a small delay between requests to respect rate limits
+		time.Sleep(1 * time.Second)
+		
+		// Create a context with timeout
+		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+		defer cancel()
+		
+		var err error
+		success := false
+		
+		// Implement retry with exponential backoff
+		for attempt := 0; attempt < maxRetries && !success; attempt++ {
+			err = client.Query(ctx, &q, variables)
+			if err == nil {
+				success = true
+				break
+			}
+			
+			// Check if this is a retryable error (like 502)
+			if strings.Contains(err.Error(), "502") || 
+			   strings.Contains(err.Error(), "timeout") ||
+			   strings.Contains(err.Error(), "Something went wrong") {
+				
+				// Calculate backoff duration with exponential increase and jitter
+				backoffTime := float64(initialBackoff) * math.Pow(2, float64(attempt))
+				if backoffTime > float64(maxBackoff) {
+					backoffTime = float64(maxBackoff)
+				}
+				
+				// Add jitter (±20%)
+				jitter := (rand.Float64() * 0.4) - 0.2 // -20% to +20%
+				backoffTime = backoffTime * (1 + jitter)
+				
+				sleepDuration := time.Duration(backoffTime)
+				fmt.Printf("GitHub API error on attempt %d/%d: %v\n", attempt+1, maxRetries, err)
+				fmt.Printf("Retrying in %v...\n", sleepDuration)
+				time.Sleep(sleepDuration)
+			} else {
+				// Non-retryable error, break out
+				break
+			}
+		}
+		
+		if !success {
+			fmt.Printf("Failed after %d attempts: %v\n", maxRetries, err)
+			fmt.Println("Continuing with results collected so far...")
 			return allPRs
 		}
 
@@ -210,6 +258,8 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 		if !q.Search.PageInfo.HasNextPage {
 			break
 		}
+		
+		fmt.Printf("Fetched page of results, found %d matching PRs so far\n", len(allPRs))
 		variables["after"] = githubv4.NewString(q.Search.PageInfo.EndCursor)
 	}
 
