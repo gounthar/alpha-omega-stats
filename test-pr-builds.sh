@@ -64,6 +64,8 @@ test_pr() {
     # Verify we're on the PR branch
     echo "Current branch: $(git branch --show-current)"
 
+    local build_result=1
+
     # Try JDK versions in order
     for jdk in "${JDK_VERSIONS[@]}"; do
         switch_jdk "$jdk"
@@ -73,14 +75,25 @@ test_pr() {
         if mvn clean verify -B; then
             echo "✓ Build successful with JDK $jdk"
             echo "https://github.com/$repo/pull/$pr_number;$jdk" >> "$SUCCESS_FILE"
-            return 0
+            build_result=0
+            break  # Exit the loop once we have a successful build
         else
             echo "✗ Build failed with JDK $jdk"
         fi
     done
 
-    echo "✗ All JDK versions failed for PR #$pr_number"
-    return 1
+    # Clean up - remove the repository directory
+    cd "$WORK_DIR"
+    echo "Cleaning up - removing $repo_name directory"
+    rm -rf "$repo_name"
+
+    if [ $build_result -eq 0 ]; then
+        echo "✓ PR #$pr_number built successfully"
+        return 0
+    else
+        echo "✗ All JDK versions failed for PR #$pr_number"
+        return 1
+    fi
 }
 
 # Main processing
