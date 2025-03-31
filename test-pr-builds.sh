@@ -7,13 +7,12 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Constants
 WORK_DIR="/tmp/pr-build-tests"
-SUCCESS_FILE="$SCRIPT_DIR/data/consolidated/successful_builds.json"
+SUCCESS_FILE="$SCRIPT_DIR/data/consolidated/successful_builds.txt"
 
 # Create working directory and ensure data directory exists
 mkdir -p "$WORK_DIR"
 mkdir -p "$(dirname "$SUCCESS_FILE")"
 rm -f "$SUCCESS_FILE"
-echo "[]" > "$SUCCESS_FILE"  # Initialize with empty array
 
 # First ensure JDK versions are installed
 ./install-jdk-versions.sh
@@ -64,11 +63,7 @@ test_pr() {
         # Try to build
         if mvn clean verify -B; then
             echo "✓ Build successful with JDK $jdk"
-            # Add the entry to the JSON file
-            jq -n --arg pr "$pr_number" --arg repo "$repo" --arg jdk "$jdk" \
-                '{pr: $pr, repo: $repo, jdk: $jdk}' | \
-                jq -s '.[0] + .[1]' "$SUCCESS_FILE" - | \
-                sponge "$SUCCESS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number;$jdk" >> "$SUCCESS_FILE"
             return 0
         else
             echo "✗ Build failed with JDK $jdk"
