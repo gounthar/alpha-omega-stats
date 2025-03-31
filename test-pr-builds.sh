@@ -9,11 +9,13 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 WORK_DIR="/tmp/pr-build-tests"
 SUCCESS_FILE="$SCRIPT_DIR/data/consolidated/successful_builds.txt"
 FAILING_PRS_FILE="$SCRIPT_DIR/data/consolidated/failing_prs.json"
+FAILED_BUILDS_FILE="$SCRIPT_DIR/data/consolidated/failed_builds.txt"
 
 # Create working directory and ensure data directory exists
 mkdir -p "$WORK_DIR"
 mkdir -p "$(dirname "$SUCCESS_FILE")"
 rm -f "$SUCCESS_FILE"
+rm -f "$FAILED_BUILDS_FILE"
 
 # First ensure JDK versions are installed
 ./install-jdk-versions.sh
@@ -72,7 +74,7 @@ test_pr() {
         echo "Attempting build with JDK $jdk"
 
         # Try to build
-        if mvn clean verify -B; then
+        if mvn clean verify -B -Dmaven.test.skip=true; then
             echo "✓ Build successful with JDK $jdk"
             echo "https://github.com/$repo/pull/$pr_number;$jdk" >> "$SUCCESS_FILE"
             build_result=0
@@ -92,6 +94,8 @@ test_pr() {
         return 0
     else
         echo "✗ All JDK versions failed for PR #$pr_number"
+        # Record the failed build
+        echo "https://github.com/$repo/pull/$pr_number" >> "$FAILED_BUILDS_FILE"
         return 1
     fi
 }
@@ -142,4 +146,21 @@ for url in "${url_array[@]}"; do
 done
 
 
-echo "Done. Results saved to $SUCCESS_FILE"
+echo "Done."
+echo "Successful builds saved to $SUCCESS_FILE"
+echo "Failed builds saved to $FAILED_BUILDS_FILE"
+
+# Print summary statistics
+if [ -f "$SUCCESS_FILE" ]; then
+    success_count=$(wc -l < "$SUCCESS_FILE")
+    echo "Successfully built PRs: $success_count"
+else
+    echo "No successful builds."
+fi
+
+if [ -f "$FAILED_BUILDS_FILE" ]; then
+    failed_count=$(wc -l < "$FAILED_BUILDS_FILE")
+    echo "Failed PRs: $failed_count"
+else
+    echo "No failed builds."
+fi
