@@ -78,8 +78,10 @@ test_pr() {
 
         # Try to build without tests first
         if mvn clean verify -B -Dmaven.test.skip=true; then
+            # Extract major version (everything before the first dot)
+            major_version=$(echo "$jdk" | cut -d. -f1)
             echo "✓ Build successful with JDK $jdk (without tests)"
-            echo "https://github.com/$repo/pull/$pr_number;$jdk" >> "$SUCCESS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number;$major_version" >> "$SUCCESS_FILE"
             build_result=0
             successful_jdk="$jdk"
             break  # Exit the loop once we have a successful build
@@ -102,13 +104,16 @@ test_pr() {
 
         switch_jdk "$successful_jdk"
 
+        # Extract major version (everything before the first dot)
+        major_version=$(echo "$successful_jdk" | cut -d. -f1)
+
         # Run tests
         if mvn test -B; then
             echo "✓ Tests passed with JDK $successful_jdk"
-            echo "https://github.com/$repo/pull/$pr_number;$successful_jdk;TESTS_PASSED" >> "$TEST_RESULTS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number;$major_version;TESTS_PASSED" >> "$TEST_RESULTS_FILE"
         else
             echo "✗ Tests failed with JDK $successful_jdk"
-            echo "https://github.com/$repo/pull/$pr_number;$successful_jdk;TESTS_FAILED" >> "$TEST_RESULTS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number;$major_version;TESTS_FAILED" >> "$TEST_RESULTS_FILE"
         fi
 
         # Clean up test directory
