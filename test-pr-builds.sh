@@ -10,12 +10,14 @@ WORK_DIR="/tmp/pr-build-tests"
 SUCCESS_FILE="$SCRIPT_DIR/data/consolidated/successful_builds.txt"
 FAILING_PRS_FILE="$SCRIPT_DIR/data/consolidated/failing_prs.json"
 FAILED_BUILDS_FILE="$SCRIPT_DIR/data/consolidated/failed_builds.txt"
+TEST_RESULTS_FILE="$SCRIPT_DIR/data/consolidated/test_results.txt"
 
 # Create working directory and ensure data directory exists
 mkdir -p "$WORK_DIR"
 mkdir -p "$(dirname "$SUCCESS_FILE")"
 rm -f "$SUCCESS_FILE"
 rm -f "$FAILED_BUILDS_FILE"
+rm -f "$TEST_RESULTS_FILE"
 
 # First ensure JDK versions are installed
 ./install-jdk-versions.sh
@@ -67,22 +69,52 @@ test_pr() {
     echo "Current branch: $(git branch --show-current)"
 
     local build_result=1
+    local successful_jdk=""
 
     # Try JDK versions in order
     for jdk in "${JDK_VERSIONS[@]}"; do
         switch_jdk "$jdk"
         echo "Attempting build with JDK $jdk"
 
-        # Try to build
+        # Try to build without tests first
         if mvn clean verify -B -Dmaven.test.skip=true; then
-            echo "✓ Build successful with JDK $jdk"
+            echo "✓ Build successful with JDK $jdk (without tests)"
             echo "https://github.com/$repo/pull/$pr_number;$jdk" >> "$SUCCESS_FILE"
             build_result=0
+            successful_jdk="$jdk"
             break  # Exit the loop once we have a successful build
         else
             echo "✗ Build failed with JDK $jdk"
         fi
     done
+
+    # If build was successful, run tests
+    if [ $build_result -eq 0 ]; then
+        echo "Running tests with JDK $successful_jdk"
+
+        # Clone the repository again for testing
+        cd "$WORK_DIR"
+        rm -rf "${repo_name}_tests"
+        git clone "https://github.com/$repo.git" "${repo_name}_tests"
+        cd "${repo_name}_tests"
+        git fetch origin pull/$pr_number/head:pr-$pr_number
+        git checkout pr-$pr_number
+
+        switch_jdk "$successful_jdk"
+
+        # Run tests
+        if mvn test -B; then
+            echo "✓ Tests passed with JDK $successful_jdk"
+            echo "https://github.com/$repo/pull/$pr_number;$successful_jdk;TESTS_PASSED" >> "$TEST_RESULTS_FILE"
+        else
+            echo "✗ Tests failed with JDK $successful_jdk"
+            echo "https://github.com/$repo/pull/$pr_number;$successful_jdk;TESTS_FAILED" >> "$TEST_RESULTS_FILE"
+        fi
+
+        # Clean up test directory
+        cd "$WORK_DIR"
+        rm -rf "${repo_name}_tests"
+    fi
 
     # Clean up - remove the repository directory
     cd "$WORK_DIR"
@@ -149,6 +181,7 @@ done
 echo "Done."
 echo "Successful builds saved to $SUCCESS_FILE"
 echo "Failed builds saved to $FAILED_BUILDS_FILE"
+echo "Test results saved to $TEST_RESULTS_FILE"
 
 # Print summary statistics
 if [ -f "$SUCCESS_FILE" ]; then
@@ -163,4 +196,15 @@ if [ -f "$FAILED_BUILDS_FILE" ]; then
     echo "Failed PRs: $failed_count"
 else
     echo "No failed builds."
+fi
+
+if [ -f "$TEST_RESULTS_FILE" ]; then
+    tests_run_count=$(wc -l < "$TEST_RESULTS_FILE")
+    tests_passed_count=$(grep "TESTS_PASSED" "$TEST_RESULTS_FILE" | wc -l)
+    tests_failed_count=$(grep "TESTS_FAILED" "$TEST_RESULTS_FILE" | wc -l)
+    echo "Tests run: $tests_run_count"
+    echo "Tests passed: $tests_passed_count"
+    echo "Tests failed: $tests_failed_count"
+else
+    echo "No tests were run."
 fi
