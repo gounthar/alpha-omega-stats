@@ -20,9 +20,9 @@ rm -f "$FAILED_BUILDS_FILE"
 rm -f "$TEST_RESULTS_FILE"
 
 # Add CSV headers
-echo "PR_URL;JDK_VERSION" > "$SUCCESS_FILE"
+echo "PR_URL,JDK_VERSION" > "$SUCCESS_FILE"
 echo "PR_URL" > "$FAILED_BUILDS_FILE"
-echo "PR_URL;JDK_VERSION;TEST_RESULT" > "$TEST_RESULTS_FILE"
+echo "PR_URL,JDK_VERSION,TEST_RESULT" > "$TEST_RESULTS_FILE"
 
 # First ensure JDK versions are installed
 ./install-jdk-versions.sh
@@ -86,7 +86,7 @@ test_pr() {
             # Extract major version (everything before the first dot)
             major_version=$(echo "$jdk" | cut -d. -f1)
             echo "✓ Build successful with JDK $jdk (without tests)"
-            echo "https://github.com/$repo/pull/$pr_number;$major_version" >> "$SUCCESS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number,$major_version" >> "$SUCCESS_FILE"
             build_result=0
             successful_jdk="$jdk"
             break  # Exit the loop once we have a successful build
@@ -115,10 +115,10 @@ test_pr() {
         # Run tests
         if mvn test -B; then
             echo "✓ Tests passed with JDK $successful_jdk"
-            echo "https://github.com/$repo/pull/$pr_number;$major_version;TESTS_PASSED" >> "$TEST_RESULTS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number,$major_version,TESTS_PASSED" >> "$TEST_RESULTS_FILE"
         else
             echo "✗ Tests failed with JDK $successful_jdk"
-            echo "https://github.com/$repo/pull/$pr_number;$major_version;TESTS_FAILED" >> "$TEST_RESULTS_FILE"
+            echo "https://github.com/$repo/pull/$pr_number,$major_version,TESTS_FAILED" >> "$TEST_RESULTS_FILE"
         fi
 
         # Clean up test directory
@@ -195,21 +195,24 @@ echo "Test results saved to $TEST_RESULTS_FILE"
 
 # Print summary statistics
 if [ -f "$SUCCESS_FILE" ]; then
-    success_count=$(wc -l < "$SUCCESS_FILE")
+    # Subtract 1 to account for the header line
+    success_count=$(( $(wc -l < "$SUCCESS_FILE") - 1 ))
     echo "Successfully built PRs: $success_count"
 else
     echo "No successful builds."
 fi
 
 if [ -f "$FAILED_BUILDS_FILE" ]; then
-    failed_count=$(wc -l < "$FAILED_BUILDS_FILE")
+    # Subtract 1 to account for the header line
+    failed_count=$(( $(wc -l < "$FAILED_BUILDS_FILE") - 1 ))
     echo "Failed PRs: $failed_count"
 else
     echo "No failed builds."
 fi
 
 if [ -f "$TEST_RESULTS_FILE" ]; then
-    tests_run_count=$(wc -l < "$TEST_RESULTS_FILE")
+    # Subtract 1 to account for the header line
+    tests_run_count=$(( $(wc -l < "$TEST_RESULTS_FILE") - 1 ))
     tests_passed_count=$(grep "TESTS_PASSED" "$TEST_RESULTS_FILE" | wc -l)
     tests_failed_count=$(grep "TESTS_FAILED" "$TEST_RESULTS_FILE" | wc -l)
     echo "Tests run: $tests_run_count"
