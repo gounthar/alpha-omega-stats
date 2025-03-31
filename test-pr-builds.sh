@@ -53,8 +53,25 @@ test_pr() {
     echo "Testing PR #$pr_number in $repo"
     cd "$WORK_DIR"
     rm -rf "$repo_name"
-    git clone "https://github.com/$repo.git"
-    cd "$repo_name"
+
+    # Use GitHub CLI to checkout the PR
+    echo "Checking out PR #$pr_number using GitHub CLI"
+    gh pr checkout $pr_number --repo "https://github.com/$repo"
+
+    # If gh command failed, try the traditional way
+    if [ $? -ne 0 ]; then
+        echo "GitHub CLI checkout failed, trying traditional clone method"
+        git clone "https://github.com/$repo.git"
+        cd "$repo_name"
+        git fetch origin pull/$pr_number/head:pr-$pr_number
+        git checkout pr-$pr_number
+    else
+        # gh pr checkout creates the directory with repo_name
+        cd "$repo_name"
+    fi
+
+    # Verify we're on the PR branch
+    echo "Current branch: $(git branch --show-current)"
 
     # Try JDK versions in order
     for jdk in "${JDK_VERSIONS[@]}"; do
