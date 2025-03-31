@@ -83,19 +83,42 @@ file_content=$(cat "$FAILING_PRS_FILE")
 # Use jq to parse the JSON and extract the URLs
 pr_urls=$(echo "$file_content" | jq -r '.[].url')
 
+# Setting IFS to only recognize newlines
+IFS=$'\n'
+
+#  echo "$pr_urls"
+
+# Function to extract PR number and repository from URL
+extract_pr_info() {
+    local url="$1"
+    local pr_number repo
+    pr_number=$(echo "$url" | sed -E 's#.*/pull/([0-9]+).*#\1#')
+    repo=$(echo "$url" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\1#')
+    echo "$pr_number $repo"
+}
+
 # Loop through the extracted URLs
-while IFS= read -r url; do
+# Using an array to avoid subshell issues with pipelines
+readarray -t url_array <<< "$pr_urls"
+for url in "${url_array[@]}"; do
+    if [ -z "$url" ]; then
+        continue  # Skip empty lines
+    fi
+
     echo "Processing PR: $url"
-    pr_number=$(echo "$url" | sed 's#.*/pull/##')
-    repo=$(echo "$url" | sed 's#https://github.com/##' | cut -d'/' -f1-2)
+
+    # Extract PR number and repository directly for better reliability
+    pr_number=$(echo "$url" | sed -E 's#.*/pull/([0-9]+).*#\1#')
+    repo=$(echo "$url" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\1#')
 
     echo "PR Number: $pr_number, Repository: $repo"
 
-    if [ "$pr_number" != "null" ] && [ "$repo" != "null" ]; then
-        test_pr "$pr_number" "$repo"
+    if [ -n "$pr_number" ] && [ -n "$repo" ]; then
+        test_pr "$pr_number" "$repo" || true  # Continue even if test_pr fails
     else
         echo "Invalid PR data: $url"
     fi
-done <<< "$pr_urls"
+done
+
 
 echo "Done. Results saved to $SUCCESS_FILE"
