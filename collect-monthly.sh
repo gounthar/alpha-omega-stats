@@ -118,19 +118,36 @@ jq -r 'group_by(.user) | map({user: .[0].user, count: length}) | sort_by(-.count
 
 # Group PRs by plugin
 echo "Grouping PRs by plugin..."
-jq -r 'group_by(.pluginName) | map({plugin: .[0].pluginName, count: length}) | sort_by(-.count)' \
-    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_plugin.json" || {
+jq -r '
+  .[] | 
+  select(type == "object" and has("pluginName")) | 
+  {plugin: .pluginName, count: 1}
+' data/consolidated/all_prs.json |
+jq -s 'group_by(.plugin) | map({plugin: .[0].plugin, count: length}) | sort_by(-.count)' \
+    > data/consolidated/prs_by_plugin.json || {
     echo "Error: Failed to group PRs by plugin" >&2
     exit 1
 }
 
-# Group PRs by label
-echo "Grouping PRs by label..."
-jq -r '[.[].labels[]] | group_by(.) | map({label: .[0], count: length}) | sort_by(-.count)' \
-    "data/consolidated/all_prs.json" > "data/consolidated/prs_by_label.json" || {
-    echo "Error: Failed to group PRs by label" >&2
-    exit 1
-}
+# For grouping PRs by label
+jq -c '
+  .[] | 
+  select(.labels != null) |  # Only process PRs with non-null labels
+  .labels | 
+  .[] | 
+  {
+    label: .,
+    pr: {
+      title: .title,
+      url: .url,
+      repository: .repository
+    }
+  }
+' data/consolidated/all_prs.json |
+sort -k1,1 |
+uniq -f1 |
+jq -s 'group_by(.label) | map({label: .[0].label, prs: map(.pr)})' > data/consolidated/prs_by_label.json
+
 
 # Group PRs by check status
 echo "Grouping PRs by check status..."
