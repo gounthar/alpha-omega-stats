@@ -7,10 +7,10 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 # Constants
 WORK_DIR="/tmp/pr-build-tests"
-SUCCESS_FILE="$SCRIPT_DIR/data/consolidated/successful_builds.txt"
+SUCCESS_FILE="$SCRIPT_DIR/data/consolidated/successful_builds.csv"
 FAILING_PRS_FILE="$SCRIPT_DIR/data/consolidated/failing_prs.json"
-FAILED_BUILDS_FILE="$SCRIPT_DIR/data/consolidated/failed_builds.txt"
-TEST_RESULTS_FILE="$SCRIPT_DIR/data/consolidated/test_results.txt"
+FAILED_BUILDS_FILE="$SCRIPT_DIR/data/consolidated/failed_builds.csv"
+TEST_RESULTS_FILE="$SCRIPT_DIR/data/consolidated/test_results.csv"
 
 # Create working directory and ensure data directory exists
 mkdir -p "$WORK_DIR"
@@ -18,6 +18,11 @@ mkdir -p "$(dirname "$SUCCESS_FILE")"
 rm -f "$SUCCESS_FILE"
 rm -f "$FAILED_BUILDS_FILE"
 rm -f "$TEST_RESULTS_FILE"
+
+# Add CSV headers
+echo "PR_URL;JDK_VERSION" > "$SUCCESS_FILE"
+echo "PR_URL" > "$FAILED_BUILDS_FILE"
+echo "PR_URL;JDK_VERSION;TEST_RESULT" > "$TEST_RESULTS_FILE"
 
 # First ensure JDK versions are installed
 ./install-jdk-versions.sh
