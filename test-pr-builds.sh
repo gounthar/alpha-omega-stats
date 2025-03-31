@@ -77,18 +77,25 @@ test_pr() {
 
 # Main processing
 echo "Reading failing PRs..."
-while IFS= read -r line; do
-    echo "Processing line: $line"
-    pr_number=$(echo "$line" | jq -r '.url' | sed 's#.*/pull/##')
-    repo=$(echo "$line" | jq -r '.repository')
+# Read the entire file content
+file_content=$(cat "$FAILING_PRS_FILE")
+
+# Use jq to parse the JSON and extract the URLs
+pr_urls=$(echo "$file_content" | jq -r '.[].url')
+
+# Loop through the extracted URLs
+while IFS= read -r url; do
+    echo "Processing PR: $url"
+    pr_number=$(echo "$url" | sed 's#.*/pull/##')
+    repo=$(echo "$url" | sed 's#https://github.com/##' | cut -d'/' -f1-2)
 
     echo "PR Number: $pr_number, Repository: $repo"
 
     if [ "$pr_number" != "null" ] && [ "$repo" != "null" ]; then
         test_pr "$pr_number" "$repo"
     else
-        echo "Invalid PR data: $line"
+        echo "Invalid PR data: $url"
     fi
-done < <(jq -c '.[]' "$FAILING_PRS_FILE")
+done <<< "$pr_urls"
 
 echo "Done. Results saved to $SUCCESS_FILE"
