@@ -392,6 +392,7 @@ merged_prs = 0
 plugin_stats = {}
 earliest_date = None
 latest_date = None
+has_successful_local_builds = False  # Flag to track if we have successful local builds
 
 for pr in grouped_prs:
     title = pr["title"]
@@ -431,11 +432,40 @@ summary_data = [
     ["Total PRs", total_prs, "", "", "", ""],
     ["Open PRs", open_prs, f"{open_percentage:.2f}%", "", "", ""],
     ["Closed PRs", closed_prs, f"{closed_percentage:.2f}%", "", "", ""],
-    ["Merged PRs", merged_prs, f"{merged_percentage:.2f}%", "", "", ""],
+    ["Merged PRs", merged_prs, f"{merged_percentage:.2f}%", "", "", ""]
+]
+
+# Add successful local builds section if we have any
+if has_successful_local_builds:
+    logging.info("Attempting to add Local Build Success section to summary data")
+    successful_builds_sheet_id = None
+    try:
+        successful_builds_sheet = spreadsheet.worksheet("Local Build Success")
+        successful_builds_sheet_id = successful_builds_sheet.id
+        logging.info(f"Found Local Build Success sheet with ID: {successful_builds_sheet_id}")
+    except gspread.exceptions.WorksheetNotFound:
+        logging.warning("Local Build Success sheet not found")
+        pass
+
+    if successful_builds_sheet_id:
+        logging.info("Adding Local Build Success section to summary data")
+        summary_data.extend([
+            ["", "", "", "", "", ""],
+            ["Local Build Success", "", "", "", "", ""],
+            ["PRs that build locally but fail on Jenkins", successful_builds_count, "", "", "", ""],
+            ["View Details", f'=HYPERLINK("#gid={successful_builds_sheet_id}"; "Go to Local Build Success Sheet")', "", "", "", ""]
+        ])
+    else:
+        logging.warning("Could not add Local Build Success section because sheet ID is not available")
+else:
+    logging.info("Not adding Local Build Success section because has_successful_local_builds is False")
+
+# Add plugin-specific statistics section
+summary_data.extend([
     ["", "", "", "", "", ""],
     ["Plugin-Specific Statistics", "", "", "", "", ""],
     ["Plugin", "Total PRs", "Open PRs", "Closed PRs", "Merged PRs", "Link to Sheet"]
-]
+])
 
 # Add plugin-specific stats and links to individual sheets
 for plugin, stats in plugin_stats.items():
@@ -460,14 +490,22 @@ for plugin, stats in plugin_stats.items():
         link
     ])
 
-# Update the summary sheet
-update_sheet_with_retry(summary_sheet, summary_data)
-
 # Get the Summary sheet ID for the "Back to Summary" link
 summary_sheet_id = summary_sheet.id
 
 # Process successful builds data
 successful_builds = process_successful_builds_data(SUCCESSFUL_BUILDS_FILE)
+
+# Update the flag if we have successful builds
+if successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0:
+    has_successful_local_builds = True
+    successful_builds_count = len(successful_builds)
+    logging.info(f"Found {successful_builds_count} successful local builds")
+else:
+    logging.info(f"No successful builds found or invalid format: {successful_builds}")
+
+# Debug log for the flag
+logging.info(f"has_successful_local_builds flag is set to: {has_successful_local_builds}")
 
 # Check if successful builds file has changed since last run
 def has_successful_builds_changed():
@@ -571,25 +609,23 @@ if (successful_builds and isinstance(successful_builds, list) and len(successful
             }
         })
 
-        # Add a link to the successful builds sheet in the summary
-        summary_sheet.append_rows([
-            ["", "", "", "", "", ""],
-            [
-                "PRs that build locally",
-                len(successful_builds),
-                "",
-                "",
-                "",
-                f'=HYPERLINK("#gid={successful_builds_sheet.id}"; "View Local Build Success")'
-            ]
-        ])
-        logging.info("Added link to Local Build Success sheet in Summary")
+        # We no longer need to add a link here as we've already added it to the summary data
+        logging.info("Successfully created/updated Local Build Success sheet")
     except Exception as e:
         logging.error(f"Error creating/updating Local Build Success sheet: {str(e)}")
 elif successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0:
     logging.info(f"Found {len(successful_builds)} successful builds but skipping update because no changes detected and force update not enabled")
 else:
     logging.info("No successful builds found or successful_builds.csv file not available")
+
+# Log the summary data for debugging
+logging.info(f"Summary data has {len(summary_data)} rows")
+logging.info(f"First few rows: {summary_data[:5]}")
+if len(summary_data) > 10:
+    logging.info(f"Rows 10-15: {summary_data[10:15]}")
+
+# Update the summary sheet
+update_sheet_with_retry(summary_sheet, summary_data)
 
 # Reorder sheets to make the Summary sheet first
 sheets = spreadsheet.worksheets()
