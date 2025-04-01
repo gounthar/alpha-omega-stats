@@ -202,17 +202,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T22:34:18Z",
+        "startedAt": "2025-03-31T08:46:58Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/ansible-tower-plugin/job/PR-27/8/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/ansible-tower-plugin/job/PR-27/9/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-29T22:34:17Z",
+        "completedAt": "2025-03-31T08:46:58Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/ansible-tower-plugin/job/PR-27/8/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/ansible-tower-plugin/job/PR-27/9/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-29T22:32:33Z",
+        "startedAt": "2025-03-31T08:46:36Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -1396,189 +1396,6 @@
         "startedAt": "2025-01-26T18:07:52Z",
         "status": "COMPLETED",
         "workflowName": ""
-      }
-    ]
-  },
-  {
-    "number": 144,
-    "title": "feat(java): Require Jenkins core 2.479.1 and Java 17.",
-    "state": "OPEN",
-    "createdAt": "2025-02-19T19:24:35Z",
-    "updatedAt": "2025-02-19T19:24:35Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/groovy-events-listener-plugin",
-    "pluginName": "groovy-events-listener-plugin",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/groovy-events-listener-plugin/pull/144",
-    "description": "Hello groovy-events-listener-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nThe checks aren't checking, why is that?\nThe issue likely stems from your Jenkinsfile, which is still declaring Java 8 or 11.\nThe Jenkins infrastructure, in its wisdom, continues to use this, and does not allow the use of a Jenkinsfile supplied by a pull request.\nTo resolve this, a maintainer can replay the failed build by substituting the Jenkinsfile content with our proposed changes using the \"replay the build\" feature in Jenkins.\nPlease let us know if you need any assistance with this process.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "UNKNOWN",
-    "statusCheckRollup": [
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:05Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/groovy-events-listener-plugin/actions/runs/14117405263/job/39550799680",
-        "name": "security-scan / scan",
-        "startedAt": "2025-03-27T21:53:40Z",
-        "status": "COMPLETED",
-        "workflowName": "Jenkins Security Scan"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:20Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/cpd",
-        "name": "CPD",
-        "startedAt": "2025-03-27T21:58:21Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:18Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/checkstyle",
-        "name": "CheckStyle",
-        "startedAt": "2025-03-27T21:58:19Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:08Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2//coverage",
-        "name": "Code Coverage",
-        "startedAt": "2025-03-27T21:58:08Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:57:54Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/groovy-events-listener-plugin/runs/39550975222",
-        "name": "Jenkins Security Scan",
-        "startedAt": "2025-03-27T21:57:53Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:11Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/eslint",
-        "name": "ESLint",
-        "startedAt": "2025-03-27T21:58:12Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T22:02:37Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/groovy-events-listener-plugin/2.260.vb_7814f30d672/",
-        "name": "Incrementals",
-        "startedAt": "2025-03-27T22:02:37Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:13Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/java",
-        "name": "Java Compiler",
-        "startedAt": "2025-03-27T21:58:13Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:14Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/javadoc-warnings",
-        "name": "JavaDoc",
-        "startedAt": "2025-03-27T21:58:14Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T22:02:38Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-27T21:53:49Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:10Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/maven-warnings",
-        "name": "Maven",
-        "startedAt": "2025-03-27T21:58:11Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:21Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/open-tasks",
-        "name": "Open Tasks Scanner",
-        "startedAt": "2025-03-27T21:58:22Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:19Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/pmd",
-        "name": "PMD",
-        "startedAt": "2025-03-27T21:58:20Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:17Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/spotbugs",
-        "name": "SpotBugs",
-        "startedAt": "2025-03-27T21:58:18Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T21:58:06Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/display/redirect?page=tests",
-        "name": "Tests / linux-21 / Build (linux-21)",
-        "startedAt": "2025-03-27T21:58:07Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-27T22:02:32Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/display/redirect?page=tests",
-        "name": "Tests / windows-21 / Build (windows-21)",
-        "startedAt": "2025-03-27T22:02:32Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-27T22:02:39Z",
-        "state": "SUCCESS",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/groovy-events-listener-plugin/job/PR-144/2/display/redirect"
       }
     ]
   },
