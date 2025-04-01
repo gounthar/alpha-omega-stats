@@ -184,8 +184,8 @@ if [ "$UPDATE_SHEETS" = "true" ]; then
     echo "Updating Google Sheets with consolidated data..."
     if [ -d "venv" ]; then
         source venv/bin/activate
-        # Run the Python script with consolidated data
-        python3 upload_to_sheets.py "data/consolidated/all_prs.json" || {
+        # Run the Python script with consolidated data and force update
+        python3 upload_to_sheets.py "data/consolidated/all_prs.json" false true || {
             echo "Error: Google Sheets update failed" >&2
             exit 1
         }
