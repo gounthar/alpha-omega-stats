@@ -283,13 +283,66 @@ def process_consolidated_data(consolidated_file):
     
     return grouped_prs, failing_prs, errors
 
+# Function to process successful builds data
+def process_successful_builds_data(csv_file):
+    """
+    Process successful builds CSV data.
+    Returns a list of records or None if file not found.
+    """
+    if not os.path.exists(csv_file):
+        logging.warning(f"Successful builds file {csv_file} not found.")
+        return None
+
+    try:
+        successful_builds = []
+        with open(csv_file, 'r') as f:
+            # Skip header line
+            header = f.readline().strip()
+            if not header.startswith("PR_URL,JDK_VERSION"):
+                logging.error(f"Invalid header in {csv_file}. Expected 'PR_URL,JDK_VERSION'")
+                return None
+
+            # Process each line
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+
+                parts = line.split(',')
+                if len(parts) >= 2:
+                    pr_url = parts[0]
+                    jdk_version = parts[1]
+
+                    # Extract PR number and repository from URL
+                    match = re.search(r'https://github.com/([^/]+/[^/]+)/pull/(\d+)', pr_url)
+                    if match:
+                        repo = match.group(1)
+                        pr_number = match.group(2)
+
+                        successful_builds.append({
+                            "pr_url": pr_url,
+                            "jdk_version": jdk_version,
+                            "repository": repo,
+                            "pr_number": pr_number
+                        })
+                    else:
+                        logging.warning(f"Could not parse PR URL: {pr_url}")
+
+        return successful_builds
+    except Exception as e:
+        logging.error(f"Error processing successful builds file: {str(e)}")
+        return None
+
 # Main execution
-if len(sys.argv) != 3:
-    print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state>")
+if len(sys.argv) < 3 or len(sys.argv) > 4:
+    print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state> [force-update]")
+    print("  force-update: Optional parameter. Set to 'true' to force update even if no changes detected.")
     sys.exit(1)
 
 CONSOLIDATED_FILE = sys.argv[1]
 FAILING_PRS_ERROR = sys.argv[2].lower() == 'true'
+FORCE_UPDATE = len(sys.argv) > 3 and sys.argv[3].lower() == 'true'
+SUCCESSFUL_BUILDS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "successful_builds.csv")
 
 # Process consolidated data
 grouped_prs, failing_prs, errors = process_consolidated_data(CONSOLIDATED_FILE)
@@ -410,6 +463,134 @@ for plugin, stats in plugin_stats.items():
 # Update the summary sheet
 update_sheet_with_retry(summary_sheet, summary_data)
 
+# Get the Summary sheet ID for the "Back to Summary" link
+summary_sheet_id = summary_sheet.id
+
+# Process successful builds data
+successful_builds = process_successful_builds_data(SUCCESSFUL_BUILDS_FILE)
+
+# Check if successful builds file has changed since last run
+def has_successful_builds_changed():
+    """
+    Check if the successful_builds.csv file has changed since the last run.
+    Returns True if the file has changed or if it's the first run.
+    """
+    last_run_file = os.path.join(os.path.dirname(SUCCESSFUL_BUILDS_FILE), "last_successful_builds.csv")
+
+    # If the successful builds file doesn't exist, return False (no changes)
+    if not os.path.exists(SUCCESSFUL_BUILDS_FILE):
+        logging.info("Successful builds file doesn't exist.")
+        return False
+
+    # If the last run file doesn't exist, this is the first run
+    if not os.path.exists(last_run_file):
+        logging.info("First run for successful builds tracking.")
+        # Create a copy for future comparison
+        try:
+            import shutil
+            shutil.copy2(SUCCESSFUL_BUILDS_FILE, last_run_file)
+            logging.info(f"Created initial copy of successful builds file at {last_run_file}")
+        except Exception as e:
+            logging.error(f"Error creating copy of successful builds file: {str(e)}")
+        return True
+
+    # Compare the current file with the last run file
+    try:
+        with open(SUCCESSFUL_BUILDS_FILE, 'r') as f1, open(last_run_file, 'r') as f2:
+            current_content = f1.read()
+            last_content = f2.read()
+
+            if current_content != last_content:
+                logging.info("Successful builds file has changed since last run.")
+                # Update the last run file
+                with open(last_run_file, 'w') as f:
+                    f.write(current_content)
+                return True
+            else:
+                logging.info("Successful builds file has not changed since last run.")
+                return False
+    except Exception as e:
+        logging.error(f"Error comparing successful builds files: {str(e)}")
+        return True  # Default to updating if there's an error
+
+# Check if successful builds have changed
+successful_builds_changed = has_successful_builds_changed()
+
+# Create and update the successful builds sheet
+if (successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0 and
+    (successful_builds_changed or FORCE_UPDATE)):
+    logging.info(f"Found {len(successful_builds)} successful builds to add to the sheet")
+    logging.info(f"Updating sheet because: changed={successful_builds_changed}, force={FORCE_UPDATE}")
+    try:
+        try:
+            successful_builds_sheet = spreadsheet.worksheet("Local Build Success")
+            logging.info("Local Build Success sheet already exists. Updating it...")
+        except gspread.exceptions.WorksheetNotFound:
+            logging.info("Creating new Local Build Success sheet...")
+            successful_builds_sheet = spreadsheet.add_worksheet(title="Local Build Success", rows=100, cols=10)
+
+        # Prepare the data for the successful builds sheet
+        successful_builds_data = [
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
+            ["Repository", "PR Number", "PR URL", "JDK Version", "Status"]
+        ]
+
+        # Process each successful build
+        for build in successful_builds:
+            successful_builds_data.append([
+                build["repository"],
+                build["pr_number"],
+                f'=HYPERLINK("{build["pr_url"]}"; "PR #{build["pr_number"]}")',
+                build["jdk_version"],
+                "Builds locally"
+            ])
+
+        # Update the successful builds sheet
+        update_sheet_with_retry(successful_builds_sheet, successful_builds_data)
+
+        # Format the header row
+        format_sheet_with_retry(successful_builds_sheet, "A3:E3", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"
+        })
+
+        # Add a note to the sheet explaining its purpose
+        successful_builds_sheet.update_cell(1, 3, "PRs that build successfully locally but fail on Jenkins")
+        format_sheet_with_retry(successful_builds_sheet, "C1", {
+            "textFormat": {
+                "italic": True
+            }
+        })
+
+        # Add a link to the successful builds sheet in the summary
+        summary_sheet.append_rows([
+            ["", "", "", "", "", ""],
+            [
+                "PRs that build locally",
+                len(successful_builds),
+                "",
+                "",
+                "",
+                f'=HYPERLINK("#gid={successful_builds_sheet.id}"; "View Local Build Success")'
+            ]
+        ])
+        logging.info("Added link to Local Build Success sheet in Summary")
+    except Exception as e:
+        logging.error(f"Error creating/updating Local Build Success sheet: {str(e)}")
+elif successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0:
+    logging.info(f"Found {len(successful_builds)} successful builds but skipping update because no changes detected and force update not enabled")
+else:
+    logging.info("No successful builds found or successful_builds.csv file not available")
+
 # Reorder sheets to make the Summary sheet first
 sheets = spreadsheet.worksheets()
 if sheets[0].title != "Summary":
@@ -417,9 +598,6 @@ if sheets[0].title != "Summary":
     if summary_sheet_index is not None:
         spreadsheet.reorder_worksheets(
             [sheets[summary_sheet_index]] + [sheet for i, sheet in enumerate(sheets) if i != summary_sheet_index])
-
-# Get the Summary sheet ID for the "Back to Summary" link
-summary_sheet_id = summary_sheet.id
 
 # Format the summary sheet
 format_sheet_with_retry(summary_sheet, "A1:F1", {
@@ -434,6 +612,9 @@ format_sheet_with_retry(summary_sheet, "A1:F1", {
     },
     "horizontalAlignment": "CENTER"  # Center-align the text
 })
+
+# Process successful builds data
+successful_builds = process_successful_builds_data(SUCCESSFUL_BUILDS_FILE)
 
 # Create a new sheet for failing PRs
 if failing_prs and isinstance(failing_prs, list):
