@@ -20,6 +20,13 @@ for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
     cp "data/consolidated/$file" "$backup_file"
 done
 
+# Also backup successful_builds.csv if it exists
+if [ -f "data/consolidated/successful_builds.csv" ]; then
+    backup_file="data/consolidated/successful_builds.csv.$(date +%Y%m%d_%H%M%S).bak"
+    echo "Creating backup: $backup_file"
+    cp "data/consolidated/successful_builds.csv" "$backup_file"
+fi
+
 # Create temporary files
 TEMP_FILE=$(mktemp)
 TEMP_VALID_JSON=$(mktemp)
@@ -193,19 +200,48 @@ for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
     backup_file=$(ls -t data/consolidated/$file.*.bak | head -1)
     if check_files_changed "data/consolidated/$file" "$backup_file"; then
         files_changed=true
+        echo "Changes detected in $file"
         break
     fi
 done
 
-# Update Google Sheets only if files have changed and update didn't fail
-if [ "$files_changed" = true ] && [ "$update_failed" != true ]; then
-    echo "Changes detected in consolidated files. Updating Google Sheets..."
-    python3 upload_to_sheets.py "data/consolidated/all_prs.json" false || echo "✗ Warning: Failed to update Google Sheets. Continuing with JUnit 5 migration PR analysis..."
+# Check if successful_builds.csv exists and has changed
+successful_builds_file="data/consolidated/successful_builds.csv"
+successful_builds_changed=false
+
+if [ -f "$successful_builds_file" ]; then
+    # Create a backup if it doesn't exist
+    if [ ! -f "${successful_builds_file}.bak" ]; then
+        echo "Creating initial backup of successful_builds.csv"
+        cp "$successful_builds_file" "${successful_builds_file}.bak"
+        successful_builds_changed=true
+    else
+        # Compare with the backup
+        if ! cmp -s "$successful_builds_file" "${successful_builds_file}.bak"; then
+            echo "Changes detected in successful_builds.csv"
+            cp "$successful_builds_file" "${successful_builds_file}.bak"
+            successful_builds_changed=true
+        fi
+    fi
+fi
+
+# Update Google Sheets if any files have changed or if update didn't fail
+if [ "$files_changed" = true ] || [ "$successful_builds_changed" = true ]; then
+    if [ "$update_failed" != true ]; then
+        echo "Changes detected in files. Updating Google Sheets..."
+        # Pass true as the third parameter to force an update
+        python3 upload_to_sheets.py "data/consolidated/all_prs.json" false true || echo "✗ Warning: Failed to update Google Sheets. Continuing with JUnit 5 migration PR analysis..."
+    else
+        echo "✗ Skipping Google Sheets update due to previous errors."
+    fi
 else
     if [ "$update_failed" = true ]; then
         echo "✗ Skipping Google Sheets update due to previous errors."
     else
-        echo "No changes detected in consolidated files. Skipping Google Sheets update."
+        echo "No changes detected in any files. Skipping Google Sheets update."
+        # Still run the script but don't force an update
+        python3 upload_to_sheets.py "data/consolidated/all_prs.json" false false || echo "✗ Warning: Failed to update Google Sheets. Continuing with JUnit 5 migration PR analysis..."
+        echo "Note: To force an update of the successful builds sheet, run with the force parameter: python3 upload_to_sheets.py \"data/consolidated/all_prs.json\" false true"
     fi
 fi
 
