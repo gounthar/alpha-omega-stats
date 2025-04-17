@@ -429,72 +429,6 @@
     ]
   },
   {
-    "number": 6,
-    "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
-    "state": "OPEN",
-    "createdAt": "2025-03-27T19:31:29Z",
-    "updatedAt": "2025-03-28T22:40:57Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/ant-in-workspace-plugin",
-    "pluginName": "ant-in-workspace",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/ant-in-workspace-plugin/pull/6",
-    "description": "Hello ant-in-workspace developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-28T22:46:06Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/ant-in-workspace-plugin/job/PR-6/3/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-28T22:46:06Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/ant-in-workspace-plugin/job/PR-6/3/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-28T22:41:13Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
-    "number": 7,
-    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
-    "state": "OPEN",
-    "createdAt": "2025-03-28T16:14:55Z",
-    "updatedAt": "2025-03-29T22:36:40Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/ant-in-workspace-plugin",
-    "pluginName": "ant-in-workspace",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/ant-in-workspace-plugin/pull/7",
-    "description": "Hello ant-in-workspace developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T22:41:25Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/ant-in-workspace-plugin/job/PR-7/4/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-29T22:41:25Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/ant-in-workspace-plugin/job/PR-7/4/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-29T22:36:59Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
     "number": 5,
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
@@ -2188,6 +2122,39 @@
     ]
   },
   {
+    "number": 66,
+    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17",
+    "state": "OPEN",
+    "createdAt": "2025-04-14T14:14:25Z",
+    "updatedAt": "2025-04-14T15:33:16Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/compuware-topaz-for-total-test-plugin",
+    "pluginName": "compuware-topaz-for-total-test",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/compuware-topaz-for-total-test-plugin/pull/66",
+    "description": "Hello compuware-topaz-for-total-test developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
+    "checkStatus": "ERROR",
+    "statusCheckRollup": [
+      {
+        "__typename": "StatusContext",
+        "context": "continuous-integration/jenkins/pr-head",
+        "startedAt": "2025-04-14T15:30:35Z",
+        "state": "ERROR",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/compuware-topaz-for-total-test-plugin/job/PR-66/2/display/redirect"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-04-14T15:30:28Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/compuware-topaz-for-total-test-plugin/job/PR-66/2/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2025-04-14T15:30:05Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      }
+    ]
+  },
+  {
     "number": 6,
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
@@ -2281,72 +2248,6 @@
         "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/convert-to-pipeline-plugin/job/PR-9/1/display/redirect",
         "name": "Jenkins",
         "startedAt": "2025-03-29T02:50:26Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
-    "number": 7,
-    "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
-    "state": "OPEN",
-    "createdAt": "2025-03-27T21:44:55Z",
-    "updatedAt": "2025-03-29T02:54:18Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/cortex-metrics-plugin",
-    "pluginName": "cortex-metrics",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/cortex-metrics-plugin/pull/7",
-    "description": "Hello cortex-metrics developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T02:55:11Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/cortex-metrics-plugin/job/PR-7/2/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-29T02:55:11Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/cortex-metrics-plugin/job/PR-7/2/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-29T02:54:38Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
-    "number": 4,
-    "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
-    "state": "OPEN",
-    "createdAt": "2025-03-27T21:49:36Z",
-    "updatedAt": "2025-03-29T02:58:58Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/countjobs-viewstabbar-plugin",
-    "pluginName": "countjobs-viewstabbar",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/countjobs-viewstabbar-plugin/pull/4",
-    "description": "Hello countjobs-viewstabbar developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T03:00:15Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/countjobs-viewstabbar-plugin/job/PR-4/2/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-29T03:00:14Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/countjobs-viewstabbar-plugin/job/PR-4/2/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-29T02:59:44Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -4886,7 +4787,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T09:33:04Z",
-    "updatedAt": "2025-03-29T09:33:04Z",
+    "updatedAt": "2025-04-01T10:37:23Z",
     "user": "gounthar",
     "repository": "jenkinsci/osf-builder-suite-for-sfcc-run-job-plugin",
     "pluginName": "osf-builder-suite-for-sfcc-run-job",
@@ -5170,7 +5071,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T10:23:47Z",
-    "updatedAt": "2025-03-29T10:23:47Z",
+    "updatedAt": "2025-04-01T10:40:32Z",
     "user": "gounthar",
     "repository": "jenkinsci/pipeline-global-lib-nexus-plugin",
     "pluginName": "pipeline-global-lib-nexus",
@@ -5236,7 +5137,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T10:38:53Z",
-    "updatedAt": "2025-03-29T10:38:53Z",
+    "updatedAt": "2025-04-01T10:39:41Z",
     "user": "gounthar",
     "repository": "jenkinsci/portscanner-plugin",
     "pluginName": "portscanner",
@@ -5302,7 +5203,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T10:49:22Z",
-    "updatedAt": "2025-03-29T10:49:22Z",
+    "updatedAt": "2025-04-01T10:39:06Z",
     "user": "gounthar",
     "repository": "jenkinsci/project-description-setter-plugin",
     "pluginName": "project-description-setter",
@@ -5609,182 +5510,6 @@
         "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/radargun-reporting-plugin/job/PR-10/1/display/redirect",
         "name": "Jenkins",
         "startedAt": "2025-03-29T11:45:17Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
-    "number": 36,
-    "title": "Require 2.346.3",
-    "state": "OPEN",
-    "createdAt": "2025-01-29T16:24:53Z",
-    "updatedAt": "2025-02-14T14:58:52Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/rapid7-insightvm-container-assessment-plugin",
-    "pluginName": "rapid7-insightvm-container-assessment",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/rapid7-insightvm-container-assessment-plugin/pull/36",
-    "description": "Hello rapid7-insightvm-container-assessment developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to latest LTS core version supporting Java 8\n    io.jenkins.tools.pluginmodernizer.UpgradeToLatestJava8CoreVersion\n    Upgrade to latest LTS core version supporting Java 8.",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-02-14T15:02:28Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:02:27Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-02-14T14:59:07Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:54Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/spotbugs",
-        "name": "SpotBugs",
-        "startedAt": "2025-02-14T15:01:54Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:57Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/cpd",
-        "name": "CPD",
-        "startedAt": "2025-02-14T15:01:57Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:55Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/checkstyle",
-        "name": "CheckStyle",
-        "startedAt": "2025-02-14T15:01:55Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:41Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2//coverage",
-        "name": "Code Coverage",
-        "startedAt": "2025-02-14T15:01:41Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:44Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/eslint",
-        "name": "ESLint",
-        "startedAt": "2025-02-14T15:01:44Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:47Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/java",
-        "name": "Java Compiler",
-        "startedAt": "2025-02-14T15:01:47Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:48Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/javadoc-warnings",
-        "name": "JavaDoc",
-        "startedAt": "2025-02-14T15:01:48Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:43Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/maven-warnings",
-        "name": "Maven",
-        "startedAt": "2025-02-14T15:01:43Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:58Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/open-tasks",
-        "name": "Open Tasks Scanner",
-        "startedAt": "2025-02-14T15:01:58Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:56Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/pmd",
-        "name": "PMD",
-        "startedAt": "2025-02-14T15:01:56Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-02-14T15:01:38Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-36/2/display/redirect?page=tests",
-        "name": "Tests / linux-8 / Build (linux-8)",
-        "startedAt": "2025-02-14T15:01:38Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
-    "number": 38,
-    "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
-    "state": "OPEN",
-    "createdAt": "2025-03-29T11:50:04Z",
-    "updatedAt": "2025-03-29T11:50:04Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/rapid7-insightvm-container-assessment-plugin",
-    "pluginName": "rapid7-insightvm-container-assessment",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/rapid7-insightvm-container-assessment-plugin/pull/38",
-    "description": "Hello rapid7-insightvm-container-assessment developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T11:51:41Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-38/1/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-29T11:51:41Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/rapid7-insightvm-container-assessment-plugin/job/PR-38/1/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-29T11:50:24Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -8315,7 +8040,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T15:49:45Z",
-    "updatedAt": "2025-03-29T15:49:45Z",
+    "updatedAt": "2025-04-01T20:03:36Z",
     "user": "gounthar",
     "repository": "jenkinsci/vstestrunner-plugin",
     "pluginName": "vstestrunner",
@@ -8327,17 +8052,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T15:51:41Z",
+        "startedAt": "2025-04-01T20:05:27Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/vstestrunner-plugin/job/PR-85/1/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/vstestrunner-plugin/job/PR-85/2/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-29T15:51:41Z",
+        "completedAt": "2025-04-01T20:05:27Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/vstestrunner-plugin/job/PR-85/1/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/vstestrunner-plugin/job/PR-85/2/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-29T15:50:04Z",
+        "startedAt": "2025-04-01T20:03:59Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -8381,7 +8106,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T16:04:22Z",
-    "updatedAt": "2025-03-29T16:04:22Z",
+    "updatedAt": "2025-04-01T20:04:09Z",
     "user": "gounthar",
     "repository": "jenkinsci/winrm-client-plugin",
     "pluginName": "winrm-client",
@@ -8393,17 +8118,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T16:05:58Z",
+        "startedAt": "2025-04-01T20:05:50Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/winrm-client-plugin/job/PR-10/1/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/winrm-client-plugin/job/PR-10/2/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-29T16:05:58Z",
+        "completedAt": "2025-04-01T20:05:49Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/winrm-client-plugin/job/PR-10/1/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/winrm-client-plugin/job/PR-10/2/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-29T16:04:43Z",
+        "startedAt": "2025-04-01T20:04:29Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -8656,7 +8381,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T16:19:45Z",
-    "updatedAt": "2025-03-29T16:19:45Z",
+    "updatedAt": "2025-04-01T20:03:00Z",
     "user": "gounthar",
     "repository": "jenkinsci/xooa-plugin",
     "pluginName": "xooa",
@@ -8668,17 +8393,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T16:21:45Z",
+        "startedAt": "2025-04-01T20:05:12Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/xooa-plugin/job/PR-3/1/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/xooa-plugin/job/PR-3/2/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-29T16:21:44Z",
+        "completedAt": "2025-04-01T20:05:11Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/xooa-plugin/job/PR-3/1/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/xooa-plugin/job/PR-3/2/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-29T16:20:01Z",
+        "startedAt": "2025-04-01T20:03:24Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -8851,7 +8576,7 @@
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",
     "createdAt": "2025-03-29T16:35:03Z",
-    "updatedAt": "2025-03-29T16:35:03Z",
+    "updatedAt": "2025-04-01T20:15:27Z",
     "user": "gounthar",
     "repository": "jenkinsci/zoom-plugin",
     "pluginName": "zoom",
@@ -8863,17 +8588,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T16:36:53Z",
+        "startedAt": "2025-04-01T20:20:15Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/zoom-plugin/job/PR-22/1/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/zoom-plugin/job/PR-22/2/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-29T16:36:53Z",
+        "completedAt": "2025-04-01T20:20:14Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/zoom-plugin/job/PR-22/1/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/zoom-plugin/job/PR-22/2/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-29T16:35:21Z",
+        "startedAt": "2025-04-01T20:15:49Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
