@@ -6,10 +6,8 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"math"
 	"math/rand"
-	"net/http"
 	"os"
 	"regexp"
 	"strings"
@@ -166,36 +164,36 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 	var q searchQuery
 	variables := map[string]interface{}{
 		"query": githubv4.String(query),
-		"first": githubv4.Int(25), // Reduced from 100 to 25 to make queries less complex
+		"first": githubv4.Int(10), // Reduced from 25 to 10 to make queries even less complex
 		"after": (*githubv4.String)(nil),
 	}
 
 	var allPRs []JUnit5PR
-	maxRetries := 5
+	maxRetries := 10 // Increased from 5 to 10
 	initialBackoff := 2 * time.Second
 	maxBackoff := 60 * time.Second
 
 	// Log the query being executed
 	fmt.Printf("Executing GitHub GraphQL query: %s\n", query)
+	fmt.Printf("Start date: %s\n", startDate.Format(time.RFC3339))
 
 	pageCount := 0
-	for {
+	totalAttempts := 0
+	maxPages := 100 // Set a maximum page limit to prevent infinite loops
+
+	for pageCount < maxPages {
 		// Add a small delay between requests to respect rate limits
 		time.Sleep(1 * time.Second)
 
 		// Create a context with timeout
 		ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-		defer cancel()
 
 		var err error
 		success := false
 
 		// Implement retry with exponential backoff
 		for attempt := 0; attempt < maxRetries && !success; attempt++ {
-			// Log attempt information
-			if attempt > 0 {
-				fmt.Printf("Retry attempt %d/%d for page %d\n", attempt+1, maxRetries, pageCount+1)
-			}
+			totalAttempts++
 
 			// Get current rate limit information before making the request
 			var rateLimit struct {
@@ -203,7 +201,7 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 					Limit     githubv4.Int
 					Remaining githubv4.Int
 					ResetAt   githubv4.DateTime
-				}
+				} `graphql:"rateLimit"`
 			}
 
 			rateLimitErr := client.Query(context.Background(), &rateLimit, nil)
@@ -238,11 +236,69 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 			if err == nil {
 				success = true
 				fmt.Printf("Query succeeded in %s\n", queryDuration.Round(time.Millisecond))
+
+				// Log the number of results received
+				resultCount := len(q.Search.Nodes)
+				fmt.Printf("Received %d results for page %d\n", resultCount, pageCount+1)
+
+				// Process the results
+				for _, node := range q.Search.Nodes {
+					pr := node.PullRequest
+
+					// Extract labels
+					var labels []string
+					for _, label := range pr.Labels.Nodes {
+						labels = append(labels, string(label.Name))
+					}
+
+					// Create PR object
+					newPR := JUnit5PR{
+						Title:      string(pr.Title),
+						URL:        string(pr.URL),
+						Repository: string(pr.Repository.NameWithOwner),
+						State:      string(pr.State),
+						Author:     string(pr.Author.Login),
+						Labels:     labels,
+						Body:       string(pr.BodyText),
+						CreatedAt:  pr.CreatedAt.Format(time.RFC3339),
+					}
+
+					// Only include PRs created on or after the start date
+					if pr.CreatedAt.Before(startDate) {
+						continue
+					}
+
+					// Only include PRs that are likely related to JUnit 5 migration
+					if isJUnit5MigrationPR(newPR) {
+						allPRs = append(allPRs, newPR)
+					}
+				}
+
+				// Log progress
+				fmt.Printf("Processed page %d, found %d matching PRs so far\n", pageCount+1, len(allPRs))
+
+				// Check if there are more pages
+				if !q.Search.PageInfo.HasNextPage {
+					fmt.Printf("No more pages available, completed after %d pages\n", pageCount+1)
+					cancel()      // Cancel the context before returning
+					return allPRs // Exit the function when no more pages
+				}
+
+				// Move to next page
+				fmt.Printf("Moving to next page with cursor: %s\n", q.Search.PageInfo.EndCursor)
+				variables["after"] = githubv4.NewString(q.Search.PageInfo.EndCursor)
+
+				// Increment page count
+				pageCount++
+
+				// Add a small delay before the next page to avoid overwhelming GitHub
+				time.Sleep(1 * time.Second)
 				break
 			}
 
 			// Log detailed error information
-			fmt.Printf("GitHub API error on attempt %d/%d: %v\n", attempt+1, maxRetries, err)
+			fmt.Printf("GitHub API error on attempt %d/%d (total %d): %v\n",
+				attempt+1, maxRetries, totalAttempts, err)
 			fmt.Printf("Query duration before error: %s\n", queryDuration.Round(time.Millisecond))
 
 			// Try to parse and log more details from the error
@@ -294,57 +350,16 @@ func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUn
 		if !success {
 			fmt.Printf("Failed after %d attempts: %v\n", maxRetries, err)
 			fmt.Println("Continuing with results collected so far...")
+			cancel() // Cancel the context before returning
 			return allPRs
 		}
 
-		// Log information about the results
-		resultCount := len(q.Search.Nodes)
-		fmt.Printf("Received %d results for page %d\n", resultCount, pageCount+1)
-		pageCount++
-
-		for _, node := range q.Search.Nodes {
-			pr := node.PullRequest
-
-			// Extract labels
-			var labels []string
-			for _, label := range pr.Labels.Nodes {
-				labels = append(labels, string(label.Name))
-			}
-
-			// Create PR object
-			newPR := JUnit5PR{
-				Title:      string(pr.Title),
-				URL:        string(pr.URL),
-				Repository: string(pr.Repository.NameWithOwner),
-				State:      string(pr.State),
-				Author:     string(pr.Author.Login),
-				Labels:     labels,
-				Body:       string(pr.BodyText),
-				CreatedAt:  pr.CreatedAt.Format(time.RFC3339),
-			}
-
-			// Only include PRs created on or after the start date
-			if pr.CreatedAt.Before(startDate) {
-				continue
-			}
-
-			// Only include PRs that are likely related to JUnit 5 migration
-			if isJUnit5MigrationPR(newPR) {
-				allPRs = append(allPRs, newPR)
-			}
-		}
-
-		if !q.Search.PageInfo.HasNextPage {
-			fmt.Printf("No more pages available, completed after %d pages\n", pageCount)
-			break
-		}
-
-		fmt.Printf("Fetched page %d of results, found %d matching PRs so far\n", pageCount, len(allPRs))
-		fmt.Printf("Moving to next page with cursor: %s\n", q.Search.PageInfo.EndCursor)
-		variables["after"] = githubv4.NewString(q.Search.PageInfo.EndCursor)
+		// Cancel the context after we're done with it
+		cancel()
 	}
 
-	fmt.Printf("Search completed. Found %d matching PRs for query: %s\n", len(allPRs), query)
+	// If we've reached the maximum number of pages, log a message
+	fmt.Printf("Reached maximum page limit (%d). Stopping to prevent excessive API usage.\n", maxPages)
 	return allPRs
 }
 
