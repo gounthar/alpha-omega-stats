@@ -81,19 +81,22 @@ go run main.go --output-dir="../../$OUTPUT_DIR" --candidate-file="../../$CANDIDA
 cd - > /dev/null
 
 # Process the results
-if [ -f "$CANDIDATE_FILE" ]; then
-    NEW_PR_COUNT=$(grep -c "^https://" "$CANDIDATE_FILE" || true)
+CANDIDATE_PATH="$OUTPUT_DIR/$CANDIDATE_FILE"
+EXISTING_PATH="$OUTPUT_DIR/$EXISTING_FILE"
+
+if [ -f "$CANDIDATE_PATH" ]; then
+    NEW_PR_COUNT=$(grep -c "^https://" "$CANDIDATE_PATH" || true)
     echo " Found $NEW_PR_COUNT potential JUnit 5 migration PR candidates"
     
     # Check if there are new PRs not in the existing file
-    if [ -f "$EXISTING_FILE" ]; then
-        NEW_PRS=$(grep -v -f "$EXISTING_FILE" "$CANDIDATE_FILE" | grep "^https://" || true)
+    if [ -f "$EXISTING_PATH" ]; then
+        NEW_PRS=$(grep -v -f "$EXISTING_PATH" "$CANDIDATE_PATH" | grep "^https://" || true)
         NEW_PR_COUNT=$(echo "$NEW_PRS" | grep -c "^https://" || true)
         
         if [ "$NEW_PR_COUNT" -gt 0 ]; then
-            echo " Found $NEW_PR_COUNT new PR candidates not already in $EXISTING_FILE"
-            echo "To add all new PRs to $EXISTING_FILE, run:"
-            echo "  grep -v -f \"$EXISTING_FILE\" \"$CANDIDATE_FILE\" | grep \"^https://\" >> \"$EXISTING_FILE\""
+            echo " Found $NEW_PR_COUNT new PR candidates not already in $EXISTING_PATH"
+            echo "To add all new PRs to $EXISTING_PATH, run:"
+            echo "  grep -v -f \"$EXISTING_PATH\" \"$CANDIDATE_PATH\" | grep \"^https://\" >> \"$EXISTING_PATH\""
         else
             echo " No new PR candidates found"
         fi
