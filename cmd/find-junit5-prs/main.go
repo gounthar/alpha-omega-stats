@@ -385,9 +385,14 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 		`(?i)improve test coverage`, // Test coverage improvements not related to JUnit 5
 	}
 
-	for _, pattern := range excludePatterns {
-		matched, _ := regexp.MatchString(pattern, pr.Title)
-		if matched {
+	// Pre-compile exclude patterns
+	excludeRegexps := make([]*regexp.Regexp, len(excludePatterns))
+	for i, pattern := range excludePatterns {
+		excludeRegexps[i] = regexp.MustCompile(pattern)
+	}
+
+	for _, re := range excludeRegexps {
+		if re.MatchString(pr.Title) {
 			return false
 		}
 	}
@@ -402,6 +407,12 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 		`(?i)openrewrite.*junit ?5`,
 	}
 
+	// Pre-compile title patterns
+	titleRegexps := make([]*regexp.Regexp, len(titlePatterns))
+	for i, pattern := range titlePatterns {
+		titleRegexps[i] = regexp.MustCompile(pattern)
+	}
+
 	bodyPatterns := []string{
 		`(?i)migrate (all )?tests? to junit ?5`,
 		`(?i)\bjunit ?5\b`, // Word boundary to ensure "junit5" is a standalone term
@@ -413,20 +424,40 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 		`(?i)junit-jupiter`,
 	}
 
+	// Pre-compile body patterns
+	bodyRegexps := make([]*regexp.Regexp, len(bodyPatterns))
+	for i, pattern := range bodyPatterns {
+		bodyRegexps[i] = regexp.MustCompile(pattern)
+	}
+
 	labelPatterns := []string{
 		`(?i)\bjunit ?5\b`,
 		`(?i)junit-5`,
 		`(?i)junit-migration`,
 	}
 
+	// Pre-compile label patterns
+	labelRegexps := make([]*regexp.Regexp, len(labelPatterns))
+	for i, pattern := range labelPatterns {
+		labelRegexps[i] = regexp.MustCompile(pattern)
+	}
+
 	authorPatterns := []string{
 		`strangelookingnerd`,
 	}
 
+	// Pre-compile author patterns
+	authorRegexps := make([]*regexp.Regexp, len(authorPatterns))
+	for i, pattern := range authorPatterns {
+		authorRegexps[i] = regexp.MustCompile(pattern)
+	}
+
+	// Pre-compile the JUnit pattern used in author check
+	junitRegexp := regexp.MustCompile(`(?i)junit`)
+
 	// Check title with more specific matching
-	for _, pattern := range titlePatterns {
-		matched, _ := regexp.MatchString(pattern, pr.Title)
-		if matched {
+	for _, re := range titleRegexps {
+		if re.MatchString(pr.Title) {
 			return true
 		}
 	}
@@ -434,9 +465,8 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 	// For body matches, require stronger evidence
 	// Count how many patterns match in the body
 	bodyMatchCount := 0
-	for _, pattern := range bodyPatterns {
-		matched, _ := regexp.MatchString(pattern, pr.Body)
-		if matched {
+	for _, re := range bodyRegexps {
+		if re.MatchString(pr.Body) {
 			bodyMatchCount++
 		}
 	}
@@ -449,9 +479,8 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 
 	// Check labels
 	for _, label := range pr.Labels {
-		for _, pattern := range labelPatterns {
-			matched, _ := regexp.MatchString(pattern, label)
-			if matched {
+		for _, re := range labelRegexps {
+			if re.MatchString(label) {
 				return true
 			}
 		}
@@ -459,12 +488,10 @@ func isJUnit5MigrationPR(pr JUnit5PR) bool {
 
 	// Check author - but only if there's at least some mention of JUnit in the body
 	// This avoids including all PRs from certain authors
-	for _, pattern := range authorPatterns {
-		matched, _ := regexp.MatchString(pattern, pr.Author)
-		if matched {
+	for _, re := range authorRegexps {
+		if re.MatchString(pr.Author) {
 			// Check if there's at least some mention of JUnit in the body
-			junitmatch, _ := regexp.MatchString(`(?i)junit`, pr.Body)
-			if junitmatch {
+			if junitRegexp.MatchString(pr.Body) {
 				return true
 			}
 		}
