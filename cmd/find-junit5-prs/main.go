@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"math"
 	"math/rand"
 	"os"
@@ -146,7 +145,7 @@ func main() {
 	}
 
 	outputFile := fmt.Sprintf("%s/junit5_candidates.json", *outputDir)
-	err = ioutil.WriteFile(outputFile, jsonData, 0644)
+	err = os.WriteFile(outputFile, jsonData, 0o644)
 	if err != nil {
 		fmt.Printf("Error writing JSON file: %v\n", err)
 		os.Exit(1)
@@ -524,7 +523,7 @@ func compareWithExistingPRs(prs []JUnit5PR, existingFile string) {
 	// Read existing PR URLs
 	existingURLs := make(map[string]bool)
 
-	data, err := ioutil.ReadFile(existingFile)
+	data, err := os.ReadFile(existingFile)
 	if err == nil {
 		lines := strings.Split(string(data), "\n")
 		for _, line := range lines {
