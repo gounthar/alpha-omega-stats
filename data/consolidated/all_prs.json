@@ -115,17 +115,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-31T08:43:19Z",
+        "startedAt": "2025-04-17T10:09:17Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/adaptive-disconnector-plugin/job/PR-10/2/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/adaptive-disconnector-plugin/job/PR-10/3/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-31T08:43:18Z",
+        "completedAt": "2025-04-17T10:09:04Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/adaptive-disconnector-plugin/job/PR-10/2/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/adaptive-disconnector-plugin/job/PR-10/3/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-31T08:42:04Z",
+        "startedAt": "2025-04-17T10:07:35Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -5749,17 +5749,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-29T04:22:15Z",
+        "startedAt": "2025-04-17T10:11:44Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/dotnet-as-script-plugin/job/PR-4/1/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/dotnet-as-script-plugin/job/PR-4/2/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-29T04:22:14Z",
+        "completedAt": "2025-04-17T10:11:31Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/dotnet-as-script-plugin/job/PR-4/1/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/dotnet-as-script-plugin/job/PR-4/2/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-29T04:21:40Z",
+        "startedAt": "2025-04-17T10:10:23Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -22399,199 +22399,6 @@
     "url": "https://github.com/jenkinsci/trilead-api-plugin/pull/191",
     "description": "Hello trilead-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
     "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 495,
-    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17",
-    "state": "OPEN",
-    "createdAt": "2025-04-10T21:08:46Z",
-    "updatedAt": "2025-04-10T21:08:46Z",
-    "user": "CodexRaunak",
-    "repository": "jenkinsci/tuleap-oauth-plugin",
-    "pluginName": "tuleap-oauth",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/tuleap-oauth-plugin/pull/495",
-    "description": "Hello tuleap-oauth developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "UNKNOWN",
-    "statusCheckRollup": [
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:09:27Z",
-        "conclusion": "CANCELLED",
-        "detailsUrl": "https://github.com/jenkinsci/tuleap-oauth-plugin/actions/runs/14390339880/job/40355733407",
-        "name": "Tests (windows-2022) with coverage",
-        "startedAt": "2025-04-10T21:09:01Z",
-        "status": "COMPLETED",
-        "workflowName": "CI"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:11Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/tuleap-oauth-plugin/actions/runs/14390339883/job/40355733362",
-        "name": "Build and archive",
-        "startedAt": "2025-04-10T21:08:57Z",
-        "status": "COMPLETED",
-        "workflowName": "Archive plugin artifact"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:12:38Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/tuleap-oauth-plugin/actions/runs/14390339882/job/40355733515",
-        "name": "security-scan / scan",
-        "startedAt": "2025-04-10T21:08:58Z",
-        "status": "COMPLETED",
-        "workflowName": "Jenkins Security Scan"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:09:21Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://github.com/jenkinsci/tuleap-oauth-plugin/actions/runs/14390339880/job/40355733819",
-        "name": "Tests (ubuntu-22.04) with coverage",
-        "startedAt": "2025-04-10T21:08:57Z",
-        "status": "COMPLETED",
-        "workflowName": "CI"
-      },
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-04-10T21:10:56Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:52Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-04-10T21:09:01Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:44Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/spotbugs",
-        "name": "SpotBugs",
-        "startedAt": "2025-04-10T21:10:44Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:47Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/cpd",
-        "name": "CPD",
-        "startedAt": "2025-04-10T21:10:47Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:45Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/checkstyle",
-        "name": "CheckStyle",
-        "startedAt": "2025-04-10T21:10:45Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:35Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1//coverage",
-        "name": "Code Coverage",
-        "startedAt": "2025-04-10T21:10:35Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:12:25Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/tuleap-oauth-plugin/runs/40355919090",
-        "name": "Jenkins Security Scan",
-        "startedAt": "2025-04-10T21:12:23Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:38Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/eslint",
-        "name": "ESLint",
-        "startedAt": "2025-04-10T21:10:38Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:39Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/java",
-        "name": "Java Compiler",
-        "startedAt": "2025-04-10T21:10:39Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:40Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/javadoc-warnings",
-        "name": "JavaDoc",
-        "startedAt": "2025-04-10T21:10:40Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:37Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/maven-warnings",
-        "name": "Maven",
-        "startedAt": "2025-04-10T21:10:37Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:48Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/open-tasks",
-        "name": "Open Tasks Scanner",
-        "startedAt": "2025-04-10T21:10:48Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:46Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/pmd",
-        "name": "PMD",
-        "startedAt": "2025-04-10T21:10:46Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-04-10T21:10:33Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/tuleap-oauth-plugin/job/PR-495/1/display/redirect?page=tests",
-        "name": "Tests / linux-17 / Build (linux-17)",
-        "startedAt": "2025-04-10T21:10:33Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
   },
   {
     "number": 108,
