@@ -53,7 +53,6 @@ switch_jdk() {
 test_pr() {
     local pr_number=$1
     local repo=$2
-    local branch=$3
 
     # Extract just the repository name (without organization)
     repo_name=$(echo "$repo" | sed 's#.*/##')
