@@ -36,7 +36,7 @@ MAJOR_VERSIONS=("17" "11" "8")
 # Get the installed JDK versions for each major version
 JDK_VERSIONS=()
 for major in "${MAJOR_VERSIONS[@]}"; do
-    version=$("./get-jdk-versions.sh" "$major")
+    version=$( "$SCRIPT_DIR/get-jdk-versions.sh" "$major" )
     if [ -n "$version" ]; then
         JDK_VERSIONS+=("$version")
     fi
