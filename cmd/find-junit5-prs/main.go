@@ -152,13 +152,15 @@ func main() {
 	}
 
 	// Generate text file with URLs for easy addition to junit5_pr_urls.txt
-	generateCandidateURLsFile(result.PRs, *candidateFile)
+	candidatePath := filepath.Join(*outputDir, *candidateFile)
+	generateCandidateURLsFile(result.PRs, candidatePath)
 
 	// Compare with existing PRs in junit5_pr_urls.txt
-	compareWithExistingPRs(result.PRs, *existingFile)
+	existingPath := filepath.Join(*outputDir, *existingFile)
+	compareWithExistingPRs(result.PRs, existingPath)
 
 	fmt.Printf("Found %d potential JUnit 5 migration PR candidates\n", len(result.PRs))
-	fmt.Printf("Results saved to %s and %s\n", outputFile, *candidateFile)
+	fmt.Printf("Results saved to %s and %s\n", outputFile, candidatePath)
 }
 
 // searchPRs performs a GitHub search and returns PRs matching the query
