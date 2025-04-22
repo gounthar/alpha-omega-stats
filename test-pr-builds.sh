@@ -25,7 +25,7 @@ echo "PR_URL" > "$FAILED_BUILDS_FILE"
 echo "PR_URL,JDK_VERSION,TEST_RESULT" > "$TEST_RESULTS_FILE"
 
 # First ensure JDK versions are installed
-./install-jdk-versions.sh
+"$SCRIPT_DIR/install-jdk-versions.sh"
 
 # Initialize SDKMAN
 source "$HOME/.sdkman/bin/sdkman-init.sh"
