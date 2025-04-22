@@ -88,7 +88,10 @@ func main() {
 	fmt.Printf("Searching for PRs created on or after: %s\n", startDateTime.Format("2006-01-02"))
 
 	// Create output directory if it doesn't exist
-	os.MkdirAll(*outputDir, 0755)
+	if err := os.MkdirAll(*outputDir, 0o755); err != nil {
+		fmt.Fprintf(os.Stderr, "cannot create output dir %s: %v\n", *outputDir, err)
+		os.Exit(1)
+	}
 
 	// Create GitHub client
 	src := oauth2.StaticTokenSource(
