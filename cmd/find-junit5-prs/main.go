@@ -490,14 +490,29 @@ func generateCandidateURLsFile(prs []JUnit5PR, outputFile string) {
 		fmt.Printf("Error creating file: %v\n", err)
 		return
 	}
-	defer file.Close()
+	defer func() {
+		if cerr := file.Close(); cerr != nil {
+			fmt.Fprintf(os.Stderr, "close error: %v\n", cerr)
+		}
+	}()
 
-	file.WriteString(fmt.Sprintf("# JUnit 5 migration PR candidates found on %s\n", time.Now().Format("2006-01-02 15:04:05")))
-	file.WriteString("# Add relevant URLs to junit5_pr_urls.txt after verification\n\n")
+	if _, err := file.WriteString(fmt.Sprintf(
+		"# JUnit 5 migration PR candidates found on %s\n",
+		time.Now().Format("2006-01-02 15:04:05"),
+	)); err != nil {
+		fmt.Fprintf(os.Stderr, "write error: %v\n", err)
+	}
+	if _, err := file.WriteString("# Add relevant URLs to junit5_pr_urls.txt after verification\n\n"); err != nil {
+		fmt.Fprintf(os.Stderr, "write error: %v\n", err)
+	}
 
 	for _, pr := range prs {
-		file.WriteString(fmt.Sprintf("# %s - %s (%s)\n", pr.Repository, pr.Title, pr.State))
-		file.WriteString(fmt.Sprintf("%s\n\n", pr.URL))
+		if _, err := file.WriteString(fmt.Sprintf("# %s - %s (%s)\n", pr.Repository, pr.Title, pr.State)); err != nil {
+			fmt.Fprintf(os.Stderr, "write error: %v\n", err)
+		}
+		if _, err := file.WriteString(fmt.Sprintf("%s\n\n", pr.URL)); err != nil {
+			fmt.Fprintf(os.Stderr, "write error: %v\n", err)
+		}
 	}
 }
 
