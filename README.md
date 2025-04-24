@@ -76,6 +76,9 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
 │   └── backup/       # Backup directory for data files
 ├── .github/
 │   └── workflows/    # GitHub Actions workflow files
+├── updatecli/
+│   ├── updatecli.d/  # Updatecli manifests
+│   └── .       # Configuration values for Updatecli
 └── scripts/         # Collection and processing scripts
 \`\`\`
 
@@ -98,6 +101,14 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
   - Logs available in GitHub Actions run history
   - Expected duration: 5–10 minutes
 
+### Updatecli Workflow (`updatecli.yml`)
+- **Daily Check** (midnight UTC)
+  - Checks for updates to the `top-250-plugins.csv` file from the upstream source
+  - Creates a pull request when changes are detected
+  - Updates the local file with the latest content
+  - Logs available in GitHub Actions run history
+  - Expected duration: 1-2 minutes
+
 ### Required Secrets and Permissions
 
 The workflows require proper authentication to access GitHub's API. Set up the following:
@@ -111,7 +122,11 @@ The workflows require proper authentication to access GitHub's API. Set up the f
      - `read:user` (Read user data)
    - The token should have sufficient scope to access Jenkins organization repositories
 
-2. **Workflow Permissions**:
+2. **Updatecli GitHub Token**:
+   - For the Updatecli workflow, the default `GITHUB_TOKEN` is used
+   - No additional configuration is needed as the workflow uses the built-in token
+
+3. **Workflow Permissions**:
    - Go to repository Settings → Actions → General
    - Under "Workflow permissions", select:
      - "Read and write permissions"
