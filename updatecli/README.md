@@ -25,12 +25,7 @@ To run Updatecli locally, you need to:
    ```
 3. Run the diff command to see what would change:
    ```bash
-   updatecli diff --config ./updatecli/updatecli.d/top-250-plugins.yaml --values ./updatecli/values/default.yaml
-   ```
-4. Apply the changes:
-   ```bash
-   updatecli apply --config ./updatecli/updatecli.d/top-250-plugins.yaml --values ./updatecli/values/default.yaml
-   ```
+updatecli diff --config ./updatecli/updatecli.d/top-250-plugins.yaml --values ./updatecli/values.github-action.yaml
 
 ## Automation Schedule
 
