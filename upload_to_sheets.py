@@ -283,13 +283,129 @@ def process_consolidated_data(consolidated_file):
     
     return grouped_prs, failing_prs, errors
 
+# Function to process successful builds data
+def process_successful_builds_data(csv_file):
+    """
+    Process successful builds CSV data.
+    Returns a list of records or None if file not found.
+    """
+    if not os.path.exists(csv_file):
+        logging.warning(f"Successful builds file {csv_file} not found.")
+        return None
+
+    try:
+        successful_builds = []
+        with open(csv_file, 'r') as f:
+            # Skip header line
+            header = f.readline().strip()
+            if not header.startswith("PR_URL,JDK_VERSION"):
+                logging.error(f"Invalid header in {csv_file}. Expected 'PR_URL,JDK_VERSION'")
+                return None
+
+            # Process each line
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+
+                parts = line.split(',')
+                if len(parts) >= 2:
+                    pr_url = parts[0]
+                    jdk_version = parts[1]
+
+                    # Extract PR number and repository from URL
+                    match = re.search(r'https://github.com/([^/]+/[^/]+)/pull/(\d+)', pr_url)
+                    if match:
+                        repo = match.group(1)
+                        pr_number = match.group(2)
+
+                        successful_builds.append({
+                            "pr_url": pr_url,
+                            "jdk_version": jdk_version,
+                            "repository": repo,
+                            "pr_number": pr_number
+                        })
+                    else:
+                        logging.warning(f"Could not parse PR URL: {pr_url}")
+
+        return successful_builds
+    except Exception as e:
+        logging.error(f"Error processing successful builds file: {str(e)}")
+        return None
+
+# Function to process test results data
+def process_test_results_data(csv_file):
+    """
+    Process the test_results.csv file to extract PR URLs, JDK versions, and test results.
+    Returns a dictionary with two lists: 'passed' and 'failed', each containing dictionaries with PR URL, JDK version, repository, and PR number.
+    """
+    if not os.path.exists(csv_file):
+        logging.info(f"Test results file {csv_file} not found.")
+        return None
+
+    test_results = {
+        'passed': [],
+        'failed': []
+    }
+
+    try:
+        with open(csv_file, 'r') as f:
+            # Check header
+            header = f.readline().strip()
+            if not header.startswith("PR_URL,JDK_VERSION,TEST_RESULT"):
+                logging.error(f"Invalid header in {csv_file}. Expected 'PR_URL,JDK_VERSION,TEST_RESULT'")
+                return None
+
+            # Process each line
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+
+                parts = line.split(',')
+                if len(parts) >= 3:
+                    pr_url = parts[0]
+                    jdk_version = parts[1]
+                    test_result = parts[2]
+
+                    # Extract PR number and repository from URL
+                    match = re.search(r'https://github.com/([^/]+/[^/]+)/pull/(\d+)', pr_url)
+                    if match:
+                        repo = match.group(1)
+                        pr_number = match.group(2)
+
+                        pr_data = {
+                            "pr_url": pr_url,
+                            "jdk_version": jdk_version,
+                            "repository": repo,
+                            "pr_number": pr_number
+                        }
+
+                        if test_result == "TESTS_PASSED":
+                            test_results['passed'].append(pr_data)
+                        elif test_result == "TESTS_FAILED":
+                            test_results['failed'].append(pr_data)
+                        else:
+                            logging.warning(f"Unknown test result: {test_result} for PR: {pr_url}")
+                    else:
+                        logging.warning(f"Could not parse PR URL: {pr_url}")
+
+        return test_results
+    except Exception as e:
+        logging.error(f"Error processing test results file: {str(e)}")
+        return None
+
 # Main execution
-if len(sys.argv) != 3:
-    print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state>")
+if len(sys.argv) < 3 or len(sys.argv) > 4:
+    print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state> [force-update]")
+    print("  force-update: Optional parameter. Set to 'true' to force update even if no changes detected.")
     sys.exit(1)
 
 CONSOLIDATED_FILE = sys.argv[1]
 FAILING_PRS_ERROR = sys.argv[2].lower() == 'true'
+FORCE_UPDATE = len(sys.argv) > 3 and sys.argv[3].lower() == 'true'
+SUCCESSFUL_BUILDS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "successful_builds.csv")
+TEST_RESULTS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "test_results.csv")
 
 # Process consolidated data
 grouped_prs, failing_prs, errors = process_consolidated_data(CONSOLIDATED_FILE)
@@ -339,6 +455,9 @@ merged_prs = 0
 plugin_stats = {}
 earliest_date = None
 latest_date = None
+has_successful_local_builds = False  # Flag to track if we have successful local builds
+has_tests_passed = False  # Flag to track if we have PRs with passing tests
+has_tests_failed = False  # Flag to track if we have PRs with failing tests
 
 for pr in grouped_prs:
     title = pr["title"]
@@ -378,11 +497,99 @@ summary_data = [
     ["Total PRs", total_prs, "", "", "", ""],
     ["Open PRs", open_prs, f"{open_percentage:.2f}%", "", "", ""],
     ["Closed PRs", closed_prs, f"{closed_percentage:.2f}%", "", "", ""],
-    ["Merged PRs", merged_prs, f"{merged_percentage:.2f}%", "", "", ""],
+    ["Merged PRs", merged_prs, f"{merged_percentage:.2f}%", "", "", ""]
+]
+
+# Function to safely get worksheet ID with retry
+def get_worksheet_id_with_retry(spreadsheet, sheet_name, max_retries=3):
+    """
+    Safely get a worksheet ID with retry logic for rate limiting.
+    """
+    for attempt in range(max_retries):
+        try:
+            worksheet = spreadsheet.worksheet(sheet_name)
+            return worksheet.id
+        except gspread.exceptions.APIError as e:
+            if "429" in str(e) and attempt < max_retries - 1:
+                wait_time = get_backoff_duration(attempt, base_delay=20)
+                logging.warning(f"Rate limit hit when getting worksheet ID. Waiting {wait_time:.1f} seconds...")
+                time.sleep(wait_time)
+            elif "404" in str(e) or "RESOURCE_NOT_FOUND" in str(e):
+                logging.warning(f"Worksheet '{sheet_name}' not found")
+                return None
+            else:
+                logging.error(f"Error getting worksheet ID: {str(e)}")
+                return None
+        except Exception as e:
+            logging.error(f"Unexpected error getting worksheet ID: {str(e)}")
+            return None
+
+    return None
+
+# Add successful local builds section if we have any
+if has_successful_local_builds:
+    logging.info("Attempting to add Local Build Success section to summary data")
+    successful_builds_sheet_id = get_worksheet_id_with_retry(spreadsheet, "Local Build Success")
+
+    if successful_builds_sheet_id:
+        logging.info("Adding Local Build Success section to summary data")
+        summary_data.extend([
+            ["", "", "", "", "", ""],
+            ["Local Build Success", "", "", "", "", ""],
+            ["PRs that build locally but fail on Jenkins", successful_builds_count, "", "", "", ""],
+            ["View Details", f'=HYPERLINK("#gid={successful_builds_sheet_id}"; "Go to Local Build Success Sheet")', "", "", "", ""]
+        ])
+    else:
+        logging.warning("Could not add Local Build Success section because sheet ID is not available")
+else:
+    logging.info("Not adding Local Build Success section because has_successful_local_builds is False")
+
+# Add tests passed section if we have any
+if has_tests_passed:
+    logging.info("Attempting to add Tests Passed section to summary data")
+    # Wait a bit to avoid rate limiting
+    time.sleep(2)
+    tests_passed_sheet_id = get_worksheet_id_with_retry(spreadsheet, "Local Build Tests Pass")
+
+    if tests_passed_sheet_id:
+        logging.info("Adding Tests Passed section to summary data")
+        summary_data.extend([
+            ["", "", "", "", "", ""],
+            ["Local Build Tests Pass", "", "", "", "", ""],
+            ["PRs that build locally with passing tests", tests_passed_count, "", "", "", ""],
+            ["View Details", f'=HYPERLINK("#gid={tests_passed_sheet_id}"; "Go to Tests Pass Sheet")', "", "", "", ""]
+        ])
+    else:
+        logging.warning("Could not add Tests Passed section because sheet ID is not available")
+else:
+    logging.info("Not adding Tests Passed section because has_tests_passed is False")
+
+# Add tests failed section if we have any
+if has_tests_failed:
+    logging.info("Attempting to add Tests Failed section to summary data")
+    # Wait a bit to avoid rate limiting
+    time.sleep(2)
+    tests_failed_sheet_id = get_worksheet_id_with_retry(spreadsheet, "Local Build Tests Fail")
+
+    if tests_failed_sheet_id:
+        logging.info("Adding Tests Failed section to summary data")
+        summary_data.extend([
+            ["", "", "", "", "", ""],
+            ["Local Build Tests Fail", "", "", "", "", ""],
+            ["PRs that build locally but tests fail", tests_failed_count, "", "", "", ""],
+            ["View Details", f'=HYPERLINK("#gid={tests_failed_sheet_id}"; "Go to Tests Fail Sheet")', "", "", "", ""]
+        ])
+    else:
+        logging.warning("Could not add Tests Failed section because sheet ID is not available")
+else:
+    logging.info("Not adding Tests Failed section because has_tests_failed is False")
+
+# Add plugin-specific statistics section
+summary_data.extend([
     ["", "", "", "", "", ""],
     ["Plugin-Specific Statistics", "", "", "", "", ""],
     ["Plugin", "Total PRs", "Open PRs", "Closed PRs", "Merged PRs", "Link to Sheet"]
-]
+])
 
 # Add plugin-specific stats and links to individual sheets
 for plugin, stats in plugin_stats.items():
@@ -407,6 +614,347 @@ for plugin, stats in plugin_stats.items():
         link
     ])
 
+# Get the Summary sheet ID for the "Back to Summary" link
+summary_sheet_id = summary_sheet.id
+
+# Process successful builds data
+successful_builds = process_successful_builds_data(SUCCESSFUL_BUILDS_FILE)
+
+# Update the flag if we have successful builds
+if successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0:
+    has_successful_local_builds = True
+    successful_builds_count = len(successful_builds)
+    logging.info(f"Found {successful_builds_count} successful local builds")
+else:
+    logging.info(f"No successful builds found or invalid format: {successful_builds}")
+
+# Process test results data
+logging.info(f"Looking for test results file at: {TEST_RESULTS_FILE}")
+test_results = process_test_results_data(TEST_RESULTS_FILE)
+
+# Set flags for test results
+has_tests_passed = False
+has_tests_failed = False
+tests_passed_count = 0
+tests_failed_count = 0
+
+if test_results and isinstance(test_results, dict):
+    if 'passed' in test_results and len(test_results['passed']) > 0:
+        has_tests_passed = True
+        tests_passed_count = len(test_results['passed'])
+        logging.info(f"Found {tests_passed_count} PRs with passing tests")
+    else:
+        logging.info("No PRs with passing tests found in test results")
+
+    if 'failed' in test_results and len(test_results['failed']) > 0:
+        has_tests_failed = True
+        tests_failed_count = len(test_results['failed'])
+        logging.info(f"Found {tests_failed_count} PRs with failing tests")
+    else:
+        logging.info("No PRs with failing tests found in test results")
+else:
+    logging.info(f"No test results found or invalid format: {test_results}")
+
+# Force the flags to true for testing purposes
+if FORCE_UPDATE:
+    logging.info("Force update is enabled, setting test result flags to true for testing")
+    has_tests_passed = True
+    has_tests_failed = True
+    tests_passed_count = 0
+    tests_failed_count = 0
+
+# Debug logs for the flags
+logging.info(f"has_successful_local_builds flag is set to: {has_successful_local_builds}")
+logging.info(f"has_tests_passed flag is set to: {has_tests_passed}")
+logging.info(f"has_tests_failed flag is set to: {has_tests_failed}")
+
+# Check if successful builds file has changed since last run
+def has_successful_builds_changed():
+    """
+    Check if the successful_builds.csv file has changed since the last run.
+    Returns True if the file has changed or if it's the first run.
+    """
+    last_run_file = os.path.join(os.path.dirname(SUCCESSFUL_BUILDS_FILE), "last_successful_builds.csv")
+
+    # If the successful builds file doesn't exist, return False (no changes)
+    if not os.path.exists(SUCCESSFUL_BUILDS_FILE):
+        logging.info("Successful builds file doesn't exist.")
+        return False
+
+    # If the last run file doesn't exist, this is the first run
+    if not os.path.exists(last_run_file):
+        logging.info("First run for successful builds tracking.")
+        # Create a copy for future comparison
+        try:
+            import shutil
+            shutil.copy2(SUCCESSFUL_BUILDS_FILE, last_run_file)
+            logging.info(f"Created initial copy of successful builds file at {last_run_file}")
+        except Exception as e:
+            logging.error(f"Error creating copy of successful builds file: {str(e)}")
+        return True
+
+    # Compare the current file with the last run file
+    try:
+        with open(SUCCESSFUL_BUILDS_FILE, 'r') as f1, open(last_run_file, 'r') as f2:
+            current_content = f1.read()
+            last_content = f2.read()
+
+            if current_content != last_content:
+                logging.info("Successful builds file has changed since last run.")
+                # Update the last run file
+                with open(last_run_file, 'w') as f:
+                    f.write(current_content)
+                return True
+            else:
+                logging.info("Successful builds file has not changed since last run.")
+                return False
+    except Exception as e:
+        logging.error(f"Error comparing successful builds files: {str(e)}")
+        return True  # Default to updating if there's an error
+
+# Check if successful builds have changed
+successful_builds_changed = has_successful_builds_changed()
+
+# Create and update the successful builds sheet
+if (successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0 and
+    (successful_builds_changed or FORCE_UPDATE)):
+    logging.info(f"Found {len(successful_builds)} successful builds to add to the sheet")
+    logging.info(f"Updating sheet because: changed={successful_builds_changed}, force={FORCE_UPDATE}")
+    try:
+        try:
+            successful_builds_sheet = spreadsheet.worksheet("Local Build Success")
+            logging.info("Local Build Success sheet already exists. Updating it...")
+        except gspread.exceptions.WorksheetNotFound:
+            logging.info("Creating new Local Build Success sheet...")
+            successful_builds_sheet = spreadsheet.add_worksheet(title="Local Build Success", rows=100, cols=10)
+
+        # Prepare the data for the successful builds sheet
+        successful_builds_data = [
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
+            ["Repository", "PR Number", "PR URL", "JDK Version", "Status"]
+        ]
+
+        # Process each successful build
+        for build in successful_builds:
+            successful_builds_data.append([
+                build["repository"],
+                build["pr_number"],
+                f'=HYPERLINK("{build["pr_url"]}"; "PR #{build["pr_number"]}")',
+                build["jdk_version"],
+                "Builds locally"
+            ])
+
+        # Update the successful builds sheet
+        update_sheet_with_retry(successful_builds_sheet, successful_builds_data)
+
+        # Format the header row
+        format_sheet_with_retry(successful_builds_sheet, "A3:E3", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"
+        })
+
+        # Add a note to the sheet explaining its purpose
+        successful_builds_sheet.update_cell(1, 3, "PRs that build successfully locally but fail on Jenkins")
+        format_sheet_with_retry(successful_builds_sheet, "C1", {
+            "textFormat": {
+                "italic": True
+            }
+        })
+
+        # We no longer need to add a link here as we've already added it to the summary data
+        logging.info("Successfully created/updated Local Build Success sheet")
+    except Exception as e:
+        logging.error(f"Error creating/updating Local Build Success sheet: {str(e)}")
+elif successful_builds and isinstance(successful_builds, list) and len(successful_builds) > 0:
+    logging.info(f"Found {len(successful_builds)} successful builds but skipping update because no changes detected and force update not enabled")
+else:
+    logging.info("No successful builds found or successful_builds.csv file not available")
+
+# Function to safely get or create worksheet with retry
+def get_or_create_worksheet_with_retry(spreadsheet, sheet_name, rows=100, cols=10, max_retries=3):
+    """
+    Safely get or create a worksheet with retry logic for rate limiting.
+    """
+    for attempt in range(max_retries):
+        try:
+            try:
+                worksheet = spreadsheet.worksheet(sheet_name)
+                logging.info(f"{sheet_name} sheet already exists. Updating it...")
+                return worksheet
+            except gspread.exceptions.WorksheetNotFound:
+                logging.info(f"Creating new {sheet_name} sheet...")
+                # Add a delay before creating to avoid rate limits
+                time.sleep(2)
+                return spreadsheet.add_worksheet(title=sheet_name, rows=rows, cols=cols)
+        except gspread.exceptions.APIError as e:
+            if "429" in str(e) and attempt < max_retries - 1:
+                wait_time = get_backoff_duration(attempt, base_delay=20)
+                logging.warning(f"Rate limit hit when creating worksheet. Waiting {wait_time:.1f} seconds...")
+                time.sleep(wait_time)
+            else:
+                logging.error(f"API error creating worksheet: {str(e)}")
+                raise
+        except Exception as e:
+            logging.error(f"Unexpected error creating worksheet: {str(e)}")
+            raise
+
+    raise Exception(f"Failed to get or create worksheet {sheet_name} after {max_retries} attempts")
+
+# Create and update the tests passed sheet
+if has_tests_passed and FORCE_UPDATE:
+    passed_count = len(test_results['passed']) if test_results and isinstance(test_results, dict) and 'passed' in test_results else 0
+    logging.info(f"Found {passed_count} PRs with passing tests to add to the sheet")
+    logging.info(f"Updating tests passed sheet because: force={FORCE_UPDATE}")
+    try:
+        # Wait a bit to avoid rate limiting
+        time.sleep(5)
+        tests_passed_sheet = get_or_create_worksheet_with_retry(spreadsheet, "Local Build Tests Pass")
+
+        # Prepare the data for the tests passed sheet
+        tests_passed_data = [
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
+            ["Repository", "PR Number", "PR URL", "JDK Version", "Status"]
+        ]
+
+        # Process each PR with passing tests
+        if test_results and isinstance(test_results, dict) and 'passed' in test_results:
+            for pr in test_results['passed']:
+                tests_passed_data.append([
+                    pr["repository"],
+                    pr["pr_number"],
+                    f'=HYPERLINK("{pr["pr_url"]}"; "PR #{pr["pr_number"]}")',
+                    pr["jdk_version"],
+                    "Tests Passed"
+                ])
+        else:
+            # Add a placeholder row if no data
+            tests_passed_data.append([
+                "No data available",
+                "",
+                "",
+                "",
+                ""
+            ])
+
+        # Update the tests passed sheet
+        update_sheet_with_retry(tests_passed_sheet, tests_passed_data)
+
+        # Format the header row
+        format_sheet_with_retry(tests_passed_sheet, "A3:E3", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"
+        })
+
+        # Add a note to the sheet explaining its purpose
+        tests_passed_sheet.update_cell(1, 3, "PRs that build successfully locally and pass tests")
+        format_sheet_with_retry(tests_passed_sheet, "C1", {
+            "textFormat": {
+                "italic": True
+            }
+        })
+
+        logging.info("Successfully created/updated Local Build Tests Pass sheet")
+    except Exception as e:
+        logging.error(f"Error creating/updating Local Build Tests Pass sheet: {str(e)}")
+elif test_results and isinstance(test_results, dict) and 'passed' in test_results and len(test_results['passed']) > 0:
+    logging.info(f"Found {len(test_results['passed'])} PRs with passing tests but skipping update because force update not enabled")
+else:
+    logging.info("No PRs with passing tests found or test_results.csv file not available")
+
+# Create and update the tests failed sheet
+if has_tests_failed and FORCE_UPDATE:
+    failed_count = len(test_results['failed']) if test_results and isinstance(test_results, dict) and 'failed' in test_results else 0
+    logging.info(f"Found {failed_count} PRs with failing tests to add to the sheet")
+    logging.info(f"Updating tests failed sheet because: force={FORCE_UPDATE}")
+    try:
+        # Wait a bit to avoid rate limiting
+        time.sleep(5)
+        tests_failed_sheet = get_or_create_worksheet_with_retry(spreadsheet, "Local Build Tests Fail")
+
+        # Prepare the data for the tests failed sheet
+        tests_failed_data = [
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
+            ["Repository", "PR Number", "PR URL", "JDK Version", "Status"]
+        ]
+
+        # Process each PR with failing tests
+        if test_results and isinstance(test_results, dict) and 'failed' in test_results:
+            for pr in test_results['failed']:
+                tests_failed_data.append([
+                    pr["repository"],
+                    pr["pr_number"],
+                    f'=HYPERLINK("{pr["pr_url"]}"; "PR #{pr["pr_number"]}")',
+                    pr["jdk_version"],
+                    "Tests Failed"
+                ])
+        else:
+            # Add a placeholder row if no data
+            tests_failed_data.append([
+                "No data available",
+                "",
+                "",
+                "",
+                ""
+            ])
+
+        # Update the tests failed sheet
+        update_sheet_with_retry(tests_failed_sheet, tests_failed_data)
+
+        # Format the header row
+        format_sheet_with_retry(tests_failed_sheet, "A3:E3", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"
+        })
+
+        # Add a note to the sheet explaining its purpose
+        tests_failed_sheet.update_cell(1, 3, "PRs that build successfully locally but fail tests")
+        format_sheet_with_retry(tests_failed_sheet, "C1", {
+            "textFormat": {
+                "italic": True
+            }
+        })
+
+        logging.info("Successfully created/updated Local Build Tests Fail sheet")
+    except Exception as e:
+        logging.error(f"Error creating/updating Local Build Tests Fail sheet: {str(e)}")
+elif test_results and isinstance(test_results, dict) and 'failed' in test_results and len(test_results['failed']) > 0:
+    logging.info(f"Found {len(test_results['failed'])} PRs with failing tests but skipping update because force update not enabled")
+else:
+    logging.info("No PRs with failing tests found or test_results.csv file not available")
+
+# Log the summary data for debugging
+logging.info(f"Summary data has {len(summary_data)} rows")
+logging.info(f"First few rows: {summary_data[:5]}")
+if len(summary_data) > 10:
+    logging.info(f"Rows 10-15: {summary_data[10:15]}")
+
 # Update the summary sheet
 update_sheet_with_retry(summary_sheet, summary_data)
 
@@ -417,9 +965,6 @@ if sheets[0].title != "Summary":
     if summary_sheet_index is not None:
         spreadsheet.reorder_worksheets(
             [sheets[summary_sheet_index]] + [sheet for i, sheet in enumerate(sheets) if i != summary_sheet_index])
-
-# Get the Summary sheet ID for the "Back to Summary" link
-summary_sheet_id = summary_sheet.id
 
 # Format the summary sheet
 format_sheet_with_retry(summary_sheet, "A1:F1", {
@@ -434,6 +979,9 @@ format_sheet_with_retry(summary_sheet, "A1:F1", {
     },
     "horizontalAlignment": "CENTER"  # Center-align the text
 })
+
+# Process successful builds data
+successful_builds = process_successful_builds_data(SUCCESSFUL_BUILDS_FILE)
 
 # Create a new sheet for failing PRs
 if failing_prs and isinstance(failing_prs, list):

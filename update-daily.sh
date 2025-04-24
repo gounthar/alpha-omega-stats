@@ -20,6 +20,13 @@ for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
     cp "data/consolidated/$file" "$backup_file"
 done
 
+# Also backup successful_builds.csv if it exists
+if [ -f "data/consolidated/successful_builds.csv" ]; then
+    backup_file="data/consolidated/successful_builds.csv.$(date +%Y%m%d_%H%M%S).bak"
+    echo "Creating backup: $backup_file"
+    cp "data/consolidated/successful_builds.csv" "$backup_file"
+fi
+
 # Create temporary files
 TEMP_FILE=$(mktemp)
 TEMP_VALID_JSON=$(mktemp)
@@ -134,12 +141,14 @@ update_json_file() {
 # Update the consolidated files with new status information
 echo "Updating consolidated files with new status information..."
 
+update_failed=false
+
 if ! update_json_file "data/consolidated/all_prs.json" "$TEMP_VALID_JSON" "data/consolidated/all_prs.json"; then
     # Restore from most recent backup
     latest_backup=$(ls -t data/consolidated/all_prs.json.*.bak | head -1)
     echo "Restoring all_prs.json from backup: $latest_backup"
     cp "$latest_backup" "data/consolidated/all_prs.json"
-    exit 1
+    update_failed=true
 fi
 
 # Update open_prs.json
@@ -149,9 +158,10 @@ if ! jq '[.[] | select(.state == "OPEN")]' "data/consolidated/all_prs.json" > "d
     echo "Error: Failed to update open_prs.json. Restoring from backup."
     latest_backup=$(ls -t data/consolidated/open_prs.json.*.bak | head -1)
     cp "$latest_backup" "data/consolidated/open_prs.json"
-    exit 1
+    update_failed=true
+else
+    mv "data/consolidated/open_prs.json.tmp" "data/consolidated/open_prs.json"
 fi
-mv "data/consolidated/open_prs.json.tmp" "data/consolidated/open_prs.json"
 
 # Update failing_prs.json
 echo "Updating failing_prs.json..."
@@ -160,9 +170,10 @@ if ! jq '[.[] | select(.state == "OPEN" and .checkStatus == "ERROR")]' "data/con
     echo "Error: Failed to update failing_prs.json. Restoring from backup."
     latest_backup=$(ls -t data/consolidated/failing_prs.json.*.bak | head -1)
     cp "$latest_backup" "data/consolidated/failing_prs.json"
-    exit 1
+    update_failed=true
+else
+    mv "data/consolidated/failing_prs.json.tmp" "data/consolidated/failing_prs.json"
 fi
-mv "data/consolidated/failing_prs.json.tmp" "data/consolidated/failing_prs.json"
 
 # Function to check if files have changed
 check_files_changed() {
@@ -187,21 +198,79 @@ files_changed=false
 for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
     # Use the most recent backup file for comparison
     backup_file=$(ls -t data/consolidated/$file.*.bak | head -1)
-    if ! check_files_changed "data/consolidated/$file" "$backup_file"; then
+    if check_files_changed "data/consolidated/$file" "$backup_file"; then
         files_changed=true
+        echo "Changes detected in $file"
         break
     fi
 done
 
-# Update Google Sheets only if files have changed
-if [ "$files_changed" = true ]; then
-    echo "Changes detected in consolidated files. Updating Google Sheets..."
-    python3 upload_to_sheets.py "data/consolidated/all_prs.json" false
-else
-    echo "No changes detected in consolidated files. Skipping Google Sheets update."
+# Check if successful_builds.csv exists and has changed
+successful_builds_file="data/consolidated/successful_builds.csv"
+successful_builds_changed=false
+
+if [ -f "$successful_builds_file" ]; then
+    # Create a backup if it doesn't exist
+    if [ ! -f "${successful_builds_file}.bak" ]; then
+        echo "Creating initial backup of successful_builds.csv"
+        cp "$successful_builds_file" "${successful_builds_file}.bak"
+        successful_builds_changed=true
+    else
+        # Compare with the backup
+        if ! cmp -s "$successful_builds_file" "${successful_builds_file}.bak"; then
+            echo "Changes detected in successful_builds.csv"
+            cp "$successful_builds_file" "${successful_builds_file}.bak"
+            successful_builds_changed=true
+        fi
+    fi
 fi
 
-echo "Daily update completed successfully!"
+# Update Google Sheets if any files have changed or if update didn't fail
+if [ "$files_changed" = true ] || [ "$successful_builds_changed" = true ]; then
+    if [ "$update_failed" != true ]; then
+        echo "Changes detected in files. Updating Google Sheets..."
+        # Pass true as the third parameter to force an update
+        python3 upload_to_sheets.py "data/consolidated/all_prs.json" false true || echo "✗ Warning: Failed to update Google Sheets. Continuing with JUnit 5 migration PR analysis..."
+    else
+        echo "✗ Skipping Google Sheets update due to previous errors."
+    fi
+else
+    if [ "$update_failed" = true ]; then
+        echo "✗ Skipping Google Sheets update due to previous errors."
+    else
+        echo "No changes detected in any files. Skipping Google Sheets update."
+        # Still run the script but don't force an update
+        python3 upload_to_sheets.py "data/consolidated/all_prs.json" false false || echo "✗ Warning: Failed to update Google Sheets. Continuing with JUnit 5 migration PR analysis..."
+        echo "Note: To force an update of the successful builds sheet, run with the force parameter: python3 upload_to_sheets.py \"data/consolidated/all_prs.json\" false true"
+    fi
+fi
+
+# Run JUnit 5 migration PR analysis (run this regardless of other errors)
+echo "Running JUnit 5 migration PR analysis..."
+if [ -f "./find-junit5-prs.go.sh" ] && command -v go &> /dev/null; then
+    # Use Go-based finder if Go is available
+    chmod +x ./find-junit5-prs.go.sh
+    ./find-junit5-prs.go.sh
+    if [ $? -eq 0 ]; then
+        echo "✓ JUnit 5 migration PR analysis (Go) completed successfully"
+    else
+        echo "✗ JUnit 5 migration PR analysis (Go) failed, falling back to shell script"
+        ./junit5-migration-prs.sh
+    fi
+else
+    # Fall back to shell script if Go is not available
+    ./junit5-migration-prs.sh
+    if [ $? -eq 0 ]; then
+        echo "✓ JUnit 5 migration PR analysis completed successfully"
+    else
+        echo "✗ JUnit 5 migration PR analysis failed"
+    fi
+fi
+
+# Clean up temporary files
+trap cleanup EXIT INT TERM
+cleanup
+echo "Daily PR status update completed successfully!"
 echo "Updated files:"
 echo "  - data/consolidated/all_prs.json"
 echo "  - data/consolidated/open_prs.json"
@@ -209,6 +278,3 @@ echo "  - data/consolidated/failing_prs.json"
 echo "Backups created:"
 echo "  - data/consolidated/*.bak"
 echo "Google Sheets dashboard has been updated."
-
-# Now set the trap for cleanup only at the very end
-trap cleanup EXIT INT TERM
