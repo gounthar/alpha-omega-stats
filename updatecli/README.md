@@ -24,9 +24,6 @@ To run Updatecli locally, you need to:
    export UPDATECLI_GITHUB_TOKEN=your_github_token
    ```
 3. Run the diff command to see what would change:
-   ```bash
-updatecli diff --config ./updatecli/updatecli.d/top-250-plugins.yaml --values ./updatecli/values.github-action.yaml
-
 ## Automation Schedule
 
 The Updatecli workflow runs:
