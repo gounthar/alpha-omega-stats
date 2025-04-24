@@ -107,7 +107,7 @@ The system collects PR data from GitHub repositories related to Jenkins plugins,
   - Creates a pull request when changes are detected
   - Updates the local file with the latest content
   - Logs available in GitHub Actions run history
-  - Expected duration: 1-2 minutes
+  - Expected duration: 1–2 minutes
 
 ### Required Secrets and Permissions
 
