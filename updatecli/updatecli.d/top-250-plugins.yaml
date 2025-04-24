@@ -1,0 +1,60 @@
+---
+name: "Update top-250-plugins.csv from GitHub"
+
+scms:
+  default:
+    kind: github
+    spec:
+      user: "{{ .github.user }}"
+      email: "{{ .github.email }}"
+      owner: "{{ .github.owner }}"
+      repository: "{{ .github.repository }}"
+      token: "{{ requiredEnv .github.token }}"
+      username: "{{ .github.username }}"
+      branch: "{{ .github.branch }}"
+
+sources:
+  topPluginsContent:
+    name: "Get top-250-plugins.csv content from GitHub"
+    kind: http
+    spec:
+      url: https://raw.githubusercontent.com/gounthar/jdk8-removal/refs/heads/main/top-250-plugins.csv
+    transformers:
+      - trimPrefix: ""
+
+conditions:
+  contentChanged:
+    name: "Check if top-250-plugins.csv content has changed"
+    kind: file
+    disablesourceinput: true
+    spec:
+      file: "top-250-plugins.csv"
+    transformers:
+      - trimPrefix: ""
+
+targets:
+  updateTopPlugins:
+    name: "Update top-250-plugins.csv with new content"
+    kind: file
+    sourceid: topPluginsContent
+    spec:
+      file: "top-250-plugins.csv"
+    scmid: default
+
+actions:
+  default:
+    kind: github/pullrequest
+    scmid: default
+    spec:
+      title: "Update top-250-plugins.csv from upstream source"
+      description: |
+        This PR updates the top-250-plugins.csv file with the latest content from the upstream repository.
+        
+        The file is sourced from: https://raw.githubusercontent.com/gounthar/jdk8-removal/refs/heads/main/top-250-plugins.csv
+      
+      labels:
+        - dependencies
+        - automated-pr
+      
+      # Create a new branch for this update
+      branch: updatecli/top-250-plugins-update
