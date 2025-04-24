@@ -7,7 +7,7 @@ This directory contains [Updatecli](https://www.updatecli.io/) manifests used to
 ### top-250-plugins.csv
 
 The `top-250-plugins.yaml` manifest checks for changes in the `top-250-plugins.csv` file from the upstream source at:
-https://raw.githubusercontent.com/gounthar/jdk8-removal/refs/heads/main/top-250-plugins.csv
+[Upstream top-250-plugins.csv](https://raw.githubusercontent.com/gounthar/jdk8-removal/refs/heads/main/top-250-plugins.csv)
 
 When changes are detected, Updatecli will:
 1. Download the latest version of the file
