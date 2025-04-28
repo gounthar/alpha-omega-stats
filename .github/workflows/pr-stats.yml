@@ -41,10 +41,10 @@ jobs:
 
       - name: Configure GitHub CLI
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh auth login --with-token <<< "$GH_TOKEN"
-
+          echo "$GH_TOKEN" | gh auth login --with-token
+          
       - name: Set up Google credentials
         id: google-credentials
         env:
