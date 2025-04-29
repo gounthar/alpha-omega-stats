@@ -1,5 +1,11 @@
 #!/bin/bash
 
+set -euox pipefail
+
+# Call the script to install JDK versions
+script_dir=$(dirname "$0")
+"$script_dir/install-jdk-versions.sh"
+
 # Path to the input CSV file containing plugin names and their popularity.
 CSV_FILE="top-250-plugins.csv"
 
@@ -23,6 +29,15 @@ echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
 
 # Initialize the debug log file with a header.
 echo "Build Debug Log" > "$DEBUG_LOG"
+
+# Check if Maven is installed and accessible
+if command -v mvn &>/dev/null; then
+    echo "Maven is installed and accessible." >>"$DEBUG_LOG"
+    mvn -v >>"$DEBUG_LOG" 2>&1
+else
+    echo "Error: Maven is not installed or not in the PATH. Please install Maven and try again." >>"$DEBUG_LOG"
+    exit 1
+fi
 
 # Define a cleanup function to remove the build directory on script exit or interruption.
 cleanup() {
@@ -73,15 +88,17 @@ compile_plugin() {
         if [ "$build_status" == "success" ]; then
             cd "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || build_status="cd_failed"
 
-            # Attempt to compile the plugin using Maven or Gradle.
+           # Attempt to compile the plugin using Maven or Gradle.
             if [ -f "pom.xml" ]; then
                 echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                mvn clean install -DskipTests >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
+                mvn -v >>"$DEBUG_LOG" 2>&1  # Log Maven version to ensure it's installed.
+                echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
+                mvn clean install -DskipTests >mvn_output.log 2>&1 || build_status="build_failed"
+                cat mvn_output.log >>"$DEBUG_LOG"  # Append Maven output to the debug log.
             elif [ -f "build.gradle" ]; then
                 echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
                 ./gradlew build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
             else
-                # Log and set status if no recognized build file is found.
                 echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
                 build_status="no_build_file"
             fi
