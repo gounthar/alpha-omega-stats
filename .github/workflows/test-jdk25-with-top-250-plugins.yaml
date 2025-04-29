@@ -1,0 +1,21 @@
+name: Run Shell Script
+
+on:
+  push:
+    paths:
+      - top-250-plugins.csv
+  schedule:
+    - cron: '0 0 * * 2'  # Every Tuesday at midnight UTC
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run shell script
+        run: |
+          chmod +x ./test-jdk-25.sh
+          ./test-jdk-25.sh
