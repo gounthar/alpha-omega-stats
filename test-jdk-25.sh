@@ -21,11 +21,19 @@ echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
 # Initialize the debug log file
 echo "Build Debug Log" > "$DEBUG_LOG"
 
-# Function to compile a plugin
+# Trap to clean up on exit or interruption
+cleanup() {
+    echo "Cleaning up build directory..."
+    rm -rf "$BUILD_DIR"
+}
+trap cleanup EXIT
+
 compile_plugin() {
     local plugin_name="$1"
     local plugin_dir="$BUILD_DIR/$plugin_name"
     local build_status="success"
+
+    echo "Processing plugin: $plugin_name" >>"$DEBUG_LOG"
 
     # Clone the plugin repository
     git clone "https://github.com/jenkinsci/${plugin_name}-plugin.git" "$plugin_dir" &>>"$DEBUG_LOG" || build_status="clone_failed"
@@ -36,9 +44,11 @@ compile_plugin() {
 
         # Attempt to compile the plugin
         if [ -f "pom.xml" ]; then
-            mvn clean install -DskipTests &>>"$DEBUG_LOG" || build_status="build_failed"
+            echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
+            mvn clean install -DskipTests >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
         elif [ -f "build.gradle" ]; then
-            ./gradlew build -x test &>>"$DEBUG_LOG" || build_status="build_failed"
+            echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
+            ./gradlew build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
         else
             echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
             build_status="no_build_file"
@@ -48,13 +58,15 @@ compile_plugin() {
         cd - &>>"$DEBUG_LOG" || build_status="cd_failed"
     fi
 
+    # Log the final status
+    echo "Build status for $plugin_name: $build_status" >>"$DEBUG_LOG"
+
     # Clean up the plugin directory
     rm -rf "$plugin_dir"
 
     # Return the build status
     echo "$build_status"
 }
-
 # Read the CSV file and compile each plugin
 while IFS=, read -r name popularity; do
     # Skip the header line
