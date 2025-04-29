@@ -34,9 +34,10 @@ jobs:
 
       - name: Configure GitHub CLI
         env:
-          GH_TOKEN: ${{ github.token }}
+          TOKEN: ${{ github.token }}
         run: |
-          echo "$GH_TOKEN" | gh auth login --with-token
+          unset GITHUB_TOKEN && unset GH_TOKEN
+          echo "$TOKEN" | gh auth login --with-token
 
       - name: Set up Python
         uses: actions/setup-python@v5
