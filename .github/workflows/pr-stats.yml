@@ -33,7 +33,6 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          env | grep GITHUB_TOKEN
           echo "$GH_TOKEN" | gh auth login --with-token
 
       - name: Set up Python
