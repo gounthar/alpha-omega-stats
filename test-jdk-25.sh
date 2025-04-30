@@ -47,8 +47,13 @@ cleanup() {
 # Register the cleanup function to be called on script exit or interruption.
 trap cleanup EXIT
 
-# Download the plugins JSON file from the Jenkins update center.
-curl -L https://updates.jenkins.io/current/update-center.actual.json -o plugins.json
+# Check if plugins.json exists and is older than one day
+if [ ! -f "plugins.json" ] || [ "$(find "plugins.json" -mtime +0)" ]; then
+    echo "Downloading plugins.json..."
+    curl -L https://updates.jenkins.io/current/update-center.actual.json -o plugins.json
+else
+    echo "plugins.json is up-to-date."
+fi
 
 # Function to retrieve the GitHub URL of a plugin from the plugins JSON file.
 # Arguments:
@@ -93,11 +98,23 @@ compile_plugin() {
                 echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                 mvn -v >>"$DEBUG_LOG" 2>&1  # Log Maven version to ensure it's installed.
                 echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                mvn clean install -DskipTests >mvn_output.log 2>&1 || build_status="build_failed"
-                cat mvn_output.log >>"$DEBUG_LOG"  # Append Maven output to the debug log.
+                # Run Maven with verbose output and capture it to the debug log
+                echo "=== BEGIN MAVEN OUTPUT ===" >>"$DEBUG_LOG"
+                # Use -X for debug output to get more detailed information
+                mvn -X clean install -DskipTests >>"$DEBUG_LOG" 2>&1 || {
+                    build_status="build_failed"
+                    echo "Maven build failed with exit code $?" >>"$DEBUG_LOG"
+                }
+                echo "=== END MAVEN OUTPUT ===" >>"$DEBUG_LOG"
             elif [ -f "build.gradle" ]; then
                 echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
-                ./gradlew build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
+                echo "=== BEGIN GRADLE OUTPUT ===" >>"$DEBUG_LOG"
+                # Use --info for more detailed output
+                ./gradlew --info build -x test >>"$DEBUG_LOG" 2>&1 || {
+                    build_status="build_failed"
+                    echo "Gradle build failed with exit code $?" >>"$DEBUG_LOG"
+                }
+                echo "=== END GRADLE OUTPUT ===" >>"$DEBUG_LOG"
             else
                 echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
                 build_status="no_build_file"
