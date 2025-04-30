@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Determine the directory of the current script
 script_dir=$(dirname "$0")
@@ -28,13 +29,17 @@ declare -a jdk_versions=("8" "11" "17" "21" "25")
 
 # Loop through each JDK version
 for version in "${jdk_versions[@]}"; do
-    if [ "$version" == "25" ]; then
-        # For JDK 25, allow any vendor
-        identifier=$(PAGER=cat sdk list java | grep -E " $version\\.ea" | awk '{print $NF}' | head -n 1)
-    else
-        # For other versions, stick with Temurin
-        identifier=$(PAGER=cat sdk list java | grep -E " $version\\.0.*-tem" | awk -v ver="$version" '$0 ~ " " ver "\\.0.*-tem" {print $NF}' | head -n 1)
-    fi
+    case "$version" in
+      25) pattern=" $version\.ea" ;;
+      *)  pattern=" $version\.0.*-tem" ;;
+    esac
+
+    identifier=$(
+      PAGER=cat sdk list java \
+        | grep -E "$pattern" \
+        | awk '{print $NF}' \
+        | head -n1
+    )
 
     if [ -n "$identifier" ]; then
         echo "Installing JDK version $version with identifier $identifier"
