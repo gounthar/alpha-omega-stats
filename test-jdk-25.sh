@@ -106,7 +106,8 @@ echo "Reached after cd command" >>"$DEBUG_LOG"
                     cat mvn_output.log >>"$DEBUG_LOG"
                 elif [ -f "build.gradle" ]; then
                     echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
-                    ./gradlew build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
+                    echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
+                    "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
                 else
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
                     build_status="no_build_file"
