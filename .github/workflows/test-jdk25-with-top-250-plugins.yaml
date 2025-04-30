@@ -45,7 +45,7 @@ jobs:
       # Step 5: Push the changes to a new branch named `update-results`.
       - name: Push changes to a new branch
         run: |
-          git branch update-results  # Create a new branch.
+          git checkout -b update-results  # Create and switch to a new branch in one step.
           git push origin update-results --force  # Push the branch to the remote repository.
 
       # Step 6: Create a pull request with the changes using a pre-defined action.
