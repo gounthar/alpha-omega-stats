@@ -26,6 +26,12 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 # Declare the JDK versions you're interested in
 declare -a jdk_versions=("8" "11" "17" "21" "25")
 
+# Verify that sdk is on PATH
+if ! command -v sdk &>/dev/null; then
+    echo "Error: sdk is not installed or not in the PATH. Please install SDKMAN and try again."
+    exit 1
+fi
+
 # Loop through each JDK version
 for version in "${jdk_versions[@]}"; do
     case "$version" in
@@ -35,7 +41,7 @@ for version in "${jdk_versions[@]}"; do
 
     identifier=$(
       PAGER=cat sdk list java \
-        | grep -E "$pattern" \
+        | grep -E -- "$pattern" \
         | awk '{print $NF}' \
         | head -n1
     )
