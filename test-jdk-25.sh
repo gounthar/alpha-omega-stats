@@ -4,6 +4,7 @@
 set -uo pipefail
 
 # Call the script to install JDK versions
+# The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
 "$script_dir/install-jdk-versions.sh"
 
@@ -33,9 +34,11 @@ echo "Build Debug Log" > "$DEBUG_LOG"
 
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
+    # Log Maven installation details to the debug log.
     echo "Maven is installed and accessible." >>"$DEBUG_LOG"
     mvn -v >>"$DEBUG_LOG" 2>&1
 else
+    # Log an error message and exit if Maven is not installed.
     echo "Error: Maven is not installed or not in the PATH. Please install Maven and try again." >>"$DEBUG_LOG"
     exit 1
 fi
@@ -50,9 +53,11 @@ trap cleanup EXIT
 
 # Check if plugins.json exists and is older than one day
 if [ ! -f "$PLUGINS_JSON" ] || [ "$(find "$PLUGINS_JSON" -mtime +0)" ]; then
-  echo "Downloading $PLUGINS_JSON..."
-  curl -L https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"
+    # Download the latest plugins JSON file from the Jenkins update center.
+    echo "Downloading $PLUGINS_JSON..."
+    curl -L https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"
 else
+    # Log that the plugins JSON file is up-to-date.
     echo "plugins.json is up-to-date."
 fi
 
@@ -76,6 +81,7 @@ compile_plugin() {
     local plugin_dir="$BUILD_DIR/$plugin_name"
     local build_status="success"
 
+    # Log the start of processing for the plugin.
     echo "Processing plugin: $plugin_name" >>"$DEBUG_LOG"
 
     # Retrieve the GitHub URL for the plugin.
@@ -83,14 +89,17 @@ compile_plugin() {
     github_url=$(get_github_url "$plugin_name")
 
     if [ -z "$github_url" ]; then
+        # Log an error if no GitHub URL is found for the plugin.
         echo "No GitHub URL found for $plugin_name" >>"$DEBUG_LOG"
         build_status="url_not_found"
     else
+        # Clone the plugin repository and log the result.
         git clone "$github_url" "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || build_status="clone_failed"
 
         if [ "$build_status" == "success" ]; then
             echo "Cloned repository for $plugin_name." >>"$DEBUG_LOG"
 
+            # Change to the plugin directory and log the result.
             cd "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || {
                 echo "Failed to change directory to $plugin_dir" >>"$DEBUG_LOG"
                 build_status="cd_failed"
@@ -99,30 +108,42 @@ compile_plugin() {
             echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
-                    echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
+                    # Run a Maven build if a pom.xml file is found.
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
                     # Create an absolute path for the temporary Maven output log
                     maven_log_file="$(pwd)/mvn_output.log"
                     # Use the absolute path when calling run-maven-build.sh
-                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean install -DskipTests || build_status="build_failed"
+                    "$script_dir/run-maven-build.sh" mvn_output.log clean install -DskipTests
+                    maven_exit_code=$?
+                    # Always read the log file regardless of build success/failure
+                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
+                    cat mvn_output.log >>"$DEBUG_LOG" 2>/dev/null || echo "Failed to read Maven output log" >>"$DEBUG_LOG"
+                    # Then check exit code
+                    if [ $maven_exit_code -ne 0 ]; then
+                        build_status="build_failed"
+                    fi
                     # Use the same absolute path when appending to the debug log
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
                     cat "$maven_log_file" >>"$DEBUG_LOG"
                     rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
+                    # Run a Gradle build if a Gradle wrapper is found.
                     echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
                     "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
                 else
+                    # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
                     build_status="no_build_file"
                 fi
             fi
 
+            # Return to the previous directory and log the result.
             cd - >>"$DEBUG_LOG" 2>&1 || echo "Failed to return to the previous directory" >>"$DEBUG_LOG"
         fi
     fi
 
+    # Log the build status for the plugin and clean up the plugin directory.
     echo "Build status for $plugin_name: $build_status" >>"$DEBUG_LOG"
     rm -rf "$plugin_dir"
     echo "$build_status"
