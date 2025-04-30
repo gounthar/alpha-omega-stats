@@ -98,12 +98,16 @@ compile_plugin() {
                 echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                 mvn -v >>"$DEBUG_LOG" 2>&1  # Log Maven version to ensure it's installed.
                 echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
+                # Create a temporary file for Maven output
+                MAVEN_LOG_FILE=$(mktemp)
+                echo "Created temporary Maven log file: $MAVEN_LOG_FILE" >>"$DEBUG_LOG"
+                
                 echo "=== BEGIN MAVEN OUTPUT ===" >>"$DEBUG_LOG"
                 
-                # Run Maven and directly tee the output to the debug log
+                # Run Maven and save output to temporary file
                 set +e  # Temporarily disable exit on error
-                mvn -X clean install -DskipTests 2>&1 | tee -a "$DEBUG_LOG"
-                mvn_exit_code=${PIPESTATUS[0]}
+                mvn -X clean install -DskipTests > "$MAVEN_LOG_FILE" 2>&1
+                mvn_exit_code=$?
                 set -e  # Re-enable exit on error
                 
                 # Check Maven exit status
@@ -112,15 +116,30 @@ compile_plugin() {
                     echo "Maven build failed with exit code $mvn_exit_code" >>"$DEBUG_LOG"
                 fi
                 
+                # Check if the log file exists and has content
+                if [ -f "$MAVEN_LOG_FILE" ]; then
+                    echo "Maven log file exists with size: $(wc -l < "$MAVEN_LOG_FILE") lines" >>"$DEBUG_LOG"
+                    # Append Maven output to debug log using cat
+                    cat "$MAVEN_LOG_FILE" >> "$DEBUG_LOG"
+                else
+                    echo "ERROR: Maven log file does not exist!" >>"$DEBUG_LOG"
+                fi
+                
+                # Clean up temporary file
+                rm -f "$MAVEN_LOG_FILE"
+                
                 echo "=== END MAVEN OUTPUT ===" >>"$DEBUG_LOG"
             elif [ -f "build.gradle" ]; then
                 echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
+                # Create a temporary file for Gradle output
+                GRADLE_LOG_FILE=$(mktemp)
+                
                 echo "=== BEGIN GRADLE OUTPUT ===" >>"$DEBUG_LOG"
                 
-                # Run Gradle and directly tee the output to the debug log
+                # Run Gradle and save output to temporary file
                 set +e  # Temporarily disable exit on error
-                ./gradlew --info build -x test 2>&1 | tee -a "$DEBUG_LOG"
-                gradle_exit_code=${PIPESTATUS[0]}
+                ./gradlew --info build -x test > "$GRADLE_LOG_FILE" 2>&1
+                gradle_exit_code=$?
                 set -e  # Re-enable exit on error
                 
                 # Check Gradle exit status
@@ -128,6 +147,12 @@ compile_plugin() {
                     build_status="build_failed"
                     echo "Gradle build failed with exit code $gradle_exit_code" >>"$DEBUG_LOG"
                 fi
+                
+                # Append Gradle output to debug log using cat
+                cat "$GRADLE_LOG_FILE" >> "$DEBUG_LOG"
+                
+                # Clean up temporary file
+                rm -f "$GRADLE_LOG_FILE"
                 
                 echo "=== END GRADLE OUTPUT ===" >>"$DEBUG_LOG"
             else
