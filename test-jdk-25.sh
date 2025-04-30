@@ -95,7 +95,7 @@ compile_plugin() {
                 echo "Failed to change directory to $plugin_dir" >>"$DEBUG_LOG"
                 build_status="cd_failed"
             }
-echo "Reached after cd command" >>"$DEBUG_LOG"
+            echo "Reached after cd command" >>"$DEBUG_LOG"
             echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then

@@ -7,9 +7,8 @@ shift
 
 # Run Maven with the remaining arguments and capture all output
 echo "=== BEGIN MAVEN OUTPUT ===" >> "$LOG_FILE"
-mvn "$@" 2>&1 >> "$LOG_FILE"
+mvn "$@" >> "$LOG_FILE" 2>&1
 EXIT_CODE=$?
 echo "=== END MAVEN OUTPUT ===" >> "$LOG_FILE"
-
 # Return the Maven exit code
 exit $EXIT_CODE
