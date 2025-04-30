@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euo pipefail
 
 # Determine the directory of the current script
 script_dir=$(dirname "$0")
