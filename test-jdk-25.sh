@@ -102,7 +102,7 @@ compile_plugin() {
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    "$script_dir/run-maven-build.sh" "$DEBUG_LOG" clean install -DskipTests || build_status="build_failed"
+                    "$script_dir/run-maven-build.sh" mvn_output.log clean install -DskipTests || build_status="build_failed"
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
                     cat mvn_output.log >>"$DEBUG_LOG"
                 elif [ -f "build.gradle" ]; then
