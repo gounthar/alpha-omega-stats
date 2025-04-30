@@ -105,9 +105,8 @@ compile_plugin() {
                     "$script_dir/run-maven-build.sh" mvn_output.log clean install -DskipTests || build_status="build_failed"
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
                     cat mvn_output.log >>"$DEBUG_LOG"
-                elif [ -f "build.gradle" ]; then
-                    echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
+                elif [ -f "./gradlew" ]; then
+                    echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
                     "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
                 else
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
