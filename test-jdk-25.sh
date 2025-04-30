@@ -100,8 +100,9 @@ echo "Reached after cd command" >>"$DEBUG_LOG"
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
+                    echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    mvn clean install -DskipTests > mvn_output.log 2>&1 || build_status="build_failed"
+                    "$script_dir/run-maven-build.sh" "$DEBUG_LOG" clean install -DskipTests || build_status="build_failed"
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
                     cat mvn_output.log >>"$DEBUG_LOG"
                 elif [ -f "build.gradle" ]; then
