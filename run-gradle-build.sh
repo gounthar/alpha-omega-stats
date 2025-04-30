@@ -7,9 +7,8 @@ shift
 
 # Run Gradle with the remaining arguments and capture all output
 echo "=== BEGIN GRADLE OUTPUT ===" >> "$LOG_FILE"
-./gradlew "$@" 2>&1 >> "$LOG_FILE"
+./gradlew "$@" >> "$LOG_FILE" 2>&1
 EXIT_CODE=$?
 echo "=== END GRADLE OUTPUT ===" >> "$LOG_FILE"
-
 # Return the Gradle exit code
 exit $EXIT_CODE
