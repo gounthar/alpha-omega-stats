@@ -102,9 +102,14 @@ compile_plugin() {
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    "$script_dir/run-maven-build.sh" mvn_output.log clean install -DskipTests || build_status="build_failed"
+                    # Create an absolute path for the temporary Maven output log
+                    maven_log_file="$(pwd)/mvn_output.log"
+                    # Use the absolute path when calling run-maven-build.sh
+                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean install -DskipTests || build_status="build_failed"
+                    # Use the same absolute path when appending to the debug log
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
-                    cat mvn_output.log >>"$DEBUG_LOG"
+                    cat "$maven_log_file" >>"$DEBUG_LOG"
+                    rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
                     "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
