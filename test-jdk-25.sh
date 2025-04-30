@@ -102,10 +102,10 @@ compile_plugin() {
                 
                 echo "=== BEGIN MAVEN OUTPUT ===" >>"$DEBUG_LOG"
                 
-                # Run Maven and tee the output to both the console and the debug log
-                # We need to use a temporary file to capture the exit code
-                mvn clean install -DskipTests 2>&1 | tee -a "$DEBUG_LOG"
-                mvn_exit_code=${PIPESTATUS[0]}
+                # Run Maven and redirect output to the debug log file only
+                # This prevents the output from being captured by the command substitution
+                mvn clean install -DskipTests >>"$DEBUG_LOG" 2>&1
+                mvn_exit_code=$?
                 
                 # Record the build status based on the exit code
                 if [ $mvn_exit_code -ne 0 ]; then
@@ -123,10 +123,10 @@ compile_plugin() {
                 
                 echo "=== BEGIN GRADLE OUTPUT ===" >>"$DEBUG_LOG"
                 
-                # Run Gradle and tee the output to both the console and the debug log
-                # We need to use PIPESTATUS to capture the exit code
-                ./gradlew build -x test 2>&1 | tee -a "$DEBUG_LOG"
-                gradle_exit_code=${PIPESTATUS[0]}
+                # Run Gradle and redirect output to the debug log file only
+                # This prevents the output from being captured by the command substitution
+                ./gradlew build -x test >>"$DEBUG_LOG" 2>&1
+                gradle_exit_code=$?
                 
                 # Record the build status based on the exit code
                 if [ $gradle_exit_code -ne 0 ]; then
