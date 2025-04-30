@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -euox pipefail
+# Disable strict error checking and debug output for more reliable output handling
+set -uo pipefail
 
 # Call the script to install JDK versions
 script_dir=$(dirname "$0")
@@ -98,61 +99,44 @@ compile_plugin() {
                 echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                 mvn -v >>"$DEBUG_LOG" 2>&1  # Log Maven version to ensure it's installed.
                 echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                # Create a temporary file for Maven output
-                MAVEN_LOG_FILE=$(mktemp)
-                echo "Created temporary Maven log file: $MAVEN_LOG_FILE" >>"$DEBUG_LOG"
                 
                 echo "=== BEGIN MAVEN OUTPUT ===" >>"$DEBUG_LOG"
                 
-                # Run Maven and save output to temporary file
-                set +e  # Temporarily disable exit on error
-                mvn -X clean install -DskipTests > "$MAVEN_LOG_FILE" 2>&1
+                # Run Maven with output directly to the console
+                # We'll capture the exit code but not try to capture the output
+                mvn clean install -DskipTests
                 mvn_exit_code=$?
-                set -e  # Re-enable exit on error
                 
-                # Check Maven exit status
+                # Record the build status based on the exit code
                 if [ $mvn_exit_code -ne 0 ]; then
                     build_status="build_failed"
                     echo "Maven build failed with exit code $mvn_exit_code" >>"$DEBUG_LOG"
-                fi
-                
-                # Check if the log file exists and has content
-                if [ -f "$MAVEN_LOG_FILE" ]; then
-                    echo "Maven log file exists with size: $(wc -l < "$MAVEN_LOG_FILE") lines" >>"$DEBUG_LOG"
-                    # Append Maven output to debug log using cat
-                    cat "$MAVEN_LOG_FILE" >> "$DEBUG_LOG"
+                    # Add a note about where to find the full build output
+                    echo "Full Maven build output is available in the console" >>"$DEBUG_LOG"
                 else
-                    echo "ERROR: Maven log file does not exist!" >>"$DEBUG_LOG"
+                    echo "Maven build succeeded" >>"$DEBUG_LOG"
                 fi
-                
-                # Clean up temporary file
-                rm -f "$MAVEN_LOG_FILE"
                 
                 echo "=== END MAVEN OUTPUT ===" >>"$DEBUG_LOG"
             elif [ -f "build.gradle" ]; then
                 echo "Running Gradle build for $plugin_name..." >>"$DEBUG_LOG"
-                # Create a temporary file for Gradle output
-                GRADLE_LOG_FILE=$(mktemp)
                 
                 echo "=== BEGIN GRADLE OUTPUT ===" >>"$DEBUG_LOG"
                 
-                # Run Gradle and save output to temporary file
-                set +e  # Temporarily disable exit on error
-                ./gradlew --info build -x test > "$GRADLE_LOG_FILE" 2>&1
+                # Run Gradle with output directly to the console
+                # We'll capture the exit code but not try to capture the output
+                ./gradlew build -x test
                 gradle_exit_code=$?
-                set -e  # Re-enable exit on error
                 
-                # Check Gradle exit status
+                # Record the build status based on the exit code
                 if [ $gradle_exit_code -ne 0 ]; then
                     build_status="build_failed"
                     echo "Gradle build failed with exit code $gradle_exit_code" >>"$DEBUG_LOG"
+                    # Add a note about where to find the full build output
+                    echo "Full Gradle build output is available in the console" >>"$DEBUG_LOG"
+                else
+                    echo "Gradle build succeeded" >>"$DEBUG_LOG"
                 fi
-                
-                # Append Gradle output to debug log using cat
-                cat "$GRADLE_LOG_FILE" >> "$DEBUG_LOG"
-                
-                # Clean up temporary file
-                rm -f "$GRADLE_LOG_FILE"
                 
                 echo "=== END GRADLE OUTPUT ===" >>"$DEBUG_LOG"
             else
