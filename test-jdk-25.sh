@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # Call the script to install JDK versions
-script_dir=$(dirname "$0")
+script_dir=$(cd "$(dirname "$0")" && pwd)
 "$script_dir/install-jdk-versions.sh"
 
 # Path to the input CSV file containing plugin names and their popularity.
@@ -49,9 +49,9 @@ cleanup() {
 trap cleanup EXIT
 
 # Check if plugins.json exists and is older than one day
-if [ ! -f "plugins.json" ] || [ "$(find "plugins.json" -mtime +0)" ]; then
-    echo "Downloading plugins.json..."
-    curl -L https://updates.jenkins.io/current/update-center.actual.json -o plugins.json
+if [ ! -f "$PLUGINS_JSON" ] || [ "$(find "$PLUGINS_JSON" -mtime +0)" ]; then
+  echo "Downloading $PLUGINS_JSON..."
+  curl -L https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"
 else
     echo "plugins.json is up-to-date."
 fi
