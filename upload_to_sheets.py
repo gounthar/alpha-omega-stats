@@ -396,26 +396,6 @@ def process_test_results_data(csv_file):
         logging.error(f"Error processing test results file: {str(e)}")
         return None
 
-def process_build_results(csv_file):
-    """
-    Process the JDK 25 build results CSV file.
-    Returns a list of records or None if the file is not found.
-    """
-    if not os.path.exists(csv_file):
-        logging.warning(f"Build results file {csv_file} not found.")
-        return None
-
-    try:
-        build_results = []
-        with open(csv_file, 'r') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                build_results.append(row)
-        return build_results
-    except Exception as e:
-        logging.error(f"Error processing build results file: {str(e)}")
-        return None
-
 def process_top_250_plugins_data(csv_file):
     """
     Process the JDK 25 build results CSV file for the top 250 plugins.
@@ -1008,56 +988,8 @@ elif test_results and isinstance(test_results, dict) and 'failed' in test_result
 else:
     logging.info("No PRs with failing tests found or test_results.csv file not available")
 
-# Process build results data
-build_results = process_build_results(BUILD_RESULTS_FILE)
-
-if build_results:
-    try:
-        # Create or update the build status sheet
-        build_status_sheet = get_or_create_worksheet_with_retry(spreadsheet, "JDK 25 Build Status")
-
-        # Prepare the data for the build status sheet
-        build_status_data = [
-            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
-            ["", "", "", "", ""],  # Empty row for spacing
-            ["Plugin Name", "Popularity", "Build Status"]
-        ]
-
-        for result in build_results:
-            build_status_data.append([
-                result.get("plugin_name", "Unknown"),
-                result.get("popularity", "Unknown"),
-                result.get("build_status", "Unknown")
-            ])
-
-        # Update the build status sheet
-        update_sheet_with_retry(build_status_sheet, build_status_data)
-
-        # Format the header row
-        format_sheet_with_retry(build_status_sheet, "A3:C3", {
-            "textFormat": {
-                "bold": True
-            },
-            "backgroundColor": {
-                "red": 0.9,
-                "green": 0.9,
-                "blue": 0.9,
-                "alpha": 1.0
-            },
-            "horizontalAlignment": "CENTER"
-        })
-
-        logging.info("Successfully created/updated JDK 25 Build Status sheet")
-
-        # Add a link to the build status sheet in the Summary sheet
-        summary_data.append(["JDK 25 Build Status", "", "", "", "", f'=HYPERLINK("#gid={build_status_sheet.id}"; "View Build Status")'])
-    except Exception as e:
-        logging.error(f"Error creating/updating JDK 25 Build Status sheet: {str(e)}")
-else:
-    logging.warning("No build results found or build results file not available")
-
 # Process the top 250 plugins build results
-top_250_plugins_results = process_top_250_plugins_data("jdk-25-build-results.csv")
+top_250_plugins_results = process_top_250_plugins_data(BUILD_RESULTS_FILE)
 
 if top_250_plugins_results:
     try:
