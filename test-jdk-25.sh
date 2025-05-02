@@ -163,15 +163,24 @@ compile_plugin() {
                 fi
 
                 # Return to the previous directory only if cd was successful
-                echo "Attempting to cd back from $plugin_dir" >> "$DEBUG_LOG" # Add log before cd -
-                cd - >>"$DEBUG_LOG" 2>&1 || echo "Failed to return to the previous directory" >>"$DEBUG_LOG"
-                echo "Successfully cd'd back from $plugin_dir" >> "$DEBUG_LOG" # Add log after cd -
+                echo "Attempting to cd back from $plugin_dir" >> "$DEBUG_LOG"
+                # Execute cd - separately, suppress its output, and check exit status
+                if cd - > /dev/null 2>&1; then
+                    echo "Successfully cd'd back from $plugin_dir" >> "$DEBUG_LOG"
+                else
+                    echo "Failed to return to the previous directory using 'cd -'" >> "$DEBUG_LOG"
+                    # Attempt to cd back to the script's starting directory as a fallback
+                    echo "Attempting fallback cd to script directory: $script_dir" >> "$DEBUG_LOG"
+                    cd "$script_dir" || echo "FATAL: Fallback cd to script_dir also failed. Current directory: $(pwd)" >> "$DEBUG_LOG"
+                fi
             fi # End of if cd_exit_code == 0
         fi # End of if clone status == success
     fi # End of if github_url exists
 
     # Log the build status for the plugin and clean up the plugin directory.
-    echo "Build status for $plugin_name: $build_status" >>"$DEBUG_LOG"
+    # Ensure cleanup happens even if cd failed
+    echo "Build status for $plugin_name: $build_status" >> "$DEBUG_LOG"
+    echo "Cleaning up directory: $plugin_dir" >> "$DEBUG_LOG"
     rm -rf "$plugin_dir"
     echo "$build_status"
 }
