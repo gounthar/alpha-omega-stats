@@ -989,7 +989,7 @@ else:
     logging.info("No PRs with failing tests found or test_results.csv file not available")
 
 # Process the top 250 plugins build results
-top_250_plugins_results = process_top_250_plugins_data("jdk-25-build-results.csv")
+top_250_plugins_results = process_top_250_plugins_data(BUILD_RESULTS_FILE)
 
 if top_250_plugins_results:
     try:
