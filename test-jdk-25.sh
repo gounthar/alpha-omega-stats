@@ -149,7 +149,7 @@ compile_plugin() {
                     # Create an absolute path for the temporary Maven output log
                     maven_log_file="$(pwd)/mvn_output.log"
                     # Use the absolute path when calling run-maven-build.sh
-                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean install -DskipTests
+                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean verify -Pquick -DskipTests
                     maven_exit_code=$?
                     # Always read the log file regardless of build success/failure
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
