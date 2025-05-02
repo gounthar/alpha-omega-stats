@@ -169,15 +169,24 @@ compile_plugin() {
     echo "$build_status"
 }
 
-# Read the input CSV file and process each plugin.
-while IFS=, read -r name popularity; do
+# Read the input CSV file using file descriptor 3 to avoid consuming stdin
+line_number=0
+while IFS=, read -r name popularity <&3; do
+    line_number=$((line_number + 1))
+    echo "Read line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
+
     # Skip the header row in the CSV file.
     if [ "$name" != "name" ]; then
-        # Compile the plugin and append the results to the output CSV file.
+        echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
         build_status=$(compile_plugin "$name")
+        echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
         echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
+    else
+        echo "Skipping header line $line_number" >> "$DEBUG_LOG"
     fi
-done < "$CSV_FILE"
+done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
+
+echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 
 # Log the completion of the script and the locations of the results and logs.
 echo "Simplified build results have been saved to $RESULTS_FILE."
