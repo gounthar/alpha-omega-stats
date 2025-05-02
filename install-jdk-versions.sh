@@ -95,7 +95,8 @@ is_jdk25_up_to_date() {
         echo "$java_version_output" | while read -r line; do log_message "$line"; done
 
         # Extract version from the Runtime Environment line (e.g., Temurin-25+20...)
-        installed_version_full=$(echo "$java_version_output" | grep 'OpenJDK Runtime Environment' | sed -n 's/.*Temurin-\([^+]*\+[0-9]*\).*/\1/p')
+        # Use ERE for clarity and correct matching of digits+digits
+        installed_version_full=$(echo "$java_version_output" | grep 'OpenJDK Runtime Environment' | sed -E -n 's/.*Temurin-([0-9]+)\+([0-9]+).*/\1+\2/p')
         log_message "Detected installed JDK 25 full version string: $installed_version_full"
 
         if [[ -z "$installed_version_full" ]]; then
@@ -118,7 +119,8 @@ is_jdk25_up_to_date() {
     log_message "Latest available JDK 25 version from API: $latest_version_full"
 
     # Extract comparable part from API version (e.g., 25+20)
-    latest_version_short=$(echo "$latest_version_full" | sed -n 's/\([0-9]*\)\.[0-9]*\.[0-9]*-beta\+\([0-9]*\).*/\1+\2/p')
+    # Use ERE for clarity and correct matching of digits+digits from API string
+    latest_version_short=$(echo "$latest_version_full" | sed -E -n 's/([0-9]+)\.[0-9]+\.[0-9]+-beta\+([0-9]+)\..*/\1+\2/p')
     log_message "Extracted comparable latest version: $latest_version_short"
 
     if [[ -z "$latest_version_short" ]]; then
