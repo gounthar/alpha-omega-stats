@@ -30,7 +30,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 # Function to fetch the latest available version of Temurin JDK 25 from the API
 get_latest_jdk25_version() {
     local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
-    curl -s "$api_url" | jq -r '.[0].version_data.semver'
+    curl -s "$api_url" | jq -r '.[0].version_data.semver' || echo ""
 }
 
 # Check if the required JDK version is already installed
