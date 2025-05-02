@@ -8,19 +8,18 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 # SDKMAN is required to manage and install JDK versions.
 if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
     echo "SDKMAN is not installed. Attempting to install SDKMAN..."
-    # Attempt to install SDKMAN by calling the install-sdk.sh script from the same directory
-    if [[ -x "$script_dir/install-sdk.sh" ]]; then
-        "$script_dir/install-sdk.sh"
-        # Check if SDKMAN is successfully installed after running the installation script
-        if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
-            echo "Failed to install SDKMAN. Please install SDKMAN manually."
-            exit 1
-        fi
-    else
-        # Exit if the install-sdk.sh script is not found or not executable
-        echo "install-sdk.sh script not found in $script_dir"
+    # Install SDKMAN inline
+    curl -s "https://get.sdkman.io" | bash
+
+    # Check if SDKMAN is successfully installed
+    if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+        echo "Failed to install SDKMAN. Please install SDKMAN manually."
         exit 1
     fi
+
+    # Initialize SDKMAN
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    echo "SDKMAN installed and initialized successfully."
 fi
 
 # Initialize SDKMAN
