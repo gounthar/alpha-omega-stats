@@ -10,6 +10,8 @@ import re
 from time import sleep
 import random
 import os
+import csv
+from gspread.exceptions import WorksheetNotFound
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -1125,5 +1127,34 @@ for pr in grouped_prs:
     except gspread.exceptions.APIError as e:
         logging.error(f"Failed to update sheet '{sheet_name}': {e}")
         continue
+
+def add_csv_to_sheet(spreadsheet, csv_file, sheet_name):
+    """
+    Add a new sheet to the Google Sheets document using the content of a CSV file.
+
+    Args:
+        spreadsheet: The Google Sheets object.
+        csv_file: Path to the CSV file.
+        sheet_name: Name of the new sheet to create or update.
+    """
+    # Read the CSV file
+    with open(csv_file, 'r') as f:
+        reader = csv.reader(f)
+        csv_data = list(reader)
+
+    # Get or create the sheet
+    try:
+        sheet = spreadsheet.worksheet(sheet_name)
+        print(f"Sheet '{sheet_name}' already exists. Updating it...")
+    except WorksheetNotFound:
+        print(f"Creating new sheet '{sheet_name}'...")
+        sheet = spreadsheet.add_worksheet(title=sheet_name, rows=100, cols=10)
+
+    # Clear the sheet and update it with the CSV data
+    sheet.clear()
+    sheet.update('A1', csv_data)
+    print(f"Sheet '{sheet_name}' updated successfully.")
+
+add_csv_to_sheet(spreadsheet, "top-250-plugins.csv", "Top 250 Plugins")
 
 logging.info("Data has been uploaded to Google Sheets.")
