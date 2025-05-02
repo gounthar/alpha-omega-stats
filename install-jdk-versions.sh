@@ -79,10 +79,22 @@ get_latest_jdk25_version() {
     fi
 }
 
-# Refine version normalization to retain full version string including "+20.ea"
+# Refine version normalization to retain the full version string for accurate comparison
 normalize_version() {
     local version="$1"
-    echo "$version" | sed 's/-beta//; s/\.0//g; s/\(\+20\.ea\).*/\1/'  # Remove "-beta", simplify ".0", and retain "+20.ea"
+    echo "$version" | sed 's/-beta//; s/\.0//g'  # Remove "-beta" and simplify ".0" for consistency
+}
+
+# Enhanced function to compare installed and latest JDK versions accurately
+compare_versions() {
+    local installed_version="$1"
+    local latest_version="$2"
+
+    if [[ "$installed_version" == "$latest_version" ]]; then
+        return 0  # Versions match
+    else
+        return 1  # Versions do not match
+    fi
 }
 
 # Enhanced function to detect the installed JDK 25 version with normalized comparison
@@ -115,7 +127,7 @@ is_jdk25_up_to_date() {
     log_message "Normalized installed version: $normalized_installed_version"
     log_message "Normalized latest version: $normalized_latest_version"
 
-    if [[ "$normalized_installed_version" == "$normalized_latest_version" ]]; then
+    if compare_versions "$normalized_installed_version" "$normalized_latest_version"; then
         log_message "JDK 25 is up-to-date (version $installed_version). Skipping installation."
         return 0
     else
