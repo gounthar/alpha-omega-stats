@@ -26,13 +26,13 @@ elif [[ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
     source "/usr/local/sdkman/bin/sdkman-init.sh"
 fi
 
-# Function to fetch the latest available version of Temurin JDK 25 from the API
+# Fix the function to fetch the latest available version of Temurin JDK 25 from the API
 get_latest_jdk25_version() {
     local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
-    curl -s "$api_url" | jq -r '.[0].version_data.semver' || echo ""
+    curl -s "$api_url" | jq -r '.[0].version_data.semver' || echo "unknown"
 }
 
-# Check if the required JDK version is already installed
+# Fix the function to detect the installed JDK 25 version
 is_jdk25_up_to_date() {
     local installed_version
     local latest_version
@@ -42,6 +42,11 @@ is_jdk25_up_to_date() {
 
     # Get the latest version of JDK 25 from the API
     latest_version=$(get_latest_jdk25_version)
+
+    if [ -z "$installed_version" ]; then
+        echo "No JDK 25 version is currently installed."
+        return 1
+    fi
 
     if [ "$installed_version" == "$latest_version" ]; then
         echo "JDK 25 is up-to-date (version $installed_version). Skipping installation."
@@ -98,8 +103,19 @@ install_temurin_jdk25() {
     export PATH="$JDK_INSTALL_DIR/bin:$PATH"
     echo "Temurin JDK 25 early access installed successfully."
 
+    # Call the function to update PATH after installation
+    update_path_for_jdk25
+
     # Verify the JDK installation by running a simple Java command
     verify_jdk_installation
+}
+
+# Ensure the PATH is updated to prioritize the newly installed JDK 25
+update_path_for_jdk25() {
+    if [[ ":$PATH:" != *":$JDK_INSTALL_DIR/bin:"* ]]; then
+        export PATH="$JDK_INSTALL_DIR/bin:$PATH"
+        echo "Updated PATH to include JDK 25 installation directory."
+    fi
 }
 
 # Verify the JDK installation by running a simple Java command
