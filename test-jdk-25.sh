@@ -23,47 +23,6 @@ case "$ARCHITECTURE" in
         exit 1;;
 esac
 
-# Function to fetch and install Temurin JDK 25 early access binaries
-install_temurin_jdk25() {
-    local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
-    local download_url
-
-    # Fetch the latest JDK 25 early access binary URL
-    download_url=$(curl -s "$api_url" | jq -r '.[0].binaries[0].package.link')
-
-    if [ -z "$download_url" ]; then
-        echo "Error: Unable to fetch Temurin JDK 25 early access binary URL." >> "$DEBUG_LOG"
-        exit 1
-    fi
-
-    # Download and extract the JDK binary
-    echo "Downloading Temurin JDK 25 early access binary..." >> "$DEBUG_LOG"
-    curl -L "$download_url" -o /tmp/jdk-25.tar.gz
-    mkdir -p /opt/jdk-25
-    tar -xzf /tmp/jdk-25.tar.gz -C /opt/jdk-25 --strip-components=1
-
-    # Update PATH to include the new JDK
-    export PATH="/opt/jdk-25/bin:$PATH"
-    echo "Temurin JDK 25 early access installed successfully." >> "$DEBUG_LOG"
-}
-
-# Verify the JDK installation by running a simple Java command
-verify_jdk_installation() {
-    echo "Verifying Temurin JDK 25 installation..." >> "$DEBUG_LOG"
-    if java -version 2>&1 | grep -qE "version \"25"; then
-        echo "Temurin JDK 25 installation verified successfully." >> "$DEBUG_LOG"
-    else
-        echo "Error: Temurin JDK 25 installation verification failed." >> "$DEBUG_LOG"
-        exit 1
-    fi
-}
-
-# Call the function to install Temurin JDK 25
-install_temurin_jdk25
-
-# Call the verification function after installation
-verify_jdk_installation
-
 # Call the script to install JDK versions
 # The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
