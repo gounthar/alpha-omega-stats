@@ -32,39 +32,60 @@ get_latest_jdk25_version() {
     curl -s "$api_url" | jq -r '.[0].version_data.semver' || echo "unknown"
 }
 
-# Fix the function to detect the installed JDK 25 version
+# Enhanced logging for better debugging
+log_message() {
+    local message="$1"
+    echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
+}
+
+# Enhanced function to detect the installed JDK 25 version with detailed logging
 is_jdk25_up_to_date() {
+    log_message "Checking if JDK 25 is up-to-date..."
     local installed_version
     local latest_version
 
-    # Get the installed version of JDK 25
-    installed_version=$(java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
+    # Capture the output of java -version for debugging
+    log_message "Output of 'java -version':"
+    java -version 2>&1 | while read -r line; do log_message "$line"; done
 
-    # Get the latest version of JDK 25 from the API
-    latest_version=$(get_latest_jdk25_version)
-
-    if [ -z "$installed_version" ]; then
-        echo "No JDK 25 version is currently installed."
+    # Check if the java command points to the JDK 25 installation directory
+    if [[ $(java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"') ]]; then
+        installed_version=$(java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
+        log_message "Detected installed JDK 25 version via java command: $installed_version"
+    elif [[ -x "$JDK_INSTALL_DIR/bin/java" ]]; then
+        log_message "Output of '$JDK_INSTALL_DIR/bin/java -version':"
+        $JDK_INSTALL_DIR/bin/java -version 2>&1 | while read -r line; do log_message "$line"; done
+        installed_version=$($JDK_INSTALL_DIR/bin/java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
+        log_message "Detected installed JDK 25 version via JDK_INSTALL_DIR: $installed_version"
+    else
+        log_message "No JDK 25 version is currently installed."
         return 1
     fi
 
+    # Get the latest version of JDK 25 from the API
+    latest_version=$(get_latest_jdk25_version)
+    log_message "Latest available JDK 25 version from API: $latest_version"
+
     if [ "$installed_version" == "$latest_version" ]; then
-        echo "JDK 25 is up-to-date (version $installed_version). Skipping installation."
+        log_message "JDK 25 is up-to-date (version $installed_version). Skipping installation."
         return 0
     else
-        echo "Installed JDK 25 version ($installed_version) is not up-to-date. Latest version is $latest_version."
+        log_message "Installed JDK 25 version ($installed_version) is not up-to-date. Latest version is $latest_version."
         return 1
     fi
 }
 
-# Function to fetch and install Temurin JDK 25 early access binaries
+# Enhanced function to fetch and install Temurin JDK 25 early access binaries with logging
 install_temurin_jdk25() {
+    log_message "Starting installation of Temurin JDK 25..."
     if is_jdk25_up_to_date; then
+        log_message "Skipping installation as JDK 25 is already up-to-date."
         return
     fi
 
     # Detect the system architecture dynamically
     ARCHITECTURE=$(uname -m)
+    log_message "Detected system architecture: $ARCHITECTURE"
 
     # Map architecture to the expected values for the API
     case "$ARCHITECTURE" in
@@ -75,33 +96,34 @@ install_temurin_jdk25() {
         riscv64)
             ARCHITECTURE="riscv64";;
         *)
-            echo "Error: Unsupported architecture $ARCHITECTURE"
+            log_message "Error: Unsupported architecture $ARCHITECTURE"
             exit 1;;
     esac
 
     # Update the installation directory to a user-writable location
     JDK_INSTALL_DIR="$HOME/.jdk-25"
+    log_message "JDK installation directory set to: $JDK_INSTALL_DIR"
 
     local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
     local download_url
 
     # Fetch the latest JDK 25 early access binary URL
+    log_message "Fetching latest JDK 25 binary URL from API: $api_url"
     download_url=$(curl -s "$api_url" | jq -r '.[0].binaries[0].package.link')
 
     if [ -z "$download_url" ]; then
-        echo "Error: Unable to fetch Temurin JDK 25 early access binary URL."
+        log_message "Error: Unable to fetch Temurin JDK 25 early access binary URL."
         exit 1
     fi
 
-    # Download and extract the JDK binary
-    echo "Downloading Temurin JDK 25 early access binary..."
+    log_message "Downloading JDK 25 binary from: $download_url"
     curl -L "$download_url" -o /tmp/jdk-25.tar.gz
     mkdir -p "$JDK_INSTALL_DIR"
     tar -xzf /tmp/jdk-25.tar.gz -C "$JDK_INSTALL_DIR" --strip-components=1
 
     # Update PATH to include the new JDK
     export PATH="$JDK_INSTALL_DIR/bin:$PATH"
-    echo "Temurin JDK 25 early access installed successfully."
+    log_message "Temurin JDK 25 early access installed successfully."
 
     # Call the function to update PATH after installation
     update_path_for_jdk25
@@ -110,12 +132,15 @@ install_temurin_jdk25() {
     verify_jdk_installation
 }
 
-# Ensure the PATH is updated to prioritize the newly installed JDK 25
+# Ensure the PATH and JAVA_HOME are updated to prioritize the newly installed JDK 25
 update_path_for_jdk25() {
     if [[ ":$PATH:" != *":$JDK_INSTALL_DIR/bin:"* ]]; then
         export PATH="$JDK_INSTALL_DIR/bin:$PATH"
-        echo "Updated PATH to include JDK 25 installation directory."
+        log_message "Updated PATH to include JDK 25 installation directory."
     fi
+
+    export JAVA_HOME="$JDK_INSTALL_DIR"
+    log_message "Set JAVA_HOME to JDK 25 installation directory: $JAVA_HOME"
 }
 
 # Verify the JDK installation by running a simple Java command
