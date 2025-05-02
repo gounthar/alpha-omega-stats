@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Determine the directory of the current script
-script_dir=$(dirname "$0")
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 # Check if SDKMAN is installed
 if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
