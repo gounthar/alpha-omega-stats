@@ -11,7 +11,6 @@ from time import sleep
 import random
 import os
 import csv
-from gspread.exceptions import WorksheetNotFound
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -397,6 +396,26 @@ def process_test_results_data(csv_file):
         logging.error(f"Error processing test results file: {str(e)}")
         return None
 
+def process_build_results(csv_file):
+    """
+    Process the JDK 25 build results CSV file.
+    Returns a list of records or None if the file is not found.
+    """
+    if not os.path.exists(csv_file):
+        logging.warning(f"Build results file {csv_file} not found.")
+        return None
+
+    try:
+        build_results = []
+        with open(csv_file, 'r') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                build_results.append(row)
+        return build_results
+    except Exception as e:
+        logging.error(f"Error processing build results file: {str(e)}")
+        return None
+
 # Main execution
 if len(sys.argv) < 3 or len(sys.argv) > 4:
     print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state> [force-update]")
@@ -408,6 +427,7 @@ FAILING_PRS_ERROR = sys.argv[2].lower() == 'true'
 FORCE_UPDATE = len(sys.argv) > 3 and sys.argv[3].lower() == 'true'
 SUCCESSFUL_BUILDS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "successful_builds.csv")
 TEST_RESULTS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "test_results.csv")
+BUILD_RESULTS_FILE = "jdk-25-build-results.csv"
 
 # Process consolidated data
 grouped_prs, failing_prs, errors = process_consolidated_data(CONSOLIDATED_FILE)
@@ -951,6 +971,54 @@ elif test_results and isinstance(test_results, dict) and 'failed' in test_result
 else:
     logging.info("No PRs with failing tests found or test_results.csv file not available")
 
+# Process build results data
+build_results = process_build_results(BUILD_RESULTS_FILE)
+
+if build_results:
+    try:
+        # Create or update the build status sheet
+        build_status_sheet = get_or_create_worksheet_with_retry(spreadsheet, "JDK 25 Build Status")
+
+        # Prepare the data for the build status sheet
+        build_status_data = [
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet_id}"; "Back to Summary")', "", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
+            ["Plugin Name", "Popularity", "Build Status"]
+        ]
+
+        for result in build_results:
+            build_status_data.append([
+                result.get("plugin_name", "Unknown"),
+                result.get("popularity", "Unknown"),
+                result.get("build_status", "Unknown")
+            ])
+
+        # Update the build status sheet
+        update_sheet_with_retry(build_status_sheet, build_status_data)
+
+        # Format the header row
+        format_sheet_with_retry(build_status_sheet, "A3:C3", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"
+        })
+
+        logging.info("Successfully created/updated JDK 25 Build Status sheet")
+
+        # Add a link to the build status sheet in the Summary sheet
+        summary_data.append(["JDK 25 Build Status", "", "", "", "", f'=HYPERLINK("#gid={build_status_sheet.id}"; "View Build Status")'])
+    except Exception as e:
+        logging.error(f"Error creating/updating JDK 25 Build Status sheet: {str(e)}")
+else:
+    logging.warning("No build results found or build results file not available")
+
 # Log the summary data for debugging
 logging.info(f"Summary data has {len(summary_data)} rows")
 logging.info(f"First few rows: {summary_data[:5]}")
@@ -1127,34 +1195,5 @@ for pr in grouped_prs:
     except gspread.exceptions.APIError as e:
         logging.error(f"Failed to update sheet '{sheet_name}': {e}")
         continue
-
-def add_csv_to_sheet(spreadsheet, csv_file, sheet_name):
-    """
-    Add a new sheet to the Google Sheets document using the content of a CSV file.
-
-    Args:
-        spreadsheet: The Google Sheets object.
-        csv_file: Path to the CSV file.
-        sheet_name: Name of the new sheet to create or update.
-    """
-    # Read the CSV file
-    with open(csv_file, 'r') as f:
-        reader = csv.reader(f)
-        csv_data = list(reader)
-
-    # Get or create the sheet
-    try:
-        sheet = spreadsheet.worksheet(sheet_name)
-        print(f"Sheet '{sheet_name}' already exists. Updating it...")
-    except WorksheetNotFound:
-        print(f"Creating new sheet '{sheet_name}'...")
-        sheet = spreadsheet.add_worksheet(title=sheet_name, rows=100, cols=10)
-
-    # Clear the sheet and update it with the CSV data
-    sheet.clear()
-    sheet.update('A1', csv_data)
-    print(f"Sheet '{sheet_name}' updated successfully.")
-
-add_csv_to_sheet(spreadsheet, "top-250-plugins.csv", "Top 250 Plugins")
 
 logging.info("Data has been uploaded to Google Sheets.")
