@@ -29,10 +29,48 @@ elif [[ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
     source "/usr/local/sdkman/bin/sdkman-init.sh"
 fi
 
-# Fix the function to fetch the latest available version of Temurin JDK 25 from the API
+# Ensure the ARCHITECTURE variable is set correctly before API calls
+set_architecture() {
+    ARCHITECTURE=$(uname -m)
+    log_message "Detected system architecture: $ARCHITECTURE"
+
+    # Map architecture to the expected values for the API
+    case "$ARCHITECTURE" in
+        x86_64)
+            ARCHITECTURE="x64";;
+        aarch64)
+            ARCHITECTURE="aarch64";;
+        riscv64)
+            ARCHITECTURE="riscv64";;
+        *)
+            log_message "Error: Unsupported architecture $ARCHITECTURE"
+            ARCHITECTURE="unknown";;
+    esac
+
+    if [[ "$ARCHITECTURE" == "unknown" ]]; then
+        log_message "Error: Unable to determine a valid architecture for the API."
+        exit 1
+    fi
+}
+
+# Call set_architecture before any API calls
+set_architecture
+
+# Fix the function to fetch the latest available version of Temurin JDK 25 from the API with error handling
 get_latest_jdk25_version() {
     local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
-    curl -s "$api_url" | jq -r '.[0].version_data.semver' || echo "unknown"
+    log_message "Fetching latest JDK 25 version from API: $api_url"
+
+    # Fetch the version data from the API
+    local version_data
+    version_data=$(curl -s "$api_url" | jq -r '.[0].version_data.semver')
+
+    if [[ -z "$version_data" || "$version_data" == "null" ]]; then
+        log_message "Error: Unable to retrieve the latest JDK 25 version from the API."
+        echo "unknown"
+    else
+        echo "$version_data"
+    fi
 }
 
 # Enhanced logging for better debugging
@@ -78,23 +116,6 @@ install_temurin_jdk25() {
         log_message "Skipping installation as JDK 25 is already up-to-date."
         return
     fi
-
-    # Detect the system architecture dynamically
-    ARCHITECTURE=$(uname -m)
-    log_message "Detected system architecture: $ARCHITECTURE"
-
-    # Map architecture to the expected values for the API
-    case "$ARCHITECTURE" in
-        x86_64)
-            ARCHITECTURE="x64";;
-        aarch64)
-            ARCHITECTURE="aarch64";;
-        riscv64)
-            ARCHITECTURE="riscv64";;
-        *)
-            log_message "Error: Unsupported architecture $ARCHITECTURE"
-            exit 1;;
-    esac
 
     # Update the installation directory to a user-writable location
     log_message "JDK installation directory set to: $JDK_INSTALL_DIR"
