@@ -416,6 +416,26 @@ def process_build_results(csv_file):
         logging.error(f"Error processing build results file: {str(e)}")
         return None
 
+def process_top_250_plugins_data(csv_file):
+    """
+    Process the JDK 25 build results CSV file for the top 250 plugins.
+    Returns a list of records or None if the file is not found.
+    """
+    if not os.path.exists(csv_file):
+        logging.warning(f"Build results file {csv_file} not found.")
+        return None
+
+    try:
+        build_results = []
+        with open(csv_file, 'r') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                build_results.append(row)
+        return build_results
+    except Exception as e:
+        logging.error(f"Error processing build results file: {str(e)}")
+        return None
+
 # Main execution
 if len(sys.argv) < 3 or len(sys.argv) > 4:
     print("Usage: python3 upload_to_sheets.py <consolidated-prs-json-file> <failing-prs-error-state> [force-update]")
@@ -428,6 +448,23 @@ FORCE_UPDATE = len(sys.argv) > 3 and sys.argv[3].lower() == 'true'
 SUCCESSFUL_BUILDS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "successful_builds.csv")
 TEST_RESULTS_FILE = os.path.join(os.path.dirname(CONSOLIDATED_FILE), "test_results.csv")
 BUILD_RESULTS_FILE = "jdk-25-build-results.csv"
+
+# Define `successful_builds` and `test_results` by invoking the respective processing functions
+successful_builds = process_successful_builds_data(SUCCESSFUL_BUILDS_FILE)
+test_results = process_test_results_data(TEST_RESULTS_FILE)
+
+# Initialize missing variables to avoid undefined errors
+successful_builds_count = 0
+if successful_builds:
+    successful_builds_count = len(successful_builds)
+
+tests_passed_count = 0
+if test_results and 'passed' in test_results:
+    tests_passed_count = len(test_results['passed'])
+
+tests_failed_count = 0
+if test_results and 'failed' in test_results:
+    tests_failed_count = len(test_results['failed'])
 
 # Process consolidated data
 grouped_prs, failing_prs, errors = process_consolidated_data(CONSOLIDATED_FILE)
@@ -1018,6 +1055,54 @@ if build_results:
         logging.error(f"Error creating/updating JDK 25 Build Status sheet: {str(e)}")
 else:
     logging.warning("No build results found or build results file not available")
+
+# Process the top 250 plugins build results
+top_250_plugins_results = process_top_250_plugins_data("jdk-25-build-results.csv")
+
+if top_250_plugins_results:
+    try:
+        # Create or update the "Top 250 Plugins" sheet
+        top_250_plugins_sheet = get_or_create_worksheet_with_retry(spreadsheet, "Top 250 Plugins")
+
+        # Prepare the data for the sheet
+        top_250_plugins_data = [
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet.id}"; "Back to Summary")', "", ""],
+            ["", "", "", ""],  # Empty row for spacing
+            ["Plugin Name", "Popularity", "Build Status"]
+        ]
+
+        for result in top_250_plugins_results:
+            top_250_plugins_data.append([
+                result.get("plugin_name", "Unknown"),
+                result.get("popularity", "Unknown"),
+                result.get("build_status", "Unknown")
+            ])
+
+        # Update the sheet
+        update_sheet_with_retry(top_250_plugins_sheet, top_250_plugins_data)
+
+        # Format the header row
+        format_sheet_with_retry(top_250_plugins_sheet, "A3:C3", {
+            "textFormat": {
+                "bold": True
+            },
+            "backgroundColor": {
+                "red": 0.9,
+                "green": 0.9,
+                "blue": 0.9,
+                "alpha": 1.0
+            },
+            "horizontalAlignment": "CENTER"
+        })
+
+        logging.info("Successfully created/updated Top 250 Plugins sheet")
+
+        # Add a link to the "Top 250 Plugins" sheet in the Summary sheet
+        summary_data.append(["Top 250 Plugins", "", "", "", "", f'=HYPERLINK("#gid={top_250_plugins_sheet.id}"; "View Top 250 Plugins")'])
+    except Exception as e:
+        logging.error(f"Error creating/updating Top 250 Plugins sheet: {str(e)}")
+else:
+    logging.warning("No build results found for Top 250 Plugins or file not available")
 
 # Log the summary data for debugging
 logging.info(f"Summary data has {len(summary_data)} rows")
