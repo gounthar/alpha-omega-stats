@@ -1,0 +1,57 @@
+# This GitHub Actions workflow is designed to run a shell script and create a pull request
+# with any changes made by the script. It is triggered by two events:
+# 1. A push event that modifies the `top-250-plugins.csv` file.
+# 2. A scheduled event that runs every Tuesday at midnight UTC.
+
+name: Run Shell Script and Create Pull Request
+
+on:
+  # Trigger the workflow when `top-250-plugins.csv` is modified in a push event.
+  push:
+    paths:
+      - top-250-plugins.csv
+  # Trigger the workflow every Tuesday at midnight UTC.
+  schedule:
+    - cron: '0 0 * * 2'
+
+jobs:
+  run-script:
+    # Specify the environment where the job will run.
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository to the runner.
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Make the shell script executable and run it.
+      - name: Run shell script
+        run: |
+          chmod +x ./test-jdk-25.sh  # Ensure the script is executable.
+          ./test-jdk-25.sh          # Execute the script.
+
+      # Step 3: Configure Git with a bot user for committing changes.
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"  # Set the Git username.
+          git config user.email "github-actions[bot]@users.noreply.github.com"  # Set the Git email.
+
+      # Step 4: Stage and commit any changes made by the script.
+      - name: Commit changes
+        run: |
+          git add .  # Stage all changes.
+          git commit -m "Update build results and logs after running script" || echo "No changes to commit"  # Commit changes or skip if none.
+
+      # Step 5: Push the changes to a new branch named `update-results`.
+      - name: Push changes to a new branch
+        run: |
+          git checkout -b update-results  # Create and switch to a new branch in one step.
+          git push origin update-results --force  # Push the branch to the remote repository.
+
+      # Step 6: Create a pull request with the changes using a pre-defined action.
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: update-results  # Specify the branch containing the changes.
+          title: "Update build results and logs"  # Set the pull request title.
+          body: "This pull request contains updated build results and logs after running the script."  # Set the pull request description.
