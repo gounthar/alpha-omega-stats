@@ -95,7 +95,22 @@ get_github_url() {
 # Arguments:
 #   $1 - The name of the plugin.
 # Outputs:
-#   Logs the build process to the debug log file and returns the build status.
+# Attempts to clone and build a Jenkins plugin, logging the process and returning the build status.
+#
+# Arguments:
+#
+# * plugin_name: The name of the Jenkins plugin to build.
+#
+# Returns:
+#
+# * A string indicating the build status, which may be one of: "success", "url_not_found", "clone_failed", "cd_failed", "build_failed", or "no_build_file".
+#
+# Example:
+#
+# ```bash
+# status=$(compile_plugin "git")
+# echo "Build status: $status"
+# ```
 compile_plugin() {
     local plugin_name="$1"
     local plugin_dir="$BUILD_DIR/$plugin_name"
@@ -119,22 +134,14 @@ compile_plugin() {
         if [ "$build_status" == "success" ]; then
             echo "Cloned repository for $plugin_name." >>"$DEBUG_LOG"
 
-            # Add logging before attempting cd
-            echo "Attempting to cd into $plugin_dir" >>"$DEBUG_LOG"
-            # Change to the plugin directory and capture exit code
-            cd "$plugin_dir"
-            local cd_exit_code=$?
-            # Log the exit code
-            echo "cd exit code: $cd_exit_code" >>"$DEBUG_LOG"
-
-            if [ $cd_exit_code -ne 0 ]; then
+            # Change to the plugin directory and log the result.
+            cd "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || {
                 echo "Failed to change directory to $plugin_dir" >>"$DEBUG_LOG"
                 build_status="cd_failed"
-            else
-                # Log success *after* checking exit code
-                echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
-
-                # Check for build files only if cd was successful
+            }
+            echo "Reached after cd command" >>"$DEBUG_LOG"
+            echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
+            if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
                     # Run a Maven build if a pom.xml file is found.
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
@@ -151,6 +158,9 @@ compile_plugin() {
                     if [ $maven_exit_code -ne 0 ]; then
                         build_status="build_failed"
                     fi
+                    # Use the same absolute path when appending to the debug log
+                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
+                    cat "$maven_log_file" >>"$DEBUG_LOG"
                     rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
@@ -161,26 +171,15 @@ compile_plugin() {
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
                     build_status="no_build_file"
                 fi
+            fi
 
-                # Return to the previous directory only if cd was successful
-                echo "Attempting to cd back from $plugin_dir" >> "$DEBUG_LOG"
-                # Execute cd - separately, suppress its output, and check exit status
-                if cd - > /dev/null 2>&1; then
-                    echo "Successfully cd'd back from $plugin_dir" >> "$DEBUG_LOG"
-                else
-                    echo "Failed to return to the previous directory using 'cd -'" >> "$DEBUG_LOG"
-                    # Attempt to cd back to the script's starting directory as a fallback
-                    echo "Attempting fallback cd to script directory: $script_dir" >> "$DEBUG_LOG"
-                    cd "$script_dir" || echo "FATAL: Fallback cd to script_dir also failed. Current directory: $(pwd)" >> "$DEBUG_LOG"
-                fi
-            fi # End of if cd_exit_code == 0
-        fi # End of if clone status == success
-    fi # End of if github_url exists
+            # Return to the previous directory and log the result.
+            cd - >>"$DEBUG_LOG" 2>&1 || echo "Failed to return to the previous directory" >>"$DEBUG_LOG"
+        fi
+    fi
 
     # Log the build status for the plugin and clean up the plugin directory.
-    # Ensure cleanup happens even if cd failed
-    echo "Build status for $plugin_name: $build_status" >> "$DEBUG_LOG"
-    echo "Cleaning up directory: $plugin_dir" >> "$DEBUG_LOG"
+    echo "Build status for $plugin_name: $build_status" >>"$DEBUG_LOG"
     rm -rf "$plugin_dir"
     echo "$build_status"
 }
