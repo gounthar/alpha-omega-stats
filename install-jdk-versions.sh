@@ -27,19 +27,35 @@ fi
 # This loads SDKMAN into the current shell session, making its commands available.
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Function to fetch the latest available version of Temurin JDK 25 from the API
+get_latest_jdk25_version() {
+    local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
+    curl -s "$api_url" | jq -r '.[0].version_data.semver'
+}
+
 # Check if the required JDK version is already installed
-is_jdk25_installed() {
-    if java -version 2>&1 | grep -qE "version \"25"; then
-        echo "JDK 25 is already installed. Skipping installation."
+is_jdk25_up_to_date() {
+    local installed_version
+    local latest_version
+
+    # Get the installed version of JDK 25
+    installed_version=$(java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
+
+    # Get the latest version of JDK 25 from the API
+    latest_version=$(get_latest_jdk25_version)
+
+    if [ "$installed_version" == "$latest_version" ]; then
+        echo "JDK 25 is up-to-date (version $installed_version). Skipping installation."
         return 0
     else
+        echo "Installed JDK 25 version ($installed_version) is not up-to-date. Latest version is $latest_version."
         return 1
     fi
 }
 
 # Function to fetch and install Temurin JDK 25 early access binaries
 install_temurin_jdk25() {
-    if is_jdk25_installed; then
+    if is_jdk25_up_to_date; then
         return
     fi
 
