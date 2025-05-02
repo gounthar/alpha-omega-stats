@@ -27,8 +27,22 @@ fi
 # This loads SDKMAN into the current shell session, making its commands available.
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Check if the required JDK version is already installed
+is_jdk25_installed() {
+    if java -version 2>&1 | grep -qE "version \"25"; then
+        echo "JDK 25 is already installed. Skipping installation."
+        return 0
+    else
+        return 1
+    fi
+}
+
 # Function to fetch and install Temurin JDK 25 early access binaries
 install_temurin_jdk25() {
+    if is_jdk25_installed; then
+        return
+    fi
+
     # Detect the system architecture dynamically
     ARCHITECTURE=$(uname -m)
 
