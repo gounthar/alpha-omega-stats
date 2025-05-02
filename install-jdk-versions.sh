@@ -1,41 +1,68 @@
 #!/bin/bash
 
 # Determine the directory of the current script
-script_dir=$(dirname "$0")
+# This ensures that the script can locate other scripts or files relative to its own location.
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 # Check if SDKMAN is installed
+# SDKMAN is required to manage and install JDK versions.
 if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
     echo "SDKMAN is not installed. Attempting to install SDKMAN..."
-    # Attempt to install SDKMAN by calling install-sdk.sh from the same directory
+    # Attempt to install SDKMAN by calling the install-sdk.sh script from the same directory
     if [[ -x "$script_dir/install-sdk.sh" ]]; then
         "$script_dir/install-sdk.sh"
-        # Check if SDKMAN is successfully installed
+        # Check if SDKMAN is successfully installed after running the installation script
         if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
             echo "Failed to install SDKMAN. Please install SDKMAN manually."
             exit 1
         fi
     else
+        # Exit if the install-sdk.sh script is not found or not executable
         echo "install-sdk.sh script not found in $script_dir"
         exit 1
     fi
 fi
 
 # Initialize SDKMAN
+# This loads SDKMAN into the current shell session, making its commands available.
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 # Declare the JDK versions you're interested in
-declare -a jdk_versions=("8" "11" "17" "21")
+# These are the JDK versions that the script will attempt to install.
+declare -a jdk_versions=("8" "11" "17" "21" "25")
+
+# Verify that sdk is on PATH
+# This ensures that the `sdk` command is available before proceeding.
+if ! command -v sdk &>/dev/null; then
+    echo "Error: sdk is not installed or not in the PATH. Please install SDKMAN and try again."
+    exit 1
+fi
 
 # Loop through each JDK version
+# For each version, determine the appropriate identifier and install it using SDKMAN.
 for version in "${jdk_versions[@]}"; do
-    # Use sdk list java with --no-pager or pipe through cat to avoid pager behavior
-    identifier=$(PAGER=cat sdk list java | grep -E " $version\\.0.*-tem" | awk -v ver="$version" '$0 ~ " " ver "\\.0.*-tem" {print $NF}' | head -n 1)
+    # Define the pattern to match the JDK version in the SDKMAN list
+    case "$version" in
+      25) pattern=" $version\.ea" ;; # Early access version for JDK 25
+      *)  pattern=" $version\.0.*-tem" ;; # Standard version pattern for other JDKs
+    esac
+
+    # Retrieve the identifier for the JDK version using SDKMAN
+    # The identifier is extracted by listing available JDKs, filtering with grep, and selecting the last field.
+    identifier=$(
+      PAGER=cat sdk list java \
+        | grep -E -- "$pattern" \
+        | awk '{print $NF}' \
+        | head -n1
+    )
+
+    # Check if a valid identifier was found
     if [ -n "$identifier" ]; then
-        echo "Installing Temurin JDK version $version with identifier $identifier"
+        echo "Installing JDK version $version with identifier $identifier"
         # Install the JDK version using SDKMAN
         yes | sdk install java "$identifier"
     else
-        echo "No Temurin JDK version found for $version"
+        # Log a message if no suitable JDK version is found
+        echo "No suitable JDK version found for $version"
     fi
 done
-
