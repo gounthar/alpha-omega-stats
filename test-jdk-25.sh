@@ -119,14 +119,22 @@ compile_plugin() {
         if [ "$build_status" == "success" ]; then
             echo "Cloned repository for $plugin_name." >>"$DEBUG_LOG"
 
-            # Change to the plugin directory and log the result.
-            cd "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || {
+            # Add logging before attempting cd
+            echo "Attempting to cd into $plugin_dir" >>"$DEBUG_LOG"
+            # Change to the plugin directory and capture exit code
+            cd "$plugin_dir"
+            local cd_exit_code=$?
+            # Log the exit code
+            echo "cd exit code: $cd_exit_code" >>"$DEBUG_LOG"
+
+            if [ $cd_exit_code -ne 0 ]; then
                 echo "Failed to change directory to $plugin_dir" >>"$DEBUG_LOG"
                 build_status="cd_failed"
-            }
-            echo "Reached after cd command" >>"$DEBUG_LOG"
-            echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
-            if [ "$build_status" == "success" ]; then
+            else
+                # Log success *after* checking exit code
+                echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
+
+                # Check for build files only if cd was successful
                 if [ -f "pom.xml" ]; then
                     # Run a Maven build if a pom.xml file is found.
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
@@ -143,9 +151,6 @@ compile_plugin() {
                     if [ $maven_exit_code -ne 0 ]; then
                         build_status="build_failed"
                     fi
-                    # Use the same absolute path when appending to the debug log
-                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
-                    cat "$maven_log_file" >>"$DEBUG_LOG"
                     rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
@@ -156,12 +161,14 @@ compile_plugin() {
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
                     build_status="no_build_file"
                 fi
-            fi
 
-            # Return to the previous directory and log the result.
-            cd - >>"$DEBUG_LOG" 2>&1 || echo "Failed to return to the previous directory" >>"$DEBUG_LOG"
-        fi
-    fi
+                # Return to the previous directory only if cd was successful
+                echo "Attempting to cd back from $plugin_dir" >> "$DEBUG_LOG" # Add log before cd -
+                cd - >>"$DEBUG_LOG" 2>&1 || echo "Failed to return to the previous directory" >>"$DEBUG_LOG"
+                echo "Successfully cd'd back from $plugin_dir" >> "$DEBUG_LOG" # Add log after cd -
+            fi # End of if cd_exit_code == 0
+        fi # End of if clone status == success
+    fi # End of if github_url exists
 
     # Log the build status for the plugin and clean up the plugin directory.
     echo "Build status for $plugin_name: $build_status" >>"$DEBUG_LOG"
