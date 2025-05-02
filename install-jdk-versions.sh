@@ -79,10 +79,10 @@ get_latest_jdk25_version() {
     fi
 }
 
-# Refine version normalization to retain full version string including "+20"
+# Refine version normalization to retain full version string including "+20.ea"
 normalize_version() {
     local version="$1"
-    echo "$version" | sed 's/-beta//; s/\.0//g'  # Remove "-beta" and simplify ".0" for consistency
+    echo "$version" | sed 's/-beta//; s/\.0//g; s/\(\+20\.ea\).*/\1/'  # Remove "-beta", simplify ".0", and retain "+20.ea"
 }
 
 # Enhanced function to detect the installed JDK 25 version with normalized comparison
