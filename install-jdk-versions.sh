@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Define the JDK installation directory at the beginning of the script
+JDK_INSTALL_DIR="$HOME/.jdk-25"
+
 # Determine the directory of the current script
 # This ensures that the script can locate other scripts or files relative to its own location.
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
@@ -38,24 +41,17 @@ log_message() {
     echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
 }
 
-# Enhanced function to detect the installed JDK 25 version with detailed logging
+# Enhanced function to detect the installed JDK 25 version with robust comparison
 is_jdk25_up_to_date() {
     log_message "Checking if JDK 25 is up-to-date..."
     local installed_version
     local latest_version
 
-    # Capture the output of java -version for debugging
-    log_message "Output of 'java -version':"
-    java -version 2>&1 | while read -r line; do log_message "$line"; done
-
-    # Check if the java command points to the JDK 25 installation directory
-    if [[ $(java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"') ]]; then
-        installed_version=$(java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
-        log_message "Detected installed JDK 25 version via java command: $installed_version"
-    elif [[ -x "$JDK_INSTALL_DIR/bin/java" ]]; then
+    # Explicitly invoke the java binary from the JDK 25 installation directory
+    if [[ -x "$JDK_INSTALL_DIR/bin/java" ]]; then
         log_message "Output of '$JDK_INSTALL_DIR/bin/java -version':"
-        $JDK_INSTALL_DIR/bin/java -version 2>&1 | while read -r line; do log_message "$line"; done
-        installed_version=$($JDK_INSTALL_DIR/bin/java -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
+        "$JDK_INSTALL_DIR/bin/java" -version 2>&1 | while read -r line; do log_message "$line"; done
+        installed_version=$("$JDK_INSTALL_DIR/bin/java" -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
         log_message "Detected installed JDK 25 version via JDK_INSTALL_DIR: $installed_version"
     else
         log_message "No JDK 25 version is currently installed."
@@ -66,7 +62,7 @@ is_jdk25_up_to_date() {
     latest_version=$(get_latest_jdk25_version)
     log_message "Latest available JDK 25 version from API: $latest_version"
 
-    if [ "$installed_version" == "$latest_version" ]; then
+    if [[ "$installed_version" == "$latest_version" ]]; then
         log_message "JDK 25 is up-to-date (version $installed_version). Skipping installation."
         return 0
     else
@@ -101,7 +97,6 @@ install_temurin_jdk25() {
     esac
 
     # Update the installation directory to a user-writable location
-    JDK_INSTALL_DIR="$HOME/.jdk-25"
     log_message "JDK installation directory set to: $JDK_INSTALL_DIR"
 
     local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
@@ -141,12 +136,20 @@ update_path_for_jdk25() {
 
     export JAVA_HOME="$JDK_INSTALL_DIR"
     log_message "Set JAVA_HOME to JDK 25 installation directory: $JAVA_HOME"
+
+    # Ensure the current shell session uses the updated PATH
+    hash -r
+    log_message "Refreshed shell environment to use updated PATH."
+
+    # Verify the java command points to the correct binary
+    log_message "Output of 'java -version' after PATH update:"
+    java -version 2>&1 | while read -r line; do log_message "$line"; done
 }
 
-# Verify the JDK installation by running a simple Java command
+# Use the explicit path to the JDK 25 binary for verification
 verify_jdk_installation() {
     echo "Verifying Temurin JDK 25 installation..."
-    if java -version 2>&1 | grep -qE "version \"25"; then
+    if "$JDK_INSTALL_DIR/bin/java" -version 2>&1 | grep -qE "version \"25"; then
         echo "Temurin JDK 25 installation verified successfully."
     else
         echo "Error: Temurin JDK 25 installation verification failed."
