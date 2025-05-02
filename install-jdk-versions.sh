@@ -4,27 +4,27 @@
 # This ensures that the script can locate other scripts or files relative to its own location.
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
-# Check if SDKMAN is installed
-# SDKMAN is required to manage and install JDK versions.
-if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+# Check if SDKMAN is installed in common locations
+if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" && ! -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
     echo "SDKMAN is not installed. Attempting to install SDKMAN..."
     # Install SDKMAN inline
     curl -s "https://get.sdkman.io" | bash
 
     # Check if SDKMAN is successfully installed
-    if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+    if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" && ! -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
         echo "Failed to install SDKMAN. Please install SDKMAN manually."
         exit 1
     fi
 
-    # Initialize SDKMAN
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
-    echo "SDKMAN installed and initialized successfully."
+    echo "SDKMAN installed successfully."
 fi
 
-# Initialize SDKMAN
-# This loads SDKMAN into the current shell session, making its commands available.
-source "$HOME/.sdkman/bin/sdkman-init.sh"
+# Initialize SDKMAN from the appropriate location
+if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+elif [[ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
+    source "/usr/local/sdkman/bin/sdkman-init.sh"
+fi
 
 # Function to fetch the latest available version of Temurin JDK 25 from the API
 get_latest_jdk25_version() {
