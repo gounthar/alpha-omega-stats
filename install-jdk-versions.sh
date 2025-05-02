@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Enhanced logging for better debugging
+log_message() {
+    local message="$1"
+    echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
+}
+
 # Define the JDK installation directory at the beginning of the script
 JDK_INSTALL_DIR="$HOME/.jdk-25"
 
@@ -73,13 +79,13 @@ get_latest_jdk25_version() {
     fi
 }
 
-# Enhanced logging for better debugging
-log_message() {
-    local message="$1"
-    echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
+# Normalize version strings for comparison
+normalize_version() {
+    local version="$1"
+    echo "$version" | sed 's/-beta//; s/+.*//'  # Remove "-beta" and anything after "+"
 }
 
-# Enhanced function to detect the installed JDK 25 version with robust comparison
+# Enhanced function to detect the installed JDK 25 version with normalized comparison
 is_jdk25_up_to_date() {
     log_message "Checking if JDK 25 is up-to-date..."
     local installed_version
@@ -100,7 +106,16 @@ is_jdk25_up_to_date() {
     latest_version=$(get_latest_jdk25_version)
     log_message "Latest available JDK 25 version from API: $latest_version"
 
-    if [[ "$installed_version" == "$latest_version" ]]; then
+    # Normalize versions for comparison
+    local normalized_installed_version
+    local normalized_latest_version
+    normalized_installed_version=$(normalize_version "$installed_version")
+    normalized_latest_version=$(normalize_version "$latest_version")
+
+    log_message "Normalized installed version: $normalized_installed_version"
+    log_message "Normalized latest version: $normalized_latest_version"
+
+    if [[ "$normalized_installed_version" == "$normalized_latest_version" ]]; then
         log_message "JDK 25 is up-to-date (version $installed_version). Skipping installation."
         return 0
     else
