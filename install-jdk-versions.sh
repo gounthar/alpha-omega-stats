@@ -79,59 +79,61 @@ get_latest_jdk25_version() {
     fi
 }
 
-# Refine version normalization to retain the full version string for accurate comparison
-normalize_version() {
-    local version="$1"
-    echo "$version" | sed 's/-beta//; s/\.0//g'  # Remove "-beta" and simplify ".0" for consistency
-}
-
-# Enhanced function to compare installed and latest JDK versions accurately
-compare_versions() {
-    local installed_version="$1"
-    local latest_version="$2"
-
-    if [[ "$installed_version" == "$latest_version" ]]; then
-        return 0  # Versions match
-    else
-        return 1  # Versions do not match
-    fi
-}
-
-# Enhanced function to detect the installed JDK 25 version with normalized comparison
+# Enhanced function to detect the installed JDK 25 version with refined extraction
 is_jdk25_up_to_date() {
     log_message "Checking if JDK 25 is up-to-date..."
-    local installed_version
-    local latest_version
+    local installed_version_full
+    local installed_version_short
+    local latest_version_full
+    local latest_version_short
 
     # Explicitly invoke the java binary from the JDK 25 installation directory
     if [[ -x "$JDK_INSTALL_DIR/bin/java" ]]; then
         log_message "Output of '$JDK_INSTALL_DIR/bin/java -version':"
-        "$JDK_INSTALL_DIR/bin/java" -version 2>&1 | while read -r line; do log_message "$line"; done
-        installed_version=$("$JDK_INSTALL_DIR/bin/java" -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
-        log_message "Detected installed JDK 25 version via JDK_INSTALL_DIR: $installed_version"
+        local java_version_output
+        java_version_output=$("$JDK_INSTALL_DIR/bin/java" -version 2>&1)
+        echo "$java_version_output" | while read -r line; do log_message "$line"; done
+
+        # Extract version from the Runtime Environment line (e.g., Temurin-25+20...)
+        installed_version_full=$(echo "$java_version_output" | grep 'OpenJDK Runtime Environment' | sed -n 's/.*Temurin-\([^+]*\+[0-9]*\).*/\1/p')
+        log_message "Detected installed JDK 25 full version string: $installed_version_full"
+
+        if [[ -z "$installed_version_full" ]]; then
+             log_message "Could not extract full version string from installed JDK."
+             # Fallback to simpler version detection if full string extraction fails
+             installed_version_short=$("$JDK_INSTALL_DIR/bin/java" -version 2>&1 | grep -oE '"25[^"]*"' | tr -d '"')
+             log_message "Fallback: Detected installed JDK 25 short version: $installed_version_short"
+        else
+            # Use the extracted full version for comparison
+            installed_version_short="$installed_version_full"
+        fi
+
     else
         log_message "No JDK 25 version is currently installed."
         return 1
     fi
 
     # Get the latest version of JDK 25 from the API
-    latest_version=$(get_latest_jdk25_version)
-    log_message "Latest available JDK 25 version from API: $latest_version"
+    latest_version_full=$(get_latest_jdk25_version)
+    log_message "Latest available JDK 25 version from API: $latest_version_full"
 
-    # Normalize versions for comparison
-    local normalized_installed_version
-    local normalized_latest_version
-    normalized_installed_version=$(normalize_version "$installed_version")
-    normalized_latest_version=$(normalize_version "$latest_version")
+    # Extract comparable part from API version (e.g., 25+20)
+    latest_version_short=$(echo "$latest_version_full" | sed -n 's/\([0-9]*\)\.[0-9]*\.[0-9]*-beta\+\([0-9]*\).*/\1+\2/p')
+    log_message "Extracted comparable latest version: $latest_version_short"
 
-    log_message "Normalized installed version: $normalized_installed_version"
-    log_message "Normalized latest version: $normalized_latest_version"
+    if [[ -z "$latest_version_short" ]]; then
+        log_message "Could not extract comparable version string from API version."
+        # Fallback to comparing full API string if extraction fails
+        latest_version_short="$latest_version_full"
+    fi
 
-    if compare_versions "$normalized_installed_version" "$normalized_latest_version"; then
-        log_message "JDK 25 is up-to-date (version $installed_version). Skipping installation."
+    log_message "Comparing installed version '$installed_version_short' with latest version '$latest_version_short'"
+
+    if [[ "$installed_version_short" == "$latest_version_short" ]]; then
+        log_message "JDK 25 is up-to-date (version $installed_version_full). Skipping installation."
         return 0
     else
-        log_message "Installed JDK 25 version ($installed_version) is not up-to-date. Latest version is $latest_version."
+        log_message "Installed JDK 25 version ($installed_version_full) is not up-to-date. Latest version is $latest_version_full."
         return 1
     fi
 }
