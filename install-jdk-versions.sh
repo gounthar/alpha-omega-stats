@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Enhanced logging for better debugging
+# ```
 log_message() {
     local message="$1"
     echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
@@ -35,7 +35,21 @@ elif [[ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
     source "/usr/local/sdkman/bin/sdkman-init.sh"
 fi
 
-# Ensure the ARCHITECTURE variable is set correctly before API calls
+# Detects the system architecture and sets the ARCHITECTURE variable to an API-compatible value.
+#
+# Globals:
+#   ARCHITECTURE (set): The detected and mapped architecture string for API use.
+#
+# Outputs:
+#   Logs the detected architecture and errors to standard output.
+#
+# Returns:
+#   Exits with status 1 if the architecture is unsupported or cannot be determined.
+#
+# Example:
+#
+#   set_architecture
+#   # ARCHITECTURE will be set to "x64", "aarch64", or "riscv64" depending on the system.
 set_architecture() {
     ARCHITECTURE=$(uname -m)
     log_message "Detected system architecture: $ARCHITECTURE"
@@ -62,7 +76,18 @@ set_architecture() {
 # Call set_architecture before any API calls
 set_architecture
 
-# Fix the function to fetch the latest available version of Temurin JDK 25 from the API with error handling
+# Retrieves the latest available Temurin JDK 25 early access version string for the current architecture from the Adoptium API.
+#
+# Returns:
+#
+# * The semantic version string of the latest JDK 25 early access release, or "unknown" if retrieval fails.
+#
+# Example:
+#
+# ```bash
+# latest_version=$(get_latest_jdk25_version)
+# echo "Latest JDK 25 version: $latest_version"
+# ```
 get_latest_jdk25_version() {
     local api_url="https://api.adoptium.net/v3/assets/feature_releases/25/ea?architecture=$ARCHITECTURE&heap_size=normal&image_type=jdk&jvm_impl=hotspot&os=linux&page_size=1&project=jdk&sort_order=DESC&vendor=eclipse"
     log_message "Fetching latest JDK 25 version from API: $api_url"
@@ -79,7 +104,22 @@ get_latest_jdk25_version() {
     fi
 }
 
-# Enhanced function to detect the installed JDK 25 version with refined extraction
+# Checks if the installed Temurin JDK 25 is up-to-date by comparing the local version with the latest available version from the Adoptium API.
+#
+# Returns:
+#
+# * 0 if the installed JDK 25 version matches the latest available version.
+# * 1 if JDK 25 is not installed or is outdated.
+#
+# Example:
+#
+# ```bash
+# if is_jdk25_up_to_date; then
+#   echo "JDK 25 is current."
+# else
+#   echo "JDK 25 needs to be installed or updated."
+# fi
+# ```
 is_jdk25_up_to_date() {
     log_message "Checking if JDK 25 is up-to-date..."
     local installed_version_full
@@ -140,7 +180,19 @@ is_jdk25_up_to_date() {
     fi
 }
 
-# Enhanced function to fetch and install Temurin JDK 25 early access binaries with logging
+# Downloads and installs the latest Temurin JDK 25 early access binary, updating environment variables and verifying installation.
+#
+# Globals:
+#   JDK_INSTALL_DIR: Directory where JDK 25 will be installed.
+#   ARCHITECTURE: System architecture string for API queries.
+#
+# Outputs:
+#   Logs progress and errors to standard output.
+#
+# Example:
+#
+#   install_temurin_jdk25
+#   # Installs or updates Temurin JDK 25 early access in $HOME/.jdk-25 and updates PATH and JAVA_HOME.
 install_temurin_jdk25() {
     log_message "Starting installation of Temurin JDK 25..."
     if is_jdk25_up_to_date; then
@@ -179,7 +231,19 @@ install_temurin_jdk25() {
     verify_jdk_installation
 }
 
-# Ensure the PATH and JAVA_HOME are updated to prioritize the newly installed JDK 25
+# Updates PATH and JAVA_HOME to prioritize the installed JDK 25 and refreshes the shell environment.
+#
+# Ensures the JDK 25 binary directory is at the front of PATH and sets JAVA_HOME to the JDK 25 installation directory.
+# Refreshes the shell's command lookup table and logs the output of 'java -version' to confirm the correct Java binary is active.
+#
+# Globals:
+#   JDK_INSTALL_DIR - Path to the JDK 25 installation directory.
+#
+# Outputs:
+#   Logs debug messages and the output of 'java -version' to standard output.
+#
+# Example:
+#   update_path_for_jdk25
 update_path_for_jdk25() {
     if [[ ":$PATH:" != *":$JDK_INSTALL_DIR/bin:"* ]]; then
         export PATH="$JDK_INSTALL_DIR/bin:$PATH"
@@ -198,7 +262,22 @@ update_path_for_jdk25() {
     java -version 2>&1 | while read -r line; do log_message "$line"; done
 }
 
-# Use the explicit path to the JDK 25 binary for verification
+# Verifies that the installed Temurin JDK 25 binary is present and reports the correct version.
+#
+# Globals:
+# * JDK_INSTALL_DIR: Directory where Temurin JDK 25 is installed.
+#
+# Outputs:
+# * Prints verification status messages to STDOUT.
+#
+# Returns:
+# * Exits with status 1 if verification fails.
+#
+# Example:
+#
+# ```bash
+# verify_jdk_installation
+# ```
 verify_jdk_installation() {
     echo "Verifying Temurin JDK 25 installation..."
     if "$JDK_INSTALL_DIR/bin/java" -version 2>&1 | grep -qE "version \"25"; then
