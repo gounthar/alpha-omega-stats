@@ -1,7 +1,27 @@
 #!/bin/bash
 
+# Ensure DEBUG_LOG is defined and exported
+DEBUG_LOG="build-debug.log"
+export DEBUG_LOG
+
 # Disable strict error checking and debug output for more reliable output handling
 set -uo pipefail
+
+# Detect the system architecture dynamically
+ARCHITECTURE=$(uname -m)
+
+# Map architecture to the expected values for the API
+case "$ARCHITECTURE" in
+    x86_64)
+        ARCHITECTURE="x64";;
+    aarch64)
+        ARCHITECTURE="aarch64";;
+    riscv64)
+        ARCHITECTURE="riscv64";;
+    *)
+        echo "Error: Unsupported architecture $ARCHITECTURE" >> "$DEBUG_LOG"
+        exit 1;;
+esac
 
 # Call the script to install JDK versions
 # The script directory is determined and stored in the variable `script_dir`.
@@ -75,7 +95,22 @@ get_github_url() {
 # Arguments:
 #   $1 - The name of the plugin.
 # Outputs:
-#   Logs the build process to the debug log file and returns the build status.
+# Attempts to clone and build a Jenkins plugin, logging the process and returning the build status.
+#
+# Arguments:
+#
+# * plugin_name: The name of the Jenkins plugin to build.
+#
+# Returns:
+#
+# * A string indicating the build status, which may be one of: "success", "url_not_found", "clone_failed", "cd_failed", "build_failed", or "no_build_file".
+#
+# Example:
+#
+# ```bash
+# status=$(compile_plugin "git")
+# echo "Build status: $status"
+# ```
 compile_plugin() {
     local plugin_name="$1"
     local plugin_dir="$BUILD_DIR/$plugin_name"
@@ -114,7 +149,7 @@ compile_plugin() {
                     # Create an absolute path for the temporary Maven output log
                     maven_log_file="$(pwd)/mvn_output.log"
                     # Use the absolute path when calling run-maven-build.sh
-                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean install -DskipTests
+                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean verify -Pquick -DskipTests
                     maven_exit_code=$?
                     # Always read the log file regardless of build success/failure
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
@@ -149,15 +184,24 @@ compile_plugin() {
     echo "$build_status"
 }
 
-# Read the input CSV file and process each plugin.
-while IFS=, read -r name popularity; do
+# Read the input CSV file using file descriptor 3 to avoid consuming stdin
+line_number=0
+while IFS=, read -r name popularity <&3; do
+    line_number=$((line_number + 1))
+    echo "Read line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
+
     # Skip the header row in the CSV file.
     if [ "$name" != "name" ]; then
-        # Compile the plugin and append the results to the output CSV file.
+        echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
         build_status=$(compile_plugin "$name")
+        echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
         echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
+    else
+        echo "Skipping header line $line_number" >> "$DEBUG_LOG"
     fi
-done < "$CSV_FILE"
+done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
+
+echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 
 # Log the completion of the script and the locations of the results and logs.
 echo "Simplified build results have been saved to $RESULTS_FILE."
