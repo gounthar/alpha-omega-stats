@@ -339,8 +339,10 @@ for version in "${jdk_versions[@]}"; do
     # Check if a valid identifier was found
     if [ -n "$identifier" ]; then
         echo "Installing JDK version $version with identifier $identifier"
-        # Install the JDK version using SDKMAN
+        # Disable nounset for SDKMAN install to avoid unbound variable error
+        set +u
         yes | sdk install java "$identifier"
+        set -u
     else
         # Log a message if no suitable JDK version is found
         echo "No suitable JDK version found for $version"
