@@ -28,6 +28,11 @@ esac
 script_dir=$(cd "$(dirname "$0")" && pwd)
 source "$script_dir/install-jdk-versions.sh" # Changed from direct execution to sourcing
 
+echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
+java -version >> "$DEBUG_LOG" 2>&1
+echo "DEBUG: Output of 'mvn -v' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
+mvn -v >> "$DEBUG_LOG" 2>&1
+
 # Path to the input CSV file containing plugin names and their popularity.
 CSV_FILE="top-250-plugins.csv"
 
@@ -56,6 +61,7 @@ echo "Build Debug Log" > "$DEBUG_LOG"
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
     echo "Maven is installed and accessible." >>"$DEBUG_LOG"
+    echo "DEBUG: Output of 'mvn -v' before potential JDK 25 switch (in test-jdk-25.sh):" >> "$DEBUG_LOG"
     mvn -v >>"$DEBUG_LOG" 2>&1
 else
     # Log an error message and exit if Maven is not installed.

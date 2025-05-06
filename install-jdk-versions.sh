@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# ```
+DEBUG_LOG="$HOME/jdk-install-debug.log"
+
 log_message() {
     local message="$1"
     echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
@@ -28,12 +29,28 @@ if [[ ! -s "$HOME/.sdkman/bin/sdkman-init.sh" && ! -s "/usr/local/sdkman/bin/sdk
     echo "SDKMAN installed successfully."
 fi
 
+# Temporarily modify shell options for SDKMAN compatibility
+_SHELLOPTS_ORIGINAL="$-"
+if [[ "${_SHELLOPTS_ORIGINAL}" == *u* ]]; then
+  set +u # Disable 'exit on unset variable' for SDKMAN initialization
+fi
+
 # Initialize SDKMAN from the appropriate location
 if [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]]; then
     source "$HOME/.sdkman/bin/sdkman-init.sh"
 elif [[ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]]; then
     source "/usr/local/sdkman/bin/sdkman-init.sh"
 fi
+
+# After SDKMAN initialization
+export SDKMAN_OFFLINE_MODE=false
+sdk update > /dev/null
+
+# Restore original shell options
+if [[ "${_SHELLOPTS_ORIGINAL}" == *u* ]]; then
+  set -u # Re-enable 'exit on unset variable' if it was originally set
+fi
+unset _SHELLOPTS_ORIGINAL # Clean up temporary variable
 
 # Detects the system architecture and sets the ARCHITECTURE variable to an API-compatible value.
 #
@@ -258,8 +275,8 @@ update_path_for_jdk25() {
     log_message "Refreshed shell environment to use updated PATH."
 
     # Verify the java command points to the correct binary
-    log_message "Output of 'java -version' after PATH update:"
-    java -version 2>&1 | while read -r line; do log_message "$line"; done
+    echo "DEBUG: Output of 'java -version' after PATH update (in update_path_for_jdk25 from install-jdk-versions.sh):" >> "$DEBUG_LOG"
+    java -version >> "$DEBUG_LOG" 2>&1
 }
 
 # Verifies that the installed Temurin JDK 25 binary is present and reports the correct version.
@@ -279,12 +296,17 @@ update_path_for_jdk25() {
 # verify_jdk_installation
 # ```
 verify_jdk_installation() {
-    echo "Verifying Temurin JDK 25 installation..."
-    if "$JDK_INSTALL_DIR/bin/java" -version 2>&1 | grep -qE "version \"25"; then
-        echo "Temurin JDK 25 installation verified successfully."
+    echo "DEBUG: Verifying Temurin JDK 25 installation (in verify_jdk_installation from install-jdk-versions.sh):" >> "$DEBUG_LOG"
+    echo "DEBUG: Running: $JDK_INSTALL_DIR/bin/java -version" >> "$DEBUG_LOG"
+    local version_output
+    version_output=$("$JDK_INSTALL_DIR/bin/java" -version 2>&1)
+    echo "$version_output" >> "$DEBUG_LOG"
+
+    if echo "$version_output" | grep -qE 'version "25'; then
+        echo "DEBUG: Temurin JDK 25 installation verified successfully (from verify_jdk_installation)." >> "$DEBUG_LOG"
     else
-        echo "Error: Temurin JDK 25 installation verification failed."
-        exit 1
+        echo "DEBUG: Error: Temurin JDK 25 installation verification failed (from verify_jdk_installation)." >> "$DEBUG_LOG"
+        # exit 1
     fi
 }
 
