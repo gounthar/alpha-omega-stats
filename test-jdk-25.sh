@@ -26,7 +26,7 @@ esac
 # Call the script to install JDK versions
 # The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
-"$script_dir/install-jdk-versions.sh"
+source "$script_dir/install-jdk-versions.sh" # Changed from direct execution to sourcing
 
 # Path to the input CSV file containing plugin names and their popularity.
 CSV_FILE="top-250-plugins.csv"
