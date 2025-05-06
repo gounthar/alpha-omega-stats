@@ -143,24 +143,17 @@ compile_plugin() {
             echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
-                    # Run a Maven build if a pom.xml file is found.
+                    # Ensure Maven's stdout and stderr are consistently captured in the debug log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    # Create an absolute path for the temporary Maven output log
                     maven_log_file="$(pwd)/mvn_output.log"
-                    # Use the absolute path when calling run-maven-build.sh
-                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean verify -Pquick -DskipTests
+                    mvn clean install -DskipTests >"$maven_log_file" 2>&1
                     maven_exit_code=$?
-                    # Always read the log file regardless of build success/failure
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
                     cat "$maven_log_file" >>"$DEBUG_LOG" 2>/dev/null || echo "Failed to read Maven output log" >>"$DEBUG_LOG"
-                    # Then check exit code
                     if [ $maven_exit_code -ne 0 ]; then
                         build_status="build_failed"
                     fi
-                    # Use the same absolute path when appending to the debug log
-                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
-                    cat "$maven_log_file" >>"$DEBUG_LOG"
                     rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
