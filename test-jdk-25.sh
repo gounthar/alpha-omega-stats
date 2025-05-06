@@ -28,6 +28,11 @@ esac
 script_dir=$(cd "$(dirname "$0")" && pwd)
 source "$script_dir/install-jdk-versions.sh" # Changed from direct execution to sourcing
 
+# Ensure JDK 25 is used for all Java and Maven commands
+export JAVA_HOME="$HOME/.jdk-25"
+export PATH="$JAVA_HOME/bin:$PATH"
+hash -r
+
 echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
 java -version >> "$DEBUG_LOG" 2>&1
 echo "DEBUG: Output of 'mvn -v' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
