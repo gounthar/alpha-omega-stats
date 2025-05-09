@@ -54,7 +54,7 @@ RESULTS_FILE="jdk-25-build-results.csv"
 DEBUG_LOG="build-debug.log"
 
 # Directory for per-plugin logs
-PLUGIN_LOG_DIR="data/plugin-build-logs"
+PLUGIN_LOG_DIR="$(cd "$(dirname "$0")" && pwd)/data/plugin-build-logs"
 mkdir -p "$PLUGIN_LOG_DIR"
 
 # Ensure the build directory exists, creating it if necessary.
