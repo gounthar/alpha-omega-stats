@@ -156,20 +156,23 @@ compile_plugin() {
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the debug log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
+                    echo "Executing: timeout 10m mvn clean install -DskipTests" >>"$DEBUG_LOG"
                     maven_log_file="$(pwd)/mvn_output.log"
-                    mvn clean install -DskipTests >"$maven_log_file" 2>&1
+                    timeout 10m mvn clean install -DskipTests >"$maven_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
                     cat "$maven_log_file" >>"$DEBUG_LOG" 2>/dev/null || echo "Failed to read Maven output log" >>"$DEBUG_LOG"
-                    if [ $maven_exit_code -ne 0 ]; then
+                    if [ $maven_exit_code -eq 124 ]; then
+                        build_status="timeout"
+                    elif [ $maven_exit_code -ne 0 ]; then
                         build_status="build_failed"
                     fi
                     rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
                     echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
-                    "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
+                    echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $DEBUG_LOG build -x test" >>"$DEBUG_LOG"
+                    timeout 10m "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
                 else
                     # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
