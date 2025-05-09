@@ -53,6 +53,10 @@ RESULTS_FILE="jdk-25-build-results.csv"
 # Path to the debug log file where detailed logs will be stored.
 DEBUG_LOG="build-debug.log"
 
+# Directory for per-plugin logs
+PLUGIN_LOG_DIR="data/plugin-build-logs"
+mkdir -p "$PLUGIN_LOG_DIR"
+
 # Ensure the build directory exists, creating it if necessary.
 mkdir -p "$BUILD_DIR"
 
@@ -126,6 +130,10 @@ compile_plugin() {
     local plugin_name="$1"
     local plugin_dir="$BUILD_DIR/$plugin_name"
     local build_status="success"
+    local plugin_log_file="$PLUGIN_LOG_DIR/${plugin_name}.log"
+
+    # Ensure the per-plugin log directory exists (handles parallel/recursive calls)
+    mkdir -p "$PLUGIN_LOG_DIR"
 
     # Log the start of processing for the plugin.
     echo "Processing plugin: $plugin_name" >>"$DEBUG_LOG"
@@ -154,25 +162,22 @@ compile_plugin() {
             echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
-                    # Ensure Maven's stdout and stderr are consistently captured in the debug log
+                    # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: timeout 10m mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    maven_log_file="$(pwd)/mvn_output.log"
-                    timeout 10m mvn clean install -DskipTests >"$maven_log_file" 2>&1
+                    timeout 10m mvn clean install -DskipTests >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
-                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
-                    cat "$maven_log_file" >>"$DEBUG_LOG" 2>/dev/null || echo "Failed to read Maven output log" >>"$DEBUG_LOG"
+                    echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then
                         build_status="timeout"
                     elif [ $maven_exit_code -ne 0 ]; then
                         build_status="build_failed"
                     fi
-                    rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
                     echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $DEBUG_LOG build -x test" >>"$DEBUG_LOG"
-                    timeout 10m "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
+                    timeout 10m "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >"$plugin_log_file" 2>&1 || build_status="build_failed"
                 else
                     # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
