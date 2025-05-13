@@ -125,6 +125,23 @@ get_github_url() {
 # ```bash
 # status=$(compile_plugin "git")
 # echo "Build status: $status"
+# Attempts to clone and build a Jenkins plugin, returning the build status as a string.
+#
+# For the specified plugin name, retrieves its GitHub repository URL, clones the repository, and attempts to build it using Maven (if `pom.xml` is present) or Gradle (if `gradlew` is present), each with a 10-minute timeout. Build output is saved to a per-plugin log file. Returns a status string indicating the result, such as `success`, `url_not_found`, `clone_failed`, `cd_failed`, `build_failed`, `timeout`, or `no_build_file`.
+#
+# Arguments:
+#
+# * plugin_name: The name of the Jenkins plugin to build.
+#
+# Returns:
+#
+# * A string representing the build status: `success`, `url_not_found`, `clone_failed`, `cd_failed`, `build_failed`, `timeout`, or `no_build_file`.
+#
+# Example:
+#
+# ```bash
+# status=$(compile_plugin "git")
+# echo "Build status: $status"
 # ```
 compile_plugin() {
     local plugin_name="$1"
