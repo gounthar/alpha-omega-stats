@@ -1,38 +1,5 @@
 [
   {
-    "number": 16,
-    "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
-    "state": "OPEN",
-    "createdAt": "2025-02-27T16:33:51Z",
-    "updatedAt": "2025-03-07T08:45:24Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/42crunch-security-audit-plugin",
-    "pluginName": "42crunch-security-audit",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/42crunch-security-audit-plugin/pull/16",
-    "description": "Hello 42crunch-security-audit developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.479 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "ERROR",
-    "statusCheckRollup": [
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-07T08:48:32Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/42crunch-security-audit-plugin/job/PR-16/4/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-07T08:48:31Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/42crunch-security-audit-plugin/job/PR-16/4/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-03-07T08:45:49Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      }
-    ]
-  },
-  {
     "number": 3,
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
     "state": "OPEN",

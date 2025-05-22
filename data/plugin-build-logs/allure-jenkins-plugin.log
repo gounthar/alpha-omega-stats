@@ -1,0 +1,88 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------< ru.yandex.qatools.allure:allure-jenkins-plugin >-----------
+[INFO] Building Allure Jenkins Plugin 2.31.0.11-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.1:clean (default-clean) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- hpi:3.49:validate (default-validate) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- hpi:3.49:validate-hpi (default-validate-hpi) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (display-info) @ allure-jenkins-plugin ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (no-snapshots-in-release) @ allure-jenkins-plugin ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- checkstyle:3.2.1:check (validate) @ allure-jenkins-plugin ---
+[INFO] Starting audit...
+Audit done.
+[INFO] You have 0 Checkstyle violations.
+[INFO] 
+[INFO] >>> pmd:3.20.0:check (validate) > :pmd @ allure-jenkins-plugin >>>
+[INFO] 
+[INFO] --- pmd:3.20.0:pmd (pmd) @ allure-jenkins-plugin ---
+[WARNING] Unable to locate Source XRef to link to - DISABLED
+[INFO] PMD version: 6.53.0
+[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] 
+[INFO] <<< pmd:3.20.0:check (validate) < :pmd @ allure-jenkins-plugin <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.20.0:check (validate) @ allure-jenkins-plugin ---
+[INFO] PMD version: 6.53.0
+[INFO] 
+[INFO] 
+[INFO] >>> spotbugs:4.7.3.6:check (validate) > :spotbugs @ allure-jenkins-plugin >>>
+[INFO] 
+[INFO] --- spotbugs:4.7.3.6:spotbugs (spotbugs) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] <<< spotbugs:4.7.3.6:check (validate) < :spotbugs @ allure-jenkins-plugin <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.7.3.6:check (validate) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- spotless:2.40.0:check (validate) @ allure-jenkins-plugin ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ allure-jenkins-plugin ---
+[INFO] Copying 15 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.5.0:flatten (flatten) @ allure-jenkins-plugin ---
+[INFO] Generating flattened POM of project ru.yandex.qatools.allure:allure-jenkins-plugin:hpi:2.31.0.11-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ allure-jenkins-plugin ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 29 source files with javac [debug release 11] to target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.861 s
+[INFO] Finished at: 2025-05-21T10:56:09+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project allure-jenkins-plugin: Fatal error compiling: java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTag :: UNKNOWN -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
