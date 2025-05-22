@@ -26,7 +26,17 @@ esac
 # Call the script to install JDK versions
 # The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
-"$script_dir/install-jdk-versions.sh"
+source "$script_dir/install-jdk-versions.sh" # Changed from direct execution to sourcing
+
+# Ensure JDK 25 is used for all Java and Maven commands
+export JAVA_HOME="$HOME/.jdk-25"
+export PATH="$JAVA_HOME/bin:$PATH"
+hash -r
+
+echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
+java -version >> "$DEBUG_LOG" 2>&1
+echo "DEBUG: Output of 'mvn -v' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
+mvn -v >> "$DEBUG_LOG" 2>&1
 
 # Path to the input CSV file containing plugin names and their popularity.
 CSV_FILE="top-250-plugins.csv"
@@ -43,6 +53,10 @@ RESULTS_FILE="jdk-25-build-results.csv"
 # Path to the debug log file where detailed logs will be stored.
 DEBUG_LOG="build-debug.log"
 
+# Directory for per-plugin logs
+PLUGIN_LOG_DIR="$(cd "$(dirname "$0")" && pwd)/data/plugin-build-logs"
+mkdir -p "$PLUGIN_LOG_DIR"
+
 # Ensure the build directory exists, creating it if necessary.
 mkdir -p "$BUILD_DIR"
 
@@ -56,6 +70,7 @@ echo "Build Debug Log" > "$DEBUG_LOG"
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
     echo "Maven is installed and accessible." >>"$DEBUG_LOG"
+    echo "DEBUG: Output of 'mvn -v' before potential JDK 25 switch (in test-jdk-25.sh):" >> "$DEBUG_LOG"
     mvn -v >>"$DEBUG_LOG" 2>&1
 else
     # Log an error message and exit if Maven is not installed.
@@ -110,11 +125,32 @@ get_github_url() {
 # ```bash
 # status=$(compile_plugin "git")
 # echo "Build status: $status"
+# Attempts to clone and build a Jenkins plugin, returning the build status as a string.
+#
+# For the specified plugin name, retrieves its GitHub repository URL, clones the repository, and attempts to build it using Maven (if `pom.xml` is present) or Gradle (if `gradlew` is present), each with a 10-minute timeout. Build output is saved to a per-plugin log file. Returns a status string indicating the result, such as `success`, `url_not_found`, `clone_failed`, `cd_failed`, `build_failed`, `timeout`, or `no_build_file`.
+#
+# Arguments:
+#
+# * plugin_name: The name of the Jenkins plugin to build.
+#
+# Returns:
+#
+# * A string representing the build status: `success`, `url_not_found`, `clone_failed`, `cd_failed`, `build_failed`, `timeout`, or `no_build_file`.
+#
+# Example:
+#
+# ```bash
+# status=$(compile_plugin "git")
+# echo "Build status: $status"
 # ```
 compile_plugin() {
     local plugin_name="$1"
     local plugin_dir="$BUILD_DIR/$plugin_name"
     local build_status="success"
+    local plugin_log_file="$PLUGIN_LOG_DIR/${plugin_name}.log"
+
+    # Ensure the per-plugin log directory exists (handles parallel/recursive calls)
+    mkdir -p "$PLUGIN_LOG_DIR"
 
     # Log the start of processing for the plugin.
     echo "Processing plugin: $plugin_name" >>"$DEBUG_LOG"
@@ -143,29 +179,22 @@ compile_plugin() {
             echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
-                    # Run a Maven build if a pom.xml file is found.
+                    # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    # Create an absolute path for the temporary Maven output log
-                    maven_log_file="$(pwd)/mvn_output.log"
-                    # Use the absolute path when calling run-maven-build.sh
-                    "$script_dir/run-maven-build.sh" "$maven_log_file" clean verify -Pquick -DskipTests
+                    echo "Executing: timeout 10m mvn clean install -DskipTests" >>"$DEBUG_LOG"
+                    timeout 10m mvn clean install -DskipTests >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
-                    # Always read the log file regardless of build success/failure
-                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
-                    cat "$maven_log_file" >>"$DEBUG_LOG" 2>/dev/null || echo "Failed to read Maven output log" >>"$DEBUG_LOG"
-                    # Then check exit code
-                    if [ $maven_exit_code -ne 0 ]; then
+                    echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
+                    if [ $maven_exit_code -eq 124 ]; then
+                        build_status="timeout"
+                    elif [ $maven_exit_code -ne 0 ]; then
                         build_status="build_failed"
                     fi
-                    # Use the same absolute path when appending to the debug log
-                    echo "Maven output for $plugin_name:" >>"$DEBUG_LOG"
-                    cat "$maven_log_file" >>"$DEBUG_LOG"
-                    rm "$maven_log_file"
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
                     echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
-                    "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >>"$DEBUG_LOG" 2>&1 || build_status="build_failed"
+                    echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $DEBUG_LOG build -x test" >>"$DEBUG_LOG"
+                    timeout 10m "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >"$plugin_log_file" 2>&1 || build_status="build_failed"
                 else
                     # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"

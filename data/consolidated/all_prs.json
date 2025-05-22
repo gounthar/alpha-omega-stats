@@ -2,7 +2,7 @@
   {
     "number": 16,
     "title": "feat(java): Require Jenkins core 2.479.3 and Java 17.",
-    "state": "OPEN",
+    "state": "CLOSED",
     "createdAt": "2025-02-27T16:33:51Z",
     "updatedAt": "2025-03-07T08:45:24Z",
     "user": "gounthar",
@@ -3999,7 +3999,7 @@
   {
     "number": 9,
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
-    "state": "OPEN",
+    "state": "CLOSED",
     "createdAt": "2025-03-27T21:21:56Z",
     "updatedAt": "2025-03-29T02:04:56Z",
     "user": "gounthar",
@@ -5378,17 +5378,17 @@
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-02-25T09:32:18Z",
+        "startedAt": "2025-05-05T06:27:12Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/9/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/10/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-25T09:31:54Z",
+        "completedAt": "2025-05-05T06:26:43Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/9/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/10/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-02-25T09:28:45Z",
+        "startedAt": "2025-05-05T06:25:11Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
@@ -6206,6 +6206,189 @@
     "url": "https://github.com/jenkinsci/file-operations-plugin/pull/163",
     "description": "Hello file-operations developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade BOM version\n    io.jenkins.tools.pluginmodernizer.UpgradeBomVersion\n    Upgrade the bom version to latest available for the current BOM.\n\nWhy is this important?\nBy using the latest version of the Jenkins BOM for the given baseline, you can ensure the plugin relies on the correct versions of Jenkins plugins and libraries. This can help prevent compatibility issues.",
     "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 30,
+    "title": "refactor(tests): Migrate tests to JUnit 5",
+    "state": "OPEN",
+    "createdAt": "2025-05-12T05:02:40Z",
+    "updatedAt": "2025-05-12T06:50:06Z",
+    "user": "CodexRaunak",
+    "repository": "jenkinsci/filesystem_scm-plugin",
+    "pluginName": "filesystem_scm",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/filesystem_scm-plugin/pull/30",
+    "description": "Hello filesystem_scm developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipe to modernize the plugin:\n\n    Migrate to JUnit 5\n    io.jenkins.tools.pluginmodernizer.MigrateToJUnit5\n    Migrate tests to JUnit5.\n\nThis PR aims to migrate all tests to JUnit 5. Changes include:\nNote: Some changes listed below may not apply if the plugin does not use certain features (e.g., Hamcrest assertions or TemporaryFolder).\n\nMigrating annotations and imports\nMigrating assertions\nRemoving public visibility for test classes and methods\nAdding Jenkins-specific annotations where applicable\nUpdating @Test annotations to JUnit 5\nConverting @Before/@After to @BeforeEach/@AfterEach\nReplacing @Ignore with @Disabled\nMigrating TemporaryFolder to @TempDir\nConverting Assert.* to Assertions.*\nRefactoring assertThrows to handle exceptions on the last statement\nReplacing ExpectedException with assertThrows\nSimplifying assertTrue with instanceof to assertInstanceOf\nRemoving try-catch blocks with Assertions.assertDoesNotThrow\nMigrating Assert.assertThat to Hamcrest MatcherAssert.assertThat\nAdding static imports for MatcherAssert.assertThat\nAdding static imports for Assertions.* methods\nAdding missing @BeforeEach/@AfterEach annotations\nMinor clean-up\n\nI am well aware that this is quite a large changeset; however, I hope that there is still interest in this PR and that it will be reviewed. If there are any questions, please do not hesitate to ping me.",
+    "checkStatus": "UNKNOWN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/filesystem_scm-plugin/actions/runs/14964206560/job/42031180797",
+        "name": "security-scan / scan",
+        "startedAt": "2025-05-12T05:02:51Z",
+        "status": "COMPLETED",
+        "workflowName": "Jenkins Security Scan"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:05:02Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/cpd",
+        "name": "CPD",
+        "startedAt": "2025-05-12T05:05:02Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:05:00Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/checkstyle",
+        "name": "CheckStyle",
+        "startedAt": "2025-05-12T05:05:00Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:51Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1//coverage",
+        "name": "Code Coverage",
+        "startedAt": "2025-05-12T05:04:51Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/filesystem_scm-plugin/runs/42031237122",
+        "name": "Jenkins Security Scan",
+        "startedAt": "2025-05-12T05:04:17Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:54Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/eslint",
+        "name": "ESLint",
+        "startedAt": "2025-05-12T05:04:54Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:08:01Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/hudson/plugins/filesystem_scm/filesystem_scm/121.va_b_2d6308a_f57/",
+        "name": "Incrementals",
+        "startedAt": "2025-05-12T05:08:01Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/java",
+        "name": "Java Compiler",
+        "startedAt": "2025-05-12T05:04:55Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/javadoc-warnings",
+        "name": "JavaDoc",
+        "startedAt": "2025-05-12T05:04:56Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:07:56Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2025-05-12T05:02:52Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/maven-warnings",
+        "name": "Maven",
+        "startedAt": "2025-05-12T05:04:53Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:05:04Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/open-tasks",
+        "name": "Open Tasks Scanner",
+        "startedAt": "2025-05-12T05:05:04Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:05:01Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/pmd",
+        "name": "PMD",
+        "startedAt": "2025-05-12T05:05:01Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:05:00Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/spotbugs",
+        "name": "SpotBugs",
+        "startedAt": "2025-05-12T05:05:00Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:04:49Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/display/redirect?page=tests",
+        "name": "Tests / linux-21 / Build (linux-21)",
+        "startedAt": "2025-05-12T05:04:49Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-12T05:07:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/display/redirect?page=tests",
+        "name": "Tests / windows-21 / Build (windows-21)",
+        "startedAt": "2025-05-12T05:07:50Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "continuous-integration/jenkins/pr-head",
+        "startedAt": "2025-05-12T05:08:02Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/filesystem_scm-plugin/job/PR-30/1/display/redirect"
+      }
+    ]
   },
   {
     "number": 102,
@@ -25094,6 +25277,199 @@
     "description": "Hello webhook-eventsource developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThanks for taking the time to review this PR. 🙏",
     "checkStatus": "UNKNOWN",
     "statusCheckRollup": []
+  },
+  {
+    "number": 293,
+    "title": "feat(java): Require Jenkins core 2.492.3 and Java 17",
+    "state": "OPEN",
+    "createdAt": "2025-05-16T10:12:07Z",
+    "updatedAt": "2025-05-16T10:27:10Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/webhook-step-plugin",
+    "pluginName": "webhook-step",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/webhook-step-plugin/pull/293",
+    "description": "Hello webhook-step developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
+    "checkStatus": "UNKNOWN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:31:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/webhook-step-plugin/actions/runs/15066367715/job/42352035889",
+        "name": "security-scan / scan",
+        "startedAt": "2025-05-16T10:27:21Z",
+        "status": "COMPLETED",
+        "workflowName": "Jenkins Security Scan"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:27:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/webhook-step-plugin/actions/runs/15066367509/job/42352035189",
+        "name": "triage",
+        "startedAt": "2025-05-16T10:27:19Z",
+        "status": "COMPLETED",
+        "workflowName": "Pull Request Labeler"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:53Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/cpd",
+        "name": "CPD",
+        "startedAt": "2025-05-16T10:28:53Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:51Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/checkstyle",
+        "name": "CheckStyle",
+        "startedAt": "2025-05-16T10:28:51Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:41Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3//coverage",
+        "name": "Code Coverage",
+        "startedAt": "2025-05-16T10:28:41Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:30:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/webhook-step-plugin/runs/42352231931",
+        "name": "Jenkins Security Scan",
+        "startedAt": "2025-05-16T10:30:50Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:44Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/eslint",
+        "name": "ESLint",
+        "startedAt": "2025-05-16T10:28:44Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:30:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/webhook-step/391.ve6b_93167cfa_b_/",
+        "name": "Incrementals",
+        "startedAt": "2025-05-16T10:30:45Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:45Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/java",
+        "name": "Java Compiler",
+        "startedAt": "2025-05-16T10:28:45Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:46Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/javadoc-warnings",
+        "name": "JavaDoc",
+        "startedAt": "2025-05-16T10:28:46Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:30:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2025-05-16T10:27:10Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:43Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/maven-warnings",
+        "name": "Maven",
+        "startedAt": "2025-05-16T10:28:43Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/open-tasks",
+        "name": "Open Tasks Scanner",
+        "startedAt": "2025-05-16T10:28:55Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:52Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/pmd",
+        "name": "PMD",
+        "startedAt": "2025-05-16T10:28:52Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/spotbugs",
+        "name": "SpotBugs",
+        "startedAt": "2025-05-16T10:28:50Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:28:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect?page=tests",
+        "name": "Tests / linux-21 / Build (linux-21)",
+        "startedAt": "2025-05-16T10:28:39Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-05-16T10:30:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect?page=tests",
+        "name": "Tests / windows-17 / Build (windows-17)",
+        "startedAt": "2025-05-16T10:30:23Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "continuous-integration/jenkins/pr-head",
+        "startedAt": "2025-05-16T10:30:47Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect"
+      }
+    ]
   },
   {
     "number": 1,
