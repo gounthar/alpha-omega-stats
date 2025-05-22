@@ -2,6 +2,22 @@
 
 DEBUG_LOG="$HOME/jdk-install-debug.log"
 
+# Logs a debug message with a timestamp to standard output.
+#
+# Arguments:
+#
+# * message: The message string to log.
+#
+# Outputs:
+#
+# * Writes the timestamped debug message to standard output.
+#
+# Example:
+#
+# ```bash
+# log_message "Starting JDK installation"
+# # Output: [DEBUG] 2025-05-15 14:23:01 - Starting JDK installation
+# ```
 log_message() {
     local message="$1"
     echo "[DEBUG] $(date '+%Y-%m-%d %H:%M:%S') - $message"
@@ -260,6 +276,18 @@ install_temurin_jdk25() {
 #   Logs debug messages and the output of 'java -version' to standard output.
 #
 # Example:
+# Updates environment variables to use the installed Temurin JDK 25.
+#
+# Ensures that the JDK 25 `bin` directory is at the front of the `PATH` and sets `JAVA_HOME` to the JDK 25 installation directory. Refreshes the shell's command lookup and logs the output of `java -version` to the debug log for verification.
+#
+# Globals:
+#   JDK_INSTALL_DIR: Directory where Temurin JDK 25 is installed.
+#   DEBUG_LOG: Path to the debug log file.
+#
+# Outputs:
+#   Appends the output of `java -version` to the debug log file.
+#
+# Example:
 #   update_path_for_jdk25
 update_path_for_jdk25() {
     if [[ ":$PATH:" != *":$JDK_INSTALL_DIR/bin:"* ]]; then
@@ -294,7 +322,20 @@ update_path_for_jdk25() {
 #
 # ```bash
 # verify_jdk_installation
-# ```
+# Verifies that Temurin JDK 25 is correctly installed by checking the output of the java -version command.
+#
+# Globals:
+#   JDK_INSTALL_DIR - Directory where Temurin JDK 25 is installed.
+#   DEBUG_LOG - Path to the debug log file.
+#
+# Outputs:
+#   Appends verification steps and java -version output to the debug log file.
+#
+# Returns:
+#   None. Logs an error if verification fails but does not exit or return a value.
+#
+# Example:
+#   verify_jdk_installation
 verify_jdk_installation() {
     echo "DEBUG: Verifying Temurin JDK 25 installation (in verify_jdk_installation from install-jdk-versions.sh):" >> "$DEBUG_LOG"
     echo "DEBUG: Running: $JDK_INSTALL_DIR/bin/java -version" >> "$DEBUG_LOG"
