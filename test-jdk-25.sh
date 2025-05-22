@@ -182,11 +182,20 @@ compile_plugin() {
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: timeout 10m mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    timeout 10m mvn clean install -DskipTests \
-                      -Daccess-modifier-checker.skip=true \
-                      -Djacoco.skip=true \
+                    timeout 10m mvn clean install \
+                      -DskipTests \
+                      -Dmaven.javadoc.skip=true \
+                      -Dspotbugs.skip=true \
                       -Dcheckstyle.skip=true \
-                      -Dspotbugs.skip=true >"$plugin_log_file" 2>&1
+                      -Dlicense.skip=true \
+                      -Daccess-modifier-checker.skip=true \
+                      -Dmaven.compiler.fork=false \
+                      -Dmaven.compiler.source=17 \
+                      -Dmaven.compiler.target=17 \
+                      -Dmaven.compiler.release=17 \
+                      -Dgroovy.source.level=17 \
+                      -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
+                      -Dmaven.license.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then
