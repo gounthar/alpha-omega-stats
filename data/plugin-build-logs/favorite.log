@@ -16,10 +16,10 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.4.1:clean (default-clean) @ favorite ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ favorite ---
+[INFO] --- hpi:3.65:validate (default-validate) @ favorite ---
 [INFO] Created marker file /tmp/plugin-builds/favorite/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ favorite ---
+[INFO] --- hpi:3.65:validate-hpi (default-validate-hpi) @ favorite ---
 [INFO] 
 [INFO] --- enforcer:3.5.0:enforce (display-info) @ favorite ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -28,6 +28,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ favorite ---
@@ -52,15 +53,17 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] hudson.plugins.favorite.user.FavoriteUserProperty.DESCRIPTOR indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/column/FavoriteColumn.java:[18,12] Generating hudson/plugins/favorite/column/FavoriteColumn.stapler
 [INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/filter/FavoriteFilter.java:[14,12] Generating hudson/plugins/favorite/filter/FavoriteFilter.stapler
-[INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/user/FavoriteUserProperty.java:[41,12] Generating hudson/plugins/favorite/user/FavoriteUserProperty.stapler
+[INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/user/FavoriteUserProperty.java:[45,12] Generating hudson/plugins/favorite/user/FavoriteUserProperty.stapler
 [INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/FavoritePlugin.java:[22,17] Generating hudson/plugins/favorite/FavoritePlugin/doToggleFavorite.stapler
 [INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/FavoritePlugin.java: /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/FavoritePlugin.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/favorite/src/main/java/hudson/plugins/favorite/FavoritePlugin.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ favorite ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ favorite ---
 [INFO] Skipping access modifier checks
 [INFO] 
-[INFO] --- hpi:3.61:insert-test (default-insert-test) @ favorite ---
+[INFO] --- bridge-method-injector:1.31:process (default) @ favorite ---
+[INFO] 
+[INFO] --- hpi:3.65:insert-test (default-insert-test) @ favorite ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ favorite ---
 [INFO] Executing tasks
@@ -75,26 +78,26 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Compiling 6 source files with javac [debug parameters release 17] to target/test-classes
 [INFO] hudson.plugins.favorite.FavoritesPluginTest.TestFavoriteLister indexed under hudson.Extension
 [INFO] hudson.plugins.favorite.user.FavoriteListenerTest.TestFavoriteJobListener indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/favorite/src/test/java/hudson/plugins/favorite/user/FavoriteListenerTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/favorite/src/test/java/hudson/plugins/favorite/user/FavoriteListenerTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/favorite/src/test/java/hudson/plugins/favorite/user/FavoriteUserPropertyTest.java: /tmp/plugin-builds/favorite/src/test/java/hudson/plugins/favorite/user/FavoriteUserPropertyTest.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/favorite/src/test/java/hudson/plugins/favorite/user/FavoriteUserPropertyTest.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
-[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ favorite ---
+[INFO] --- hpi:3.65:test-hpl (default-test-hpl) @ favorite ---
 [INFO] Generating /tmp/plugin-builds/favorite/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ favorite ---
+[INFO] --- hpi:3.65:resolve-test-dependencies (default-resolve-test-dependencies) @ favorite ---
 [INFO] 
-[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ favorite ---
+[INFO] --- hpi:3.65:test-runtime (default-test-runtime) @ favorite ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ favorite ---
+[INFO] --- surefire:3.5.3:test (default-test) @ favorite ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:165.v7e11f4e4a_325:process (default) @ favorite ---
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  7.748 s
-[INFO] Finished at: 2025-05-22T13:00:09+02:00
+[INFO] Total time:  7.708 s
+[INFO] Finished at: 2025-06-05T12:43:59+02:00
 [INFO] ------------------------------------------------------------------------
 ---------------------------------------------------
 constituent[0]: file:/home/poddingue/.sdkman/candidates/maven/current/conf/logging/

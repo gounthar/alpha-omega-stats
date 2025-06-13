@@ -47,7 +47,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ kubernetes ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 109 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 110 source files with javac [debug parameters release 17] to target/classes
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pipeline.KubernetesDeclarativeAgent.DescriptorImpl indexed under org.jenkinsci.plugins.variant.OptionalExtension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pipeline.KubernetesDeclarativeAgent.Compat indexed under org.jenkinsci.plugins.variant.OptionalExtension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pipeline.KubernetesSamples.SuppressToolBasedSamples indexed under org.jenkinsci.plugins.variant.OptionalExtension
@@ -76,6 +76,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] org.csanchez.jenkins.plugins.kubernetes.NonConfigurableKubernetesCloud.DescriptorImpl indexed under hudson.Extension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.OpenShiftTokenCredentialImpl.DescriptorImpl indexed under hudson.Extension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.PodAnnotation.DescriptorImpl indexed under hudson.Extension
+[INFO] org.csanchez.jenkins.plugins.kubernetes.PodContainerSource.DefaultPodContainerSource indexed under hudson.Extension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.PodEnvVar.DescriptorImpl indexed under hudson.Extension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.PodEnvVar.DescriptorVisibilityFilterImpl indexed under hudson.Extension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.PodImagePullSecret.DescriptorImpl indexed under hudson.Extension
@@ -129,7 +130,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[78,12] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/GarbageCollection.java:[53,12] Generating org/csanchez/jenkins/plugins/kubernetes/GarbageCollection.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper.java:[53,12] Generating org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[178,12] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[180,12] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesFolderProperty.java:[45,12] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesFolderProperty.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesLauncher.java:[87,12] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesLauncher.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesSlave.java:[188,12] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesSlave.stapler
@@ -169,25 +170,25 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/HostPathWorkspaceVolume.java:[43,12] Generating org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/HostPathWorkspaceVolume.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/NfsWorkspaceVolume.java:[49,12] Generating org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/NfsWorkspaceVolume.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/PersistentVolumeClaimWorkspaceVolume.java:[48,12] Generating org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/PersistentVolumeClaimWorkspaceVolume.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.java:[39,8] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.javadoc
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[337,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1193,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckWebSocket.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1047,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerUrl.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1016,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckSkipTlsVerify.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1078,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckMaxRequestsPerHostStr.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1181,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckJenkinsUrl.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/pipeline/PodTemplateStep.java:[486,29] Generating org/csanchez/jenkins/plugins/kubernetes/pipeline/PodTemplateStep/DescriptorImpl/doFillInheritFromItems.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1097,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckRetentionTimeout.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[344,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckImage.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.java:[135,17] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer/doContainerLog.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[962,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doTestConnection.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1085,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckConnectTimeout.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1062,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1091,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckReadTimeout.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper.java:[151,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1032,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerCertificate.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1103,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckDirectConnection.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.java:[44,8] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.javadoc
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1129,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckReadTimeout.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1141,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckDirectConnection.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1085,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerUrl.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/GarbageCollection.java:[119,31] Generating org/csanchez/jenkins/plugins/kubernetes/GarbageCollection/DescriptorImpl/doCheckTimeout.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1000,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doTestConnection.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/pipeline/PodTemplateStep.java:[486,29] Generating org/csanchez/jenkins/plugins/kubernetes/pipeline/PodTemplateStep/DescriptorImpl/doFillInheritFromItems.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1054,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckSkipTlsVerify.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1135,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckRetentionTimeout.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.java:[140,17] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer/doContainerLog.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper.java:[151,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1100,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1219,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckJenkinsUrl.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1231,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckWebSocket.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[344,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckImage.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1116,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckMaxRequestsPerHostStr.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[337,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1070,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerCertificate.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1123,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckConnectTimeout.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java: Some input files use unchecked or unsafe operations.
@@ -210,12 +211,13 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ kubernetes ---
 [INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 67 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] Compiling 70 source files with javac [debug parameters release 17] to target/test-classes
 [INFO] org.csanchez.jenkins.plugins.kubernetes.PodTemplateFilterTest.PodTemplateFilter1 indexed under org.jvnet.hudson.test.TestExtension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.PodTemplateFilterTest.PodTemplateFilter2 indexed under org.jvnet.hudson.test.TestExtension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pipeline.KubernetesPipelineTest.DecoratorImpl indexed under org.jvnet.hudson.test.TestExtension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pipeline.NoDelayProvisionerStrategyTest.CloudProvisionerListenerImpl indexed under org.jvnet.hudson.test.TestExtension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pod.decorator.PodDecoratorTest.PodDecoratorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.csanchez.jenkins.plugins.kubernetes.PodContainerSourceTest.TestPodContainerSource indexed under hudson.Extension
 [INFO] org.csanchez.jenkins.plugins.kubernetes.pod.retention.ReaperTest.CapturingReaperListener indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/kubernetes/src/test/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesTestUtil.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/kubernetes/src/test/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesTestUtil.java: Recompile with -Xlint:deprecation for details.
@@ -237,8 +239,8 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  14.592 s
-[INFO] Finished at: 2025-05-22T13:14:10+02:00
+[INFO] Total time:  15.701 s
+[INFO] Finished at: 2025-06-05T12:57:51+02:00
 [INFO] ------------------------------------------------------------------------
 ---------------------------------------------------
 constituent[0]: file:/home/poddingue/.sdkman/candidates/maven/current/conf/logging/

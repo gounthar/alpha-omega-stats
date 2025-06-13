@@ -463,6 +463,20 @@
     ]
   },
   {
+    "number": 10,
+    "title": "feat(java): Require Jenkins core 2.492.3 and Java 17",
+    "state": "MERGED",
+    "createdAt": "2025-06-08T20:13:01Z",
+    "updatedAt": "2025-06-10T12:37:22Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/android-signing-plugin",
+    "pluginName": "android-signing",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/android-signing-plugin/pull/10",
+    "description": "Hello android-signing developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
+    "checkStatus": "FAILURE"
+  },
+  {
     "number": 256,
     "title": "Applied recipes UpgradeParentVersion, UpgradeBomVersion",
     "state": "MERGED",
@@ -1438,33 +1452,23 @@
     "statusCheckRollup": [
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-28T20:25:25Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/appscan-plugin/actions/runs/14137272838/job/39611876235",
-        "name": "scan",
-        "startedAt": "2025-03-28T20:25:05Z",
-        "status": "COMPLETED",
-        "workflowName": "HCL AppScan CodeSweep"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-03-28T20:26:54Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/appscan-plugin/actions/runs/14137272875/job/39611876534",
+        "completedAt": "2025-06-11T09:10:24Z",
+        "conclusion": "FAILURE",
+        "detailsUrl": "https://github.com/jenkinsci/appscan-plugin/actions/runs/15580813308/job/43875413257",
         "name": "security-scan / scan",
-        "startedAt": "2025-03-28T20:25:05Z",
+        "startedAt": "2025-06-11T09:09:37Z",
         "status": "COMPLETED",
         "workflowName": "Jenkins Security Scan"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-28T20:26:47Z",
+        "completedAt": "2025-06-11T09:09:58Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/appscan-plugin/runs/39611957403",
-        "name": "Jenkins Security Scan",
-        "startedAt": "2025-03-28T20:26:45Z",
+        "detailsUrl": "https://github.com/jenkinsci/appscan-plugin/actions/runs/15580813254/job/43875413279",
+        "name": "scan",
+        "startedAt": "2025-06-11T09:09:37Z",
         "status": "COMPLETED",
-        "workflowName": ""
+        "workflowName": "HCL AppScan CodeSweep"
       }
     ]
   },
@@ -5367,38 +5371,38 @@
     "statusCheckRollup": [
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-25T09:30:57Z",
+        "completedAt": "2025-05-29T15:57:51Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/deepcrawl-test-plugin/actions/runs/13517921976/job/37770452162",
+        "detailsUrl": "https://github.com/jenkinsci/deepcrawl-test-plugin/actions/runs/15327985843/job/43127280292",
         "name": "security-scan / scan",
-        "startedAt": "2025-02-25T09:29:04Z",
+        "startedAt": "2025-05-29T15:56:21Z",
         "status": "COMPLETED",
         "workflowName": "Jenkins Security Scan"
       },
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-05-05T06:27:12Z",
+        "startedAt": "2025-05-29T15:56:55Z",
         "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/10/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/12/display/redirect"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-05-05T06:26:43Z",
+        "completedAt": "2025-05-29T15:56:34Z",
         "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/10/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/deepcrawl-test-plugin/job/PR-13/12/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-05-05T06:25:11Z",
+        "startedAt": "2025-05-29T15:56:03Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-25T09:30:49Z",
+        "completedAt": "2025-05-29T15:57:42Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/deepcrawl-test-plugin/runs/37770561589",
+        "detailsUrl": "https://github.com/jenkinsci/deepcrawl-test-plugin/runs/43127371344",
         "name": "Jenkins Security Scan",
-        "startedAt": "2025-02-25T09:30:47Z",
+        "startedAt": "2025-05-29T15:57:41Z",
         "status": "COMPLETED",
         "workflowName": ""
       }
@@ -6334,6 +6338,199 @@
         "startedAt": "2025-03-29T05:02:27Z",
         "status": "COMPLETED",
         "workflowName": ""
+      }
+    ]
+  },
+  {
+    "number": 25,
+    "title": "Require 2.346.3",
+    "state": "OPEN",
+    "createdAt": "2025-06-02T20:33:35Z",
+    "updatedAt": "2025-06-02T20:33:35Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/gatling-plugin",
+    "pluginName": "gatling",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/gatling-plugin/pull/25",
+    "description": "Hello gatling developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to latest LTS core version supporting Java 8\n    io.jenkins.tools.pluginmodernizer.UpgradeToLatestJava8CoreVersion\n    Upgrade to latest LTS core version supporting Java 8.",
+    "checkStatus": "UNKNOWN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:30Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/cpd",
+        "name": "CPD",
+        "startedAt": "2025-06-02T20:35:30Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/checkstyle",
+        "name": "CheckStyle",
+        "startedAt": "2025-06-02T20:35:27Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:16Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1//coverage",
+        "name": "Code Coverage",
+        "startedAt": "2025-06-02T20:35:16Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/eslint",
+        "name": "ESLint",
+        "startedAt": "2025-06-02T20:35:19Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:39:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/gatling/135.v5a_4b_a_fef0115/",
+        "name": "Incrementals",
+        "startedAt": "2025-06-02T20:39:05Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/java",
+        "name": "Java Compiler",
+        "startedAt": "2025-06-02T20:35:21Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/javadoc-warnings",
+        "name": "JavaDoc",
+        "startedAt": "2025-06-02T20:35:23Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:39:01Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2025-06-02T20:33:48Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:18Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/maven-warnings",
+        "name": "Maven",
+        "startedAt": "2025-06-02T20:35:18Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:31Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/open-tasks",
+        "name": "Open Tasks Scanner",
+        "startedAt": "2025-06-02T20:35:31Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:29Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/pmd",
+        "name": "PMD",
+        "startedAt": "2025-06-02T20:35:29Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:26Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/spotbugs",
+        "name": "SpotBugs",
+        "startedAt": "2025-06-02T20:35:26Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect?page=tests",
+        "name": "Tests / linux-11 / Build (linux-11)",
+        "startedAt": "2025-06-02T20:35:23Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:36:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect?page=tests",
+        "name": "Tests / linux-17 / Build (linux-17)",
+        "startedAt": "2025-06-02T20:36:28Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:35:14Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect?page=tests",
+        "name": "Tests / linux-8 / Build (linux-8)",
+        "startedAt": "2025-06-02T20:35:14Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:38:50Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect?page=tests",
+        "name": "Tests / windows-11 / Build (windows-11)",
+        "startedAt": "2025-06-02T20:38:50Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-02T20:38:55Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect?page=tests",
+        "name": "Tests / windows-8 / Build (windows-8)",
+        "startedAt": "2025-06-02T20:38:55Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "continuous-integration/jenkins/pr-head",
+        "startedAt": "2025-06-02T20:39:08Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/gatling-plugin/job/PR-25/1/display/redirect"
       }
     ]
   },
@@ -8076,7 +8273,7 @@
   {
     "number": 130,
     "title": "chore: Upgrade to latest LTS core version supporting Java 8 (requires 2.346.3)",
-    "state": "OPEN",
+    "state": "CLOSED",
     "createdAt": "2025-01-29T21:38:50Z",
     "updatedAt": "2025-02-15T20:39:01Z",
     "user": "gounthar",
@@ -8089,147 +8286,147 @@
     "statusCheckRollup": [
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:29Z",
+        "completedAt": "2025-06-07T20:45:38Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/cpd",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/cpd",
         "name": "CPD",
-        "startedAt": "2025-02-15T20:41:29Z",
+        "startedAt": "2025-06-07T20:45:38Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:27Z",
+        "completedAt": "2025-06-07T20:45:35Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/checkstyle",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/checkstyle",
         "name": "CheckStyle",
-        "startedAt": "2025-02-15T20:41:27Z",
+        "startedAt": "2025-06-07T20:45:35Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:17Z",
+        "completedAt": "2025-06-07T20:45:25Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3//coverage",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4//coverage",
         "name": "Code Coverage",
-        "startedAt": "2025-02-15T20:41:17Z",
+        "startedAt": "2025-06-07T20:45:25Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:20Z",
+        "completedAt": "2025-06-07T20:45:28Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/eslint",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/eslint",
         "name": "ESLint",
-        "startedAt": "2025-02-15T20:41:20Z",
+        "startedAt": "2025-06-07T20:45:28Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:22Z",
+        "completedAt": "2025-06-07T20:45:29Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/java",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/java",
         "name": "Java Compiler",
-        "startedAt": "2025-02-15T20:41:22Z",
+        "startedAt": "2025-06-07T20:45:29Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:23Z",
+        "completedAt": "2025-06-07T20:45:30Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/javadoc-warnings",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/javadoc-warnings",
         "name": "JavaDoc",
-        "startedAt": "2025-02-15T20:41:23Z",
+        "startedAt": "2025-06-07T20:45:30Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:58Z",
+        "completedAt": "2025-06-07T20:46:19Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-02-15T20:39:17Z",
+        "startedAt": "2025-06-07T20:43:40Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:19Z",
+        "completedAt": "2025-06-07T20:45:27Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/maven-warnings",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/maven-warnings",
         "name": "Maven",
-        "startedAt": "2025-02-15T20:41:19Z",
+        "startedAt": "2025-06-07T20:45:27Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:30Z",
+        "completedAt": "2025-06-07T20:45:39Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/open-tasks",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/open-tasks",
         "name": "Open Tasks Scanner",
-        "startedAt": "2025-02-15T20:41:30Z",
+        "startedAt": "2025-06-07T20:45:39Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:28Z",
+        "completedAt": "2025-06-07T20:45:37Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/pmd",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/pmd",
         "name": "PMD",
-        "startedAt": "2025-02-15T20:41:28Z",
+        "startedAt": "2025-06-07T20:45:37Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:26Z",
+        "completedAt": "2025-06-07T20:45:34Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/spotbugs",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/spotbugs",
         "name": "SpotBugs",
-        "startedAt": "2025-02-15T20:41:26Z",
+        "startedAt": "2025-06-07T20:45:34Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:16Z",
+        "completedAt": "2025-06-07T20:45:23Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/display/redirect?page=tests",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/display/redirect?page=tests",
         "name": "Tests / linux-8 / Build (linux-8)",
-        "startedAt": "2025-02-15T20:41:16Z",
+        "startedAt": "2025-06-07T20:45:23Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-02-15T20:41:53Z",
+        "completedAt": "2025-06-07T20:46:14Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/display/redirect?page=tests",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/display/redirect?page=tests",
         "name": "Tests / windows-8 / Build (windows-8)",
-        "startedAt": "2025-02-15T20:41:53Z",
+        "startedAt": "2025-06-07T20:46:14Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-02-15T20:42:02Z",
+        "startedAt": "2025-06-07T20:46:36Z",
         "state": "SUCCESS",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/3/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/image-tag-parameter-plugin/job/PR-130/4/display/redirect"
       }
     ]
   },
   {
     "number": 133,
     "title": "chore(pom): Use recommended core version 2.462.3, and Java 11.",
-    "state": "OPEN",
+    "state": "CLOSED",
     "createdAt": "2025-03-29T06:43:08Z",
     "updatedAt": "2025-03-29T06:43:08Z",
     "user": "gounthar",
@@ -8258,6 +8455,20 @@
         "workflowName": ""
       }
     ]
+  },
+  {
+    "number": 136,
+    "title": "feat: upgrade to Jenkins LTS Core 2.462.3 for Java 11 support",
+    "state": "CLOSED",
+    "createdAt": "2025-06-07T20:40:23Z",
+    "updatedAt": "2025-06-09T02:43:18Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/image-tag-parameter-plugin",
+    "pluginName": "image-tag-parameter",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/image-tag-parameter-plugin/pull/136",
+    "description": "Hello image-tag-parameter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to latest LTS core version supporting Java 11\n    io.jenkins.tools.pluginmodernizer.UpgradeToLatestJava11CoreVersion\n    Upgrade to latest LTS core version supporting Java 11.\n\nWhy is this important?\nTransitional Step to Java 17\nUpgrading to Jenkins LTS Core 2.462.3 is a critical step in our roadmap towards leveraging Java 17. This transition serves as an intermediary phase, ensuring that all systems are optimized for Java 11 before making the leap to Java 17.\nEnhancements and Security\nBy moving to this LTS version, we benefit from the latest performance and security improvements foundational to Java 11. Ensuring our dependencies are up-to-date and secure prepares the groundwork for a smoother transition to Java 17.\nLong-Term Support\nThe LTS version provides the necessary support and stability for Java 11, offering assurance during our gradual migration process. This allows us to take advantage of long-term updates and critical patches.\nEmbracing these incremental changes aligns our development environment with current standards and strategically positions us for future advancement. We appreciate your feedback and testing as we aim for a seamless adjustment period.",
+    "checkStatus": "FAILURE"
   },
   {
     "number": 2,
@@ -11604,160 +11815,345 @@
     "statusCheckRollup": [
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:56:05Z",
+        "completedAt": "2025-06-08T17:21:49Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/lucene-search-plugin/actions/runs/14085060086/job/39446827723",
+        "detailsUrl": "https://github.com/jenkinsci/lucene-search-plugin/actions/runs/15520808063/job/43693769571",
         "name": "security-scan / scan",
-        "startedAt": "2025-03-26T13:54:15Z",
+        "startedAt": "2025-06-08T17:18:31Z",
         "status": "COMPLETED",
         "workflowName": "Jenkins Security Scan"
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:41Z",
+        "completedAt": "2025-06-08T17:19:30Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/cpd",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/cpd",
         "name": "CPD",
-        "startedAt": "2025-03-26T13:55:47Z",
+        "startedAt": "2025-06-08T17:19:30Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:39Z",
+        "completedAt": "2025-06-08T17:19:28Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/checkstyle",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/checkstyle",
         "name": "CheckStyle",
-        "startedAt": "2025-03-26T13:55:44Z",
+        "startedAt": "2025-06-08T17:19:28Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:28Z",
+        "completedAt": "2025-06-08T17:19:18Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2//coverage",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3//coverage",
         "name": "Code Coverage",
-        "startedAt": "2025-03-26T13:55:33Z",
+        "startedAt": "2025-06-08T17:19:18Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:58Z",
+        "completedAt": "2025-06-08T17:21:39Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/lucene-search-plugin/runs/39446962320",
+        "detailsUrl": "https://github.com/jenkinsci/lucene-search-plugin/runs/43693822031",
         "name": "Jenkins Security Scan",
-        "startedAt": "2025-03-26T13:55:56Z",
+        "startedAt": "2025-06-08T17:21:35Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:31Z",
+        "completedAt": "2025-06-08T17:19:21Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/eslint",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/eslint",
         "name": "ESLint",
-        "startedAt": "2025-03-26T13:55:37Z",
+        "startedAt": "2025-06-08T17:19:21Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:55Z",
+        "completedAt": "2025-06-08T17:20:00Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/lucene-search/431.v4b_47a_1cec807/",
+        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/lucene-search/429.v5c3b_00861999/",
         "name": "Incrementals",
-        "startedAt": "2025-03-26T13:55:55Z",
+        "startedAt": "2025-06-08T17:20:00Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:32Z",
+        "completedAt": "2025-06-08T17:19:22Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/java",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/java",
         "name": "Java Compiler",
-        "startedAt": "2025-03-26T13:55:38Z",
+        "startedAt": "2025-06-08T17:19:22Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:34Z",
+        "completedAt": "2025-06-08T17:19:23Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/javadoc-warnings",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/javadoc-warnings",
         "name": "JavaDoc",
-        "startedAt": "2025-03-26T13:55:39Z",
+        "startedAt": "2025-06-08T17:19:23Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:57Z",
+        "completedAt": "2025-06-08T17:19:42Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/display/redirect",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/display/redirect",
         "name": "Jenkins",
-        "startedAt": "2025-03-26T13:54:24Z",
+        "startedAt": "2025-06-08T17:18:15Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:30Z",
+        "completedAt": "2025-06-08T17:19:20Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/maven-warnings",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/maven-warnings",
         "name": "Maven",
-        "startedAt": "2025-03-26T13:55:36Z",
+        "startedAt": "2025-06-08T17:19:20Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:43Z",
+        "completedAt": "2025-06-08T17:19:31Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/open-tasks",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/open-tasks",
         "name": "Open Tasks Scanner",
-        "startedAt": "2025-03-26T13:55:48Z",
+        "startedAt": "2025-06-08T17:19:31Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:40Z",
+        "completedAt": "2025-06-08T17:19:29Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/pmd",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/pmd",
         "name": "PMD",
-        "startedAt": "2025-03-26T13:55:45Z",
+        "startedAt": "2025-06-08T17:19:29Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:38Z",
+        "completedAt": "2025-06-08T17:19:27Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/spotbugs",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/spotbugs",
         "name": "SpotBugs",
-        "startedAt": "2025-03-26T13:55:43Z",
+        "startedAt": "2025-06-08T17:19:27Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "CheckRun",
-        "completedAt": "2025-03-26T13:55:26Z",
+        "completedAt": "2025-06-08T17:19:16Z",
         "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/display/redirect?page=tests",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/display/redirect?page=tests",
         "name": "Tests / linux-21 / Build (linux-21)",
-        "startedAt": "2025-03-26T13:55:31Z",
+        "startedAt": "2025-06-08T17:19:16Z",
         "status": "COMPLETED",
         "workflowName": ""
       },
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-03-26T13:55:58Z",
+        "startedAt": "2025-06-08T17:20:01Z",
         "state": "SUCCESS",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/2/display/redirect"
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/lucene-search-plugin/job/PR-76/3/display/redirect"
+      }
+    ]
+  },
+  {
+    "number": 150,
+    "title": "feat(java): Require Jenkins core 2.492.3 and Java 17",
+    "state": "OPEN",
+    "createdAt": "2025-06-10T12:39:37Z",
+    "updatedAt": "2025-06-10T12:39:38Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/m2release-plugin",
+    "pluginName": "m2release",
+    "labels": [
+      "dependencies"
+    ],
+    "url": "https://github.com/jenkinsci/m2release-plugin/pull/150",
+    "description": "Hello m2release developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
+    "checkStatus": "UNKNOWN",
+    "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:49:40Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/m2release-plugin/actions/runs/15559727369/job/43808780361",
+        "name": "security-scan / scan",
+        "startedAt": "2025-06-10T12:39:46Z",
+        "status": "COMPLETED",
+        "workflowName": "Jenkins Security Scan"
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:39Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/cpd",
+        "name": "CPD",
+        "startedAt": "2025-06-10T12:41:39Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:36Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/checkstyle",
+        "name": "CheckStyle",
+        "startedAt": "2025-06-10T12:41:36Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:21Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1//coverage",
+        "name": "Code Coverage",
+        "startedAt": "2025-06-10T12:41:21Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:49:28Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://github.com/jenkinsci/m2release-plugin/runs/43809486937",
+        "name": "Jenkins Security Scan",
+        "startedAt": "2025-06-10T12:49:26Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:25Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/eslint",
+        "name": "ESLint",
+        "startedAt": "2025-06-10T12:41:25Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:46:05Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/m2release/m2release/0.16.5-rc477.7224db_ca_0ef2/",
+        "name": "Incrementals",
+        "startedAt": "2025-06-10T12:46:05Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:26Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/java",
+        "name": "Java Compiler",
+        "startedAt": "2025-06-10T12:41:26Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:27Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/javadoc-warnings",
+        "name": "JavaDoc",
+        "startedAt": "2025-06-10T12:41:27Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:45:43Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2025-06-10T12:39:31Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:23Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/maven-warnings",
+        "name": "Maven",
+        "startedAt": "2025-06-10T12:41:23Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:41Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/open-tasks",
+        "name": "Open Tasks Scanner",
+        "startedAt": "2025-06-10T12:41:41Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:38Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/pmd",
+        "name": "PMD",
+        "startedAt": "2025-06-10T12:41:38Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:35Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/spotbugs",
+        "name": "SpotBugs",
+        "startedAt": "2025-06-10T12:41:35Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:41:19Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/display/redirect?page=tests",
+        "name": "Tests / linux-21 / Build (linux-21)",
+        "startedAt": "2025-06-10T12:41:19Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "CheckRun",
+        "completedAt": "2025-06-10T12:45:32Z",
+        "conclusion": "SUCCESS",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/display/redirect?page=tests",
+        "name": "Tests / windows-17 / Build (windows-17)",
+        "startedAt": "2025-06-10T12:45:32Z",
+        "status": "COMPLETED",
+        "workflowName": ""
+      },
+      {
+        "__typename": "StatusContext",
+        "context": "continuous-integration/jenkins/pr-head",
+        "startedAt": "2025-06-10T12:46:06Z",
+        "state": "SUCCESS",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/m2release-plugin/job/PR-150/1/display/redirect"
       }
     ]
   },
@@ -14336,6 +14732,34 @@
     "url": "https://github.com/jenkinsci/openshift-k8s-credentials-plugin/pull/255",
     "description": "Hello openshift-k8s-credentials developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade BOM version\n    io.jenkins.tools.pluginmodernizer.UpgradeBomVersion\n    Upgrade the bom version to latest available for the current BOM.\n\nWhy is this important?\nBy using the latest version of the Jenkins BOM for the given baseline, you can ensure the plugin relies on the correct versions of Jenkins plugins and libraries. This can help prevent compatibility issues.",
     "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 417,
+    "title": "chore(github): Add CODEOWNERS",
+    "state": "CLOSED",
+    "createdAt": "2025-05-26T07:37:32Z",
+    "updatedAt": "2025-05-26T07:50:47Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/openstack-cloud-plugin",
+    "pluginName": "openstack-cloud",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/openstack-cloud-plugin/pull/417",
+    "description": "Hello openstack-cloud developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Add CODEOWNERS file\n    io.jenkins.tools.pluginmodernizer.AddCodeOwner\n    Adds a CODEOWNERS file to a Jenkins plugin.\n\nWhy is this important?\nTo improve GitHub integration and enhance the plugin health score.\nTesting Done\nNone. We rely on GitHub checks of the pull request.",
+    "checkStatus": "PENDING"
+  },
+  {
+    "number": 428,
+    "title": "chore(github): Add CODEOWNERS",
+    "state": "CLOSED",
+    "createdAt": "2025-05-28T13:32:42Z",
+    "updatedAt": "2025-05-28T13:34:05Z",
+    "user": "gounthar",
+    "repository": "jenkinsci/openstack-cloud-plugin",
+    "pluginName": "openstack-cloud",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/openstack-cloud-plugin/pull/428",
+    "description": "Hello openstack-cloud developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Add CODEOWNERS file\n    io.jenkins.tools.pluginmodernizer.AddCodeOwner\n    Adds a CODEOWNERS file to a Jenkins plugin.\n\nWhy is this important?\nTo improve GitHub integration and enhance the plugin health score.\nTesting Done\nNone. We rely on GitHub checks of the pull request.",
+    "checkStatus": "PENDING"
   },
   {
     "number": 4,
@@ -25096,199 +25520,6 @@
     "statusCheckRollup": []
   },
   {
-    "number": 293,
-    "title": "feat(java): Require Jenkins core 2.492.3 and Java 17",
-    "state": "OPEN",
-    "createdAt": "2025-05-16T10:12:07Z",
-    "updatedAt": "2025-05-16T10:27:10Z",
-    "user": "gounthar",
-    "repository": "jenkinsci/webhook-step-plugin",
-    "pluginName": "webhook-step",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/webhook-step-plugin/pull/293",
-    "description": "Hello webhook-step developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.479.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.479.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "UNKNOWN",
-    "statusCheckRollup": [
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:31:05Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/webhook-step-plugin/actions/runs/15066367715/job/42352035889",
-        "name": "security-scan / scan",
-        "startedAt": "2025-05-16T10:27:21Z",
-        "status": "COMPLETED",
-        "workflowName": "Jenkins Security Scan"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:27:21Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/webhook-step-plugin/actions/runs/15066367509/job/42352035189",
-        "name": "triage",
-        "startedAt": "2025-05-16T10:27:19Z",
-        "status": "COMPLETED",
-        "workflowName": "Pull Request Labeler"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:53Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/cpd",
-        "name": "CPD",
-        "startedAt": "2025-05-16T10:28:53Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:51Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/checkstyle",
-        "name": "CheckStyle",
-        "startedAt": "2025-05-16T10:28:51Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:41Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3//coverage",
-        "name": "Code Coverage",
-        "startedAt": "2025-05-16T10:28:41Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:30:52Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://github.com/jenkinsci/webhook-step-plugin/runs/42352231931",
-        "name": "Jenkins Security Scan",
-        "startedAt": "2025-05-16T10:30:50Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:44Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/eslint",
-        "name": "ESLint",
-        "startedAt": "2025-05-16T10:28:44Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:30:45Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://repo.jenkins-ci.org/incrementals/org/jenkins-ci/plugins/webhook-step/391.ve6b_93167cfa_b_/",
-        "name": "Incrementals",
-        "startedAt": "2025-05-16T10:30:45Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:45Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/java",
-        "name": "Java Compiler",
-        "startedAt": "2025-05-16T10:28:45Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:46Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/javadoc-warnings",
-        "name": "JavaDoc",
-        "startedAt": "2025-05-16T10:28:46Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:30:31Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-05-16T10:27:10Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:43Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/maven-warnings",
-        "name": "Maven",
-        "startedAt": "2025-05-16T10:28:43Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:55Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/open-tasks",
-        "name": "Open Tasks Scanner",
-        "startedAt": "2025-05-16T10:28:55Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:52Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/pmd",
-        "name": "PMD",
-        "startedAt": "2025-05-16T10:28:52Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:50Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/spotbugs",
-        "name": "SpotBugs",
-        "startedAt": "2025-05-16T10:28:50Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:28:39Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect?page=tests",
-        "name": "Tests / linux-21 / Build (linux-21)",
-        "startedAt": "2025-05-16T10:28:39Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-05-16T10:30:23Z",
-        "conclusion": "SUCCESS",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect?page=tests",
-        "name": "Tests / windows-17 / Build (windows-17)",
-        "startedAt": "2025-05-16T10:30:23Z",
-        "status": "COMPLETED",
-        "workflowName": ""
-      },
-      {
-        "__typename": "StatusContext",
-        "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-05-16T10:30:47Z",
-        "state": "SUCCESS",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/webhook-step-plugin/job/PR-293/3/display/redirect"
-      }
-    ]
-  },
-  {
     "number": 1,
     "title": "Require 2.346.3",
     "state": "OPEN",
@@ -26226,7 +26457,7 @@
   {
     "number": 152,
     "title": "Require 2.452.4",
-    "state": "OPEN",
+    "state": "CLOSED",
     "createdAt": "2024-12-29T13:28:44Z",
     "updatedAt": "2024-12-29T13:28:44Z",
     "user": "jonesbusy",
