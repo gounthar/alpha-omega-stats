@@ -36,22 +36,86 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] --- localizer:1.31:generate (default) @ workflow-scm-step ---
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ workflow-scm-step ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/workflow-scm-step/src/main/resources
+[INFO] Copying 6 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.0:flatten (flatten) @ workflow-scm-step ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins.workflow:workflow-scm-step:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ workflow-scm-step ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.workflow.steps.scm.GenericSCMStep.DescriptorImpl indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/workflow-scm-step/src/main/java/org/jenkinsci/plugins/workflow/steps/scm/GenericSCMStep.java:[42,34] Generating org/jenkinsci/plugins/workflow/steps/scm/GenericSCMStep.stapler
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ workflow-scm-step ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ workflow-scm-step ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ workflow-scm-step ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-scm-step/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ workflow-scm-step ---
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/workflow-scm-step/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ workflow-scm-step ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] org.jenkinsci.plugins.workflow.steps.scm.SCMStepTest.InvalidChangelogSCM.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] /tmp/plugin-builds/workflow-scm-step/src/test/java/org/jenkinsci/plugins/workflow/steps/scm/SCMStepTest.java:[225,16] Generating org/jenkinsci/plugins/workflow/steps/scm/SCMStepTest/InvalidChangelogSCM.stapler
+[INFO] /tmp/plugin-builds/workflow-scm-step/src/test/java/org/jenkinsci/plugins/workflow/steps/scm/SCMStepTest.java: /tmp/plugin-builds/workflow-scm-step/src/test/java/org/jenkinsci/plugins/workflow/steps/scm/SCMStepTest.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/workflow-scm-step/src/test/java/org/jenkinsci/plugins/workflow/steps/scm/SCMStepTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ workflow-scm-step ---
+[INFO] Generating /tmp/plugin-builds/workflow-scm-step/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-scm-step ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ workflow-scm-step ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ workflow-scm-step ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ workflow-scm-step ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ workflow-scm-step ---
+[INFO] Generating /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.jar
+[INFO] Building jar: /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step
+[INFO] Assembling webapp workflow-scm-step in /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step
+[INFO] Generating hpi /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.hpi
+[INFO] Building jar: /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ workflow-scm-step ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ workflow-scm-step >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ workflow-scm-step ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ workflow-scm-step <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ workflow-scm-step ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ workflow-scm-step ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ workflow-scm-step ---
+[INFO] Installing /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-scm-step/999999-SNAPSHOT/workflow-scm-step-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-scm-step/999999-SNAPSHOT/workflow-scm-step-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-scm-step/999999-SNAPSHOT/workflow-scm-step-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  6.365 s
-[INFO] Finished at: 2025-06-21T19:04:37+02:00
+[INFO] Total time:  14.354 s
+[INFO] Finished at: 2025-06-22T14:47:42+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.codehaus.mojo:flatten-maven-plugin:1.7.0:flatten (flatten) on project workflow-scm-step: failed to create the effective pom: 1 problem was encountered while building the effective model
-[ERROR] [FATAL] Non-readable POM /tmp/plugin-builds/workflow-scm-step/pom.xml: /tmp/plugin-builds/workflow-scm-step/pom.xml (No such file or directory) @
-[ERROR] -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

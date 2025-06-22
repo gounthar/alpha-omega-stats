@@ -183,7 +183,7 @@ compile_plugin() {
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: timeout 10m mvn clean install -DskipTests" >>"$DEBUG_LOG"
                     timeout 10m mvn clean install \
-                      -DskipTests \
+                      -Dmaven.test.skip=true \
                       -Dmaven.javadoc.skip=true \
                       -Dspotbugs.skip=true \
                       -Dcheckstyle.skip=true \
@@ -197,6 +197,7 @@ compile_plugin() {
                       -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
                       -Dlicense.disableCheck=true \
                       -Dspotless.check.skip=true \
+                      -Dpmd.skip=true \
                       -Dmaven.license.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"

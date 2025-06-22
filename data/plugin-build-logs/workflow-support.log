@@ -13,23 +13,143 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Building Pipeline: Supporting APIs 999999-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
-[WARNING] The POM for org.codehaus.groovy:groovy-all:jar:4.0.15 is missing, no dependency information available
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ workflow-support ---
+[INFO] 
+[INFO] --- hpi:3.64:validate (default-validate) @ workflow-support ---
+[INFO] Created marker file /tmp/plugin-builds/workflow-support/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.64:validate-hpi (default-validate-hpi) @ workflow-support ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ workflow-support ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ workflow-support ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ workflow-support ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ workflow-support ---
+[INFO] Copying 19 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ workflow-support ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins.workflow:workflow-support:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ workflow-support ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 37 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
+  reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
+[INFO] org.jenkinsci.plugins.workflow.support.actions.WorkspaceRunAction.Factory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.support.pickles.SecretPickle.Factory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.support.pickles.ThrowablePickle.Factory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.support.steps.input.POSTHyperlinkNote.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.support.visualization.table.ArgumentsColumn.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.support.visualization.table.ConsoleColumn.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.support.visualization.table.StatusColumn.DescriptorImpl indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/visualization/table/ArgumentsColumn.java:[39,34] Generating org/jenkinsci/plugins/workflow/support/visualization/table/ArgumentsColumn.stapler
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/visualization/table/ConsoleColumn.java:[13,12] Generating org/jenkinsci/plugins/workflow/support/visualization/table/ConsoleColumn.stapler
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/visualization/table/StatusColumn.java:[13,12] Generating org/jenkinsci/plugins/workflow/support/visualization/table/StatusColumn.stapler
+[WARNING] unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
+  reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
+[WARNING] unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
+  reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/pickles/SecretPickle.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/pickles/SecretPickle.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/concurrent/Futures.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/workflow-support/src/main/java/org/jenkinsci/plugins/workflow/support/concurrent/Futures.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ workflow-support ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ workflow-support ---
+[INFO] 
+[INFO] --- hpi:3.64:insert-test (default-insert-test) @ workflow-support ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ workflow-support ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-support/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ workflow-support ---
+[INFO] Copying 23 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ workflow-support ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] org.jenkinsci.plugins.workflow.support.actions.LogActionImplTest.ChattyStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.workflow.support.pickles.serialization.PickleResolverTest.StuckPickle.Factory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.workflow.test.steps.SynchronousResumeNotSupportedExceptionTest.SimulatedSleepStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.workflow.test.steps.input.POSTHyperlinkNoteTest.Security2881ConsoleStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.workflow.test.steps.SemaphoreStep.DescriptorImpl indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/actions/LogActionImplTest.java:[66,38] Generating org/jenkinsci/plugins/workflow/support/actions/LogActionImplTest/ChattyStep.stapler
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/test/steps/SemaphoreStep.java:[91,34] Generating org/jenkinsci/plugins/workflow/test/steps/SemaphoreStep.stapler
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/test/steps/SynchronousResumeNotSupportedExceptionTest.java:[59,16] Generating org/jenkinsci/plugins/workflow/test/steps/SynchronousResumeNotSupportedExceptionTest/SimulatedSleepStep.stapler
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/test/steps/input/POSTHyperlinkNoteTest.java:[107,16] Generating org/jenkinsci/plugins/workflow/test/steps/input/POSTHyperlinkNoteTest/Security2881ConsoleStep.stapler
+[WARNING] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/pickles/serialization/EphemeralPickleResolverTest.java: unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
+  reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/pickles/serialization/EphemeralPickleResolverTest.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/pickles/serialization/EphemeralPickleResolverTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/storage/AbstractStorageTest.java: /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/storage/AbstractStorageTest.java uses unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/workflow-support/src/test/java/org/jenkinsci/plugins/workflow/support/storage/AbstractStorageTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- hpi:3.64:test-hpl (default-test-hpl) @ workflow-support ---
+[INFO] Generating /tmp/plugin-builds/workflow-support/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.64:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-support ---
+[INFO] 
+[INFO] --- hpi:3.64:test-runtime (default-test-runtime) @ workflow-support ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ workflow-support ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ workflow-support ---
+[INFO] 
+[INFO] --- hpi:3.64:hpi (default-hpi) @ workflow-support ---
+[INFO] Generating /tmp/plugin-builds/workflow-support/target/workflow-support/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/workflow-support/target/workflow-support.jar
+[INFO] Building jar: /tmp/plugin-builds/workflow-support/target/workflow-support.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/workflow-support/target/workflow-support
+[INFO] Assembling webapp workflow-support in /tmp/plugin-builds/workflow-support/target/workflow-support
+[INFO] Bundling direct dependency jboss-marshalling-river-2.2.2.Final.jar
+[WARNING] Bundling transitive dependency jboss-marshalling-2.2.2.Final.jar (via jboss-marshalling-river)
+[INFO] Generating hpi /tmp/plugin-builds/workflow-support/target/workflow-support.hpi
+[INFO] Building jar: /tmp/plugin-builds/workflow-support/target/workflow-support.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ workflow-support ---
+[INFO] Building jar: /tmp/plugin-builds/workflow-support/target/workflow-support-tests.jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ workflow-support >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ workflow-support ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ workflow-support <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ workflow-support ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ workflow-support ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ workflow-support ---
+[INFO] Installing /tmp/plugin-builds/workflow-support/target/workflow-support-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-support/999999-SNAPSHOT/workflow-support-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/workflow-support/target/workflow-support.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-support/999999-SNAPSHOT/workflow-support-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/workflow-support/target/workflow-support.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-support/999999-SNAPSHOT/workflow-support-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/workflow-support/target/workflow-support-tests.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-support/999999-SNAPSHOT/workflow-support-999999-SNAPSHOT-tests.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.491 s
-[INFO] Finished at: 2025-06-21T18:59:35+02:00
+[INFO] Total time:  12.898 s
+[INFO] Finished at: 2025-06-22T14:48:19+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal on project workflow-support: Could not resolve dependencies for project org.jenkins-ci.plugins.workflow:workflow-support:hpi:999999-SNAPSHOT
-[ERROR] dependency: org.codehaus.groovy:groovy-all:jar:4.0.15 (provided)
-[ERROR] 	org.codehaus.groovy:groovy-all:jar:4.0.15 was not found in https://repo.jenkins-ci.org/public/ during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of repo.jenkins-ci.org has elapsed or updates are forced
-[ERROR] 	org.codehaus.groovy:groovy-all:jar:4.0.15 was not found in https://repo.jenkins-ci.org/incrementals/ during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of incrementals has elapsed or updates are forced
-[ERROR] 	org.codehaus.groovy:groovy-all:jar:4.0.15 was not found in https://repo.maven.apache.org/maven2 during a previous attempt. This failure was cached in the local repository and resolution is not reattempted until the update interval of central has elapsed or updates are forced
-[ERROR] 
-[ERROR] -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/DependencyResolutionException
