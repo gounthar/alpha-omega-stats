@@ -44,9 +44,9 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Compiling Sass templates
 [INFO] No resource element was specified, using short configuration.
 [INFO] Queueing Sass template for compile: /tmp/plugin-builds/github/src/main/sass => /tmp/plugin-builds/github/src/main/webapp/css
-2025-06-22T15:04:59.570+02:00 [main] WARN FilenoUtil : Native subprocess control requires open access to sun.nio.ch
+2025-06-22T17:09:33.276+02:00 [main] WARN FilenoUtil : Native subprocess control requires open access to sun.nio.ch
 Pass '--add-opens java.base/sun.nio.ch=org.jruby.dist' or '=org.jruby.core' to enable.
-java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @19c6e037
+java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @389882f3
 	at java.base/java.lang.Module.addOpens(Module.java:915)
 	at com.headius.backport9.modules.impl.Module9.addOpens(Module9.java:28)
 	at com.headius.backport9.modules.Modules.addOpens(Modules.java:22)
@@ -174,12 +174,12 @@ java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @19c6
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/misc/AnyBuildResult.java:[20,12] Generating org/jenkinsci/plugins/github/status/sources/misc/AnyBuildResult.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/misc/BetterThanOrEqualBuildResult.java:[32,12] Generating org/jenkinsci/plugins/github/status/sources/misc/BetterThanOrEqualBuildResult.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[118,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByCredentials.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[356,29] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/HookSecretConfig.java:[66,29] Generating org/jenkinsci/plugins/github/config/HookSecretConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[94,25] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubPluginConfig.java:[231,27] Generating org/jenkinsci/plugins/github/config/GitHubPluginConfig/doCheckHookUrl.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[374,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doVerifyCredentials.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[397,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doCheckApiUrl.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[94,25] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/HookSecretConfig.java:[66,29] Generating org/jenkinsci/plugins/github/config/HookSecretConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[356,29] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[166,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByPassword.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
@@ -207,21 +207,10 @@ java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @19c6
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ github ---
-[INFO] Copying 24 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ github ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 54 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] com.cloudbees.jenkins.GitHubCommitNotifierTest.CONTRIBUTOR indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.GitHubSetCommitStatusBuilderTest.CONTRIBUTOR indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.GitHubWebHookTest.IssueSubscriber indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.GitHubWebHookTest.PullRequestSubscriber indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.GitHubWebHookTest.ThrowablePullRequestSubscriber indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.github.status.GitHubCommitStatusSetterTest.CONTRIBUTOR indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/github/src/test/java/org/jenkinsci/plugins/github/test/HookSecretHelper.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/github/src/test/java/org/jenkinsci/plugins/github/test/HookSecretHelper.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/github/src/test/java/org/jenkinsci/plugins/github/webhook/subscriber/DefaultPushGHEventListenerTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/github/src/test/java/org/jenkinsci/plugins/github/webhook/subscriber/DefaultPushGHEventListenerTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ github ---
 [INFO] Generating /tmp/plugin-builds/github/target/test-classes/the.hpl
@@ -271,6 +260,6 @@ java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @19c6
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  22.034 s
-[INFO] Finished at: 2025-06-22T15:05:14+02:00
+[INFO] Total time:  19.136 s
+[INFO] Finished at: 2025-06-22T17:09:45+02:00
 [INFO] ------------------------------------------------------------------------
