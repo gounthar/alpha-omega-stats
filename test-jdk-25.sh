@@ -190,7 +190,7 @@ compile_plugin() {
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
                     echo "Executing: timeout 10m mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    timeout 10m mvn clean install \
+                    timeout 20m mvn clean install \
                       -Dmaven.test.skip=true \
                       -Dmaven.javadoc.skip=true \
                       -Dspotbugs.skip=true \
