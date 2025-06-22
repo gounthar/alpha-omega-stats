@@ -1025,8 +1025,20 @@ if top_250_plugins_results:
         except Exception as e:
             logging.error(f"Could not list log files in {log_dir}: {e}")
 
-        # Prepare the data for the sheet
+        # Calculate summary statistics for the Top 250 Plugins sheet
+        total_plugins = len(top_250_plugins_results)
+        success_count = sum(1 for r in top_250_plugins_results if r.get("build_status", "").lower() == "success")
+        fail_count = total_plugins - success_count
+        success_pct = (success_count / total_plugins) * 100 if total_plugins > 0 else 0
+        fail_pct = 100 - success_pct if total_plugins > 0 else 0
+
+        # Prepare the data for the sheet, starting with the summary section
         top_250_plugins_data = [
+            ["Summary", "", "", "", ""],
+            ["Total Plugins Tested", total_plugins, "", "", ""],
+            ["Successful Builds", success_count, f"{success_pct:.2f}%", "", ""],
+            ["Failed Builds", fail_count, f"{fail_pct:.2f}%", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
             ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet.id}"; "Back to Summary")', "", "", ""],
             ["", "", "", "", ""],  # Empty row for spacing
             ["Plugin Name", "Popularity", "Build Status", "Build Log"]
