@@ -19,6 +19,9 @@ jobs:
       - name: Generate top-250-plugins.csv
         run: bash get-most-popular-plugins.sh
 
+      - name: Validate top-250-plugins.csv
+        run: bash validate-top-plugins.sh
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
@@ -35,5 +38,6 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           branch: update-top-plugins
-          title: "Weekly update of top-250-plugins.csv"
+          title: "[bot] Weekly update of top-250-plugins.csv"
           body: "This PR contains the weekly update of the top-250-plugins.csv file."
+          labels: automation
