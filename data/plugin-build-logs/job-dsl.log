@@ -1,0 +1,117 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Job DSL Parent                                                     [pom]
+[INFO] Job DSL Abstract Syntax Tree (AST)                                 [jar]
+[INFO] Job DSL Core                                                       [jar]
+[INFO] Job DSL                                                            [hpi]
+[INFO] 
+[INFO] ---------------< org.jenkins-ci.plugins:job-dsl-parent >----------------
+[INFO] Building Job DSL Parent 1.94-SNAPSHOT                              [1/4]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ job-dsl-parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ job-dsl-parent ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ job-dsl-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ job-dsl-parent ---
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ job-dsl-parent ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-parent:pom:1.94-SNAPSHOT...
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ job-dsl-parent ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ job-dsl-parent ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/job-dsl/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ job-dsl-parent ---
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ job-dsl-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ job-dsl-parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ job-dsl-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ job-dsl-parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ job-dsl-parent ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ job-dsl-parent ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ job-dsl-parent ---
+[INFO] Installing /tmp/plugin-builds/job-dsl/target/job-dsl-parent-1.94-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/job-dsl-parent/1.94-SNAPSHOT/job-dsl-parent-1.94-SNAPSHOT.pom
+[INFO] 
+[INFO] -----------------< org.jenkins-ci.plugins:job-dsl-ast >-----------------
+[INFO] Building Job DSL Abstract Syntax Tree (AST) 1.94-SNAPSHOT          [2/4]
+[INFO]   from job-dsl-ast/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ job-dsl-ast ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ job-dsl-ast ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ job-dsl-ast ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- gplus:4.2.0:addSources (default) @ job-dsl-ast ---
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ job-dsl-ast ---
+[INFO] 
+[INFO] --- gplus:4.2.0:generateStubs (default) @ job-dsl-ast ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 2.4.21 to perform generateStubs.
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Job DSL Parent 1.94-SNAPSHOT:
+[INFO] 
+[INFO] Job DSL Parent ..................................... SUCCESS [  2.420 s]
+[INFO] Job DSL Abstract Syntax Tree (AST) ................. FAILURE [  0.530 s]
+[INFO] Job DSL Core ....................................... SKIPPED
+[INFO] Job DSL ............................................ SKIPPED
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.806 s
+[INFO] Finished at: 2025-06-22T21:15:12+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.0:generateStubs (default) on project job-dsl-ast: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.0:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :job-dsl-ast

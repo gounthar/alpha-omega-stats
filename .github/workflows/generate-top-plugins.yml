@@ -1,0 +1,43 @@
+name: Weekly Top 250 Plugins CSV
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Every Monday at midnight UTC
+
+jobs:
+  generate-top-plugins:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Download plugins.json
+        run: curl -L https://updates.jenkins.io/current/update-center.actual.json -o plugins.json
+
+      - name: Generate top-250-plugins.csv
+        run: bash get-most-popular-plugins.sh
+
+      - name: Validate top-250-plugins.csv
+        run: bash validate-top-plugins.sh
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit and push changes
+        run: |
+          git checkout -b update-top-plugins
+          git add top-250-plugins.csv
+          git commit -m "Weekly update of top-250-plugins.csv" || echo "No changes to commit"
+          git push origin update-top-plugins --force
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: update-top-plugins
+          title: "[bot] Weekly update of top-250-plugins.csv"
+          body: "This PR contains the weekly update of the top-250-plugins.csv file."
+          labels: automation

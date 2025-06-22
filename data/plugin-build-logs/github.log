@@ -1,0 +1,264 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------< com.coravy.hudson.plugins.github:github >---------------
+[INFO] Building GitHub plugin 1.43.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ github ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ github ---
+[INFO] Created marker file /tmp/plugin-builds/github/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ github ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ github ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ github ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (checkstyle) @ github ---
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ github ---
+[INFO] 
+[INFO] --- sass:3.7.2:update-stylesheets (default) @ github ---
+[INFO] Checked 1 files for /tmp/plugin-builds/github/src/main/sass
+[INFO] Checked 0 filtered (**/*.css) files for /tmp/plugin-builds/github/src/main/webapp/css
+[INFO] Compiling Sass templates
+[INFO] No resource element was specified, using short configuration.
+[INFO] Queueing Sass template for compile: /tmp/plugin-builds/github/src/main/sass => /tmp/plugin-builds/github/src/main/webapp/css
+2025-06-22T20:43:22.445+02:00 [main] WARN FilenoUtil : Native subprocess control requires open access to sun.nio.ch
+Pass '--add-opens java.base/sun.nio.ch=org.jruby.dist' or '=org.jruby.core' to enable.
+java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @389882f3
+	at java.base/java.lang.Module.addOpens(Module.java:915)
+	at com.headius.backport9.modules.impl.Module9.addOpens(Module9.java:28)
+	at com.headius.backport9.modules.Modules.addOpens(Modules.java:22)
+	at org.jruby.util.io.FilenoUtil$ReflectiveAccess.<clinit>(FilenoUtil.java:140)
+	at org.jruby.util.io.FilenoUtil.getFilenoUsingReflection(FilenoUtil.java:111)
+	at org.jruby.util.io.FilenoUtil.filenoFrom(FilenoUtil.java:107)
+	at org.jruby.util.io.ChannelFD.initFileno(ChannelFD.java:42)
+	at org.jruby.util.io.ChannelFD.<init>(ChannelFD.java:32)
+	at org.jruby.util.io.OpenFile.setChannel(OpenFile.java:196)
+	at org.jruby.RubyIO.prepIO(RubyIO.java:261)
+	at org.jruby.RubyIO.prepStdio(RubyIO.java:190)
+	at org.jruby.RubyGlobal.initSTDIO(RubyGlobal.java:297)
+	at org.jruby.RubyGlobal.createGlobals(RubyGlobal.java:211)
+	at org.jruby.Ruby.init(Ruby.java:1260)
+	at org.jruby.Ruby.newInstance(Ruby.java:370)
+	at org.jruby.embed.internal.LocalContext.getRuntime(LocalContext.java:117)
+	at org.jruby.embed.internal.SingleThreadLocalContextProvider.getRuntime(SingleThreadLocalContextProvider.java:62)
+	at org.jruby.embed.internal.BiVariableMap.getRuntime(BiVariableMap.java:109)
+	at org.jruby.embed.internal.BiVariableMap.getTopSelf(BiVariableMap.java:241)
+	at org.jruby.embed.internal.BiVariableMap.getReceiverObject(BiVariableMap.java:237)
+	at org.jruby.embed.internal.BiVariableMap.put(BiVariableMap.java:332)
+	at org.jruby.embed.internal.BiVariableMap.put(BiVariableMap.java:316)
+	at org.jruby.embed.ScriptingContainer.put(ScriptingContainer.java:1155)
+	at nl.geodienstencentrum.maven.plugin.sass.AbstractSassMojo.executeSassScript(AbstractSassMojo.java:241)
+	at nl.geodienstencentrum.maven.plugin.sass.compiler.UpdateStylesheetsMojo.execute(UpdateStylesheetsMojo.java:76)
+	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
+	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
+	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
+	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
+	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
+	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
+	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
+	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
+	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
+	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
+	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
+	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
+	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+[INFO]     >> /tmp/plugin-builds/github/src/main/sass/monitor.scss => /tmp/plugin-builds/github/src/main/webapp/css/monitor.css
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ github ---
+[INFO] Copying 83 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ github ---
+[INFO] Generating flattened POM of project com.coravy.hudson.plugins.github:github:hpi:1.43.1-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ github ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 75 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
+[INFO] com.cloudbees.jenkins.Cleaner indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubCommitNotifier.DescriptorImpl indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubPushTrigger.DescriptorImpl indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubRepositoryNameContributor.FromSCM indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubSetCommitStatusBuilder indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubSetCommitStatusBuilder.Descriptor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubTrigger.GitHubRepositoryNameContributorImpl indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubWebHook indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.GitHubWebHookCrumbExclusion indexed under hudson.Extension
+[INFO] com.coravy.hudson.plugins.github.GithubLinkAction.GithubLinkActionFactory indexed under hudson.Extension
+[INFO] com.coravy.hudson.plugins.github.GithubLinkAnnotator indexed under hudson.Extension
+[INFO] com.coravy.hudson.plugins.github.GithubProjectProperty.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.admin.GitHubDuplicateEventsMonitor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.admin.GitHubDuplicateEventsMonitor.DuplicateEventsSubscriber indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.admin.GitHubHookRegisterProblemMonitor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.admin.GitHubHookRegisterProblemMonitor.GitHubHookRegisterProblemManagementLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.common.ExpandableMessage.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.config.GitHubPluginConfig indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.config.GitHubServerConfig.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.config.GitHubTokenCredentialsCreator indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.config.HookSecretConfig.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.GitHubCommitStatusSetter.GitHubCommitStatusSetterDescr indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.err.ChangingBuildStatusErrorHandler.ChangingBuildStatusErrorHandlerDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.err.ShallowAnyErrorHandler.ShallowAnyErrorHandlerDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.AnyDefinedRepositorySource.AnyDefinedRepoSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.BuildDataRevisionShaSource.BuildDataRevisionShaSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.BuildRefBackrefSource.BuildRefBackrefSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.ConditionalStatusResultSource.ConditionalStatusResultSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.DefaultCommitContextSource.DefaultContextSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.DefaultStatusResultSource.DefaultResultSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.ManuallyEnteredBackrefSource.ManuallyEnteredBackrefSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.ManuallyEnteredCommitContextSource.ManuallyEnteredCommitContextSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.ManuallyEnteredRepositorySource.ManuallyEnteredRepositorySourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.ManuallyEnteredShaSource.ManuallyEnteredShaSourceDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.misc.AnyBuildResult.AnyBuildResultDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.status.sources.misc.BetterThanOrEqualBuildResult.BetterThanOrEqualBuildResultDescriptor indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.webhook.subscriber.DefaultPushGHEventSubscriber indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github.webhook.subscriber.PingGHEventSubscriber indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/Credential.java:[38,12] Generating com/cloudbees/jenkins/Credential.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubCommitNotifier.java:[72,12] Generating com/cloudbees/jenkins/GitHubCommitNotifier.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubPushTrigger.java:[71,12] Generating com/cloudbees/jenkins/GitHubPushTrigger.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubSetCommitStatusBuilder.java:[41,12] Generating com/cloudbees/jenkins/GitHubSetCommitStatusBuilder.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/com/coravy/hudson/plugins/github/GithubProjectProperty.java:[46,12] Generating com/coravy/hudson/plugins/github/GithubProjectProperty.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/common/ExpandableMessage.java:[37,12] Generating org/jenkinsci/plugins/github/common/ExpandableMessage.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[120,12] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/HookSecretConfig.java:[30,12] Generating org/jenkinsci/plugins/github/config/HookSecretConfig.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/GitHubCommitStatusSetter.java:[53,12] Generating org/jenkinsci/plugins/github/status/GitHubCommitStatusSetter.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/err/ChangingBuildStatusErrorHandler.java:[29,12] Generating org/jenkinsci/plugins/github/status/err/ChangingBuildStatusErrorHandler.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/err/ShallowAnyErrorHandler.java:[21,12] Generating org/jenkinsci/plugins/github/status/err/ShallowAnyErrorHandler.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/AnyDefinedRepositorySource.java:[33,12] Generating org/jenkinsci/plugins/github/status/sources/AnyDefinedRepositorySource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/BuildDataRevisionShaSource.java:[24,12] Generating org/jenkinsci/plugins/github/status/sources/BuildDataRevisionShaSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/BuildRefBackrefSource.java:[20,12] Generating org/jenkinsci/plugins/github/status/sources/BuildRefBackrefSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/ConditionalStatusResultSource.java:[33,12] Generating org/jenkinsci/plugins/github/status/sources/ConditionalStatusResultSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/DefaultCommitContextSource.java:[23,12] Generating org/jenkinsci/plugins/github/status/sources/DefaultCommitContextSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/DefaultStatusResultSource.java:[33,12] Generating org/jenkinsci/plugins/github/status/sources/DefaultStatusResultSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/ManuallyEnteredBackrefSource.java:[27,12] Generating org/jenkinsci/plugins/github/status/sources/ManuallyEnteredBackrefSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/ManuallyEnteredCommitContextSource.java:[27,12] Generating org/jenkinsci/plugins/github/status/sources/ManuallyEnteredCommitContextSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/ManuallyEnteredRepositorySource.java:[24,12] Generating org/jenkinsci/plugins/github/status/sources/ManuallyEnteredRepositorySource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/ManuallyEnteredShaSource.java:[25,12] Generating org/jenkinsci/plugins/github/status/sources/ManuallyEnteredShaSource.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/misc/AnyBuildResult.java:[20,12] Generating org/jenkinsci/plugins/github/status/sources/misc/AnyBuildResult.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/misc/BetterThanOrEqualBuildResult.java:[32,12] Generating org/jenkinsci/plugins/github/status/sources/misc/BetterThanOrEqualBuildResult.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[356,29] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[374,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doVerifyCredentials.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[397,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doCheckApiUrl.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[118,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByCredentials.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubPluginConfig.java:[231,27] Generating org/jenkinsci/plugins/github/config/GitHubPluginConfig/doCheckHookUrl.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/HookSecretConfig.java:[66,29] Generating org/jenkinsci/plugins/github/config/HookSecretConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[166,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByPassword.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
+[WARNING] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubTrigger.java:[41,31] deprecated item is not annotated with @Deprecated
+[WARNING] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubTrigger.java:[20,8] deprecated item is not annotated with @Deprecated
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/extension/GHEventsSubscriber.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/extension/GHEventsSubscriber.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubCommitNotifier.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/github/src/main/java/com/cloudbees/jenkins/GitHubCommitNotifier.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ github ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ github ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ github ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/github/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ github ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ github ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ github ---
+[INFO] Generating /tmp/plugin-builds/github/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ github ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ github ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ github ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ github ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ github ---
+[INFO] Generating /tmp/plugin-builds/github/target/github/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/github/target/github.jar
+[INFO] Building jar: /tmp/plugin-builds/github/target/github.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/github/target/github
+[INFO] Assembling webapp github in /tmp/plugin-builds/github/target/github
+[INFO] Generating hpi /tmp/plugin-builds/github/target/github.hpi
+[INFO] Building jar: /tmp/plugin-builds/github/target/github.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ github ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ github >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ github ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ github <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ github ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ github ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ github ---
+[INFO] Installing /tmp/plugin-builds/github/target/github-1.43.1-SNAPSHOT.pom to /home/poddingue/.m2/repository/com/coravy/hudson/plugins/github/github/1.43.1-SNAPSHOT/github-1.43.1-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/github/target/github.hpi to /home/poddingue/.m2/repository/com/coravy/hudson/plugins/github/github/1.43.1-SNAPSHOT/github-1.43.1-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/github/target/github.jar to /home/poddingue/.m2/repository/com/coravy/hudson/plugins/github/github/1.43.1-SNAPSHOT/github-1.43.1-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  15.469 s
+[INFO] Finished at: 2025-06-22T20:43:32+02:00
+[INFO] ------------------------------------------------------------------------

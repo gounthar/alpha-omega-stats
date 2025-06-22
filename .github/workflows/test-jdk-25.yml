@@ -1,0 +1,38 @@
+# This workflow runs test-jdk-25.sh with a 6-hour timeout and keep-alive output.
+# If the script makes changes, a PR is automatically created with the "automation" label for automerge.
+# The auto-merge workflow in .github/workflows/auto-merge-bot-prs.yml will handle automerge for PRs created by github-actions[bot] with this label.
+
+name: Test JDK 25
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-jdk-25:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run test-jdk-25.sh with keep-alive
+        run: |
+          (while true; do echo "Still running..."; sleep 300; done) &
+          KEEP_ALIVE_PID=$!
+          chmod +x ./test-jdk-25.sh
+          ./test-jdk-25.sh
+          kill $KEEP_ALIVE_PID
+
+      - name: Set up Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create Pull Request if there are changes
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "chore: update results from test-jdk-25.sh"
+          branch: test-jdk-25/update-results
+          title: "Update results from test-jdk-25.sh"
+          body: "Automated update of results from test-jdk-25.sh"
+          labels: automation
+          delete-branch: true
