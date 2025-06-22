@@ -1,0 +1,116 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -------------< org.jenkins-ci.plugins:pipeline-stage-step >-------------
+[INFO] Building Pipeline: Stage Step 999999-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-stage-step ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-stage-step ---
+[INFO] Created marker file /tmp/plugin-builds/pipeline-stage-step/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-stage-step ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-stage-step ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-stage-step ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-stage-step ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-stage-step ---
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-stage-step ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:pipeline-stage-step:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-stage-step ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.workflow.support.steps.StageStep.DescriptorImpl indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/pipeline-stage-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/StageStep.java:[50,34] Generating org/jenkinsci/plugins/workflow/support/steps/StageStep.stapler
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-stage-step ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-stage-step ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-stage-step ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-step/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-stage-step ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-stage-step ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-stage-step ---
+[INFO] Generating /tmp/plugin-builds/pipeline-stage-step/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-stage-step ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-stage-step ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-stage-step ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-stage-step ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-stage-step ---
+[INFO] Generating /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step
+[INFO] Assembling webapp pipeline-stage-step in /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-stage-step ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-stage-step >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-stage-step ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-stage-step <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-stage-step ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ pipeline-stage-step ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-step ---
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/pipeline-stage-step/999999-SNAPSHOT/pipeline-stage-step-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/pipeline-stage-step/999999-SNAPSHOT/pipeline-stage-step-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-step/target/pipeline-stage-step.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/pipeline-stage-step/999999-SNAPSHOT/pipeline-stage-step-999999-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.661 s
+[INFO] Finished at: 2025-06-22T20:36:07+02:00
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,565 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] Inspecting build with total of 3 modules...
+[INFO] Installing Nexus Staging features:
+[INFO]   ... total of 1 executions of maven-deploy-plugin replaced with nexus-staging-maven-plugin
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Warnings Plugin                                                    [hpi]
+[INFO] UI Tests of Warnings Plugin                                        [jar]
+[INFO] Aggregator for Warnings Plugin                                     [pom]
+[INFO] 
+[INFO] -------------------< io.jenkins.plugins:warnings-ng >-------------------
+[INFO] Building Warnings Plugin 12.7.0-SNAPSHOT                           [1/3]
+[INFO]   from plugin/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ warnings-ng ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ warnings-ng ---
+[INFO] Created marker file /tmp/plugin-builds/warnings-ng/plugin/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ warnings-ng ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ warnings-ng ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ warnings-ng ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ warnings-ng ---
+[INFO] 
+[INFO] >>> javadoc:3.11.2:javadoc (default) > generate-sources @ warnings-ng >>>
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ warnings-ng ---
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ warnings-ng ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ warnings-ng ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ warnings-ng ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ warnings-ng ---
+[INFO] 
+[INFO] <<< javadoc:3.11.2:javadoc (default) < generate-sources @ warnings-ng <<<
+[INFO] 
+[INFO] 
+[INFO] --- javadoc:3.11.2:javadoc (default) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-javadoc-plugin:3.11.2:javadoc report goal
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ warnings-ng ---
+[INFO] Copying 237 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ warnings-ng ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 271 source files with javac [debug parameters release 17] to target/classes
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[49,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[50,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[68,40] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[69,32] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[70,32] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[263,28] possible 'this' escape before subclass is fully initialized
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[332,50] previous possible 'this' escape happens here via invocation
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[336,24] previous possible 'this' escape happens here via invocation
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[73,41] found raw type: java.lang.Class
+  missing type arguments for generic class java.lang.Class<T>
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[80,59] found raw type: java.util.Collection
+  missing type arguments for generic class java.util.Collection<E>
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[87,49] found raw type: java.lang.Class
+  missing type arguments for generic class java.lang.Class<T>
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[109,41] found raw type: java.lang.Class
+  missing type arguments for generic class java.lang.Class<T>
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[137,41] found raw type: java.lang.Class
+  missing type arguments for generic class java.lang.Class<T>
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnnotatedReport.java:[37,40] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[263,35] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[264,35] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[266,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[866,59] found raw type: hudson.model.AbstractProject
+  missing type arguments for generic class hudson.model.AbstractProject<P,R>
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[64,28] possible 'this' escape before subclass is fully initialized
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[57,41] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[74,39] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[71,24] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[74,38] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[83,32] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[99,39] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[241,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[242,35] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[213,36] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[367,40] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[405,65] <C>listCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>,com.cloudbees.plugins.credentials.CredentialsMatcher) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[43,13] possible 'this' escape before subclass is fully initialized
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ warnings-ng ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ warnings-ng ---
+[INFO] 
+[INFO] --- assertj:2.2.0:generate-assertions (default) @ warnings-ng ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ warnings-ng ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/warnings-ng/plugin/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ warnings-ng ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ warnings-ng ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ warnings-ng ---
+[INFO] Generating /tmp/plugin-builds/warnings-ng/plugin/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ warnings-ng ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ warnings-ng ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jacoco:0.8.12:prepare-agent (default) @ warnings-ng ---
+[INFO] argLine set to -javaagent:/home/poddingue/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/tmp/plugin-builds/warnings-ng/plugin/target/jacoco.exec,includes=io/jenkins/plugins/**/*,excludes=**/JenkinsFacade.*:**/*BlameRunner.*:**/*FilesScanner.*:**/*Summary.class:**/NullAnalysisHistory.* -Djava.awt.headless=true -Xmx1024m -Djenkins.test.timeout=1000 --add-opens java.base/java.lang=ALL-UNNAMED
+ --add-opens java.base/java.io=ALL-UNNAMED --add-opens java.base/java.util=ALL-UNNAMED --add-opens
+ java.base/java.util.concurrent=ALL-UNNAMED
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ warnings-ng ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ warnings-ng ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ warnings-ng ---
+[INFO] Generating /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.jar
+[INFO] Building jar: /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng
+[INFO] Assembling webapp warnings-ng in /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng
+[INFO] Bundling direct dependency eclipse-collections-api-9.2.0.jar
+[INFO] Bundling direct dependency eclipse-collections-9.2.0.jar
+[INFO] Generating hpi /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi
+[INFO] Building jar: /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ warnings-ng ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (default) @ warnings-ng ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- failsafe:3.5.2:integration-test (default) @ warnings-ng ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-java) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] >>> pmd:3.26.0:check (run-pmd-java) > :pmd @ warnings-ng >>>
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (pmd) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] <<< pmd:3.26.0:check (run-pmd-java) < :pmd @ warnings-ng <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.26.0:check (run-pmd-java) @ warnings-ng ---
+[INFO] Skipping PMD execution
+[INFO] 
+[INFO] --- pmd:3.26.0:cpd (run-pmd-java) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-tests) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] >>> pmd:3.26.0:check (run-pmd-tests) > :pmd @ warnings-ng >>>
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (pmd) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] <<< pmd:3.26.0:check (run-pmd-tests) < :pmd @ warnings-ng <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.26.0:check (run-pmd-tests) @ warnings-ng ---
+[INFO] Skipping PMD execution
+[INFO] 
+[INFO] --- pmd:3.26.0:cpd (run-pmd-tests) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-javascript) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] >>> pmd:3.26.0:check (run-pmd-javascript) > :pmd @ warnings-ng >>>
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (pmd) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] <<< pmd:3.26.0:check (run-pmd-javascript) < :pmd @ warnings-ng <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.26.0:check (run-pmd-javascript) @ warnings-ng ---
+[INFO] Skipping PMD execution
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-metrics) @ warnings-ng ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ warnings-ng ---
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (run-checkstyle-tests) @ warnings-ng ---
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ warnings-ng ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- failsafe:3.5.2:verify (default) @ warnings-ng ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jacoco:0.8.12:report (report) @ warnings-ng ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --- revapi:0.15.0:check (run-revapi) @ warnings-ng ---
+[WARNING] 1 problem was encountered while building the effective model for org.jboss:jboss-dmr:jar:1.2.0.Final during dependency collection step for plugin (use -X to see details)
+[INFO] Skipping execution
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ warnings-ng ---
+[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/pom.xml to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng/12.7.0-SNAPSHOT/warnings-ng-12.7.0-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng/12.7.0-SNAPSHOT/warnings-ng-12.7.0-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng/12.7.0-SNAPSHOT/warnings-ng-12.7.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< io.jenkins.plugins:warnings-ng-ui-tests >---------------
+[INFO] Building UI Tests of Warnings Plugin UNVERSIONED                   [2/3]
+[INFO]   from ui-tests/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-java) @ warnings-ng-ui-tests ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- git-commit-id:9.0.1:revision (get-the-git-infos) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- dependency:3.8.1:properties (default) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ warnings-ng-ui-tests ---
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/warnings-ng/ui-tests/src/main/resources
+[INFO] 
+[INFO] --- resources:3.3.1:copy-resources (copy-resources) @ warnings-ng-ui-tests ---
+[INFO] Copying 1 resource from ../plugin/target to ../plugin/target/test-classes/test-dependencies
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ warnings-ng-ui-tests ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 30 source files with javac [forked debug release 17] to target/classes
+[WARNING] unknown enum constant When.MAYBE
+[WARNING]   reason: class file for javax.annotation.meta.When not found
+/tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesTableRow.java:[50,23] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var that = (IssuesTableRow) o;'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/AbstractSeverityTableRow.java:[67,33] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var that = (AbstractSeverityTableRow) o;'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/BaseIssuesTableRow.java:[103,27] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var that = (BaseIssuesTableRow) o;'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/SourceView.java:[60,22] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var sourceCode = new StringBuilder();'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/DryTableRow.java:[80,20] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var that = (DryTableRow) o;'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/BlamesTableRow.java:[69,23] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var that = (BlamesTableRow) o;'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesColumn.java:[139,16] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var action = new Actions(driver);'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[80,27] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var tool = new StaticAnalysisTool(this, "toolProxies");'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[278,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[292,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[306,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[323,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[338,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[340,33] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var panel = new SourceCodeDirectoryPanel(this, path);'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[356,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[371,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[386,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[400,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[414,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[429,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[443,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[457,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[471,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[485,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[499,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[517,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[537,27] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var tool = new StaticAnalysisTool(this, path);'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[552,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[553,27] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var tool = new StaticAnalysisTool(this, "toolProxies");'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[572,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[575,25] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var qualityGate = new QualityGatePanel(this, path);'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[593,26] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[595,25] [Varifier] Consider using `var` here to avoid boilerplate.
+    (see https://errorprone.info/bugpattern/Varifier)
+  Did you mean 'var filter = new IssueFilterPanel(this, path);'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[695,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[708,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[722,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[736,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[750,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[764,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[778,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[792,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[WARNING] /tmp/plugin-builds/warnings-ng/ui-tests/src/main/java/io/jenkins/plugins/analysis/warnings/IssuesRecorder.java:[806,34] [CanIgnoreReturnValueSuggester] Methods that always return 'this' (or return an input parameter) should be annotated with @com.google.errorprone.annotations.CanIgnoreReturnValue
+    (see https://errorprone.info/bugpattern/CanIgnoreReturnValueSuggester)
+  Did you mean '@CanIgnoreReturnValue'?
+[INFO] 
+[INFO] --- help:3.5.1:active-profiles (show-profiles) @ warnings-ng-ui-tests ---
+[INFO] 
+Active Profiles for Project 'io.jenkins.plugins:warnings-ng:hpi:12.7.0-SNAPSHOT':
+
+The following profiles are active:
+
+ - jenkins (source: external)
+ - ossrh (source: external)
+ - all-tests (source: org.jenkins-ci.plugins:plugin:5.9)
+ - annotation-processors (source: org.jenkins-ci.plugins:plugin:5.9)
+
+
+
+Active Profiles for Project 'io.jenkins.plugins:warnings-ng-ui-tests:jar:UNVERSIONED':
+
+The following profiles are active:
+
+ - jenkins (source: external)
+ - ossrh (source: external)
+
+
+
+Active Profiles for Project 'io.jenkins.plugins:warnings-ng-parent:pom:UNVERSIONED':
+
+The following profiles are active:
+
+ - jenkins (source: external)
+ - ossrh (source: external)
+
+
+
+[INFO] 
+[INFO] --- assertj:2.2.0:generate-assertions (default) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ warnings-ng-ui-tests ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ warnings-ng-ui-tests ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- jacoco:0.8.13:prepare-agent (default) @ warnings-ng-ui-tests ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ warnings-ng-ui-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ warnings-ng-ui-tests ---
+[INFO] Building jar: /tmp/plugin-builds/warnings-ng/ui-tests/target/warnings-ng-ui-tests-UNVERSIONED.jar
+[INFO] 
+[INFO] --- javadoc:3.11.2:jar (attach-javadocs) @ warnings-ng-ui-tests ---
+[INFO] Skipping javadoc generation
+[INFO] 
+[INFO] >>> source:3.3.1:jar (attach-sources) > generate-sources @ warnings-ng-ui-tests >>>
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (enforce-java) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- git-commit-id:9.0.1:revision (get-the-git-infos) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- dependency:3.8.1:properties (default) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] <<< source:3.3.1:jar (attach-sources) < generate-sources @ warnings-ng-ui-tests <<<
+[INFO] 
+[INFO] 
+[INFO] --- source:3.3.1:jar (attach-sources) @ warnings-ng-ui-tests ---
+[INFO] Building jar: /tmp/plugin-builds/warnings-ng/ui-tests/target/warnings-ng-ui-tests-UNVERSIONED-sources.jar
+[INFO] 
+[INFO] --- failsafe:3.5.2:integration-test (default) @ warnings-ng-ui-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (run-spotbugs) > :spotbugs @ warnings-ng-ui-tests >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ warnings-ng-ui-tests ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (run-spotbugs) < :spotbugs @ warnings-ng-ui-tests <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (run-spotbugs) @ warnings-ng-ui-tests ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (run-checkstyle-tests) @ warnings-ng-ui-tests ---
+[INFO] 
+[INFO] --- failsafe:3.5.2:verify (default) @ warnings-ng-ui-tests ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-java) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] >>> pmd:3.26.0:check (run-pmd-java) > :pmd @ warnings-ng-ui-tests >>>
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (pmd) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] <<< pmd:3.26.0:check (run-pmd-java) < :pmd @ warnings-ng-ui-tests <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.26.0:check (run-pmd-java) @ warnings-ng-ui-tests ---
+[INFO] Skipping PMD execution
+[INFO] 
+[INFO] --- pmd:3.26.0:cpd (run-pmd-java) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-tests) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] >>> pmd:3.26.0:check (run-pmd-tests) > :pmd @ warnings-ng-ui-tests >>>
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (pmd) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] <<< pmd:3.26.0:check (run-pmd-tests) < :pmd @ warnings-ng-ui-tests <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.26.0:check (run-pmd-tests) @ warnings-ng-ui-tests ---
+[INFO] Skipping PMD execution
+[INFO] 
+[INFO] --- pmd:3.26.0:cpd (run-pmd-tests) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-javascript) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] >>> pmd:3.26.0:check (run-pmd-javascript) > :pmd @ warnings-ng-ui-tests >>>
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (pmd) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] <<< pmd:3.26.0:check (run-pmd-javascript) < :pmd @ warnings-ng-ui-tests <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.26.0:check (run-pmd-javascript) @ warnings-ng-ui-tests ---
+[INFO] Skipping PMD execution
+[INFO] 
+[INFO] --- pmd:3.26.0:pmd (run-pmd-metrics) @ warnings-ng-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] 
+[INFO] --- jacoco:0.8.13:report (report) @ warnings-ng-ui-tests ---
+[INFO] Skipping JaCoCo execution because property jacoco.skip is set.
+[INFO] 
+[INFO] --- revapi:0.15.0:check (run-revapi) @ warnings-ng-ui-tests ---
+[INFO] Skipping execution
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ warnings-ng-ui-tests ---
+[INFO] Installing /tmp/plugin-builds/warnings-ng/ui-tests/pom.xml to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng-ui-tests/UNVERSIONED/warnings-ng-ui-tests-UNVERSIONED.pom
+[INFO] Installing /tmp/plugin-builds/warnings-ng/ui-tests/target/warnings-ng-ui-tests-UNVERSIONED.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng-ui-tests/UNVERSIONED/warnings-ng-ui-tests-UNVERSIONED.jar
+[INFO] Installing /tmp/plugin-builds/warnings-ng/ui-tests/target/warnings-ng-ui-tests-UNVERSIONED-sources.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng-ui-tests/UNVERSIONED/warnings-ng-ui-tests-UNVERSIONED-sources.jar
+[INFO] 
+[INFO] ---------------< io.jenkins.plugins:warnings-ng-parent >----------------
+[INFO] Building Aggregator for Warnings Plugin UNVERSIONED                [3/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ warnings-ng-parent ---
+[INFO] 
+[INFO] --- install:3.1.2:install (default-install) @ warnings-ng-parent ---
+[INFO] Installing /tmp/plugin-builds/warnings-ng/pom.xml to /home/poddingue/.m2/repository/io/jenkins/plugins/warnings-ng-parent/UNVERSIONED/warnings-ng-parent-UNVERSIONED.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] Warnings Plugin 12.7.0-SNAPSHOT .................... SUCCESS [ 14.946 s]
+[INFO] UI Tests of Warnings Plugin UNVERSIONED ............ SUCCESS [  7.601 s]
+[INFO] Aggregator for Warnings Plugin UNVERSIONED ......... SUCCESS [  0.030 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  24.403 s
+[INFO] Finished at: 2025-06-22T21:28:00+02:00
+[INFO] ------------------------------------------------------------------------

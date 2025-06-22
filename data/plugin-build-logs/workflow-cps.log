@@ -1,0 +1,458 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Pipeline: Groovy Parent                                            [pom]
+[INFO] CpsDefaultGroovyMethods generator                                  [jar]
+[INFO] Groovy CPS Execution                                               [jar]
+[INFO] Pipeline: Groovy                                                   [hpi]
+[INFO] 
+[INFO] --------< org.jenkins-ci.plugins.workflow:workflow-cps-parent >---------
+[INFO] Building Pipeline: Groovy Parent 999999-SNAPSHOT                   [1/4]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ workflow-cps-parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ workflow-cps-parent ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ workflow-cps-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ workflow-cps-parent ---
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ workflow-cps-parent ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins.workflow:workflow-cps-parent:pom:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ workflow-cps-parent ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-cps/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ workflow-cps-parent ---
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ workflow-cps-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ workflow-cps-parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ workflow-cps-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ workflow-cps-parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ workflow-cps-parent ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ workflow-cps-parent ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ workflow-cps-parent ---
+[INFO] Installing /tmp/plugin-builds/workflow-cps/target/workflow-cps-parent-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-cps-parent/999999-SNAPSHOT/workflow-cps-parent-999999-SNAPSHOT.pom
+[INFO] 
+[INFO] ----------------< com.cloudbees:groovy-cps-dgm-builder >----------------
+[INFO] Building CpsDefaultGroovyMethods generator 999999-SNAPSHOT         [2/4]
+[INFO]   from dgm-builder/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ groovy-cps-dgm-builder ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ groovy-cps-dgm-builder ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ groovy-cps-dgm-builder ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ groovy-cps-dgm-builder ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ groovy-cps-dgm-builder ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ groovy-cps-dgm-builder ---
+[INFO] Generating flattened POM of project com.cloudbees:groovy-cps-dgm-builder:jar:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ groovy-cps-dgm-builder ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug parameters release 17] to target/classes
+[INFO] /tmp/plugin-builds/workflow-cps/dgm-builder/src/main/java/com/cloudbees/groovy/cps/tool/Translator.java: /tmp/plugin-builds/workflow-cps/dgm-builder/src/main/java/com/cloudbees/groovy/cps/tool/Translator.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/workflow-cps/dgm-builder/src/main/java/com/cloudbees/groovy/cps/tool/Translator.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ groovy-cps-dgm-builder ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-cps/dgm-builder/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ groovy-cps-dgm-builder ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ groovy-cps-dgm-builder ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ groovy-cps-dgm-builder ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ groovy-cps-dgm-builder ---
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ groovy-cps-dgm-builder ---
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/dgm-builder/target/groovy-cps-dgm-builder.jar
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ groovy-cps-dgm-builder ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- assembly:3.7.1:single (default) @ groovy-cps-dgm-builder ---
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/dgm-builder/target/groovy-cps-dgm-builder-jar-with-dependencies.jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ groovy-cps-dgm-builder >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ groovy-cps-dgm-builder ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ groovy-cps-dgm-builder <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ groovy-cps-dgm-builder ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ groovy-cps-dgm-builder ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ groovy-cps-dgm-builder ---
+[INFO] Installing /tmp/plugin-builds/workflow-cps/dgm-builder/target/groovy-cps-dgm-builder-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/com/cloudbees/groovy-cps-dgm-builder/999999-SNAPSHOT/groovy-cps-dgm-builder-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/workflow-cps/dgm-builder/target/groovy-cps-dgm-builder.jar to /home/poddingue/.m2/repository/com/cloudbees/groovy-cps-dgm-builder/999999-SNAPSHOT/groovy-cps-dgm-builder-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/workflow-cps/dgm-builder/target/groovy-cps-dgm-builder-jar-with-dependencies.jar to /home/poddingue/.m2/repository/com/cloudbees/groovy-cps-dgm-builder/999999-SNAPSHOT/groovy-cps-dgm-builder-999999-SNAPSHOT-jar-with-dependencies.jar
+[INFO] 
+[INFO] ----------------------< com.cloudbees:groovy-cps >----------------------
+[INFO] Building Groovy CPS Execution 999999-SNAPSHOT                      [3/4]
+[INFO]   from lib/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ groovy-cps ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ groovy-cps ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ groovy-cps ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ groovy-cps ---
+[INFO] 
+[INFO] --- dependency:3.8.1:copy (default) @ groovy-cps ---
+[INFO] Configured Artifact: com.cloudbees:groovy-cps-dgm-builder:jar-with-dependencies:999999-SNAPSHOT:jar
+[INFO] 
+[INFO] --- exec:3.5.0:exec (default) @ groovy-cps ---
+/tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-dgm-builder-999999-SNAPSHOT-jar-with-dependencies.jar(/org/codehaus/groovy/runtime/DefaultGroovyMethods.java):389: warning: [removal] java.security.AccessController in java.security has been deprecated and marked for removal
+                    AccessController.doPrivileged(new PrivilegedAction() {
+                    ^
+/tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-dgm-builder-999999-SNAPSHOT-jar-with-dependencies.jar(/org/codehaus/groovy/runtime/DefaultGroovyMethods.java):11064: error: reference to plus is ambiguous
+        return (T[]) plus(toList(left), toList(right)).toArray();
+                     ^
+  both method <T>plus(java.util.List<T>,java.util.Collection<T>) in org.codehaus.groovy.runtime.DefaultGroovyMethods and method <T>plus(java.util.List<T>,T) in org.codehaus.groovy.runtime.DefaultGroovyMethods match
+/tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-dgm-builder-999999-SNAPSHOT-jar-with-dependencies.jar(/org/codehaus/groovy/runtime/DefaultGroovyMethods.java):11100: error: reference to plus is ambiguous
+        return (T[]) plus(toList(left), right).toArray();
+                     ^
+  both method <T>plus(java.util.List<T>,java.util.Collection<T>) in org.codehaus.groovy.runtime.DefaultGroovyMethods and method <T>plus(java.util.List<T>,T) in org.codehaus.groovy.runtime.DefaultGroovyMethods match
+/tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-dgm-builder-999999-SNAPSHOT-jar-with-dependencies.jar(/org/codehaus/groovy/runtime/DefaultGroovyMethods.java):11122: error: reference to plus is ambiguous
+        return (T[]) plus(toList(left), toList(right)).toArray();
+                     ^
+  both method <T>plus(java.util.List<T>,java.util.Collection<T>) in org.codehaus.groovy.runtime.DefaultGroovyMethods and method <T>plus(java.util.List<T>,T) in org.codehaus.groovy.runtime.DefaultGroovyMethods match
+[INFO] Registering compile source root /tmp/plugin-builds/workflow-cps/lib/target/generated-sources/dgm
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ groovy-cps ---
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/workflow-cps/lib/src/main/resources
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ groovy-cps ---
+[INFO] Generating flattened POM of project com.cloudbees:groovy-cps:jar:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ groovy-cps ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 97 source files with javac [debug parameters release 17] to target/classes
+[INFO] /tmp/plugin-builds/workflow-cps/lib/target/generated-sources/dgm/com/cloudbees/groovy/cps/CpsStringGroovyMethods.java: /tmp/plugin-builds/workflow-cps/lib/target/generated-sources/dgm/com/cloudbees/groovy/cps/CpsStringGroovyMethods.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/workflow-cps/lib/target/generated-sources/dgm/com/cloudbees/groovy/cps/CpsStringGroovyMethods.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/workflow-cps/lib/src/main/java/com/cloudbees/groovy/cps/CpsTransformer.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/workflow-cps/lib/src/main/java/com/cloudbees/groovy/cps/CpsTransformer.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ groovy-cps ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-cps/lib/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ groovy-cps ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ groovy-cps ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ groovy-cps ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ groovy-cps ---
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ groovy-cps ---
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps.jar
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ groovy-cps ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-tests.jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ groovy-cps >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ groovy-cps ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ groovy-cps <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ groovy-cps ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ groovy-cps ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ groovy-cps ---
+[INFO] Installing /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/com/cloudbees/groovy-cps/999999-SNAPSHOT/groovy-cps-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps.jar to /home/poddingue/.m2/repository/com/cloudbees/groovy-cps/999999-SNAPSHOT/groovy-cps-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-tests.jar to /home/poddingue/.m2/repository/com/cloudbees/groovy-cps/999999-SNAPSHOT/groovy-cps-999999-SNAPSHOT-tests.jar
+[INFO] 
+[INFO] ------------< org.jenkins-ci.plugins.workflow:workflow-cps >------------
+[INFO] Building Pipeline: Groovy 999999-SNAPSHOT                          [4/4]
+[INFO]   from plugin/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ workflow-cps ---
+[INFO] 
+[INFO] --- hpi:3.63:validate (default-validate) @ workflow-cps ---
+[INFO] Created marker file /tmp/plugin-builds/workflow-cps/plugin/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.63:validate-hpi (default-validate-hpi) @ workflow-cps ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ workflow-cps ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ workflow-cps ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ workflow-cps ---
+[INFO] 
+[INFO] --- frontend:1.15.1:install-node-and-corepack (install node and corepack) @ workflow-cps ---
+[INFO] Installing node version v22.14.0
+[INFO] Unpacking /home/poddingue/.m2/repository/com/github/eirslett/node/22.14.0/node-22.14.0-linux-x64.tar.gz into /tmp/plugin-builds/workflow-cps/plugin/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/workflow-cps/plugin/node/tmp/node-v22.14.0-linux-x64/bin/node to /tmp/plugin-builds/workflow-cps/plugin/node/node
+[INFO] Extracting NPM
+[INFO] Installed node locally.
+[INFO] No corepack executable found, creating symbolic link to /tmp/plugin-builds/workflow-cps/plugin/node/node_modules/corepack/dist/corepack.js.
+[INFO] 
+[INFO] --- frontend:1.15.1:corepack (yarn install) @ workflow-cps ---
+[INFO] Running 'corepack yarn install' in /tmp/plugin-builds/workflow-cps/plugin
+[INFO] ➤ YN0000: · Yarn 4.9.1
+[INFO] ➤ YN0000: ┌ Resolution step
+[INFO] ➤ YN0000: └ Completed
+[INFO] ➤ YN0000: ┌ Fetch step
+[INFO] ➤ YN0000: └ Completed in 0s 590ms
+[INFO] ➤ YN0000: ┌ Link step
+[INFO] ➤ YN0000: └ Completed in 2s 741ms
+[INFO] ➤ YN0000: · Done in 3s 521ms
+[INFO] 
+[INFO] --- frontend:1.15.1:corepack (yarn mvnbuild) @ workflow-cps ---
+[INFO] Running 'corepack yarn mvnbuild' in /tmp/plugin-builds/workflow-cps/plugin
+[INFO] asset workflow-editor.js 662 KiB [emitted] [minimized] [big] (name: workflow-editor) 1 related asset
+[INFO] asset workflow-editor.css 5.56 KiB [emitted] (name: workflow-editor)
+[INFO] Entrypoint workflow-editor [big] 668 KiB = workflow-editor.css 5.56 KiB workflow-editor.js 662 KiB
+[INFO] orphan modules 16.8 KiB (javascript) 1.01 KiB (runtime) [orphan] 14 modules
+[INFO] runtime modules 941 bytes 5 modules
+[INFO] cacheable modules 1.36 MiB (javascript) 5.56 KiB (css/mini-extract)
+[INFO]   modules by path ./node_modules/ 1.35 MiB
+[INFO]     modules by path ./node_modules/jquery-ui/ui/ 59.1 KiB
+[INFO]       modules by path ./node_modules/jquery-ui/ui/*.js 22.3 KiB 4 modules
+[INFO]       modules by path ./node_modules/jquery-ui/ui/widgets/*.js 36.8 KiB 2 modules
+[INFO]     modules by path ./node_modules/ace-builds/src-noconflict/ 1.02 MiB
+[INFO]       ./node_modules/ace-builds/src-noconflict/ace.js 878 KiB [built] [code generated]
+[INFO]       + 3 modules
+[INFO]     ./node_modules/jquery/dist/jquery.js 279 KiB [built] [code generated]
+[INFO]   modules by path ./src/main/ 10.3 KiB (javascript) 5.56 KiB (css/mini-extract)
+[INFO]     ./src/main/js/workflow-editor.js + 2 modules 10.3 KiB [built] [code generated]
+[INFO]     ./src/main/less/workflow-editor.less 50 bytes [built] [code generated]
+[INFO]     css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/less-loader/dist/cjs.js!./src/main/less/workflow-editor.less 5.56 KiB [built] [code generated]
+[INFO] 
+[INFO] WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
+[INFO] This can impact web performance.
+[INFO] Assets: 
+[INFO]   workflow-editor.js (662 KiB)
+[INFO] 
+[INFO] WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
+[INFO] Entrypoints:
+[INFO]   workflow-editor (668 KiB)
+[INFO]       workflow-editor.css
+[INFO]       workflow-editor.js
+[INFO] 
+[INFO] WARNING in webpack performance recommendations: 
+[INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
+[INFO] For more info visit https://webpack.js.org/guides/code-splitting/
+[INFO] 
+[INFO] webpack 5.99.5 compiled with 3 warnings in 6882 ms
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ workflow-cps ---
+[INFO] Copying 47 resources from src/main/resources to target/classes
+[INFO] Copying 3 resources from target/generated-resources/adjuncts to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ workflow-cps ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins.workflow:workflow-cps:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ workflow-cps ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 70 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecution.PipelineTimings indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecution.PipelineInternalCalls indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.CpsThreadDumpAction.PipelineThreadDump indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.EnvActionImpl.Binder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.EnvActionImpl.Copier indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.EnvActionImpl.EnvActionImplPickleFactory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.GlobalVariableSet.GlobalVariableProvider indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.GroovySample.Registry indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.GroovySample.Hello indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.GroovySample.GitHubMaven indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.GroovySample.Scripted indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.GroovySourceFileAllowlist.DefaultAllowlist indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.ParamsVariable indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.RunWrapperBinder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.RunningFlowActions indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.Snippetizer indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.Snippetizer.PerJobAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerLink.GeneratorLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerLink.StepReferenceLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerLink.GlobalsReferenceLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerLink.OnlineDocsLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerLink.ExamplesLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerLink.GDSLLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.config.CPSConfiguration indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.nodes.StepDescriptorCache indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.replay.ReplayAction.Factory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.replay.ReplayFlowFactoryAction.StoredLoadedScripts indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.replay.ReplayPipelineCommand indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.steps.LoadStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.workflow.cps.steps.ParallelStep.DescriptorImpl indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[92,12] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsScmFlowDefinition.java:[81,34] Generating org/jenkinsci/plugins/workflow/cps/CpsScmFlowDefinition.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/steps/LoadStep.java:[25,12] Generating org/jenkinsci/plugins/workflow/cps/steps/LoadStep.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[91,19] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction/InterpolatedWarnings.javadoc
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[42,8] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.javadoc
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/EnvActionImpl.java:[60,8] Generating org/jenkinsci/plugins/workflow/cps/EnvActionImpl.javadoc
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[195,21] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScriptCompile.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/replay/ReplayAction.java:[400,27] Generating org/jenkinsci/plugins/workflow/cps/replay/ReplayAction/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[188,31] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/Snippetizer.java:[487,25] Generating org/jenkinsci/plugins/workflow/cps/Snippetizer/doGenerateSnippet.stapler
+[WARNING] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
+  reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ workflow-cps ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.63:insert-test (default-insert-test) @ workflow-cps ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ workflow-cps ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-cps/plugin/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ workflow-cps ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ workflow-cps ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.63:test-hpl (default-test-hpl) @ workflow-cps ---
+[INFO] Generating /tmp/plugin-builds/workflow-cps/plugin/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.63:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-cps ---
+[INFO] 
+[INFO] --- hpi:3.63:test-runtime (default-test-runtime) @ workflow-cps ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ workflow-cps ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- frontend:1.15.1:corepack (yarn mvntest) @ workflow-cps ---
+[INFO] Running 'corepack yarn mvntest' in /tmp/plugin-builds/workflow-cps/plugin
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ workflow-cps ---
+[INFO] 
+[INFO] --- hpi:3.63:hpi (default-hpi) @ workflow-cps ---
+[INFO] Generating /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.jar
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps
+[INFO] Assembling webapp workflow-cps in /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps
+[INFO] Bundling direct dependency diff4j-1.3.jar
+[INFO] Bundling direct dependency groovy-cps-999999-SNAPSHOT.jar
+[INFO] Generating hpi /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.hpi
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ workflow-cps ---
+[INFO] Building jar: /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps-tests.jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ workflow-cps >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ workflow-cps ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ workflow-cps <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ workflow-cps ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ workflow-cps ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ workflow-cps ---
+[INFO] Installing /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-cps/999999-SNAPSHOT/workflow-cps-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-cps/999999-SNAPSHOT/workflow-cps-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-cps/999999-SNAPSHOT/workflow-cps-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps-tests.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-cps/999999-SNAPSHOT/workflow-cps-999999-SNAPSHOT-tests.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Pipeline: Groovy Parent 999999-SNAPSHOT:
+[INFO] 
+[INFO] Pipeline: Groovy Parent ............................ SUCCESS [  3.658 s]
+[INFO] CpsDefaultGroovyMethods generator .................. SUCCESS [  4.662 s]
+[INFO] Groovy CPS Execution ............................... SUCCESS [ 10.727 s]
+[INFO] Pipeline: Groovy ................................... SUCCESS [ 25.257 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  45.844 s
+[INFO] Finished at: 2025-06-22T20:34:38+02:00
+[INFO] ------------------------------------------------------------------------

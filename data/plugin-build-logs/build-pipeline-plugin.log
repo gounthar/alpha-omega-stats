@@ -1,0 +1,54 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------< org.jenkins-ci.plugins:build-pipeline-plugin >------------
+[INFO] Building Build Pipeline Plugin 2.0.3-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.0:clean (default-clean) @ build-pipeline-plugin ---
+[INFO] 
+[INFO] --- hpi:3.57:validate (default-validate) @ build-pipeline-plugin ---
+[INFO] Created marker file /tmp/plugin-builds/build-pipeline-plugin/target/java-level/11
+[INFO] 
+[INFO] --- hpi:3.57:validate-hpi (default-validate-hpi) @ build-pipeline-plugin ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ build-pipeline-plugin ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ build-pipeline-plugin ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- gplus:3.0.2:addSources (default) @ build-pipeline-plugin ---
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ build-pipeline-plugin ---
+[INFO] 
+[INFO] --- gplus:3.0.2:generateStubs (default) @ build-pipeline-plugin ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 2.4.21 to perform generateStubs.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.458 s
+[INFO] Finished at: 2025-06-22T21:37:27+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:3.0.2:generateStubs (default) on project build-pipeline-plugin: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:3.0.2:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException

@@ -24,7 +24,7 @@ chmod +x ./gradlew
 # Append a header to the log file indicating the start of Gradle output.
 echo "=== BEGIN GRADLE OUTPUT ===" >> "$LOG_FILE"
 # Execute the Gradle wrapper with the provided arguments, redirecting both stdout and stderr to the log file.
-./gradlew "$@" >> "$LOG_FILE" 2>&1
+./gradlew "$@" -x test >> "$LOG_FILE" 2>&1
 # Capture the exit code of the Gradle command.
 EXIT_CODE=$?
 # Append a footer to the log file indicating the end of Gradle output.

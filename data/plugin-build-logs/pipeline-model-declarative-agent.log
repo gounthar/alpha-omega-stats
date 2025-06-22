@@ -1,0 +1,429 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Pipeline: Model Parent POM                                         [pom]
+[INFO] Pipeline: Stage Tags Metadata                                      [hpi]
+[INFO] Pipeline: Model API                                                [hpi]
+[INFO] Pipeline: Declarative Extension Points API                         [hpi]
+[INFO] Pipeline: Declarative                                              [hpi]
+[INFO] 
+[INFO] ------------< org.jenkinsci.plugins:pipeline-model-parent >-------------
+[INFO] Building Pipeline: Model Parent POM 999999-SNAPSHOT                [1/5]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-parent ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-model-parent ---
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-model-parent ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-parent:pom:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-parent ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-model-declarative-agent/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-model-parent ---
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-model-parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-model-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-model-parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-model-parent ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ pipeline-model-parent ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-model-parent ---
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
+[INFO] 
+[INFO] ---------< org.jenkinsci.plugins:pipeline-stage-tags-metadata >---------
+[INFO] Building Pipeline: Stage Tags Metadata 999999-SNAPSHOT             [2/5]
+[INFO]   from pipeline-stage-tags-metadata/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-stage-tags-metadata ---
+[INFO] Created marker file /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-stage-tags-metadata ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-stage-tags-metadata ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-stage-tags-metadata ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-stage-tags-metadata ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-stage-tags-metadata:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-stage-tags-metadata ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.pipeline.StageStatus indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.SyntheticStage indexed under hudson.Extension
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-stage-tags-metadata ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-stage-tags-metadata ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-stage-tags-metadata ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-stage-tags-metadata ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-stage-tags-metadata ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-stage-tags-metadata ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-stage-tags-metadata ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata
+[INFO] Assembling webapp pipeline-stage-tags-metadata in /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-stage-tags-metadata ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ pipeline-stage-tags-metadata ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-tags-metadata ---
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< org.jenkinsci.plugins:pipeline-model-api >--------------
+[INFO] Building Pipeline: Model API 999999-SNAPSHOT                       [3/5]
+[INFO]   from pipeline-model-api/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-model-api ---
+[INFO] Created marker file /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-api ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-api ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-api ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-model-api ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-api:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 58 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ASTSchema indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCache indexed under hudson.Extension
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-model-api ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-api ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-api ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-api ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-model-api ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-model-api ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-model-api ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-model-api ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api
+[INFO] Assembling webapp pipeline-model-api in /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api
+[WARNING] Bundling transitive dependency btf-1.3.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency jackson-coreutils-equivalence-1.0.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency jackson-coreutils-2.0.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency json-schema-core-1.2.14.jar (via json-schema-validator)
+[INFO] Bundling direct dependency json-schema-validator-2.2.14.jar
+[WARNING] Bundling transitive dependency msg-simple-1.2.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency uri-template-0.10.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency libphonenumber-8.11.1.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency mailapi-1.6.2.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency jopt-simple-5.0.4.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency rhino-1.7.15.jar (via json-schema-validator)
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-api ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-model-api ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-model-api ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ pipeline-model-api ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-model-api ---
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-api/target/pipeline-model-api.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------< org.jenkinsci.plugins:pipeline-model-extensions >-----------
+[INFO] Building Pipeline: Declarative Extension Points API 999999-SNAPSHOT [4/5]
+[INFO]   from pipeline-model-extensions/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-model-extensions ---
+[INFO] Created marker file /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-extensions ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-extensions ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-extensions ---
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-model-extensions ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-extensions:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-extensions ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 23 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.DeclarativeAgent.CheckoutScriptAllowlist indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.withscript.WithScriptDescriptor.WithScriptAllowlist indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/CommonUtils.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/CommonUtils.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/withscript/WithScriptDescribable.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/withscript/WithScriptDescribable.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-model-extensions ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-extensions ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-extensions ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-extensions ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-model-extensions ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-model-extensions ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-model-extensions ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-model-extensions ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions
+[INFO] Assembling webapp pipeline-model-extensions in /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-extensions ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-model-extensions ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-model-extensions ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.3:check (default) @ pipeline-model-extensions ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-model-extensions ---
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
+[INFO] 
+[INFO] ----------< org.jenkinsci.plugins:pipeline-model-definition >-----------
+[INFO] Building Pipeline: Declarative 999999-SNAPSHOT                     [5/5]
+[INFO]   from pipeline-model-definition/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-model-definition ---
+[INFO] Created marker file /tmp/plugin-builds/pipeline-model-declarative-agent/pipeline-model-definition/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-definition ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-definition ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- gplus:4.1.1:generateStubs (default) @ pipeline-model-definition ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 2.4.21 to perform generateStubs.
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Pipeline: Model Parent POM 999999-SNAPSHOT:
+[INFO] 
+[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  1.704 s]
+[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [  2.378 s]
+[INFO] Pipeline: Model API ................................ SUCCESS [  4.190 s]
+[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [  3.618 s]
+[INFO] Pipeline: Declarative .............................. FAILURE [  1.601 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  14.062 s
+[INFO] Finished at: 2025-06-22T21:16:51+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:4.1.1:generateStubs (default) on project pipeline-model-definition: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:4.1.1:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :pipeline-model-definition

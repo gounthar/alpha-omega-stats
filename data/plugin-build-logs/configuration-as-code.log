@@ -1,0 +1,384 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Configuration as Code Parent                                       [pom]
+[INFO] Configuration as Code Plugin                                       [hpi]
+[INFO] Configuration as Code Test harness                                 [jar]
+[INFO] Configuration as Code Integration tests                            [jar]
+[INFO] 
+[INFO] --------------< io.jenkins.configuration-as-code:parent >---------------
+[INFO] Building Configuration as Code Parent 999999-SNAPSHOT              [1/4]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ parent ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ parent ---
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ parent ---
+[INFO] Generating flattened POM of project io.jenkins.configuration-as-code:parent:pom:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ parent ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ parent ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/configuration-as-code/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ parent ---
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ parent ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ parent ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (default) @ parent ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ parent ---
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/target/parent-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/parent/999999-SNAPSHOT/parent-999999-SNAPSHOT.pom
+[INFO] 
+[INFO] ------------------< io.jenkins:configuration-as-code >------------------
+[INFO] Building Configuration as Code Plugin 999999-SNAPSHOT              [2/4]
+[INFO]   from plugin/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ configuration-as-code ---
+[INFO] 
+[INFO] --- hpi:3.65:validate (default-validate) @ configuration-as-code ---
+[INFO] Created marker file /tmp/plugin-builds/configuration-as-code/plugin/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.65:validate-hpi (default-validate-hpi) @ configuration-as-code ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ configuration-as-code ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ configuration-as-code ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ configuration-as-code ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ configuration-as-code ---
+[INFO] Copying 14 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ configuration-as-code ---
+[INFO] Generating flattened POM of project io.jenkins:configuration-as-code:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ configuration-as-code ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 71 source files with javac [debug parameters release 17] to target/classes
+[INFO] io.jenkins.plugins.casc.CasCGlobalConfig indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.ConfigurationAsCode indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.ObsoleteConfigurationMonitor indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.TokenReloadAction indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.TokenReloadCrumbExclusion indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.cli.ApplyConfigurationCommand indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.cli.CheckConfigurationCommand indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.cli.ExportConfigurationCommand indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.cli.ReloadJCascConfigurationCommand indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.AdminWhitelistRuleConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.GlobalNodePropertiesConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.HudsonPrivateSecurityRealmConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.JNLPLauncherConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.JenkinsConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.LabelAtomConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.LabelAtomPropertyConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.MavenConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.NoneSecurityRealmConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.UnsecuredAuthorizationStrategyConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.UpdateCenterConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.core.UpdateSiteConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.impl.DefaultConfiguratorRegistry indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.impl.configurators.SelfConfigurator indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.impl.secrets.DockerSecretSource indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.impl.secrets.EnvSecretSource indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.impl.secrets.PropertiesSecretSource indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.yaml.ErrorOnConflictMergeStrategy indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.yaml.MergeStrategyAction indexed under hudson.Extension
+[INFO] io.jenkins.plugins.casc.yaml.OverrideMergeStrategy indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/CasCGlobalConfig.java:[20,12] Generating io/jenkins/plugins/casc/CasCGlobalConfig.stapler
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/core/HudsonPrivateSecurityRealmConfigurator.java:[119,16] Generating io/jenkins/plugins/casc/core/HudsonPrivateSecurityRealmConfigurator/UserWithPassword.stapler
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/ConfigurationAsCode.java:[268,27] Generating io/jenkins/plugins/casc/ConfigurationAsCode/doCheckNewSource.stapler
+[WARNING] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/impl/configurators/DataBoundConfigurator.java:[86,43] non-varargs call of varargs method with inexact argument type for last parameter;
+  cast to java.lang.Object for a varargs call
+  cast to java.lang.Object[] for a non-varargs call and to suppress this warning
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/core/AdminWhitelistRuleConfigurator.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/core/AdminWhitelistRuleConfigurator.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/SchemaGeneration.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/main/java/io/jenkins/plugins/casc/SchemaGeneration.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ configuration-as-code ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ configuration-as-code ---
+[INFO] 
+[INFO] --- hpi:3.65:insert-test (default-insert-test) @ configuration-as-code ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ configuration-as-code ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/configuration-as-code/plugin/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ configuration-as-code ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ configuration-as-code ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.65:test-hpl (default-test-hpl) @ configuration-as-code ---
+[INFO] Generating /tmp/plugin-builds/configuration-as-code/plugin/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.65:resolve-test-dependencies (default-resolve-test-dependencies) @ configuration-as-code ---
+[INFO] 
+[INFO] --- hpi:3.65:test-runtime (default-test-runtime) @ configuration-as-code ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ configuration-as-code ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ configuration-as-code ---
+[INFO] 
+[INFO] --- hpi:3.65:hpi (default-hpi) @ configuration-as-code ---
+[INFO] Generating /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code.jar
+[INFO] Building jar: /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code
+[INFO] Assembling webapp configuration-as-code in /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code
+[INFO] Bundling direct dependency jsr305-3.0.2.jar
+[WARNING] Bundling transitive dependency vavr-match-0.10.6.jar (via vavr)
+[INFO] Bundling direct dependency vavr-0.10.6.jar
+[INFO] Generating hpi /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code.hpi
+[INFO] Building jar: /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ configuration-as-code ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ configuration-as-code >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ configuration-as-code ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ configuration-as-code <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ configuration-as-code ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ configuration-as-code ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (default) @ configuration-as-code ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ configuration-as-code ---
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/999999-SNAPSHOT/configuration-as-code-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code.hpi to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/999999-SNAPSHOT/configuration-as-code-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/plugin/target/configuration-as-code.jar to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/999999-SNAPSHOT/configuration-as-code-999999-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< io.jenkins.configuration-as-code:test-harness >------------
+[INFO] Building Configuration as Code Test harness 999999-SNAPSHOT        [3/4]
+[INFO]   from test-harness/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ test-harness ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ test-harness ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
+[INFO] Rule 1: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ test-harness ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ test-harness ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ test-harness ---
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/configuration-as-code/test-harness/src/main/resources
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ test-harness ---
+[INFO] Generating flattened POM of project io.jenkins.configuration-as-code:test-harness:jar:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ test-harness ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 17] to target/classes
+[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/main/java/io/jenkins/plugins/casc/misc/JenkinsConfiguredWithReadmeRule.java: /tmp/plugin-builds/configuration-as-code/test-harness/src/main/java/io/jenkins/plugins/casc/misc/JenkinsConfiguredWithReadmeRule.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/main/java/io/jenkins/plugins/casc/misc/JenkinsConfiguredWithReadmeRule.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ test-harness ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ test-harness ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/configuration-as-code/test-harness/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ test-harness ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ test-harness ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.65:resolve-test-dependencies (prepare-test-plugins) @ test-harness ---
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ test-harness ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- hpi:3.65:test-runtime (test-runtime) @ test-harness ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ test-harness ---
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ test-harness ---
+[INFO] Building jar: /tmp/plugin-builds/configuration-as-code/test-harness/target/test-harness.jar
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ test-harness ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ test-harness >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ test-harness ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ test-harness <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ test-harness ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ test-harness ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (default) @ test-harness ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ test-harness ---
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/test-harness/target/test-harness-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/test-harness/999999-SNAPSHOT/test-harness-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/test-harness/target/test-harness.jar to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/test-harness/999999-SNAPSHOT/test-harness-999999-SNAPSHOT.jar
+[INFO] 
+[INFO] -----------< io.jenkins.configuration-as-code:integrations >------------
+[INFO] Building Configuration as Code Integration tests 999999-SNAPSHOT   [4/4]
+[INFO]   from integrations/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ integrations ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ integrations ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ integrations ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ integrations ---
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ integrations ---
+[INFO] Copying 66 resources from ../demos to target/classes
+[INFO] Copying 1 resource from .. to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ integrations ---
+[INFO] Generating flattened POM of project io.jenkins.configuration-as-code:integrations:jar:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ integrations ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ integrations ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ integrations ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/configuration-as-code/integrations/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ integrations ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ integrations ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.65:resolve-test-dependencies (prepare-test-plugins) @ integrations ---
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ integrations ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- hpi:3.65:test-runtime (test-runtime) @ integrations ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ integrations ---
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ integrations ---
+[INFO] Building jar: /tmp/plugin-builds/configuration-as-code/integrations/target/integrations.jar
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ integrations ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.0:check (spotbugs) > :spotbugs @ integrations >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ integrations ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.0:check (spotbugs) < :spotbugs @ integrations <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.0:check (spotbugs) @ integrations ---
+[INFO] Spotbugs plugin skipped
+[INFO] 
+[INFO] --- spotless:2.44.4:check (default) @ integrations ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- checkstyle:3.6.0:check (default) @ integrations ---
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ integrations ---
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/integrations/target/integrations-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/integrations/999999-SNAPSHOT/integrations-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/configuration-as-code/integrations/target/integrations.jar to /home/poddingue/.m2/repository/io/jenkins/configuration-as-code/integrations/999999-SNAPSHOT/integrations-999999-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Configuration as Code Parent 999999-SNAPSHOT:
+[INFO] 
+[INFO] Configuration as Code Parent ....................... SUCCESS [  2.473 s]
+[INFO] Configuration as Code Plugin ....................... SUCCESS [  4.948 s]
+[INFO] Configuration as Code Test harness ................. SUCCESS [  1.863 s]
+[INFO] Configuration as Code Integration tests ............ SUCCESS [  3.902 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  13.951 s
+[INFO] Finished at: 2025-06-22T21:14:25+02:00
+[INFO] ------------------------------------------------------------------------

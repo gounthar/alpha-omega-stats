@@ -1,0 +1,118 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< org.jenkins-ci.plugins:publish-over >-----------------
+[INFO] Building Infrastructure plugin for Publish Over X 0.23-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.1:clean (default-clean) @ publish-over ---
+[INFO] 
+[INFO] --- hpi:3.49:validate (default-validate) @ publish-over ---
+[INFO] 
+[INFO] --- hpi:3.49:validate-hpi (default-validate-hpi) @ publish-over ---
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (display-info) @ publish-over ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 2: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.4.1:enforce (no-snapshots-in-release) @ publish-over ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ publish-over ---
+[INFO] 
+[INFO] --- build-helper:3.4.0:add-source (add-source) @ publish-over ---
+[INFO] Source directory: /tmp/plugin-builds/publish-over/target/generated-sources/localizer added.
+[INFO] 
+[INFO] --- build-helper:3.4.0:add-source (add-eclipse-sources) @ publish-over ---
+[INFO] Source directory: /tmp/plugin-builds/publish-over/target/generated-sources/groovy-stubs/main added.
+[INFO] Source directory: /tmp/plugin-builds/publish-over/target/generated-sources/localizer added.
+[INFO] Source directory: /tmp/plugin-builds/publish-over/target/generated-sources/taglib-interface added.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ publish-over ---
+[INFO] Copying 24 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ publish-over ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 43 source files with javac [debug release 17] to target/classes
+[INFO] /tmp/plugin-builds/publish-over/src/main/java/jenkins/plugins/publish_over/BPValidators.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/publish-over/src/main/java/jenkins/plugins/publish_over/BPValidators.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/publish-over/src/main/java/jenkins/plugins/publish_over/BPTransfer.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/publish-over/src/main/java/jenkins/plugins/publish_over/BPTransfer.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.32:enforce (default-enforce) @ publish-over ---
+[INFO] Skipping access modifier checks
+[INFO] 
+[INFO] --- hpi:3.49:insert-test (default-insert-test) @ publish-over ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ publish-over ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/publish-over/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ publish-over ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ publish-over ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.49:test-hpl (default-test-hpl) @ publish-over ---
+[INFO] Generating /tmp/plugin-builds/publish-over/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.49:resolve-test-dependencies (default-resolve-test-dependencies) @ publish-over ---
+[INFO] 
+[INFO] --- hpi:3.49:test-runtime (default-test-runtime) @ publish-over ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.1.2:test (default-test) @ publish-over ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:104.v2171757ee6dd:process (default) @ publish-over ---
+[INFO] 
+[INFO] --- hpi:3.49:hpi (default-hpi) @ publish-over ---
+[INFO] Generating /tmp/plugin-builds/publish-over/target/publish-over/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/publish-over/target/publish-over.jar
+[INFO] Building jar: /tmp/plugin-builds/publish-over/target/publish-over.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/publish-over/target/publish-over
+[INFO] Assembling webapp publish-over in /tmp/plugin-builds/publish-over/target/publish-over
+[INFO] Generating hpi /tmp/plugin-builds/publish-over/target/publish-over.hpi
+[INFO] Building jar: /tmp/plugin-builds/publish-over/target/publish-over.hpi
+[INFO] 
+[INFO] --- jar:3.3.0:test-jar (maybe-test-jar) @ publish-over ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.7.3.6:check (spotbugs) > :spotbugs @ publish-over >>>
+[INFO] 
+[INFO] --- spotbugs:4.7.3.6:spotbugs (spotbugs) @ publish-over ---
+[INFO] 
+[INFO] <<< spotbugs:4.7.3.6:check (spotbugs) < :spotbugs @ publish-over <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.7.3.6:check (spotbugs) @ publish-over ---
+[INFO] 
+[INFO] --- spotless:2.40.0:check (default) @ publish-over ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ publish-over ---
+[INFO] Installing /tmp/plugin-builds/publish-over/pom.xml to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/publish-over/0.23-SNAPSHOT/publish-over-0.23-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/publish-over/target/publish-over.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/publish-over/0.23-SNAPSHOT/publish-over-0.23-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/publish-over/target/publish-over.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/publish-over/0.23-SNAPSHOT/publish-over-0.23-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.030 s
+[INFO] Finished at: 2025-06-22T20:59:01+02:00
+[INFO] ------------------------------------------------------------------------
