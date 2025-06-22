@@ -1,0 +1,488 @@
+{
+    "checksum": "5d17fa0495a5f065bc445e7d7b5ca7d6ff5b540b61b3c819453e2f233d65bb0e",
+    "data": {
+    "id": "4b3fc558-9b19-49c7-8a7d-d3f230ce4fdb",
+    "createdAt": 1745336088993,
+    "updatedAt": 1745336457471,
+    "title": "Script Invocation Best Practices",
+    "messages": [
+        {
+            "id": "f2270ab4-e85f-4e82-b555-aa2cab169b13",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Invoke auxiliary scripts via SCRIPT_DIR for reliability The line"
+                },
+                {
+                    "type": "codeSnippet",
+                    "text": "./install-jdk-versions.sh"
+                },
+                {
+                    "type": "text",
+                    "text": "assumes the current working directory. It’s safer to use the absolute path:"
+                },
+                {
+                    "type": "codeSnippet",
+                    "text": "- ./install-jdk-versions.sh\n+ \"$SCRIPT_DIR/install-jdk-versions.sh\""
+                },
+                {
+                    "type": "text",
+                    "text": "This guarantees the correct script is run regardless of $PWD."
+                }
+            ],
+            "context": {
+                "currentFile": {
+                    "path": "test-pr-builds.sh",
+                    "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                    "sources": [
+                        "opened_tab"
+                    ],
+                    "content": "#!/bin/bash\n\nset -e\n\n# Get the directory of this script\nSCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" >/dev/null 2>&1 && pwd )\"\n\n# Constants\nWORK_DIR=\"/tmp/pr-build-tests\"\nSUCCESS_FILE=\"$SCRIPT_DIR/data/consolidated/successful_builds.csv\"\nFAILING_PRS_FILE=\"$SCRIPT_DIR/data/consolidated/failing_prs.json\"\nFAILED_BUILDS_FILE=\"$SCRIPT_DIR/data/consolidated/failed_builds.csv\"\nTEST_RESULTS_FILE=\"$SCRIPT_DIR/data/consolidated/test_results.csv\"\n\n# Create working directory and ensure data directory exists\nmkdir -p \"$WORK_DIR\"\nmkdir -p \"$(dirname \"$SUCCESS_FILE\")\"\nrm -f \"$SUCCESS_FILE\"\nrm -f \"$FAILED_BUILDS_FILE\"\nrm -f \"$TEST_RESULTS_FILE\"\n\n# Add CSV headers\necho \"PR_URL,JDK_VERSION\" > \"$SUCCESS_FILE\"\necho \"PR_URL\" > \"$FAILED_BUILDS_FILE\"\necho \"PR_URL,JDK_VERSION,TEST_RESULT\" > \"$TEST_RESULTS_FILE\"\n\n# First ensure JDK versions are installed\n./install-jdk-versions.sh\n\n# Initialize SDKMAN\nsource \"$HOME/.sdkman/bin/sdkman-init.sh\"\n\n# Define major Java versions we want to test (in descending order)\nMAJOR_VERSIONS=(\"17\" \"11\" \"8\")\n\n# Get the installed JDK versions for each major version\nJDK_VERSIONS=()\nfor major in \"${MAJOR_VERSIONS[@]}\"; do\n    version=$( \"$SCRIPT_DIR/get-jdk-versions.sh\" \"$major\" )\n    if [ -n \"$version\" ]; then\n        JDK_VERSIONS+=(\"$version\")\n    fi\ndone\n\n# Function to switch JDK version\nswitch_jdk() {\n    local version=$1\n    echo \"Switching to JDK $version\"\n    sdk use java \"$version\"\n}\n\n# Function to test PR\ntest_pr() {\n    local pr_number=$1\n    local repo=$2\n    local branch=$3\n\n    # Extract just the repository name (without organization)\n    repo_name=$(echo \"$repo\" | sed 's#.*/##')\n\n    # Clone and checkout PR\n    echo \"Testing PR #$pr_number in $repo\"\n    cd \"$WORK_DIR\"\n    rm -rf \"$repo_name\"\n\n    # Traditional git method - more reliable\n    echo \"Cloning repository and checking out PR #$pr_number\"\n    git clone \"https://github.com/$repo.git\"\n    cd \"$repo_name\"\n    git fetch origin pull/$pr_number/head:pr-$pr_number\n    git checkout pr-$pr_number\n\n    # Verify we're on the PR branch\n    echo \"Current branch: $(git branch --show-current)\"\n\n    local build_result=1\n    local successful_jdk=\"\"\n\n    # Try JDK versions in order\n    for jdk in \"${JDK_VERSIONS[@]}\"; do\n        switch_jdk \"$jdk\"\n        echo \"Attempting build with JDK $jdk\"\n\n        # Try to build without tests first\n        if mvn clean verify -B -Dmaven.test.skip=true; then\n            # Extract major version (everything before the first dot)\n            major_version=$(echo \"$jdk\" | cut -d. -f1)\n            echo \"✓ Build successful with JDK $jdk (without tests)\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version\" >> \"$SUCCESS_FILE\"\n            build_result=0\n            successful_jdk=\"$jdk\"\n            break  # Exit the loop once we have a successful build\n        else\n            echo \"✗ Build failed with JDK $jdk\"\n        fi\n    done\n\n    # If build was successful, run tests\n    if [ $build_result -eq 0 ]; then\n        echo \"Running tests with JDK $successful_jdk\"\n\n        # Clone the repository again for testing\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n        git clone \"https://github.com/$repo.git\" \"${repo_name}_tests\"\n        cd \"${repo_name}_tests\"\n        git fetch origin pull/$pr_number/head:pr-$pr_number\n        git checkout pr-$pr_number\n\n        switch_jdk \"$successful_jdk\"\n\n        # Extract major version (everything before the first dot)\n        major_version=$(echo \"$successful_jdk\" | cut -d. -f1)\n\n        # Run tests\n        if mvn test -B; then\n            echo \"✓ Tests passed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_PASSED\" >> \"$TEST_RESULTS_FILE\"\n        else\n            echo \"✗ Tests failed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_FAILED\" >> \"$TEST_RESULTS_FILE\"\n        fi\n\n        # Clean up test directory\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n    fi\n\n    # Clean up - remove the repository directory\n    cd \"$WORK_DIR\"\n    echo \"Cleaning up - removing $repo_name directory\"\n    rm -rf \"$repo_name\"\n\n    if [ $build_result -eq 0 ]; then\n        echo \"✓ PR #$pr_number built successfully\"\n        return 0\n    else\n        echo \"✗ All JDK versions failed for PR #$pr_number\"\n        # Record the failed build\n        echo \"https://github.com/$repo/pull/$pr_number\" >> \"$FAILED_BUILDS_FILE\"\n        return 1\n    fi\n}\n\n# Main processing\necho \"Reading failing PRs...\"\n# Read the entire file content\nfile_content=$(cat \"$FAILING_PRS_FILE\")\n\n# Use jq to parse the JSON and extract the URLs\npr_urls=$(echo \"$file_content\" | jq -r '.[].url')\n\n# Setting IFS to only recognize newlines\nIFS=$'\\n'\n\n#  echo \"$pr_urls\"\n\n# Function to extract PR number and repository from URL\nextract_pr_info() {\n    local url=\"$1\"\n    local pr_number repo\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n    echo \"$pr_number $repo\"\n}\n\n# Loop through the extracted URLs\n# Using an array to avoid subshell issues with pipelines\nreadarray -t url_array <<< \"$pr_urls\"\nfor url in \"${url_array[@]}\"; do\n    if [ -z \"$url\" ]; then\n        continue  # Skip empty lines\n    fi\n\n    echo \"Processing PR: $url\"\n\n    # Extract PR number and repository directly for better reliability\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n\n    echo \"PR Number: $pr_number, Repository: $repo\"\n\n    if [ -n \"$pr_number\" ] && [ -n \"$repo\" ]; then\n        test_pr \"$pr_number\" \"$repo\" || true  # Continue even if test_pr fails\n    else\n        echo \"Invalid PR data: $url\"\n    fi\ndone\n\n\necho \"Done.\"\necho \"Successful builds saved to $SUCCESS_FILE\"\necho \"Failed builds saved to $FAILED_BUILDS_FILE\"\necho \"Test results saved to $TEST_RESULTS_FILE\"\n\n# Print summary statistics\nif [ -f \"$SUCCESS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    success_count=$(( $(wc -l < \"$SUCCESS_FILE\") - 1 ))\n    echo \"Successfully built PRs: $success_count\"\nelse\n    echo \"No successful builds.\"\nfi\n\nif [ -f \"$FAILED_BUILDS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    failed_count=$(( $(wc -l < \"$FAILED_BUILDS_FILE\") - 1 ))\n    echo \"Failed PRs: $failed_count\"\nelse\n    echo \"No failed builds.\"\nfi\n\nif [ -f \"$TEST_RESULTS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    tests_run_count=$(( $(wc -l < \"$TEST_RESULTS_FILE\") - 1 ))\n    tests_passed_count=$(grep \"TESTS_PASSED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    tests_failed_count=$(grep \"TESTS_FAILED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    echo \"Tests run: $tests_run_count\"\n    echo \"Tests passed: $tests_passed_count\"\n    echo \"Tests failed: $tests_failed_count\"\nelse\n    echo \"No tests were run.\"\nfi\n"
+                },
+                "codebaseEnabled": true,
+                "ragFiles": [
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/idna/core.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\idna\\core.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_impl.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\pyproject_hooks\\_impl.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/idna/core.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\idna\\core.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/req/req_uninstall.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\req\\req_uninstall.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/commands/completion.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\commands\\completion.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/wheel.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\wheel.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/pkg_resources/__init__.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\pkg_resources\\__init__.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/operations/install/wheel.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\operations\\install\\wheel.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/scripts.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\scripts.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "install-jdk-versions.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\install-jdk-versions.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "check-env.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\check-env.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "get-jdk-versions.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\get-jdk-versions.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "update-daily.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "find-junit5-prs.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\find-junit5-prs.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\consolidated\\successful_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\successful_builds.csv",
+                        "sources": []
+                    },
+                    {
+                        "path": "generate-report.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\generate-report.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "data/consolidated/failed_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\failed_builds.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/consolidated/successful_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\successful_builds.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/consolidated/test_results.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\test_results.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "update-daily.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "upload_to_sheets.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\upload_to_sheets.py",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/junit5/junit5_migration_prs.json",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\junit5_migration_prs.json",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "cmd/find-junit5-prs/main.go",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    }
+                ],
+                "rerankedFiles": [
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "test-pr-builds.sh"
+                    }
+                ],
+                "usedFilePaths": [
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                        "sources": [
+                            "opened_tab"
+                        ],
+                        "content": "#!/bin/bash\n\nset -e\n\n# Get the directory of this script\nSCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" >/dev/null 2>&1 && pwd )\"\n\n# Constants\nWORK_DIR=\"/tmp/pr-build-tests\"\nSUCCESS_FILE=\"$SCRIPT_DIR/data/consolidated/successful_builds.csv\"\nFAILING_PRS_FILE=\"$SCRIPT_DIR/data/consolidated/failing_prs.json\"\nFAILED_BUILDS_FILE=\"$SCRIPT_DIR/data/consolidated/failed_builds.csv\"\nTEST_RESULTS_FILE=\"$SCRIPT_DIR/data/consolidated/test_results.csv\"\n\n# Create working directory and ensure data directory exists\nmkdir -p \"$WORK_DIR\"\nmkdir -p \"$(dirname \"$SUCCESS_FILE\")\"\nrm -f \"$SUCCESS_FILE\"\nrm -f \"$FAILED_BUILDS_FILE\"\nrm -f \"$TEST_RESULTS_FILE\"\n\n# Add CSV headers\necho \"PR_URL,JDK_VERSION\" > \"$SUCCESS_FILE\"\necho \"PR_URL\" > \"$FAILED_BUILDS_FILE\"\necho \"PR_URL,JDK_VERSION,TEST_RESULT\" > \"$TEST_RESULTS_FILE\"\n\n# First ensure JDK versions are installed\n./install-jdk-versions.sh\n\n# Initialize SDKMAN\nsource \"$HOME/.sdkman/bin/sdkman-init.sh\"\n\n# Define major Java versions we want to test (in descending order)\nMAJOR_VERSIONS=(\"17\" \"11\" \"8\")\n\n# Get the installed JDK versions for each major version\nJDK_VERSIONS=()\nfor major in \"${MAJOR_VERSIONS[@]}\"; do\n    version=$( \"$SCRIPT_DIR/get-jdk-versions.sh\" \"$major\" )\n    if [ -n \"$version\" ]; then\n        JDK_VERSIONS+=(\"$version\")\n    fi\ndone\n\n# Function to switch JDK version\nswitch_jdk() {\n    local version=$1\n    echo \"Switching to JDK $version\"\n    sdk use java \"$version\"\n}\n\n# Function to test PR\ntest_pr() {\n    local pr_number=$1\n    local repo=$2\n    local branch=$3\n\n    # Extract just the repository name (without organization)\n    repo_name=$(echo \"$repo\" | sed 's#.*/##')\n\n    # Clone and checkout PR\n    echo \"Testing PR #$pr_number in $repo\"\n    cd \"$WORK_DIR\"\n    rm -rf \"$repo_name\"\n\n    # Traditional git method - more reliable\n    echo \"Cloning repository and checking out PR #$pr_number\"\n    git clone \"https://github.com/$repo.git\"\n    cd \"$repo_name\"\n    git fetch origin pull/$pr_number/head:pr-$pr_number\n    git checkout pr-$pr_number\n\n    # Verify we're on the PR branch\n    echo \"Current branch: $(git branch --show-current)\"\n\n    local build_result=1\n    local successful_jdk=\"\"\n\n    # Try JDK versions in order\n    for jdk in \"${JDK_VERSIONS[@]}\"; do\n        switch_jdk \"$jdk\"\n        echo \"Attempting build with JDK $jdk\"\n\n        # Try to build without tests first\n        if mvn clean verify -B -Dmaven.test.skip=true; then\n            # Extract major version (everything before the first dot)\n            major_version=$(echo \"$jdk\" | cut -d. -f1)\n            echo \"✓ Build successful with JDK $jdk (without tests)\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version\" >> \"$SUCCESS_FILE\"\n            build_result=0\n            successful_jdk=\"$jdk\"\n            break  # Exit the loop once we have a successful build\n        else\n            echo \"✗ Build failed with JDK $jdk\"\n        fi\n    done\n\n    # If build was successful, run tests\n    if [ $build_result -eq 0 ]; then\n        echo \"Running tests with JDK $successful_jdk\"\n\n        # Clone the repository again for testing\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n        git clone \"https://github.com/$repo.git\" \"${repo_name}_tests\"\n        cd \"${repo_name}_tests\"\n        git fetch origin pull/$pr_number/head:pr-$pr_number\n        git checkout pr-$pr_number\n\n        switch_jdk \"$successful_jdk\"\n\n        # Extract major version (everything before the first dot)\n        major_version=$(echo \"$successful_jdk\" | cut -d. -f1)\n\n        # Run tests\n        if mvn test -B; then\n            echo \"✓ Tests passed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_PASSED\" >> \"$TEST_RESULTS_FILE\"\n        else\n            echo \"✗ Tests failed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_FAILED\" >> \"$TEST_RESULTS_FILE\"\n        fi\n\n        # Clean up test directory\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n    fi\n\n    # Clean up - remove the repository directory\n    cd \"$WORK_DIR\"\n    echo \"Cleaning up - removing $repo_name directory\"\n    rm -rf \"$repo_name\"\n\n    if [ $build_result -eq 0 ]; then\n        echo \"✓ PR #$pr_number built successfully\"\n        return 0\n    else\n        echo \"✗ All JDK versions failed for PR #$pr_number\"\n        # Record the failed build\n        echo \"https://github.com/$repo/pull/$pr_number\" >> \"$FAILED_BUILDS_FILE\"\n        return 1\n    fi\n}\n\n# Main processing\necho \"Reading failing PRs...\"\n# Read the entire file content\nfile_content=$(cat \"$FAILING_PRS_FILE\")\n\n# Use jq to parse the JSON and extract the URLs\npr_urls=$(echo \"$file_content\" | jq -r '.[].url')\n\n# Setting IFS to only recognize newlines\nIFS=$'\\n'\n\n#  echo \"$pr_urls\"\n\n# Function to extract PR number and repository from URL\nextract_pr_info() {\n    local url=\"$1\"\n    local pr_number repo\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n    echo \"$pr_number $repo\"\n}\n\n# Loop through the extracted URLs\n# Using an array to avoid subshell issues with pipelines\nreadarray -t url_array <<< \"$pr_urls\"\nfor url in \"${url_array[@]}\"; do\n    if [ -z \"$url\" ]; then\n        continue  # Skip empty lines\n    fi\n\n    echo \"Processing PR: $url\"\n\n    # Extract PR number and repository directly for better reliability\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n\n    echo \"PR Number: $pr_number, Repository: $repo\"\n\n    if [ -n \"$pr_number\" ] && [ -n \"$repo\" ]; then\n        test_pr \"$pr_number\" \"$repo\" || true  # Continue even if test_pr fails\n    else\n        echo \"Invalid PR data: $url\"\n    fi\ndone\n\n\necho \"Done.\"\necho \"Successful builds saved to $SUCCESS_FILE\"\necho \"Failed builds saved to $FAILED_BUILDS_FILE\"\necho \"Test results saved to $TEST_RESULTS_FILE\"\n\n# Print summary statistics\nif [ -f \"$SUCCESS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    success_count=$(( $(wc -l < \"$SUCCESS_FILE\") - 1 ))\n    echo \"Successfully built PRs: $success_count\"\nelse\n    echo \"No successful builds.\"\nfi\n\nif [ -f \"$FAILED_BUILDS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    failed_count=$(( $(wc -l < \"$FAILED_BUILDS_FILE\") - 1 ))\n    echo \"Failed PRs: $failed_count\"\nelse\n    echo \"No failed builds.\"\nfi\n\nif [ -f \"$TEST_RESULTS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    tests_run_count=$(( $(wc -l < \"$TEST_RESULTS_FILE\") - 1 ))\n    tests_passed_count=$(grep \"TESTS_PASSED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    tests_failed_count=$(grep \"TESTS_FAILED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    echo \"Tests run: $tests_run_count\"\n    echo \"Tests passed: $tests_passed_count\"\n    echo \"Tests failed: $tests_failed_count\"\nelse\n    echo \"No tests were run.\"\nfi\n"
+                    }
+                ]
+            },
+            "createdAt": 1745336090375,
+            "isInternal": false,
+            "rawContent": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Invoke auxiliary scripts via SCRIPT_DIR for reliability The line"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "codeBlock",
+                        "attrs": {
+                            "language": null
+                        },
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "./install-jdk-versions.sh"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "assumes the current working directory. It’s safer to use the absolute path:"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "codeBlock",
+                        "attrs": {
+                            "language": null
+                        },
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "- ./install-jdk-versions.sh\n+ \"$SCRIPT_DIR/install-jdk-versions.sh\""
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "This guarantees the correct script is run regardless of $PWD."
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "833b78c4-c8ca-4222-afe0-5d8d8cc18f63",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "To ensure that the script `install-jdk-versions.sh` is invoked reliably regardless of the current working directory, you should modify the script to use the absolute path. This can be achieved by using the `SCRIPT_DIR` variable, which holds the directory path of the current script. Here's how you can update the line in your script:\n\nReplace:\n```bash\n./install-jdk-versions.sh\n```\n\nWith:\n```bash\n\"$SCRIPT_DIR/install-jdk-versions.sh\"\n```\n\nThis change ensures that the script `install-jdk-versions.sh` is always executed from its correct location, avoiding any issues related to the current working directory. This is particularly useful in environments where the script might be run from different directories."
+                }
+            ],
+            "context": {
+                "currentFile": {
+                    "path": "test-pr-builds.sh",
+                    "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                    "sources": [
+                        "opened_tab"
+                    ],
+                    "content": "#!/bin/bash\n\nset -e\n\n# Get the directory of this script\nSCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" >/dev/null 2>&1 && pwd )\"\n\n# Constants\nWORK_DIR=\"/tmp/pr-build-tests\"\nSUCCESS_FILE=\"$SCRIPT_DIR/data/consolidated/successful_builds.csv\"\nFAILING_PRS_FILE=\"$SCRIPT_DIR/data/consolidated/failing_prs.json\"\nFAILED_BUILDS_FILE=\"$SCRIPT_DIR/data/consolidated/failed_builds.csv\"\nTEST_RESULTS_FILE=\"$SCRIPT_DIR/data/consolidated/test_results.csv\"\n\n# Create working directory and ensure data directory exists\nmkdir -p \"$WORK_DIR\"\nmkdir -p \"$(dirname \"$SUCCESS_FILE\")\"\nrm -f \"$SUCCESS_FILE\"\nrm -f \"$FAILED_BUILDS_FILE\"\nrm -f \"$TEST_RESULTS_FILE\"\n\n# Add CSV headers\necho \"PR_URL,JDK_VERSION\" > \"$SUCCESS_FILE\"\necho \"PR_URL\" > \"$FAILED_BUILDS_FILE\"\necho \"PR_URL,JDK_VERSION,TEST_RESULT\" > \"$TEST_RESULTS_FILE\"\n\n# First ensure JDK versions are installed\n./install-jdk-versions.sh\n\n# Initialize SDKMAN\nsource \"$HOME/.sdkman/bin/sdkman-init.sh\"\n\n# Define major Java versions we want to test (in descending order)\nMAJOR_VERSIONS=(\"17\" \"11\" \"8\")\n\n# Get the installed JDK versions for each major version\nJDK_VERSIONS=()\nfor major in \"${MAJOR_VERSIONS[@]}\"; do\n    version=$( \"$SCRIPT_DIR/get-jdk-versions.sh\" \"$major\" )\n    if [ -n \"$version\" ]; then\n        JDK_VERSIONS+=(\"$version\")\n    fi\ndone\n\n# Function to switch JDK version\nswitch_jdk() {\n    local version=$1\n    echo \"Switching to JDK $version\"\n    sdk use java \"$version\"\n}\n\n# Function to test PR\ntest_pr() {\n    local pr_number=$1\n    local repo=$2\n    local branch=$3\n\n    # Extract just the repository name (without organization)\n    repo_name=$(echo \"$repo\" | sed 's#.*/##')\n\n    # Clone and checkout PR\n    echo \"Testing PR #$pr_number in $repo\"\n    cd \"$WORK_DIR\"\n    rm -rf \"$repo_name\"\n\n    # Traditional git method - more reliable\n    echo \"Cloning repository and checking out PR #$pr_number\"\n    git clone \"https://github.com/$repo.git\"\n    cd \"$repo_name\"\n    git fetch origin pull/$pr_number/head:pr-$pr_number\n    git checkout pr-$pr_number\n\n    # Verify we're on the PR branch\n    echo \"Current branch: $(git branch --show-current)\"\n\n    local build_result=1\n    local successful_jdk=\"\"\n\n    # Try JDK versions in order\n    for jdk in \"${JDK_VERSIONS[@]}\"; do\n        switch_jdk \"$jdk\"\n        echo \"Attempting build with JDK $jdk\"\n\n        # Try to build without tests first\n        if mvn clean verify -B -Dmaven.test.skip=true; then\n            # Extract major version (everything before the first dot)\n            major_version=$(echo \"$jdk\" | cut -d. -f1)\n            echo \"✓ Build successful with JDK $jdk (without tests)\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version\" >> \"$SUCCESS_FILE\"\n            build_result=0\n            successful_jdk=\"$jdk\"\n            break  # Exit the loop once we have a successful build\n        else\n            echo \"✗ Build failed with JDK $jdk\"\n        fi\n    done\n\n    # If build was successful, run tests\n    if [ $build_result -eq 0 ]; then\n        echo \"Running tests with JDK $successful_jdk\"\n\n        # Clone the repository again for testing\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n        git clone \"https://github.com/$repo.git\" \"${repo_name}_tests\"\n        cd \"${repo_name}_tests\"\n        git fetch origin pull/$pr_number/head:pr-$pr_number\n        git checkout pr-$pr_number\n\n        switch_jdk \"$successful_jdk\"\n\n        # Extract major version (everything before the first dot)\n        major_version=$(echo \"$successful_jdk\" | cut -d. -f1)\n\n        # Run tests\n        if mvn test -B; then\n            echo \"✓ Tests passed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_PASSED\" >> \"$TEST_RESULTS_FILE\"\n        else\n            echo \"✗ Tests failed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_FAILED\" >> \"$TEST_RESULTS_FILE\"\n        fi\n\n        # Clean up test directory\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n    fi\n\n    # Clean up - remove the repository directory\n    cd \"$WORK_DIR\"\n    echo \"Cleaning up - removing $repo_name directory\"\n    rm -rf \"$repo_name\"\n\n    if [ $build_result -eq 0 ]; then\n        echo \"✓ PR #$pr_number built successfully\"\n        return 0\n    else\n        echo \"✗ All JDK versions failed for PR #$pr_number\"\n        # Record the failed build\n        echo \"https://github.com/$repo/pull/$pr_number\" >> \"$FAILED_BUILDS_FILE\"\n        return 1\n    fi\n}\n\n# Main processing\necho \"Reading failing PRs...\"\n# Read the entire file content\nfile_content=$(cat \"$FAILING_PRS_FILE\")\n\n# Use jq to parse the JSON and extract the URLs\npr_urls=$(echo \"$file_content\" | jq -r '.[].url')\n\n# Setting IFS to only recognize newlines\nIFS=$'\\n'\n\n#  echo \"$pr_urls\"\n\n# Function to extract PR number and repository from URL\nextract_pr_info() {\n    local url=\"$1\"\n    local pr_number repo\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n    echo \"$pr_number $repo\"\n}\n\n# Loop through the extracted URLs\n# Using an array to avoid subshell issues with pipelines\nreadarray -t url_array <<< \"$pr_urls\"\nfor url in \"${url_array[@]}\"; do\n    if [ -z \"$url\" ]; then\n        continue  # Skip empty lines\n    fi\n\n    echo \"Processing PR: $url\"\n\n    # Extract PR number and repository directly for better reliability\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n\n    echo \"PR Number: $pr_number, Repository: $repo\"\n\n    if [ -n \"$pr_number\" ] && [ -n \"$repo\" ]; then\n        test_pr \"$pr_number\" \"$repo\" || true  # Continue even if test_pr fails\n    else\n        echo \"Invalid PR data: $url\"\n    fi\ndone\n\n\necho \"Done.\"\necho \"Successful builds saved to $SUCCESS_FILE\"\necho \"Failed builds saved to $FAILED_BUILDS_FILE\"\necho \"Test results saved to $TEST_RESULTS_FILE\"\n\n# Print summary statistics\nif [ -f \"$SUCCESS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    success_count=$(( $(wc -l < \"$SUCCESS_FILE\") - 1 ))\n    echo \"Successfully built PRs: $success_count\"\nelse\n    echo \"No successful builds.\"\nfi\n\nif [ -f \"$FAILED_BUILDS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    failed_count=$(( $(wc -l < \"$FAILED_BUILDS_FILE\") - 1 ))\n    echo \"Failed PRs: $failed_count\"\nelse\n    echo \"No failed builds.\"\nfi\n\nif [ -f \"$TEST_RESULTS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    tests_run_count=$(( $(wc -l < \"$TEST_RESULTS_FILE\") - 1 ))\n    tests_passed_count=$(grep \"TESTS_PASSED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    tests_failed_count=$(grep \"TESTS_FAILED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    echo \"Tests run: $tests_run_count\"\n    echo \"Tests passed: $tests_passed_count\"\n    echo \"Tests failed: $tests_failed_count\"\nelse\n    echo \"No tests were run.\"\nfi\n"
+                },
+                "codebaseEnabled": true,
+                "ragFiles": [
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/idna/core.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\idna\\core.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_impl.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\pyproject_hooks\\_impl.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/idna/core.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\idna\\core.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/req/req_uninstall.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\req\\req_uninstall.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/commands/completion.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\commands\\completion.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/wheel.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\wheel.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/pkg_resources/__init__.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\pkg_resources\\__init__.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/operations/install/wheel.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\operations\\install\\wheel.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/scripts.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\scripts.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "install-jdk-versions.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\install-jdk-versions.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "check-env.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\check-env.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "get-jdk-versions.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\get-jdk-versions.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "update-daily.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "find-junit5-prs.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\find-junit5-prs.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\consolidated\\successful_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\successful_builds.csv",
+                        "sources": []
+                    },
+                    {
+                        "path": "generate-report.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\generate-report.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "data/consolidated/failed_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\failed_builds.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/consolidated/successful_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\successful_builds.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/consolidated/test_results.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\test_results.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "update-daily.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "upload_to_sheets.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\upload_to_sheets.py",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/junit5/junit5_migration_prs.json",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\junit5_migration_prs.json",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "cmd/find-junit5-prs/main.go",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    }
+                ],
+                "rerankedFiles": [
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "test-pr-builds.sh"
+                    }
+                ],
+                "usedFilePaths": [
+                    {
+                        "path": "test-pr-builds.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh",
+                        "sources": [
+                            "opened_tab"
+                        ],
+                        "content": "#!/bin/bash\n\nset -e\n\n# Get the directory of this script\nSCRIPT_DIR=\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" >/dev/null 2>&1 && pwd )\"\n\n# Constants\nWORK_DIR=\"/tmp/pr-build-tests\"\nSUCCESS_FILE=\"$SCRIPT_DIR/data/consolidated/successful_builds.csv\"\nFAILING_PRS_FILE=\"$SCRIPT_DIR/data/consolidated/failing_prs.json\"\nFAILED_BUILDS_FILE=\"$SCRIPT_DIR/data/consolidated/failed_builds.csv\"\nTEST_RESULTS_FILE=\"$SCRIPT_DIR/data/consolidated/test_results.csv\"\n\n# Create working directory and ensure data directory exists\nmkdir -p \"$WORK_DIR\"\nmkdir -p \"$(dirname \"$SUCCESS_FILE\")\"\nrm -f \"$SUCCESS_FILE\"\nrm -f \"$FAILED_BUILDS_FILE\"\nrm -f \"$TEST_RESULTS_FILE\"\n\n# Add CSV headers\necho \"PR_URL,JDK_VERSION\" > \"$SUCCESS_FILE\"\necho \"PR_URL\" > \"$FAILED_BUILDS_FILE\"\necho \"PR_URL,JDK_VERSION,TEST_RESULT\" > \"$TEST_RESULTS_FILE\"\n\n# First ensure JDK versions are installed\n./install-jdk-versions.sh\n\n# Initialize SDKMAN\nsource \"$HOME/.sdkman/bin/sdkman-init.sh\"\n\n# Define major Java versions we want to test (in descending order)\nMAJOR_VERSIONS=(\"17\" \"11\" \"8\")\n\n# Get the installed JDK versions for each major version\nJDK_VERSIONS=()\nfor major in \"${MAJOR_VERSIONS[@]}\"; do\n    version=$( \"$SCRIPT_DIR/get-jdk-versions.sh\" \"$major\" )\n    if [ -n \"$version\" ]; then\n        JDK_VERSIONS+=(\"$version\")\n    fi\ndone\n\n# Function to switch JDK version\nswitch_jdk() {\n    local version=$1\n    echo \"Switching to JDK $version\"\n    sdk use java \"$version\"\n}\n\n# Function to test PR\ntest_pr() {\n    local pr_number=$1\n    local repo=$2\n    local branch=$3\n\n    # Extract just the repository name (without organization)\n    repo_name=$(echo \"$repo\" | sed 's#.*/##')\n\n    # Clone and checkout PR\n    echo \"Testing PR #$pr_number in $repo\"\n    cd \"$WORK_DIR\"\n    rm -rf \"$repo_name\"\n\n    # Traditional git method - more reliable\n    echo \"Cloning repository and checking out PR #$pr_number\"\n    git clone \"https://github.com/$repo.git\"\n    cd \"$repo_name\"\n    git fetch origin pull/$pr_number/head:pr-$pr_number\n    git checkout pr-$pr_number\n\n    # Verify we're on the PR branch\n    echo \"Current branch: $(git branch --show-current)\"\n\n    local build_result=1\n    local successful_jdk=\"\"\n\n    # Try JDK versions in order\n    for jdk in \"${JDK_VERSIONS[@]}\"; do\n        switch_jdk \"$jdk\"\n        echo \"Attempting build with JDK $jdk\"\n\n        # Try to build without tests first\n        if mvn clean verify -B -Dmaven.test.skip=true; then\n            # Extract major version (everything before the first dot)\n            major_version=$(echo \"$jdk\" | cut -d. -f1)\n            echo \"✓ Build successful with JDK $jdk (without tests)\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version\" >> \"$SUCCESS_FILE\"\n            build_result=0\n            successful_jdk=\"$jdk\"\n            break  # Exit the loop once we have a successful build\n        else\n            echo \"✗ Build failed with JDK $jdk\"\n        fi\n    done\n\n    # If build was successful, run tests\n    if [ $build_result -eq 0 ]; then\n        echo \"Running tests with JDK $successful_jdk\"\n\n        # Clone the repository again for testing\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n        git clone \"https://github.com/$repo.git\" \"${repo_name}_tests\"\n        cd \"${repo_name}_tests\"\n        git fetch origin pull/$pr_number/head:pr-$pr_number\n        git checkout pr-$pr_number\n\n        switch_jdk \"$successful_jdk\"\n\n        # Extract major version (everything before the first dot)\n        major_version=$(echo \"$successful_jdk\" | cut -d. -f1)\n\n        # Run tests\n        if mvn test -B; then\n            echo \"✓ Tests passed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_PASSED\" >> \"$TEST_RESULTS_FILE\"\n        else\n            echo \"✗ Tests failed with JDK $successful_jdk\"\n            echo \"https://github.com/$repo/pull/$pr_number,$major_version,TESTS_FAILED\" >> \"$TEST_RESULTS_FILE\"\n        fi\n\n        # Clean up test directory\n        cd \"$WORK_DIR\"\n        rm -rf \"${repo_name}_tests\"\n    fi\n\n    # Clean up - remove the repository directory\n    cd \"$WORK_DIR\"\n    echo \"Cleaning up - removing $repo_name directory\"\n    rm -rf \"$repo_name\"\n\n    if [ $build_result -eq 0 ]; then\n        echo \"✓ PR #$pr_number built successfully\"\n        return 0\n    else\n        echo \"✗ All JDK versions failed for PR #$pr_number\"\n        # Record the failed build\n        echo \"https://github.com/$repo/pull/$pr_number\" >> \"$FAILED_BUILDS_FILE\"\n        return 1\n    fi\n}\n\n# Main processing\necho \"Reading failing PRs...\"\n# Read the entire file content\nfile_content=$(cat \"$FAILING_PRS_FILE\")\n\n# Use jq to parse the JSON and extract the URLs\npr_urls=$(echo \"$file_content\" | jq -r '.[].url')\n\n# Setting IFS to only recognize newlines\nIFS=$'\\n'\n\n#  echo \"$pr_urls\"\n\n# Function to extract PR number and repository from URL\nextract_pr_info() {\n    local url=\"$1\"\n    local pr_number repo\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n    echo \"$pr_number $repo\"\n}\n\n# Loop through the extracted URLs\n# Using an array to avoid subshell issues with pipelines\nreadarray -t url_array <<< \"$pr_urls\"\nfor url in \"${url_array[@]}\"; do\n    if [ -z \"$url\" ]; then\n        continue  # Skip empty lines\n    fi\n\n    echo \"Processing PR: $url\"\n\n    # Extract PR number and repository directly for better reliability\n    pr_number=$(echo \"$url\" | sed -E 's#.*/pull/([0-9]+).*#\\1#')\n    repo=$(echo \"$url\" | sed -E 's#https://github.com/([^/]+/[^/]+).*#\\1#')\n\n    echo \"PR Number: $pr_number, Repository: $repo\"\n\n    if [ -n \"$pr_number\" ] && [ -n \"$repo\" ]; then\n        test_pr \"$pr_number\" \"$repo\" || true  # Continue even if test_pr fails\n    else\n        echo \"Invalid PR data: $url\"\n    fi\ndone\n\n\necho \"Done.\"\necho \"Successful builds saved to $SUCCESS_FILE\"\necho \"Failed builds saved to $FAILED_BUILDS_FILE\"\necho \"Test results saved to $TEST_RESULTS_FILE\"\n\n# Print summary statistics\nif [ -f \"$SUCCESS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    success_count=$(( $(wc -l < \"$SUCCESS_FILE\") - 1 ))\n    echo \"Successfully built PRs: $success_count\"\nelse\n    echo \"No successful builds.\"\nfi\n\nif [ -f \"$FAILED_BUILDS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    failed_count=$(( $(wc -l < \"$FAILED_BUILDS_FILE\") - 1 ))\n    echo \"Failed PRs: $failed_count\"\nelse\n    echo \"No failed builds.\"\nfi\n\nif [ -f \"$TEST_RESULTS_FILE\" ]; then\n    # Subtract 1 to account for the header line\n    tests_run_count=$(( $(wc -l < \"$TEST_RESULTS_FILE\") - 1 ))\n    tests_passed_count=$(grep \"TESTS_PASSED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    tests_failed_count=$(grep \"TESTS_FAILED\" \"$TEST_RESULTS_FILE\" | wc -l)\n    echo \"Tests run: $tests_run_count\"\n    echo \"Tests passed: $tests_passed_count\"\n    echo \"Tests failed: $tests_failed_count\"\nelse\n    echo \"No tests were run.\"\nfi\n"
+                    }
+                ]
+            },
+            "createdAt": 1745336457471,
+            "isInternal": false
+        }
+    ],
+    "isAgent": false,
+    "isNameGenerated": true,
+    "isCustomAgent": false,
+    "isUnitTestsAgent": false,
+    "autoApply": false
+}
+}

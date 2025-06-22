@@ -1,0 +1,1166 @@
+{
+    "checksum": "216d5afd8a153c6526d66018bdc21e04241c541ee0bc2e99e303190493501fb2",
+    "data": {
+    "id": "2d8e818b-076c-4cff-a57f-d93c3c7cf421",
+    "createdAt": 1744874421409,
+    "updatedAt": 1744879993410,
+    "title": "JUnit 5 PR Loop Fix",
+    "messages": [
+        {
+            "id": "9e2b4b68-b19c-456c-9613-45bfc05d6aeb",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "I'm afraid we're looping forever..."
+                },
+                {
+                    "type": "text",
+                    "text": "Running JUnit 5 migration PR analysis..."
+                },
+                {
+                    "type": "text",
+                    "text": "Finding JUnit 5 migration PRs..."
+                },
+                {
+                    "type": "text",
+                    "text": "Output directory: data/junit5"
+                },
+                {
+                    "type": "text",
+                    "text": "Candidate file: junit5_candidate_prs.txt"
+                },
+                {
+                    "type": "text",
+                    "text": "Existing file: junit5_pr_urls.txt"
+                },
+                {
+                    "type": "text",
+                    "text": "Downloading dependencies..."
+                },
+                {
+                    "type": "text",
+                    "text": "Building and running the JUnit 5 PR finder..."
+                },
+                {
+                    "type": "text",
+                    "text": "Searching for PRs created on or after: 2024-07-01"
+                },
+                {
+                    "type": "text",
+                    "text": "[...]"
+                }
+            ],
+            "context": {
+                "currentFile": {
+                    "path": "cmd\\find-junit5-prs\\main.go",
+                    "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go",
+                    "sources": [
+                        "opened_tab"
+                    ],
+                    "content": "package main\n\nimport (\n\t\"context\"\n\t\"encoding/json\"\n\t\"flag\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"math\"\n\t\"math/rand\"\n\t\"os\"\n\t\"regexp\"\n\t\"strings\"\n\t\"time\"\n\n\t\"github.com/shurcooL/githubv4\"\n\t\"golang.org/x/oauth2\"\n)\n\n// JUnit5PR represents a GitHub pull request related to JUnit 5 migration\ntype JUnit5PR struct {\n\tTitle      string   `json:\"title\"`\n\tURL        string   `json:\"url\"`\n\tRepository string   `json:\"repository\"`\n\tState      string   `json:\"state\"`\n\tAuthor     string   `json:\"author\"`\n\tLabels     []string `json:\"labels\"`\n\tBody       string   `json:\"body\"`\n\tCreatedAt  string   `json:\"createdAt\"`\n}\n\n// SearchResult holds the PRs found in the search\ntype SearchResult struct {\n\tPRs []JUnit5PR `json:\"prs\"`\n}\n\n// GraphQL query structure for searching pull requests\ntype searchQuery struct {\n\tSearch struct {\n\t\tPageInfo struct {\n\t\t\tHasNextPage bool\n\t\t\tEndCursor   githubv4.String\n\t\t}\n\t\tNodes []struct {\n\t\t\tPullRequest struct {\n\t\t\t\tTitle     githubv4.String\n\t\t\t\tURL       githubv4.String\n\t\t\t\tState     githubv4.String\n\t\t\t\tCreatedAt githubv4.DateTime\n\t\t\t\tAuthor    struct {\n\t\t\t\t\tLogin githubv4.String\n\t\t\t\t}\n\t\t\t\tRepository struct {\n\t\t\t\t\tNameWithOwner githubv4.String\n\t\t\t\t}\n\t\t\t\tLabels struct {\n\t\t\t\t\tNodes []struct {\n\t\t\t\t\t\tName githubv4.String\n\t\t\t\t\t}\n\t\t\t\t} `graphql:\"labels(first: 10)\"`\n\t\t\t\tBodyText githubv4.String\n\t\t\t} `graphql:\"... on PullRequest\"`\n\t\t}\n\t} `graphql:\"search(query: $query, type: ISSUE, first: $first, after: $after)\"`\n}\n\nfunc main() {\n\t// Parse command line flags\n\toutputDir := flag.String(\"output-dir\", \"data/junit5\", \"Directory to store output files\")\n\tcandidateFile := flag.String(\"candidate-file\", \"junit5_candidate_prs.txt\", \"File to store candidate PR URLs\")\n\texistingFile := flag.String(\"existing-file\", \"junit5_pr_urls.txt\", \"File containing existing PR URLs\")\n\tstartDate := flag.String(\"start-date\", \"2024-07-01\", \"Start date for PR search (YYYY-MM-DD)\")\n\tflag.Parse()\n\n\t// Get GitHub token from environment\n\ttoken := os.Getenv(\"GITHUB_TOKEN\")\n\tif token == \"\" {\n\t\tfmt.Println(\"GITHUB_TOKEN environment variable is required\")\n\t\tos.Exit(1)\n\t}\n\n\t// Parse start date\n\tstartDateTime, err := time.Parse(\"2006-01-02\", *startDate)\n\tif err != nil {\n\t\tfmt.Printf(\"Error parsing start date: %v\\n\", err)\n\t\tos.Exit(1)\n\t}\n\tfmt.Printf(\"Searching for PRs created on or after: %s\\n\", startDateTime.Format(\"2006-01-02\"))\n\n\t// Create output directory if it doesn't exist\n\tos.MkdirAll(*outputDir, 0755)\n\n\t// Create GitHub client\n\tsrc := oauth2.StaticTokenSource(\n\t\t&oauth2.Token{AccessToken: token},\n\t)\n\thttpClient := oauth2.NewClient(context.Background(), src)\n\tclient := githubv4.NewClient(httpClient)\n\n\t// Define search terms\n\tsearchTerms := []string{\n\t\t\"junit5\",\n\t\t\"junit 5\",\n\t\t\"migrate tests to junit\",\n\t\t\"junit jupiter\",\n\t\t\"openrewrite junit\",\n\t}\n\n\t// Initialize result\n\tresult := SearchResult{\n\t\tPRs: []JUnit5PR{},\n\t}\n\n\t// Search for each term\n\tfor _, term := range searchTerms {\n\t\tfmt.Printf(\"Searching for: %s\\n\", term)\n\n\t\t// Search in title\n\t\ttitleQuery := fmt.Sprintf(\"org:jenkinsci is:pr in:title %s\", term)\n\t\tprs := searchPRs(client, titleQuery, startDateTime)\n\t\tresult.PRs = append(result.PRs, prs...)\n\n\t\t// Search in body\n\t\tbodyQuery := fmt.Sprintf(\"org:jenkinsci is:pr in:body %s\", term)\n\t\tprs = searchPRs(client, bodyQuery, startDateTime)\n\t\tresult.PRs = append(result.PRs, prs...)\n\t}\n\n\t// Search for PRs by specific authors known for JUnit 5 migrations\n\tfmt.Println(\"Searching for PRs by known JUnit 5 migration authors...\")\n\tauthorQuery := \"org:jenkinsci is:pr author:strangelookingnerd\"\n\tprs := searchPRs(client, authorQuery, startDateTime)\n\tresult.PRs = append(result.PRs, prs...)\n\n\t// Remove duplicates\n\tresult.PRs = removeDuplicates(result.PRs)\n\n\t// Save results to JSON file\n\tjsonData, err := json.MarshalIndent(result, \"\", \"  \")\n\tif err != nil {\n\t\tfmt.Printf(\"Error marshaling JSON: %v\\n\", err)\n\t\tos.Exit(1)\n\t}\n\n\toutputFile := fmt.Sprintf(\"%s/junit5_candidates.json\", *outputDir)\n\terr = ioutil.WriteFile(outputFile, jsonData, 0644)\n\tif err != nil {\n\t\tfmt.Printf(\"Error writing JSON file: %v\\n\", err)\n\t\tos.Exit(1)\n\t}\n\n\t// Generate text file with URLs for easy addition to junit5_pr_urls.txt\n\tgenerateCandidateURLsFile(result.PRs, *candidateFile)\n\n\t// Compare with existing PRs in junit5_pr_urls.txt\n\tcompareWithExistingPRs(result.PRs, *existingFile)\n\n\tfmt.Printf(\"Found %d potential JUnit 5 migration PR candidates\\n\", len(result.PRs))\n\tfmt.Printf(\"Results saved to %s and %s\\n\", outputFile, *candidateFile)\n}\n\n// searchPRs performs a GitHub search and returns PRs matching the query\nfunc searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUnit5PR {\n\tvar q searchQuery\n\tvariables := map[string]interface{}{\n\t\t\"query\": githubv4.String(query),\n\t\t\"first\": githubv4.Int(10), // Reduced from 25 to 10 to make queries even less complex\n\t\t\"after\": (*githubv4.String)(nil),\n\t}\n\n\tvar allPRs []JUnit5PR\n\tmaxRetries := 10 // Increased from 5 to 10\n\tinitialBackoff := 2 * time.Second\n\tmaxBackoff := 60 * time.Second\n\n\t// Log the query being executed\n\tfmt.Printf(\"Executing GitHub GraphQL query: %s\\n\", query)\n\tfmt.Printf(\"Start date: %s\\n\", startDate.Format(time.RFC3339))\n\n\tpageCount := 0\n\ttotalAttempts := 0\n\tfor {\n\t\t// Add a small delay between requests to respect rate limits\n\t\ttime.Sleep(1 * time.Second)\n\n\t\t// Create a context with timeout\n\t\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n\t\tdefer cancel()\n\n\t\tvar err error\n\t\tsuccess := false\n\n\t\t// Implement retry with exponential backoff\n\t\tfor attempt := 0; attempt < maxRetries && !success; attempt++ {\n\t\t\ttotalAttempts++\n\n\t\t\t// Get current rate limit information before making the request\n\t\t\tvar rateLimit struct {\n\t\t\t\tRateLimit struct {\n\t\t\t\t\tLimit     githubv4.Int\n\t\t\t\t\tRemaining githubv4.Int\n\t\t\t\t\tResetAt   githubv4.DateTime\n\t\t\t\t} `graphql:\"rateLimit\"`\n\t\t\t}\n\n\t\t\trateLimitErr := client.Query(context.Background(), &rateLimit, nil)\n\t\t\tif rateLimitErr == nil {\n\t\t\t\tfmt.Printf(\"GitHub API rate limit: %d/%d remaining, resets at %s\\n\",\n\t\t\t\t\trateLimit.RateLimit.Remaining,\n\t\t\t\t\trateLimit.RateLimit.Limit,\n\t\t\t\t\trateLimit.RateLimit.ResetAt.Format(time.RFC3339))\n\n\t\t\t\t// Check if we're close to hitting the rate limit\n\t\t\t\tif rateLimit.RateLimit.Remaining < 100 {\n\t\t\t\t\tresetTime := time.Until(rateLimit.RateLimit.ResetAt.Time)\n\t\t\t\t\tfmt.Printf(\"WARNING: Rate limit is low (%d remaining). Limit resets in %s\\n\",\n\t\t\t\t\t\trateLimit.RateLimit.Remaining,\n\t\t\t\t\t\tresetTime.Round(time.Second))\n\n\t\t\t\t\tif rateLimit.RateLimit.Remaining < 10 {\n\t\t\t\t\t\tfmt.Println(\"Rate limit critically low, waiting until reset...\")\n\t\t\t\t\t\twaitTime := time.Until(rateLimit.RateLimit.ResetAt.Time) + 10*time.Second\n\t\t\t\t\t\ttime.Sleep(waitTime)\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfmt.Printf(\"Could not fetch rate limit info: %v\\n\", rateLimitErr)\n\t\t\t}\n\n\t\t\t// Execute the actual query\n\t\t\tstartTime := time.Now()\n\t\t\terr = client.Query(ctx, &q, variables)\n\t\t\tqueryDuration := time.Since(startTime)\n\n\t\t\tif err == nil {\n\t\t\t\tsuccess = true\n\t\t\t\tfmt.Printf(\"Query succeeded in %s\\n\", queryDuration.Round(time.Millisecond))\n\n\t\t\t\t// Log the number of results received\n\t\t\t\tresultCount := len(q.Search.Nodes)\n\t\t\t\tfmt.Printf(\"Received %d results for page %d\\n\", resultCount, pageCount+1)\n\n\t\t\t\t// Process the results\n\t\t\t\tfor _, node := range q.Search.Nodes {\n\t\t\t\t\tpr := node.PullRequest\n\n\t\t\t\t\t// Extract labels\n\t\t\t\t\tvar labels []string\n\t\t\t\t\tfor _, label := range pr.Labels.Nodes {\n\t\t\t\t\t\tlabels = append(labels, string(label.Name))\n\t\t\t\t\t}\n\n\t\t\t\t\t// Create PR object\n\t\t\t\t\tnewPR := JUnit5PR{\n\t\t\t\t\t\tTitle:      string(pr.Title),\n\t\t\t\t\t\tURL:        string(pr.URL),\n\t\t\t\t\t\tRepository: string(pr.Repository.NameWithOwner),\n\t\t\t\t\t\tState:      string(pr.State),\n\t\t\t\t\t\tAuthor:     string(pr.Author.Login),\n\t\t\t\t\t\tLabels:     labels,\n\t\t\t\t\t\tBody:       string(pr.BodyText),\n\t\t\t\t\t\tCreatedAt:  pr.CreatedAt.Format(time.RFC3339),\n\t\t\t\t\t}\n\n\t\t\t\t\t// Only include PRs created on or after the start date\n\t\t\t\t\tif pr.CreatedAt.Before(startDate) {\n\t\t\t\t\t\tcontinue\n\t\t\t\t\t}\n\n\t\t\t\t\t// Only include PRs that are likely related to JUnit 5 migration\n\t\t\t\t\tif isJUnit5MigrationPR(newPR) {\n\t\t\t\t\t\tallPRs = append(allPRs, newPR)\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\t// Log progress\n\t\t\t\tfmt.Printf(\"Processed page %d, found %d matching PRs so far\\n\", pageCount+1, len(allPRs))\n\n\t\t\t\t// Check if there are more pages\n\t\t\t\tif !q.Search.PageInfo.HasNextPage {\n\t\t\t\t\tfmt.Printf(\"No more pages available, completed after %d pages\\n\", pageCount+1)\n\t\t\t\t\tbreak\n\t\t\t\t}\n\n\t\t\t\t// Move to next page\n\t\t\t\tfmt.Printf(\"Moving to next page with cursor: %s\\n\", q.Search.PageInfo.EndCursor)\n\t\t\t\tvariables[\"after\"] = githubv4.NewString(q.Search.PageInfo.EndCursor)\n\n\t\t\t\t// Reset the attempt counter since we successfully processed this page\n\t\t\t\tattempt = 0\n\n\t\t\t\t// Add a small delay before the next page to avoid overwhelming GitHub\n\t\t\t\ttime.Sleep(1 * time.Second)\n\n\t\t\t\tbreak\n\t\t\t}\n\n\t\t\t// Log detailed error information\n\t\t\tfmt.Printf(\"GitHub API error on attempt %d/%d (total %d): %v\\n\",\n\t\t\t\tattempt+1, maxRetries, totalAttempts, err)\n\t\t\tfmt.Printf(\"Query duration before error: %s\\n\", queryDuration.Round(time.Millisecond))\n\n\t\t\t// Try to parse and log more details from the error\n\t\t\tvar errorDetails struct {\n\t\t\t\tData   interface{}              `json:\"data\"`\n\t\t\t\tErrors []map[string]interface{} `json:\"errors\"`\n\t\t\t}\n\n\t\t\tif strings.Contains(err.Error(), \"{\") {\n\t\t\t\terrorJSON := err.Error()[strings.Index(err.Error(), \"{\"):]\n\t\t\t\tif jsonErr := json.Unmarshal([]byte(errorJSON), &errorDetails); jsonErr == nil {\n\t\t\t\t\tif errorDetails.Errors != nil && len(errorDetails.Errors) > 0 {\n\t\t\t\t\t\tfmt.Println(\"Detailed error information:\")\n\t\t\t\t\t\tfor i, errDetail := range errorDetails.Errors {\n\t\t\t\t\t\t\tfmt.Printf(\"  Error %d:\\n\", i+1)\n\t\t\t\t\t\t\tfor k, v := range errDetail {\n\t\t\t\t\t\t\t\tfmt.Printf(\"    %s: %v\\n\", k, v)\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t// Check if this is a retryable error (like 502)\n\t\t\tif strings.Contains(err.Error(), \"502\") ||\n\t\t\t\tstrings.Contains(err.Error(), \"timeout\") ||\n\t\t\t\tstrings.Contains(err.Error(), \"Something went wrong\") {\n\n\t\t\t\t// Calculate backoff duration with exponential increase and jitter\n\t\t\t\tbackoffTime := float64(initialBackoff) * math.Pow(2, float64(attempt))\n\t\t\t\tif backoffTime > float64(maxBackoff) {\n\t\t\t\t\tbackoffTime = float64(maxBackoff)\n\t\t\t\t}\n\n\t\t\t\t// Add jitter (±20%)\n\t\t\t\tjitter := (rand.Float64() * 0.4) - 0.2 // -20% to +20%\n\t\t\t\tbackoffTime = backoffTime * (1 + jitter)\n\n\t\t\t\tsleepDuration := time.Duration(backoffTime)\n\t\t\t\tfmt.Printf(\"Retrying in %v...\\n\", sleepDuration)\n\t\t\t\ttime.Sleep(sleepDuration)\n\t\t\t} else {\n\t\t\t\t// Non-retryable error, break out\n\t\t\t\tfmt.Println(\"Non-retryable error encountered, stopping retry attempts\")\n\t\t\t\tbreak\n\t\t\t}\n\t\t}\n\n\t\tif !success {\n\t\t\tfmt.Printf(\"Failed after %d attempts: %v\\n\", maxRetries, err)\n\t\t\tfmt.Println(\"Continuing with results collected so far...\")\n\t\t\treturn allPRs\n\t\t}\n\t}\n\n\tfmt.Printf(\"Search completed. Found %d matching PRs for query: %s\\n\", len(allPRs), query)\n\treturn allPRs\n}\n\n// isJUnit5MigrationPR checks if a PR is likely related to JUnit 5 migration\nfunc isJUnit5MigrationPR(pr JUnit5PR) bool {\n\t// Exclude dependency bumps\n\tif strings.HasPrefix(pr.Title, \"Bump\") || strings.HasPrefix(pr.Title, \"bump\") {\n\t\treturn false\n\t}\n\n\t// Exclude PRs with specific JIRA ticket prefixes that are known not to be JUnit 5 related\n\t// These are examples of tickets that were incorrectly included\n\texcludePatterns := []string{\n\t\t`(?i)JENKINS-70560`,         // Improve test coverage\n\t\t`(?i)JENKINS-75447`,         // Fix Snippetizer rendering\n\t\t`(?i)JENKINS-\\d+.*fix`,      // General fixes\n\t\t`(?i)fix`,                   // General fixes\n\t\t`(?i)improve test coverage`, // Test coverage improvements not related to JUnit 5\n\t}\n\n\tfor _, pattern := range excludePatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Title)\n\t\tif matched {\n\t\t\treturn false\n\t\t}\n\t}\n\n\t// Define more specific patterns for JUnit 5 migration PRs\n\ttitlePatterns := []string{\n\t\t`(?i)migrate tests? to junit ?5`,\n\t\t`(?i)\\bjunit ?5\\b`, // Word boundary to ensure \"junit5\" is a standalone term\n\t\t`(?i)migrate to junit ?5`,\n\t\t`(?i)junit.*(4|four).*(5|five)`,\n\t\t`(?i)junit ?5.*(migration|upgrade)`,\n\t\t`(?i)openrewrite.*junit ?5`,\n\t}\n\n\tbodyPatterns := []string{\n\t\t`(?i)migrate (all )?tests? to junit ?5`,\n\t\t`(?i)\\bjunit ?5\\b`, // Word boundary to ensure \"junit5\" is a standalone term\n\t\t`(?i)migrate to junit ?5`,\n\t\t`(?i)junit.*(4|four).*(5|five)`,\n\t\t`(?i)junit ?5.*(migration|upgrade)`,\n\t\t`(?i)openrewrite.*junit ?5`,\n\t\t`(?i)org\\.junit\\.jupiter`,\n\t\t`(?i)junit-jupiter`,\n\t}\n\n\tlabelPatterns := []string{\n\t\t`(?i)\\bjunit ?5\\b`,\n\t\t`(?i)junit-5`,\n\t\t`(?i)junit-migration`,\n\t}\n\n\tauthorPatterns := []string{\n\t\t`strangelookingnerd`,\n\t}\n\n\t// Check title with more specific matching\n\tfor _, pattern := range titlePatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Title)\n\t\tif matched {\n\t\t\treturn true\n\t\t}\n\t}\n\n\t// For body matches, require stronger evidence\n\t// Count how many patterns match in the body\n\tbodyMatchCount := 0\n\tfor _, pattern := range bodyPatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Body)\n\t\tif matched {\n\t\t\tbodyMatchCount++\n\t\t}\n\t}\n\n\t// Require at least 2 body pattern matches for a positive identification\n\t// This helps avoid false positives from PRs that mention JUnit in passing\n\tif bodyMatchCount >= 2 {\n\t\treturn true\n\t}\n\n\t// Check labels\n\tfor _, label := range pr.Labels {\n\t\tfor _, pattern := range labelPatterns {\n\t\t\tmatched, _ := regexp.MatchString(pattern, label)\n\t\t\tif matched {\n\t\t\t\treturn true\n\t\t\t}\n\t\t}\n\t}\n\n\t// Check author - but only if there's at least some mention of JUnit in the body\n\t// This avoids including all PRs from certain authors\n\tfor _, pattern := range authorPatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Author)\n\t\tif matched {\n\t\t\t// Check if there's at least some mention of JUnit in the body\n\t\t\tjunitmatch, _ := regexp.MatchString(`(?i)junit`, pr.Body)\n\t\t\tif junitmatch {\n\t\t\t\treturn true\n\t\t\t}\n\t\t}\n\t}\n\n\treturn false\n}\n\n// removeDuplicates removes duplicate PRs from the slice\nfunc removeDuplicates(prs []JUnit5PR) []JUnit5PR {\n\tseen := make(map[string]bool)\n\tvar result []JUnit5PR\n\n\tfor _, pr := range prs {\n\t\tif !seen[pr.URL] {\n\t\t\tseen[pr.URL] = true\n\t\t\tresult = append(result, pr)\n\t\t}\n\t}\n\n\treturn result\n}\n\n// generateCandidateURLsFile creates a text file with PR URLs for easy addition to junit5_pr_urls.txt\nfunc generateCandidateURLsFile(prs []JUnit5PR, outputFile string) {\n\tfile, err := os.Create(outputFile)\n\tif err != nil {\n\t\tfmt.Printf(\"Error creating file: %v\\n\", err)\n\t\treturn\n\t}\n\tdefer file.Close()\n\n\tfile.WriteString(fmt.Sprintf(\"# JUnit 5 migration PR candidates found on %s\\n\", time.Now().Format(\"2006-01-02 15:04:05\")))\n\tfile.WriteString(\"# Add relevant URLs to junit5_pr_urls.txt after verification\\n\\n\")\n\n\tfor _, pr := range prs {\n\t\tfile.WriteString(fmt.Sprintf(\"# %s - %s (%s)\\n\", pr.Repository, pr.Title, pr.State))\n\t\tfile.WriteString(fmt.Sprintf(\"%s\\n\\n\", pr.URL))\n\t}\n}\n\n// compareWithExistingPRs compares found PRs with those already in junit5_pr_urls.txt\nfunc compareWithExistingPRs(prs []JUnit5PR, existingFile string) {\n\t// Read existing PR URLs\n\texistingURLs := make(map[string]bool)\n\n\tdata, err := ioutil.ReadFile(existingFile)\n\tif err == nil {\n\t\tlines := strings.Split(string(data), \"\\n\")\n\t\tfor _, line := range lines {\n\t\t\tline = strings.TrimSpace(line)\n\t\t\tif strings.HasPrefix(line, \"https://\") {\n\t\t\t\texistingURLs[line] = true\n\t\t\t}\n\t\t}\n\t}\n\n\t// Find new PRs\n\tvar newPRs []JUnit5PR\n\tfor _, pr := range prs {\n\t\tif !existingURLs[pr.URL] {\n\t\t\tnewPRs = append(newPRs, pr)\n\t\t}\n\t}\n\n\tfmt.Printf(\"Found %d new PR candidates not already in %s\\n\", len(newPRs), existingFile)\n\n\tif len(newPRs) > 0 {\n\t\tfmt.Println(\"New PR candidates:\")\n\t\tfor _, pr := range newPRs {\n\t\t\tfmt.Printf(\"# %s - %s (%s)\\n\", pr.Repository, pr.Title, pr.State)\n\t\t\tfmt.Printf(\"%s\\n\\n\", pr.URL)\n\t\t}\n\t}\n}\n"
+                },
+                "codebaseEnabled": true,
+                "ragFiles": [
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/operations/check.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\operations\\check.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/metadata.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\metadata.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/locators.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\locators.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/rich/text.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\rich\\text.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/urllib3/connection.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\urllib3\\connection.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/pygments/modeline.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\pygments\\modeline.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/packaging/version.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\packaging\\version.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/wheel_builder.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\wheel_builder.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/req/constructors.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\req\\constructors.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_internal/index/package_finder.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_internal\\index\\package_finder.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/gspread/worksheet.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\gspread\\worksheet.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/urllib3/connection.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\urllib3\\connection.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/urllib3/response.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\urllib3\\response.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/urllib3/http2/connection.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\urllib3\\http2\\connection.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/oauthlib/common.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\oauthlib\\common.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/oauthlib/oauth2/rfc6749/clients/base.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\oauthlib\\oauth2\\rfc6749\\clients\\base.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "upload_to_sheets.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\upload_to_sheets.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distro/distro.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distro\\distro.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/index.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\index.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "venv/lib/python3.13/site-packages/pip/_vendor/distlib/manifest.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\venv\\lib\\python3.13\\site-packages\\pip\\_vendor\\distlib\\manifest.py",
+                        "sources": [
+                            "keyword_search"
+                        ]
+                    },
+                    {
+                        "path": "find-junit5-prs.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\find-junit5-prs.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "cmd\\find-junit5-prs\\main.go",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go",
+                        "sources": []
+                    },
+                    {
+                        "path": "analyze-junit5-prs.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\analyze-junit5-prs.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "junit5-migration-prs.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\junit5-migration-prs.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "cmd\\find-junit5-prs\\go.mod",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\go.mod",
+                        "sources": []
+                    },
+                    {
+                        "path": "failing-prs.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\failing-prs.sh",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\junit5\\detection_patterns.txt",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\detection_patterns.txt",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\junit5\\junit5_prs_by_user.json",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\junit5_prs_by_user.json",
+                        "sources": []
+                    },
+                    {
+                        "path": "junit5_candidate_prs.txt",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\junit5_candidate_prs.txt",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\junit5\\junit5_prs_by_state.json",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\junit5_prs_by_state.json",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\junit5\\junit5_prs_by_repo.json",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\junit5_prs_by_repo.json",
+                        "sources": []
+                    },
+                    {
+                        "path": "data\\junit5\\common_patterns.txt",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\common_patterns.txt",
+                        "sources": []
+                    },
+                    {
+                        "path": "data/consolidated/failed_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\failed_builds.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/consolidated/successful_builds.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\successful_builds.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/consolidated/test_results.csv",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\test_results.csv",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "update-daily.sh",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "upload_to_sheets.py",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\upload_to_sheets.py",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "data/junit5/junit5_migration_prs.json",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\junit5\\junit5_migration_prs.json",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    },
+                    {
+                        "path": "cmd/find-junit5-prs/main.go",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go",
+                        "sources": [
+                            "opened_tab"
+                        ]
+                    }
+                ],
+                "rerankedFiles": [
+                    {
+                        "path": "analyze-junit5-prs.sh",
+                        "fsPath": "analyze-junit5-prs.sh"
+                    },
+                    {
+                        "path": "cmd\\find-junit5-prs\\main.go",
+                        "fsPath": "cmd\\find-junit5-prs\\main.go"
+                    },
+                    {
+                        "path": "data\\junit5\\junit5_prs_by_repo.json",
+                        "fsPath": "data\\junit5\\junit5_prs_by_repo.json"
+                    },
+                    {
+                        "path": "find-junit5-prs.sh",
+                        "fsPath": "find-junit5-prs.sh"
+                    },
+                    {
+                        "path": "junit5-migration-prs.sh",
+                        "fsPath": "junit5-migration-prs.sh"
+                    }
+                ],
+                "usedFilePaths": [
+                    {
+                        "path": "cmd\\find-junit5-prs\\main.go",
+                        "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go",
+                        "sources": [
+                            "opened_tab"
+                        ],
+                        "content": "package main\n\nimport (\n\t\"context\"\n\t\"encoding/json\"\n\t\"flag\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"math\"\n\t\"math/rand\"\n\t\"os\"\n\t\"regexp\"\n\t\"strings\"\n\t\"time\"\n\n\t\"github.com/shurcooL/githubv4\"\n\t\"golang.org/x/oauth2\"\n)\n\n// JUnit5PR represents a GitHub pull request related to JUnit 5 migration\ntype JUnit5PR struct {\n\tTitle      string   `json:\"title\"`\n\tURL        string   `json:\"url\"`\n\tRepository string   `json:\"repository\"`\n\tState      string   `json:\"state\"`\n\tAuthor     string   `json:\"author\"`\n\tLabels     []string `json:\"labels\"`\n\tBody       string   `json:\"body\"`\n\tCreatedAt  string   `json:\"createdAt\"`\n}\n\n// SearchResult holds the PRs found in the search\ntype SearchResult struct {\n\tPRs []JUnit5PR `json:\"prs\"`\n}\n\n// GraphQL query structure for searching pull requests\ntype searchQuery struct {\n\tSearch struct {\n\t\tPageInfo struct {\n\t\t\tHasNextPage bool\n\t\t\tEndCursor   githubv4.String\n\t\t}\n\t\tNodes []struct {\n\t\t\tPullRequest struct {\n\t\t\t\tTitle     githubv4.String\n\t\t\t\tURL       githubv4.String\n\t\t\t\tState     githubv4.String\n\t\t\t\tCreatedAt githubv4.DateTime\n\t\t\t\tAuthor    struct {\n\t\t\t\t\tLogin githubv4.String\n\t\t\t\t}\n\t\t\t\tRepository struct {\n\t\t\t\t\tNameWithOwner githubv4.String\n\t\t\t\t}\n\t\t\t\tLabels struct {\n\t\t\t\t\tNodes []struct {\n\t\t\t\t\t\tName githubv4.String\n\t\t\t\t\t}\n\t\t\t\t} `graphql:\"labels(first: 10)\"`\n\t\t\t\tBodyText githubv4.String\n\t\t\t} `graphql:\"... on PullRequest\"`\n\t\t}\n\t} `graphql:\"search(query: $query, type: ISSUE, first: $first, after: $after)\"`\n}\n\nfunc main() {\n\t// Parse command line flags\n\toutputDir := flag.String(\"output-dir\", \"data/junit5\", \"Directory to store output files\")\n\tcandidateFile := flag.String(\"candidate-file\", \"junit5_candidate_prs.txt\", \"File to store candidate PR URLs\")\n\texistingFile := flag.String(\"existing-file\", \"junit5_pr_urls.txt\", \"File containing existing PR URLs\")\n\tstartDate := flag.String(\"start-date\", \"2024-07-01\", \"Start date for PR search (YYYY-MM-DD)\")\n\tflag.Parse()\n\n\t// Get GitHub token from environment\n\ttoken := os.Getenv(\"GITHUB_TOKEN\")\n\tif token == \"\" {\n\t\tfmt.Println(\"GITHUB_TOKEN environment variable is required\")\n\t\tos.Exit(1)\n\t}\n\n\t// Parse start date\n\tstartDateTime, err := time.Parse(\"2006-01-02\", *startDate)\n\tif err != nil {\n\t\tfmt.Printf(\"Error parsing start date: %v\\n\", err)\n\t\tos.Exit(1)\n\t}\n\tfmt.Printf(\"Searching for PRs created on or after: %s\\n\", startDateTime.Format(\"2006-01-02\"))\n\n\t// Create output directory if it doesn't exist\n\tos.MkdirAll(*outputDir, 0755)\n\n\t// Create GitHub client\n\tsrc := oauth2.StaticTokenSource(\n\t\t&oauth2.Token{AccessToken: token},\n\t)\n\thttpClient := oauth2.NewClient(context.Background(), src)\n\tclient := githubv4.NewClient(httpClient)\n\n\t// Define search terms\n\tsearchTerms := []string{\n\t\t\"junit5\",\n\t\t\"junit 5\",\n\t\t\"migrate tests to junit\",\n\t\t\"junit jupiter\",\n\t\t\"openrewrite junit\",\n\t}\n\n\t// Initialize result\n\tresult := SearchResult{\n\t\tPRs: []JUnit5PR{},\n\t}\n\n\t// Search for each term\n\tfor _, term := range searchTerms {\n\t\tfmt.Printf(\"Searching for: %s\\n\", term)\n\n\t\t// Search in title\n\t\ttitleQuery := fmt.Sprintf(\"org:jenkinsci is:pr in:title %s\", term)\n\t\tprs := searchPRs(client, titleQuery, startDateTime)\n\t\tresult.PRs = append(result.PRs, prs...)\n\n\t\t// Search in body\n\t\tbodyQuery := fmt.Sprintf(\"org:jenkinsci is:pr in:body %s\", term)\n\t\tprs = searchPRs(client, bodyQuery, startDateTime)\n\t\tresult.PRs = append(result.PRs, prs...)\n\t}\n\n\t// Search for PRs by specific authors known for JUnit 5 migrations\n\tfmt.Println(\"Searching for PRs by known JUnit 5 migration authors...\")\n\tauthorQuery := \"org:jenkinsci is:pr author:strangelookingnerd\"\n\tprs := searchPRs(client, authorQuery, startDateTime)\n\tresult.PRs = append(result.PRs, prs...)\n\n\t// Remove duplicates\n\tresult.PRs = removeDuplicates(result.PRs)\n\n\t// Save results to JSON file\n\tjsonData, err := json.MarshalIndent(result, \"\", \"  \")\n\tif err != nil {\n\t\tfmt.Printf(\"Error marshaling JSON: %v\\n\", err)\n\t\tos.Exit(1)\n\t}\n\n\toutputFile := fmt.Sprintf(\"%s/junit5_candidates.json\", *outputDir)\n\terr = ioutil.WriteFile(outputFile, jsonData, 0644)\n\tif err != nil {\n\t\tfmt.Printf(\"Error writing JSON file: %v\\n\", err)\n\t\tos.Exit(1)\n\t}\n\n\t// Generate text file with URLs for easy addition to junit5_pr_urls.txt\n\tgenerateCandidateURLsFile(result.PRs, *candidateFile)\n\n\t// Compare with existing PRs in junit5_pr_urls.txt\n\tcompareWithExistingPRs(result.PRs, *existingFile)\n\n\tfmt.Printf(\"Found %d potential JUnit 5 migration PR candidates\\n\", len(result.PRs))\n\tfmt.Printf(\"Results saved to %s and %s\\n\", outputFile, *candidateFile)\n}\n\n// searchPRs performs a GitHub search and returns PRs matching the query\nfunc searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUnit5PR {\n\tvar q searchQuery\n\tvariables := map[string]interface{}{\n\t\t\"query\": githubv4.String(query),\n\t\t\"first\": githubv4.Int(10), // Reduced from 25 to 10 to make queries even less complex\n\t\t\"after\": (*githubv4.String)(nil),\n\t}\n\n\tvar allPRs []JUnit5PR\n\tmaxRetries := 10 // Increased from 5 to 10\n\tinitialBackoff := 2 * time.Second\n\tmaxBackoff := 60 * time.Second\n\n\t// Log the query being executed\n\tfmt.Printf(\"Executing GitHub GraphQL query: %s\\n\", query)\n\tfmt.Printf(\"Start date: %s\\n\", startDate.Format(time.RFC3339))\n\n\tpageCount := 0\n\ttotalAttempts := 0\n\tfor {\n\t\t// Add a small delay between requests to respect rate limits\n\t\ttime.Sleep(1 * time.Second)\n\n\t\t// Create a context with timeout\n\t\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n\t\tdefer cancel()\n\n\t\tvar err error\n\t\tsuccess := false\n\n\t\t// Implement retry with exponential backoff\n\t\tfor attempt := 0; attempt < maxRetries && !success; attempt++ {\n\t\t\ttotalAttempts++\n\n\t\t\t// Get current rate limit information before making the request\n\t\t\tvar rateLimit struct {\n\t\t\t\tRateLimit struct {\n\t\t\t\t\tLimit     githubv4.Int\n\t\t\t\t\tRemaining githubv4.Int\n\t\t\t\t\tResetAt   githubv4.DateTime\n\t\t\t\t} `graphql:\"rateLimit\"`\n\t\t\t}\n\n\t\t\trateLimitErr := client.Query(context.Background(), &rateLimit, nil)\n\t\t\tif rateLimitErr == nil {\n\t\t\t\tfmt.Printf(\"GitHub API rate limit: %d/%d remaining, resets at %s\\n\",\n\t\t\t\t\trateLimit.RateLimit.Remaining,\n\t\t\t\t\trateLimit.RateLimit.Limit,\n\t\t\t\t\trateLimit.RateLimit.ResetAt.Format(time.RFC3339))\n\n\t\t\t\t// Check if we're close to hitting the rate limit\n\t\t\t\tif rateLimit.RateLimit.Remaining < 100 {\n\t\t\t\t\tresetTime := time.Until(rateLimit.RateLimit.ResetAt.Time)\n\t\t\t\t\tfmt.Printf(\"WARNING: Rate limit is low (%d remaining). Limit resets in %s\\n\",\n\t\t\t\t\t\trateLimit.RateLimit.Remaining,\n\t\t\t\t\t\tresetTime.Round(time.Second))\n\n\t\t\t\t\tif rateLimit.RateLimit.Remaining < 10 {\n\t\t\t\t\t\tfmt.Println(\"Rate limit critically low, waiting until reset...\")\n\t\t\t\t\t\twaitTime := time.Until(rateLimit.RateLimit.ResetAt.Time) + 10*time.Second\n\t\t\t\t\t\ttime.Sleep(waitTime)\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t} else {\n\t\t\t\tfmt.Printf(\"Could not fetch rate limit info: %v\\n\", rateLimitErr)\n\t\t\t}\n\n\t\t\t// Execute the actual query\n\t\t\tstartTime := time.Now()\n\t\t\terr = client.Query(ctx, &q, variables)\n\t\t\tqueryDuration := time.Since(startTime)\n\n\t\t\tif err == nil {\n\t\t\t\tsuccess = true\n\t\t\t\tfmt.Printf(\"Query succeeded in %s\\n\", queryDuration.Round(time.Millisecond))\n\n\t\t\t\t// Log the number of results received\n\t\t\t\tresultCount := len(q.Search.Nodes)\n\t\t\t\tfmt.Printf(\"Received %d results for page %d\\n\", resultCount, pageCount+1)\n\n\t\t\t\t// Process the results\n\t\t\t\tfor _, node := range q.Search.Nodes {\n\t\t\t\t\tpr := node.PullRequest\n\n\t\t\t\t\t// Extract labels\n\t\t\t\t\tvar labels []string\n\t\t\t\t\tfor _, label := range pr.Labels.Nodes {\n\t\t\t\t\t\tlabels = append(labels, string(label.Name))\n\t\t\t\t\t}\n\n\t\t\t\t\t// Create PR object\n\t\t\t\t\tnewPR := JUnit5PR{\n\t\t\t\t\t\tTitle:      string(pr.Title),\n\t\t\t\t\t\tURL:        string(pr.URL),\n\t\t\t\t\t\tRepository: string(pr.Repository.NameWithOwner),\n\t\t\t\t\t\tState:      string(pr.State),\n\t\t\t\t\t\tAuthor:     string(pr.Author.Login),\n\t\t\t\t\t\tLabels:     labels,\n\t\t\t\t\t\tBody:       string(pr.BodyText),\n\t\t\t\t\t\tCreatedAt:  pr.CreatedAt.Format(time.RFC3339),\n\t\t\t\t\t}\n\n\t\t\t\t\t// Only include PRs created on or after the start date\n\t\t\t\t\tif pr.CreatedAt.Before(startDate) {\n\t\t\t\t\t\tcontinue\n\t\t\t\t\t}\n\n\t\t\t\t\t// Only include PRs that are likely related to JUnit 5 migration\n\t\t\t\t\tif isJUnit5MigrationPR(newPR) {\n\t\t\t\t\t\tallPRs = append(allPRs, newPR)\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\t// Log progress\n\t\t\t\tfmt.Printf(\"Processed page %d, found %d matching PRs so far\\n\", pageCount+1, len(allPRs))\n\n\t\t\t\t// Check if there are more pages\n\t\t\t\tif !q.Search.PageInfo.HasNextPage {\n\t\t\t\t\tfmt.Printf(\"No more pages available, completed after %d pages\\n\", pageCount+1)\n\t\t\t\t\tbreak\n\t\t\t\t}\n\n\t\t\t\t// Move to next page\n\t\t\t\tfmt.Printf(\"Moving to next page with cursor: %s\\n\", q.Search.PageInfo.EndCursor)\n\t\t\t\tvariables[\"after\"] = githubv4.NewString(q.Search.PageInfo.EndCursor)\n\n\t\t\t\t// Reset the attempt counter since we successfully processed this page\n\t\t\t\tattempt = 0\n\n\t\t\t\t// Add a small delay before the next page to avoid overwhelming GitHub\n\t\t\t\ttime.Sleep(1 * time.Second)\n\n\t\t\t\tbreak\n\t\t\t}\n\n\t\t\t// Log detailed error information\n\t\t\tfmt.Printf(\"GitHub API error on attempt %d/%d (total %d): %v\\n\",\n\t\t\t\tattempt+1, maxRetries, totalAttempts, err)\n\t\t\tfmt.Printf(\"Query duration before error: %s\\n\", queryDuration.Round(time.Millisecond))\n\n\t\t\t// Try to parse and log more details from the error\n\t\t\tvar errorDetails struct {\n\t\t\t\tData   interface{}              `json:\"data\"`\n\t\t\t\tErrors []map[string]interface{} `json:\"errors\"`\n\t\t\t}\n\n\t\t\tif strings.Contains(err.Error(), \"{\") {\n\t\t\t\terrorJSON := err.Error()[strings.Index(err.Error(), \"{\"):]\n\t\t\t\tif jsonErr := json.Unmarshal([]byte(errorJSON), &errorDetails); jsonErr == nil {\n\t\t\t\t\tif errorDetails.Errors != nil && len(errorDetails.Errors) > 0 {\n\t\t\t\t\t\tfmt.Println(\"Detailed error information:\")\n\t\t\t\t\t\tfor i, errDetail := range errorDetails.Errors {\n\t\t\t\t\t\t\tfmt.Printf(\"  Error %d:\\n\", i+1)\n\t\t\t\t\t\t\tfor k, v := range errDetail {\n\t\t\t\t\t\t\t\tfmt.Printf(\"    %s: %v\\n\", k, v)\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\n\t\t\t// Check if this is a retryable error (like 502)\n\t\t\tif strings.Contains(err.Error(), \"502\") ||\n\t\t\t\tstrings.Contains(err.Error(), \"timeout\") ||\n\t\t\t\tstrings.Contains(err.Error(), \"Something went wrong\") {\n\n\t\t\t\t// Calculate backoff duration with exponential increase and jitter\n\t\t\t\tbackoffTime := float64(initialBackoff) * math.Pow(2, float64(attempt))\n\t\t\t\tif backoffTime > float64(maxBackoff) {\n\t\t\t\t\tbackoffTime = float64(maxBackoff)\n\t\t\t\t}\n\n\t\t\t\t// Add jitter (±20%)\n\t\t\t\tjitter := (rand.Float64() * 0.4) - 0.2 // -20% to +20%\n\t\t\t\tbackoffTime = backoffTime * (1 + jitter)\n\n\t\t\t\tsleepDuration := time.Duration(backoffTime)\n\t\t\t\tfmt.Printf(\"Retrying in %v...\\n\", sleepDuration)\n\t\t\t\ttime.Sleep(sleepDuration)\n\t\t\t} else {\n\t\t\t\t// Non-retryable error, break out\n\t\t\t\tfmt.Println(\"Non-retryable error encountered, stopping retry attempts\")\n\t\t\t\tbreak\n\t\t\t}\n\t\t}\n\n\t\tif !success {\n\t\t\tfmt.Printf(\"Failed after %d attempts: %v\\n\", maxRetries, err)\n\t\t\tfmt.Println(\"Continuing with results collected so far...\")\n\t\t\treturn allPRs\n\t\t}\n\t}\n\n\tfmt.Printf(\"Search completed. Found %d matching PRs for query: %s\\n\", len(allPRs), query)\n\treturn allPRs\n}\n\n// isJUnit5MigrationPR checks if a PR is likely related to JUnit 5 migration\nfunc isJUnit5MigrationPR(pr JUnit5PR) bool {\n\t// Exclude dependency bumps\n\tif strings.HasPrefix(pr.Title, \"Bump\") || strings.HasPrefix(pr.Title, \"bump\") {\n\t\treturn false\n\t}\n\n\t// Exclude PRs with specific JIRA ticket prefixes that are known not to be JUnit 5 related\n\t// These are examples of tickets that were incorrectly included\n\texcludePatterns := []string{\n\t\t`(?i)JENKINS-70560`,         // Improve test coverage\n\t\t`(?i)JENKINS-75447`,         // Fix Snippetizer rendering\n\t\t`(?i)JENKINS-\\d+.*fix`,      // General fixes\n\t\t`(?i)fix`,                   // General fixes\n\t\t`(?i)improve test coverage`, // Test coverage improvements not related to JUnit 5\n\t}\n\n\tfor _, pattern := range excludePatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Title)\n\t\tif matched {\n\t\t\treturn false\n\t\t}\n\t}\n\n\t// Define more specific patterns for JUnit 5 migration PRs\n\ttitlePatterns := []string{\n\t\t`(?i)migrate tests? to junit ?5`,\n\t\t`(?i)\\bjunit ?5\\b`, // Word boundary to ensure \"junit5\" is a standalone term\n\t\t`(?i)migrate to junit ?5`,\n\t\t`(?i)junit.*(4|four).*(5|five)`,\n\t\t`(?i)junit ?5.*(migration|upgrade)`,\n\t\t`(?i)openrewrite.*junit ?5`,\n\t}\n\n\tbodyPatterns := []string{\n\t\t`(?i)migrate (all )?tests? to junit ?5`,\n\t\t`(?i)\\bjunit ?5\\b`, // Word boundary to ensure \"junit5\" is a standalone term\n\t\t`(?i)migrate to junit ?5`,\n\t\t`(?i)junit.*(4|four).*(5|five)`,\n\t\t`(?i)junit ?5.*(migration|upgrade)`,\n\t\t`(?i)openrewrite.*junit ?5`,\n\t\t`(?i)org\\.junit\\.jupiter`,\n\t\t`(?i)junit-jupiter`,\n\t}\n\n\tlabelPatterns := []string{\n\t\t`(?i)\\bjunit ?5\\b`,\n\t\t`(?i)junit-5`,\n\t\t`(?i)junit-migration`,\n\t}\n\n\tauthorPatterns := []string{\n\t\t`strangelookingnerd`,\n\t}\n\n\t// Check title with more specific matching\n\tfor _, pattern := range titlePatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Title)\n\t\tif matched {\n\t\t\treturn true\n\t\t}\n\t}\n\n\t// For body matches, require stronger evidence\n\t// Count how many patterns match in the body\n\tbodyMatchCount := 0\n\tfor _, pattern := range bodyPatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Body)\n\t\tif matched {\n\t\t\tbodyMatchCount++\n\t\t}\n\t}\n\n\t// Require at least 2 body pattern matches for a positive identification\n\t// This helps avoid false positives from PRs that mention JUnit in passing\n\tif bodyMatchCount >= 2 {\n\t\treturn true\n\t}\n\n\t// Check labels\n\tfor _, label := range pr.Labels {\n\t\tfor _, pattern := range labelPatterns {\n\t\t\tmatched, _ := regexp.MatchString(pattern, label)\n\t\t\tif matched {\n\t\t\t\treturn true\n\t\t\t}\n\t\t}\n\t}\n\n\t// Check author - but only if there's at least some mention of JUnit in the body\n\t// This avoids including all PRs from certain authors\n\tfor _, pattern := range authorPatterns {\n\t\tmatched, _ := regexp.MatchString(pattern, pr.Author)\n\t\tif matched {\n\t\t\t// Check if there's at least some mention of JUnit in the body\n\t\t\tjunitmatch, _ := regexp.MatchString(`(?i)junit`, pr.Body)\n\t\t\tif junitmatch {\n\t\t\t\treturn true\n\t\t\t}\n\t\t}\n\t}\n\n\treturn false\n}\n\n// removeDuplicates removes duplicate PRs from the slice\nfunc removeDuplicates(prs []JUnit5PR) []JUnit5PR {\n\tseen := make(map[string]bool)\n\tvar result []JUnit5PR\n\n\tfor _, pr := range prs {\n\t\tif !seen[pr.URL] {\n\t\t\tseen[pr.URL] = true\n\t\t\tresult = append(result, pr)\n\t\t}\n\t}\n\n\treturn result\n}\n\n// generateCandidateURLsFile creates a text file with PR URLs for easy addition to junit5_pr_urls.txt\nfunc generateCandidateURLsFile(prs []JUnit5PR, outputFile string) {\n\tfile, err := os.Create(outputFile)\n\tif err != nil {\n\t\tfmt.Printf(\"Error creating file: %v\\n\", err)\n\t\treturn\n\t}\n\tdefer file.Close()\n\n\tfile.WriteString(fmt.Sprintf(\"# JUnit 5 migration PR candidates found on %s\\n\", time.Now().Format(\"2006-01-02 15:04:05\")))\n\tfile.WriteString(\"# Add relevant URLs to junit5_pr_urls.txt after verification\\n\\n\")\n\n\tfor _, pr := range prs {\n\t\tfile.WriteString(fmt.Sprintf(\"# %s - %s (%s)\\n\", pr.Repository, pr.Title, pr.State))\n\t\tfile.WriteString(fmt.Sprintf(\"%s\\n\\n\", pr.URL))\n\t}\n}\n\n// compareWithExistingPRs compares found PRs with those already in junit5_pr_urls.txt\nfunc compareWithExistingPRs(prs []JUnit5PR, existingFile string) {\n\t// Read existing PR URLs\n\texistingURLs := make(map[string]bool)\n\n\tdata, err := ioutil.ReadFile(existingFile)\n\tif err == nil {\n\t\tlines := strings.Split(string(data), \"\\n\")\n\t\tfor _, line := range lines {\n\t\t\tline = strings.TrimSpace(line)\n\t\t\tif strings.HasPrefix(line, \"https://\") {\n\t\t\t\texistingURLs[line] = true\n\t\t\t}\n\t\t}\n\t}\n\n\t// Find new PRs\n\tvar newPRs []JUnit5PR\n\tfor _, pr := range prs {\n\t\tif !existingURLs[pr.URL] {\n\t\t\tnewPRs = append(newPRs, pr)\n\t\t}\n\t}\n\n\tfmt.Printf(\"Found %d new PR candidates not already in %s\\n\", len(newPRs), existingFile)\n\n\tif len(newPRs) > 0 {\n\t\tfmt.Println(\"New PR candidates:\")\n\t\tfor _, pr := range newPRs {\n\t\t\tfmt.Printf(\"# %s - %s (%s)\\n\", pr.Repository, pr.Title, pr.State)\n\t\t\tfmt.Printf(\"%s\\n\\n\", pr.URL)\n\t\t}\n\t}\n}\n"
+                    },
+                    {
+                        "path": "analyze-junit5-prs.sh",
+                        "fsPath": "analyze-junit5-prs.sh"
+                    },
+                    {
+                        "path": "data\\junit5\\junit5_prs_by_repo.json",
+                        "fsPath": "data\\junit5\\junit5_prs_by_repo.json"
+                    },
+                    {
+                        "path": "find-junit5-prs.sh",
+                        "fsPath": "find-junit5-prs.sh"
+                    },
+                    {
+                        "path": "junit5-migration-prs.sh",
+                        "fsPath": "junit5-migration-prs.sh"
+                    }
+                ]
+            },
+            "createdAt": 1744874421409,
+            "isInternal": false,
+            "rawContent": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "I'm afraid we're looping forever..."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph"
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Running JUnit 5 migration PR analysis..."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Finding JUnit 5 migration PRs..."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Output directory: data/junit5"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Candidate file: junit5_candidate_prs.txt"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Existing file: junit5_pr_urls.txt"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Downloading dependencies..."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Building and running the JUnit 5 PR finder..."
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Searching for PRs created on or after: 2024-07-01"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "[...]"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "paragraph"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "d4d22f6a-cc7b-49bb-9d14-4d39f566094c",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "I'll help you fix the issue with the JUnit 5 PR finder that seems to be running in an infinite loop. Let's analyze the code to identify the problem.\n\nLooking at the code, I can see this is a Go program that searches for GitHub PRs related to JUnit 5 migrations. The issue is likely in the pagination logic or in how the program handles API responses.\n\nLet's first check if the program is actually running in an infinite loop by examining the `searchPRs` function, which is responsible for querying GitHub's API and handling pagination:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01E1B5oLcMoJ8diPk4V2RDFg",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "I've found the issue! The problem is in the pagination logic of the `searchPRs` function. There's an infinite loop because the outer `for` loop (line 182) doesn't have a proper exit condition when all pages have been processed.\n\nThe code attempts to break out of the loop when there are no more pages (lines 280-283), but this break statement only breaks out of the inner retry loop, not the outer pagination loop. The `pageCount` variable is also never incremented, which is another indication of the issue.\n\nLet's fix these issues:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01H2nWKhP32RFUi7S6L2qg4W",
+                    "statusText": "Change generated",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "codeHunk",
+                    "lineBasedDiff": "--- cmd/find-junit5-prs/main.go\n+++ cmd/find-junit5-prs/main.go\n@@ -185,7 +185,6 @@\n \n \t\t// Create a context with timeout\n \t\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n-\t\tdefer cancel()\n \n \t\tvar err error\n \t\tsuccess := false\n@@ -279,12 +278,16 @@\n \t\t\t\t// Check if there are more pages\n \t\t\t\tif !q.Search.PageInfo.HasNextPage {\n \t\t\t\t\tfmt.Printf(\"No more pages available, completed after %d pages\\n\", pageCount+1)\n-\t\t\t\t\tbreak\n+\t\t\t\t\tcancel() // Cancel the context before returning\n+\t\t\t\t\treturn allPRs // Exit the function when no more pages\n \t\t\t\t}\n \n \t\t\t\t// Move to next page\n \t\t\t\tfmt.Printf(\"Moving to next page with cursor: %s\\n\", q.Search.PageInfo.EndCursor)\n \t\t\t\tvariables[\"after\"] = githubv4.NewString(q.Search.PageInfo.EndCursor)\n+\t\t\t\t\n+\t\t\t\t// Increment page count\n+\t\t\t\tpageCount++\n \n \t\t\t\t// Reset the attempt counter since we successfully processed this page\n \t\t\t\tattempt = 0",
+                    "refToolCallId": "toolu_01H2nWKhP32RFUi7S6L2qg4W"
+                },
+                {
+                    "type": "text",
+                    "text": "Now I need to fix the remaining part of the function to ensure proper context cancellation and error handling:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01YVFMjmJ7dj5gKTFvyPGL2i",
+                    "title": "",
+                    "statusText": "Text to replace not found",
+                    "status": "WARNING",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "I apologize for the error. Let me view the current state of the file to make the correct changes:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01SzppLZ5z9JJcssJyxnUJBf",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let me continue viewing the rest of the function:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01SNHXJA2UdDD7reTLoMLefr",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now I'll make the correct changes to fix the infinite loop issue:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01An3RgxMfDaCeDVDzvzcTKH",
+                    "title": "",
+                    "statusText": "Text to replace not found",
+                    "status": "WARNING",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "I apologize for the confusion. Let me view the exact content of the file to make the correct changes:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01SReuY4QRYYsMasonwEdVRA",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now I'll make the correct changes:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_015CsuVVWjQKeh33GTLfkVLG",
+                    "title": "",
+                    "statusText": "Text to replace not found",
+                    "status": "WARNING",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "I apologize for the confusion. Let me try a different approach by making smaller, more targeted changes:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01HntKZ9VuTfitYAfhhpFjP3",
+                    "title": "",
+                    "statusText": "Text to replace not found",
+                    "status": "WARNING",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let me check the exact content with line numbers to make precise changes:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01Q45SJxU5SwDVctfsitwcXw",
+                    "status": "IN_PROGRESS",
+                    "isHidden": true,
+                    "localResult": "{\"status\":\"SUCCESS\",\"exitCode\":0,\"output\":\"Windows PowerShell\\nCopyright (C) Microsoft Corporation. All rights reserved.\\n\\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\\n\\nPS C:\\\\support\\\\users\\\\dev\\\\jenkins\\\\alpha-omega\\\\alpha-omega-stats> \\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"}"
+                },
+                {
+                    "type": "codePatch",
+                    "diffs": [
+                        {
+                            "path": "cmd/find-junit5-prs/main.go",
+                            "patch": "@@ -5340,25 +5340,8 @@\n ond)\n-%0A%09%09defer cancel()\n %0A%0A%09%09\n@@ -8294,29 +8294,130 @@\n unt+1)%0A%09%09%09%09%09\n-break\n+cancel() // Cancel the context before returning%0A%09%09%09%09%09return allPRs // Exit the function when no more pages\n %0A%09%09%09%09%7D%0A%0A%09%09%09%09\n@@ -8594,16 +8594,65 @@\n dCursor)\n+%0A%09%09%09%09%0A%09%09%09%09// Increment page count%0A%09%09%09%09pageCount++\n %0A%0A%09%09%09%09//\n",
+                            "isNew": false,
+                            "isApplied": true
+                        }
+                    ]
+                },
+                {
+                    "type": "shellCommand",
+                    "command": "cat -n \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\" | grep -A 10 \"if !success\"",
+                    "id": "a27b13c8-d3be-44e7-83e1-5bfbe205afdb",
+                    "status": "SUCCESS",
+                    "toolCallId": "toolu_01Q45SJxU5SwDVctfsitwcXw",
+                    "commandsRequiringConfirmation": [],
+                    "exitCode": 0,
+                    "output": "Windows PowerShell\nCopyright (C) Microsoft Corporation. All rights reserved.\n\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\n\nPS C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats> \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                    "outputPath": ".zencoder/Zencoder-c019bdac-753f-40ae-b309-309f7a90e27a.out"
+                }
+            ],
+            "context": {
+                "author": "Coding Agent",
+                "operationId": "71255172-c7a8-4f9f-9c9a-6f9e5437ae9b"
+            },
+            "createdAt": 1744874424526,
+            "isInternal": false
+        },
+        {
+            "id": "4149c613-e198-4d77-be63-a1eb9c11e80d",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let me try a different approach:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01VTx6c8Rm6MxLuf9wUxM3B2",
+                    "status": "IN_PROGRESS",
+                    "isHidden": true,
+                    "localResult": "{\"status\":\"SUCCESS\",\"exitCode\":0,\"output\":\"Windows PowerShell\\nCopyright (C) Microsoft Corporation. All rights reserved.\\n\\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\\n\\nPS C:\\\\support\\\\users\\\\dev\\\\jenkins\\\\alpha-omega\\\\alpha-omega-stats> type \\\"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\\\" | findstr /n \\\"if !success\\\"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"}"
+                },
+                {
+                    "type": "shellCommand",
+                    "command": "type \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\" | findstr /n \"if !success\"",
+                    "id": "f5d928c5-caa3-481e-a79c-ca324fa71215",
+                    "status": "SUCCESS",
+                    "toolCallId": "toolu_01VTx6c8Rm6MxLuf9wUxM3B2",
+                    "commandsRequiringConfirmation": [
+                        {
+                            "name": "findstr",
+                            "arguments": [
+                                "/n"
+                            ]
+                        }
+                    ],
+                    "exitCode": 0,
+                    "output": "Windows PowerShell\nCopyright (C) Microsoft Corporation. All rights reserved.\n\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\n\nPS C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats> type \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\" | findstr /n \"if !success\"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                    "outputPath": ".zencoder/Zencoder-afdddf7c-f337-4a36-846d-5b5e472696c1.out"
+                }
+            ],
+            "context": {
+                "author": "Coding Agent",
+                "operationId": "9c1fe9e2-0d36-4415-a961-e786585d09e7"
+            },
+            "createdAt": 1744874644596,
+            "isInternal": false
+        },
+        {
+            "id": "2ac41242-7708-4494-870a-e00538287b4e",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let me try to view the file again with a wider range:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_013sV4CYqr3VYdLS94C6EgPo",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now I'll make the changes with the exact text:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_018z3tQMxAGmeXfeL85USBjj",
+                    "title": "",
+                    "statusText": "Text to replace not found",
+                    "status": "WARNING",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let me try a different approach by creating a new file with all the changes and then replacing the original file:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01CsqDSMvvSb3dyPAqhNsYWF",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now I'll create a new fixed version of the file:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_0198Le4vDqoESukDWHsMML7V",
+                    "statusText": "Change generated",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "cmd/find-junit5-prs/main.go.fixed",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\cmd\\find-junit5-prs\\main.go.fixed"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "codeHunk",
+                    "lineBasedDiff": "--- cmd/find-junit5-prs/main.go.fixed\n+++ cmd/find-junit5-prs/main.go.fixed\n@@ -0,0 +1,537 @@\n+package main\n+\n+import (\n+\t\"context\"\n+\t\"encoding/json\"\n+\t\"flag\"\n+\t\"fmt\"\n+\t\"io/ioutil\"\n+\t\"math\"\n+\t\"math/rand\"\n+\t\"os\"\n+\t\"regexp\"\n+\t\"strings\"\n+\t\"time\"\n+\n+\t\"github.com/shurcooL/githubv4\"\n+\t\"golang.org/x/oauth2\"\n+)\n+\n+// JUnit5PR represents a GitHub pull request related to JUnit 5 migration\n+type JUnit5PR struct {\n+\tTitle      string   `json:\"title\"`\n+\tURL        string   `json:\"url\"`\n+\tRepository string   `json:\"repository\"`\n+\tState      string   `json:\"state\"`\n+\tAuthor     string   `json:\"author\"`\n+\tLabels     []string `json:\"labels\"`\n+\tBody       string   `json:\"body\"`\n+\tCreatedAt  string   `json:\"createdAt\"`\n+}\n+\n+// SearchResult holds the PRs found in the search\n+type SearchResult struct {\n+\tPRs []JUnit5PR `json:\"prs\"`\n+}\n+\n+// GraphQL query structure for searching pull requests\n+type searchQuery struct {\n+\tSearch struct {\n+\t\tPageInfo struct {\n+\t\t\tHasNextPage bool\n+\t\t\tEndCursor   githubv4.String\n+\t\t}\n+\t\tNodes []struct {\n+\t\t\tPullRequest struct {\n+\t\t\t\tTitle     githubv4.String\n+\t\t\t\tURL       githubv4.String\n+\t\t\t\tState     githubv4.String\n+\t\t\t\tCreatedAt githubv4.DateTime\n+\t\t\t\tAuthor    struct {\n+\t\t\t\t\tLogin githubv4.String\n+\t\t\t\t}\n+\t\t\t\tRepository struct {\n+\t\t\t\t\tNameWithOwner githubv4.String\n+\t\t\t\t}\n+\t\t\t\tLabels struct {\n+\t\t\t\t\tNodes []struct {\n+\t\t\t\t\t\tName githubv4.String\n+\t\t\t\t\t}\n+\t\t\t\t} `graphql:\"labels(first: 10)\"`\n+\t\t\t\tBodyText githubv4.String\n+\t\t\t} `graphql:\"... on PullRequest\"`\n+\t\t}\n+\t} `graphql:\"search(query: $query, type: ISSUE, first: $first, after: $after)\"`\n+}\n+\n+func main() {\n+\t// Parse command line flags\n+\toutputDir := flag.String(\"output-dir\", \"data/junit5\", \"Directory to store output files\")\n+\tcandidateFile := flag.String(\"candidate-file\", \"junit5_candidate_prs.txt\", \"File to store candidate PR URLs\")\n+\texistingFile := flag.String(\"existing-file\", \"junit5_pr_urls.txt\", \"File containing existing PR URLs\")\n+\tstartDate := flag.String(\"start-date\", \"2024-07-01\", \"Start date for PR search (YYYY-MM-DD)\")\n+\tflag.Parse()\n+\n+\t// Get GitHub token from environment\n+\ttoken := os.Getenv(\"GITHUB_TOKEN\")\n+\tif token == \"\" {\n+\t\tfmt.Println(\"GITHUB_TOKEN environment variable is required\")\n+\t\tos.Exit(1)\n+\t}\n+\n+\t// Parse start date\n+\tstartDateTime, err := time.Parse(\"2006-01-02\", *startDate)\n+\tif err != nil {\n+\t\tfmt.Printf(\"Error parsing start date: %v\\n\", err)\n+\t\tos.Exit(1)\n+\t}\n+\tfmt.Printf(\"Searching for PRs created on or after: %s\\n\", startDateTime.Format(\"2006-01-02\"))\n+\n+\t// Create output directory if it doesn't exist\n+\tos.MkdirAll(*outputDir, 0755)\n+\n+\t// Create GitHub client\n+\tsrc := oauth2.StaticTokenSource(\n+\t\t&oauth2.Token{AccessToken: token},\n+\t)\n+\thttpClient := oauth2.NewClient(context.Background(), src)\n+\tclient := githubv4.NewClient(httpClient)\n+\n+\t// Define search terms\n+\tsearchTerms := []string{\n+\t\t\"junit5\",\n+\t\t\"junit 5\",\n+\t\t\"migrate tests to junit\",\n+\t\t\"junit jupiter\",\n+\t\t\"openrewrite junit\",\n+\t}\n+\n+\t// Initialize result\n+\tresult := SearchResult{\n+\t\tPRs: []JUnit5PR{},\n+\t}\n+\n+\t// Search for each term\n+\tfor _, term := range searchTerms {\n+\t\tfmt.Printf(\"Searching for: %s\\n\", term)\n+\n+\t\t// Search in title\n+\t\ttitleQuery := fmt.Sprintf(\"org:jenkinsci is:pr in:title %s\", term)\n+\t\tprs := searchPRs(client, titleQuery, startDateTime)\n+\t\tresult.PRs = append(result.PRs, prs...)\n+\n+\t\t// Search in body\n+\t\tbodyQuery := fmt.Sprintf(\"org:jenkinsci is:pr in:body %s\", term)\n+\t\tprs = searchPRs(client, bodyQuery, startDateTime)\n+\t\tresult.PRs = append(result.PRs, prs...)\n+\t}\n+\n+\t// Search for PRs by specific authors known for JUnit 5 migrations\n+\tfmt.Println(\"Searching for PRs by known JUnit 5 migration authors...\")\n+\tauthorQuery := \"org:jenkinsci is:pr author:strangelookingnerd\"\n+\tprs := searchPRs(client, authorQuery, startDateTime)\n+\tresult.PRs = append(result.PRs, prs...)\n+\n+\t// Remove duplicates\n+\tresult.PRs = removeDuplicates(result.PRs)\n+\n+\t// Save results to JSON file\n+\tjsonData, err := json.MarshalIndent(result, \"\", \"  \")\n+\tif err != nil {\n+\t\tfmt.Printf(\"Error marshaling JSON: %v\\n\", err)\n+\t\tos.Exit(1)\n+\t}\n+\n+\toutputFile := fmt.Sprintf(\"%s/junit5_candidates.json\", *outputDir)\n+\terr = ioutil.WriteFile(outputFile, jsonData, 0644)\n+\tif err != nil {\n+\t\tfmt.Printf(\"Error writing JSON file: %v\\n\", err)\n+\t\tos.Exit(1)\n+\t}\n+\n+\t// Generate text file with URLs for easy addition to junit5_pr_urls.txt\n+\tgenerateCandidateURLsFile(result.PRs, *candidateFile)\n+\n+\t// Compare with existing PRs in junit5_pr_urls.txt\n+\tcompareWithExistingPRs(result.PRs, *existingFile)\n+\n+\tfmt.Printf(\"Found %d potential JUnit 5 migration PR candidates\\n\", len(result.PRs))\n+\tfmt.Printf(\"Results saved to %s and %s\\n\", outputFile, *candidateFile)\n+}\n+\n+// searchPRs performs a GitHub search and returns PRs matching the query\n+func searchPRs(client *githubv4.Client, query string, startDate time.Time) []JUnit5PR {\n+\tvar q searchQuery\n+\tvariables := map[string]interface{}{\n+\t\t\"query\": githubv4.String(query),\n+\t\t\"first\": githubv4.Int(10), // Reduced from 25 to 10 to make queries even less complex\n+\t\t\"after\": (*githubv4.String)(nil),\n+\t}\n+\n+\tvar allPRs []JUnit5PR\n+\tmaxRetries := 10 // Increased from 5 to 10\n+\tinitialBackoff := 2 * time.Second\n+\tmaxBackoff := 60 * time.Second\n+\n+\t// Log the query being executed\n+\tfmt.Printf(\"Executing GitHub GraphQL query: %s\\n\", query)\n+\tfmt.Printf(\"Start date: %s\\n\", startDate.Format(time.RFC3339))\n+\n+\tpageCount := 0\n+\ttotalAttempts := 0\n+\tmaxPages := 100 // Set a maximum page limit to prevent infinite loops\n+\t\n+\tfor pageCount < maxPages {\n+\t\t// Add a small delay between requests to respect rate limits\n+\t\ttime.Sleep(1 * time.Second)\n+\n+\t\t// Create a context with timeout\n+\t\tctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)\n+\n+\t\tvar err error\n+\t\tsuccess := false\n+\n+\t\t// Implement retry with exponential backoff\n+\t\tfor attempt := 0; attempt < maxRetries && !success; attempt++ {\n+\t\t\ttotalAttempts++\n+\n+\t\t\t// Get current rate limit information before making the request\n+\t\t\tvar rateLimit struct {\n+\t\t\t\tRateLimit struct {\n+\t\t\t\t\tLimit     githubv4.Int\n+\t\t\t\t\tRemaining githubv4.Int\n+\t\t\t\t\tResetAt   githubv4.DateTime\n+\t\t\t\t} `graphql:\"rateLimit\"`\n+\t\t\t}\n+\n+\t\t\trateLimitErr := client.Query(context.Background(), &rateLimit, nil)\n+\t\t\tif rateLimitErr == nil {\n+\t\t\t\tfmt.Printf(\"GitHub API rate limit: %d/%d remaining, resets at %s\\n\",\n+\t\t\t\t\trateLimit.RateLimit.Remaining,\n+\t\t\t\t\trateLimit.RateLimit.Limit,\n+\t\t\t\t\trateLimit.RateLimit.ResetAt.Format(time.RFC3339))\n+\n+\t\t\t\t// Check if we're close to hitting the rate limit\n+\t\t\t\tif rateLimit.RateLimit.Remaining < 100 {\n+\t\t\t\t\tresetTime := time.Until(rateLimit.RateLimit.ResetAt.Time)\n+\t\t\t\t\tfmt.Printf(\"WARNING: Rate limit is low (%d remaining). Limit resets in %s\\n\",\n+\t\t\t\t\t\trateLimit.RateLimit.Remaining,\n+\t\t\t\t\t\tresetTime.Round(time.Second))\n+\n+\t\t\t\t\tif rateLimit.RateLimit.Remaining < 10 {\n+\t\t\t\t\t\tfmt.Println(\"Rate limit critically low, waiting until reset...\")\n+\t\t\t\t\t\twaitTime := time.Until(rateLimit.RateLimit.ResetAt.Time) + 10*time.Second\n+\t\t\t\t\t\ttime.Sleep(waitTime)\n+\t\t\t\t\t}\n+\t\t\t\t}\n+\t\t\t} else {\n+\t\t\t\tfmt.Printf(\"Could not fetch rate limit info: %v\\n\", rateLimitErr)\n+\t\t\t}\n+\n+\t\t\t// Execute the actual query\n+\t\t\tstartTime := time.Now()\n+\t\t\terr = client.Query(ctx, &q, variables)\n+\t\t\tqueryDuration := time.Since(startTime)\n+\n+\t\t\tif err == nil {\n+\t\t\t\tsuccess = true\n+\t\t\t\tfmt.Printf(\"Query succeeded in %s\\n\", queryDuration.Round(time.Millisecond))\n+\n+\t\t\t\t// Log the number of results received\n+\t\t\t\tresultCount := len(q.Search.Nodes)\n+\t\t\t\tfmt.Printf(\"Received %d results for page %d\\n\", resultCount, pageCount+1)\n+\n+\t\t\t\t// Process the results\n+\t\t\t\tfor _, node := range q.Search.Nodes {\n+\t\t\t\t\tpr := node.PullRequest\n+\n+\t\t\t\t\t// Extract labels\n+\t\t\t\t\tvar labels []string\n+\t\t\t\t\tfor _, label := range pr.Labels.Nodes {\n+\t\t\t\t\t\tlabels = append(labels, string(label.Name))\n+\t\t\t\t\t}\n+\n+\t\t\t\t\t// Create PR object\n+\t\t\t\t\tnewPR := JUnit5PR{\n+\t\t\t\t\t\tTitle:      string(pr.Title),\n+\t\t\t\t\t\tURL:        string(pr.URL),\n+\t\t\t\t\t\tRepository: string(pr.Repository.NameWithOwner),\n+\t\t\t\t\t\tState:      string(pr.State),\n+\t\t\t\t\t\tAuthor:     string(pr.Author.Login),\n+\t\t\t\t\t\tLabels:     labels,\n+\t\t\t\t\t\tBody:       string(pr.BodyText),\n+\t\t\t\t\t\tCreatedAt:  pr.CreatedAt.Format(time.RFC3339),\n+\t\t\t\t\t}\n+\n+\t\t\t\t\t// Only include PRs created on or after the start date\n+\t\t\t\t\tif pr.CreatedAt.Before(startDate) {\n+\t\t\t\t\t\tcontinue\n+\t\t\t\t\t}\n+\n+\t\t\t\t\t// Only include PRs that are likely related to JUnit 5 migration\n+\t\t\t\t\tif isJUnit5MigrationPR(newPR) {\n+\t\t\t\t\t\tallPRs = append(allPRs, newPR)\n+\t\t\t\t\t}\n+\t\t\t\t}\n+\n+\t\t\t\t// Log progress\n+\t\t\t\tfmt.Printf(\"Processed page %d, found %d matching PRs so far\\n\", pageCount+1, len(allPRs))\n+\n+\t\t\t\t// Check if there are more pages\n+\t\t\t\tif !q.Search.PageInfo.HasNextPage {\n+\t\t\t\t\tfmt.Printf(\"No more pages available, completed after %d pages\\n\", pageCount+1)\n+\t\t\t\t\tcancel() // Cancel the context before returning\n+\t\t\t\t\treturn allPRs // Exit the function when no more pages\n+\t\t\t\t}\n+\n+\t\t\t\t// Move to next page\n+\t\t\t\tfmt.Printf(\"Moving to next page with cursor: %s\\n\", q.Search.PageInfo.EndCursor)\n+\t\t\t\tvariables[\"after\"] = githubv4.NewString(q.Search.PageInfo.EndCursor)\n+\t\t\t\t\n+\t\t\t\t// Increment page count\n+\t\t\t\tpageCount++\n+\n+\t\t\t\t// Add a small delay before the next page to avoid overwhelming GitHub\n+\t\t\t\ttime.Sleep(1 * time.Second)\n+\t\t\t\tbreak\n+\t\t\t}\n+\n+\t\t\t// Log detailed error information\n+\t\t\tfmt.Printf(\"GitHub API error on attempt %d/%d (total %d): %v\\n\",\n+\t\t\t\tattempt+1, maxRetries, totalAttempts, err)\n+\t\t\tfmt.Printf(\"Query duration before error: %s\\n\", queryDuration.Round(time.Millisecond))\n+\n+\t\t\t// Try to parse and log more details from the error\n+\t\t\tvar errorDetails struct {\n+\t\t\t\tData   interface{}              `json:\"data\"`\n+\t\t\t\tErrors []map[string]interface{} `json:\"errors\"`\n+\t\t\t}\n+\n+\t\t\tif strings.Contains(err.Error(), \"{\") {\n+\t\t\t\terrorJSON := err.Error()[strings.Index(err.Error(), \"{\"):]\n+\t\t\t\tif jsonErr := json.Unmarshal([]byte(errorJSON), &errorDetails); jsonErr == nil {\n+\t\t\t\t\tif errorDetails.Errors != nil && len(errorDetails.Errors) > 0 {\n+\t\t\t\t\t\tfmt.Println(\"Detailed error information:\")\n+\t\t\t\t\t\tfor i, errDetail := range errorDetails.Errors {\n+\t\t\t\t\t\t\tfmt.Printf(\"  Error %d:\\n\", i+1)\n+\t\t\t\t\t\t\tfor k, v := range errDetail {\n+\t\t\t\t\t\t\t\tfmt.Printf(\"    %s: %v\\n\", k, v)\n+\t\t\t\t\t\t\t}\n+\t\t\t\t\t\t}\n+\t\t\t\t\t}\n+\t\t\t\t}\n+\t\t\t}\n+\n+\t\t\t// Check if this is a retryable error (like 502)\n+\t\t\tif strings.Contains(err.Error(), \"502\") ||\n+\t\t\t\tstrings.Contains(err.Error(), \"timeout\") ||\n+\t\t\t\tstrings.Contains(err.Error(), \"Something went wrong\") {\n+\n+\t\t\t\t// Calculate backoff duration with exponential increase and jitter\n+\t\t\t\tbackoffTime := float64(initialBackoff) * math.Pow(2, float64(attempt))\n+\t\t\t\tif backoffTime > float64(maxBackoff) {\n+\t\t\t\t\tbackoffTime = float64(maxBackoff)\n+\t\t\t\t}\n+\n+\t\t\t\t// Add jitter (±20%)\n+\t\t\t\tjitter := (rand.Float64() * 0.4) - 0.2 // -20% to +20%\n+\t\t\t\tbackoffTime = backoffTime * (1 + jitter)\n+\n+\t\t\t\tsleepDuration := time.Duration(backoffTime)\n+\t\t\t\tfmt.Printf(\"Retrying in %v...\\n\", sleepDuration)\n+\t\t\t\ttime.Sleep(sleepDuration)\n+\t\t\t} else {\n+\t\t\t\t// Non-retryable error, break out\n+\t\t\t\tfmt.Println(\"Non-retryable error encountered, stopping retry attempts\")\n+\t\t\t\tbreak\n+\t\t\t}\n+\t\t}\n+\n+\t\tif !success {\n+\t\t\tfmt.Printf(\"Failed after %d attempts: %v\\n\", maxRetries, err)\n+\t\t\tfmt.Println(\"Continuing with results collected so far...\")\n+\t\t\tcancel() // Cancel the context before returning\n+\t\t\treturn allPRs\n+\t\t}\n+\t\t\n+\t\t// Cancel the context after we're done with it\n+\t\tcancel()\n+\t}\n+\n+\t// If we've reached the maximum number of pages, log a message\n+\tfmt.Printf(\"Reached maximum page limit (%d). Stopping to prevent excessive API usage.\\n\", maxPages)\n+\treturn allPRs\n+}\n+\n+// isJUnit5MigrationPR checks if a PR is likely related to JUnit 5 migration\n+func isJUnit5MigrationPR(pr JUnit5PR) bool {\n+\t// Exclude dependency bumps\n+\tif strings.HasPrefix(pr.Title, \"Bump\") || strings.HasPrefix(pr.Title, \"bump\") {\n+\t\treturn false\n+\t}\n+\n+\t// Exclude PRs with specific JIRA ticket prefixes that are known not to be JUnit 5 related\n+\t// These are examples of tickets that were incorrectly included\n+\texcludePatterns := []string{\n+\t\t`(?i)JENKINS-70560`,         // Improve test coverage\n+\t\t`(?i)JENKINS-75447`,         // Fix Snippetizer rendering\n+\t\t`(?i)JENKINS-\\d+.*fix`,      // General fixes\n+\t\t`(?i)fix`,                   // General fixes\n+\t\t`(?i)improve test coverage`, // Test coverage improvements not related to JUnit 5\n+\t}\n+\n+\tfor _, pattern := range excludePatterns {\n+\t\tmatched, _ := regexp.MatchString(pattern, pr.Title)\n+\t\tif matched {\n+\t\t\treturn false\n+\t\t}\n+\t}\n+\n+\t// Define more specific patterns for JUnit 5 migration PRs\n+\ttitlePatterns := []string{\n+\t\t`(?i)migrate tests? to junit ?5`,\n+\t\t`(?i)\\bjunit ?5\\b`, // Word boundary to ensure \"junit5\" is a standalone term\n+\t\t`(?i)migrate to junit ?5`,\n+\t\t`(?i)junit.*(4|four).*(5|five)`,\n+\t\t`(?i)junit ?5.*(migration|upgrade)`,\n+\t\t`(?i)openrewrite.*junit ?5`,\n+\t}\n+\n+\tbodyPatterns := []string{\n+\t\t`(?i)migrate (all )?tests? to junit ?5`,\n+\t\t`(?i)\\bjunit ?5\\b`, // Word boundary to ensure \"junit5\" is a standalone term\n+\t\t`(?i)migrate to junit ?5`,\n+\t\t`(?i)junit.*(4|four).*(5|five)`,\n+\t\t`(?i)junit ?5.*(migration|upgrade)`,\n+\t\t`(?i)openrewrite.*junit ?5`,\n+\t\t`(?i)org\\.junit\\.jupiter`,\n+\t\t`(?i)junit-jupiter`,\n+\t}\n+\n+\tlabelPatterns := []string{\n+\t\t`(?i)\\bjunit ?5\\b`,\n+\t\t`(?i)junit-5`,\n+\t\t`(?i)junit-migration`,\n+\t}\n+\n+\tauthorPatterns := []string{\n+\t\t`strangelookingnerd`,\n+\t}\n+\n+\t// Check title with more specific matching\n+\tfor _, pattern := range titlePatterns {\n+\t\tmatched, _ := regexp.MatchString(pattern, pr.Title)\n+\t\tif matched {\n+\t\t\treturn true\n+\t\t}\n+\t}\n+\n+\t// For body matches, require stronger evidence\n+\t// Count how many patterns match in the body\n+\tbodyMatchCount := 0\n+\tfor _, pattern := range bodyPatterns {\n+\t\tmatched, _ := regexp.MatchString(pattern, pr.Body)\n+\t\tif matched {\n+\t\t\tbodyMatchCount++\n+\t\t}\n+\t}\n+\n+\t// Require at least 2 body pattern matches for a positive identification\n+\t// This helps avoid false positives from PRs that mention JUnit in passing\n+\tif bodyMatchCount >= 2 {\n+\t\treturn true\n+\t}\n+\n+\t// Check labels\n+\tfor _, label := range pr.Labels {\n+\t\tfor _, pattern := range labelPatterns {\n+\t\t\tmatched, _ := regexp.MatchString(pattern, label)\n+\t\t\tif matched {\n+\t\t\t\treturn true\n+\t\t\t}\n+\t\t}\n+\t}\n+\n+\t// Check author - but only if there's at least some mention of JUnit in the body\n+\t// This avoids including all PRs from certain authors\n+\tfor _, pattern := range authorPatterns {\n+\t\tmatched, _ := regexp.MatchString(pattern, pr.Author)\n+\t\tif matched {\n+\t\t\t// Check if there's at least some mention of JUnit in the body\n+\t\t\tjunitmatch, _ := regexp.MatchString(`(?i)junit`, pr.Body)\n+\t\t\tif junitmatch {\n+\t\t\t\treturn true\n+\t\t\t}\n+\t\t}\n+\t}\n+\n+\treturn false\n+}\n+\n+// removeDuplicates removes duplicate PRs from the slice\n+func removeDuplicates(prs []JUnit5PR) []JUnit5PR {\n+\tseen := make(map[string]bool)\n+\tvar result []JUnit5PR\n+\n+\tfor _, pr := range prs {\n+\t\tif !seen[pr.URL] {\n+\t\t\tseen[pr.URL] = true\n+\t\t\tresult = append(result, pr)\n+\t\t}\n+\t}\n+\n+\treturn result\n+}\n+\n+// generateCandidateURLsFile creates a text file with PR URLs for easy addition to junit5_pr_urls.txt\n+func generateCandidateURLsFile(prs []JUnit5PR, outputFile string) {\n+\tfile, err := os.Create(outputFile)\n+\tif err != nil {\n+\t\tfmt.Printf(\"Error creating file: %v\\n\", err)\n+\t\treturn\n+\t}\n+\tdefer file.Close()\n+\n+\tfile.WriteString(fmt.Sprintf(\"# JUnit 5 migration PR candidates found on %s\\n\", time.Now().Format(\"2006-01-02 15:04:05\")))\n+\tfile.WriteString(\"# Add relevant URLs to junit5_pr_urls.txt after verification\\n\\n\")\n+\n+\tfor _, pr := range prs {\n+\t\tfile.WriteString(fmt.Sprintf(\"# %s - %s (%s)\\n\", pr.Repository, pr.Title, pr.State))\n+\t\tfile.WriteString(fmt.Sprintf(\"%s\\n\\n\", pr.URL))\n+\t}\n+}\n+\n+// compareWithExistingPRs compares found PRs with those already in junit5_pr_urls.txt\n+func compareWithExistingPRs(prs []JUnit5PR, existingFile string) {\n+\t// Read existing PR URLs\n+\texistingURLs := make(map[string]bool)\n+\n+\tdata, err := ioutil.ReadFile(existingFile)\n+\tif err == nil {\n+\t\tlines := strings.Split(string(data), \"\\n\")\n+\t\tfor _, line := range lines {\n+\t\t\tline = strings.TrimSpace(line)\n+\t\t\tif strings.HasPrefix(line, \"https://\") {\n+\t\t\t\texistingURLs[line] = true\n+\t\t\t}\n+\t\t}\n+\t}\n+\n+\t// Find new PRs\n+\tvar newPRs []JUnit5PR\n+\tfor _, pr := range prs {\n+\t\tif !existingURLs[pr.URL] {\n+\t\t\tnewPRs = append(newPRs, pr)\n+\t\t}\n+\t}\n+\n+\tfmt.Printf(\"Found %d new PR candidates not already in %s\\n\", len(newPRs), existingFile)\n+\n+\tif len(newPRs) > 0 {\n+\t\tfmt.Println(\"New PR candidates:\")\n+\t\tfor _, pr := range newPRs {\n+\t\t\tfmt.Printf(\"# %s - %s (%s)\\n\", pr.Repository, pr.Title, pr.State)\n+\t\t\tfmt.Printf(\"%s\\n\\n\", pr.URL)\n+\t\t}\n+\t}\n+}",
+                    "refToolCallId": "toolu_0198Le4vDqoESukDWHsMML7V"
+                },
+                {
+                    "type": "text",
+                    "text": "Now let's replace the original file with the fixed version:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01S7UCpxVhut5r5djq6QPEfV",
+                    "status": "IN_PROGRESS",
+                    "isHidden": true,
+                    "localResult": "{\"status\":\"SUCCESS\",\"exitCode\":0,\"output\":\"Windows PowerShell\\nCopyright (C) Microsoft Corporation. All rights reserved.\\n\\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\\n\\nPS C:\\\\support\\\\users\\\\dev\\\\jenkins\\\\alpha-omega\\\\alpha-omega-stats> copy \\\"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go.fixed\\\" \\\"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\\\"\\nPS C:\\\\support\\\\users\\\\dev\\\\jenkins\\\\alpha-omega\\\\alpha-omega-stats> \\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"}"
+                },
+                {
+                    "type": "codePatch",
+                    "diffs": [
+                        {
+                            "path": "cmd/find-junit5-prs/main.go.fixed",
+                            "patch": "@@ -0,0 +1,15967 @@\n+package main%0A%0Aimport (%0A%09%22context%22%0A%09%22encoding/json%22%0A%09%22flag%22%0A%09%22fmt%22%0A%09%22io/ioutil%22%0A%09%22math%22%0A%09%22math/rand%22%0A%09%22os%22%0A%09%22regexp%22%0A%09%22strings%22%0A%09%22time%22%0A%0A%09%22github.com/shurcooL/githubv4%22%0A%09%22golang.org/x/oauth2%22%0A)%0A%0A// JUnit5PR represents a GitHub pull request related to JUnit 5 migration%0Atype JUnit5PR struct %7B%0A%09Title      string   %60json:%22title%22%60%0A%09URL        string   %60json:%22url%22%60%0A%09Repository string   %60json:%22repository%22%60%0A%09State      string   %60json:%22state%22%60%0A%09Author     string   %60json:%22author%22%60%0A%09Labels     %5B%5Dstring %60json:%22labels%22%60%0A%09Body       string   %60json:%22body%22%60%0A%09CreatedAt  string   %60json:%22createdAt%22%60%0A%7D%0A%0A// SearchResult holds the PRs found in the search%0Atype SearchResult struct %7B%0A%09PRs %5B%5DJUnit5PR %60json:%22prs%22%60%0A%7D%0A%0A// GraphQL query structure for searching pull requests%0Atype searchQuery struct %7B%0A%09Search struct %7B%0A%09%09PageInfo struct %7B%0A%09%09%09HasNextPage bool%0A%09%09%09EndCursor   githubv4.String%0A%09%09%7D%0A%09%09Nodes %5B%5Dstruct %7B%0A%09%09%09PullRequest struct %7B%0A%09%09%09%09Title     githubv4.String%0A%09%09%09%09URL       githubv4.String%0A%09%09%09%09State     githubv4.String%0A%09%09%09%09CreatedAt githubv4.DateTime%0A%09%09%09%09Author    struct %7B%0A%09%09%09%09%09Login githubv4.String%0A%09%09%09%09%7D%0A%09%09%09%09Repository struct %7B%0A%09%09%09%09%09NameWithOwner githubv4.String%0A%09%09%09%09%7D%0A%09%09%09%09Labels struct %7B%0A%09%09%09%09%09Nodes %5B%5Dstruct %7B%0A%09%09%09%09%09%09Name githubv4.String%0A%09%09%09%09%09%7D%0A%09%09%09%09%7D %60graphql:%22labels(first: 10)%22%60%0A%09%09%09%09BodyText githubv4.String%0A%09%09%09%7D %60graphql:%22... on PullRequest%22%60%0A%09%09%7D%0A%09%7D %60graphql:%22search(query: $query, type: ISSUE, first: $first, after: $after)%22%60%0A%7D%0A%0Afunc main() %7B%0A%09// Parse command line flags%0A%09outputDir := flag.String(%22output-dir%22, %22data/junit5%22, %22Directory to store output files%22)%0A%09candidateFile := flag.String(%22candidate-file%22, %22junit5_candidate_prs.txt%22, %22File to store candidate PR URLs%22)%0A%09existingFile := flag.String(%22existing-file%22, %22junit5_pr_urls.txt%22, %22File containing existing PR URLs%22)%0A%09startDate := flag.String(%22start-date%22, %222024-07-01%22, %22Start date for PR search (YYYY-MM-DD)%22)%0A%09flag.Parse()%0A%0A%09// Get GitHub token from environment%0A%09token := os.Getenv(%22GITHUB_TOKEN%22)%0A%09if token == %22%22 %7B%0A%09%09fmt.Println(%22GITHUB_TOKEN environment variable is required%22)%0A%09%09os.Exit(1)%0A%09%7D%0A%0A%09// Parse start date%0A%09startDateTime, err := time.Parse(%222006-01-02%22, *startDate)%0A%09if err != nil %7B%0A%09%09fmt.Printf(%22Error parsing start date: %25v%5Cn%22, err)%0A%09%09os.Exit(1)%0A%09%7D%0A%09fmt.Printf(%22Searching for PRs created on or after: %25s%5Cn%22, startDateTime.Format(%222006-01-02%22))%0A%0A%09// Create output directory if it doesn't exist%0A%09os.MkdirAll(*outputDir, 0755)%0A%0A%09// Create GitHub client%0A%09src := oauth2.StaticTokenSource(%0A%09%09&oauth2.Token%7BAccessToken: token%7D,%0A%09)%0A%09httpClient := oauth2.NewClient(context.Background(), src)%0A%09client := githubv4.NewClient(httpClient)%0A%0A%09// Define search terms%0A%09searchTerms := %5B%5Dstring%7B%0A%09%09%22junit5%22,%0A%09%09%22junit 5%22,%0A%09%09%22migrate tests to junit%22,%0A%09%09%22junit jupiter%22,%0A%09%09%22openrewrite junit%22,%0A%09%7D%0A%0A%09// Initialize result%0A%09result := SearchResult%7B%0A%09%09PRs: %5B%5DJUnit5PR%7B%7D,%0A%09%7D%0A%0A%09// Search for each term%0A%09for _, term := range searchTerms %7B%0A%09%09fmt.Printf(%22Searching for: %25s%5Cn%22, term)%0A%0A%09%09// Search in title%0A%09%09titleQuery := fmt.Sprintf(%22org:jenkinsci is:pr in:title %25s%22, term)%0A%09%09prs := searchPRs(client, titleQuery, startDateTime)%0A%09%09result.PRs = append(result.PRs, prs...)%0A%0A%09%09// Search in body%0A%09%09bodyQuery := fmt.Sprintf(%22org:jenkinsci is:pr in:body %25s%22, term)%0A%09%09prs = searchPRs(client, bodyQuery, startDateTime)%0A%09%09result.PRs = append(result.PRs, prs...)%0A%09%7D%0A%0A%09// Search for PRs by specific authors known for JUnit 5 migrations%0A%09fmt.Println(%22Searching for PRs by known JUnit 5 migration authors...%22)%0A%09authorQuery := %22org:jenkinsci is:pr author:strangelookingnerd%22%0A%09prs := searchPRs(client, authorQuery, startDateTime)%0A%09result.PRs = append(result.PRs, prs...)%0A%0A%09// Remove duplicates%0A%09result.PRs = removeDuplicates(result.PRs)%0A%0A%09// Save results to JSON file%0A%09jsonData, err := json.MarshalIndent(result, %22%22, %22  %22)%0A%09if err != nil %7B%0A%09%09fmt.Printf(%22Error marshaling JSON: %25v%5Cn%22, err)%0A%09%09os.Exit(1)%0A%09%7D%0A%0A%09outputFile := fmt.Sprintf(%22%25s/junit5_candidates.json%22, *outputDir)%0A%09err = ioutil.WriteFile(outputFile, jsonData, 0644)%0A%09if err != nil %7B%0A%09%09fmt.Printf(%22Error writing JSON file: %25v%5Cn%22, err)%0A%09%09os.Exit(1)%0A%09%7D%0A%0A%09// Generate text file with URLs for easy addition to junit5_pr_urls.txt%0A%09generateCandidateURLsFile(result.PRs, *candidateFile)%0A%0A%09// Compare with existing PRs in junit5_pr_urls.txt%0A%09compareWithExistingPRs(result.PRs, *existingFile)%0A%0A%09fmt.Printf(%22Found %25d potential JUnit 5 migration PR candidates%5Cn%22, len(result.PRs))%0A%09fmt.Printf(%22Results saved to %25s and %25s%5Cn%22, outputFile, *candidateFile)%0A%7D%0A%0A// searchPRs performs a GitHub search and returns PRs matching the query%0Afunc searchPRs(client *githubv4.Client, query string, startDate time.Time) %5B%5DJUnit5PR %7B%0A%09var q searchQuery%0A%09variables := map%5Bstring%5Dinterface%7B%7D%7B%0A%09%09%22query%22: githubv4.String(query),%0A%09%09%22first%22: githubv4.Int(10), // Reduced from 25 to 10 to make queries even less complex%0A%09%09%22after%22: (*githubv4.String)(nil),%0A%09%7D%0A%0A%09var allPRs %5B%5DJUnit5PR%0A%09maxRetries := 10 // Increased from 5 to 10%0A%09initialBackoff := 2 * time.Second%0A%09maxBackoff := 60 * time.Second%0A%0A%09// Log the query being executed%0A%09fmt.Printf(%22Executing GitHub GraphQL query: %25s%5Cn%22, query)%0A%09fmt.Printf(%22Start date: %25s%5Cn%22, startDate.Format(time.RFC3339))%0A%0A%09pageCount := 0%0A%09totalAttempts := 0%0A%09maxPages := 100 // Set a maximum page limit to prevent infinite loops%0A%09%0A%09for pageCount %3C maxPages %7B%0A%09%09// Add a small delay between requests to respect rate limits%0A%09%09time.Sleep(1 * time.Second)%0A%0A%09%09// Create a context with timeout%0A%09%09ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)%0A%0A%09%09var err error%0A%09%09success := false%0A%0A%09%09// Implement retry with exponential backoff%0A%09%09for attempt := 0; attempt %3C maxRetries && !success; attempt++ %7B%0A%09%09%09totalAttempts++%0A%0A%09%09%09// Get current rate limit information before making the request%0A%09%09%09var rateLimit struct %7B%0A%09%09%09%09RateLimit struct %7B%0A%09%09%09%09%09Limit     githubv4.Int%0A%09%09%09%09%09Remaining githubv4.Int%0A%09%09%09%09%09ResetAt   githubv4.DateTime%0A%09%09%09%09%7D %60graphql:%22rateLimit%22%60%0A%09%09%09%7D%0A%0A%09%09%09rateLimitErr := client.Query(context.Background(), &rateLimit, nil)%0A%09%09%09if rateLimitErr == nil %7B%0A%09%09%09%09fmt.Printf(%22GitHub API rate limit: %25d/%25d remaining, resets at %25s%5Cn%22,%0A%09%09%09%09%09rateLimit.RateLimit.Remaining,%0A%09%09%09%09%09rateLimit.RateLimit.Limit,%0A%09%09%09%09%09rateLimit.RateLimit.ResetAt.Format(time.RFC3339))%0A%0A%09%09%09%09// Check if we're close to hitting the rate limit%0A%09%09%09%09if rateLimit.RateLimit.Remaining %3C 100 %7B%0A%09%09%09%09%09resetTime := time.Until(rateLimit.RateLimit.ResetAt.Time)%0A%09%09%09%09%09fmt.Printf(%22WARNING: Rate limit is low (%25d remaining). Limit resets in %25s%5Cn%22,%0A%09%09%09%09%09%09rateLimit.RateLimit.Remaining,%0A%09%09%09%09%09%09resetTime.Round(time.Second))%0A%0A%09%09%09%09%09if rateLimit.RateLimit.Remaining %3C 10 %7B%0A%09%09%09%09%09%09fmt.Println(%22Rate limit critically low, waiting until reset...%22)%0A%09%09%09%09%09%09waitTime := time.Until(rateLimit.RateLimit.ResetAt.Time) + 10*time.Second%0A%09%09%09%09%09%09time.Sleep(waitTime)%0A%09%09%09%09%09%7D%0A%09%09%09%09%7D%0A%09%09%09%7D else %7B%0A%09%09%09%09fmt.Printf(%22Could not fetch rate limit info: %25v%5Cn%22, rateLimitErr)%0A%09%09%09%7D%0A%0A%09%09%09// Execute the actual query%0A%09%09%09startTime := time.Now()%0A%09%09%09err = client.Query(ctx, &q, variables)%0A%09%09%09queryDuration := time.Since(startTime)%0A%0A%09%09%09if err == nil %7B%0A%09%09%09%09success = true%0A%09%09%09%09fmt.Printf(%22Query succeeded in %25s%5Cn%22, queryDuration.Round(time.Millisecond))%0A%0A%09%09%09%09// Log the number of results received%0A%09%09%09%09resultCount := len(q.Search.Nodes)%0A%09%09%09%09fmt.Printf(%22Received %25d results for page %25d%5Cn%22, resultCount, pageCount+1)%0A%0A%09%09%09%09// Process the results%0A%09%09%09%09for _, node := range q.Search.Nodes %7B%0A%09%09%09%09%09pr := node.PullRequest%0A%0A%09%09%09%09%09// Extract labels%0A%09%09%09%09%09var labels %5B%5Dstring%0A%09%09%09%09%09for _, label := range pr.Labels.Nodes %7B%0A%09%09%09%09%09%09labels = append(labels, string(label.Name))%0A%09%09%09%09%09%7D%0A%0A%09%09%09%09%09// Create PR object%0A%09%09%09%09%09newPR := JUnit5PR%7B%0A%09%09%09%09%09%09Title:      string(pr.Title),%0A%09%09%09%09%09%09URL:        string(pr.URL),%0A%09%09%09%09%09%09Repository: string(pr.Repository.NameWithOwner),%0A%09%09%09%09%09%09State:      string(pr.State),%0A%09%09%09%09%09%09Author:     string(pr.Author.Login),%0A%09%09%09%09%09%09Labels:     labels,%0A%09%09%09%09%09%09Body:       string(pr.BodyText),%0A%09%09%09%09%09%09CreatedAt:  pr.CreatedAt.Format(time.RFC3339),%0A%09%09%09%09%09%7D%0A%0A%09%09%09%09%09// Only include PRs created on or after the start date%0A%09%09%09%09%09if pr.CreatedAt.Before(startDate) %7B%0A%09%09%09%09%09%09continue%0A%09%09%09%09%09%7D%0A%0A%09%09%09%09%09// Only include PRs that are likely related to JUnit 5 migration%0A%09%09%09%09%09if isJUnit5MigrationPR(newPR) %7B%0A%09%09%09%09%09%09allPRs = append(allPRs, newPR)%0A%09%09%09%09%09%7D%0A%09%09%09%09%7D%0A%0A%09%09%09%09// Log progress%0A%09%09%09%09fmt.Printf(%22Processed page %25d, found %25d matching PRs so far%5Cn%22, pageCount+1, len(allPRs))%0A%0A%09%09%09%09// Check if there are more pages%0A%09%09%09%09if !q.Search.PageInfo.HasNextPage %7B%0A%09%09%09%09%09fmt.Printf(%22No more pages available, completed after %25d pages%5Cn%22, pageCount+1)%0A%09%09%09%09%09cancel() // Cancel the context before returning%0A%09%09%09%09%09return allPRs // Exit the function when no more pages%0A%09%09%09%09%7D%0A%0A%09%09%09%09// Move to next page%0A%09%09%09%09fmt.Printf(%22Moving to next page with cursor: %25s%5Cn%22, q.Search.PageInfo.EndCursor)%0A%09%09%09%09variables%5B%22after%22%5D = githubv4.NewString(q.Search.PageInfo.EndCursor)%0A%09%09%09%09%0A%09%09%09%09// Increment page count%0A%09%09%09%09pageCount++%0A%0A%09%09%09%09// Add a small delay before the next page to avoid overwhelming GitHub%0A%09%09%09%09time.Sleep(1 * time.Second)%0A%09%09%09%09break%0A%09%09%09%7D%0A%0A%09%09%09// Log detailed error information%0A%09%09%09fmt.Printf(%22GitHub API error on attempt %25d/%25d (total %25d): %25v%5Cn%22,%0A%09%09%09%09attempt+1, maxRetries, totalAttempts, err)%0A%09%09%09fmt.Printf(%22Query duration before error: %25s%5Cn%22, queryDuration.Round(time.Millisecond))%0A%0A%09%09%09// Try to parse and log more details from the error%0A%09%09%09var errorDetails struct %7B%0A%09%09%09%09Data   interface%7B%7D              %60json:%22data%22%60%0A%09%09%09%09Errors %5B%5Dmap%5Bstring%5Dinterface%7B%7D %60json:%22errors%22%60%0A%09%09%09%7D%0A%0A%09%09%09if strings.Contains(err.Error(), %22%7B%22) %7B%0A%09%09%09%09errorJSON := err.Error()%5Bstrings.Index(err.Error(), %22%7B%22):%5D%0A%09%09%09%09if jsonErr := json.Unmarshal(%5B%5Dbyte(errorJSON), &errorDetails); jsonErr == nil %7B%0A%09%09%09%09%09if errorDetails.Errors != nil && len(errorDetails.Errors) %3E 0 %7B%0A%09%09%09%09%09%09fmt.Println(%22Detailed error information:%22)%0A%09%09%09%09%09%09for i, errDetail := range errorDetails.Errors %7B%0A%09%09%09%09%09%09%09fmt.Printf(%22  Error %25d:%5Cn%22, i+1)%0A%09%09%09%09%09%09%09for k, v := range errDetail %7B%0A%09%09%09%09%09%09%09%09fmt.Printf(%22    %25s: %25v%5Cn%22, k, v)%0A%09%09%09%09%09%09%09%7D%0A%09%09%09%09%09%09%7D%0A%09%09%09%09%09%7D%0A%09%09%09%09%7D%0A%09%09%09%7D%0A%0A%09%09%09// Check if this is a retryable error (like 502)%0A%09%09%09if strings.Contains(err.Error(), %22502%22) %7C%7C%0A%09%09%09%09strings.Contains(err.Error(), %22timeout%22) %7C%7C%0A%09%09%09%09strings.Contains(err.Error(), %22Something went wrong%22) %7B%0A%0A%09%09%09%09// Calculate backoff duration with exponential increase and jitter%0A%09%09%09%09backoffTime := float64(initialBackoff) * math.Pow(2, float64(attempt))%0A%09%09%09%09if backoffTime %3E float64(maxBackoff) %7B%0A%09%09%09%09%09backoffTime = float64(maxBackoff)%0A%09%09%09%09%7D%0A%0A%09%09%09%09// Add jitter (%C2%B120%25)%0A%09%09%09%09jitter := (rand.Float64() * 0.4) - 0.2 // -20%25 to +20%25%0A%09%09%09%09backoffTime = backoffTime * (1 + jitter)%0A%0A%09%09%09%09sleepDuration := time.Duration(backoffTime)%0A%09%09%09%09fmt.Printf(%22Retrying in %25v...%5Cn%22, sleepDuration)%0A%09%09%09%09time.Sleep(sleepDuration)%0A%09%09%09%7D else %7B%0A%09%09%09%09// Non-retryable error, break out%0A%09%09%09%09fmt.Println(%22Non-retryable error encountered, stopping retry attempts%22)%0A%09%09%09%09break%0A%09%09%09%7D%0A%09%09%7D%0A%0A%09%09if !success %7B%0A%09%09%09fmt.Printf(%22Failed after %25d attempts: %25v%5Cn%22, maxRetries, err)%0A%09%09%09fmt.Println(%22Continuing with results collected so far...%22)%0A%09%09%09cancel() // Cancel the context before returning%0A%09%09%09return allPRs%0A%09%09%7D%0A%09%09%0A%09%09// Cancel the context after we're done with it%0A%09%09cancel()%0A%09%7D%0A%0A%09// If we've reached the maximum number of pages, log a message%0A%09fmt.Printf(%22Reached maximum page limit (%25d). Stopping to prevent excessive API usage.%5Cn%22, maxPages)%0A%09return allPRs%0A%7D%0A%0A// isJUnit5MigrationPR checks if a PR is likely related to JUnit 5 migration%0Afunc isJUnit5MigrationPR(pr JUnit5PR) bool %7B%0A%09// Exclude dependency bumps%0A%09if strings.HasPrefix(pr.Title, %22Bump%22) %7C%7C strings.HasPrefix(pr.Title, %22bump%22) %7B%0A%09%09return false%0A%09%7D%0A%0A%09// Exclude PRs with specific JIRA ticket prefixes that are known not to be JUnit 5 related%0A%09// These are examples of tickets that were incorrectly included%0A%09excludePatterns := %5B%5Dstring%7B%0A%09%09%60(?i)JENKINS-70560%60,         // Improve test coverage%0A%09%09%60(?i)JENKINS-75447%60,         // Fix Snippetizer rendering%0A%09%09%60(?i)JENKINS-%5Cd+.*fix%60,      // General fixes%0A%09%09%60(?i)fix%60,                   // General fixes%0A%09%09%60(?i)improve test coverage%60, // Test coverage improvements not related to JUnit 5%0A%09%7D%0A%0A%09for _, pattern := range excludePatterns %7B%0A%09%09matched, _ := regexp.MatchString(pattern, pr.Title)%0A%09%09if matched %7B%0A%09%09%09return false%0A%09%09%7D%0A%09%7D%0A%0A%09// Define more specific patterns for JUnit 5 migration PRs%0A%09titlePatterns := %5B%5Dstring%7B%0A%09%09%60(?i)migrate tests? to junit ?5%60,%0A%09%09%60(?i)%5Cbjunit ?5%5Cb%60, // Word boundary to ensure %22junit5%22 is a standalone term%0A%09%09%60(?i)migrate to junit ?5%60,%0A%09%09%60(?i)junit.*(4%7Cfour).*(5%7Cfive)%60,%0A%09%09%60(?i)junit ?5.*(migration%7Cupgrade)%60,%0A%09%09%60(?i)openrewrite.*junit ?5%60,%0A%09%7D%0A%0A%09bodyPatterns := %5B%5Dstring%7B%0A%09%09%60(?i)migrate (all )?tests? to junit ?5%60,%0A%09%09%60(?i)%5Cbjunit ?5%5Cb%60, // Word boundary to ensure %22junit5%22 is a standalone term%0A%09%09%60(?i)migrate to junit ?5%60,%0A%09%09%60(?i)junit.*(4%7Cfour).*(5%7Cfive)%60,%0A%09%09%60(?i)junit ?5.*(migration%7Cupgrade)%60,%0A%09%09%60(?i)openrewrite.*junit ?5%60,%0A%09%09%60(?i)org%5C.junit%5C.jupiter%60,%0A%09%09%60(?i)junit-jupiter%60,%0A%09%7D%0A%0A%09labelPatterns := %5B%5Dstring%7B%0A%09%09%60(?i)%5Cbjunit ?5%5Cb%60,%0A%09%09%60(?i)junit-5%60,%0A%09%09%60(?i)junit-migration%60,%0A%09%7D%0A%0A%09authorPatterns := %5B%5Dstring%7B%0A%09%09%60strangelookingnerd%60,%0A%09%7D%0A%0A%09// Check title with more specific matching%0A%09for _, pattern := range titlePatterns %7B%0A%09%09matched, _ := regexp.MatchString(pattern, pr.Title)%0A%09%09if matched %7B%0A%09%09%09return true%0A%09%09%7D%0A%09%7D%0A%0A%09// For body matches, require stronger evidence%0A%09// Count how many patterns match in the body%0A%09bodyMatchCount := 0%0A%09for _, pattern := range bodyPatterns %7B%0A%09%09matched, _ := regexp.MatchString(pattern, pr.Body)%0A%09%09if matched %7B%0A%09%09%09bodyMatchCount++%0A%09%09%7D%0A%09%7D%0A%0A%09// Require at least 2 body pattern matches for a positive identification%0A%09// This helps avoid false positives from PRs that mention JUnit in passing%0A%09if bodyMatchCount %3E= 2 %7B%0A%09%09return true%0A%09%7D%0A%0A%09// Check labels%0A%09for _, label := range pr.Labels %7B%0A%09%09for _, pattern := range labelPatterns %7B%0A%09%09%09matched, _ := regexp.MatchString(pattern, label)%0A%09%09%09if matched %7B%0A%09%09%09%09return true%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%0A%09// Check author - but only if there's at least some mention of JUnit in the body%0A%09// This avoids including all PRs from certain authors%0A%09for _, pattern := range authorPatterns %7B%0A%09%09matched, _ := regexp.MatchString(pattern, pr.Author)%0A%09%09if matched %7B%0A%09%09%09// Check if there's at least some mention of JUnit in the body%0A%09%09%09junitmatch, _ := regexp.MatchString(%60(?i)junit%60, pr.Body)%0A%09%09%09if junitmatch %7B%0A%09%09%09%09return true%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%0A%09return false%0A%7D%0A%0A// removeDuplicates removes duplicate PRs from the slice%0Afunc removeDuplicates(prs %5B%5DJUnit5PR) %5B%5DJUnit5PR %7B%0A%09seen := make(map%5Bstring%5Dbool)%0A%09var result %5B%5DJUnit5PR%0A%0A%09for _, pr := range prs %7B%0A%09%09if !seen%5Bpr.URL%5D %7B%0A%09%09%09seen%5Bpr.URL%5D = true%0A%09%09%09result = append(result, pr)%0A%09%09%7D%0A%09%7D%0A%0A%09return result%0A%7D%0A%0A// generateCandidateURLsFile creates a text file with PR URLs for easy addition to junit5_pr_urls.txt%0Afunc generateCandidateURLsFile(prs %5B%5DJUnit5PR, outputFile string) %7B%0A%09file, err := os.Create(outputFile)%0A%09if err != nil %7B%0A%09%09fmt.Printf(%22Error creating file: %25v%5Cn%22, err)%0A%09%09return%0A%09%7D%0A%09defer file.Close()%0A%0A%09file.WriteString(fmt.Sprintf(%22# JUnit 5 migration PR candidates found on %25s%5Cn%22, time.Now().Format(%222006-01-02 15:04:05%22)))%0A%09file.WriteString(%22# Add relevant URLs to junit5_pr_urls.txt after verification%5Cn%5Cn%22)%0A%0A%09for _, pr := range prs %7B%0A%09%09file.WriteString(fmt.Sprintf(%22# %25s - %25s (%25s)%5Cn%22, pr.Repository, pr.Title, pr.State))%0A%09%09file.WriteString(fmt.Sprintf(%22%25s%5Cn%5Cn%22, pr.URL))%0A%09%7D%0A%7D%0A%0A// compareWithExistingPRs compares found PRs with those already in junit5_pr_urls.txt%0Afunc compareWithExistingPRs(prs %5B%5DJUnit5PR, existingFile string) %7B%0A%09// Read existing PR URLs%0A%09existingURLs := make(map%5Bstring%5Dbool)%0A%0A%09data, err := ioutil.ReadFile(existingFile)%0A%09if err == nil %7B%0A%09%09lines := strings.Split(string(data), %22%5Cn%22)%0A%09%09for _, line := range lines %7B%0A%09%09%09line = strings.TrimSpace(line)%0A%09%09%09if strings.HasPrefix(line, %22https://%22) %7B%0A%09%09%09%09existingURLs%5Bline%5D = true%0A%09%09%09%7D%0A%09%09%7D%0A%09%7D%0A%0A%09// Find new PRs%0A%09var newPRs %5B%5DJUnit5PR%0A%09for _, pr := range prs %7B%0A%09%09if !existingURLs%5Bpr.URL%5D %7B%0A%09%09%09newPRs = append(newPRs, pr)%0A%09%09%7D%0A%09%7D%0A%0A%09fmt.Printf(%22Found %25d new PR candidates not already in %25s%5Cn%22, len(newPRs), existingFile)%0A%0A%09if len(newPRs) %3E 0 %7B%0A%09%09fmt.Println(%22New PR candidates:%22)%0A%09%09for _, pr := range newPRs %7B%0A%09%09%09fmt.Printf(%22# %25s - %25s (%25s)%5Cn%22, pr.Repository, pr.Title, pr.State)%0A%09%09%09fmt.Printf(%22%25s%5Cn%5Cn%22, pr.URL)%0A%09%09%7D%0A%09%7D%0A%7D\n",
+                            "isNew": true,
+                            "isApplied": true
+                        }
+                    ]
+                },
+                {
+                    "type": "shellCommand",
+                    "command": "copy \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go.fixed\" \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\"",
+                    "id": "5abfb34a-343a-4bdf-9c78-a055b9cdf5ca",
+                    "status": "SUCCESS",
+                    "toolCallId": "toolu_01S7UCpxVhut5r5djq6QPEfV",
+                    "commandsRequiringConfirmation": [
+                        {
+                            "name": "copy",
+                            "arguments": []
+                        }
+                    ],
+                    "exitCode": 0,
+                    "output": "Windows PowerShell\nCopyright (C) Microsoft Corporation. All rights reserved.\n\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\n\nPS C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats> copy \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go.fixed\" \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go\"\nPS C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats> \n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                    "outputPath": ".zencoder/Zencoder-f205d220-6997-46c4-8e38-42d3879d756f.out"
+                }
+            ],
+            "context": {
+                "author": "Coding Agent",
+                "operationId": "975c28ae-ed33-478d-b62c-2e966d2f235b"
+            },
+            "createdAt": 1744874896432,
+            "isInternal": false
+        },
+        {
+            "id": "e8eb27a7-7b31-4242-8f73-0834e4fb8f18",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let's clean up the temporary file:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01ELsy2h5h5tE3BuS6xA4ViT",
+                    "status": "IN_PROGRESS",
+                    "isHidden": true,
+                    "localResult": "{\"status\":\"SUCCESS\",\"exitCode\":0,\"output\":\"Windows PowerShell\\nCopyright (C) Microsoft Corporation. All rights reserved.\\n\\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\\n\\nPS C:\\\\support\\\\users\\\\dev\\\\jenkins\\\\alpha-omega\\\\alpha-omega-stats> del \\\"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go.fixed\\\"\\nPS C:\\\\support\\\\users\\\\dev\\\\jenkins\\\\alpha-omega\\\\alpha-omega-stats> \\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\"}"
+                },
+                {
+                    "type": "shellCommand",
+                    "command": "del \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go.fixed\"",
+                    "id": "946590ba-c9d2-45e8-b2a4-1e7c2cdb3c52",
+                    "status": "SUCCESS",
+                    "toolCallId": "toolu_01ELsy2h5h5tE3BuS6xA4ViT",
+                    "commandsRequiringConfirmation": [
+                        {
+                            "name": "del",
+                            "arguments": []
+                        }
+                    ],
+                    "exitCode": 0,
+                    "output": "Windows PowerShell\nCopyright (C) Microsoft Corporation. All rights reserved.\n\nInstall the latest PowerShell for new features and improvements! https://aka.ms/PSWindows\n\nPS C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats> del \"C:/support/users/dev/jenkins/alpha-omega/alpha-omega-stats/cmd/find-junit5-prs/main.go.fixed\"\nPS C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats> \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+                    "outputPath": ".zencoder/Zencoder-dd3fc6e6-a7ef-415a-a78b-68f34888dcd0.out"
+                }
+            ],
+            "context": {
+                "author": "Coding Agent",
+                "operationId": "baa98005-fe9b-4298-8731-c5d80637c220"
+            },
+            "createdAt": 1744875154712,
+            "isInternal": false
+        },
+        {
+            "id": "d0deed8e-8117-439d-861d-55490591338f",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "I've fixed the infinite loop issue in the JUnit 5 PR finder. Here's a summary of the changes made:\n\n1. **Added a maximum page limit**: I added a `maxPages` variable (set to 100) and modified the main loop to check `pageCount < maxPages` instead of using an infinite loop. This ensures the program will always terminate after processing a reasonable number of pages.\n\n2. **Fixed the pagination logic**: I added proper page count incrementation after each successful page fetch, which was missing in the original code.\n\n3. **Improved context handling**: I ensured that the context is properly canceled in all code paths, including error cases, to prevent resource leaks.\n\n4. **Added early return conditions**: When there are no more pages or when the maximum page limit is reached, the function now properly returns the collected results.\n\nThese changes will prevent the program from running indefinitely while still allowing it to collect all the relevant PRs. The code now has proper safeguards against infinite loops and will terminate gracefully after processing a reasonable number of pages or when there are no more results to fetch."
+                }
+            ],
+            "context": {
+                "author": "Coding Agent",
+                "operationId": "ddd1bf92-b914-4084-a7d5-885fd3ff3e67"
+            },
+            "createdAt": 1744875248964,
+            "isInternal": false
+        },
+        {
+            "id": "aadb60bf-bb6f-4e20-90a6-8e38ccff139c",
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Which script created this failed_builds.csv file?"
+                }
+            ],
+            "context": {
+                "currentFile": {
+                    "path": "data\\consolidated\\failed_builds.csv",
+                    "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\data\\consolidated\\failed_builds.csv",
+                    "sources": [
+                        "opened_tab"
+                    ],
+                    "content": "PR_URL\nhttps://github.com/jenkinsci/42crunch-security-audit-plugin/pull/16\nhttps://github.com/jenkinsci/Matrix-sorter-plugin/pull/3\nhttps://github.com/jenkinsci/Matrix-sorter-plugin/pull/4\nhttps://github.com/jenkinsci/adaptive-disconnector-plugin/pull/10\nhttps://github.com/jenkinsci/adaptive-disconnector-plugin/pull/9\nhttps://github.com/jenkinsci/agent-server-parameter-plugin/pull/7\nhttps://github.com/jenkinsci/apprenda-plugin/pull/1\nhttps://github.com/jenkinsci/apprenda-plugin/pull/2\nhttps://github.com/jenkinsci/aqua-security-scanner-plugin/pull/73\nhttps://github.com/jenkinsci/aws-device-farm-plugin/pull/30\nhttps://github.com/jenkinsci/aws-device-farm-plugin/pull/31\nhttps://github.com/jenkinsci/aws-lambda-cloud-plugin/pull/10\nhttps://github.com/jenkinsci/aws-lambda-cloud-plugin/pull/9\nhttps://github.com/jenkinsci/bitbucket-pullrequest-builder-plugin/pull/25\nhttps://github.com/jenkinsci/black-duck-sigma-plugin/pull/4\nhttps://github.com/jenkinsci/build-executors-filter-offline-plugin/pull/4\nhttps://github.com/jenkinsci/build-executors-filter-offline-plugin/pull/5\nhttps://github.com/jenkinsci/build-token-trigger-plugin/pull/4\nhttps://github.com/jenkinsci/build-token-trigger-plugin/pull/5\nhttps://github.com/jenkinsci/clearcase-ucm-plugin/pull/49\nhttps://github.com/jenkinsci/clearcase-ucm-plugin/pull/50\nhttps://github.com/jenkinsci/cloudevents-plugin/pull/25\nhttps://github.com/jenkinsci/cloudguard-shiftleft-plugin/pull/14\nhttps://github.com/jenkinsci/cloudguard-shiftleft-plugin/pull/15\nhttps://github.com/jenkinsci/codesonar-plugin/pull/9\nhttps://github.com/jenkinsci/configuration-as-code-secret-ssm-plugin/pull/6\nhttps://github.com/jenkinsci/consul-plugin/pull/2\nhttps://github.com/jenkinsci/conventional-commits-plugin/pull/317\nhttps://github.com/jenkinsci/convert-to-pipeline-plugin/pull/9\nhttps://github.com/jenkinsci/custom-checkbox-parameter-plugin/pull/7\nhttps://github.com/jenkinsci/custom-tools-plugin/pull/73\nhttps://github.com/jenkinsci/cygwin-process-killer-plugin/pull/2\nhttps://github.com/jenkinsci/dagshub-branch-source-plugin/pull/57\nhttps://github.com/jenkinsci/depbuilder-plugin/pull/6\nhttps://github.com/jenkinsci/digitalocean-plugin/pull/74\nhttps://github.com/jenkinsci/docker-swarm-plugin/pull/133\nhttps://github.com/jenkinsci/eagle-tester-plugin/pull/3\nhttps://github.com/jenkinsci/enhanced-metrics-plugin/pull/7\nhttps://github.com/jenkinsci/gcloud-sdk-plugin/pull/11\nhttps://github.com/jenkinsci/github-app-kubernetes-credentials-plugin/pull/2\nhttps://github.com/jenkinsci/github-branch-pr-change-filter-plugin/pull/4\nhttps://github.com/jenkinsci/github-label-filter-plugin/pull/12\nhttps://github.com/jenkinsci/huaweicloud-ecs-plugin/pull/93\nhttps://github.com/jenkinsci/influxdb-query-plugin/pull/21\nhttps://github.com/jenkinsci/jwt-auth-plugin/pull/74\nhttps://github.com/jenkinsci/kafkalogs-plugin/pull/5\nhttps://github.com/jenkinsci/katalon-plugin/pull/35\nhttps://github.com/jenkinsci/metrics-datadog-plugin/pull/19\nhttps://github.com/jenkinsci/netdomain-labeler-plugin/pull/1\nhttps://github.com/jenkinsci/netdomain-labeler-plugin/pull/2\nhttps://github.com/jenkinsci/neuvector-vulnerability-scanner-plugin/pull/71\nhttps://github.com/jenkinsci/nirmata-plugin/pull/1\nhttps://github.com/jenkinsci/opslevel-plugin/pull/4\nhttps://github.com/jenkinsci/opslevel-plugin/pull/6\nhttps://github.com/jenkinsci/osf-builder-suite-standalone-sonar-linter-plugin/pull/3\nhttps://github.com/jenkinsci/pipeline-bamboo-plugin/pull/2\nhttps://github.com/jenkinsci/pipeline-giphy-api-plugin/pull/7\nhttps://github.com/jenkinsci/pipeline-reporter-by-redpen-plugin/pull/13\nhttps://github.com/jenkinsci/pureload-plugin/pull/3\nhttps://github.com/jenkinsci/qy-wechat-notification-plugin/pull/13\nhttps://github.com/jenkinsci/radargun-reporting-plugin/pull/10\nhttps://github.com/jenkinsci/rapid7-insightvm-container-assessment-plugin/pull/38\nhttps://github.com/jenkinsci/rpmsign-plugin/pull/23\nhttps://github.com/jenkinsci/saltstack-plugin/pull/149\nhttps://github.com/jenkinsci/smalltest-plugin/pull/4\nhttps://github.com/jenkinsci/soapui-pro-functional-testing-plugin/pull/38\nhttps://github.com/jenkinsci/stackrox-container-image-scanner-plugin/pull/3\nhttps://github.com/jenkinsci/stash-pullrequest-builder-plugin/pull/191\nhttps://github.com/jenkinsci/tekton-client-plugin/pull/384\nhttps://github.com/jenkinsci/testlink-plugin/pull/46\nhttps://github.com/jenkinsci/teststudio-plugin/pull/1\nhttps://github.com/jenkinsci/teststudioapitesting-plugin/pull/1\nhttps://github.com/jenkinsci/teststudiomobiletesting-plugin/pull/1\nhttps://github.com/jenkinsci/thycotic-devops-secrets-vault-plugin/pull/20\nhttps://github.com/jenkinsci/thycotic-devops-secrets-vault-plugin/pull/22\nhttps://github.com/jenkinsci/thycotic-secret-server-plugin/pull/38\nhttps://github.com/jenkinsci/vdoo-vision-plugin/pull/4\nhttps://github.com/jenkinsci/viber-notification-plugin/pull/6\nhttps://github.com/jenkinsci/visualexpert-plugin/pull/53\nhttps://github.com/jenkinsci/working-hours-plugin/pull/48\nhttps://github.com/jenkinsci/xcode-plugin/pull/161\nhttps://github.com/jenkinsci/xcode-plugin/pull/163\nhttps://github.com/jenkinsci/zap-pipeline-plugin/pull/49\nhttps://github.com/jenkinsci/zap-pipeline-plugin/pull/51\nhttps://github.com/jenkinsci/zoom-plugin/pull/22\nhttps://github.com/jenkinsci/zscaler-iac-scan-plugin/pull/63\n"
+                },
+                "codebaseEnabled": true
+            },
+            "createdAt": 1744879915502,
+            "isInternal": false,
+            "rawContent": {
+                "type": "doc",
+                "content": [
+                    {
+                        "type": "paragraph",
+                        "content": [
+                            {
+                                "type": "text",
+                                "text": "Which script created this failed_builds.csv file?"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": "0a7c5ef2-0321-4c68-9136-bf65ee23d67a",
+            "role": "assistant",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Let me find the script that created the `failed_builds.csv` file by searching through the codebase."
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01CqgeNzC2PmeMQn6BrYEahq",
+                    "title": "Fulltext search",
+                    "statusText": "Done",
+                    "status": "SUCCESS",
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let me try searching in other file types:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01PxBPnpVyo7WHeaD87b1Dod",
+                    "title": "Fulltext search",
+                    "statusText": "Done",
+                    "status": "SUCCESS",
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Great! I found a reference to the `failed_builds.csv` file in the `test-pr-builds.sh` script. Let's examine this script to understand how it creates the CSV file:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_011YfVEsaqanPQAS6x8spQbQ",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "test-pr-builds.sh",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\test-pr-builds.sh"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now I need to find where the `failing_prs.json` file comes from, as that's the input to this script:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01WGMGNN1wcr5g1WDhgEwVDQ",
+                    "title": "Fulltext search",
+                    "statusText": "Done",
+                    "status": "SUCCESS",
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let's look at the `update-daily.sh` script to see how it generates the `failing_prs.json` file:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01QhBxtv33HxfmkGvq6Z92iB",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "update-daily.sh",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now let's see where `all_prs.json` comes from:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_016L6tLHs6NMKrqWWprVAXHH",
+                    "title": "Fulltext search",
+                    "statusText": "Done",
+                    "status": "SUCCESS",
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let's try searching in all file types:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01MpBhJptiNpMPg9uWxWj8mq",
+                    "title": "Fulltext search",
+                    "statusText": "Done",
+                    "status": "SUCCESS",
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let's look at the `collect-monthly.sh` script to see how it generates the `all_prs.json` file:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01JHy41KQxnrnHGESfWz4eFw",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "collect-monthly.sh",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\collect-monthly.sh"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Now let's see where the monthly PR data comes from:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01HWM9yxqYifytqRqUEdi7zV",
+                    "title": "Fulltext search",
+                    "statusText": "Done",
+                    "status": "SUCCESS",
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let's look at the `update-daily.sh` script to see how it generates the monthly PR data:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01EHA92uK3XQWaYexuF6u2vz",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "update-daily.sh",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let's look at the rest of the `update-daily.sh` script to find where it fetches PR data:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_014vDbdMCAgUQ4S74FS12bdK",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "update-daily.sh",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\update-daily.sh"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Let's look at the `process_prs.sh` script:"
+                },
+                {
+                    "type": "toolCall",
+                    "toolCallId": "toolu_01DchPxFVSq5rZkUTCMDyBU4",
+                    "statusText": "Viewed file",
+                    "status": "SUCCESS",
+                    "context": {
+                        "files": [
+                            {
+                                "path": "process_prs.sh",
+                                "fsPath": "C:\\support\\users\\dev\\jenkins\\alpha-omega\\alpha-omega-stats\\process_prs.sh"
+                            }
+                        ]
+                    },
+                    "isHidden": false
+                },
+                {
+                    "type": "text",
+                    "text": "Based on my analysis of the codebase, here's how the `failed_builds.csv` file is created:\n\n1. The process starts with the `collect-monthly.sh` script, which:\n   - Collects PR data from monthly JSON files (`prs_*.json`) in the `data/monthly` directory\n   - Combines them into `data/consolidated/all_prs.json`\n   - Filters this to create `data/consolidated/failing_prs.json` containing PRs with status \"ERROR\"\n\n2. The `update-daily.sh` script:\n   - Updates the PR statuses by calling `process_prs.sh` which uses the GitHub CLI to fetch current PR information\n   - Updates `data/consolidated/all_prs.json` with the latest PR data\n   - Filters this to create an updated `data/consolidated/failing_prs.json` containing PRs with status \"ERROR\"\n\n3. Finally, the `test-pr-builds.sh` script:\n   - Reads the failing PRs from `data/consolidated/failing_prs.json`\n   - Attempts to build each PR with different JDK versions\n   - Records failed builds in `data/consolidated/failed_builds.csv`\n   - Records successful builds in `data/consolidated/successful_builds.csv`\n   - Records test results in `data/consolidated/test_results.csv`\n\nThe `failed_builds.csv` file contains a simple list of PR URLs that failed to build with any of the tested JDK versions. This file is created by the `test-pr-builds.sh` script, which initializes it with just a header \"PR_URL\" (line 24) and then adds URLs of PRs that fail to build (line 140).\n\nThe workflow is designed to identify Jenkins plugin PRs that are failing CI checks, attempt to build them locally, and record which ones still fail to build."
+                }
+            ],
+            "context": {
+                "author": "Coding Agent",
+                "operationId": "e65b08d0-bc29-4a62-9f4e-c470c64b8915"
+            },
+            "createdAt": 1744879918308,
+            "isInternal": false
+        }
+    ],
+    "isAgent": true,
+    "isNameGenerated": true,
+    "isCustomAgent": false,
+    "isUnitTestsAgent": false
+}
+}

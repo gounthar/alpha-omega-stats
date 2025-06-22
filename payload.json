@@ -1,0 +1,8 @@
+{
+  "query": "query($user: String!, $startDate: DateTime!, $endDate: DateTime!) { search(query: \"is:pr author:$user updated:$startDate..$endDate\", type: ISSUE, first: 100) { nodes { ... on PullRequest { title url commits(last: 1) { nodes { commit { statusCheckRollup { state } } } } } } }",
+  "variables": {
+    "user": "gounthar",
+    "startDate": "2024-12-01T00:00:00Z",
+    "endDate": "2025-02-14T23:59:59Z"
+  }
+}

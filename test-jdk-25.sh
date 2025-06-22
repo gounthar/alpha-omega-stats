@@ -195,6 +195,8 @@ compile_plugin() {
                       -Dmaven.compiler.release=17 \
                       -Dgroovy.source.level=17 \
                       -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
+                      -Dlicense.disableCheck=true \
+                      -Dspotless.check.skip=true \
                       -Dmaven.license.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
