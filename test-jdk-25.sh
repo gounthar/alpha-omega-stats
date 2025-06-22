@@ -96,6 +96,14 @@ else
     echo "plugins.json is up-to-date."
 fi
 
+# Generate top-250-plugins.csv if it does not exist or is older than plugins.json
+if [ ! -f "$CSV_FILE" ] || [ "$CSV_FILE" -ot "$PLUGINS_JSON" ]; then
+    echo "Generating $CSV_FILE from $PLUGINS_JSON..."
+    "$script_dir/get-most-popular-plugins.sh"
+else
+    echo "$CSV_FILE is up-to-date."
+fi
+
 # Function to retrieve the GitHub URL of a plugin from the plugins JSON file.
 # Arguments:
 #   $1 - The name of the plugin.
