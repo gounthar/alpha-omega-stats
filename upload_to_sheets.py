@@ -11,6 +11,7 @@ from time import sleep
 import random
 import os
 import csv
+import subprocess
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
@@ -395,6 +396,23 @@ def process_test_results_data(csv_file):
     except Exception as e:
         logging.error(f"Error processing test results file: {str(e)}")
         return None
+
+def get_current_branch():
+    """
+    Get the current git branch name.
+    """
+    try:
+        result = subprocess.run(
+            ["git", "rev-parse", "--abbrev-ref", "HEAD"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            check=True,
+            text=True
+        )
+        return result.stdout.strip()
+    except Exception as e:
+        logging.error(f"Could not determine current git branch: {e}")
+        return "main"  # Fallback to main if error
 
 def process_top_250_plugins_data(csv_file):
     """
@@ -996,25 +1014,47 @@ if top_250_plugins_results:
         # Create or update the "Top 250 Plugins" sheet
         top_250_plugins_sheet = get_or_create_worksheet_with_retry(spreadsheet, "Top 250 Plugins")
 
+        # Get current branch for log links
+        current_branch = get_current_branch()
+
+        # List available log files for quick existence check
+        log_dir = os.path.join("data", "plugin-build-logs")
+        available_logs = set()
+        try:
+            available_logs = set(os.listdir(log_dir))
+        except Exception as e:
+            logging.error(f"Could not list log files in {log_dir}: {e}")
+
         # Prepare the data for the sheet
         top_250_plugins_data = [
-            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet.id}"; "Back to Summary")', "", ""],
-            ["", "", "", ""],  # Empty row for spacing
-            ["Plugin Name", "Popularity", "Build Status"]
+            ["Back to Summary", f'=HYPERLINK("#gid={summary_sheet.id}"; "Back to Summary")', "", "", ""],
+            ["", "", "", "", ""],  # Empty row for spacing
+            ["Plugin Name", "Popularity", "Build Status", "Build Log"]
         ]
 
         for result in top_250_plugins_results:
+            plugin_name = result.get("plugin_name", "Unknown")
+            popularity = result.get("popularity", "Unknown")
+            build_status = result.get("build_status", "Unknown")
+            log_filename = f"{plugin_name}.log"
+            log_exists = log_filename in available_logs
+            if log_exists:
+                log_url = f"https://github.com/gounthar/alpha-omega-stats/blob/{current_branch}/data/plugin-build-logs/{log_filename}"
+                log_link = f'=HYPERLINK("{log_url}"; "View Log")'
+            else:
+                log_link = ""
             top_250_plugins_data.append([
-                result.get("plugin_name", "Unknown"),
-                result.get("popularity", "Unknown"),
-                result.get("build_status", "Unknown")
+                plugin_name,
+                popularity,
+                build_status,
+                log_link
             ])
 
         # Update the sheet
         update_sheet_with_retry(top_250_plugins_sheet, top_250_plugins_data)
 
         # Format the header row
-        format_sheet_with_retry(top_250_plugins_sheet, "A3:C3", {
+        format_sheet_with_retry(top_250_plugins_sheet, "A3:D3", {
             "textFormat": {
                 "bold": True
             },
