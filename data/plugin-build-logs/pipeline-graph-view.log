@@ -46,7 +46,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] --- frontend:1.15.1:npm (npm install) @ pipeline-graph-view ---
 [INFO] Running 'npm install' in /tmp/plugin-builds/pipeline-graph-view
 [INFO] 
-[INFO] added 523 packages, and audited 524 packages in 6s
+[INFO] added 523 packages, and audited 524 packages in 8s
 [INFO] 
 [INFO] 155 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -87,7 +87,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] src/main/webapp/js/bundles/assets/PipelineConsole-BK0XaNjW.js            40.76 kB │ gzip: 11.04 kB │ map:    52.70 kB
 [INFO] src/main/webapp/js/bundles/assets/PipelineGraphModel-B4o6aB3g.js        193.64 kB │ gzip: 61.41 kB │ map:   907.95 kB
 [INFO] src/main/webapp/js/bundles/assets/PipelineGraph-DTW1aj9O.js             205.65 kB │ gzip: 66.70 kB │ map: 1,049.29 kB
-[INFO] ✓ built in 1.77s
+[INFO] ✓ built in 2.44s
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-graph-view ---
 [INFO] Copying 46 resources from src/main/resources to target/classes
@@ -120,13 +120,10 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-graph-view ---
-[INFO] Copying 46 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-graph-view ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 27 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] /tmp/plugin-builds/pipeline-graph-view/src/test/java/io/jenkins/plugins/pipelinegraphview/analysis/StatusAndTimingTest.java: /tmp/plugin-builds/pipeline-graph-view/src/test/java/io/jenkins/plugins/pipelinegraphview/analysis/StatusAndTimingTest.java uses or overrides a deprecated API.
-[INFO] /tmp/plugin-builds/pipeline-graph-view/src/test/java/io/jenkins/plugins/pipelinegraphview/analysis/StatusAndTimingTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.64:test-hpl (default-test-hpl) @ pipeline-graph-view ---
 [INFO] Generating /tmp/plugin-builds/pipeline-graph-view/target/test-classes/the.hpl
@@ -140,7 +137,78 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- frontend:1.15.1:npm (npm mvntest) @ pipeline-graph-view ---
-[INFO] Skipping execution.
+[INFO] Running 'npm run mvntest' in /tmp/plugin-builds/pipeline-graph-view
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 mvntest
+[INFO] > npm run format:check && npm run tsc:check && npm run eslint:mvn && npm run vitest:mvn
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 format:check
+[INFO] > prettier --check .
+[INFO] 
+[INFO] Checking formatting...
+[INFO] All matched files use Prettier code style!
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 tsc:check
+[INFO] > tsc
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 eslint:mvn
+[INFO] > eslint --format checkstyle --output-file target/eslint-warnings.xml || ([ -n "$CI" ] && [ -f target/eslint-warnings.xml ])
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 vitest:mvn
+[INFO] > vitest run --reporter default --reporter junit --outputFile "$PWD/target/surefire-reports/vitest-junit.xml" || ([ -n "$CI" ] && [ -f target/surefire-reports/vitest-junit.xml ])
+[INFO] 
+[INFO] 
+[INFO]  RUN  v3.1.4 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
+[INFO] 
+[INFO]  ✓ common/utils/run-estimator.spec.ts (16 tests) 20ms
+[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 15ms
+[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 11ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 11ms
+[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 130ms
+[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 42ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (8 tests) 22ms
+[INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should not render when buttonPortal is null
+[INFO] Could not find settings button element to generate a portal.
+[INFO] 
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (1 test) 94ms
+[INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should render settings button in portal
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO]  ✓ common/utils/timings.spec.tsx (4 tests) 141ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (4 tests) 276ms
+[INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO] stderr | pipeline-console-view/pipeline-console/main/StageView.spec.tsx > StageView > renders StageDetails and StageSteps with provided props
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO] stderr | pipeline-console-view/pipeline-console/main/stage-details.spec.tsx > StageDetails > renders stage name and status color class
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release. ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 230ms
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 274ms
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (4 tests) 418ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (5 tests) 383ms
+[INFO] 
+[INFO]  Test Files  14 passed (14)
+[INFO]       Tests  71 passed (71)
+[INFO]    Start at  17:31:13
+[INFO]    Duration  4.08s (transform 2.19s, setup 3.49s, collect 6.54s, tests 2.07s, environment 20.11s, prepare 5.63s)
+[INFO] 
+[INFO] JUNIT report written to /tmp/plugin-builds/pipeline-graph-view/target/surefire-reports/vitest-junit.xml
 [INFO] 
 [INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-graph-view ---
 [INFO] 
@@ -179,6 +247,6 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  22.629 s
-[INFO] Finished at: 2025-06-22T15:37:56+02:00
+[INFO] Total time:  43.509 s
+[INFO] Finished at: 2025-06-22T17:31:20+02:00
 [INFO] ------------------------------------------------------------------------

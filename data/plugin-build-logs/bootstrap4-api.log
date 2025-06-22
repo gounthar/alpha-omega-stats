@@ -38,8 +38,6 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] OS Info: Arch: amd64 Family: unix Name: linux Version: 5.15.153.1-microsoft-standard-wsl2
 [INFO] 
 [INFO] --- enforcer:3.0.0:enforce (display-info) @ bootstrap4-api ---
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/io/jenkins/plugins/bootstrap4-api/4.6.0-7-SNAPSHOT/maven-metadata.xml
-Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/incrementals/io/jenkins/plugins/bootstrap4-api/4.6.0-7-SNAPSHOT/maven-metadata.xml
 [INFO] Ignoring requireUpperBoundDeps in javax.servlet:javax.servlet-api
 [INFO] Ignoring requireUpperBoundDeps in org.kohsuke:access-modifier-annotation
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
@@ -117,7 +115,7 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.2 (node_modules/fsevents):
 [INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
 [INFO] 
-[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})added 407 packages from 289 contributors and audited 408 packages in 4.688s
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.2: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})added 407 packages from 289 contributors and audited 408 packages in 6.345s
 [INFO] 
 [INFO] 117 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -162,8 +160,7 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] --- hpi:3.27:insert-test (default-insert-test) @ bootstrap4-api ---
 [INFO] 
 [INFO] --- gplus:1.13.1:generateTestStubs (test-in-groovy) @ bootstrap4-api ---
-[INFO] No sources specified for stub generation. Skipping.
-[INFO] Generated 0 stubs.
+[INFO] Generation of test stubs is skipped.
 [INFO] 
 [INFO] --- antrun:3.0.0:run (createTempDir) @ bootstrap4-api ---
 [INFO] Executing tasks
@@ -171,13 +168,10 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.2.0:testResources (default-testResources) @ bootstrap4-api ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Using 'UTF-8' encoding to copy filtered properties files.
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/bootstrap4-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ bootstrap4-api ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to /tmp/plugin-builds/bootstrap4-api/target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.27:test-hpl (default-test-hpl) @ bootstrap4-api ---
 [INFO] Generating /tmp/plugin-builds/bootstrap4-api/target/test-classes/the.hpl
@@ -185,7 +179,7 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] --- hpi:3.27:resolve-test-dependencies (default-resolve-test-dependencies) @ bootstrap4-api ---
 [INFO] 
 [INFO] --- gplus:1.13.1:compileTests (test-in-groovy) @ bootstrap4-api ---
-[INFO] No sources specified for compilation. Skipping.
+[INFO] Compilation of tests is skipped.
 [INFO] 
 [INFO] --- jacoco:0.8.8:prepare-agent (default) @ bootstrap4-api ---
 [INFO] argLine set to -javaagent:/home/poddingue/.m2/repository/org/jacoco/org.jacoco.agent/0.8.8/org.jacoco.agent-0.8.8-runtime.jar=destfile=/tmp/plugin-builds/bootstrap4-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}
@@ -216,7 +210,7 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] Skipping packaging of the test-jar
 [INFO] 
 [INFO] --- jar:3.2.2:test-jar (default) @ bootstrap4-api ---
-[INFO] Building jar: /tmp/plugin-builds/bootstrap4-api/target/bootstrap4-api-tests.jar
+[INFO] Skipping packaging of the test-jar
 [INFO] 
 [INFO] --- failsafe:3.0.0-M6:integration-test (default) @ bootstrap4-api ---
 [INFO] Tests are skipped.
@@ -224,7 +218,7 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] --- checkstyle:3.1.2:checkstyle (run-checkstyle) @ bootstrap4-api ---
 [INFO] 
 [INFO] --- pmd:3.16.0:pmd (run-pmd) @ bootstrap4-api ---
-[INFO] PMD version: 6.44.0
+[INFO] Skipping PMD execution
 [INFO] 
 [INFO] --- pmd:3.16.0:cpd (run-pmd) @ bootstrap4-api ---
 [INFO] PMD version: 6.44.0
@@ -241,10 +235,9 @@ Downloading from incrementals.jenkins-ci.org: https://repo.jenkins-ci.org/increm
 [INFO] Installing /tmp/plugin-builds/bootstrap4-api/target/bootstrap4-api.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/bootstrap4-api/4.6.0-7-SNAPSHOT/bootstrap4-api-4.6.0-7-SNAPSHOT.hpi
 [INFO] Installing /tmp/plugin-builds/bootstrap4-api/target/bootstrap4-api-4.6.0-7-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/plugins/bootstrap4-api/4.6.0-7-SNAPSHOT/bootstrap4-api-4.6.0-7-SNAPSHOT.pom
 [INFO] Installing /tmp/plugin-builds/bootstrap4-api/target/bootstrap4-api.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/bootstrap4-api/4.6.0-7-SNAPSHOT/bootstrap4-api-4.6.0-7-SNAPSHOT.jar
-[INFO] Installing /tmp/plugin-builds/bootstrap4-api/target/bootstrap4-api-tests.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/bootstrap4-api/4.6.0-7-SNAPSHOT/bootstrap4-api-4.6.0-7-SNAPSHOT-tests.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  18.203 s
-[INFO] Finished at: 2025-06-22T15:34:25+02:00
+[INFO] Total time:  21.114 s
+[INFO] Finished at: 2025-06-22T17:27:25+02:00
 [INFO] ------------------------------------------------------------------------
