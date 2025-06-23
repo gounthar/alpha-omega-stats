@@ -16,7 +16,7 @@ jobs:
 
       - name: Run test-jdk-25.sh with keep-alive
         run: |
-          (while true; do echo "Still running..."; sleep 300; done) &
+          (while true; do count=0; if [ -f jdk-25-build-results.csv ]; then count=$(($(wc -l < jdk-25-build-results.csv) - 1)); fi; echo "Still running... $count plugins processed so far."; sleep 300; done) &
           KEEP_ALIVE_PID=$!
           chmod +x ./test-jdk-25.sh
           ./test-jdk-25.sh
