@@ -13,4 +13,6 @@ jobs:
       - name: Set execute permission
         run: chmod +x update-daily.sh
       - name: Run update-daily.sh
-        run: ./update-daily.sh "data/consolidated/all_prs.json" true true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: ./update-daily.sh ./update-daily.sh "data/consolidated/all_prs.json" true true
