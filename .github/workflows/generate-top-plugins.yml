@@ -11,6 +11,8 @@ permissions:
 jobs:
   generate-top-plugins:
     runs-on: ubuntu-latest
+    env:
+      PLUGIN_CSV: top-250-plugins.csv
     steps:
       - uses: actions/checkout@v4
 
@@ -31,17 +33,32 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit and push changes
+      - name: Check for changes
+        id: changes
         run: |
-          git checkout -b update-top-plugins
-          git add top-250-plugins.csv
-          git commit -m "Weekly update of top-250-plugins.csv" || echo "No changes to commit"
-          git push origin update-top-plugins --force
+          if git diff --quiet $PLUGIN_CSV; then
+            echo "No changes detected."
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "Changes detected."
+            BRANCH="update-top-plugins-$(date +%Y%m%d%H%M%S)"
+            echo "branch_name=$BRANCH" >> $GITHUB_OUTPUT
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create and push branch if changes detected
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git checkout -b "${{ steps.changes.outputs.branch_name }}"
+          git add $PLUGIN_CSV
+          git commit -m "Update top-250-plugins.csv"
+          git push origin "${{ steps.changes.outputs.branch_name }}"
 
       - name: Create Pull Request
+        if: steps.changes.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          branch: update-top-plugins
-          title: "[bot] Weekly update of top-250-plugins.csv"
-          body: "This PR contains the weekly update of the top-250-plugins.csv file."
+          branch: ${{ steps.changes.outputs.branch_name }}
+          title: "[bot] Update top-250-plugins.csv"
+          body: "Automated update of top-250-plugins.csv"
           labels: automation
