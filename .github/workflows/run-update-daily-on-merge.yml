@@ -1,0 +1,16 @@
+name: Run update-daily.sh on merge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-update-daily:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set execute permission
+        run: chmod +x update-daily.sh
+      - name: Run update-daily.sh
+        run: ./update-daily.sh "data/consolidated/all_prs.json" true true
