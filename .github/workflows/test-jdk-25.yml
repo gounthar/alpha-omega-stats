@@ -1,11 +1,17 @@
 # This workflow runs test-jdk-25.sh with a 6-hour timeout and keep-alive output.
+# It is triggered manually, on push to top-250-plugins.csv, and on a schedule.
 # If the script makes changes, a PR is automatically created with the "automation" label for automerge.
 # The auto-merge workflow in .github/workflows/auto-merge-bot-prs.yml will handle automerge for PRs created by github-actions[bot] with this label.
 
-name: Test JDK 25
+name: Test JDK 25 and Update Results
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - top-250-plugins.csv
+  schedule:
+    - cron: '0 0 * * 2'
 
 jobs:
   test-jdk-25:
