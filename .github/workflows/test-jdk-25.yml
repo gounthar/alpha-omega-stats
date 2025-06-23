@@ -30,6 +30,7 @@ jobs:
       - name: Create Pull Request if there are changes
         uses: peter-evans/create-pull-request@v6
         with:
+          token: ${{ secrets.PAT_TOKEN }}
           commit-message: "chore: update results from test-jdk-25.sh"
           branch: test-jdk-25/update-results
           title: "Update results from test-jdk-25.sh"
