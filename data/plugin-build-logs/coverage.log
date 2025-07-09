@@ -8,9 +8,8 @@ WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common
 WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
 WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] Inspecting build with total of 3 modules...
-[INFO] Installing Nexus Staging features:
-[INFO]   ... total of 1 executions of maven-deploy-plugin replaced with nexus-staging-maven-plugin
+[INFO] Inspecting build with total of 3 modules
+[INFO] Installing Central Publishing features
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -23,14 +22,15 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ coverage ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ coverage ---
+[INFO] --- hpi:3.66:validate (default-validate) @ coverage ---
 [INFO] Created marker file /tmp/plugin-builds/coverage/plugin/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ coverage ---
+[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
 [INFO] --- enforcer:3.5.0:enforce (display-info) @ coverage ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
@@ -45,11 +45,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] 
 [INFO] >>> javadoc:3.11.2:javadoc (default) > generate-sources @ coverage >>>
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ coverage ---
+[INFO] --- hpi:3.66:validate (default-validate) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ coverage ---
+[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
 [INFO] --- enforcer:3.5.0:enforce (display-info) @ coverage ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -75,13 +76,13 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/CoverageSourcePrinter.java:[38,32] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/SourceCodePainter.java:[123,61] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CodeDeltaCalculator.java:[85,17] calculateDelta(hudson.model.Run<?,?>,hudson.model.Run<?,?>,java.lang.String,edu.hm.hafner.util.FilteredLog) in io.jenkins.plugins.forensics.delta.DeltaCalculator has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[135,41] found raw type: java.lang.Class
+[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[134,41] found raw type: java.lang.Class
   missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[221,41] found raw type: java.lang.Class
+[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[219,41] found raw type: java.lang.Class
   missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[191,47] found raw type: java.lang.Class
+[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[189,47] found raw type: java.lang.Class
   missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[301,41] found raw type: java.lang.Class
+[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[299,41] found raw type: java.lang.Class
   missing type arguments for generic class java.lang.Class<T>
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[74,41] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[80,49] non-transient instance field of a serializable class declared with a non-serializable type
@@ -101,10 +102,12 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/PathResolver.java:[82,35] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/PathResolver.java:[83,35] non-transient instance field of a serializable class declared with a non-serializable type
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ coverage ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ coverage ---
 [INFO] Skipping access modifier checks
 [INFO] 
-[INFO] --- hpi:3.61:insert-test (default-insert-test) @ coverage ---
+[INFO] --- bridge-method-injector:1.31:process (default) @ coverage ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ coverage ---
 [INFO] 
 [INFO] --- assertj:2.2.0:generate-assertions (default) @ coverage ---
 [INFO] 
@@ -119,23 +122,23 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ coverage ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ coverage ---
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ coverage ---
 [INFO] Generating /tmp/plugin-builds/coverage/plugin/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ coverage ---
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ coverage ---
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.12:prepare-agent (default) @ coverage ---
-[INFO] argLine set to -javaagent:/home/poddingue/.m2/repository/org/jacoco/org.jacoco.agent/0.8.12/org.jacoco.agent-0.8.12-runtime.jar=destfile=/tmp/plugin-builds/coverage/plugin/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}
+[INFO] --- jacoco:0.8.13:prepare-agent (default) @ coverage ---
+[INFO] argLine set to -javaagent:/home/poddingue/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/tmp/plugin-builds/coverage/plugin/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ coverage ---
+[INFO] --- surefire:3.5.3:test (default-test) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:165.v7e11f4e4a_325:process (default) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.61:hpi (default-hpi) @ coverage ---
+[INFO] --- hpi:3.66:hpi (default-hpi) @ coverage ---
 [INFO] Generating /tmp/plugin-builds/coverage/plugin/target/coverage/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/coverage/plugin/target/coverage.jar
@@ -153,59 +156,59 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (default) @ coverage ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- failsafe:3.5.2:integration-test (default) @ coverage ---
+[INFO] --- failsafe:3.5.3:integration-test (default) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-java) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-java) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] >>> pmd:3.26.0:check (run-pmd-java) > :pmd @ coverage >>>
+[INFO] >>> pmd:3.27.0:check (run-pmd-java) > :pmd @ coverage >>>
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (pmd) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (pmd) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] <<< pmd:3.26.0:check (run-pmd-java) < :pmd @ coverage <<<
+[INFO] <<< pmd:3.27.0:check (run-pmd-java) < :pmd @ coverage <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.26.0:check (run-pmd-java) @ coverage ---
+[INFO] --- pmd:3.27.0:check (run-pmd-java) @ coverage ---
 [INFO] Skipping PMD execution
 [INFO] 
-[INFO] --- pmd:3.26.0:cpd (run-pmd-java) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] --- pmd:3.27.0:cpd (run-pmd-java) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:cpd report goal
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-tests) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-tests) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] >>> pmd:3.26.0:check (run-pmd-tests) > :pmd @ coverage >>>
+[INFO] >>> pmd:3.27.0:check (run-pmd-tests) > :pmd @ coverage >>>
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (pmd) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (pmd) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] <<< pmd:3.26.0:check (run-pmd-tests) < :pmd @ coverage <<<
+[INFO] <<< pmd:3.27.0:check (run-pmd-tests) < :pmd @ coverage <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.26.0:check (run-pmd-tests) @ coverage ---
+[INFO] --- pmd:3.27.0:check (run-pmd-tests) @ coverage ---
 [INFO] Skipping PMD execution
 [INFO] 
-[INFO] --- pmd:3.26.0:cpd (run-pmd-tests) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] --- pmd:3.27.0:cpd (run-pmd-tests) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:cpd report goal
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-javascript) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-javascript) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] >>> pmd:3.26.0:check (run-pmd-javascript) > :pmd @ coverage >>>
+[INFO] >>> pmd:3.27.0:check (run-pmd-javascript) > :pmd @ coverage >>>
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (pmd) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (pmd) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] <<< pmd:3.26.0:check (run-pmd-javascript) < :pmd @ coverage <<<
+[INFO] <<< pmd:3.27.0:check (run-pmd-javascript) < :pmd @ coverage <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.26.0:check (run-pmd-javascript) @ coverage ---
+[INFO] --- pmd:3.27.0:check (run-pmd-javascript) @ coverage ---
 [INFO] Skipping PMD execution
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-metrics) @ coverage ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-metrics) @ coverage ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ coverage ---
 [INFO] 
@@ -221,16 +224,16 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] --- spotbugs:4.8.6.6:check (spotbugs) @ coverage ---
 [INFO] Spotbugs plugin skipped
 [INFO] 
-[INFO] --- spotless:2.44.3:check (default) @ coverage ---
+[INFO] --- spotless:2.44.5:check (default) @ coverage ---
 [INFO] Spotless check skipped
 [INFO] 
-[INFO] --- failsafe:3.5.2:verify (default) @ coverage ---
+[INFO] --- failsafe:3.5.3:verify (default) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.12:report (report) @ coverage ---
+[INFO] --- jacoco:0.8.13:report (report) @ coverage ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
-[INFO] --- revapi:0.15.0:check (run-revapi) @ coverage ---
+[INFO] --- revapi:0.15.1:check (run-revapi) @ coverage ---
 [WARNING] 1 problem was encountered while building the effective model for org.jboss:jboss-dmr:jar:1.2.0.Final during dependency collection step for plugin (use -X to see details)
 [INFO] Skipping execution
 [INFO] 
@@ -246,7 +249,7 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.2.0:clean (default-clean) @ coverage-ui-tests ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (enforce-java) @ coverage-ui-tests ---
+[INFO] --- enforcer:3.6.0:enforce (enforce-java) @ coverage-ui-tests ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] 
 [INFO] --- git-commit-id:9.0.2:revision (get-the-git-infos) @ coverage-ui-tests ---
@@ -286,8 +289,8 @@ The following profiles are active:
 
  - jenkins (source: external)
  - ossrh (source: external)
- - all-tests (source: org.jenkins-ci.plugins:plugin:5.9)
- - annotation-processors (source: org.jenkins-ci.plugins:plugin:5.9)
+ - all-tests (source: org.jenkins-ci.plugins:plugin:5.18)
+ - annotation-processors (source: org.jenkins-ci.plugins:plugin:5.18)
 
 
 
@@ -332,7 +335,7 @@ The following profiles are active:
 [INFO] 
 [INFO] >>> source:3.3.1:jar (attach-sources) > generate-sources @ coverage-ui-tests >>>
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (enforce-java) @ coverage-ui-tests ---
+[INFO] --- enforcer:3.6.0:enforce (enforce-java) @ coverage-ui-tests ---
 [INFO] 
 [INFO] --- git-commit-id:9.0.2:revision (get-the-git-infos) @ coverage-ui-tests ---
 [INFO] 
@@ -347,15 +350,15 @@ The following profiles are active:
 [INFO] --- failsafe:3.5.2:integration-test (default) @ coverage-ui-tests ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.0:check (run-spotbugs) > :spotbugs @ coverage-ui-tests >>>
+[INFO] >>> spotbugs:4.9.3.2:check (run-spotbugs) > :spotbugs @ coverage-ui-tests >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.0:spotbugs (spotbugs) @ coverage-ui-tests ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.0:spotbugs report goal
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ coverage-ui-tests ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.0:check (run-spotbugs) < :spotbugs @ coverage-ui-tests <<<
+[INFO] <<< spotbugs:4.9.3.2:check (run-spotbugs) < :spotbugs @ coverage-ui-tests <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.0:check (run-spotbugs) @ coverage-ui-tests ---
+[INFO] --- spotbugs:4.9.3.2:check (run-spotbugs) @ coverage-ui-tests ---
 [INFO] Spotbugs plugin skipped
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ coverage-ui-tests ---
@@ -365,56 +368,56 @@ The following profiles are active:
 [INFO] --- failsafe:3.5.2:verify (default) @ coverage-ui-tests ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-java) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-java) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] >>> pmd:3.26.0:check (run-pmd-java) > :pmd @ coverage-ui-tests >>>
+[INFO] >>> pmd:3.27.0:check (run-pmd-java) > :pmd @ coverage-ui-tests >>>
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (pmd) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (pmd) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] <<< pmd:3.26.0:check (run-pmd-java) < :pmd @ coverage-ui-tests <<<
+[INFO] <<< pmd:3.27.0:check (run-pmd-java) < :pmd @ coverage-ui-tests <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.26.0:check (run-pmd-java) @ coverage-ui-tests ---
+[INFO] --- pmd:3.27.0:check (run-pmd-java) @ coverage-ui-tests ---
 [INFO] Skipping PMD execution
 [INFO] 
-[INFO] --- pmd:3.26.0:cpd (run-pmd-java) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] --- pmd:3.27.0:cpd (run-pmd-java) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:cpd report goal
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-tests) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-javascript) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] >>> pmd:3.26.0:check (run-pmd-tests) > :pmd @ coverage-ui-tests >>>
+[INFO] >>> pmd:3.27.0:check (run-pmd-javascript) > :pmd @ coverage-ui-tests >>>
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (pmd) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (pmd) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] <<< pmd:3.26.0:check (run-pmd-tests) < :pmd @ coverage-ui-tests <<<
+[INFO] <<< pmd:3.27.0:check (run-pmd-javascript) < :pmd @ coverage-ui-tests <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.26.0:check (run-pmd-tests) @ coverage-ui-tests ---
+[INFO] --- pmd:3.27.0:check (run-pmd-javascript) @ coverage-ui-tests ---
 [INFO] Skipping PMD execution
 [INFO] 
-[INFO] --- pmd:3.26.0:cpd (run-pmd-tests) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:cpd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-metrics) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-javascript) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (run-pmd-tests) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] >>> pmd:3.26.0:check (run-pmd-javascript) > :pmd @ coverage-ui-tests >>>
+[INFO] >>> pmd:3.27.0:check (run-pmd-tests) > :pmd @ coverage-ui-tests >>>
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (pmd) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:pmd (pmd) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:pmd report goal
 [INFO] 
-[INFO] <<< pmd:3.26.0:check (run-pmd-javascript) < :pmd @ coverage-ui-tests <<<
+[INFO] <<< pmd:3.27.0:check (run-pmd-tests) < :pmd @ coverage-ui-tests <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.26.0:check (run-pmd-javascript) @ coverage-ui-tests ---
+[INFO] --- pmd:3.27.0:check (run-pmd-tests) @ coverage-ui-tests ---
 [INFO] Skipping PMD execution
 [INFO] 
-[INFO] --- pmd:3.26.0:pmd (run-pmd-metrics) @ coverage-ui-tests ---
-[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd report goal
+[INFO] --- pmd:3.27.0:cpd (run-pmd-tests) @ coverage-ui-tests ---
+[INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.27.0:cpd report goal
 [INFO] 
 [INFO] --- jacoco:0.8.13:report (report) @ coverage-ui-tests ---
 [INFO] Skipping JaCoCo execution because property jacoco.skip is set.
@@ -439,12 +442,12 @@ The following profiles are active:
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO] 
-[INFO] Coverage Plugin 2.8.0-SNAPSHOT ..................... SUCCESS [ 40.788 s]
-[INFO] UI Tests of Code Coverage Plugin UNVERSIONED ....... SUCCESS [ 32.434 s]
-[INFO] Aggregator for Coverage Plugin UNVERSIONED ......... SUCCESS [  0.132 s]
+[INFO] Coverage Plugin 2.8.0-SNAPSHOT ..................... SUCCESS [ 24.604 s]
+[INFO] UI Tests of Code Coverage Plugin UNVERSIONED ....... SUCCESS [ 14.819 s]
+[INFO] Aggregator for Coverage Plugin UNVERSIONED ......... SUCCESS [  0.064 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:22 min
-[INFO] Finished at: 2025-07-02T13:08:14+02:00
+[INFO] Total time:  41.971 s
+[INFO] Finished at: 2025-07-09T13:11:25+02:00
 [INFO] ------------------------------------------------------------------------
