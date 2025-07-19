@@ -18,7 +18,7 @@ RUN go mod init jenkins.io/alpha-omega-stats || true && \
 RUN CGO_ENABLED=0 GOOS=linux go build -o jenkins-pr-collector
 
 # Use the official Alpine image as the base for the final stage
-FROM alpine:3.22.0
+FROM alpine:3.22.1
 
 # Install required packages
 RUN apk add --no-cache \
