@@ -3,11 +3,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.i
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.61 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.61 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.61 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.61 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.61 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkinsci.plugins:pipeline-model-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -23,9 +23,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-parent ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-parent ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-parent ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-model-parent ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
@@ -34,36 +34,38 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-parent ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-model-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ pipeline-model-parent ---
 [INFO] 
-[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-model-parent ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-parent ---
 [INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-parent:pom:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-parent ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-parent ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-model-api/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-model-parent ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-parent ---
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-model-parent >>>
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-parent >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-model-parent ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-model-parent <<<
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-parent <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-model-parent ---
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-parent ---
 [INFO] Spotbugs plugin skipped
 [INFO] 
-[INFO] --- spotless:2.44.3:check (default) @ pipeline-model-parent ---
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-model-parent ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-parent ---
@@ -74,20 +76,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]   from pipeline-stage-tags-metadata/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-stage-tags-metadata ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-stage-tags-metadata ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-stage-tags-metadata ---
+[INFO] --- hpi:3.66:validate (default-validate) @ pipeline-stage-tags-metadata ---
 [INFO] Created marker file /tmp/plugin-builds/pipeline-model-api/pipeline-stage-tags-metadata/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-stage-tags-metadata ---
+[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ pipeline-stage-tags-metadata ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-stage-tags-metadata ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-stage-tags-metadata ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-stage-tags-metadata ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-stage-tags-metadata ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ pipeline-stage-tags-metadata ---
@@ -95,7 +98,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-stage-tags-metadata ---
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
-[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-stage-tags-metadata ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-stage-tags-metadata ---
 [INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-stage-tags-metadata:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-stage-tags-metadata ---
@@ -104,10 +107,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.pipeline.StageStatus indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.pipeline.SyntheticStage indexed under hudson.Extension
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-stage-tags-metadata ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-stage-tags-metadata ---
 [INFO] Skipping access modifier checks
 [INFO] 
-[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-stage-tags-metadata ---
+[INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ pipeline-stage-tags-metadata ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-stage-tags-metadata ---
 [INFO] Executing tasks
@@ -120,20 +125,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-stage-tags-metadata ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-stage-tags-metadata ---
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-api/pipeline-stage-tags-metadata/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-stage-tags-metadata ---
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-stage-tags-metadata ---
 [INFO] 
-[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-stage-tags-metadata ---
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ pipeline-stage-tags-metadata ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-stage-tags-metadata ---
+[INFO] --- surefire:3.5.3:test (default-test) @ pipeline-stage-tags-metadata ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-stage-tags-metadata ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-stage-tags-metadata ---
 [INFO] 
-[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
+[INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-api/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/pipeline-model-api/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
@@ -147,18 +152,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-stage-tags-metadata ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-stage-tags-metadata ---
 [INFO] Spotbugs plugin skipped
 [INFO] 
-[INFO] --- spotless:2.44.3:check (default) @ pipeline-stage-tags-metadata ---
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-stage-tags-metadata ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-tags-metadata ---
@@ -171,21 +176,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]   from pipeline-model-api/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-api ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-api ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-model-api ---
+[INFO] --- hpi:3.66:validate (default-validate) @ pipeline-model-api ---
 [INFO] Created marker file /tmp/plugin-builds/pipeline-model-api/pipeline-model-api/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-model-api ---
+[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ pipeline-model-api ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-api ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-model-api ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-api ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-model-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ pipeline-model-api ---
@@ -193,7 +198,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-api ---
 [INFO] Copying 3 resources from src/main/resources to target/classes
 [INFO] 
-[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-model-api ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-api ---
 [INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-api:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-api ---
@@ -202,10 +207,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ASTSchema indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCache indexed under hudson.Extension
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-model-api ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-api ---
 [INFO] Skipping access modifier checks
 [INFO] 
-[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-model-api ---
+[INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ pipeline-model-api ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-api ---
 [INFO] Executing tasks
@@ -218,20 +225,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-api ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-model-api ---
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-api/pipeline-model-api/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-api ---
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-api ---
 [INFO] 
-[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-model-api ---
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ pipeline-model-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-model-api ---
+[INFO] --- surefire:3.5.3:test (default-test) @ pipeline-model-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-model-api ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-api ---
 [INFO] 
-[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-model-api ---
+[INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-api/pipeline-model-api/target/pipeline-model-api/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/pipeline-model-api/pipeline-model-api/target/pipeline-model-api.jar
@@ -249,25 +256,25 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] Bundling transitive dependency libphonenumber-8.11.1.jar (via json-schema-validator)
 [WARNING] Bundling transitive dependency mailapi-1.6.2.jar (via json-schema-validator)
 [WARNING] Bundling transitive dependency jopt-simple-5.0.4.jar (via json-schema-validator)
-[WARNING] Bundling transitive dependency rhino-1.7.15.jar (via json-schema-validator)
+[WARNING] Bundling transitive dependency rhino-1.8.0.jar (via json-schema-validator)
 [INFO] Generating hpi /tmp/plugin-builds/pipeline-model-api/pipeline-model-api/target/pipeline-model-api.hpi
 [INFO] Building jar: /tmp/plugin-builds/pipeline-model-api/pipeline-model-api/target/pipeline-model-api.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-model-api ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-api ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-model-api ---
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-api ---
 [INFO] Spotbugs plugin skipped
 [INFO] 
-[INFO] --- spotless:2.44.3:check (default) @ pipeline-model-api ---
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-model-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-api ---
@@ -280,21 +287,22 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]   from pipeline-model-extensions/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-extensions ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-extensions ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-model-extensions ---
+[INFO] --- hpi:3.66:validate (default-validate) @ pipeline-model-extensions ---
 [INFO] Created marker file /tmp/plugin-builds/pipeline-model-api/pipeline-model-extensions/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-model-extensions ---
+[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ pipeline-model-extensions ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-extensions ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-model-extensions ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-extensions ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-model-extensions ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ pipeline-model-extensions ---
@@ -302,7 +310,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-extensions ---
 [INFO] Copying 4 resources from src/main/resources to target/classes
 [INFO] 
-[INFO] --- flatten:1.7.0:flatten (flatten) @ pipeline-model-extensions ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-extensions ---
 [INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-extensions:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-extensions ---
@@ -315,10 +323,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/pipeline-model-api/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/withscript/WithScriptDescribable.java: Some input files use unchecked or unsafe operations.
 [INFO] /tmp/plugin-builds/pipeline-model-api/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/withscript/WithScriptDescribable.java: Recompile with -Xlint:unchecked for details.
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ pipeline-model-extensions ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-extensions ---
 [INFO] Skipping access modifier checks
 [INFO] 
-[INFO] --- hpi:3.61:insert-test (default-insert-test) @ pipeline-model-extensions ---
+[INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-extensions ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ pipeline-model-extensions ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-extensions ---
 [INFO] Executing tasks
@@ -331,20 +341,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-extensions ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ pipeline-model-extensions ---
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-extensions ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-api/pipeline-model-extensions/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-extensions ---
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-extensions ---
 [INFO] 
-[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ pipeline-model-extensions ---
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ pipeline-model-extensions ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-model-extensions ---
+[INFO] --- surefire:3.5.3:test (default-test) @ pipeline-model-extensions ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ pipeline-model-extensions ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-extensions ---
 [INFO] 
-[INFO] --- hpi:3.61:hpi (default-hpi) @ pipeline-model-extensions ---
+[INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-extensions ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-api/pipeline-model-extensions/target/pipeline-model-extensions/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/pipeline-model-api/pipeline-model-extensions/target/pipeline-model-extensions.jar
@@ -358,18 +368,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-extensions ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.2.0:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:spotbugs (spotbugs) @ pipeline-model-extensions ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.2.0:spotbugs report goal
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-extensions ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.2.0:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.2.0:check (spotbugs) @ pipeline-model-extensions ---
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-extensions ---
 [INFO] Spotbugs plugin skipped
 [INFO] 
-[INFO] --- spotless:2.44.3:check (default) @ pipeline-model-extensions ---
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-model-extensions ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-extensions ---
@@ -382,43 +392,44 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]   from pipeline-model-definition/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ pipeline-model-definition ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-definition ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ pipeline-model-definition ---
+[INFO] --- hpi:3.66:validate (default-validate) @ pipeline-model-definition ---
 [INFO] Created marker file /tmp/plugin-builds/pipeline-model-api/pipeline-model-definition/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ pipeline-model-definition ---
+[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ pipeline-model-definition ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ pipeline-model-definition ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-model-definition ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ pipeline-model-definition ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-model-definition ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ pipeline-model-definition ---
 [INFO] 
-[INFO] --- gplus:4.1.1:generateStubs (default) @ pipeline-model-definition ---
+[INFO] --- gplus:4.2.1:generateStubs (default) @ pipeline-model-definition ---
 [INFO] Using isolated classloader, without GMavenPlus classpath.
 [INFO] Using Groovy 2.4.21 to perform generateStubs.
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Model Parent POM 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  1.635 s]
-[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [  2.185 s]
-[INFO] Pipeline: Model API ................................ SUCCESS [  3.239 s]
-[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [  2.899 s]
-[INFO] Pipeline: Declarative .............................. FAILURE [  1.568 s]
+[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  1.725 s]
+[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [  2.282 s]
+[INFO] Pipeline: Model API ................................ SUCCESS [  3.360 s]
+[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [  3.061 s]
+[INFO] Pipeline: Declarative .............................. FAILURE [  1.550 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  12.127 s
-[INFO] Finished at: 2025-08-05T02:12:32Z
+[INFO] Total time:  12.495 s
+[INFO] Finished at: 2025-08-12T02:01:37Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:4.1.1:generateStubs (default) on project pipeline-model-definition: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:4.1.1:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
+[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.1:generateStubs (default) on project pipeline-model-definition: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.1:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
