@@ -9,7 +9,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:10.14.0
-[WARNING] Failed to build parent project for io.jenkins.plugins:coverage:hpi:2.8.0-SNAPSHOT
+[WARNING] Failed to build parent project for io.jenkins.plugins:coverage:hpi:2.9.0-SNAPSHOT
 [INFO] Inspecting build with total of 3 modules
 [INFO] Installing Central Publishing features
 [INFO] ------------------------------------------------------------------------
@@ -20,13 +20,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Aggregator for Coverage Plugin                                     [pom]
 [INFO] 
 [INFO] --------------------< io.jenkins.plugins:coverage >---------------------
-[INFO] Building Coverage Plugin 2.8.0-SNAPSHOT                            [1/3]
+[INFO] Building Coverage Plugin 2.9.0-SNAPSHOT                            [1/3]
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 Downloading from central: https://repo.maven.apache.org/maven2/edu/hm/hafner/coverage-model/0.56.0/coverage-model-0.56.0.pom
-Progress (1): 1.4/3.8 kBProgress (1): 2.8/3.8 kBProgress (1): 3.8 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/edu/hm/hafner/coverage-model/0.56.0/coverage-model-0.56.0.pom (3.8 kB at 13 kB/s)
+Progress (1): 1.4/3.8 kBProgress (1): 2.8/3.8 kBProgress (1): 3.8 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/edu/hm/hafner/coverage-model/0.56.0/coverage-model-0.56.0.pom (3.8 kB at 12 kB/s)
 Downloading from central: https://repo.maven.apache.org/maven2/edu/hm/hafner/coverage-model/0.56.0/coverage-model-0.56.0.jar
-Progress (1): 1.4/146 kBProgress (1): 2.8/146 kBProgress (1): 4.1/146 kBProgress (1): 5.5/146 kBProgress (1): 6.9/146 kBProgress (1): 8.3/146 kBProgress (1): 9.7/146 kBProgress (1): 11/146 kB Progress (1): 12/146 kBProgress (1): 14/146 kBProgress (1): 15/146 kBProgress (1): 16/146 kBProgress (1): 33/146 kBProgress (1): 49/146 kBProgress (1): 64/146 kBProgress (1): 81/146 kBProgress (1): 97/146 kBProgress (1): 113/146 kBProgress (1): 130/146 kBProgress (1): 146 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/edu/hm/hafner/coverage-model/0.56.0/coverage-model-0.56.0.jar (146 kB at 2.4 MB/s)
+Progress (1): 16/146 kBProgress (1): 33/146 kBProgress (1): 49/146 kBProgress (1): 64/146 kBProgress (1): 80/146 kBProgress (1): 97/146 kBProgress (1): 113/146 kBProgress (1): 129/146 kBProgress (1): 146/146 kBProgress (1): 146 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/edu/hm/hafner/coverage-model/0.56.0/coverage-model-0.56.0.jar (146 kB at 2.0 MB/s)
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ coverage ---
 [INFO] 
@@ -74,14 +74,15 @@ Progress (1): 1.4/146 kBProgress (1): 2.8/146 kBProgress (1): 4.1/146 kBProgr
 [INFO] Skipping org.apache.maven.plugins:maven-javadoc-plugin:3.11.2:javadoc report goal
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ coverage ---
-[INFO] Copying 75 resources from src/main/resources to target/classes
+[INFO] Copying 80 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ coverage ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 60 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 61 source files with javac [debug parameters release 17] to target/classes
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/CoverageSourcePrinter.java:[38,32] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/SourceCodePainter.java:[123,61] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CodeDeltaCalculator.java:[85,17] calculateDelta(hudson.model.Run<?,?>,hudson.model.Run<?,?>,java.lang.String,edu.hm.hafner.util.FilteredLog) in io.jenkins.plugins.forensics.delta.DeltaCalculator has been deprecated
+[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageAppearanceConfiguration.java:[57,13] possible 'this' escape before subclass is fully initialized
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[134,41] found raw type: java.lang.Class
   missing type arguments for generic class java.lang.Class<T>
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[219,41] found raw type: java.lang.Class
@@ -244,9 +245,9 @@ Progress (1): 1.4/146 kBProgress (1): 2.8/146 kBProgress (1): 4.1/146 kBProgr
 [INFO] Skipping execution
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ coverage ---
-[INFO] Installing /tmp/plugin-builds/coverage/plugin/pom.xml to /home/runner/.m2/repository/io/jenkins/plugins/coverage/2.8.0-SNAPSHOT/coverage-2.8.0-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/coverage/plugin/target/coverage.hpi to /home/runner/.m2/repository/io/jenkins/plugins/coverage/2.8.0-SNAPSHOT/coverage-2.8.0-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/coverage/plugin/target/coverage.jar to /home/runner/.m2/repository/io/jenkins/plugins/coverage/2.8.0-SNAPSHOT/coverage-2.8.0-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/coverage/plugin/pom.xml to /home/runner/.m2/repository/io/jenkins/plugins/coverage/2.9.0-SNAPSHOT/coverage-2.9.0-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/coverage/plugin/target/coverage.hpi to /home/runner/.m2/repository/io/jenkins/plugins/coverage/2.9.0-SNAPSHOT/coverage-2.9.0-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/coverage/plugin/target/coverage.jar to /home/runner/.m2/repository/io/jenkins/plugins/coverage/2.9.0-SNAPSHOT/coverage-2.9.0-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------------< io.jenkins.plugins:coverage-ui-tests >----------------
 [INFO] Building UI Tests of Code Coverage Plugin UNVERSIONED              [2/3]
@@ -289,7 +290,7 @@ Progress (1): 1.4/146 kBProgress (1): 2.8/146 kBProgress (1): 4.1/146 kBProgr
 [INFO] 
 [INFO] --- help:3.5.1:active-profiles (show-profiles) @ coverage-ui-tests ---
 [INFO] 
-Active Profiles for Project 'io.jenkins.plugins:coverage:hpi:2.8.0-SNAPSHOT':
+Active Profiles for Project 'io.jenkins.plugins:coverage:hpi:2.9.0-SNAPSHOT':
 
 The following profiles are active:
 
@@ -442,12 +443,12 @@ The following profiles are active:
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO] 
-[INFO] Coverage Plugin 2.8.0-SNAPSHOT ..................... SUCCESS [ 12.002 s]
-[INFO] UI Tests of Code Coverage Plugin UNVERSIONED ....... SUCCESS [  6.330 s]
-[INFO] Aggregator for Coverage Plugin UNVERSIONED ......... SUCCESS [  0.020 s]
+[INFO] Coverage Plugin 2.9.0-SNAPSHOT ..................... SUCCESS [ 11.767 s]
+[INFO] UI Tests of Code Coverage Plugin UNVERSIONED ....... SUCCESS [  6.439 s]
+[INFO] Aggregator for Coverage Plugin UNVERSIONED ......... SUCCESS [  0.028 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  19.335 s
-[INFO] Finished at: 2025-08-05T03:18:49Z
+[INFO] Total time:  19.184 s
+[INFO] Finished at: 2025-08-12T03:15:10Z
 [INFO] ------------------------------------------------------------------------
