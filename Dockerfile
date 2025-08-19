@@ -1,5 +1,5 @@
 # Use the official Golang image as the builder stage
-FROM golang:1.24.1-alpine AS builder
+FROM golang:1.25.0-alpine AS builder
 
 # Create and set the working directory
 RUN mkdir -p /app
