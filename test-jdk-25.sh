@@ -4,6 +4,7 @@
 SPREADSHEET_ID_OR_NAME="Jenkins PR Tracker" # or use the Sheet ID
 WORKSHEET_NAME="Sheet1" # Change to your worksheet name
 OUTPUT_TSV="plugins-jdk25.tsv"
+TSV_FILE="$OUTPUT_TSV"
 
 python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"
 if [ $? -ne 0 ]; then
@@ -60,6 +61,7 @@ BUILD_DIR="/tmp/plugin-builds"
 
 # Path to the output CSV file where build results will be saved.
 RESULTS_FILE="jdk-25-build-results.csv"
+TSV_RESULTS_FILE="jdk-25-build-results-extended.csv"
 
 # Path to the debug log file where detailed logs will be stored.
 DEBUG_LOG="build-debug.log"
@@ -73,6 +75,7 @@ mkdir -p "$BUILD_DIR"
 
 # Initialize the results file with a header row.
 echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
+echo "plugin_name,pr_number,pr_url,jdk25_status,build_status" > "$TSV_RESULTS_FILE"
 
 # Initialize the debug log file with a header.
 echo "Build Debug Log" > "$DEBUG_LOG"
@@ -265,7 +268,7 @@ while IFS=$'\t' read -r name pr_number pr_url jdk25_status <&3; do
             build_status=$(compile_plugin "$name")
         fi
         echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
-        echo "$name,$pr_number,$pr_url,$jdk25_status,$build_status" >> "$RESULTS_FILE"
+        echo "$name,$pr_number,$pr_url,$jdk25_status,$build_status" >> "$TSV_RESULTS_FILE"
     else
         echo "Skipping header line $line_number" >> "$DEBUG_LOG"
     fi
@@ -275,4 +278,5 @@ echo "Finished reading $TSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 
 # Log the completion of the script and the locations of the results and logs.
 echo "Simplified build results have been saved to $RESULTS_FILE."
+echo "Extended TSV build results have been saved to $TSV_RESULTS_FILE."
 echo "Debug logs have been saved to $DEBUG_LOG."
