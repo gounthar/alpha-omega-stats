@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Export Google Sheet to TSV before running the rest of the script
+SPREADSHEET_ID_OR_NAME="Jenkins PR Tracker" # or use the Sheet ID
+WORKSHEET_NAME="Sheet1" # Change to your worksheet name
+OUTPUT_TSV="plugins-jdk25.tsv"
+
+python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"
+if [ $? -ne 0 ]; then
+    echo "Failed to export Google Sheet to TSV. Aborting."
+    exit 1
+fi
+
 # Ensure DEBUG_LOG is defined and exported
 DEBUG_LOG="build-debug.log"
 export DEBUG_LOG
