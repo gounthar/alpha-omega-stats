@@ -1,14 +1,8 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkinsci.plugins:pipeline-model-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -50,6 +44,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-parent ---
+[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/target/pipeline-model-parent/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-parent ---
 [INFO] Skipping packaging of the test-jar
@@ -63,13 +58,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-parent ---
-[INFO] Spotbugs plugin skipped
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-model-parent ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-parent ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
 [INFO] 
 [INFO] ---------< org.jenkinsci.plugins:pipeline-stage-tags-metadata >---------
 [INFO] Building Pipeline: Stage Tags Metadata 999999-SNAPSHOT             [2/5]
@@ -108,7 +102,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.pipeline.SyntheticStage indexed under hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-stage-tags-metadata ---
-[INFO] Skipping access modifier checks
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-stage-tags-metadata ---
 [INFO] 
@@ -120,10 +113,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-stage-tags-metadata ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-stage-tags-metadata ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/test-classes/the.hpl
@@ -137,6 +131,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-stage-tags-metadata ---
+[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/META-INF/MANIFEST.MF
@@ -155,34 +150,30 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-stage-tags-metadata ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-tags-metadata ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] --------------< org.jenkinsci.plugins:pipeline-model-api >--------------
 [INFO] Building Pipeline: Model API 999999-SNAPSHOT                       [3/5]
 [INFO]   from pipeline-model-api/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/mozilla/rhino/1.8.0/rhino-1.8.0.pom
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/mozilla/rhino/1.8.0/rhino-1.8.0.pom
-Downloading from central: https://repo.maven.apache.org/maven2/org/mozilla/rhino/1.8.0/rhino-1.8.0.pom
-Progress (1): 1.4/1.5 kBProgress (1): 1.5 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/mozilla/rhino/1.8.0/rhino-1.8.0.pom (1.5 kB at 11 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/mozilla/rhino/1.8.0/rhino-1.8.0.jar
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/mozilla/rhino/1.8.0/rhino-1.8.0.jar
-Downloading from central: https://repo.maven.apache.org/maven2/org/mozilla/rhino/1.8.0/rhino-1.8.0.jar
-Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0.1/1.3 MBProgress (1): 0.1/1.3 MBProgress (1): 0.1/1.3 MBProgress (1): 0.1/1.3 MBProgress (1): 0.1/1.3 MBProgress (1): 0.1/1.3 MBProgress (1): 0.2/1.3 MBProgress (1): 0.2/1.3 MBProgress (1): 0.2/1.3 MBProgress (1): 0.2/1.3 MBProgress (1): 0.2/1.3 MBProgress (1): 0.2/1.3 MBProgress (1): 0.3/1.3 MBProgress (1): 0.3/1.3 MBProgress (1): 0.3/1.3 MBProgress (1): 0.3/1.3 MBProgress (1): 0.3/1.3 MBProgress (1): 0.3/1.3 MBProgress (1): 0.4/1.3 MBProgress (1): 0.4/1.3 MBProgress (1): 0.4/1.3 MBProgress (1): 0.4/1.3 MBProgress (1): 0.4/1.3 MBProgress (1): 0.4/1.3 MBProgress (1): 0.5/1.3 MBProgress (1): 0.5/1.3 MBProgress (1): 0.5/1.3 MBProgress (1): 0.5/1.3 MBProgress (1): 0.5/1.3 MBProgress (1): 0.5/1.3 MBProgress (1): 0.6/1.3 MBProgress (1): 0.6/1.3 MBProgress (1): 0.6/1.3 MBProgress (1): 0.6/1.3 MBProgress (1): 0.6/1.3 MBProgress (1): 0.6/1.3 MBProgress (1): 0.7/1.3 MBProgress (1): 0.7/1.3 MBProgress (1): 0.7/1.3 MBProgress (1): 0.7/1.3 MBProgress (1): 0.7/1.3 MBProgress (1): 0.7/1.3 MBProgress (1): 0.8/1.3 MBProgress (1): 0.8/1.3 MBProgress (1): 0.8/1.3 MBProgress (1): 0.8/1.3 MBProgress (1): 0.8/1.3 MBProgress (1): 0.8/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 0.9/1.3 MBProgress (1): 1.0/1.3 MBProgress (1): 1.0/1.3 MBProgress (1): 1.0/1.3 MBProgress (1): 1.0/1.3 MBProgress (1): 1.0/1.3 MBProgress (1): 1.0/1.3 MBProgress (1): 1.1/1.3 MBProgress (1): 1.1/1.3 MBProgress (1): 1.1/1.3 MBProgress (1): 1.1/1.3 MBProgress (1): 1.1/1.3 MBProgress (1): 1.1/1.3 MBProgress (1): 1.2/1.3 MBProgress (1): 1.2/1.3 MBProgress (1): 1.2/1.3 MBProgress (1): 1.2/1.3 MBProgress (1): 1.2/1.3 MBProgress (1): 1.2/1.3 MBProgress (1): 1.3/1.3 MBProgress (1): 1.3 MB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/mozilla/rhino/1.8.0/rhino-1.8.0.jar (1.3 MB at 12 MB/s)
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-api ---
 [INFO] 
@@ -216,7 +207,6 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCache indexed under hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-api ---
-[INFO] Skipping access modifier checks
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-api ---
 [INFO] 
@@ -228,10 +218,17 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-api ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-api ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCacheTest.FakeRhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCacheTest.Rhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest.java:[56,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest/FakeRhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest.java:[70,38] Generating org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest/Rhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ASTSchemaTest.java: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ASTSchemaTest.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ASTSchemaTest.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/test-classes/the.hpl
@@ -245,6 +242,7 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-api ---
+[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api/META-INF/MANIFEST.MF
@@ -274,21 +272,25 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-api ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-api ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-model-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-api ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------< org.jenkinsci.plugins:pipeline-model-extensions >-----------
 [INFO] Building Pipeline: Declarative Extension Points API 999999-SNAPSHOT [4/5]
@@ -332,7 +334,6 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/withscript/WithScriptDescribable.java: Recompile with -Xlint:unchecked for details.
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-extensions ---
-[INFO] Skipping access modifier checks
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-extensions ---
 [INFO] 
@@ -344,10 +345,11 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-extensions ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-extensions ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-extensions ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/test-classes/the.hpl
@@ -361,6 +363,7 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-extensions ---
+[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-extensions ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions/META-INF/MANIFEST.MF
@@ -379,64 +382,30 @@ Progress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1): 0/1.3 MBProgress (1
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-extensions ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-extensions ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-model-extensions ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-extensions ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------< org.jenkinsci.plugins:pipeline-model-definition >-----------
 [INFO] Building Pipeline: Declarative 999999-SNAPSHOT                     [5/5]
 [INFO]   from pipeline-model-definition/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.pom
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.pom
-Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.pom
-Progress (1): 16/22 kBProgress (1): 22 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.pom (22 kB at 936 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.jar
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.jar
-Downloading from central: https://repo.maven.apache.org/maven2/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.jar
-Progress (1): 16/118 kBProgress (1): 33/118 kBProgress (1): 49/118 kBProgress (1): 66/118 kBProgress (1): 82/118 kBProgress (1): 98/118 kBProgress (1): 115/118 kBProgress (1): 118 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/codehaus/gmavenplus/gmavenplus-plugin/4.2.1/gmavenplus-plugin-4.2.1.jar (118 kB at 5.4 MB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/htmlpublisher/427/htmlpublisher-427.pom
-Progress (1): 0.5/3.6 kBProgress (1): 1.9/3.6 kBProgress (1): 3.2/3.6 kBProgress (1): 3.6 kB                        Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/htmlpublisher/427/htmlpublisher-427.pom (3.6 kB at 93 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.pom
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.pom
-Downloading from central: https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.pom
-Progress (1): 4.2 kB                    Downloaded from central: https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.pom (4.2 kB at 246 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/owasp/encoder/encoder-parent/1.3.1/encoder-parent-1.3.1.pom
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/owasp/encoder/encoder-parent/1.3.1/encoder-parent-1.3.1.pom
-Downloading from central: https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-parent/1.3.1/encoder-parent-1.3.1.pom
-Progress (1): 16/21 kBProgress (1): 21 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder-parent/1.3.1/encoder-parent-1.3.1.pom (21 kB at 1.1 MB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-graph-analysis/241.vc3d48fb_b_2582/pipeline-graph-analysis-241.vc3d48fb_b_2582.pom
-Progress (1): 0.4/3.9 kBProgress (1): 1.8/3.9 kBProgress (1): 3.2/3.9 kBProgress (1): 3.9 kB                        Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-graph-analysis/241.vc3d48fb_b_2582/pipeline-graph-analysis-241.vc3d48fb_b_2582.pom (3.9 kB at 102 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-milestone-step/138.v78ca_76831a_43/pipeline-milestone-step-138.v78ca_76831a_43.pom
-Progress (1): 0.4/2.8 kBProgress (1): 1.8/2.8 kBProgress (1): 2.8 kB                        Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-milestone-step/138.v78ca_76831a_43/pipeline-milestone-step-138.v78ca_76831a_43.pom (2.8 kB at 69 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/copyartifact/757.v05365583a_455/copyartifact-757.v05365583a_455.pom
-Progress (1): 0.4/2.9 kBProgress (1): 1.8/2.9 kBProgress (1): 2.9 kB                        Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/copyartifact/757.v05365583a_455/copyartifact-757.v05365583a_455.pom (2.9 kB at 77 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/workflow/workflow-multibranch/806.vb_b_688f609ee9/workflow-multibranch-806.vb_b_688f609ee9-tests.jar
-Progress (1): 0.4/86 kBProgress (1): 1.8/86 kBProgress (1): 3.2/86 kBProgress (1): 4.6/86 kBProgress (1): 6.0/86 kBProgress (1): 7.4/86 kBProgress (1): 8.8/86 kBProgress (1): 10/86 kB Progress (1): 12/86 kBProgress (1): 13/86 kBProgress (1): 14/86 kBProgress (1): 16/86 kBProgress (1): 17/86 kBProgress (1): 19/86 kBProgress (1): 20/86 kBProgress (1): 21/86 kBProgress (1): 23/86 kBProgress (1): 24/86 kBProgress (1): 26/86 kBProgress (1): 27/86 kBProgress (1): 28/86 kBProgress (1): 30/86 kBProgress (1): 31/86 kBProgress (1): 33/86 kBProgress (1): 34/86 kBProgress (1): 35/86 kBProgress (1): 37/86 kBProgress (1): 38/86 kBProgress (1): 40/86 kBProgress (1): 41/86 kBProgress (1): 42/86 kBProgress (1): 44/86 kBProgress (1): 45/86 kBProgress (1): 47/86 kBProgress (1): 48/86 kBProgress (1): 49/86 kBProgress (1): 51/86 kBProgress (1): 52/86 kBProgress (1): 53/86 kBProgress (1): 55/86 kBProgress (1): 56/86 kBProgress (1): 58/86 kBProgress (1): 59/86 kBProgress (1): 60/86 kBProgress (1): 62/86 kBProgress (1): 63/86 kBProgress (1): 65/86 kBProgress (1): 66/86 kBProgress (1): 67/86 kBProgress (1): 69/86 kBProgress (1): 70/86 kBProgress (1): 72/86 kBProgress (1): 73/86 kBProgress (1): 74/86 kBProgress (1): 76/86 kBProgress (1): 77/86 kBProgress (1): 79/86 kBProgress (1): 80/86 kBProgress (1): 81/86 kBProgress (1): 83/86 kBProgress (1): 84/86 kBProgress (1): 86/86 kBProgress (1): 86 kB                      Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/workflow/workflow-multibranch/806.vb_b_688f609ee9/workflow-multibranch-806.vb_b_688f609ee9-tests.jar (86 kB at 870 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/htmlpublisher/427/htmlpublisher-427.jar
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.jar
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-graph-analysis/241.vc3d48fb_b_2582/pipeline-graph-analysis-241.vc3d48fb_b_2582.jar
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-milestone-step/138.v78ca_76831a_43/pipeline-milestone-step-138.v78ca_76831a_43.jar
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/copyartifact/757.v05365583a_455/copyartifact-757.v05365583a_455.jar
-Progress (1): 0.5/54 kBProgress (1): 1.9/54 kBProgress (1): 3.3/54 kBProgress (1): 4.7/54 kBProgress (1): 6.1/54 kBProgress (1): 7.5/54 kBProgress (1): 8.9/54 kBProgress (1): 10/54 kB Progress (1): 12/54 kBProgress (1): 13/54 kBProgress (1): 14/54 kBProgress (1): 16/54 kBProgress (1): 16/54 kBProgress (1): 17/54 kBProgress (1): 19/54 kBProgress (1): 20/54 kBProgress (1): 22/54 kBProgress (1): 23/54 kBProgress (1): 24/54 kBProgress (1): 26/54 kBProgress (1): 27/54 kBProgress (1): 29/54 kBProgress (1): 30/54 kBProgress (1): 31/54 kBProgress (1): 33/54 kBProgress (1): 34/54 kBProgress (1): 36/54 kBProgress (1): 37/54 kBProgress (1): 38/54 kBProgress (1): 40/54 kBProgress (1): 41/54 kBProgress (1): 43/54 kBProgress (1): 44/54 kBProgress (1): 45/54 kBProgress (1): 47/54 kBProgress (1): 48/54 kBProgress (1): 50/54 kBProgress (1): 51/54 kBProgress (1): 52/54 kBProgress (1): 54/54 kBProgress (1): 54 kB                      Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/htmlpublisher/427/htmlpublisher-427.jar (54 kB at 1000 kB/s)
-Progress (1): 0.4/180 kBProgress (1): 1.8/180 kBProgress (1): 3.2/180 kBProgress (1): 4.6/180 kBProgress (1): 6.0/180 kBProgress (1): 7.4/180 kBProgress (1): 8.8/180 kBProgress (1): 10/180 kB Progress (1): 12/180 kBProgress (1): 13/180 kBProgress (1): 14/180 kBProgress (1): 16/180 kBProgress (1): 16/180 kBProgress (1): 17/180 kBProgress (1): 19/180 kBProgress (1): 20/180 kBProgress (1): 22/180 kBProgress (1): 23/180 kBProgress (1): 24/180 kBProgress (1): 26/180 kBProgress (1): 27/180 kBProgress (1): 29/180 kBProgress (1): 30/180 kBProgress (1): 31/180 kBProgress (1): 33/180 kBProgress (2): 33/180 kB | 0.4/30 kBProgress (2): 33/180 kB | 1.8/30 kBProgress (2): 33/180 kB | 3.2/30 kBProgress (2): 33/180 kB | 4.6/30 kBProgress (2): 33/180 kB | 6.0/30 kB                                   Progress (3): 33/180 kB | 6.0/30 kB | 0.4/20 kBProgress (3): 33/180 kB | 6.0/30 kB | 1.8/20 kBProgress (3): 33/180 kB | 6.0/30 kB | 3.2/20 kBProgress (3): 33/180 kB | 6.0/30 kB | 4.6/20 kBProgress (3): 33/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 34/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 35/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 37/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 38/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 40/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 41/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 42/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 44/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 45/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 47/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 48/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 49/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 51/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 52/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 54/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 55/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 56/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 58/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 59/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 61/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 62/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 63/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 65/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 66/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 68/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 69/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 70/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 6.0/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 7.4/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 8.8/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 10/30 kB | 6.0/20 kB Progress (3): 72/180 kB | 12/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 13/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 14/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 16/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 16/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 17/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 19/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 20/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 21/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 23/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 24/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 26/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 27/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 28/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 30/30 kB | 6.0/20 kBProgress (3): 72/180 kB | 30 kB | 6.0/20 kB                                              Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-milestone-step/138.v78ca_76831a_43/pipeline-milestone-step-138.v78ca_76831a_43.jar (30 kB at 163 kB/s)
-Progress (2): 72/180 kB | 7.4/20 kBProgress (2): 72/180 kB | 8.8/20 kBProgress (2): 72/180 kB | 10/20 kB Progress (2): 72/180 kB | 12/20 kBProgress (2): 72/180 kB | 13/20 kBProgress (2): 72/180 kB | 14/20 kBProgress (2): 72/180 kB | 16/20 kBProgress (2): 72/180 kB | 17/20 kBProgress (2): 72/180 kB | 19/20 kBProgress (2): 72/180 kB | 20/20 kBProgress (2): 72/180 kB | 20 kB                                  Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/pipeline-graph-analysis/241.vc3d48fb_b_2582/pipeline-graph-analysis-241.vc3d48fb_b_2582.jar (20 kB at 107 kB/s)
-Progress (1): 73/180 kBProgress (1): 75/180 kBProgress (1): 76/180 kBProgress (1): 77/180 kBProgress (1): 79/180 kBProgress (1): 80/180 kBProgress (1): 82/180 kBProgress (1): 83/180 kBProgress (1): 84/180 kBProgress (1): 86/180 kBProgress (1): 87/180 kBProgress (1): 89/180 kBProgress (1): 90/180 kBProgress (1): 91/180 kBProgress (1): 93/180 kBProgress (1): 94/180 kBProgress (1): 96/180 kBProgress (1): 97/180 kBProgress (1): 98/180 kBProgress (1): 100/180 kBProgress (1): 101/180 kBProgress (1): 103/180 kBProgress (1): 104/180 kBProgress (1): 105/180 kBProgress (1): 107/180 kBProgress (1): 108/180 kBProgress (1): 110/180 kBProgress (1): 111/180 kBProgress (1): 112/180 kBProgress (1): 114/180 kBProgress (1): 115/180 kBProgress (1): 117/180 kBProgress (1): 118/180 kBProgress (1): 119/180 kBProgress (1): 121/180 kBProgress (1): 122/180 kBProgress (1): 124/180 kBProgress (1): 125/180 kBProgress (1): 126/180 kBProgress (1): 128/180 kBProgress (1): 129/180 kBProgress (1): 131/180 kBProgress (1): 132/180 kBProgress (1): 133/180 kBProgress (1): 135/180 kBProgress (1): 136/180 kBProgress (1): 138/180 kBProgress (1): 139/180 kBProgress (1): 140/180 kBProgress (1): 142/180 kBProgress (1): 143/180 kBProgress (1): 145/180 kBProgress (1): 146/180 kBProgress (1): 147/180 kBProgress (1): 149/180 kBProgress (1): 150/180 kBProgress (1): 152/180 kBProgress (1): 153/180 kBProgress (1): 154/180 kBProgress (1): 156/180 kBProgress (1): 157/180 kBProgress (1): 159/180 kBProgress (1): 160/180 kBProgress (1): 161/180 kBProgress (1): 163/180 kBProgress (1): 164/180 kBProgress (1): 165/180 kBProgress (1): 166/180 kBProgress (1): 168/180 kBProgress (1): 169/180 kBProgress (1): 171/180 kBProgress (1): 172/180 kBProgress (1): 173/180 kBProgress (1): 175/180 kBProgress (1): 176/180 kBProgress (1): 178/180 kBProgress (1): 179/180 kBProgress (1): 180 kB                        Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/copyartifact/757.v05365583a_455/copyartifact-757.v05365583a_455.jar (180 kB at 760 kB/s)
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.jar
-Downloading from central: https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.jar
-Progress (1): 16/40 kBProgress (1): 33/40 kBProgress (1): 40 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/owasp/encoder/encoder/1.3.1/encoder-1.3.1.jar (40 kB at 1.7 MB/s)
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-definition ---
 [INFO] 
@@ -459,41 +428,301 @@ Progress (1): 16/40 kBProgress (1): 33/40 kBProgress (1): 40 kB              
 [INFO] --- localizer:1.31:generate (default) @ pipeline-model-definition ---
 [INFO] 
 [INFO] --- gplus:4.2.1:generateStubs (default) @ pipeline-model-definition ---
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.pom
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.pom
-Downloading from central: https://repo.maven.apache.org/maven2/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.pom
-Progress (1): 16/17 kBProgress (1): 17 kB                      Downloaded from central: https://repo.maven.apache.org/maven2/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.pom (17 kB at 722 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/fusesource/fusesource-pom/1.12/fusesource-pom-1.12.pom
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/fusesource/fusesource-pom/1.12/fusesource-pom-1.12.pom
-Downloading from central: https://repo.maven.apache.org/maven2/org/fusesource/fusesource-pom/1.12/fusesource-pom-1.12.pom
-Progress (1): 15 kB                   Downloaded from central: https://repo.maven.apache.org/maven2/org/fusesource/fusesource-pom/1.12/fusesource-pom-1.12.pom (15 kB at 859 kB/s)
-Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.jar
-Downloading from incrementals: https://repo.jenkins-ci.org/incrementals/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.jar
-Downloading from central: https://repo.maven.apache.org/maven2/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.jar
-Progress (1): 16/257 kBProgress (1): 33/257 kBProgress (1): 49/257 kBProgress (1): 66/257 kBProgress (1): 82/257 kBProgress (1): 98/257 kBProgress (1): 115/257 kBProgress (1): 131/257 kBProgress (1): 147/257 kBProgress (1): 164/257 kBProgress (1): 180/257 kBProgress (1): 197/257 kBProgress (1): 213/257 kBProgress (1): 229/257 kBProgress (1): 246/257 kBProgress (1): 257 kB                        Downloaded from central: https://repo.maven.apache.org/maven2/org/fusesource/jansi/jansi/2.4.1/jansi-2.4.1.jar (257 kB at 11 MB/s)
 [INFO] Using isolated classloader, without GMavenPlus classpath.
 [INFO] Using Groovy 2.4.21 to perform generateStubs.
+[INFO] Generated 45 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-definition ---
+[INFO] Copying 189 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-definition ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-definition:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-definition ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 131 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ModelStepLoader indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ModelStepLoader.ModelInterpreterAllowlist indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.SyntheticStageGraphListener indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.Upgrade indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.Upgrade.Loader indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.actions.RestartDeclarativePipelineAction.Factory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.Any.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.Label.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.None.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.cli.DeclarativeLinterCommand indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.cli.RestartFromStageCommand indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.FileCredentialsHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.SSHUserPrivateKeyHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.StringCredentialsHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.UsernamePasswordHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.endpoints.ModelConverterAction indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.endpoints.ModelConverterAction.ModelConverterActionCrumbExclusion indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.AgentDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.AxesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.AxisDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.PerWorkflowJobAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.PerOrgFolderAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.PerMultiBranchFolderAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.DeclarativeDirectivesLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.DeclarativeOnlineDocsLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.EnvironmentDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ExcludeDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ExcludesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.InputDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.LibrariesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.MatrixDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.OptionsDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ParametersDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.PostDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.StageDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.StagesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ToolsDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.TriggersDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.WhenDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.CheckoutToSubdirectory.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.DisableRestartFromStage.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.ParallelsAlwaysFailFast.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.QuietPeriod.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.SkipDefaultCheckout.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.SkipStagesAfterUnstable.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.GroovyShellDecoratorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.InternalCalls indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.SaveStashes indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.StashClearingListener indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.ValidatorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.steps.EnvVarsForToolStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.steps.ScriptStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.steps.ValidateDeclarativePipelineStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.validator.BlockedStepsAndMethodCalls indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.validator.ParametersAndTriggersInOptions indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.AllOfConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.AnyOfConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.BranchConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.BuildingTagConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeLogConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeLogConditional.ChangelogConditionalScriptAllowlist indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeRequestConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeSetConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.DefaultChangeLogStrategy indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.EnvironmentConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.EqualsConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ExpressionConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.IsRestartedRunConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.NotConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.TagConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.TriggeredByConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.WhenConditionalValidator indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Aborted indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Always indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Changed indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Cleanup indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Failure indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Fixed indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.NotBuilt indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Regression indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Success indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Unstable indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Unsuccessful indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[49,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/None.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/None.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/AgentDirective.java:[47,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/AgentDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxesDirective.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxisDirective.java:[43,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxisDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective.java:[100,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective/NameAndValue.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective.java:[42,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludeDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludeDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludesDirective.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[52,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective.java:[102,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective/NameAndVersion.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective.java:[45,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/MatrixDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/MatrixDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/OptionsDirective.java:[59,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/OptionsDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ParametersDirective.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ParametersDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/PostDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/PostDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[67,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StagesDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StagesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective.java:[131,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective/SymbolAndName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective.java:[51,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/TriggersDirective.java:[46,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/TriggersDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/WhenDirective.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/WhenDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/CheckoutToSubdirectory.java:[41,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/CheckoutToSubdirectory.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/DisableRestartFromStage.java:[13,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/DisableRestartFromStage.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/ParallelsAlwaysFailFast.java:[38,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/ParallelsAlwaysFailFast.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/QuietPeriod.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/QuietPeriod.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipDefaultCheckout.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipDefaultCheckout.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipStagesAfterUnstable.java:[38,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipStagesAfterUnstable.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[62,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/steps/EnvVarsForToolStep.java:[61,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/steps/EnvVarsForToolStep.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/steps/ScriptStep.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/steps/ScriptStep.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/steps/ValidateDeclarativePipelineStep.java:[53,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/steps/ValidateDeclarativePipelineStep.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AllOfConditional.java:[45,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AllOfConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AnyOfConditional.java:[45,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AnyOfConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BranchConditional.java:[59,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BranchConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BuildingTagConditional.java:[42,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BuildingTagConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeLogConditional.java:[56,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeLogConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeRequestConditional.java:[67,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeRequestConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeSetConditional.java:[61,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeSetConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EnvironmentConditional.java:[52,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EnvironmentConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EqualsConditional.java:[47,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EqualsConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ExpressionConditional.java:[64,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ExpressionConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/IsRestartedRunConditional.java:[44,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/IsRestartedRunConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/NotConditional.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/NotConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[66,8] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.javadoc
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[180,27] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doCheckStageName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[80,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doCheckLabel.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[86,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty/DescriptorImpl/doCheckBuildCount.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[137,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckId.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator.java:[78,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator/doGenerateDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[121,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[118,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doRestartPipeline.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[76,41] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doAutoCompleteLabel.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[129,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckMessage.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- gplus:4.2.1:compile (default) @ pipeline-model-definition ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 2.4.21 to perform compile.
+[INFO] Compiled 287 files.
+[INFO] 
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-definition ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- dependency:3.8.1:copy (old-releases) @ pipeline-model-definition ---
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-stage-tags-metadata:2.2221.vc657003fb_d93:hpi
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-model-api:2.2221.vc657003fb_d93:hpi
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-model-extensions:2.2221.vc657003fb_d93:hpi
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-model-definition:2.2221.vc657003fb_d93:hpi
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-definition ---
+[INFO] Copying 564 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-definition ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 61 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.AgentTest.RunOnlyOnDumbo indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.MultipleUnnamedParametersTest.MultiArgCtorProp.MultiArgCtorPropDescriptor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.SerializationTest.XStreamPickleFactory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.StepsTest.FakeRhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.StepsTest.Rhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTrigger indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTriggerB indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.TestDupeContributor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.RejectTestProperty indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.TestProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.RejectEchoStep indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageMultibranchTest.TestChangeLogStrategy indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageMultibranchTest.WhenConditionPickleFactory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageTest.TestChangeLogStrategy indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageTest.WhenConditionPickleFactory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGeneratorTest.TestDescribable.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGeneratorTest.ComplexDeclarativeAgent.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.RuntimeASTTransformerTest.GlobalStageNameTestConditional.GlobalStageNameTestConditionalDescriptor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.RuntimeASTTransformerTest.GlobalStepCountTestConditional.GlobalStepCountTestConditionalDescriptor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.StepRuntimeTransformerContributorTest.EchoTransformer indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.StepRuntimeTransformerContributorTest.TimeoutTransformer indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTrigger.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTriggerB.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.LabelAndOtherFieldAgent.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.NestedConf.NestedDesc indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/MultipleUnnamedParametersTest.java:[55,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/MultipleUnnamedParametersTest/MultiArgCtorProp.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest.java:[94,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest/FakeRhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest.java:[108,38] Generating org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest/Rhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest.java:[274,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest/TestTrigger.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest.java:[320,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest/TestTriggerB.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ValidatorTest.java:[914,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/ValidatorTest/TestProperty.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/LabelAndOtherFieldAgent.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/LabelAndOtherFieldAgent.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/NestedConf.java:[38,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/NestedConf.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest.java:[84,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest/TestDescribable.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest.java:[105,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest/ComplexDeclarativeAgent.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest.java:[116,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest/GlobalStageNameTestConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest.java:[163,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest/GlobalStepCountTestConditional.stapler
+[WARNING] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/BasicModelDefTest.java:[599,22] Double(java.lang.String) in java.lang.Double has been deprecated and marked for removal
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-definition ---
+[INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-definition ---
+Downloading from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/copyartifact/757.v05365583a_455/copyartifact-757.v05365583a_455.hpi
+Progress (1): 0.4/155 kBProgress (1): 1.8/155 kBProgress (1): 3.2/155 kBProgress (1): 4.6/155 kBProgress (1): 6.0/155 kBProgress (1): 7.4/155 kBProgress (1): 8.8/155 kBProgress (1): 10/155 kB Progress (1): 12/155 kBProgress (1): 13/155 kBProgress (1): 14/155 kBProgress (1): 16/155 kBProgress (1): 16/155 kBProgress (1): 17/155 kBProgress (1): 19/155 kBProgress (1): 20/155 kBProgress (1): 22/155 kBProgress (1): 23/155 kBProgress (1): 24/155 kBProgress (1): 26/155 kBProgress (1): 27/155 kBProgress (1): 29/155 kBProgress (1): 30/155 kBProgress (1): 31/155 kBProgress (1): 33/155 kBProgress (1): 34/155 kBProgress (1): 36/155 kBProgress (1): 37/155 kBProgress (1): 38/155 kBProgress (1): 40/155 kBProgress (1): 41/155 kBProgress (1): 43/155 kBProgress (1): 44/155 kBProgress (1): 45/155 kBProgress (1): 47/155 kBProgress (1): 48/155 kBProgress (1): 50/155 kBProgress (1): 51/155 kBProgress (1): 52/155 kBProgress (1): 54/155 kBProgress (1): 55/155 kBProgress (1): 57/155 kBProgress (1): 58/155 kBProgress (1): 59/155 kBProgress (1): 61/155 kBProgress (1): 62/155 kBProgress (1): 64/155 kBProgress (1): 65/155 kBProgress (1): 66/155 kBProgress (1): 68/155 kBProgress (1): 69/155 kBProgress (1): 71/155 kBProgress (1): 72/155 kBProgress (1): 73/155 kBProgress (1): 75/155 kBProgress (1): 76/155 kBProgress (1): 78/155 kBProgress (1): 79/155 kBProgress (1): 80/155 kBProgress (1): 82/155 kBProgress (1): 83/155 kBProgress (1): 85/155 kBProgress (1): 86/155 kBProgress (1): 87/155 kBProgress (1): 89/155 kBProgress (1): 90/155 kBProgress (1): 92/155 kBProgress (1): 93/155 kBProgress (1): 94/155 kBProgress (1): 96/155 kBProgress (1): 97/155 kBProgress (1): 99/155 kBProgress (1): 100/155 kBProgress (1): 101/155 kBProgress (1): 103/155 kBProgress (1): 104/155 kBProgress (1): 106/155 kBProgress (1): 107/155 kBProgress (1): 108/155 kBProgress (1): 110/155 kBProgress (1): 111/155 kBProgress (1): 113/155 kBProgress (1): 114/155 kBProgress (1): 115/155 kBProgress (1): 117/155 kBProgress (1): 118/155 kBProgress (1): 120/155 kBProgress (1): 121/155 kBProgress (1): 122/155 kBProgress (1): 124/155 kBProgress (1): 125/155 kBProgress (1): 127/155 kBProgress (1): 128/155 kBProgress (1): 129/155 kBProgress (1): 131/155 kBProgress (1): 132/155 kBProgress (1): 134/155 kBProgress (1): 135/155 kBProgress (1): 136/155 kBProgress (1): 138/155 kBProgress (1): 139/155 kBProgress (1): 141/155 kBProgress (1): 142/155 kBProgress (1): 143/155 kBProgress (1): 145/155 kBProgress (1): 146/155 kBProgress (1): 147/155 kBProgress (1): 148/155 kBProgress (1): 150/155 kBProgress (1): 151/155 kBProgress (1): 153/155 kBProgress (1): 154/155 kBProgress (1): 155 kB                        Downloaded from repo.jenkins-ci.org: https://repo.jenkins-ci.org/public/org/jenkins-ci/plugins/copyartifact/757.v05365583a_455/copyartifact-757.v05365583a_455.hpi (155 kB at 129 kB/s)
+[INFO] 
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ pipeline-model-definition ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ pipeline-model-definition ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-definition ---
+[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-definition ---
+[INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition
+[INFO] Assembling webapp pipeline-model-definition in /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-definition ---
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-tests.jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-definition >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-definition ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-definition <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-definition ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-model-definition ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-model-definition ---
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-tests.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT-tests.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Model Parent POM 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  1.728 s]
-[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [  2.227 s]
-[INFO] Pipeline: Model API ................................ SUCCESS [  4.915 s]
-[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [  3.106 s]
-[INFO] Pipeline: Declarative .............................. FAILURE [  3.432 s]
+[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  9.961 s]
+[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [ 23.399 s]
+[INFO] Pipeline: Model API ................................ SUCCESS [ 31.673 s]
+[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [ 16.810 s]
+[INFO] Pipeline: Declarative .............................. SUCCESS [ 47.152 s]
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  15.931 s
-[INFO] Finished at: 2025-08-12T02:01:23Z
+[INFO] Total time:  02:11 min
+[INFO] Finished at: 2025-08-20T18:59:33+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.1:generateStubs (default) on project pipeline-model-definition: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.1:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
-[ERROR] 
-[ERROR] After correcting the problems, you can resume the build with the command
-[ERROR]   mvn <args> -rf :pipeline-model-definition
