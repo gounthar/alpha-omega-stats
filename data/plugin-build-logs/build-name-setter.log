@@ -1,14 +1,8 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkins-ci.plugins:build-name-setter:hpi:2.5.2-SNAPSHOT
 [INFO] 
 [INFO] --------------< org.jenkins-ci.plugins:build-name-setter >--------------
 [INFO] Building Build Name and Description Setter 2.5.2-SNAPSHOT
@@ -37,6 +31,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ build-name-setter ---
 [INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ build-name-setter ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ build-name-setter ---
 [INFO] Copying 13 resources from src/main/resources to target/classes
 [INFO] 
@@ -59,9 +56,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/build-name-setter/src/main/java/org/jenkinsci/plugins/EnvironmentVarSetter.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ build-name-setter ---
-[INFO] Skipping access modifier checks
 [INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ build-name-setter ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ build-name-setter ---
 [INFO] 
 [INFO] --- hpi:3.66:insert-test (default-insert-test) @ build-name-setter ---
 [INFO] 
@@ -71,10 +67,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ build-name-setter ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/build-name-setter/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ build-name-setter ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ build-name-setter ---
 [INFO] Generating /tmp/plugin-builds/build-name-setter/target/test-classes/the.hpl
@@ -88,6 +85,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ build-name-setter ---
+[INFO] Generated /tmp/plugin-builds/build-name-setter/target/build-name-setter/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ build-name-setter ---
 [INFO] Generating /tmp/plugin-builds/build-name-setter/target/build-name-setter/META-INF/MANIFEST.MF
@@ -106,24 +104,29 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ build-name-setter >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ build-name-setter ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ build-name-setter <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ build-name-setter ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ build-name-setter ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ build-name-setter ---
-[INFO] Installing /tmp/plugin-builds/build-name-setter/target/build-name-setter-2.5.2-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/build-name-setter/2.5.2-SNAPSHOT/build-name-setter-2.5.2-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/build-name-setter/target/build-name-setter.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/build-name-setter/2.5.2-SNAPSHOT/build-name-setter-2.5.2-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/build-name-setter/target/build-name-setter.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/build-name-setter/2.5.2-SNAPSHOT/build-name-setter-2.5.2-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/build-name-setter/target/build-name-setter-2.5.2-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/build-name-setter/2.5.2-SNAPSHOT/build-name-setter-2.5.2-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/build-name-setter/target/build-name-setter.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/build-name-setter/2.5.2-SNAPSHOT/build-name-setter-2.5.2-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/build-name-setter/target/build-name-setter.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/build-name-setter/2.5.2-SNAPSHOT/build-name-setter-2.5.2-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  6.227 s
-[INFO] Finished at: 2025-08-12T02:54:19Z
+[INFO] Total time:  15.549 s
+[INFO] Finished at: 2025-08-20T20:16:16+02:00
 [INFO] ------------------------------------------------------------------------

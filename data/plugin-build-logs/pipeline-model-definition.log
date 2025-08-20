@@ -1,14 +1,8 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.66 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkinsci.plugins:pipeline-model-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -50,6 +44,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-parent ---
+[INFO] Generated /tmp/plugin-builds/pipeline-model-definition/target/pipeline-model-parent/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-parent ---
 [INFO] Skipping packaging of the test-jar
@@ -63,13 +58,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-parent ---
-[INFO] Spotbugs plugin skipped
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-model-parent ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-parent ---
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
 [INFO] 
 [INFO] ---------< org.jenkinsci.plugins:pipeline-stage-tags-metadata >---------
 [INFO] Building Pipeline: Stage Tags Metadata 999999-SNAPSHOT             [2/5]
@@ -108,7 +102,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.pipeline.SyntheticStage indexed under hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-stage-tags-metadata ---
-[INFO] Skipping access modifier checks
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-stage-tags-metadata ---
 [INFO] 
@@ -120,10 +113,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-stage-tags-metadata ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-stage-tags-metadata ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/test-classes/the.hpl
@@ -137,6 +131,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-stage-tags-metadata ---
+[INFO] Generated /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/META-INF/MANIFEST.MF
@@ -155,21 +150,25 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-stage-tags-metadata ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-tags-metadata ---
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] --------------< org.jenkinsci.plugins:pipeline-model-api >--------------
 [INFO] Building Pipeline: Model API 999999-SNAPSHOT                       [3/5]
@@ -208,7 +207,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCache indexed under hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-api ---
-[INFO] Skipping access modifier checks
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-api ---
 [INFO] 
@@ -220,10 +218,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-api ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-api ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCacheTest.FakeRhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCacheTest.Rhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest.java:[56,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest/FakeRhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest.java:[70,38] Generating org/jenkinsci/plugins/pipeline/modeldefinition/DescriptorLookupCacheTest/Rhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ASTSchemaTest.java: /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ASTSchemaTest.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ASTSchemaTest.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/test-classes/the.hpl
@@ -237,6 +242,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-api ---
+[INFO] Generated /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api/META-INF/MANIFEST.MF
@@ -266,21 +272,25 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-api ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-api ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-model-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-api ---
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-api/target/pipeline-model-api.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------< org.jenkinsci.plugins:pipeline-model-extensions >-----------
 [INFO] Building Pipeline: Declarative Extension Points API 999999-SNAPSHOT [4/5]
@@ -324,7 +334,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/withscript/WithScriptDescribable.java: Recompile with -Xlint:unchecked for details.
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-extensions ---
-[INFO] Skipping access modifier checks
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-extensions ---
 [INFO] 
@@ -336,10 +345,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-extensions ---
-[INFO] Not copying test resources
+[INFO] skip non existing resourceDirectory /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-extensions ---
-[INFO] Not compiling test sources
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-extensions ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/test-classes/the.hpl
@@ -353,6 +363,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-extensions ---
+[INFO] Generated /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-extensions ---
 [INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions/META-INF/MANIFEST.MF
@@ -371,21 +382,25 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-extensions ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
 [INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-extensions ---
-[INFO] Spotbugs plugin skipped
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-model-extensions ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-extensions ---
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------< org.jenkinsci.plugins:pipeline-model-definition >-----------
 [INFO] Building Pipeline: Declarative 999999-SNAPSHOT                     [5/5]
@@ -415,27 +430,297 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- gplus:4.2.1:generateStubs (default) @ pipeline-model-definition ---
 [INFO] Using isolated classloader, without GMavenPlus classpath.
 [INFO] Using Groovy 2.4.21 to perform generateStubs.
+[INFO] Generated 45 stubs.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-definition ---
+[INFO] Copying 189 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-definition ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-definition:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-definition ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 131 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ModelStepLoader indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ModelStepLoader.ModelInterpreterAllowlist indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.SyntheticStageGraphListener indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.Upgrade indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.Upgrade.Loader indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.actions.RestartDeclarativePipelineAction.Factory indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.Any.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.Label.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.None.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.cli.DeclarativeLinterCommand indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.cli.RestartFromStageCommand indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.FileCredentialsHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.SSHUserPrivateKeyHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.StringCredentialsHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.credentials.impl.UsernamePasswordHandler indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.endpoints.ModelConverterAction indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.endpoints.ModelConverterAction.ModelConverterActionCrumbExclusion indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.AgentDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.AxesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.AxisDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.PerWorkflowJobAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.PerOrgFolderAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.PerMultiBranchFolderAdder indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.DeclarativeDirectivesLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGenerator.DeclarativeOnlineDocsLink indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.EnvironmentDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ExcludeDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ExcludesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.InputDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.LibrariesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.MatrixDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.OptionsDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ParametersDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.PostDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.StageDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.StagesDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.ToolsDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.TriggersDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.WhenDirective.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.CheckoutToSubdirectory.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.DisableRestartFromStage.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.ParallelsAlwaysFailFast.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.QuietPeriod.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.SkipDefaultCheckout.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.options.impl.SkipStagesAfterUnstable.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.GroovyShellDecoratorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.InternalCalls indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.SaveStashes indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.StashClearingListener indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.properties.PreserveStashesJobProperty.ValidatorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.steps.EnvVarsForToolStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.steps.ScriptStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.steps.ValidateDeclarativePipelineStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.validator.BlockedStepsAndMethodCalls indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.validator.ParametersAndTriggersInOptions indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.AllOfConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.AnyOfConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.BranchConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.BuildingTagConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeLogConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeLogConditional.ChangelogConditionalScriptAllowlist indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeRequestConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ChangeSetConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.DefaultChangeLogStrategy indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.EnvironmentConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.EqualsConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.ExpressionConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.IsRestartedRunConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.NotConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.TagConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.TriggeredByConditional.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.when.impl.WhenConditionalValidator indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Aborted indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Always indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Changed indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Cleanup indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Failure indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Fixed indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.NotBuilt indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Regression indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Success indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Unstable indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.model.conditions.Unsuccessful indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[49,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/None.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/None.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/AgentDirective.java:[47,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/AgentDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxesDirective.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxisDirective.java:[43,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/AxisDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective.java:[100,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective/NameAndValue.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective.java:[42,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/EnvironmentDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludeDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludeDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludesDirective.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ExcludesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[52,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective.java:[102,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective/NameAndVersion.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective.java:[45,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/LibrariesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/MatrixDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/MatrixDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/OptionsDirective.java:[59,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/OptionsDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ParametersDirective.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ParametersDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/PostDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/PostDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[67,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StagesDirective.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StagesDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective.java:[131,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective/SymbolAndName.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective.java:[51,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/ToolsDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/TriggersDirective.java:[46,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/TriggersDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/WhenDirective.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/WhenDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/CheckoutToSubdirectory.java:[41,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/CheckoutToSubdirectory.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/DisableRestartFromStage.java:[13,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/DisableRestartFromStage.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/ParallelsAlwaysFailFast.java:[38,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/ParallelsAlwaysFailFast.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/QuietPeriod.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/QuietPeriod.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipDefaultCheckout.java:[40,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipDefaultCheckout.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipStagesAfterUnstable.java:[38,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/options/impl/SkipStagesAfterUnstable.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[62,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/steps/EnvVarsForToolStep.java:[61,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/steps/EnvVarsForToolStep.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/steps/ScriptStep.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/steps/ScriptStep.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/steps/ValidateDeclarativePipelineStep.java:[53,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/steps/ValidateDeclarativePipelineStep.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AllOfConditional.java:[45,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AllOfConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AnyOfConditional.java:[45,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/AnyOfConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BranchConditional.java:[59,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BranchConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BuildingTagConditional.java:[42,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/BuildingTagConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeLogConditional.java:[56,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeLogConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeRequestConditional.java:[67,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeRequestConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeSetConditional.java:[61,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ChangeSetConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EnvironmentConditional.java:[52,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EnvironmentConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EqualsConditional.java:[47,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/EqualsConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ExpressionConditional.java:[64,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/ExpressionConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/IsRestartedRunConditional.java:[44,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/IsRestartedRunConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/NotConditional.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/NotConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[66,8] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.javadoc
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[121,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[180,27] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doCheckStageName.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[137,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckId.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[86,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty/DescriptorImpl/doCheckBuildCount.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[118,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doRestartPipeline.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[80,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doCheckLabel.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator.java:[78,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator/doGenerateDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[129,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckMessage.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[76,41] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doAutoCompleteLabel.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- gplus:4.2.1:compile (default) @ pipeline-model-definition ---
+[INFO] Using isolated classloader, without GMavenPlus classpath.
+[INFO] Using Groovy 2.4.21 to perform compile.
+[INFO] Compiled 287 files.
+[INFO] 
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-definition ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- dependency:3.8.1:copy (old-releases) @ pipeline-model-definition ---
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-stage-tags-metadata:2.2221.vc657003fb_d93:hpi
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-model-api:2.2221.vc657003fb_d93:hpi
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-model-extensions:2.2221.vc657003fb_d93:hpi
+[INFO] Configured Artifact: org.jenkinsci.plugins:pipeline-model-definition:2.2221.vc657003fb_d93:hpi
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-model-definition ---
+[INFO] Copying 564 resources from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-model-definition ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 61 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.AgentTest.RunOnlyOnDumbo indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.MultipleUnnamedParametersTest.MultiArgCtorProp.MultiArgCtorPropDescriptor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.SerializationTest.XStreamPickleFactory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.StepsTest.FakeRhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.StepsTest.Rhombus.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTrigger indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTriggerB indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.TestDupeContributor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.RejectTestProperty indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.TestProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ValidatorTest.RejectEchoStep indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageMultibranchTest.TestChangeLogStrategy indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageMultibranchTest.WhenConditionPickleFactory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageTest.TestChangeLogStrategy indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.WhenStageTest.WhenConditionPickleFactory indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGeneratorTest.TestDescribable.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.generator.DirectiveGeneratorTest.ComplexDeclarativeAgent.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.RuntimeASTTransformerTest.GlobalStageNameTestConditional.GlobalStageNameTestConditionalDescriptor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.RuntimeASTTransformerTest.GlobalStepCountTestConditional.GlobalStepCountTestConditionalDescriptor indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.StepRuntimeTransformerContributorTest.EchoTransformer indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.parser.StepRuntimeTransformerContributorTest.TimeoutTransformer indexed under org.jvnet.hudson.test.TestExtension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTrigger.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.TriggersTest.TestTriggerB.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.LabelAndOtherFieldAgent.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.pipeline.modeldefinition.agent.impl.NestedConf.NestedDesc indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/MultipleUnnamedParametersTest.java:[55,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/MultipleUnnamedParametersTest/MultiArgCtorProp.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest.java:[94,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest/FakeRhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest.java:[108,38] Generating org/jenkinsci/plugins/pipeline/modeldefinition/StepsTest/Rhombus.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest.java:[274,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest/TestTrigger.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest.java:[320,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/TriggersTest/TestTriggerB.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/ValidatorTest.java:[914,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/ValidatorTest/TestProperty.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/LabelAndOtherFieldAgent.java:[39,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/LabelAndOtherFieldAgent.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/NestedConf.java:[38,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/NestedConf.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest.java:[84,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest/TestDescribable.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest.java:[105,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGeneratorTest/ComplexDeclarativeAgent.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest.java:[116,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest/GlobalStageNameTestConditional.stapler
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest.java:[163,16] Generating org/jenkinsci/plugins/pipeline/modeldefinition/parser/RuntimeASTTransformerTest/GlobalStepCountTestConditional.stapler
+[WARNING] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/BasicModelDefTest.java:[599,22] Double(java.lang.String) in java.lang.Double has been deprecated and marked for removal
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Some input files use unchecked or unsafe operations.
+[INFO] /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/src/test/java/org/jenkinsci/plugins/pipeline/modeldefinition/AbstractDeclarativeTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-model-definition ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-definition ---
+[INFO] 
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ pipeline-model-definition ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ pipeline-model-definition ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-model-definition ---
+[INFO] Generated /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.66:hpi (default-hpi) @ pipeline-model-definition ---
+[INFO] Generating /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition
+[INFO] Assembling webapp pipeline-model-definition in /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-definition ---
+[INFO] Building jar: /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition-tests.jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ pipeline-model-definition >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ pipeline-model-definition ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ pipeline-model-definition <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ pipeline-model-definition ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-model-definition ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-model-definition ---
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-model-definition/pipeline-model-definition/target/pipeline-model-definition-tests.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT-tests.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Model Parent POM 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  1.722 s]
-[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [  2.295 s]
-[INFO] Pipeline: Model API ................................ SUCCESS [  3.349 s]
-[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [  3.043 s]
-[INFO] Pipeline: Declarative .............................. FAILURE [  1.541 s]
+[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  2.715 s]
+[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [  6.413 s]
+[INFO] Pipeline: Model API ................................ SUCCESS [ 10.984 s]
+[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [  9.791 s]
+[INFO] Pipeline: Declarative .............................. SUCCESS [ 26.270 s]
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  12.467 s
-[INFO] Finished at: 2025-08-12T02:02:34Z
+[INFO] Total time:  56.769 s
+[INFO] Finished at: 2025-08-20T19:03:46+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.1:generateStubs (default) on project pipeline-model-definition: Execution default of goal org.codehaus.gmavenplus:gmavenplus-plugin:4.2.1:generateStubs failed: Target bytecode 17 requires Groovy 3.0.8/4.0.0-alpha-3 or newer. -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
-[ERROR] 
-[ERROR] After correcting the problems, you can resume the build with the command
-[ERROR]   mvn <args> -rf :pipeline-model-definition
