@@ -1,15 +1,19 @@
 #!/bin/bash
 
 # Export Google Sheet to TSV before running the rest of the script
-SPREADSHEET_ID_OR_NAME="Jenkins PR Tracker" # or use the Sheet ID
-WORKSHEET_NAME="Sheet1" # Change to your worksheet name
+SPREADSHEET_ID_OR_NAME="1_XHzakLNwA44cUnRsY01kQ1X1SymMcJGFxXzhr5s3_s" # or use the Sheet ID
+WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
 OUTPUT_TSV="plugins-jdk25.tsv"
 TSV_FILE="$OUTPUT_TSV"
 
+# Install required Python packages
+pip install -r requirements.txt
+
+echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\""
 python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"
 if [ $? -ne 0 ]; then
-    echo "Failed to export Google Sheet to TSV. Aborting."
-    exit 1
+    echo "Failed to export Google Sheet to TSV. Continuing without TSV data." >> "$DEBUG_LOG"
+    TSV_FILE=""
 fi
 
 # Ensure DEBUG_LOG is defined and exported
@@ -253,28 +257,32 @@ while IFS=, read -r name popularity <&3; do
 done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
 
 echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
-line_number=0
-while IFS=$'\t' read -r name pr_number pr_url jdk25_status <&3; do
-    line_number=$((line_number + 1))
-    echo "Read line $line_number: name='$name', pr_number='$pr_number', pr_url='$pr_url', jdk25_status='$jdk25_status'" >> "$DEBUG_LOG"
+if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
+    line_number=0
+    while IFS=$'\t' read -r name pr_number pr_url jdk25_status <&3; do
+        line_number=$((line_number + 1))
+        echo "Read line $line_number: name='$name', pr_number='$pr_number', pr_url='$pr_url', jdk25_status='$jdk25_status'" >> "$DEBUG_LOG"
 
-    # Skip the header row in the TSV file.
-    if [ "$name" != "plugin" ] && [ "$name" != "name" ]; then
-        echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
-        if [ "$jdk25_status" == "TRUE" ]; then
-            build_status="success"
-            echo "Skipping build for '$name' (already JDK25)." >> "$DEBUG_LOG"
+        # Skip the header row in the TSV file.
+        if [ "$name" != "plugin" ] && [ "$name" != "name" ]; then
+            echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
+            if [ "$jdk25_status" == "TRUE" ]; then
+                build_status="success"
+                echo "Skipping build for '$name' (already JDK25)." >> "$DEBUG_LOG"
+            else
+                build_status=$(compile_plugin "$name")
+            fi
+            echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
+            echo "$name,$pr_number,$pr_url,$jdk25_status,$build_status" >> "$TSV_RESULTS_FILE"
         else
-            build_status=$(compile_plugin "$name")
+            echo "Skipping header line $line_number" >> "$DEBUG_LOG"
         fi
-        echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
-        echo "$name,$pr_number,$pr_url,$jdk25_status,$build_status" >> "$TSV_RESULTS_FILE"
-    else
-        echo "Skipping header line $line_number" >> "$DEBUG_LOG"
-    fi
-done 3< "$TSV_FILE" # Use file descriptor 3 for reading the TSV
+    done 3< "$TSV_FILE" # Use file descriptor 3 for reading the TSV
 
-echo "Finished reading $TSV_FILE after $line_number lines." >> "$DEBUG_LOG"
+    echo "Finished reading $TSV_FILE after $line_number lines." >> "$DEBUG_LOG"
+else
+    echo "TSV file not available; skipping TSV processing." >> "$DEBUG_LOG"
+fi
 
 # Log the completion of the script and the locations of the results and logs.
 echo "Simplified build results have been saved to $RESULTS_FILE."
