@@ -13,12 +13,18 @@ on:
   schedule:
     - cron: '0 0 * * 2'
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   test-jdk-25:
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run test-jdk-25.sh with keep-alive
         run: |
@@ -28,15 +34,16 @@ jobs:
           ./test-jdk-25.sh
           kill $KEEP_ALIVE_PID
 
-      - name: Set up Git user
+      - name: Set up Git user (repo-scoped)
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
 
       - name: Create Pull Request if there are changes
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.PAT_TOKEN }}
+          token: ${{ github.token }}
           commit-message: "chore: update results from test-jdk-25.sh"
           branch: test-jdk-25/update-results
           title: "Update results from test-jdk-25.sh"
