@@ -3,7 +3,10 @@ from google.oauth2.service_account import Credentials
 import sys
 import csv
 import os
+<<<<<<< HEAD
 
+=======
+>>>>>>> ca69a67105c41f07d643590bfdc1aa556d4f4631
 # Usage: python3 export_sheet_to_tsv.py <spreadsheet_name_or_id> <worksheet_name> <output_tsv>
 if len(sys.argv) != 4:
     print("Usage: python3 export_sheet_to_tsv.py <spreadsheet_name_or_id> <worksheet_name> <output_tsv>")
@@ -26,11 +29,23 @@ client = gspread.authorize(creds)
 
 # Open spreadsheet and worksheet
 try:
+<<<<<<< HEAD
     # Prefer opening by key; fall back to opening by title if that fails
     try:
         spreadsheet = client.open_by_key(SPREADSHEET)
     except Exception:
         spreadsheet = client.open(SPREADSHEET)
+=======
+    if "docs.google.com" in SPREADSHEET:
+        spreadsheet = client.open_by_url(SPREADSHEET)
+    else:
+        try:
+            # Most IDs are 44 chars and may include '-' and '_'
+            spreadsheet = client.open_by_key(SPREADSHEET)
+        except gspread.exceptions.SpreadsheetNotFound:
+            # Fall back to opening by title
+            spreadsheet = client.open(SPREADSHEET)
+>>>>>>> ca69a67105c41f07d643590bfdc1aa556d4f4631
     sheet = spreadsheet.worksheet(WORKSHEET)
 except Exception as e:
     print(f"Error opening sheet: {e}")
