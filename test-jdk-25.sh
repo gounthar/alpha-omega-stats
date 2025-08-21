@@ -6,6 +6,10 @@ WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
 OUTPUT_TSV="plugins-jdk25.tsv"
 TSV_FILE="$OUTPUT_TSV"
 
+# Ensure DEBUG_LOG is defined and exported early
+DEBUG_LOG="build-debug.log"
+export DEBUG_LOG
+
 # Install required Python packages
 pip install -r requirements.txt
 
@@ -16,9 +20,6 @@ if [ $? -ne 0 ]; then
     TSV_FILE=""
 fi
 
-# Ensure DEBUG_LOG is defined and exported
-DEBUG_LOG="build-debug.log"
-export DEBUG_LOG
 
 # Disable strict error checking and debug output for more reliable output handling
 set -uo pipefail
@@ -67,8 +68,7 @@ BUILD_DIR="/tmp/plugin-builds"
 RESULTS_FILE="jdk-25-build-results.csv"
 TSV_RESULTS_FILE="jdk-25-build-results-extended.csv"
 
-# Path to the debug log file where detailed logs will be stored.
-DEBUG_LOG="build-debug.log"
+# Path to the debug log file where detailed logs will be stored. Using DEBUG_LOG defined above.
 
 # Directory for per-plugin logs
 PLUGIN_LOG_DIR="$(cd "$(dirname "$0")" && pwd)/data/plugin-build-logs"
@@ -82,7 +82,7 @@ echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
 echo "plugin_name,pr_number,pr_url,jdk25_status,build_status" > "$TSV_RESULTS_FILE"
 
 # Initialize the debug log file with a header.
-echo "Build Debug Log" > "$DEBUG_LOG"
+echo "Build Debug Log" >> "$DEBUG_LOG"
 
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
