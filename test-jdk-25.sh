@@ -79,7 +79,7 @@ mkdir -p "$BUILD_DIR"
 
 # Initialize the results file with a header row.
 echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
-echo "plugin_name,pr_number,pr_url,jdk25_status,build_status" > "$TSV_RESULTS_FILE"
+echo "plugin_name,install_count,pr_url,is_merged,build_status" > "$TSV_RESULTS_FILE"
 
 # Initialize the debug log file with a header.
 echo "Build Debug Log" >> "$DEBUG_LOG"
@@ -239,49 +239,95 @@ compile_plugin() {
     echo "$build_status"
 }
 
-# Read the input CSV file using file descriptor 3 to avoid consuming stdin
+# Phase 1: Build the set of plugins already JDK25 from TSV (those with last field TRUE)
+JDK25_TRUE_SET_FILE=""
+if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
+    JDK25_TRUE_SET_FILE="$(mktemp)"
+    line_number=0
+    while IFS=$'\t' read -r name install_count pr_url is_merged; do
+        line_number=$((line_number + 1))
+        echo "Read TSV line $line_number: name='$name', is_merged='$is_merged'" >> "$DEBUG_LOG"
+        # Skip header
+        if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
+            continue
+        fi
+        status_upper=$(echo "$is_merged" | tr '[:lower:]' '[:upper:]')
+        if [ "$status_upper" = "TRUE" ]; then
+            echo "$name" >> "$JDK25_TRUE_SET_FILE"
+        fi
+    done < "$TSV_FILE"
+    echo "Built JDK25 TRUE set from TSV (file: $JDK25_TRUE_SET_FILE)" >> "$DEBUG_LOG"
+else
+    echo "TSV file not available; skip set will be empty." >> "$DEBUG_LOG"
+fi
+
+# Helper to check membership in the skip set
+in_jdk25_true_set() {
+    local plugin="$1"
+    [ -n "$JDK25_TRUE_SET_FILE" ] && grep -Fxq "$plugin" "$JDK25_TRUE_SET_FILE"
+}
+
+# Phase 2: Process CSV, skipping builds for plugins already JDK25 TRUE
 line_number=0
 while IFS=, read -r name popularity <&3; do
     line_number=$((line_number + 1))
-    echo "Read line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
+    echo "Read CSV line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
 
-    # Skip the header row in the CSV file.
+    # Skip header row in the CSV
     if [ "$name" != "name" ]; then
-        echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
-        build_status=$(compile_plugin "$name")
-        echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
+        echo "Processing plugin '$name' from CSV line $line_number" >> "$DEBUG_LOG"
+
+        if in_jdk25_true_set "$name"; then
+            build_status="success"
+            echo "Skipping build for '$name' (already JDK25 per TSV)." >> "$DEBUG_LOG"
+        else
+            build_status=$(compile_plugin "$name")
+        fi
+
+        echo "Finished processing plugin '$name' from CSV line $line_number with status: $build_status" >> "$DEBUG_LOG"
         echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
     else
-        echo "Skipping header line $line_number" >> "$DEBUG_LOG"
+        echo "Skipping CSV header line $line_number" >> "$DEBUG_LOG"
     fi
 done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
 
 echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
+
+# Populate the extended TSV results by joining with the CSV results (no builds launched here)
 if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
     line_number=0
-    while IFS=$'\t' read -r name pr_number pr_url jdk25_status <&3; do
+    while IFS=$'\t' read -r name install_count pr_url is_merged; do
         line_number=$((line_number + 1))
-        echo "Read line $line_number: name='$name', pr_number='$pr_number', pr_url='$pr_url', jdk25_status='$jdk25_status'" >> "$DEBUG_LOG"
+        echo "Preparing extended row from TSV line $line_number: name='$name'" >> "$DEBUG_LOG"
 
-        # Skip the header row in the TSV file.
-        if [ "$name" != "plugin" ] && [ "$name" != "name" ]; then
-            echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
-            if [ "$jdk25_status" == "TRUE" ]; then
-                build_status="success"
-                echo "Skipping build for '$name' (already JDK25)." >> "$DEBUG_LOG"
-            else
-                build_status=$(compile_plugin "$name")
-            fi
-            echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
-            echo "$name,$pr_number,$pr_url,$jdk25_status,$build_status" >> "$TSV_RESULTS_FILE"
-        else
-            echo "Skipping header line $line_number" >> "$DEBUG_LOG"
+        # Skip header
+        if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
+            echo "Skipping TSV header line $line_number" >> "$DEBUG_LOG"
+            continue
         fi
-    done 3< "$TSV_FILE" # Use file descriptor 3 for reading the TSV
 
-    echo "Finished reading $TSV_FILE after $line_number lines." >> "$DEBUG_LOG"
+        status_upper=$(echo "$is_merged" | tr '[:lower:]' '[:upper:]')
+        if [ "$status_upper" = "TRUE" ]; then
+            build_status="success"
+        else
+            # Lookup build_status from RESULTS_FILE for this plugin if present
+            build_status=$(awk -F',' -v n="$name" 'NR>1 && $1==n {print $3; found=1} END{ if(!found) print "" }' "$RESULTS_FILE")
+            if [ -z "$build_status" ]; then
+                build_status="not_in_csv"
+            fi
+        fi
+
+        echo "$name,$install_count,$pr_url,$is_merged,$build_status" >> "$TSV_RESULTS_FILE"
+    done < "$TSV_FILE"
+
+    echo "Finished producing extended results from $TSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 else
-    echo "TSV file not available; skipping TSV processing." >> "$DEBUG_LOG"
+    echo "TSV file not available; skipping extended TSV results population." >> "$DEBUG_LOG"
+fi
+
+# Clean up temp set file if created
+if [ -n "$JDK25_TRUE_SET_FILE" ] && [ -f "$JDK25_TRUE_SET_FILE" ]; then
+    rm -f "$JDK25_TRUE_SET_FILE"
 fi
 
 # Log the completion of the script and the locations of the results and logs.
