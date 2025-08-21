@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source the virtual environment from the directory the script is in
+source "$(dirname "$0")/venv/bin/activate"
+
 # Export Google Sheet to TSV before running the rest of the script
 SPREADSHEET_ID_OR_NAME="1_XHzakLNwA44cUnRsY01kQ1X1SymMcJGFxXzhr5s3_s" # or use the Sheet ID
 WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
@@ -254,6 +257,7 @@ if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
         status_upper=$(echo "$is_merged" | tr '[:lower:]' '[:upper:]')
         if [ "$status_upper" = "TRUE" ]; then
             echo "$name" >> "$JDK25_TRUE_SET_FILE"
+            echo "Added '$name' to JDK25 TRUE set from TSV." >> "$DEBUG_LOG"
         fi
     done < "$TSV_FILE"
     echo "Built JDK25 TRUE set from TSV (file: $JDK25_TRUE_SET_FILE)" >> "$DEBUG_LOG"
@@ -279,7 +283,7 @@ while IFS=, read -r name popularity <&3; do
 
         if in_jdk25_true_set "$name"; then
             build_status="success"
-            echo "Skipping build for '$name' (already JDK25 per TSV)." >> "$DEBUG_LOG"
+            echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
         else
             build_status=$(compile_plugin "$name")
         fi
@@ -309,12 +313,15 @@ if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
         status_upper=$(echo "$is_merged" | tr '[:lower:]' '[:upper:]')
         if [ "$status_upper" = "TRUE" ]; then
             build_status="success"
+            echo "Plugin '$name' is merged (TRUE) in TSV; setting build_status to 'success'." >> "$DEBUG_LOG"
         else
             # Lookup build_status from RESULTS_FILE for this plugin if present
             build_status=$(awk -F',' -v n="$name" 'NR>1 && $1==n {print $3; found=1} END{ if(!found) print "" }' "$RESULTS_FILE")
             if [ -z "$build_status" ]; then
                 build_status="not_in_csv"
+                echo "Plugin '$name' not found in CSV results; setting build_status to 'not_in_csv'." >> "$DEBUG_LOG"
             fi
+            echo "Plugin '$name' is not merged (FALSE) in TSV; using build_status from CSV: $build_status" >> "$DEBUG_LOG"
         fi
 
         echo "$name,$install_count,$pr_url,$is_merged,$build_status" >> "$TSV_RESULTS_FILE"
