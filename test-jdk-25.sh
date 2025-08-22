@@ -234,7 +234,7 @@ compile_plugin() {
         build_status="url_not_found"
     else
         # Clone the plugin repository and log the result.
-        git clone "$github_url" "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || build_status="clone_failed"
+        git clone --depth 1 "$github_url" "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || build_status="clone_failed"
 
         if [ "$build_status" == "success" ]; then
             echo "Cloned repository for $plugin_name." >>"$DEBUG_LOG"
