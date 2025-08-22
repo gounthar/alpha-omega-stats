@@ -83,6 +83,11 @@ export JAVA_HOME="$HOME/.jdk-25"
 export PATH="$JAVA_HOME/bin:$PATH"
 hash -r
 
+# Configure per-build threads and cross-plugin concurrency (defaults to 4)
+BUILD_THREADS="${BUILD_THREADS:-4}"
+PLUGIN_CONCURRENCY="${PLUGIN_CONCURRENCY:-4}"
+export BUILD_THREADS PLUGIN_CONCURRENCY
+
 echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
 java -version >> "$DEBUG_LOG" 2>&1
 echo "DEBUG: Output of 'mvn -v' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
@@ -252,8 +257,8 @@ compile_plugin() {
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: timeout 20m mvn -B -T 1C -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.showThreadName=false -Dorg.slf4j.simpleLogger.showShortLogName=true -Dorg.slf4j.simpleLogger.level=info -Dorg.slf4j.simpleLogger.showLogName=false --no-transfer-progress clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
-                    timeout 20m mvn -B --no-transfer-progress -T 1C clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
+echo "Executing: timeout 20m mvn -B --no-transfer-progress -T ${BUILD_THREADS} clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
+timeout 20m mvn -B --no-transfer-progress -T "${BUILD_THREADS}" clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then
@@ -263,9 +268,9 @@ compile_plugin() {
                     fi
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
-                    echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $DEBUG_LOG build -x test" >>"$DEBUG_LOG"
-                    timeout 10m "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >"$plugin_log_file" 2>&1 || build_status="build_failed"
+echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
+echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $plugin_log_file --no-daemon --parallel --max-workers=${BUILD_THREADS} build" >>"$DEBUG_LOG"
+timeout 10m "$script_dir/run-gradle-build.sh" "$plugin_log_file" --no-daemon --parallel --max-workers="${BUILD_THREADS}" build || build_status="build_failed"
                 else
                     # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
@@ -315,6 +320,8 @@ in_jdk25_true_set() {
 
 # Phase 2: Process CSV, skipping builds for plugins already JDK25 TRUE
 line_number=0
+active_jobs=0
+max_jobs="${PLUGIN_CONCURRENCY}"
 while IFS=, read -r name popularity <&3; do
     line_number=$((line_number + 1))
     echo "Read CSV line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
@@ -328,15 +335,24 @@ while IFS=, read -r name popularity <&3; do
     echo "Processing plugin '$name' from CSV line $line_number" >> "$DEBUG_LOG"
 
     if in_jdk25_true_set "$name"; then
-        build_status="success"
         echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
+        echo "$name,$popularity,success" >> "$RESULTS_FILE"
     else
-        build_status=$(compile_plugin "$name")
+        {
+            status=$(compile_plugin "$name")
+            echo "Finished processing plugin '$name' from CSV line $line_number with status: $status" >> "$DEBUG_LOG"
+            echo "$name,$popularity,$status" >> "$RESULTS_FILE"
+        } &
+        active_jobs=$((active_jobs + 1))
+        if [ "$active_jobs" -ge "$max_jobs" ]; then
+            wait -n
+            active_jobs=$((active_jobs - 1))
+        fi
     fi
+done 3<"$CSV_FILE" # Use file descriptor 3 for reading the CSV
 
-    echo "Finished processing plugin '$name' from CSV line $line_number with status: $build_status" >> "$DEBUG_LOG"
-    echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
-done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
+# Wait for any remaining background jobs to finish
+wait
 
 echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 
