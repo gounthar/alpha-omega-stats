@@ -1,5 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Strict mode: exit on error, undefined var, and failures in pipelines
+# Ensure we are running under Bash (not sh/dash/zsh) to support 'pipefail'
+if [ -z "${BASH_VERSION:-}" ]; then
+  echo "This script must be run with bash. Try: bash $0" >&2
+  exit 1
+fi
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -42,7 +47,6 @@ SPREADSHEET_ID_OR_NAME="1_XHzakLNwA44cUnRsY01kQ1X1SymMcJGFxXzhr5s3_s" # or use t
 WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
 OUTPUT_TSV="plugins-jdk25.tsv"
 TSV_FILE="$OUTPUT_TSV"
-
 
 # Ensure VENV_DIR points to our venv directory (for clarity in later calls)
 VENV_DIR="$venv_dir"
