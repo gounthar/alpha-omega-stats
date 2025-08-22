@@ -117,6 +117,12 @@ echo "plugin_name,install_count,pr_url,is_merged,build_status" > "$TSV_RESULTS_F
 # Initialize the debug log file with a header.
 echo "Build Debug Log - $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$DEBUG_LOG"
 
+# Verify required CLI tools early to avoid set -e failures
+require_cmd() { command -v "$1" >/dev/null 2>&1 || { echo "Error: '$1' not found in PATH." >>"$DEBUG_LOG"; exit 1; }; }
+require_cmd git
+require_cmd curl
+require_cmd jq
+require_cmd timeout
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
