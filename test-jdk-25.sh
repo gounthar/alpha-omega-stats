@@ -1,4 +1,7 @@
 #!/bin/bash
+# Initialize and export DEBUG_LOG before any output or redirects
+DEBUG_LOG="$(cd "$(dirname "$0")" && pwd)/build-debug.log"
+export DEBUG_LOG
 
 # Source the virtual environment from the directory the script is in
 source "$(dirname "$0")/venv/bin/activate"
@@ -9,14 +12,12 @@ WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
 OUTPUT_TSV="plugins-jdk25.tsv"
 TSV_FILE="$OUTPUT_TSV"
 
-# Ensure DEBUG_LOG is defined and exported early
-DEBUG_LOG="build-debug.log"
-export DEBUG_LOG
 
 # Install required Python packages
 pip install -r requirements.txt
 
 echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\""
+echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\"" >> "$DEBUG_LOG"
 python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"
 if [ $? -ne 0 ]; then
     echo "Failed to export Google Sheet to TSV. Continuing without TSV data." >> "$DEBUG_LOG"
@@ -85,7 +86,7 @@ echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
 echo "plugin_name,install_count,pr_url,is_merged,build_status" > "$TSV_RESULTS_FILE"
 
 # Initialize the debug log file with a header.
-echo "Build Debug Log" >> "$DEBUG_LOG"
+echo "Build Debug Log - $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$DEBUG_LOG"
 
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
@@ -101,7 +102,7 @@ fi
 
 # Define a cleanup function to remove the build directory on script exit or interruption.
 cleanup() {
-    echo "Cleaning up build directory..."
+    echo "Cleaning up build directory..." >> "$DEBUG_LOG"
     rm -rf "$BUILD_DIR"
 }
 # Register the cleanup function to be called on script exit or interruption.
@@ -111,18 +112,22 @@ trap cleanup EXIT
 if [ ! -f "$PLUGINS_JSON" ] || [ "$(find "$PLUGINS_JSON" -mtime +0)" ]; then
     # Download the latest plugins JSON file from the Jenkins update center.
     echo "Downloading $PLUGINS_JSON..."
+    echo "Downloading $PLUGINS_JSON..." >> "$DEBUG_LOG"
     curl -L https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"
 else
     # Log that the plugins JSON file is up-to-date.
     echo "plugins.json is up-to-date."
+    echo "plugins.json is up-to-date." >> "$DEBUG_LOG"
 fi
 
 # Generate top-250-plugins.csv if it does not exist or is older than plugins.json
 if [ ! -f "$CSV_FILE" ] || [ "$CSV_FILE" -ot "$PLUGINS_JSON" ]; then
     echo "Generating $CSV_FILE from $PLUGINS_JSON..."
+    echo "Generating $CSV_FILE from $PLUGINS_JSON..." >> "$DEBUG_LOG"
     "$script_dir/get-most-popular-plugins.sh"
 else
     echo "$CSV_FILE is up-to-date."
+    echo "$CSV_FILE is up-to-date." >> "$DEBUG_LOG"
 fi
 
 # Function to retrieve the GitHub URL of a plugin from the plugins JSON file.
@@ -339,5 +344,8 @@ fi
 
 # Log the completion of the script and the locations of the results and logs.
 echo "Simplified build results have been saved to $RESULTS_FILE."
+echo "Simplified build results have been saved to $RESULTS_FILE." >> "$DEBUG_LOG"
 echo "Extended TSV build results have been saved to $TSV_RESULTS_FILE."
+echo "Extended TSV build results have been saved to $TSV_RESULTS_FILE." >> "$DEBUG_LOG"
 echo "Debug logs have been saved to $DEBUG_LOG."
+echo "Debug logs have been saved to $DEBUG_LOG." >> "$DEBUG_LOG"
