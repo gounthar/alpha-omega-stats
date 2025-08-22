@@ -1,10 +1,41 @@
 #!/bin/bash
+# Strict mode: exit on error, undefined var, and failures in pipelines
+set -euo pipefail
+IFS=$'\n\t'
+
+# Determine script directory once
+script_dir=$(cd "$(dirname "$0")" && pwd)
+
 # Initialize and export DEBUG_LOG before any output or redirects
-DEBUG_LOG="$(cd "$(dirname "$0")" && pwd)/build-debug.log"
+DEBUG_LOG="$script_dir/build-debug.log"
 export DEBUG_LOG
 
-# Source the virtual environment from the directory the script is in
-source "$(dirname "$0")/venv/bin/activate"
+# Prepare and activate Python virtual environment safely
+venv_dir="$script_dir/venv"
+activate_file="$venv_dir/bin/activate"
+
+if [ ! -d "$venv_dir" ] || [ ! -f "$activate_file" ]; then
+    echo "Python virtualenv not found at $venv_dir. Attempting to create it..." >> "$DEBUG_LOG"
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "Error: python3 is not installed or not in PATH. Cannot create virtual environment." | tee -a "$DEBUG_LOG"
+        exit 1
+    fi
+    if ! python3 -m venv "$venv_dir"; then
+        echo "Error: Failed to create virtual environment at $venv_dir." | tee -a "$DEBUG_LOG"
+        exit 1
+    fi
+fi
+
+if [ ! -f "$activate_file" ]; then
+    echo "Error: virtualenv activation script missing at $activate_file." | tee -a "$DEBUG_LOG"
+    exit 1
+fi
+
+# Source the virtual environment; exit if activation fails
+if ! source "$activate_file"; then
+    echo "Error: Failed to activate virtual environment at $activate_file." | tee -a "$DEBUG_LOG"
+    exit 1
+fi
 
 # Export Google Sheet to TSV before running the rest of the script
 SPREADSHEET_ID_OR_NAME="1_XHzakLNwA44cUnRsY01kQ1X1SymMcJGFxXzhr5s3_s" # or use the Sheet ID
@@ -18,15 +49,14 @@ pip install -r requirements.txt
 
 echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\""
 echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\"" >> "$DEBUG_LOG"
-python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"
-if [ $? -ne 0 ]; then
+if ! python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"; then
     echo "Failed to export Google Sheet to TSV. Continuing without TSV data." >> "$DEBUG_LOG"
     TSV_FILE=""
 fi
 
 
-# Disable strict error checking and debug output for more reliable output handling
-set -uo pipefail
+# Ensure strict error checking flags are set
+set -euo pipefail
 
 # Detect the system architecture dynamically
 ARCHITECTURE=$(uname -m)
