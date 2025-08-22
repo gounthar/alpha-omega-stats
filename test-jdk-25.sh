@@ -1,11 +1,61 @@
 #!/bin/bash
+# Strict mode: exit on error, undefined var, and failures in pipelines
+set -euo pipefail
+IFS=$'\n\t'
 
-# Ensure DEBUG_LOG is defined and exported
-DEBUG_LOG="build-debug.log"
+# Determine script directory once
+script_dir=$(cd "$(dirname "$0")" && pwd)
+
+# Initialize and export DEBUG_LOG before any output or redirects
+DEBUG_LOG="$script_dir/build-debug.log"
 export DEBUG_LOG
 
-# Disable strict error checking and debug output for more reliable output handling
-set -uo pipefail
+# Prepare and activate Python virtual environment safely
+venv_dir="$script_dir/venv"
+activate_file="$venv_dir/bin/activate"
+
+if [ ! -d "$venv_dir" ] || [ ! -f "$activate_file" ]; then
+    echo "Python virtualenv not found at $venv_dir. Attempting to create it..." >> "$DEBUG_LOG"
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "Error: python3 is not installed or not in PATH. Cannot create virtual environment." | tee -a "$DEBUG_LOG"
+        exit 1
+    fi
+    if ! python3 -m venv "$venv_dir"; then
+        echo "Error: Failed to create virtual environment at $venv_dir." | tee -a "$DEBUG_LOG"
+        exit 1
+    fi
+fi
+
+if [ ! -f "$activate_file" ]; then
+    echo "Error: virtualenv activation script missing at $activate_file." | tee -a "$DEBUG_LOG"
+    exit 1
+fi
+
+# Source the virtual environment; exit if activation fails
+if ! source "$activate_file"; then
+    echo "Error: Failed to activate virtual environment at $activate_file." | tee -a "$DEBUG_LOG"
+    exit 1
+fi
+
+# Export Google Sheet to TSV before running the rest of the script
+SPREADSHEET_ID_OR_NAME="1_XHzakLNwA44cUnRsY01kQ1X1SymMcJGFxXzhr5s3_s" # or use the Sheet ID
+WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
+OUTPUT_TSV="plugins-jdk25.tsv"
+TSV_FILE="$OUTPUT_TSV"
+
+
+# Ensure VENV_DIR points to our venv directory (for clarity in later calls)
+VENV_DIR="$venv_dir"
+export VENV_DIR
+
+# Install required Python packages using the venv's pip, logging stdout and stderr
+"$VENV_DIR/bin/pip" install -r "$script_dir/requirements.txt" >> "$DEBUG_LOG" 2>&1
+
+# Export Google Sheet to TSV using the venv's python, logging stdout and stderr
+if ! "$VENV_DIR/bin/python" "$script_dir/export_sheet_to_tsv.py" "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV" >> "$DEBUG_LOG" 2>&1; then
+    echo "Failed to export Google Sheet to TSV. Continuing without TSV data." >> "$DEBUG_LOG"
+    TSV_FILE=""
+fi
 
 # Detect the system architecture dynamically
 ARCHITECTURE=$(uname -m)
@@ -49,9 +99,9 @@ BUILD_DIR="/tmp/plugin-builds"
 
 # Path to the output CSV file where build results will be saved.
 RESULTS_FILE="jdk-25-build-results.csv"
+TSV_RESULTS_FILE="jdk-25-build-results-extended.csv"
 
-# Path to the debug log file where detailed logs will be stored.
-DEBUG_LOG="build-debug.log"
+# Path to the debug log file where detailed logs will be stored. Using DEBUG_LOG defined above.
 
 # Directory for per-plugin logs
 PLUGIN_LOG_DIR="$(cd "$(dirname "$0")" && pwd)/data/plugin-build-logs"
@@ -62,15 +112,22 @@ mkdir -p "$BUILD_DIR"
 
 # Initialize the results file with a header row.
 echo "plugin_name,popularity,build_status" > "$RESULTS_FILE"
+echo "plugin_name,install_count,pr_url,is_merged,build_status" > "$TSV_RESULTS_FILE"
 
 # Initialize the debug log file with a header.
-echo "Build Debug Log" > "$DEBUG_LOG"
+echo "Build Debug Log - $(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$DEBUG_LOG"
 
+# Verify required CLI tools early to avoid set -e failures
+require_cmd() { command -v "$1" >/dev/null 2>&1 || { echo "Error: '$1' not found in PATH." >>"$DEBUG_LOG"; exit 1; }; }
+require_cmd git
+require_cmd curl
+require_cmd jq
+require_cmd timeout
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
     echo "Maven is installed and accessible." >>"$DEBUG_LOG"
-    echo "DEBUG: Output of 'mvn -v' before potential JDK 25 switch (in test-jdk-25.sh):" >> "$DEBUG_LOG"
+    echo "DEBUG: Output of 'mvn -v' after JDK 25 setup (in test-jdk-25.sh):" >> "$DEBUG_LOG"
     mvn -v >>"$DEBUG_LOG" 2>&1
 else
     # Log an error message and exit if Maven is not installed.
@@ -80,7 +137,7 @@ fi
 
 # Define a cleanup function to remove the build directory on script exit or interruption.
 cleanup() {
-    echo "Cleaning up build directory..."
+    echo "Cleaning up build directory..." >> "$DEBUG_LOG"
     rm -rf "$BUILD_DIR"
 }
 # Register the cleanup function to be called on script exit or interruption.
@@ -90,18 +147,22 @@ trap cleanup EXIT
 if [ ! -f "$PLUGINS_JSON" ] || [ "$(find "$PLUGINS_JSON" -mtime +0)" ]; then
     # Download the latest plugins JSON file from the Jenkins update center.
     echo "Downloading $PLUGINS_JSON..."
+    echo "Downloading $PLUGINS_JSON..." >> "$DEBUG_LOG"
     curl -L https://updates.jenkins.io/current/update-center.actual.json -o "$PLUGINS_JSON"
 else
     # Log that the plugins JSON file is up-to-date.
     echo "plugins.json is up-to-date."
+    echo "plugins.json is up-to-date." >> "$DEBUG_LOG"
 fi
 
 # Generate top-250-plugins.csv if it does not exist or is older than plugins.json
 if [ ! -f "$CSV_FILE" ] || [ "$CSV_FILE" -ot "$PLUGINS_JSON" ]; then
     echo "Generating $CSV_FILE from $PLUGINS_JSON..."
+    echo "Generating $CSV_FILE from $PLUGINS_JSON..." >> "$DEBUG_LOG"
     "$script_dir/get-most-popular-plugins.sh"
 else
     echo "$CSV_FILE is up-to-date."
+    echo "$CSV_FILE is up-to-date." >> "$DEBUG_LOG"
 fi
 
 # Function to retrieve the GitHub URL of a plugin from the plugins JSON file.
@@ -173,7 +234,7 @@ compile_plugin() {
         build_status="url_not_found"
     else
         # Clone the plugin repository and log the result.
-        git clone "$github_url" "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || build_status="clone_failed"
+        git clone --depth 1 "$github_url" "$plugin_dir" >>"$DEBUG_LOG" 2>&1 || build_status="clone_failed"
 
         if [ "$build_status" == "success" ]; then
             echo "Cloned repository for $plugin_name." >>"$DEBUG_LOG"
@@ -183,14 +244,16 @@ compile_plugin() {
                 echo "Failed to change directory to $plugin_dir" >>"$DEBUG_LOG"
                 build_status="cd_failed"
             }
-            echo "Reached after cd command" >>"$DEBUG_LOG"
-            echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
+            if [ "$build_status" = "success" ]; then
+                echo "Reached after cd command" >>"$DEBUG_LOG"
+                echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
+            fi
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: timeout 20m mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    timeout 20m mvn clean install -DskipTests >"$plugin_log_file" 2>&1
+                    echo "Executing: timeout 20m mvn -B -T 1C -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.showThreadName=false -Dorg.slf4j.simpleLogger.showShortLogName=true -Dorg.slf4j.simpleLogger.level=info -Dorg.slf4j.simpleLogger.showLogName=false --no-transfer-progress clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
+                    timeout 20m mvn -B --no-transfer-progress -T 1C clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then
@@ -221,25 +284,106 @@ compile_plugin() {
     echo "$build_status"
 }
 
-# Read the input CSV file using file descriptor 3 to avoid consuming stdin
+# Phase 1: Build the set of plugins already JDK25 from TSV (those with last field TRUE)
+JDK25_TRUE_SET_FILE=""
+if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
+    JDK25_TRUE_SET_FILE="$(mktemp)"
+    line_number=0
+    while IFS=$'\t' read -r name install_count pr_url is_merged; do
+        line_number=$((line_number + 1))
+        echo "Read TSV line $line_number: name='$name', is_merged='$is_merged'" >> "$DEBUG_LOG"
+        # Skip header
+        if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
+            continue
+        fi
+        status_upper=$(echo "$is_merged" | tr '[:lower:]' '[:upper:]')
+        if [ "$status_upper" = "TRUE" ]; then
+            echo "$name" >> "$JDK25_TRUE_SET_FILE"
+            echo "Added '$name' to JDK25 TRUE set from TSV." >> "$DEBUG_LOG"
+        fi
+    done < "$TSV_FILE"
+    echo "Built JDK25 TRUE set from TSV (file: $JDK25_TRUE_SET_FILE)" >> "$DEBUG_LOG"
+else
+    echo "TSV file not available; skip set will be empty." >> "$DEBUG_LOG"
+fi
+
+# Helper to check membership in the skip set
+in_jdk25_true_set() {
+    local plugin="$1"
+    [ -n "$JDK25_TRUE_SET_FILE" ] && grep -Fxq "$plugin" "$JDK25_TRUE_SET_FILE"
+}
+
+# Phase 2: Process CSV, skipping builds for plugins already JDK25 TRUE
 line_number=0
 while IFS=, read -r name popularity <&3; do
     line_number=$((line_number + 1))
-    echo "Read line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
+    echo "Read CSV line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
 
-    # Skip the header row in the CSV file.
-    if [ "$name" != "name" ]; then
-        echo "Processing plugin '$name' from line $line_number" >> "$DEBUG_LOG"
-        build_status=$(compile_plugin "$name")
-        echo "Finished processing plugin '$name' from line $line_number with status: $build_status" >> "$DEBUG_LOG"
-        echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
-    else
-        echo "Skipping header line $line_number" >> "$DEBUG_LOG"
+    # Skip header row in the CSV
+    if [ $line_number -eq 1 ]; then
+        echo "Skipping CSV header line $line_number" >> "$DEBUG_LOG"
+        continue
     fi
+
+    echo "Processing plugin '$name' from CSV line $line_number" >> "$DEBUG_LOG"
+
+    if in_jdk25_true_set "$name"; then
+        build_status="success"
+        echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
+    else
+        build_status=$(compile_plugin "$name")
+    fi
+
+    echo "Finished processing plugin '$name' from CSV line $line_number with status: $build_status" >> "$DEBUG_LOG"
+    echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
 done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
 
 echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 
+# Populate the extended TSV results by joining with the CSV results (no builds launched here)
+if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
+    line_number=0
+    while IFS=$'\t' read -r name install_count pr_url is_merged; do
+        line_number=$((line_number + 1))
+        echo "Preparing extended row from TSV line $line_number: name='$name'" >> "$DEBUG_LOG"
+
+        # Skip header
+        if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
+            echo "Skipping TSV header line $line_number" >> "$DEBUG_LOG"
+            continue
+        fi
+
+        status_upper=$(echo "$is_merged" | tr '[:lower:]' '[:upper:]')
+        if [ "$status_upper" = "TRUE" ]; then
+            build_status="success"
+            echo "Plugin '$name' is merged (TRUE) in TSV; setting build_status to 'success'." >> "$DEBUG_LOG"
+        else
+            # Lookup build_status from RESULTS_FILE for this plugin if present
+            build_status=$(awk -F',' -v n="$name" 'NR>1 && $1==n {print $3; found=1} END{ if(!found) print "" }' "$RESULTS_FILE")
+            if [ -z "$build_status" ]; then
+                build_status="not_in_csv"
+                echo "Plugin '$name' not found in CSV results; setting build_status to 'not_in_csv'." >> "$DEBUG_LOG"
+            fi
+            echo "Plugin '$name' is not merged (FALSE) in TSV; using build_status from CSV: $build_status" >> "$DEBUG_LOG"
+        fi
+
+        echo "$name,$install_count,$pr_url,$is_merged,$build_status" >> "$TSV_RESULTS_FILE"
+    done < "$TSV_FILE"
+
+    echo "Finished producing extended results from $TSV_FILE after $line_number lines." >> "$DEBUG_LOG"
+else
+    echo "TSV file not available; skipping extended TSV results population." >> "$DEBUG_LOG"
+fi
+
+# Clean up temp set file if created
+if [ -n "$JDK25_TRUE_SET_FILE" ] && [ -f "$JDK25_TRUE_SET_FILE" ]; then
+    rm -f "$JDK25_TRUE_SET_FILE"
+fi
+
 # Log the completion of the script and the locations of the results and logs.
 echo "Simplified build results have been saved to $RESULTS_FILE."
+echo "Simplified build results have been saved to $RESULTS_FILE." >> "$DEBUG_LOG"
+echo "Extended TSV build results have been saved to $TSV_RESULTS_FILE."
+echo "Extended TSV build results have been saved to $TSV_RESULTS_FILE." >> "$DEBUG_LOG"
 echo "Debug logs have been saved to $DEBUG_LOG."
+echo "Debug logs have been saved to $DEBUG_LOG." >> "$DEBUG_LOG"
