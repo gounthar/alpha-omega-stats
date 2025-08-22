@@ -127,7 +127,7 @@ require_cmd timeout
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
     echo "Maven is installed and accessible." >>"$DEBUG_LOG"
-    echo "DEBUG: Output of 'mvn -v' before potential JDK 25 switch (in test-jdk-25.sh):" >> "$DEBUG_LOG"
+    echo "DEBUG: Output of 'mvn -v' after JDK 25 setup (in test-jdk-25.sh):" >> "$DEBUG_LOG"
     mvn -v >>"$DEBUG_LOG" 2>&1
 else
     # Log an error message and exit if Maven is not installed.
