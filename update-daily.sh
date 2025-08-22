@@ -206,13 +206,13 @@ PYCHK
         return 0
     fi
     echo "Installing Python dependencies for Google Sheets integration..."
+    local pip_cmd="python3 -m pip"
     if command -v pip3 >/dev/null 2>&1; then
-        pip3 install --upgrade pip || true
-        pip3 install -r requirements.txt || pip3 install --user -r requirements.txt || true
-    else
-        python3 -m pip install --upgrade pip || true
-        python3 -m pip install -r requirements.txt || python3 -m pip install --user -r requirements.txt || true
+        pip_cmd="pip3"
     fi
+
+    $pip_cmd install --upgrade pip || true
+    $pip_cmd install -r requirements.txt || $pip_cmd install --user -r requirements.txt || true
 }
 
 # Check if any consolidated files have changed
