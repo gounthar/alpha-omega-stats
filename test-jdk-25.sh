@@ -87,6 +87,18 @@ hash -r
 export BUILD_THREADS="${BUILD_THREADS:-4}"
 export PLUGIN_CONCURRENCY="${PLUGIN_CONCURRENCY:-4}"
 
+# Validate numeric, positive integers
+case "$BUILD_THREADS" in ''|*[!0-9]*|0) BUILD_THREADS=4;; esac
+case "$PLUGIN_CONCURRENCY" in ''|*[!0-9]*|0) PLUGIN_CONCURRENCY=4;; esac
+
+# Keep total concurrency roughly bounded by CPU count when both are unset or excessive
+CPU_COUNT="$(getconf _NPROCESSORS_ONLN 2>/dev/null || nproc 2>/dev/null || echo 4)"
+if [ "$CPU_COUNT" -gt 0 ] && [ $(( BUILD_THREADS * PLUGIN_CONCURRENCY )) -gt "$CPU_COUNT" ]; then
+  # Reduce per-build threads to fit within CPU_COUNT
+  BUILD_THREADS=$(( (CPU_COUNT + PLUGIN_CONCURRENCY - 1) / PLUGIN_CONCURRENCY ))
+  [ "$BUILD_THREADS" -lt 1 ] && BUILD_THREADS=1
+fi
+
 echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
 java -version >> "$DEBUG_LOG" 2>&1
 echo "DEBUG: Output of 'mvn -v' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
@@ -127,6 +139,17 @@ require_cmd git
 require_cmd curl
 require_cmd jq
 require_cmd timeout
+# Ensure flock is available
+require_cmd flock
+
+# Serialize writes to RESULTS_FILE across background jobs
+append_result() {
+  local line="$1"
+  {
+    flock 9
+    printf '%s\n' "$line" >> "$RESULTS_FILE"
+  } 9>>"$RESULTS_FILE.lock"
+}
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
@@ -335,12 +358,12 @@ while IFS=, read -r name popularity <&3; do
 
     if in_jdk25_true_set "$name"; then
         echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
-        echo "$name,$popularity,success" >> "$RESULTS_FILE"
+        append_result "$name,$popularity,success"
     else
         {
             status=$(compile_plugin "$name")
             echo "Finished processing plugin '$name' from CSV line $line_number with status: $status" >> "$DEBUG_LOG"
-            echo "$name,$popularity,$status" >> "$RESULTS_FILE"
+            append_result "$name,$popularity,$status"
         } &
         active_jobs=$((active_jobs + 1))
         if [ "$active_jobs" -ge "$max_jobs" ]; then
