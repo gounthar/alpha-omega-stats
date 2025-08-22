@@ -193,6 +193,28 @@ check_files_changed() {
     return 1
 }
 
+# Ensure Python dependencies (gspread, google-auth) are available before updating Sheets
+ensure_python_deps() {
+    if ! command -v python3 >/dev/null 2>&1; then
+        echo "Warning: python3 not found; skipping dependency install."
+        return 0
+    fi
+    if python3 - <<'PYCHK' >/dev/null 2>&1
+import gspread  # noqa: F401
+PYCHK
+    then
+        return 0
+    fi
+    echo "Installing Python dependencies for Google Sheets integration..."
+    local pip_cmd="python3 -m pip"
+    if command -v pip3 >/dev/null 2>&1; then
+        pip_cmd="pip3"
+    fi
+
+    $pip_cmd install --upgrade pip || true
+    $pip_cmd install -r requirements.txt || $pip_cmd install --user -r requirements.txt || true
+}
+
 # Check if any consolidated files have changed
 files_changed=false
 for file in "all_prs.json" "open_prs.json" "failing_prs.json"; do
@@ -226,6 +248,7 @@ if [ -f "$successful_builds_file" ]; then
 fi
 
 # Update Google Sheets if any files have changed or if update didn't fail
+ensure_python_deps
 if [ "$files_changed" = true ] || [ "$successful_builds_changed" = true ]; then
     if [ "$update_failed" != true ]; then
         echo "Changes detected in files. Updating Google Sheets..."
