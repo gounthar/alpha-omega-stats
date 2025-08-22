@@ -2,8 +2,9 @@
 # Strict mode: exit on error, undefined var, and failures in pipelines
 # Ensure we are running under Bash (not sh/dash/zsh) to support 'pipefail'
 if [ -z "${BASH_VERSION:-}" ]; then
-  echo "This script must be run with bash. Try: bash $0" >&2
-  exit 1
+  echo "This script must be run with bash. Try: bash \"$0\"" >&2
+  # If sourced into a non-bash shell, avoid killing the shell
+  return 1 2>/dev/null || exit 1
 fi
 set -euo pipefail
 IFS=$'\n\t'
