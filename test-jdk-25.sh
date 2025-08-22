@@ -313,21 +313,22 @@ while IFS=, read -r name popularity <&3; do
     echo "Read CSV line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
 
     # Skip header row in the CSV
-    if [ "$name" != "name" ]; then
-        echo "Processing plugin '$name' from CSV line $line_number" >> "$DEBUG_LOG"
-
-        if in_jdk25_true_set "$name"; then
-            build_status="success"
-            echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
-        else
-            build_status=$(compile_plugin "$name")
-        fi
-
-        echo "Finished processing plugin '$name' from CSV line $line_number with status: $build_status" >> "$DEBUG_LOG"
-        echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
-    else
+    if [ $line_number -eq 1 ]; then
         echo "Skipping CSV header line $line_number" >> "$DEBUG_LOG"
+        continue
     fi
+
+    echo "Processing plugin '$name' from CSV line $line_number" >> "$DEBUG_LOG"
+
+    if in_jdk25_true_set "$name"; then
+        build_status="success"
+        echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
+    else
+        build_status=$(compile_plugin "$name")
+    fi
+
+    echo "Finished processing plugin '$name' from CSV line $line_number with status: $build_status" >> "$DEBUG_LOG"
+    echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
 done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
 
 echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
