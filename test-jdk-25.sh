@@ -44,12 +44,15 @@ OUTPUT_TSV="plugins-jdk25.tsv"
 TSV_FILE="$OUTPUT_TSV"
 
 
-# Install required Python packages
-pip install -r requirements.txt
+# Ensure VENV_DIR points to our venv directory (for clarity in later calls)
+VENV_DIR="$venv_dir"
+export VENV_DIR
 
-echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\""
-echo "Running: python3 export_sheet_to_tsv.py \"$SPREADSHEET_ID_OR_NAME\" \"$WORKSHEET_NAME\" \"$OUTPUT_TSV\"" >> "$DEBUG_LOG"
-if ! python3 export_sheet_to_tsv.py "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV"; then
+# Install required Python packages using the venv's pip, logging stdout and stderr
+"$VENV_DIR/bin/pip" install -r "$script_dir/requirements.txt" >> "$DEBUG_LOG" 2>&1
+
+# Export Google Sheet to TSV using the venv's python, logging stdout and stderr
+if ! "$VENV_DIR/bin/python" "$script_dir/export_sheet_to_tsv.py" "$SPREADSHEET_ID_OR_NAME" "$WORKSHEET_NAME" "$OUTPUT_TSV" >> "$DEBUG_LOG" 2>&1; then
     echo "Failed to export Google Sheet to TSV. Continuing without TSV data." >> "$DEBUG_LOG"
     TSV_FILE=""
 fi
