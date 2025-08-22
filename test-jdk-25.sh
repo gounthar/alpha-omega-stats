@@ -57,10 +57,6 @@ if ! "$VENV_DIR/bin/python" "$script_dir/export_sheet_to_tsv.py" "$SPREADSHEET_I
     TSV_FILE=""
 fi
 
-
-# Ensure strict error checking flags are set
-set -euo pipefail
-
 # Detect the system architecture dynamically
 ARCHITECTURE=$(uname -m)
 
@@ -242,8 +238,10 @@ compile_plugin() {
                 echo "Failed to change directory to $plugin_dir" >>"$DEBUG_LOG"
                 build_status="cd_failed"
             }
-            echo "Reached after cd command" >>"$DEBUG_LOG"
-            echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
+            if [ "$build_status" = "success" ]; then
+                echo "Reached after cd command" >>"$DEBUG_LOG"
+                echo "Successfully changed directory to $plugin_dir" >>"$DEBUG_LOG"
+            fi
             if [ "$build_status" == "success" ]; then
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
