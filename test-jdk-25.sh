@@ -82,9 +82,15 @@ esac
 # The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
 # Run installer in a separate bash process to avoid set -e propagation from sourced scripts
-if ! bash "$script_dir/install-jdk-versions.sh" >> "$DEBUG_LOG" 2>&1; then
-    echo "Error: install-jdk-versions.sh failed. See $DEBUG_LOG for details." >> "$DEBUG_LOG"
-    exit 1
+echo "DEBUG: Starting install-jdk-versions.sh" >> "$DEBUG_LOG"
+set +e
+bash "$script_dir/install-jdk-versions.sh" >> "$DEBUG_LOG" 2>&1
+installer_ec=$?
+set -e
+if [ $installer_ec -ne 0 ]; then
+  echo "WARN: install-jdk-versions.sh exited with code $installer_ec, continuing." >> "$DEBUG_LOG"
+else
+  echo "DEBUG: install-jdk-versions.sh completed successfully." >> "$DEBUG_LOG"
 fi
 
 # Ensure JDK 25 is used for all Java and Maven commands
@@ -153,15 +159,25 @@ require_cmd curl
 require_cmd jq
 require_cmd timeout
 # Ensure flock is available
-require_cmd flock
+# flock is optional; fall back to unlocked appends if not present
+if command -v flock >/dev/null 2>&1; then
+  HAS_FLOCK=1
+else
+  HAS_FLOCK=0
+  echo "WARNING: 'flock' not found; using non-atomic appends to $RESULTS_FILE" >> "$DEBUG_LOG"
+fi
 
 # Serialize writes to RESULTS_FILE across background jobs
 append_result() {
   local line="$1"
-  {
-    flock 9
+  if [ "${HAS_FLOCK:-0}" -eq 1 ]; then
+    {
+      flock 9
+      printf '%s\n' "$line" >> "$RESULTS_FILE"
+    } 9>>"$RESULTS_FILE.lock"
+  else
     printf '%s\n' "$line" >> "$RESULTS_FILE"
-  } 9>>"$RESULTS_FILE.lock"
+  fi
 }
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
