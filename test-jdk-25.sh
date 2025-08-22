@@ -252,8 +252,8 @@ compile_plugin() {
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: timeout 20m mvn clean install -DskipTests" >>"$DEBUG_LOG"
-                    timeout 20m mvn clean install -DskipTests >"$plugin_log_file" 2>&1
+                    echo "Executing: timeout 20m mvn -B -T 1C -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.showThreadName=false -Dorg.slf4j.simpleLogger.showShortLogName=true -Dorg.slf4j.simpleLogger.level=info -Dorg.slf4j.simpleLogger.showLogName=false --no-transfer-progress clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
+                    timeout 20m mvn -B --no-transfer-progress -T 1C clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then

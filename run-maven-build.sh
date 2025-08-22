@@ -8,7 +8,7 @@ set -euo pipefail
 # Check if at least one argument (the log file path) is provided.
 if [ $# -lt 1 ]; then
   # Print usage information to standard error and exit with a non-zero status.
-  echo "Usage: $0 LOG_FILE [mvn_args...]" >&2
+  echo "Usage: $0 LOG_FILE [mvn_args...]  (defaults: -B --no-transfer-progress -T 1C -Dmaven.test.skip=true)" >&2
   exit 1
 fi
 
@@ -20,7 +20,10 @@ shift
 # Append a header to the log file indicating the start of Maven output.
 echo "=== BEGIN MAVEN OUTPUT ===" >> "$LOG_FILE"
 # Run Maven with the provided arguments, redirecting both stdout and stderr to the log file.
-mvn "$@" >> "$LOG_FILE" 2>&1
+# Apply hardened defaults for CI reliability and reduced noise
+DEFAULT_MVN_FLAGS=(-B --no-transfer-progress -T 1C -Dmaven.test.skip=true)
+echo "Executing: mvn ${DEFAULT_MVN_FLAGS[*]} $*" >> "$LOG_FILE"
+mvn "${DEFAULT_MVN_FLAGS[@]}" "$@" >> "$LOG_FILE" 2>&1
 # Capture the exit code of the Maven command.
 EXIT_CODE=$?
 # Append a footer to the log file indicating the end of Maven output.
