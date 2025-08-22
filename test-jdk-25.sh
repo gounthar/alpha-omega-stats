@@ -93,10 +93,14 @@ case "$PLUGIN_CONCURRENCY" in ''|*[!0-9]*|0) PLUGIN_CONCURRENCY=4;; esac
 
 # Keep total concurrency roughly bounded by CPU count when both are unset or excessive
 CPU_COUNT="$(getconf _NPROCESSORS_ONLN 2>/dev/null || nproc 2>/dev/null || echo 4)"
-if [ "$CPU_COUNT" -gt 0 ] && [ $(( BUILD_THREADS * PLUGIN_CONCURRENCY )) -gt "$CPU_COUNT" ]; then
+# Force base-10 to avoid octal interpretation of leading zeros
+bt=$((10#${BUILD_THREADS}))
+pc=$((10#${PLUGIN_CONCURRENCY}))
+if [ "$CPU_COUNT" -gt 0 ] && [ $(( bt * pc )) -gt "$CPU_COUNT" ]; then
   # Reduce per-build threads to fit within CPU_COUNT
-  BUILD_THREADS=$(( (CPU_COUNT + PLUGIN_CONCURRENCY - 1) / PLUGIN_CONCURRENCY ))
+  BUILD_THREADS=$(( (CPU_COUNT + pc - 1) / pc ))
   [ "$BUILD_THREADS" -lt 1 ] && BUILD_THREADS=1
+  echo "Clamped BUILD_THREADS to ${BUILD_THREADS} based on CPU_COUNT=${CPU_COUNT} and PLUGIN_CONCURRENCY=${PLUGIN_CONCURRENCY}" >> "$DEBUG_LOG"
 fi
 
 echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
@@ -367,8 +371,16 @@ while IFS=, read -r name popularity <&3; do
         } &
         active_jobs=$((active_jobs + 1))
         if [ "$active_jobs" -ge "$max_jobs" ]; then
-            wait -n
-            active_jobs=$((active_jobs - 1))
+            if wait -n 2>/dev/null; then
+                :
+            else
+                # Portable fallback: if wait -n is unsupported, wait for all, then reset the counter.
+                # This sacrifices fine-grained throttling but preserves correctness.
+                wait
+                active_jobs=0
+            fi
+            # In the wait -n path, the completed job reduces the active count by one.
+            [ "$active_jobs" -gt 0 ] && active_jobs=$((active_jobs - 1))
         fi
     fi
 done 3<"$CSV_FILE" # Use file descriptor 3 for reading the CSV
