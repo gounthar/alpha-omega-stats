@@ -81,7 +81,11 @@ esac
 # Call the script to install JDK versions
 # The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
-source "$script_dir/install-jdk-versions.sh" # Changed from direct execution to sourcing
+# Run installer in a separate bash process to avoid set -e propagation from sourced scripts
+if ! bash "$script_dir/install-jdk-versions.sh" >> "$DEBUG_LOG" 2>&1; then
+    echo "Error: install-jdk-versions.sh failed. See $DEBUG_LOG for details." >> "$DEBUG_LOG"
+    exit 1
+fi
 
 # Ensure JDK 25 is used for all Java and Maven commands
 export JAVA_HOME="$HOME/.jdk-25"
