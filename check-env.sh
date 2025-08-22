@@ -16,6 +16,13 @@ else
 fi
 
 
+# Verify required CLI tools early to avoid set -e failures
+require_cmd() { command -v "$1" >/dev/null 2>&1 || { error "'$1' not found in PATH."; exit 1; }; }
+require_cmd git
+require_cmd curl
+require_cmd jq
+require_cmd timeout
+
 # Ensure jq is installed. jq is a command-line JSON processor.
 # We use it to parse the JSON response from the GitHub API.
 if ! [ -x "$(command -v jq)" ]; then
