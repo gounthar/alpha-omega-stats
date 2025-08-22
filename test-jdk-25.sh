@@ -84,9 +84,8 @@ export PATH="$JAVA_HOME/bin:$PATH"
 hash -r
 
 # Configure per-build threads and cross-plugin concurrency (defaults to 4)
-BUILD_THREADS="${BUILD_THREADS:-4}"
-PLUGIN_CONCURRENCY="${PLUGIN_CONCURRENCY:-4}"
-export BUILD_THREADS PLUGIN_CONCURRENCY
+export BUILD_THREADS="${BUILD_THREADS:-4}"
+export PLUGIN_CONCURRENCY="${PLUGIN_CONCURRENCY:-4}"
 
 echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
 java -version >> "$DEBUG_LOG" 2>&1
@@ -257,8 +256,8 @@ compile_plugin() {
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-echo "Executing: timeout 20m mvn -B --no-transfer-progress -T ${BUILD_THREADS} clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
-timeout 20m mvn -B --no-transfer-progress -T "${BUILD_THREADS}" clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
+                    echo "Executing: timeout 20m mvn -B --no-transfer-progress -T \"${BUILD_THREADS}\" clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
+                    timeout 20m mvn -B --no-transfer-progress -T "${BUILD_THREADS}" clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then
@@ -268,9 +267,9 @@ timeout 20m mvn -B --no-transfer-progress -T "${BUILD_THREADS}" clean install -D
                     fi
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
-echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
-echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $plugin_log_file --no-daemon --parallel --max-workers=${BUILD_THREADS} build" >>"$DEBUG_LOG"
-timeout 10m "$script_dir/run-gradle-build.sh" "$plugin_log_file" --no-daemon --parallel --max-workers="${BUILD_THREADS}" build || build_status="build_failed"
+                    echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
+                    echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $plugin_log_file --no-daemon --parallel --max-workers=\"${BUILD_THREADS}\" build" >>"$DEBUG_LOG"
+                    timeout 10m "$script_dir/run-gradle-build.sh" "$plugin_log_file" --no-daemon --parallel --max-workers="${BUILD_THREADS}" build || build_status="build_failed"
                 else
                     # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
