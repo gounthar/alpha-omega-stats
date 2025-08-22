@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------------< org.jenkins-ci.plugins:junit >--------------------
 [INFO] Building JUnit Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -57,20 +59,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/junit/src/main/java/io/jenkins/plugins/junit/storage/FileJunitTestResultStorage.java:[16,12] Generating io/jenkins/plugins/junit/storage/FileJunitTestResultStorage.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/io/jenkins/plugins/junit/storage/JunitTestResultStorageConfiguration.java:[23,12] Generating io/jenkins/plugins/junit/storage/JunitTestResultStorageConfiguration.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AggregatedTestResultAction.java:[45,17] Generating hudson/tasks/test/AggregatedTestResultAction.javadoc
-[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/SuiteResult.java:[71,14] Generating hudson/tasks/junit/SuiteResult.javadoc
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/ClassResult.java:[42,14] Generating hudson/tasks/junit/ClassResult.javadoc
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/CaseResult.java:[62,8] Generating hudson/tasks/junit/CaseResult.javadoc
-[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/TestObject.java:[70,17] Generating hudson/tasks/test/TestObject.javadoc
-[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/PackageResult.java:[45,14] Generating hudson/tasks/junit/PackageResult.javadoc
-[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AbstractTestResultAction.java:[84,17] Generating hudson/tasks/test/AbstractTestResultAction.javadoc
+[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/SuiteResult.java:[71,14] Generating hudson/tasks/junit/SuiteResult.javadoc
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AggregatedTestResultAction.java:[129,25] Generating hudson/tasks/test/AggregatedTestResultAction/ChildReport.javadoc
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/TestResult.java:[72,14] Generating hudson/tasks/junit/TestResult.javadoc
+[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/PackageResult.java:[45,14] Generating hudson/tasks/junit/PackageResult.javadoc
+[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AbstractTestResultAction.java:[84,17] Generating hudson/tasks/test/AbstractTestResultAction.javadoc
+[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/TestObject.java:[70,17] Generating hudson/tasks/test/TestObject.javadoc
+[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/pipeline/JUnitResultsStep.java:[280,31] Generating hudson/tasks/junit/pipeline/JUnitResultsStep/DescriptorImpl/doCheckHealthScaleFactor.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AggregatedTestResultPublisher.java:[410,41] Generating hudson/tasks/test/AggregatedTestResultPublisher/DescriptorImpl/doAutoCompleteJobs.stapler
-[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AggregatedTestResultPublisher.java:[373,31] Generating hudson/tasks/test/AggregatedTestResultPublisher/DescriptorImpl/doCheckJobs.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/JUnitResultArchiver.java:[557,31] Generating hudson/tasks/junit/JUnitResultArchiver/DescriptorImpl/doCheckTestResults.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/JUnitResultArchiver.java:[579,29] Generating hudson/tasks/junit/JUnitResultArchiver/DescriptorImpl/doFillStdioRetentionItems.stapler
-[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/junit/JUnitResultArchiver.java:[570,31] Generating hudson/tasks/junit/JUnitResultArchiver/DescriptorImpl/doCheckHealthScaleFactor.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/TestObject.java:[482,38] Generating hudson/tasks/test/TestObject/doSubmitDescription.stapler
+[INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AggregatedTestResultPublisher.java:[373,31] Generating hudson/tasks/test/AggregatedTestResultPublisher/DescriptorImpl/doCheckJobs.stapler
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/TestObject.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/TestObject.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/junit/src/main/java/hudson/tasks/test/AbstractTestResultAction.java: Some input files use unchecked or unsafe operations.
@@ -88,30 +90,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ junit ---
-[INFO] Copying 71 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ junit ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 44 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] hudson.tasks.junit.JUnitResultArchiverTest.SimpleArchive.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.tasks.junit.JUnitResultArchiverTest.MockTestDataPublisher.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.tasks.junit.JUnitResultArchiverTest.YouCannotTriggerMe indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.tasks.junit.TestNameTransformerTest.TestTransformer indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.tasks.junit.pipeline.JUnitResultsStepTest.MockTestDataPublisher.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.junit.checks.JUnitChecksPublisherTest.PUBLISHER_FACTORY indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.junit.storage.TestResultStorageJunitTest.Impl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.tasks.junit.JUnitResultArchiverTest.DownloadBuilder.DescriptorImpl indexed under hudson.Extension
-[INFO] hudson.tasks.junit.rot13.Rot13Publisher.DescriptorImpl indexed under hudson.Extension
-[INFO] hudson.tasks.test.TrivialTestResult indexed under hudson.Extension
-[INFO] hudson.tasks.test.TrivialTestResultRecorder.DescriptorImpl indexed under hudson.Extension
-[INFO] io.jenkins.plugins.junit.storage.TestResultStorageJunitTest.Impl.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/junit/JUnitResultArchiverTest.java:[328,16] Generating hudson/tasks/junit/JUnitResultArchiverTest/MockTestDataPublisher.stapler
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/junit/pipeline/JUnitResultsStepTest.java:[657,16] Generating hudson/tasks/junit/pipeline/JUnitResultsStepTest/MockTestDataPublisher.stapler
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/junit/rot13/Rot13Publisher.java:[37,12] Generating hudson/tasks/junit/rot13/Rot13Publisher.stapler
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/junit/CaseResultTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/junit/CaseResultTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/test/TrivialTestResultRecorder.java: /tmp/plugin-builds/junit/src/test/java/hudson/tasks/test/TrivialTestResultRecorder.java uses unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/junit/src/test/java/hudson/tasks/test/TrivialTestResultRecorder.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ junit ---
 [INFO] Generating /tmp/plugin-builds/junit/target/test-classes/the.hpl
@@ -162,7 +144,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ junit ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 92 files clean - 0 needs changes to be clean, 92 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom84554310290054429.xml
+[INFO] Sorting file /tmp/pom5676998128152581873.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -174,6 +156,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  29.714 s
-[INFO] Finished at: 2025-08-21T18:04:21+02:00
+[INFO] Total time:  01:55 min (Wall Clock)
+[INFO] Finished at: 2025-08-22T17:53:57+02:00
 [INFO] ------------------------------------------------------------------------

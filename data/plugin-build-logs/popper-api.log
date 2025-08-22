@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -------------------< io.jenkins.plugins:popper-api >--------------------
 [INFO] Building Popper.js API Plugin 1.16.1-4-SNAPSHOT
 [INFO]   from pom.xml
@@ -109,8 +111,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.27:insert-test (default-insert-test) @ popper-api ---
 [INFO] 
 [INFO] --- gplus:1.13.1:generateTestStubs (test-in-groovy) @ popper-api ---
-[INFO] No sources specified for stub generation. Skipping.
-[INFO] Generated 0 stubs.
+[INFO] Generation of test stubs is skipped.
 [INFO] 
 [INFO] --- antrun:3.0.0:run (createTempDir) @ popper-api ---
 [INFO] Executing tasks
@@ -118,13 +119,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.2.0:testResources (default-testResources) @ popper-api ---
-[INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Using 'UTF-8' encoding to copy filtered properties files.
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/popper-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.10.1:testCompile (default-testCompile) @ popper-api ---
-[INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to /tmp/plugin-builds/popper-api/target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.27:test-hpl (default-test-hpl) @ popper-api ---
 [INFO] Generating /tmp/plugin-builds/popper-api/target/test-classes/the.hpl
@@ -132,7 +130,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.27:resolve-test-dependencies (default-resolve-test-dependencies) @ popper-api ---
 [INFO] 
 [INFO] --- gplus:1.13.1:compileTests (test-in-groovy) @ popper-api ---
-[INFO] No sources specified for compilation. Skipping.
+[INFO] Compilation of tests is skipped.
 [INFO] 
 [INFO] --- jacoco:0.8.8:prepare-agent (default) @ popper-api ---
 [INFO] argLine set to -javaagent:/home/poddingue/.m2/repository/org/jacoco/org.jacoco.agent/0.8.8/org.jacoco.agent-0.8.8-runtime.jar=destfile=/tmp/plugin-builds/popper-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook}
@@ -150,8 +148,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  13.311 s
-[INFO] Finished at: 2025-08-21T18:44:20+02:00
+[INFO] Total time:  23.324 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:17:37+02:00
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal com.cloudbees:maven-license-plugin:1.10:process (default) on project popper-api: Execution default of goal com.cloudbees:maven-license-plugin:1.10:process failed: startup failed:
 [ERROR] General error during conversion: Unsupported class file major version 69
@@ -212,24 +210,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [ERROR] 	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
 [ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
-[ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
-[ERROR] 	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
-[ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
-[ERROR] 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
-[ERROR] 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
-[ERROR] 	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
-[ERROR] 	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
-[ERROR] 	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
-[ERROR] 	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
-[ERROR] 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
-[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
-[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
-[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+[ERROR] 	at org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder$1.call(MultiThreadedBuilder.java:193)
+[ERROR] 	at org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder$1.call(MultiThreadedBuilder.java:180)
+[ERROR] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+[ERROR] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+[ERROR] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:328)
+[ERROR] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+[ERROR] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+[ERROR] 	at java.base/java.lang.Thread.run(Thread.java:1474)
 [ERROR] 
 [ERROR] 1 error
-[ERROR] 
 [ERROR] -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.

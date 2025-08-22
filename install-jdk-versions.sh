@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEBUG_LOG="$HOME/jdk-install-debug.log"
+: "${DEBUG_LOG:=$HOME/jdk-install-debug.log}"
 
 # Logs a debug message with a timestamp to standard output.
 #
@@ -60,7 +60,7 @@ fi
 
 # After SDKMAN initialization
 export SDKMAN_OFFLINE_MODE=false
-sdk update > /dev/null
+sdk update > /dev/null || true
 
 # Restore original shell options
 if [[ "${_SHELLOPTS_ORIGINAL}" == *u* ]]; then
@@ -224,7 +224,8 @@ is_jdk25_up_to_date() {
 #
 # Example:
 #
-#   install_temurin_jdk25
+#   install_temurin_jdk25 || true
+log_message "install-jdk-versions.sh finished"
 #   # Installs or updates Temurin JDK 25 early access in $HOME/.jdk-25 and updates PATH and JAVA_HOME.
 install_temurin_jdk25() {
     log_message "Starting installation of Temurin JDK 25..."
@@ -391,4 +392,5 @@ for version in "${jdk_versions[@]}"; do
 done
 
 # Call the function to install Temurin JDK 25
-install_temurin_jdk25
+install_temurin_jdk25 || true
+log_message "install-jdk-versions.sh finished"

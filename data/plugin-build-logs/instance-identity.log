@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------< org.jenkins-ci.modules:instance-identity >--------------
 [INFO] Building Instance Identity 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -11,10 +13,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ instance-identity ---
 [INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ instance-identity ---
 [INFO] Created marker file /tmp/plugin-builds/instance-identity/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ instance-identity ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ instance-identity ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -29,6 +31,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ instance-identity ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ instance-identity ---
+[INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ instance-identity ---
 [INFO] Copying 2 resources from src/main/resources to target/classes
@@ -46,9 +51,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ instance-identity ---
 [INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ instance-identity ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ instance-identity ---
 [INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ instance-identity ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ instance-identity ---
 [INFO] Executing tasks
@@ -56,27 +61,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ instance-identity ---
-[INFO] Copying 9 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ instance-identity ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ instance-identity ---
 [INFO] Generating /tmp/plugin-builds/instance-identity/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ instance-identity ---
 [INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ instance-identity ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ instance-identity ---
+[INFO] --- surefire:3.5.2:test (default-test) @ instance-identity ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ instance-identity ---
 [INFO] Generated /tmp/plugin-builds/instance-identity/target/instance-identity/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ instance-identity ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ instance-identity ---
 [INFO] Generating /tmp/plugin-builds/instance-identity/target/instance-identity/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/instance-identity/target/instance-identity.jar
@@ -90,18 +94,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ instance-identity ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ instance-identity >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ instance-identity >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ instance-identity ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ instance-identity ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ instance-identity <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ instance-identity <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ instance-identity ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ instance-identity ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -116,6 +120,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  13.827 s
-[INFO] Finished at: 2025-08-21T18:27:32+02:00
+[INFO] Total time:  40.007 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:08:32+02:00
 [INFO] ------------------------------------------------------------------------

@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ------------------< org.jenkins-ci.plugins:email-ext >------------------
 [INFO] Building Email Extension Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -126,13 +128,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/trigger/UnstableTrigger.java:[20,12] Generating hudson/plugins/emailext/plugins/trigger/UnstableTrigger.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/trigger/XNthFailureTrigger.java:[20,12] Generating hudson/plugins/emailext/plugins/trigger/XNthFailureTrigger.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/watching/EmailExtWatchAction.java:[36,19] Generating hudson/plugins/emailext/watching/EmailExtWatchAction/UserProperty.javadoc
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[819,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doAddressCheck.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[829,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doRecipientListRecipientsCheck.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[834,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doMaxAttachmentSizeCheck.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/EmailExtTemplateAction.java:[64,27] Generating hudson/plugins/emailext/EmailExtTemplateAction/doTemplateFileCheck.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[515,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doCheckDefaultSuffix.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[834,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doMaxAttachmentSizeCheck.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[829,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doRecipientListRecipientsCheck.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[115,29] Generating hudson/plugins/emailext/MailAccount/MailAccountDescriptor/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[138,31] Generating hudson/plugins/emailext/MailAccount/MailAccountDescriptor/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[819,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doAddressCheck.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/AttachmentUtils.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/AttachmentUtils.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/EmailTrigger.java: Some input files use unchecked or unsafe operations.
@@ -150,17 +152,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ email-ext ---
-[INFO] Copying 53 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ email-ext ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 48 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] hudson.plugins.emailext.EmailExtStepTest.FileCopyStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/email-ext/src/test/java/hudson/plugins/emailext/EmailExtStepTest.java:[161,16] Generating hudson/plugins/emailext/EmailExtStepTest/FileCopyStep.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/test/java/hudson/plugins/emailext/AttachmentUtilsTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/email-ext/src/test/java/hudson/plugins/emailext/AttachmentUtilsTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/email-ext/src/test/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptorTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/email-ext/src/test/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptorTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ email-ext ---
 [INFO] Generating /tmp/plugin-builds/email-ext/target/test-classes/the.hpl
@@ -213,7 +208,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ email-ext ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 130 files clean - 0 needs changes to be clean, 130 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom4303890491645478017.xml
+[INFO] Sorting file /tmp/pom16519928443301778736.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -224,6 +219,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  30.899 s
-[INFO] Finished at: 2025-08-21T18:24:48+02:00
+[INFO] Total time:  01:15 min (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:07:11+02:00
 [INFO] ------------------------------------------------------------------------

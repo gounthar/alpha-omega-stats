@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ---------------< org.jenkins-ci.plugins:matrix-project >----------------
 [INFO] Building Matrix Project Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -60,9 +62,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/MatrixProject.java:[124,8] Generating hudson/matrix/MatrixProject.javadoc
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/MatrixBuild.java:[72,8] Generating hudson/matrix/MatrixBuild.javadoc
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/AxisDescriptor.java:[60,27] Generating hudson/matrix/AxisDescriptor/doCheckName.stapler
-[INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/TextAxis.java:[51,31] Generating hudson/matrix/TextAxis/DescriptorImpl/doCheckValueString.stapler
-[INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/LabelExpAxis.java:[98,31] Generating hudson/matrix/LabelExpAxis/DescriptorImpl/doCheckLabelExpr.stapler
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/AxisDescriptor.java:[85,27] Generating hudson/matrix/AxisDescriptor/checkValue.stapler
+[INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/LabelExpAxis.java:[98,31] Generating hudson/matrix/LabelExpAxis/DescriptorImpl/doCheckLabelExpr.stapler
+[INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/TextAxis.java:[51,31] Generating hudson/matrix/TextAxis/DescriptorImpl/doCheckValueString.stapler
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/MatrixConfiguration.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/MatrixConfiguration.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/MatrixProject.java: /tmp/plugin-builds/matrix-project/src/main/java/hudson/matrix/MatrixProject.java uses unchecked or unsafe operations.
@@ -80,17 +82,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ matrix-project ---
-[INFO] Copying 8 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ matrix-project ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 16 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] hudson.matrix.MatrixConfigurationSorterTest.SorterImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/matrix-project/src/test/java/hudson/matrix/MatrixConfigurationSorterTest.java:[41,16] Generating hudson/matrix/MatrixConfigurationSorterTest/SorterImpl.stapler
-[INFO] /tmp/plugin-builds/matrix-project/src/test/java/hudson/matrix/MatrixProjectCustomWorkspaceTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/matrix-project/src/test/java/hudson/matrix/MatrixProjectCustomWorkspaceTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/matrix-project/src/test/java/hudson/matrix/MatrixProjectTest.java: /tmp/plugin-builds/matrix-project/src/test/java/hudson/matrix/MatrixProjectTest.java uses unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/matrix-project/src/test/java/hudson/matrix/MatrixProjectTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ matrix-project ---
 [INFO] Generating /tmp/plugin-builds/matrix-project/target/test-classes/the.hpl
@@ -141,6 +136,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  11.267 s
-[INFO] Finished at: 2025-08-21T18:05:21+02:00
+[INFO] Total time:  49.418 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T17:53:10+02:00
 [INFO] ------------------------------------------------------------------------

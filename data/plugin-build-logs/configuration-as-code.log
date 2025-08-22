@@ -11,10 +11,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Configuration as Code Test harness                                 [jar]
 [INFO] Configuration as Code Integration tests                            [jar]
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------< io.jenkins.configuration-as-code:parent >---------------
 [INFO] Building Configuration as Code Parent 999999-SNAPSHOT              [1/4]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Configuration as Code Parent:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ parent ---
 [INFO] 
@@ -63,7 +79,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ parent ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom8953265635396193771.xml
+[INFO] Sorting file /tmp/pom4704197359581574390.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -77,6 +93,22 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Configuration as Code Plugin 999999-SNAPSHOT              [2/4]
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Configuration as Code Plugin:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ configuration-as-code ---
 [INFO] 
@@ -161,25 +193,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ configuration-as-code ---
-[INFO] Copying 17 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ configuration-as-code ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 25 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] io.jenkins.plugins.casc.yaml.CustomMergeStrategyTest.CustomTestMergeStrategy indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/AttributeTest.java:[90,16] Generating io/jenkins/plugins/casc/AttributeTest/WellDefinedField.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/AttributeTest.java:[110,16] Generating io/jenkins/plugins/casc/AttributeTest/SecretFromGetter.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/AttributeTest.java:[130,16] Generating io/jenkins/plugins/casc/AttributeTest/SecretFromPublicField.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/AttributeTest.java:[146,16] Generating io/jenkins/plugins/casc/AttributeTest/SecretFromPrivateField.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/AttributeTest.java:[168,16] Generating io/jenkins/plugins/casc/AttributeTest/NonSecretField.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/AttributeTest.java:[178,16] Generating io/jenkins/plugins/casc/AttributeTest/SecretRenamedFieldFithSecretConstructor.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/yaml/ExportTest.java:[74,16] Generating io/jenkins/plugins/casc/yaml/ExportTest/DataBoundSecret.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/yaml/ExportTest.java:[88,16] Generating io/jenkins/plugins/casc/yaml/ExportTest/DataBoundSecretField.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/yaml/ExportTest.java:[105,16] Generating io/jenkins/plugins/casc/yaml/ExportTest/DataBoundSecretConstructor.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/MockHttpServletRequest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/MockHttpServletRequest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/yaml/YamlExportTest.java: /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/yaml/YamlExportTest.java uses unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/configuration-as-code/plugin/src/test/java/io/jenkins/plugins/casc/yaml/YamlExportTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ configuration-as-code ---
 [INFO] Generating /tmp/plugin-builds/configuration-as-code/plugin/target/test-classes/the.hpl
@@ -231,7 +248,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ configuration-as-code ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 95 files clean - 0 needs changes to be clean, 95 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom5925574700197067516.xml
+[INFO] Sorting file /tmp/pom6355578096209182423.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -247,6 +264,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Configuration as Code Test harness 999999-SNAPSHOT        [3/4]
 [INFO]   from test-harness/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Configuration as Code Test harness:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ test-harness ---
 [INFO] 
@@ -286,37 +318,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ test-harness ---
-[INFO] Copying 45 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ test-harness ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 37 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] io.jenkins.plugins.casc.core.JenkinsConfiguratorTest.TestProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.casc.core.JenkinsConfiguratorTest.AnotherTestProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.casc.core.JenkinsConfiguratorCloudSupportTest.Cloud1PretendSlave.DescriptorImpl indexed under hudson.Extension
-[INFO] io.jenkins.plugins.casc.impl.configurators.DescriptorConfiguratorTest.FooBar indexed under hudson.Extension
-[INFO] io.jenkins.plugins.casc.impl.configurators.DuplicateKeyDescribableConfiguratorTest.FooBarGlobalConfiguration indexed under hudson.Extension
-[INFO] io.jenkins.plugins.casc.impl.configurators.DuplicateKeyDescribableConfiguratorTest.FooBarOne.DescriptorImpl indexed under hudson.Extension
-[INFO] io.jenkins.plugins.casc.impl.configurators.DuplicateKeyDescribableConfiguratorTest.FooBarTwo.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/JenkinsConfigTest.java:[64,16] Generating io/jenkins/plugins/casc/JenkinsConfigTest/BrokenCrumbIssuer.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/core/JenkinsConfiguratorTest.java:[112,16] Generating io/jenkins/plugins/casc/core/JenkinsConfiguratorTest/TestProperty.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/core/JenkinsConfiguratorTest.java:[132,16] Generating io/jenkins/plugins/casc/core/JenkinsConfiguratorTest/AnotherTestProperty.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest.java:[303,16] Generating io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest/Foo.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest.java:[371,16] Generating io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest/Bar.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest.java:[385,16] Generating io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest/SecretHolder.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest.java:[395,16] Generating io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest/SecretHolderWithString.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest.java:[404,16] Generating io/jenkins/plugins/casc/impl/configurators/DataBoundConfiguratorTest/ArrayConstructor.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DescriptorConfiguratorTest.java:[56,16] Generating io/jenkins/plugins/casc/impl/configurators/DescriptorConfiguratorTest/FooBar.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DuplicateKeyDescribableConfiguratorTest.java:[50,16] Generating io/jenkins/plugins/casc/impl/configurators/DuplicateKeyDescribableConfiguratorTest/FooBarGlobalConfiguration.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/DuplicateKeyDescribableConfiguratorTest.java:[71,16] Generating io/jenkins/plugins/casc/impl/configurators/DuplicateKeyDescribableConfiguratorTest/FooBarOne.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/nonnull/ClassParametersAreNonnullByDefault.java:[17,12] Generating io/jenkins/plugins/casc/impl/configurators/nonnull/ClassParametersAreNonnullByDefault.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/nonnull/NonnullParameterConstructor.java:[15,12] Generating io/jenkins/plugins/casc/impl/configurators/nonnull/NonnullParameterConstructor.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/nonnull/nonnullparampackage/PackageParametersAreNonnullByDefault.java:[13,12] Generating io/jenkins/plugins/casc/impl/configurators/nonnull/nonnullparampackage/PackageParametersAreNonnullByDefault.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/impl/configurators/nonnull/nonnullparampackage/PackageParametersNonNullCheckForNull.java:[15,12] Generating io/jenkins/plugins/casc/impl/configurators/nonnull/nonnullparampackage/PackageParametersNonNullCheckForNull.stapler
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/MockHttpServletRequest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/MockHttpServletRequest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/core/UpdateCenterConfiguratorTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/configuration-as-code/test-harness/src/test/java/io/jenkins/plugins/casc/core/UpdateCenterConfiguratorTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (prepare-test-plugins) @ test-harness ---
 [INFO] 
@@ -349,7 +354,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ test-harness ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 53 files clean - 0 needs changes to be clean, 53 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom16316084220666279233.xml
+[INFO] Sorting file /tmp/pom361681213161836585.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -364,6 +369,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Configuration as Code Integration tests 999999-SNAPSHOT   [4/4]
 [INFO]   from integrations/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Configuration as Code Integration tests:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ integrations ---
 [INFO] 
@@ -399,16 +419,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ integrations ---
-[INFO] Copying 56 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ integrations ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 67 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] io.jenkins.plugins.casc.SSHCredentialsTest.MySSHKeySecretSource indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/configuration-as-code/integrations/src/test/java/io/jenkins/plugins/casc/CredentialsReadmeTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/configuration-as-code/integrations/src/test/java/io/jenkins/plugins/casc/CredentialsReadmeTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/configuration-as-code/integrations/src/test/java/io/jenkins/plugins/casc/CredentialsTest.java: /tmp/plugin-builds/configuration-as-code/integrations/src/test/java/io/jenkins/plugins/casc/CredentialsTest.java uses unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/configuration-as-code/integrations/src/test/java/io/jenkins/plugins/casc/CredentialsTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (prepare-test-plugins) @ integrations ---
 [INFO] 
@@ -440,7 +454,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ integrations ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 67 files clean - 0 needs changes to be clean, 67 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom4943611713706601635.xml
+[INFO] Sorting file /tmp/pom13065930840793729752.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -453,13 +467,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Configuration as Code Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Configuration as Code Parent ....................... SUCCESS [ 16.671 s]
-[INFO] Configuration as Code Plugin ....................... SUCCESS [01:06 min]
-[INFO] Configuration as Code Test harness ................. SUCCESS [ 16.169 s]
-[INFO] Configuration as Code Integration tests ............ SUCCESS [ 26.573 s]
+[INFO] Configuration as Code Parent ....................... SUCCESS [ 12.047 s]
+[INFO] Configuration as Code Plugin ....................... SUCCESS [ 51.309 s]
+[INFO] Configuration as Code Test harness ................. SUCCESS [  8.100 s]
+[INFO] Configuration as Code Integration tests ............ SUCCESS [ 15.548 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:08 min
-[INFO] Finished at: 2025-08-21T19:00:27+02:00
+[INFO] Total time:  01:29 min (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:24:40+02:00
 [INFO] ------------------------------------------------------------------------

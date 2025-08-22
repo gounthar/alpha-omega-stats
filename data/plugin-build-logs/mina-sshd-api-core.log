@@ -12,10 +12,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Mina SSHD API :: SCP                                               [hpi]
 [INFO] Mina SSHD API :: SFTP                                              [hpi]
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -------< io.jenkins.plugins.mina-sshd-api:mina-sshd-api-parent >--------
 [INFO] Building Mina SSHD API :: Parent 2.15.0-999999-SNAPSHOT            [1/5]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Mina SSHD API :: Parent:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ mina-sshd-api-parent ---
 [INFO] 
@@ -69,6 +85,22 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Mina SSHD API :: Common 2.15.0-999999-SNAPSHOT            [2/5]
 [INFO]   from mina-sshd-api-common/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Mina SSHD API :: Common:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.66
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ mina-sshd-api-common ---
 [INFO] 
@@ -112,11 +144,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ mina-sshd-api-common ---
-[INFO] Copying 4 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mina-sshd-api-common ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ mina-sshd-api-common ---
 [INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-common/target/test-classes/the.hpl
@@ -174,6 +205,22 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Mina SSHD API :: Core 2.15.0-999999-SNAPSHOT              [3/5]
 [INFO]   from mina-sshd-api-core/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Mina SSHD API :: Core:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.66
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ mina-sshd-api-core ---
 [INFO] 
@@ -217,13 +264,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ mina-sshd-api-core ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mina-sshd-api-core ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/src/test/java/io/jenkins/plugins/mina_sshd_api/core/authenticators/MinaSSHPublicKeyAuthenticatorTest.java: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/src/test/java/io/jenkins/plugins/mina_sshd_api/core/authenticators/MinaSSHPublicKeyAuthenticatorTest.java uses or overrides a deprecated API.
-[INFO] /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/src/test/java/io/jenkins/plugins/mina_sshd_api/core/authenticators/MinaSSHPublicKeyAuthenticatorTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ mina-sshd-api-core ---
 [INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/target/test-classes/the.hpl
@@ -279,114 +323,63 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/target/mina-sshd-api-core.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-core/2.15.0-999999-SNAPSHOT/mina-sshd-api-core-2.15.0-999999-SNAPSHOT.hpi
 [INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-core/target/mina-sshd-api-core.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-core/2.15.0-999999-SNAPSHOT/mina-sshd-api-core-2.15.0-999999-SNAPSHOT.jar
 [INFO] 
-[INFO] ---------< io.jenkins.plugins.mina-sshd-api:mina-sshd-api-scp >---------
-[INFO] Building Mina SSHD API :: SCP 2.15.0-999999-SNAPSHOT               [4/5]
-[INFO]   from mina-sshd-api-scp/pom.xml
+[INFO] 
+[INFO] --------< io.jenkins.plugins.mina-sshd-api:mina-sshd-api-sftp >---------
+[INFO] Building Mina SSHD API :: SFTP 2.15.0-999999-SNAPSHOT              [4/5]
+[INFO]   from mina-sshd-api-sftp/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] ---------< io.jenkins.plugins.mina-sshd-api:mina-sshd-api-scp >---------
+[INFO] Building Mina SSHD API :: SCP 2.15.0-999999-SNAPSHOT               [5/5]
+[INFO]   from mina-sshd-api-scp/pom.xml
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Mina SSHD API :: SFTP:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.66
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Mina SSHD API :: SCP:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.66
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
+[INFO] 
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ mina-sshd-api-scp ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ mina-sshd-api-sftp ---
+[INFO] 
 [INFO] 
 [INFO] --- hpi:3.66:validate (default-validate) @ mina-sshd-api-scp ---
+[INFO] --- hpi:3.66:validate (default-validate) @ mina-sshd-api-sftp ---
 [INFO] Created marker file /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/java-level/17
+[INFO] Created marker file /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ mina-sshd-api-scp ---
 [INFO] 
-[INFO] --- enforcer:3.6.1:enforce (display-info) @ mina-sshd-api-scp ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] 
-[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ mina-sshd-api-scp ---
-[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
-[INFO] 
-[INFO] --- localizer:1.31:generate (default) @ mina-sshd-api-scp ---
-[INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ mina-sshd-api-scp ---
-[INFO] Copying 1 resource from src/main/resources to target/classes
-[INFO] 
-[INFO] --- flatten:1.7.2:flatten (flatten) @ mina-sshd-api-scp ---
-[INFO] Generating flattened POM of project io.jenkins.plugins.mina-sshd-api:mina-sshd-api-scp:hpi:2.15.0-999999-SNAPSHOT...
-[INFO] 
-[INFO] --- compiler:3.14.0:compile (default-compile) @ mina-sshd-api-scp ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] 
-[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ mina-sshd-api-scp ---
-[INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ mina-sshd-api-scp ---
-[INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ mina-sshd-api-scp ---
-[INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ mina-sshd-api-scp ---
-[INFO] Executing tasks
-[INFO]     [mkdir] Created dir: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/tmp
-[INFO] Executed tasks
-[INFO] 
-[INFO] --- resources:3.3.1:testResources (default-testResources) @ mina-sshd-api-scp ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/src/test/resources
-[INFO] 
-[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mina-sshd-api-scp ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
-[INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ mina-sshd-api-scp ---
-[INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/test-classes/the.hpl
-[INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ mina-sshd-api-scp ---
-[INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ mina-sshd-api-scp ---
-[INFO] Tests are skipped.
-[INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ mina-sshd-api-scp ---
-[INFO] Tests are skipped.
-[INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ mina-sshd-api-scp ---
-[INFO] Generated /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp/WEB-INF/licenses.xml
-[INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ mina-sshd-api-scp ---
-[INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp/META-INF/MANIFEST.MF
-[INFO] Checking for attached .jar artifact ...
-[INFO] Generating jar /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.jar
-[INFO] Building jar: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.jar
-[INFO] Exploding webapp...
-[INFO] Copy webapp webResources to /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp
-[INFO] Assembling webapp mina-sshd-api-scp in /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp
-[INFO] Bundling direct dependency sshd-scp-2.15.0.jar
-[INFO] Generating hpi /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.hpi
-[INFO] Building jar: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.hpi
-[INFO] 
-[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ mina-sshd-api-scp ---
-[INFO] Skipping packaging of the test-jar
-[INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ mina-sshd-api-scp >>>
-[INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ mina-sshd-api-scp ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
-[INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ mina-sshd-api-scp <<<
-[INFO] 
-[INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ mina-sshd-api-scp ---
-[INFO] 
-[INFO] --- spotless:2.46.1:check (default) @ mina-sshd-api-scp ---
-[INFO] Spotless check skipped
-[INFO] 
-[INFO] --- install:3.1.4:install (default-install) @ mina-sshd-api-scp ---
-[INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-scp/2.15.0-999999-SNAPSHOT/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-scp/2.15.0-999999-SNAPSHOT/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-scp/2.15.0-999999-SNAPSHOT/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.jar
-[INFO] 
-[INFO] --------< io.jenkins.plugins.mina-sshd-api:mina-sshd-api-sftp >---------
-[INFO] Building Mina SSHD API :: SFTP 2.15.0-999999-SNAPSHOT              [5/5]
-[INFO]   from mina-sshd-api-sftp/pom.xml
-[INFO] --------------------------------[ hpi ]---------------------------------
-[INFO] 
-[INFO] --- clean:3.5.0:clean (default-clean) @ mina-sshd-api-sftp ---
-[INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ mina-sshd-api-sftp ---
-[INFO] Created marker file /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/java-level/17
-[INFO] 
 [INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ mina-sshd-api-sftp ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ mina-sshd-api-scp ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ mina-sshd-api-sftp ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
@@ -409,27 +402,66 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Recompiling the module because of changed dependency.
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ mina-sshd-api-sftp ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ mina-sshd-api-scp ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
 [INFO] 
 [INFO] --- bridge-method-injector:1.31:process (default) @ mina-sshd-api-sftp ---
+[INFO] --- localizer:1.31:generate (default) @ mina-sshd-api-scp ---
 [INFO] 
 [INFO] --- hpi:3.66:insert-test (default-insert-test) @ mina-sshd-api-sftp ---
 [INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ mina-sshd-api-scp ---
+[INFO] 
+[INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] --- antrun:3.1.0:run (createTempDir) @ mina-sshd-api-sftp ---
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ mina-sshd-api-scp ---
+[INFO] Generating flattened POM of project io.jenkins.plugins.mina-sshd-api:mina-sshd-api-scp:hpi:2.15.0-999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ mina-sshd-api-scp ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] 
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ mina-sshd-api-scp ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/tmp
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ mina-sshd-api-sftp ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mina-sshd-api-sftp ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ mina-sshd-api-sftp ---
 [INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/test-classes/the.hpl
 [INFO] 
+[INFO] --- bridge-method-injector:1.31:process (default) @ mina-sshd-api-scp ---
+[INFO] 
+[INFO] --- hpi:3.66:insert-test (default-insert-test) @ mina-sshd-api-scp ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ mina-sshd-api-scp ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ mina-sshd-api-scp ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mina-sshd-api-scp ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ mina-sshd-api-scp ---
+[INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/test-classes/the.hpl
+[INFO] 
 [INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ mina-sshd-api-sftp ---
+[INFO] 
+[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ mina-sshd-api-scp ---
 [INFO] 
 [INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ mina-sshd-api-sftp ---
 [INFO] Tests are skipped.
@@ -438,51 +470,93 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ mina-sshd-api-sftp ---
+[INFO] 
+[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ mina-sshd-api-scp ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ mina-sshd-api-scp ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ mina-sshd-api-scp ---
 [INFO] Generated /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.66:hpi (default-hpi) @ mina-sshd-api-sftp ---
 [INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp/META-INF/MANIFEST.MF
+[INFO] Generated /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.66:hpi (default-hpi) @ mina-sshd-api-scp ---
+[INFO] Generating /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp.jar
 [INFO] Building jar: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp.jar
 [INFO] Exploding webapp...
 [INFO] Copy webapp webResources to /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp
 [INFO] Assembling webapp mina-sshd-api-sftp in /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.jar
+[INFO] Building jar: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.jar
 [INFO] Bundling direct dependency sshd-sftp-2.15.0.jar
 [INFO] Generating hpi /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp.hpi
 [INFO] Building jar: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp.hpi
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp
+[INFO] Assembling webapp mina-sshd-api-scp in /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp
+[INFO] Bundling direct dependency sshd-scp-2.15.0.jar
 [INFO] 
+[INFO] Generating hpi /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.hpi
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ mina-sshd-api-sftp ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ mina-sshd-api-sftp >>>
+[INFO] Building jar: /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ mina-sshd-api-scp ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ mina-sshd-api-scp >>>
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ mina-sshd-api-sftp ---
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ mina-sshd-api-scp ---
 [INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
 [INFO] 
 [INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ mina-sshd-api-sftp <<<
 [INFO] 
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] 
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ mina-sshd-api-sftp ---
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ mina-sshd-api-scp <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ mina-sshd-api-scp ---
+[INFO] 
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ mina-sshd-api-sftp ---
+[INFO] --- spotless:2.46.1:check (default) @ mina-sshd-api-scp ---
+[INFO] Spotless check skipped
 [INFO] Spotless check skipped
 [INFO] 
+[INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ mina-sshd-api-sftp ---
+[INFO] --- install:3.1.4:install (default-install) @ mina-sshd-api-scp ---
 [INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp-2.15.0-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-sftp/2.15.0-999999-SNAPSHOT/mina-sshd-api-sftp-2.15.0-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-scp/2.15.0-999999-SNAPSHOT/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-scp/2.15.0-999999-SNAPSHOT/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-scp/target/mina-sshd-api-scp.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-scp/2.15.0-999999-SNAPSHOT/mina-sshd-api-scp-2.15.0-999999-SNAPSHOT.jar
 [INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-sftp/2.15.0-999999-SNAPSHOT/mina-sshd-api-sftp-2.15.0-999999-SNAPSHOT.hpi
 [INFO] Installing /tmp/plugin-builds/mina-sshd-api-core/mina-sshd-api-sftp/target/mina-sshd-api-sftp.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/mina-sshd-api/mina-sshd-api-sftp/2.15.0-999999-SNAPSHOT/mina-sshd-api-sftp-2.15.0-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Mina SSHD API :: Parent 2.15.0-999999-SNAPSHOT:
 [INFO] 
-[INFO] Mina SSHD API :: Parent ............................ SUCCESS [  5.364 s]
-[INFO] Mina SSHD API :: Common ............................ SUCCESS [  8.536 s]
-[INFO] Mina SSHD API :: Core .............................. SUCCESS [  6.804 s]
-[INFO] Mina SSHD API :: SCP ............................... SUCCESS [  1.439 s]
-[INFO] Mina SSHD API :: SFTP .............................. SUCCESS [  1.410 s]
+[INFO] Mina SSHD API :: Parent ............................ SUCCESS [  9.263 s]
+[INFO] Mina SSHD API :: Common ............................ SUCCESS [ 21.671 s]
+[INFO] Mina SSHD API :: Core .............................. SUCCESS [ 18.890 s]
+[INFO] Mina SSHD API :: SCP ............................... SUCCESS [  4.972 s]
+[INFO] Mina SSHD API :: SFTP .............................. SUCCESS [  5.015 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  24.581 s
-[INFO] Finished at: 2025-08-21T18:26:29+02:00
+[INFO] Total time:  56.524 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:08:08+02:00
 [INFO] ------------------------------------------------------------------------

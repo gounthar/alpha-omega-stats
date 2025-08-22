@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:build-timeout >----------------
 [INFO] Building Build Timeout 1.39-SNAPSHOT
 [INFO]   from pom.xml
@@ -107,80 +109,11 @@ warning: unknown enum constant When.ALWAYS
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ build-timeout ---
-[INFO] Copying 8 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ build-timeout ---
 [WARNING]  Parameter 'forceJavacCompilerUse' (user property 'maven.compiler.forceJavacCompilerUse') is deprecated: Use forceLegacyJavacApi instead
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 16 source files with javac [debug deprecation parameters release 17] to target/test-classes
-[WARNING] unknown enum constant When.ALWAYS
-[WARNING]   reason: class file for javax.annotation.meta.When not found
-Note: hudson.plugins.build_timeout.BuildTimeoutWrapperIntegrationTest.ExecutionCheckBuilder.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-Note: hudson.plugins.build_timeout.BuildTimeoutWrapperIntegrationTest.ExecutionCheckPublisher.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-Note: hudson.plugins.build_timeout.FakeBuildStep.DescriptorImpl indexed under hudson.Extension
-Note: hudson.plugins.build_timeout.operations.BuildStepOperationTest.NoDataBoundConstructorBuilder.DescriptorImpl indexed under hudson.Extension
-warning: unknown enum constant When.ALWAYS
-  reason: class file for javax.annotation.meta.When not found
-warning: unknown enum constant When.ALWAYS
-  reason: class file for javax.annotation.meta.When not found
-/tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[51,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[124,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[194,47] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[216,47] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[239,47] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[265,47] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[287,47] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[310,47] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[483,43] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[517,43] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[548,16] [deprecation] AbsoluteTimeOutStrategy(int) in AbsoluteTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[591,16] [deprecation] AbsoluteTimeOutStrategy(int) in AbsoluteTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[643,16] [deprecation] AbsoluteTimeOutStrategy(int) in AbsoluteTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/BuildTimeoutWrapperIntegrationTest.java:[703,32] [deprecation] getTimeoutSeconds() in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/FakeBuildStep.java:[12,7] [deprecation] getProjectAction(AbstractProject<?,?>) in BuildStep has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/QuickBuildTimeOutStrategy.java:[40,26] [deprecation] getTimeOut(Run) in BuildTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/AbsoluteTimeOutStrategyTest.java:[85,25] [deprecation] UserCause in Cause has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/AbsoluteTimeOutStrategyTest.java:[92,25] [deprecation] UserCause in Cause has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/ElasticTimeOutStrategyJenkinsTest.java:[62,24] [deprecation] ElasticTimeOutStrategy(String,String,String) in ElasticTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/ElasticTimeOutStrategyTest.java:[29,40] [deprecation] ElasticTimeOutStrategy(int,int,int) in ElasticTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/ElasticTimeOutStrategyTest.java:[38,40] [deprecation] ElasticTimeOutStrategy(int,int,int) in ElasticTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/ElasticTimeOutStrategyTest.java:[47,40] [deprecation] ElasticTimeOutStrategy(int,int,int) in ElasticTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[125,16] [deprecation] NoActivityTimeOutStrategy(long) in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[124,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[138,16] [deprecation] NoActivityTimeOutStrategy(long) in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[137,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,boolean,boolean) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[164,16] [deprecation] NoActivityTimeOutStrategy(long) in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[193,37] [deprecation] getTimeoutSeconds() in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[208,37] [deprecation] getTimeoutSeconds() in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[230,36] [deprecation] getTimeoutSeconds() in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[245,36] [deprecation] getTimeoutSeconds() in NoActivityTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[266,25] [deprecation] UserCause in Cause has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/impl/NoActivityTimeOutStrategyTest.java:[273,25] [deprecation] UserCause in Cause has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/AbortAndRestartOperationTest.java:[73,47] [deprecation] size() in RunList has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/AbortAndRestartOperationTest.java:[101,47] [deprecation] size() in RunList has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/AbortAndRestartOperationTest.java:[131,37] [deprecation] size() in RunList has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/AbortAndRestartOperationTest.java:[156,37] [deprecation] size() in RunList has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[145,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[148,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[149,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[168,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[171,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[172,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[193,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[196,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[197,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[218,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[221,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[222,24] [deprecation] BuildStepOperation(BuildStep,boolean) in BuildStepOperation has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[239,36] [deprecation] ArtifactArchiver(String,String,boolean) in ArtifactArchiver has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[243,16] [deprecation] AbsoluteTimeOutStrategy(int) in AbsoluteTimeOutStrategy has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[242,38] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[270,28] [deprecation] isLatestOnly() in ArtifactArchiver has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[338,25] [deprecation] UserCause in Cause has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/BuildStepOperationTest.java:[368,25] [deprecation] UserCause in Cause has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/WriteDescriptionOperationTest.java:[58,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/WriteDescriptionOperationTest.java:[79,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
-[WARNING] /tmp/plugin-builds/build-timeout/src/test/java/hudson/plugins/build_timeout/operations/WriteDescriptionOperationTest.java:[100,37] [deprecation] BuildTimeoutWrapper(BuildTimeOutStrategy,List<BuildTimeOutOperation>) in BuildTimeoutWrapper has been deprecated
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ build-timeout ---
 [INFO] Generating /tmp/plugin-builds/build-timeout/target/test-classes/the.hpl
@@ -236,6 +169,6 @@ warning: unknown enum constant When.ALWAYS
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  20.318 s
-[INFO] Finished at: 2025-08-21T18:26:52+02:00
+[INFO] Total time:  48.009 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:08:08+02:00
 [INFO] ------------------------------------------------------------------------

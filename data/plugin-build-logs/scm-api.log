@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -------------------< org.jenkins-ci.plugins:scm-api >-------------------
 [INFO] Building SCM API Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -61,17 +63,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/trait/RegexSCMSourceFilterTrait.java:[69,12] Generating jenkins/scm/impl/trait/RegexSCMSourceFilterTrait.stapler
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/trait/WildcardSCMHeadFilterTrait.java:[68,12] Generating jenkins/scm/impl/trait/WildcardSCMHeadFilterTrait.stapler
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/trait/WildcardSCMSourceFilterTrait.java:[66,12] Generating jenkins/scm/impl/trait/WildcardSCMSourceFilterTrait.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/metadata/ContributorMetadataAction.java:[52,8] Generating jenkins/scm/api/metadata/ContributorMetadataAction.javadoc
-[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/mixin/SCMHeadMixin.java:[55,8] Generating jenkins/scm/api/mixin/SCMHeadMixin.javadoc
-[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/SCMRevision.java:[37,17] Generating jenkins/scm/api/SCMRevision.javadoc
+[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/mixin/ChangeRequestSCMHead.java:[38,8] Generating jenkins/scm/api/mixin/ChangeRequestSCMHead.javadoc
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/SCMRevisionAction.java:[44,8] Generating jenkins/scm/api/SCMRevisionAction.javadoc
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/mixin/ChangeRequestSCMRevision.java:[37,17] Generating jenkins/scm/api/mixin/ChangeRequestSCMRevision.javadoc
-[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/mixin/ChangeRequestSCMHead.java:[38,8] Generating jenkins/scm/api/mixin/ChangeRequestSCMHead.javadoc
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/metadata/ObjectMetadataAction.java:[61,8] Generating jenkins/scm/api/metadata/ObjectMetadataAction.javadoc
+[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/metadata/ContributorMetadataAction.java:[52,8] Generating jenkins/scm/api/metadata/ContributorMetadataAction.javadoc
+[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/SCMRevision.java:[37,17] Generating jenkins/scm/api/SCMRevision.javadoc
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/SCMHeadOrigin.java:[153,19] Generating jenkins/scm/api/SCMHeadOrigin/Fork.javadoc
+[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/mixin/SCMHeadMixin.java:[55,8] Generating jenkins/scm/api/mixin/SCMHeadMixin.javadoc
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/SCMHead.java:[71,8] Generating jenkins/scm/api/SCMHead.javadoc
-[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/trait/RegexSCMHeadFilterTrait.java:[136,31] Generating jenkins/scm/impl/trait/RegexSCMHeadFilterTrait/DescriptorImpl/doCheckRegex.stapler
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/avatars/AvatarCache.java:[308,25] Generating jenkins/scm/impl/avatars/AvatarCache/doDynamic.stapler
+[INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/trait/RegexSCMHeadFilterTrait.java:[136,31] Generating jenkins/scm/impl/trait/RegexSCMHeadFilterTrait/DescriptorImpl/doCheckRegex.stapler
 [WARNING] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/api/SCMHeadMixinEqualityGenerator.java:[144,29] java.security.AccessController in java.security has been deprecated and marked for removal
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/SingleSCMNavigator.java: /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/SingleSCMNavigator.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/scm-api/src/main/java/jenkins/scm/impl/SingleSCMNavigator.java: Recompile with -Xlint:deprecation for details.
@@ -90,34 +92,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ scm-api ---
-[INFO] Copying 5 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ scm-api ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 61 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] jenkins.scm.impl.SCMFileSystemTest.TrueBuilder indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.scm.impl.SCMFileSystemTest.FalseBuilder indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.scm.impl.SingleSCMSourceTest.SCMSourceBuilder.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.scm.impl.avatars.AvatarCacheTest.ProbeAction indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.scm.impl.mock.MockSCM.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.scm.impl.mock.MockSCMDiscoverBranches.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.scm.impl.mock.MockSCMDiscoverChangeRequests.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.scm.impl.mock.MockSCMDiscoverTags.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.scm.impl.mock.MockSCMNavigator.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.scm.impl.mock.MockSCMSource.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/SingleSCMSourceTest.java:[216,16] Generating jenkins/scm/impl/SingleSCMSourceTest/SCMSourceBuilder.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCM.java:[75,12] Generating jenkins/scm/impl/mock/MockSCM.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCMDiscoverBranches.java:[40,12] Generating jenkins/scm/impl/mock/MockSCMDiscoverBranches.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCMDiscoverChangeRequests.java:[58,12] Generating jenkins/scm/impl/mock/MockSCMDiscoverChangeRequests.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCMDiscoverTags.java:[41,12] Generating jenkins/scm/impl/mock/MockSCMDiscoverTags.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCMNavigator.java:[61,12] Generating jenkins/scm/impl/mock/MockSCMNavigator.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCMSource.java:[77,12] Generating jenkins/scm/impl/mock/MockSCMSource.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCM.java:[309,29] Generating jenkins/scm/impl/mock/MockSCM/DescriptorImpl/doFillRepositoryItems.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/impl/mock/MockSCM.java:[320,29] Generating jenkins/scm/impl/mock/MockSCM/DescriptorImpl/doFillHeadItems.stapler
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/api/SCMEventTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/api/SCMEventTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/api/SCMUriTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/scm-api/src/test/java/jenkins/scm/api/SCMUriTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ scm-api ---
 [INFO] Generating /tmp/plugin-builds/scm-api/target/test-classes/the.hpl
@@ -174,6 +152,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  22.315 s
-[INFO] Finished at: 2025-08-21T18:00:32+02:00
+[INFO] Total time:  01:21 min (Wall Clock)
+[INFO] Finished at: 2025-08-22T17:49:44+02:00
 [INFO] ------------------------------------------------------------------------

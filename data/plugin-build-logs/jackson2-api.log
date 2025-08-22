@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:jackson2-api >-----------------
 [INFO] Building Jackson 2 API Plugin 2.19.2-999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -11,10 +13,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ jackson2-api ---
 [INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ jackson2-api ---
 [INFO] Created marker file /tmp/plugin-builds/jackson2-api/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ jackson2-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ jackson2-api ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -30,6 +32,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ jackson2-api ---
 [INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ jackson2-api ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ jackson2-api ---
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
@@ -41,9 +46,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ jackson2-api ---
 [INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ jackson2-api ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ jackson2-api ---
 [INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ jackson2-api ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ jackson2-api ---
 [INFO] Executing tasks
@@ -51,27 +56,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ jackson2-api ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/jackson2-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ jackson2-api ---
-[INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ jackson2-api ---
 [INFO] Generating /tmp/plugin-builds/jackson2-api/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ jackson2-api ---
 [INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ jackson2-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ jackson2-api ---
+[INFO] --- surefire:3.5.2:test (default-test) @ jackson2-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ jackson2-api ---
 [INFO] Generated /tmp/plugin-builds/jackson2-api/target/jackson2-api/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ jackson2-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ jackson2-api ---
 [INFO] Generating /tmp/plugin-builds/jackson2-api/target/jackson2-api/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/jackson2-api/target/jackson2-api.jar
@@ -92,23 +96,23 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Bundling direct dependency jackson-datatype-jsr310-2.19.2.jar
 [INFO] Bundling direct dependency jackson-module-jaxb-annotations-2.19.2.jar
 [INFO] Bundling direct dependency jackson-module-parameter-names-2.19.2.jar
-[WARNING] Bundling transitive dependency woodstox-core-7.1.1.jar (via jackson-dataformat-xml)
-[WARNING] Bundling transitive dependency stax2-api-4.2.2.jar (via jackson-dataformat-xml)
+[INFO] Bundling transitive dependency woodstox-core-7.1.1.jar (via jackson-dataformat-xml)
+[INFO] Bundling transitive dependency stax2-api-4.2.2.jar (via jackson-dataformat-xml)
 [INFO] Generating hpi /tmp/plugin-builds/jackson2-api/target/jackson2-api.hpi
 [INFO] Building jar: /tmp/plugin-builds/jackson2-api/target/jackson2-api.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ jackson2-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ jackson2-api >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ jackson2-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ jackson2-api ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ jackson2-api ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ jackson2-api <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ jackson2-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ jackson2-api ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ jackson2-api ---
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ jackson2-api ---
 [INFO] Spotless check skipped
@@ -120,6 +124,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.746 s
-[INFO] Finished at: 2025-08-21T18:03:33+02:00
+[INFO] Total time:  36.682 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T17:52:07+02:00
 [INFO] ------------------------------------------------------------------------

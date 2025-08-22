@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------------< org.jenkins-ci.plugins:badge >--------------------
 [INFO] Building Badge 2.10-SNAPSHOT
 [INFO]   from pom.xml
@@ -64,8 +66,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/RemoveBadgesStep.java:[38,12] Generating com/jenkinsci/plugins/badge/dsl/RemoveBadgesStep.stapler
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStep.java:[52,12] Generating com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStep.stapler
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/RemoveSummariesStep.java:[38,12] Generating com/jenkinsci/plugins/badge/dsl/RemoveSummariesStep.stapler
-[INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/AbstractBadgeAction.java:[49,17] Generating com/jenkinsci/plugins/badge/action/AbstractBadgeAction.javadoc
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/HtmlBadgeAction.java:[42,8] Generating com/jenkinsci/plugins/badge/action/HtmlBadgeAction.javadoc
+[INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/AbstractBadgeAction.java:[49,17] Generating com/jenkinsci/plugins/badge/action/AbstractBadgeAction.javadoc
 [WARNING] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/BadgeSummaryAction.java:[107,22] readResolve() in com.jenkinsci.plugins.badge.action.AbstractBadgeAction has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/BadgeSummaryAction.java:[108,14] readResolve() in com.jenkinsci.plugins.badge.action.AbstractBadgeAction has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStep.java:[116,13] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
@@ -95,81 +97,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ badge ---
-[INFO] Copying 7 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ badge ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 23 source files with javac [debug parameters release 17] to target/test-classes
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[52,9] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[52,34] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[56,18] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[73,9] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[73,34] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[79,9] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[79,34] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[85,9] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/action/HtmlBadgeActionTest.java:[85,34] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddBadgeStepTest.java:[72,24] getColor() in com.jenkinsci.plugins.badge.dsl.AddBadgeStep has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddBadgeStepTest.java:[74,13] setColor(java.lang.String) in com.jenkinsci.plugins.badge.dsl.AddBadgeStep has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddBadgeStepTest.java:[75,30] getColor() in com.jenkinsci.plugins.badge.dsl.AddBadgeStep has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddBadgeStepTest.java:[77,13] setColor(java.lang.String) in com.jenkinsci.plugins.badge.dsl.AddBadgeStep has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddBadgeStepTest.java:[78,35] getColor() in com.jenkinsci.plugins.badge.dsl.AddBadgeStep has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[56,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[56,37] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[66,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[66,37] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[70,20] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[76,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[76,37] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[105,9] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/AddHtmlBadgeStepTest.java:[105,35] com.jenkinsci.plugins.badge.action.HtmlBadgeAction in com.jenkinsci.plugins.badge.action has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[56,9] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[56,38] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[66,9] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[66,38] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[70,20] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[76,9] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[76,38] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[86,9] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/CreateSummaryStepTest.java:[86,38] com.jenkinsci.plugins.badge.dsl.CreateSummaryStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[54,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[55,9] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[62,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[63,9] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[70,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[71,9] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[77,9] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[81,38] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[81,38] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[81,38] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[81,64] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[81,64] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[81,64] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[102,20] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[102,20] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[102,20] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[103,9] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[103,37] com.jenkinsci.plugins.badge.dsl.AddHtmlBadgeStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[108,20] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[108,20] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[108,20] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[109,9] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/RemoveHtmlBadgesStepTest.java:[109,41] com.jenkinsci.plugins.badge.dsl.RemoveHtmlBadgesStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[56,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[56,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[60,20] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[66,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[66,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[75,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[75,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[84,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[84,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[93,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[93,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[102,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[102,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[111,9] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/badge/src/test/java/com/jenkinsci/plugins/badge/dsl/ShortTextStepTest.java:[111,37] com.jenkinsci.plugins.badge.dsl.AddShortTextStep in com.jenkinsci.plugins.badge.dsl has been deprecated and marked for removal
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ badge ---
 [INFO] Generating /tmp/plugin-builds/badge/target/test-classes/the.hpl
@@ -199,18 +130,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ badge ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ badge >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ badge >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ badge ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ badge ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ badge <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ badge <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ badge ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ badge ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -218,7 +149,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ badge ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 40 files clean - 0 needs changes to be clean, 40 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom18296138735929821813.xml
+[INFO] Sorting file /tmp/pom9193763993280251145.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -229,6 +160,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  19.088 s
-[INFO] Finished at: 2025-08-21T19:40:14+02:00
+[INFO] Total time:  50.150 s (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:34:51+02:00
 [INFO] ------------------------------------------------------------------------

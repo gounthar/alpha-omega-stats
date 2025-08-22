@@ -11,10 +11,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Job DSL Core                                                       [jar]
 [INFO] Job DSL                                                            [hpi]
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ---------------< org.jenkins-ci.plugins:job-dsl-parent >----------------
 [INFO] Building Job DSL Parent 1.94-SNAPSHOT                              [1/4]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Job DSL Parent:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl-parent ---
 [INFO] 
@@ -51,19 +67,19 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ job-dsl-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ job-dsl-parent >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ job-dsl-parent >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ job-dsl-parent ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ job-dsl-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ job-dsl-parent <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ job-dsl-parent <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ job-dsl-parent ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ job-dsl-parent ---
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ job-dsl-parent ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom13104753536938556366.xml
+[INFO] Sorting file /tmp/pom1770835276792120839.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -74,6 +90,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Job DSL Abstract Syntax Tree (AST) 1.94-SNAPSHOT          [2/4]
 [INFO]   from job-dsl-ast/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Job DSL Abstract Syntax Tree (AST):
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl-ast ---
 [INFO] 
@@ -124,10 +154,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ job-dsl-ast ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/job-dsl/job-dsl-ast/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ job-dsl-ast ---
-[INFO] No sources to compile
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- surefire:3.5.2:test (default-test) @ job-dsl-ast ---
 [INFO] Tests are skipped.
@@ -141,31 +171,31 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ job-dsl-ast ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ job-dsl-ast >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ job-dsl-ast >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ job-dsl-ast ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ job-dsl-ast ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ job-dsl-ast <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ job-dsl-ast <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ job-dsl-ast ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ job-dsl-ast ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ job-dsl-ast ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom10905020990445307148.xml
+[INFO] Sorting file /tmp/pom10005367231948880397.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.1.0:run (default) @ job-dsl-ast ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 71ms; 385 rules
+[INFO] Loaded properties file in 83ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -184,13 +214,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=3436ms; Files with analysis errors: 0
-CodeNarc Report - Aug 21, 2025, 7:05:06 PM
+[INFO] Analysis time=2577ms; Files with analysis errors: 0
+CodeNarc Report - Aug 22, 2025, 6:24:42 PM
 
 Summary: TotalFiles=5 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 8037ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-ast ---
@@ -201,6 +231,20 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
 [INFO] Building Job DSL Core 1.94-SNAPSHOT                                [3/4]
 [INFO]   from job-dsl-core/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Job DSL Core:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl-core ---
 [INFO] 
@@ -250,9 +294,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
 [INFO] --- bridge-method-injector:1.32:process (default) @ job-dsl-core ---
 [INFO] 
 [INFO] --- gplus:4.2.1:generateTestStubs (default) @ job-dsl-core ---
-[INFO] Using isolated classloader, without GMavenPlus classpath.
-[INFO] Using Groovy 2.4.21 to perform generateTestStubs.
-[INFO] Generated 79 stubs.
+[INFO] Generation of test stubs is skipped.
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ job-dsl-core ---
 [INFO] Executing tasks
@@ -260,19 +302,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ job-dsl-core ---
-[INFO] Copying 31 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ job-dsl-core ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 79 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- gplus:4.2.1:compileTests (default) @ job-dsl-core ---
-[INFO] Using isolated classloader, without GMavenPlus classpath.
-[INFO] Using Groovy 2.4.21 to perform compileTests.
-[INFO] Compiled 2008 files.
+[INFO] Compilation of tests is skipped.
 [INFO] 
 [INFO] --- gplus:4.2.1:removeTestStubs (default) @ job-dsl-core ---
-[WARNING] Direct modification of testCompileSourceRoots through iterator.remove() is deprecated and will not work in Maven 4.0.0. Please use the add/remove methods instead. If you're using a plugin that causes this warning, please upgrade to the latest version and report an issue if the warning persists. To disable these warnings, set -Dmaven.project.sourceRoots.warningsDisabled=true on the command line, in the .mvn/maven.config file, or in project POM properties.
 [INFO] 
 [INFO] --- surefire:3.5.2:test (default-test) @ job-dsl-core ---
 [INFO] Tests are skipped.
@@ -291,17 +329,17 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
 [INFO] --- assembly:3.7.1:single (default) @ job-dsl-core ---
 [INFO] Building jar: /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core-jar-with-dependencies.jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ job-dsl-core >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ job-dsl-core >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ job-dsl-core ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ job-dsl-core ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ job-dsl-core <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ job-dsl-core <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ job-dsl-core ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ job-dsl-core ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -309,14 +347,14 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
 [INFO] --- spotless:2.46.1:check (default) @ job-dsl-core ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 4 files clean - 0 needs changes to be clean, 4 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom1106309701113527761.xml
+[INFO] Sorting file /tmp/pom7612015613889555711.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.1.0:run (default) @ job-dsl-core ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 7ms; 385 rules
+[INFO] Loaded properties file in 1ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -335,15 +373,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9837ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=6664ms; Files with analysis errors: 0
-CodeNarc Report - Aug 21, 2025, 7:08:47 PM
+[INFO] Analysis time=3977ms; Files with analysis errors: 0
+CodeNarc Report - Aug 22, 2025, 6:26:28 PM
 
 Summary: TotalFiles=327 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 7745ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 4417ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
-[INFO] Loaded properties file in 1ms; 385 rules
+[INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
 [INFO] Loading ruleset from [rulesets/junit.xml]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
@@ -364,15 +402,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 7745ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=8239ms; Files with analysis errors: 0
-CodeNarc Report - Aug 21, 2025, 7:08:57 PM
+[INFO] Analysis time=3526ms; Files with analysis errors: 0
+CodeNarc Report - Aug 22, 2025, 6:26:32 PM
 
 Summary: TotalFiles=79 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 9663ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 4085ms
 [INFO]      [echo] Checking src/main/docs/examples code with CodeNarc
-[INFO] Loaded properties file in 1ms; 385 rules
+[INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-examples.groovy]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
@@ -392,13 +430,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 9663ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=2379ms; Files with analysis errors: 0
-CodeNarc Report - Aug 21, 2025, 7:09:00 PM
+[INFO] Analysis time=1045ms; Files with analysis errors: 0
+CodeNarc Report - Aug 22, 2025, 6:26:33 PM
 
 Summary: TotalFiles=417 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 1330ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-core ---
@@ -410,6 +448,22 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] Building Job DSL 1.94-SNAPSHOT                                     [4/4]
 [INFO]   from job-dsl-plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Job DSL:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl ---
 [INFO] 
@@ -444,10 +498,20 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] --- frontend:1.15.1:npm (npm install) @ job-dsl ---
 [INFO] Running 'npm install' in /tmp/plugin-builds/job-dsl/job-dsl-plugin
 [INFO] 
-[INFO] added 527 packages in 17s
+[INFO] added 527 packages, and audited 528 packages in 13s
 [INFO] 
 [INFO] 106 packages are looking for funding
 [INFO]   run `npm fund` for details
+[INFO] 
+[INFO] 5 vulnerabilities (3 low, 2 moderate)
+[INFO] 
+[INFO] To address issues that do not require attention, run:
+[INFO]   npm audit fix
+[INFO] 
+[INFO] To address all issues (including breaking changes), run:
+[INFO]   npm audit fix --force
+[INFO] 
+[INFO] Run `npm audit` for details.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ job-dsl ---
 [INFO] 
@@ -634,7 +698,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.101.3 compiled with 3 warnings in 12967 ms
+[INFO] webpack 5.101.3 compiled with 3 warnings in 7767 ms
 [INFO] wslpath: /tmp/plugin-builds/job-dsl/job-dsl-plugin/node_modules/npm/bin/npm-cli.js
 [INFO] 
 [INFO] > job-dsl-plugin@1.0.0 gh-pages
@@ -736,7 +800,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.101.3 compiled with 3 warnings in 12032 ms
+[INFO] webpack 5.101.3 compiled with 3 warnings in 10026 ms
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ job-dsl ---
 [INFO] Skipping Rule Enforcement.
@@ -782,9 +846,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ job-dsl ---
 [INFO] 
 [INFO] --- gplus:4.2.1:generateTestStubs (default) @ job-dsl ---
-[INFO] Using isolated classloader, without GMavenPlus classpath.
-[INFO] Using Groovy 2.4.21 to perform generateTestStubs.
-[INFO] Generated 22 stubs.
+[INFO] Generation of test stubs is skipped.
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ job-dsl ---
 [INFO] Executing tasks
@@ -792,44 +854,10 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ job-dsl ---
-[INFO] Copying 20 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ job-dsl ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 53 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] javaposse.jobdsl.plugin.FakeProperty.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.ADescribable.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.ADuplicateBuilder.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.BDuplicateBuilder.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.Boolean.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.BrokenTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.DeprecatedTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.DummyTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.ExampleJobDslExtension indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.Foo.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.FooTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.IntegerTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.SomeTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.SubTrigger.DescriptorImpl indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.TestContextExtensionPoint indexed under hudson.Extension
-[INFO] javaposse.jobdsl.plugin.fixtures.TestContextExtensionPoint2 indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/ABean.java:[8,12] Generating javaposse/jobdsl/plugin/fixtures/ABean.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/ADescribable.java:[11,12] Generating javaposse/jobdsl/plugin/fixtures/ADescribable.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/ADuplicateBean.java:[8,12] Generating javaposse/jobdsl/plugin/fixtures/ADuplicateBean.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/ADuplicateBuilder.java:[12,12] Generating javaposse/jobdsl/plugin/fixtures/ADuplicateBuilder.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/BDuplicateBuilder.java:[12,12] Generating javaposse/jobdsl/plugin/fixtures/BDuplicateBuilder.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/Boolean.java:[12,12] Generating javaposse/jobdsl/plugin/fixtures/Boolean.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/DeprecatedTrigger.java:[15,12] Generating javaposse/jobdsl/plugin/fixtures/DeprecatedTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/DummyTrigger.java:[16,12] Generating javaposse/jobdsl/plugin/fixtures/DummyTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/Foo.java:[12,12] Generating javaposse/jobdsl/plugin/fixtures/Foo.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/FooTrigger.java:[13,12] Generating javaposse/jobdsl/plugin/fixtures/FooTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/IntegerTrigger.java:[13,12] Generating javaposse/jobdsl/plugin/fixtures/IntegerTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/InvalidTrigger.java:[9,12] Generating javaposse/jobdsl/plugin/fixtures/InvalidTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/SomeTrigger.java:[12,12] Generating javaposse/jobdsl/plugin/fixtures/SomeTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/SubTrigger.java:[9,12] Generating javaposse/jobdsl/plugin/fixtures/SubTrigger.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/other/ADuplicateBean.java:[8,12] Generating javaposse/jobdsl/plugin/fixtures/other/ADuplicateBean.stapler
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/ExampleJobDslExtension.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/job-dsl/job-dsl-plugin/src/test/java/javaposse/jobdsl/plugin/fixtures/ExampleJobDslExtension.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ job-dsl ---
 [INFO] Generating /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/test-classes/the.hpl
@@ -837,12 +865,9 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ job-dsl ---
 [INFO] 
 [INFO] --- gplus:4.2.1:compileTests (default) @ job-dsl ---
-[INFO] Using isolated classloader, without GMavenPlus classpath.
-[INFO] Using Groovy 2.4.21 to perform compileTests.
-[INFO] Compiled 62 files.
+[INFO] Compilation of tests is skipped.
 [INFO] 
 [INFO] --- gplus:4.2.1:removeTestStubs (default) @ job-dsl ---
-[WARNING] Direct modification of testCompileSourceRoots through iterator.remove() is deprecated and will not work in Maven 4.0.0. Please use the add/remove methods instead. If you're using a plugin that causes this warning, please upgrade to the latest version and report an issue if the warning persists. To disable these warnings, set -Dmaven.project.sourceRoots.warningsDisabled=true on the command line, in the .mvn/maven.config file, or in project POM properties.
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ job-dsl ---
 [INFO] Tests are skipped.
@@ -851,7 +876,16 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- frontend:1.15.1:npm (npm mvntest) @ job-dsl ---
-[INFO] Skipping execution.
+[INFO] Running 'npm run mvntest' in /tmp/plugin-builds/job-dsl/job-dsl-plugin
+[INFO] 
+[INFO] > job-dsl-plugin@1.0.0 mvntest
+[INFO] > npm run test
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/job-dsl/job-dsl-plugin/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > job-dsl-plugin@1.0.0 test
+[INFO] > eslint --config eslint.config.mjs
+[INFO] 
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ job-dsl ---
 [INFO] Generated /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl/WEB-INF/licenses.xml
@@ -866,24 +900,23 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] Assembling webapp job-dsl in /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl
 [INFO] Bundling direct dependency job-dsl-core-1.94-SNAPSHOT.jar
 [INFO] Bundling transitive dependency xmlunit-1.6.jar (via job-dsl-core)
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [job-dsl-core, xmlunit]. Review the bundled artifacts and add `<hpi.bundledArtifacts>job-dsl-core,xmlunit</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.hpi
 [INFO] Building jar: /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ job-dsl ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ job-dsl >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ job-dsl >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ job-dsl ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ job-dsl ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ job-dsl <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ job-dsl <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ job-dsl ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ job-dsl ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -891,14 +924,14 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] --- spotless:2.46.1:check (default) @ job-dsl ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 48 files clean - 0 needs changes to be clean, 48 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom17230732485456793351.xml
+[INFO] Sorting file /tmp/pom16122427974182184995.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.1.0:run (default) @ job-dsl ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 1ms; 385 rules
+[INFO] Loaded properties file in 3ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -917,15 +950,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3206ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=560ms; Files with analysis errors: 0
-CodeNarc Report - Aug 21, 2025, 7:11:45 PM
+[INFO] Analysis time=861ms; Files with analysis errors: 0
+CodeNarc Report - Aug 22, 2025, 6:28:20 PM
 
 Summary: TotalFiles=37 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 971ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 1365ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
-[INFO] Loaded properties file in 1ms; 385 rules
+[INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
 [INFO] Loading ruleset from [rulesets/junit.xml]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
@@ -946,13 +979,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 971ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=1556ms; Files with analysis errors: 0
-CodeNarc Report - Aug 21, 2025, 7:11:47 PM
+[INFO] Analysis time=1535ms; Files with analysis errors: 0
+CodeNarc Report - Aug 22, 2025, 6:28:22 PM
 
 Summary: TotalFiles=22 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 2052ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 1993ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl ---
@@ -962,13 +995,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 2052ms
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Job DSL Parent 1.94-SNAPSHOT:
 [INFO] 
-[INFO] Job DSL Parent ..................................... SUCCESS [ 15.779 s]
-[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 38.345 s]
-[INFO] Job DSL Core ....................................... SUCCESS [03:54 min]
-[INFO] Job DSL ............................................ SUCCESS [02:46 min]
+[INFO] Job DSL Parent ..................................... SUCCESS [ 13.801 s]
+[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 29.584 s]
+[INFO] Job DSL Core ....................................... SUCCESS [01:50 min]
+[INFO] Job DSL ............................................ SUCCESS [01:48 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  07:37 min
-[INFO] Finished at: 2025-08-21T19:11:47+02:00
+[INFO] Total time:  04:25 min (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:28:22+02:00
 [INFO] ------------------------------------------------------------------------

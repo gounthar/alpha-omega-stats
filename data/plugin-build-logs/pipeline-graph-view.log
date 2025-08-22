@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ---------------< io.jenkins.plugins:pipeline-graph-view >---------------
 [INFO] Building Pipeline Graph View Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -42,7 +44,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:1.15.1:npm (npm install) @ pipeline-graph-view ---
 [INFO] Running 'npm install' in /tmp/plugin-builds/pipeline-graph-view
 [INFO] 
-[INFO] added 531 packages, and audited 532 packages in 5s
+[INFO] added 531 packages, and audited 532 packages in 19s
 [INFO] 
 [INFO] 158 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -83,7 +85,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] src/main/webapp/js/bundles/assets/PipelineConsole-D8kRKV_W.js            61.14 kB │ gzip: 22.03 kB │ map:   151.37 kB
 [INFO] src/main/webapp/js/bundles/assets/PipelineGraphModel-Jh7QshDZ.js        193.63 kB │ gzip: 61.41 kB │ map:   908.37 kB
 [INFO] src/main/webapp/js/bundles/assets/PipelineGraph-Bc-F7UIs.js             205.53 kB │ gzip: 66.64 kB │ map: 1,048.52 kB
-[INFO] ✓ built in 2.15s
+[INFO] ✓ built in 7.08s
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ pipeline-graph-view ---
 [WARNING] ruleName restrictImports with implementation org.apache.maven.plugins.enforcer.RestrictImportsuses the deprecated Maven Enforcer Plugin API. This will not be supported in a future version of the plugin. Please contact the rule maintainer to upgrade the rule implementation to the current API.
@@ -119,13 +121,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-graph-view ---
-[INFO] Copying 46 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ pipeline-graph-view ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 29 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] /tmp/plugin-builds/pipeline-graph-view/src/test/java/io/jenkins/plugins/pipelinegraphview/analysis/StatusAndTimingTest.java: /tmp/plugin-builds/pipeline-graph-view/src/test/java/io/jenkins/plugins/pipelinegraphview/analysis/StatusAndTimingTest.java uses or overrides a deprecated API.
-[INFO] /tmp/plugin-builds/pipeline-graph-view/src/test/java/io/jenkins/plugins/pipelinegraphview/analysis/StatusAndTimingTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ pipeline-graph-view ---
 [INFO] Generating /tmp/plugin-builds/pipeline-graph-view/target/test-classes/the.hpl
@@ -139,7 +138,77 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- frontend:1.15.1:npm (npm mvntest) @ pipeline-graph-view ---
-[INFO] Skipping execution.
+[INFO] Running 'npm run mvntest' in /tmp/plugin-builds/pipeline-graph-view
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 mvntest
+[INFO] > npm run format:check && npm run tsc:check && npm run eslint:mvn && npm run vitest:mvn
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 format:check
+[INFO] > prettier --check .
+[INFO] 
+[INFO] Checking formatting...
+[INFO] All matched files use Prettier code style!
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 tsc:check
+[INFO] > tsc
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 eslint:mvn
+[INFO] > eslint --format checkstyle --output-file target/eslint-warnings.xml || ([ -n "$CI" ] && [ -f target/eslint-warnings.xml ])
+[INFO] 
+[INFO] wslpath: /tmp/plugin-builds/pipeline-graph-view/node_modules/npm/bin/npm-cli.js
+[INFO] 
+[INFO] > pipeline-graph-view-plugin@1.0.0 vitest:mvn
+[INFO] > vitest run --reporter default --reporter junit --outputFile "$PWD/target/surefire-reports/vitest-junit.xml" || ([ -n "$CI" ] && [ -f target/surefire-reports/vitest-junit.xml ])
+[INFO] 
+[INFO] 
+[INFO]  RUN  v3.1.4 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
+[INFO] 
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 7ms
+[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 9ms
+[INFO]  ✓ common/utils/run-estimator.spec.ts (16 tests) 11ms
+[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 116ms
+[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 11ms
+[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 98ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (8 tests) 39ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (1 test) 196ms
+[INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should render settings button in portal
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO]  ✓ common/utils/timings.spec.tsx (4 tests) 280ms
+[INFO] stderr | pipeline-console-view/pipeline-console/main/stage-details.spec.tsx > StageDetails > renders stage name and status color class
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO] stderr | pipeline-console-view/pipeline-console/main/StageView.spec.tsx > StageView > renders StageDetails and StageSteps with provided props
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (6 tests) 756ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 482ms
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 759ms
+[INFO]    ✓ SettingsButton > should toggle dropdown when clicking settings button  390ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 440ms
+[INFO]    ✓ StageView > renders StageDetails and StageSteps with provided props  437ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (5 tests) 753ms
+[INFO] 
+[INFO]  Test Files  14 passed (14)
+[INFO]       Tests  72 passed (72)
+[INFO]    Start at  18:14:11
+[INFO]    Duration  5.31s (transform 6.41s, setup 4.40s, collect 17.70s, tests 3.96s, environment 18.08s, prepare 5.21s)
+[INFO] 
+[INFO] JUNIT report written to /tmp/plugin-builds/pipeline-graph-view/target/surefire-reports/vitest-junit.xml
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-graph-view ---
 [INFO] Generated /tmp/plugin-builds/pipeline-graph-view/target/pipeline-graph-view/WEB-INF/licenses.xml
@@ -177,7 +246,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ pipeline-graph-view ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 76 files clean - 0 needs changes to be clean, 76 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom7326357652917231459.xml
+[INFO] Sorting file /tmp/pom1691608172783102665.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -188,6 +257,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  41.291 s
-[INFO] Finished at: 2025-08-21T18:36:14+02:00
+[INFO] Total time:  02:04 min (Wall Clock)
+[INFO] Finished at: 2025-08-22T18:14:56+02:00
 [INFO] ------------------------------------------------------------------------
