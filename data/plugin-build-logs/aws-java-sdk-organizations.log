@@ -71,10 +71,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- flatten:1.7.0:flatten (flatten) @ aws-java-sdk-parent ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins.aws-java-sdk:aws-java-sdk-parent:pom:1.12.780-999999-SNAPSHOT...
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ aws-java-sdk-parent ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/aws-java-sdk-organizations/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ aws-java-sdk-parent ---
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Amazon Web Services SDK :: Parent 1.12.780-999999-SNAPSHOT:
 [INFO] 
-[INFO] Amazon Web Services SDK :: Parent .................. FAILURE [  1.328 s]
+[INFO] Amazon Web Services SDK :: Parent .................. FAILURE [  7.667 s]
 [INFO] Amazon Web Services SDK :: Minimal ................. SKIPPED
 [INFO] Amazon Web Services SDK :: Api Gateway ............. SKIPPED
 [INFO] Amazon Web Services SDK :: Autoscaling ............. SKIPPED
@@ -102,15 +109,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.953 s (Wall Clock)
-[INFO] Finished at: 2025-08-22T18:39:25+02:00
+[INFO] Total time:  12.233 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T10:02:51+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.codehaus.mojo:flatten-maven-plugin:1.7.0:flatten (flatten) on project aws-java-sdk-parent: failed to create the effective pom: 1 problem was encountered while building the effective model
-[ERROR] [FATAL] Non-readable POM /tmp/plugin-builds/aws-java-sdk-organizations/pom.xml: /tmp/plugin-builds/aws-java-sdk-organizations/pom.xml (No such file or directory) @
-[ERROR] -> [Help 1]
+[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69 -> [Help 1]
+[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
 [ERROR] 
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/GroovyBugError

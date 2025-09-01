@@ -3,20 +3,120 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.i
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[WARNING] The requested profile "consume-incrementals" could not be activated because it does not exist.
-[WARNING] The requested profile "might-produce-incrementals" could not be activated because it does not exist.
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Amazon Web Services SDK :: Parent                                  [pom]
+[INFO] Amazon Web Services SDK :: Minimal                                 [hpi]
+[INFO] Amazon Web Services SDK :: Api Gateway                             [hpi]
+[INFO] Amazon Web Services SDK :: Autoscaling                             [hpi]
+[INFO] Amazon Web Services SDK :: CloudFormation                          [hpi]
+[INFO] Amazon Web Services SDK :: CloudFront                              [hpi]
+[INFO] Amazon Web Services SDK :: CloudWatch                              [hpi]
+[INFO] Amazon Web Services SDK :: CodeBuild                               [hpi]
+[INFO] Amazon Web Services SDK :: CodeDeploy                              [hpi]
+[INFO] Amazon Web Services SDK :: EC2                                     [hpi]
+[INFO] Amazon Web Services SDK :: ECR                                     [hpi]
+[INFO] Amazon Web Services SDK :: ECS                                     [hpi]
+[INFO] Amazon Web Services SDK :: EFS                                     [hpi]
+[INFO] Amazon Web Services SDK :: Elastic Beanstalk                       [hpi]
+[INFO] Amazon Web Services SDK :: Elastic Load Balancing V2               [hpi]
+[INFO] Amazon Web Services SDK :: IAM                                     [hpi]
+[INFO] Amazon Web Services SDK :: kinesis                                 [hpi]
+[INFO] Amazon Web Services SDK :: Lambda                                  [hpi]
+[INFO] Amazon Web Services SDK :: Logs                                    [hpi]
+[INFO] Amazon Web Services SDK :: Organizations                           [hpi]
+[INFO] Amazon Web Services SDK :: Secrets Manager                         [hpi]
+[INFO] Amazon Web Services SDK :: SQS                                     [hpi]
+[INFO] Amazon Web Services SDK :: SNS                                     [hpi]
+[INFO] Amazon Web Services SDK :: SSM                                     [hpi]
+[INFO] Amazon Web Services SDK :: All                                     [hpi]
+[INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
+[INFO] ------< org.jenkins-ci.plugins.aws-java-sdk:aws-java-sdk-parent >-------
+[INFO] Building Amazon Web Services SDK :: Parent 1.12.780-999999-SNAPSHOT [1/25]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Amazon Web Services SDK :: Parent:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:165.v7e11f4e4a_325
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ aws-java-sdk-parent ---
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (display-info) @ aws-java-sdk-parent ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ aws-java-sdk-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ aws-java-sdk-parent ---
+[INFO] 
+[INFO] --- flatten:1.7.0:flatten (flatten) @ aws-java-sdk-parent ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins.aws-java-sdk:aws-java-sdk-parent:pom:1.12.780-999999-SNAPSHOT...
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ aws-java-sdk-parent ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/aws-java-sdk-codedeploy/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:165.v7e11f4e4a_325:process (default) @ aws-java-sdk-parent ---
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Amazon Web Services SDK :: Parent 1.12.780-999999-SNAPSHOT:
+[INFO] 
+[INFO] Amazon Web Services SDK :: Parent .................. FAILURE [  5.700 s]
+[INFO] Amazon Web Services SDK :: Minimal ................. SKIPPED
+[INFO] Amazon Web Services SDK :: Api Gateway ............. SKIPPED
+[INFO] Amazon Web Services SDK :: Autoscaling ............. SKIPPED
+[INFO] Amazon Web Services SDK :: CloudFormation .......... SKIPPED
+[INFO] Amazon Web Services SDK :: CloudFront .............. SKIPPED
+[INFO] Amazon Web Services SDK :: CloudWatch .............. SKIPPED
+[INFO] Amazon Web Services SDK :: CodeBuild ............... SKIPPED
+[INFO] Amazon Web Services SDK :: CodeDeploy .............. SKIPPED
+[INFO] Amazon Web Services SDK :: EC2 ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: ECR ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: ECS ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: EFS ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: Elastic Beanstalk ....... SKIPPED
+[INFO] Amazon Web Services SDK :: Elastic Load Balancing V2 SKIPPED
+[INFO] Amazon Web Services SDK :: IAM ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: kinesis ................. SKIPPED
+[INFO] Amazon Web Services SDK :: Lambda .................. SKIPPED
+[INFO] Amazon Web Services SDK :: Logs .................... SKIPPED
+[INFO] Amazon Web Services SDK :: Organizations ........... SKIPPED
+[INFO] Amazon Web Services SDK :: Secrets Manager ......... SKIPPED
+[INFO] Amazon Web Services SDK :: SQS ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: SNS ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: SSM ..................... SKIPPED
+[INFO] Amazon Web Services SDK :: All ..................... SKIPPED
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.046 s (Wall Clock)
-[INFO] Finished at: 2025-08-22T18:39:26+02:00
+[INFO] Total time:  8.384 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T10:02:59+02:00
 [INFO] ------------------------------------------------------------------------
-[WARNING] The requested profile "consume-incrementals" could not be activated because it does not exist.
-[WARNING] The requested profile "might-produce-incrementals" could not be activated because it does not exist.
-[ERROR] The goal you specified requires a project to execute but there is no POM in this directory (/tmp/plugin-builds/aws-java-sdk-codedeploy). Please verify you invoked Maven from the correct directory. -> [Help 1]
+[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69 -> [Help 1]
+[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
 [ERROR] 
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MissingProjectException
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/GroovyBugError

@@ -11,14 +11,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ workflow-scm-step ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ workflow-scm-step ---
 [INFO] 
-[INFO] --- hpi:3.61:validate (default-validate) @ workflow-scm-step ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ workflow-scm-step ---
 [INFO] Created marker file /tmp/plugin-builds/workflow-scm-step/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.61:validate-hpi (default-validate-hpi) @ workflow-scm-step ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ workflow-scm-step ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ workflow-scm-step ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ workflow-scm-step ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
@@ -27,15 +27,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ workflow-scm-step ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ workflow-scm-step ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ workflow-scm-step ---
 [INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ workflow-scm-step ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ workflow-scm-step ---
 [INFO] Copying 6 resources from src/main/resources to target/classes
 [INFO] 
-[INFO] --- flatten:1.7.0:flatten (flatten) @ workflow-scm-step ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ workflow-scm-step ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins.workflow:workflow-scm-step:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ workflow-scm-step ---
@@ -44,9 +47,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.workflow.steps.scm.GenericSCMStep.DescriptorImpl indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/workflow-scm-step/src/main/java/org/jenkinsci/plugins/workflow/steps/scm/GenericSCMStep.java:[42,34] Generating org/jenkinsci/plugins/workflow/steps/scm/GenericSCMStep.stapler
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ workflow-scm-step ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ workflow-scm-step ---
 [INFO] 
-[INFO] --- hpi:3.61:insert-test (default-insert-test) @ workflow-scm-step ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ workflow-scm-step ---
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ workflow-scm-step ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ workflow-scm-step ---
 [INFO] Executing tasks
@@ -59,29 +64,65 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ workflow-scm-step ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.61:test-hpl (default-test-hpl) @ workflow-scm-step ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ workflow-scm-step ---
 [INFO] Generating /tmp/plugin-builds/workflow-scm-step/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.61:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-scm-step ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-scm-step ---
 [INFO] 
-[INFO] --- hpi:3.61:test-runtime (default-test-runtime) @ workflow-scm-step ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ workflow-scm-step ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.2:test (default-test) @ workflow-scm-step ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ workflow-scm-step ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ workflow-scm-step ---
+[INFO] Generated /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ workflow-scm-step ---
+[INFO] Generating /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.jar
+[INFO] Building jar: /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step
+[INFO] Assembling webapp workflow-scm-step in /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step
+[INFO] Generating hpi /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.hpi
+[INFO] Building jar: /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ workflow-scm-step ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ workflow-scm-step >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ workflow-scm-step ---
+[INFO] Fork Value is true
+     [java] The following classes needed for analysis were missing:
+     [java]   org.jenkinsci.plugins.structs.describable.DescribableParameter
+     [java]   org.jenkinsci.plugins.structs.SymbolLookup
+     [java]   org.jenkinsci.plugins.structs.describable.UninstantiatedDescribable
+     [java]   org.jenkinsci.plugins.structs.describable.DescribableModel
+[INFO] Done SpotBugs Analysis....
+[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ workflow-scm-step <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ workflow-scm-step ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ workflow-scm-step ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ workflow-scm-step ---
+[INFO] Installing /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-scm-step/999999-SNAPSHOT/workflow-scm-step-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-scm-step/999999-SNAPSHOT/workflow-scm-step-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/workflow-scm-step/target/workflow-scm-step.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/workflow/workflow-scm-step/999999-SNAPSHOT/workflow-scm-step-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  35.521 s (Wall Clock)
-[INFO] Finished at: 2025-08-22T17:51:13+02:00
+[INFO] Total time:  01:14 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T08:58:26+02:00
 [INFO] ------------------------------------------------------------------------
-[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69 -> [Help 1]
-[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/GroovyBugError

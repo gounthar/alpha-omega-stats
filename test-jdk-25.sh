@@ -348,6 +348,11 @@ if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
     while IFS=$'\t' read -r name install_count pr_url is_merged; do
         line_number=$((line_number + 1))
         echo "Read TSV line $line_number: name='$name', is_merged='$is_merged'" >> "$DEBUG_LOG"
+        # Normalize potential CR from Windows line endings in TSV fields
+        name=${name%$'\r'}
+        install_count=${install_count%$'\r'}
+        pr_url=${pr_url%$'\r'}
+        is_merged=${is_merged%$'\r'}
         # Skip header
         if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
             continue
@@ -421,6 +426,11 @@ if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
     while IFS=$'\t' read -r name install_count pr_url is_merged; do
         line_number=$((line_number + 1))
         echo "Preparing extended row from TSV line $line_number: name='$name'" >> "$DEBUG_LOG"
+        # Normalize potential CR from Windows line endings in TSV fields
+        name=${name%$'\r'}
+        install_count=${install_count%$'\r'}
+        pr_url=${pr_url%$'\r'}
+        is_merged=${is_merged%$'\r'}
 
         # Skip header
         if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
