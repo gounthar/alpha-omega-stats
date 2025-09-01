@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -----------------< org.jenkins-ci.plugins:branch-api >------------------
 [INFO] Building Branch API Plugin 2.999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -118,9 +120,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/MultiBranchProject.java:[129,17] Generating jenkins/branch/MultiBranchProject.javadoc
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/Branch.java:[55,8] Generating jenkins/branch/Branch.javadoc
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/BranchSource.java:[49,8] Generating jenkins/branch/BranchSource.javadoc
-[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/RateLimitBranchProperty.java:[437,35] Generating jenkins/branch/RateLimitBranchProperty/JobPropertyImpl/DescriptorImpl/doCheckCount.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/NoTriggerOrganizationFolderProperty.java:[95,31] Generating jenkins/branch/NoTriggerOrganizationFolderProperty/DescriptorImpl/doCheckBranches.stapler
+[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/RateLimitBranchProperty.java:[216,31] Generating jenkins/branch/RateLimitBranchProperty/DescriptorImpl/doCheckCount.stapler
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/NoTriggerBranchProperty.java:[102,31] Generating jenkins/branch/NoTriggerBranchProperty/DescriptorImpl/doCheckTriggeredBranchesRegex.stapler
+[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/NoTriggerOrganizationFolderProperty.java:[95,31] Generating jenkins/branch/NoTriggerOrganizationFolderProperty/DescriptorImpl/doCheckBranches.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -145,62 +147,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ branch-api ---
-[INFO] Copying 2 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ branch-api ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 45 source files with javac [debug parameters release 17] to target/test-classes
-[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
-  reason: class file for javax.annotation.meta.When not found
-[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
-[INFO] integration.EventsTest.BuildEverythingStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.EventsTest.BuildChangeRequestsStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.EventsTest.BuildTrustedChangeRequestsStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.EventsTest.BuildRevisionStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.EventsTest.IgnoreTargetChangesStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.EventsTest.SkipInitialBuildStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.EventsTest.SkipIAllBuildStrategyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.MultibranchImplementationTest.SCMSourceOwnerListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.NoTriggerOrganizationFolderPropertyTest.ConfigRoundTripDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.OrganizationChildHealthMetricsPropertyTest.ConfigRoundTripDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.OrganizationChildOrphanedItemsPropertyTest.ConfigRoundTripDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.OrganizationChildTriggersPropertyTest.ConfigRoundTripDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.OrganizationFolderTest.OrganizationFolderBranchProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.OrganizationFolderTest.ConfigRoundTripDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.OverrideIndexTriggersJobPropertyTest.ConfigRoundTripDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.ParameterDefinitionBranchPropertyTest.ParameterDefinitionBranchPropertyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.RateLimitBranchPropertyTest.ConcurrentBuildBranchProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.branch.RateLimitBranchPropertyTest.BasicParameterDefinitionBranchProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] integration.BrandingTest.BrandedMockSCMSource.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.BasicBranchProjectFactory.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.BasicBranchProperty.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.BasicDummyStepBranchProperty.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.BasicMultiBranchProject.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.BasicMultiBranchProjectFactory.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.HealthReportingBranchProjectFactory.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.HealthReportingMultiBranchProject.DescriptorImpl indexed under hudson.Extension
-[INFO] integration.harness.MockHealthReportBuildStep.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.branch.harness.BranchProjectFactoryImpl.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.branch.harness.BranchProperty.DescriptorImpl indexed under hudson.Extension
-[INFO] jenkins.branch.harness.MultiBranchImpl.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/harness/BasicBranchProjectFactory.java:[53,12] Generating integration/harness/BasicBranchProjectFactory.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/harness/BasicDummyStepBranchProperty.java:[49,12] Generating integration/harness/BasicDummyStepBranchProperty.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/harness/BasicSCMSourceCriteria.java:[40,12] Generating integration/harness/BasicSCMSourceCriteria.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/harness/HealthReportingBranchProjectFactory.java:[39,12] Generating integration/harness/HealthReportingBranchProjectFactory.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/jenkins/branch/OrganizationFolderTest.java:[84,16] Generating jenkins/branch/OrganizationFolderTest/OrganizationFolderBranchProperty.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/jenkins/branch/OrganizationFolderTest.java:[396,16] Generating jenkins/branch/OrganizationFolderTest/MockFactory.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/jenkins/branch/ParameterDefinitionBranchPropertyTest.java:[208,16] Generating jenkins/branch/ParameterDefinitionBranchPropertyTest/ParameterDefinitionBranchPropertyImpl.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/jenkins/branch/harness/BranchProjectFactoryImpl.java:[42,12] Generating jenkins/branch/harness/BranchProjectFactoryImpl.stapler
-[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
-  reason: class file for javax.annotation.meta.When not found
-[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
-[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
-  reason: class file for javax.annotation.meta.When not found
-[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/EventsTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/EventsTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/harness/BasicDummyStepBranchProperty.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/branch-api/src/test/java/integration/harness/BasicDummyStepBranchProperty.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ branch-api ---
 [INFO] Generating /tmp/plugin-builds/branch-api/target/test-classes/the.hpl
@@ -257,6 +207,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  30.104 s
-[INFO] Finished at: 2025-08-21T18:09:46+02:00
+[INFO] Total time:  01:19 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:05:14+02:00
 [INFO] ------------------------------------------------------------------------

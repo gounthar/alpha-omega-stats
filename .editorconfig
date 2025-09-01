@@ -1,0 +1,16 @@
+root = true
+
+[*]
+charset = utf-8
+insert_final_newline = true
+
+# Default to LF for text files to avoid /usr/bin/env: 'bash\r' issues on Unix
+end_of_line = lf
+
+# Keep Windows-native scripts as CRLF
+[*.{bat,cmd,ps1}]
+end_of_line = crlf
+
+# Ensure Bash/shell scripts always use LF
+[*.sh]
+end_of_line = lf

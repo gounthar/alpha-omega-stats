@@ -11,10 +11,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Groovy CPS Execution                                               [jar]
 [INFO] Pipeline: Groovy                                                   [hpi]
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------< org.jenkins-ci.plugins.workflow:workflow-cps-parent >---------
 [INFO] Building Pipeline: Groovy Parent 999999-SNAPSHOT                   [1/4]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Pipeline: Groovy Parent:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ workflow-cps-parent ---
 [INFO] 
@@ -71,6 +87,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building CpsDefaultGroovyMethods generator 999999-SNAPSHOT         [2/4]
 [INFO]   from dgm-builder/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in CpsDefaultGroovyMethods generator:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ groovy-cps-dgm-builder ---
 [INFO] 
@@ -108,10 +138,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ groovy-cps-dgm-builder ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/workflow-cps/dgm-builder/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ groovy-cps-dgm-builder ---
-[INFO] No sources to compile
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- surefire:3.5.3:test (default-test) @ groovy-cps-dgm-builder ---
 [INFO] Tests are skipped.
@@ -155,6 +185,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Groovy CPS Execution 999999-SNAPSHOT                      [3/4]
 [INFO]   from lib/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Groovy CPS Execution:
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ groovy-cps ---
 [INFO] 
@@ -216,15 +260,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ groovy-cps ---
-[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ groovy-cps ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 17 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] /tmp/plugin-builds/workflow-cps/lib/src/test/java/com/cloudbees/groovy/cps/BasicTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/workflow-cps/lib/src/test/java/com/cloudbees/groovy/cps/BasicTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/workflow-cps/lib/src/test/java/com/cloudbees/groovy/cps/AbstractGroovyCpsTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/workflow-cps/lib/src/test/java/com/cloudbees/groovy/cps/AbstractGroovyCpsTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- surefire:3.5.3:test (default-test) @ groovy-cps ---
 [INFO] Tests are skipped.
@@ -236,6 +275,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building jar: /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps.jar
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ groovy-cps ---
+[WARNING] JAR will be empty - no content was marked for inclusion!
 [INFO] Building jar: /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-tests.jar
 [INFO] 
 [INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ groovy-cps >>>
@@ -265,6 +305,22 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Pipeline: Groovy 999999-SNAPSHOT                          [4/4]
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] *****************************************************************
+[WARNING] * Your build is requesting parallel execution, but this         *
+[WARNING] * project contains the following plugin(s) that have goals not  *
+[WARNING] * marked as thread-safe to support parallel execution.          *
+[WARNING] * While this /may/ work fine, please look for plugin updates    *
+[WARNING] * and/or request plugins be made thread-safe.                   *
+[WARNING] * If reporting an issue, report it against the plugin in        *
+[WARNING] * question, not against Apache Maven.                           *
+[WARNING] *****************************************************************
+[WARNING] The following plugins are not marked as thread-safe in Pipeline: Groovy:
+[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
+[WARNING]   org.kohsuke:access-modifier-checker:1.35
+[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
+[WARNING] 
+[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
+[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ workflow-cps ---
 [INFO] 
@@ -300,12 +356,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Running 'corepack yarn install' in /tmp/plugin-builds/workflow-cps/plugin
 [INFO] ➤ YN0000: · Yarn 4.9.1
 [INFO] ➤ YN0000: ┌ Resolution step
-[INFO] ➤ YN0000: └ Completed
+[INFO] ➤ YN0000: └ Completed in 0s 431ms
 [INFO] ➤ YN0000: ┌ Fetch step
-[INFO] ➤ YN0000: └ Completed in 0s 425ms
+[INFO] ➤ YN0000: └ Completed in 2s 256ms
 [INFO] ➤ YN0000: ┌ Link step
-[INFO] ➤ YN0000: └ Completed in 2s 926ms
-[INFO] ➤ YN0000: · Done in 3s 499ms
+[INFO] ➤ YN0000: └ Completed in 14s 720ms
+[INFO] ➤ YN0000: · Done in 17s 615ms
 [INFO] 
 [INFO] --- frontend:1.15.1:corepack (yarn mvnbuild) @ workflow-cps ---
 [INFO] Running 'corepack yarn mvnbuild' in /tmp/plugin-builds/workflow-cps/plugin
@@ -343,7 +399,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.101.0 compiled with 3 warnings in 5979 ms
+[INFO] webpack 5.101.0 compiled with 3 warnings in 22614 ms
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ workflow-cps ---
 [INFO] Copying 47 resources from src/main/resources to target/classes
@@ -390,13 +446,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[92,12] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.stapler
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsScmFlowDefinition.java:[81,34] Generating org/jenkinsci/plugins/workflow/cps/CpsScmFlowDefinition.stapler
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/steps/LoadStep.java:[25,12] Generating org/jenkinsci/plugins/workflow/cps/steps/LoadStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[91,19] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction/InterpolatedWarnings.javadoc
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[42,8] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.javadoc
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/EnvActionImpl.java:[60,8] Generating org/jenkinsci/plugins/workflow/cps/EnvActionImpl.javadoc
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[188,31] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[42,8] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.javadoc
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[91,19] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction/InterpolatedWarnings.javadoc
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/replay/ReplayAction.java:[405,17] Generating org/jenkinsci/plugins/workflow/cps/replay/ReplayAction/doCheckScriptCompile.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/replay/ReplayAction.java:[400,27] Generating org/jenkinsci/plugins/workflow/cps/replay/ReplayAction/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[188,31] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScript.stapler
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/Snippetizer.java:[487,25] Generating org/jenkinsci/plugins/workflow/cps/Snippetizer/doGenerateSnippet.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/replay/ReplayAction.java:[400,27] Generating org/jenkinsci/plugins/workflow/cps/replay/ReplayAction/doCheckScript.stapler
 [WARNING] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
   reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: Some input files use or override a deprecated API.
@@ -416,141 +472,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ workflow-cps ---
-[INFO] Copying 25 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ workflow-cps ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 82 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] org.jenkinsci.plugins.workflow.DynamicEnvironmentExpanderTest.DynamicEnvStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.DynamicEnvironmentExpanderTest.EnvAdder indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.DynamicEnvironmentExpanderTest.StepEnvAdder indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.DynamicEnvironmentExpanderTest.PrintEnvStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.GraphListenerTest.TestGraphListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.GraphListenerTest.CheckBuildCompletionListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.SerializationTest.PersistenceProblemStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.StepListenerTest.TestStepListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.WorkflowTest.CheckAuth.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.WorkflowTest.CheckAuthSync.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.WorkflowTest.FlowStartNodeListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.ContextVariableSetTest.DecoratorContext indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.ContextVariableSetTest.DecoratorStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.ContextVariableSetTest.GetMessageStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.ContextVariableSetTest.WithStaticMessageStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.ContextVariableSetTest.DC indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.ContextVariableSetTest.WithDynamicMessageStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsBodyExecutionTest.SynchronousExceptionInBodyStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsBodyExecutionTest.RetainsBodyStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsBodyExecutionTest.NoOpBlockStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition2Test.UnsafeParameterStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.SlowToResume.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.BadThingPickleFactory indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.TrustedShell indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.UntrustedShellDecorator indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.BrokenDecorator indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.TestAllowlist indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.BadBodyCallback.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.ShuttingDown indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowExecutionTest.BuildXmlListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsStepContextTest.FailingStepListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsStepContextTest.BadBlockStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsStepContextTest.PassthroughStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsStepContextTest.ClosureCounter indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsStepContextTest.RefersToCycleStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.CpsThreadTest.UnkillableStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.DSLTest.MyJoinStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.DSLTest.Pojo.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.DSLTest.Pops.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.DSLTest.CLStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.RunningFlowActionsTest.TestNotARunningFlowAction indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.SnippetizerTest.AdvancedStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.actions.ArgumentsActionImplTest.NopStep.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.cps.steps.RestartingLoadStepTest.InjectedVariable indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.workflow.SubtypeInjectingStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.TestDurabilityHintProvider indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.AmbiguousEchoLowerStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.AmbiguousEchoUpperStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.California.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Circle.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Colorado.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.CurveMetaStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.DisplaynameWithEscapeCharState.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.EchoResultStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.EchoStringAndDoubleStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Hawaii.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Island.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MonomorphicData.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MonomorphicDataWithSymbol.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MonomorphicListStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MonomorphicListWithSymbolStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MonomorphicStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MonomorphicWithSymbolStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.MultiShape.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Nevada.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.NewYork.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.OrStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Oregon.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.Polygon.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.StateMetaStep.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.chemical.CarbonMonoxide.DescriptorImpl indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.workflow.testMetaStep.chemical.DetectionMetaStep.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/DynamicEnvironmentExpanderTest.java:[87,38] Generating org/jenkinsci/plugins/workflow/DynamicEnvironmentExpanderTest/DynamicEnvStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/DynamicEnvironmentExpanderTest.java:[183,16] Generating org/jenkinsci/plugins/workflow/DynamicEnvironmentExpanderTest/PrintEnvStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/SerializationTest.java:[68,16] Generating org/jenkinsci/plugins/workflow/SerializationTest/PersistenceProblemStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/SubtypeInjectingStep.java:[15,12] Generating org/jenkinsci/plugins/workflow/SubtypeInjectingStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/WorkflowTest.java:[186,38] Generating org/jenkinsci/plugins/workflow/WorkflowTest/CheckAuth.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/WorkflowTest.java:[242,38] Generating org/jenkinsci/plugins/workflow/WorkflowTest/CheckAuthSync.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest.java:[158,38] Generating org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest/DecoratorStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest.java:[212,38] Generating org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest/GetMessageStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest.java:[230,38] Generating org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest/WithStaticMessageStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest.java:[268,38] Generating org/jenkinsci/plugins/workflow/cps/ContextVariableSetTest/WithDynamicMessageStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsBodyExecutionTest.java:[111,16] Generating org/jenkinsci/plugins/workflow/cps/CpsBodyExecutionTest/SynchronousExceptionInBodyStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsBodyExecutionTest.java:[181,38] Generating org/jenkinsci/plugins/workflow/cps/CpsBodyExecutionTest/RetainsBodyStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsBodyExecutionTest.java:[291,16] Generating org/jenkinsci/plugins/workflow/cps/CpsBodyExecutionTest/NoOpBlockStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition2Test.java:[932,16] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition2Test/UnsafeParameterStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecutionTest.java:[452,38] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowExecutionTest/SlowToResume.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecutionTest.java:[881,16] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowExecutionTest/BadBodyCallback.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsStepContextTest.java:[89,16] Generating org/jenkinsci/plugins/workflow/cps/CpsStepContextTest/BadBlockStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsStepContextTest.java:[134,16] Generating org/jenkinsci/plugins/workflow/cps/CpsStepContextTest/PassthroughStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsStepContextTest.java:[193,38] Generating org/jenkinsci/plugins/workflow/cps/CpsStepContextTest/RefersToCycleStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsThreadTest.java:[78,38] Generating org/jenkinsci/plugins/workflow/cps/CpsThreadTest/UnkillableStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/DSLTest.java:[113,38] Generating org/jenkinsci/plugins/workflow/cps/DSLTest/MyJoinStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/DSLTest.java:[155,38] Generating org/jenkinsci/plugins/workflow/cps/DSLTest/Pojo.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/DSLTest.java:[161,38] Generating org/jenkinsci/plugins/workflow/cps/DSLTest/Pops.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/DSLTest.java:[670,38] Generating org/jenkinsci/plugins/workflow/cps/DSLTest/CLStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/SnippetizerTest.java:[190,38] Generating org/jenkinsci/plugins/workflow/cps/SnippetizerTest/AdvancedStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/actions/ArgumentsActionImplTest.java:[709,16] Generating org/jenkinsci/plugins/workflow/cps/actions/ArgumentsActionImplTest/NopStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/AmbiguousEchoLowerStep.java:[45,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/AmbiguousEchoLowerStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/AmbiguousEchoUpperStep.java:[44,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/AmbiguousEchoUpperStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/California.java:[22,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/California.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Circle.java:[34,34] Generating org/jenkinsci/plugins/workflow/testMetaStep/Circle.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Colorado.java:[21,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/Colorado.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/CurveMetaStep.java:[41,34] Generating org/jenkinsci/plugins/workflow/testMetaStep/CurveMetaStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/DisplaynameWithEscapeCharState.java:[15,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/DisplaynameWithEscapeCharState.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/EchoResultStep.java:[21,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/EchoResultStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/EchoStringAndDoubleStep.java:[22,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/EchoStringAndDoubleStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Hawaii.java:[20,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/Hawaii.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Island.java:[21,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/Island.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicData.java:[14,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicData.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicDataWithSymbol.java:[15,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicDataWithSymbol.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicListStep.java:[25,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicListStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicListWithSymbolStep.java:[25,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicListWithSymbolStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicStep.java:[25,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicWithSymbolStep.java:[23,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/MonomorphicWithSymbolStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/MultiShape.java:[38,34] Generating org/jenkinsci/plugins/workflow/testMetaStep/MultiShape.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Nevada.java:[19,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/Nevada.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/NewYork.java:[23,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/NewYork.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/OrStep.java:[20,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/OrStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Oregon.java:[20,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/Oregon.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/Polygon.java:[36,34] Generating org/jenkinsci/plugins/workflow/testMetaStep/Polygon.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/StateMetaStep.java:[28,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/StateMetaStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/chemical/CarbonMonoxide.java:[20,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/chemical/CarbonMonoxide.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/testMetaStep/chemical/DetectionMetaStep.java:[24,12] Generating org/jenkinsci/plugins/workflow/testMetaStep/chemical/DetectionMetaStep.stapler
-[WARNING] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecutionTest.java: unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
-  reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/DynamicEnvironmentExpanderTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/DynamicEnvironmentExpanderTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/FlowDurabilityTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/test/java/org/jenkinsci/plugins/workflow/cps/FlowDurabilityTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ workflow-cps ---
 [INFO] Generating /tmp/plugin-builds/workflow-cps/plugin/target/test-classes/the.hpl
@@ -564,7 +489,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- frontend:1.15.1:corepack (yarn mvntest) @ workflow-cps ---
-[INFO] Skipping execution.
+[INFO] Running 'corepack yarn mvntest' in /tmp/plugin-builds/workflow-cps/plugin
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ workflow-cps ---
 [INFO] Generated /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps/WEB-INF/licenses.xml
@@ -611,13 +536,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Groovy Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Groovy Parent ............................ SUCCESS [  3.301 s]
-[INFO] CpsDefaultGroovyMethods generator .................. SUCCESS [  8.561 s]
-[INFO] Groovy CPS Execution ............................... SUCCESS [ 20.094 s]
-[INFO] Pipeline: Groovy ................................... SUCCESS [ 37.012 s]
+[INFO] Pipeline: Groovy Parent ............................ SUCCESS [ 10.034 s]
+[INFO] CpsDefaultGroovyMethods generator .................. SUCCESS [ 35.921 s]
+[INFO] Groovy CPS Execution ............................... SUCCESS [ 52.480 s]
+[INFO] Pipeline: Groovy ................................... SUCCESS [01:43 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:09 min
-[INFO] Finished at: 2025-08-21T18:08:20+02:00
+[INFO] Total time:  03:25 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:06:56+02:00
 [INFO] ------------------------------------------------------------------------

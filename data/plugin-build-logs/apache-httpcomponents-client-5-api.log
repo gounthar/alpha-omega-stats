@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -------< io.jenkins.plugins:apache-httpcomponents-client-5-api >--------
 [INFO] Building Apache HttpComponents Client 5.x API Plugin 5.5-999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -54,11 +56,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ apache-httpcomponents-client-5-api ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/apache-httpcomponents-client-5-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ apache-httpcomponents-client-5-api ---
-[INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ apache-httpcomponents-client-5-api ---
 [INFO] Generating /tmp/plugin-builds/apache-httpcomponents-client-5-api/target/test-classes/the.hpl
@@ -85,31 +86,30 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Bundling direct dependency httpclient5-cache-5.5.jar
 [INFO] Bundling direct dependency httpclient5-fluent-5.5.jar
 [INFO] Bundling direct dependency httpclient5-5.5.jar
-[INFO] Bundling direct dependency httpcore5-h2-5.3.4.jar
-[INFO] Bundling direct dependency httpcore5-reactive-5.3.4.jar
-[INFO] Bundling direct dependency httpcore5-5.3.4.jar
+[INFO] Bundling direct dependency httpcore5-h2-5.3.5.jar
+[INFO] Bundling direct dependency httpcore5-reactive-5.3.5.jar
+[INFO] Bundling direct dependency httpcore5-5.3.5.jar
 [INFO] Bundling transitive dependency reactive-streams-1.0.4.jar (via httpcore5-reactive)
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [httpclient5, httpclient5-cache, httpclient5-fluent, httpcore5, httpcore5-h2, httpcore5-reactive, reactive-streams]. Review the bundled artifacts and add `<hpi.bundledArtifacts>httpclient5,httpclient5-cache,httpclient5-fluent,httpcore5,httpcore5-h2,httpcore5-reactive,reactive-streams</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/apache-httpcomponents-client-5-api/target/apache-httpcomponents-client-5-api.hpi
 [INFO] Building jar: /tmp/plugin-builds/apache-httpcomponents-client-5-api/target/apache-httpcomponents-client-5-api.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ apache-httpcomponents-client-5-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ apache-httpcomponents-client-5-api >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ apache-httpcomponents-client-5-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ apache-httpcomponents-client-5-api ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ apache-httpcomponents-client-5-api ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ apache-httpcomponents-client-5-api <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ apache-httpcomponents-client-5-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ apache-httpcomponents-client-5-api ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ apache-httpcomponents-client-5-api ---
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ apache-httpcomponents-client-5-api ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom10596437626210082094.xml
+[INFO] Sorting file /tmp/pom12554397054573457839.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -120,6 +120,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.178 s
-[INFO] Finished at: 2025-08-21T18:45:01+02:00
+[INFO] Total time:  23.646 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:30:28+02:00
 [INFO] ------------------------------------------------------------------------

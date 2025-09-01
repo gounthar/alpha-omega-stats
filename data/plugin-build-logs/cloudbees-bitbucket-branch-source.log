@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ------< org.jenkins-ci.plugins:cloudbees-bitbucket-branch-source >------
 [INFO] Building Bitbucket Branch Source Plugin 937.0.0-SNAPSHOT
 [INFO]   from pom.xml
@@ -35,14 +37,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- localizer:1.31:generate (default) @ cloudbees-bitbucket-branch-source ---
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ cloudbees-bitbucket-branch-source ---
-[INFO] Copying 75 resources from src/main/resources to target/classes
+[INFO] Copying 73 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.1:flatten (flatten) @ cloudbees-bitbucket-branch-source ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:cloudbees-bitbucket-branch-source:hpi:937.0.0-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ cloudbees-bitbucket-branch-source ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 178 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 198 source files with javac [debug parameters release 17] to target/classes
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMNavigator.DescriptorImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource.DescriptorImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.client.BitbucketCloudApiFactory indexed under hudson.Extension
@@ -50,6 +52,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.filesystem.BitbucketSCMFileSystem.BuilderImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.hooks.BitbucketSCMSourcePushHookReceiver indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.hooks.WebhookAutoRegisterListener indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.buildstatus.CloudBuildStatusNotifier indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.buildstatus.ServerBuildStatusNotifier indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.casc.BitbucketCloudEndpointConfigurator indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.casc.BitbucketServerEndpointConfigurator indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.credentials.BitbucketAccessTokenAuthenticatorSource indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.credentials.BitbucketClientCertificateAuthenticatorSource indexed under hudson.Extension
@@ -63,6 +68,19 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension.DescriptorImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.notifier.BitbucketBuildStatusNotifications.JobCheckoutListener indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.notifier.BitbucketBuildStatusNotifications.JobCompletedListener indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.cloud.CloudPullRequestWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.cloud.CloudPushWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.cloud.CloudWebhookConfiguration.DescriptorImpl indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.cloud.CloudWebhookManager indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.plugin.PluginPullRequestWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.plugin.PluginPushWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.plugin.PluginWebhookConfiguration.DescriptorImpl indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.plugin.PluginWebhookManager indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.server.ServerPingWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.server.ServerPullRequestWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.server.ServerPushWebhookProcessor indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.server.ServerWebhookConfiguration.DescriptorImpl indexed under hudson.Extension
+[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.webhook.server.ServerWebhookManager indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.server.client.BitbucketServerApiFactory indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.trait.BitbucketBuildStatusNotificationsTrait.DescriptorImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.trait.BranchDiscoveryTrait.DescriptorImpl indexed under hudson.Extension
@@ -83,15 +101,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.trait.TagDiscoveryTrait.TagSCMHeadAuthority.DescriptorImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.trait.WebhookConfigurationTrait.DescriptorImpl indexed under hudson.Extension
 [INFO] com.cloudbees.jenkins.plugins.bitbucket.trait.WebhookRegistrationTrait.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[123,12] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[229,12] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[121,12] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[227,12] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/avatars/BitbucketRepoAvatarMetadataAction.java:[53,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/avatars/BitbucketRepoAvatarMetadataAction.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/avatars/BitbucketTeamAvatarMetadataAction.java:[47,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/avatars/BitbucketTeamAvatarMetadataAction.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.java:[100,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[141,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.java:[91,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[118,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/BitbucketEnvVarExtension.java:[45,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/extension/BitbucketEnvVarExtension.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/FallbackToOtherRepositoryGitSCMExtension.java:[54,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/extension/FallbackToOtherRepositoryGitSCMExtension.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtension.java:[66,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtension.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/cloud/CloudWebhookConfiguration.java:[48,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/cloud/CloudWebhookConfiguration.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/plugin/PluginWebhookConfiguration.java:[85,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/plugin/PluginWebhookConfiguration.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/server/ServerWebhookConfiguration.java:[48,12] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/server/ServerWebhookConfiguration.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/BitbucketBuildStatusNotificationsTrait.java:[58,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/BitbucketBuildStatusNotificationsTrait.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/BranchDiscoveryTrait.java:[76,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/BranchDiscoveryTrait.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/DiscardOldBranchTrait.java:[57,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/DiscardOldBranchTrait.stapler
@@ -106,45 +127,59 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/SSHCheckoutTrait.java:[81,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/SSHCheckoutTrait.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/ShowBitbucketAvatarTrait.java:[41,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/ShowBitbucketAvatarTrait.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/TagDiscoveryTrait.java:[54,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/TagDiscoveryTrait.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/WebhookConfigurationTrait.java:[57,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/WebhookConfigurationTrait.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/WebhookConfigurationTrait.java:[54,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/WebhookConfigurationTrait.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/WebhookRegistrationTrait.java:[61,12] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/WebhookRegistrationTrait.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1062,38] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doCheckServerUrl.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointDescriptor.java:[78,25] Generating com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointDescriptor/doFillHookSignatureCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1124,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doFillMirrorIdItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1046,31] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/plugin/PluginWebhookConfiguration.java:[161,29] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/plugin/PluginWebhookConfiguration/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1081,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doFillRepositoryItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1101,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doFillMirrorIdItems.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/SSHCheckoutTrait.java:[165,31] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/SSHCheckoutTrait/DescriptorImpl/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1104,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doFillRepositoryItems.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1056,31] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[256,31] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint/DescriptorImpl/doCheckEnableHookSignature.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[425,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[431,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doFillMirrorIdItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[222,31] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint/DescriptorImpl/doCheckServerURL.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[403,38] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/AbstractBitbucketWebhookConfiguration.java:[150,38] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/AbstractBitbucketWebhookConfiguration/AbstractBitbucketWebhookDescriptorImpl/doCheckEndpointJenkinsRootURL.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[416,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doFillMirrorIdItems.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/DiscardOldBranchTrait.java:[111,31] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/DiscardOldBranchTrait/DescriptorImpl/doCheckKeepForDays.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[405,38] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointDescriptor.java:[95,34] Generating com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointDescriptor/doCheckBitbucketJenkinsRootUrl.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[412,38] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doCheckMirrorId.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1099,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[299,38] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint/DescriptorImpl/doCheckServerUrl.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/cloud/CloudWebhookConfiguration.java:[101,29] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/cloud/CloudWebhookConfiguration/DescriptorImpl/doFillHookSignatureCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1076,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/trait/SSHCheckoutTrait.java:[135,29] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/SSHCheckoutTrait/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointDescriptor.java:[58,25] Generating com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointDescriptor/doFillCredentialsIdItems.stapler
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1214,21] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1204,23] getDate() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[777,24] getTeamAvatar() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[191,19] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[228,13] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpoint.java:[229,40] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/server/ServerWebhookConfiguration.java:[106,29] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/server/ServerWebhookConfiguration/DescriptorImpl/doFillHookSignatureCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[410,29] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1052,38] Generating com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource/DescriptorImpl/doCheckServerUrl.stapler
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/cloud/CloudWebhookConfiguration.java:[89,29] Generating com/cloudbees/jenkins/plugins/bitbucket/impl/webhook/cloud/CloudWebhookConfiguration/DescriptorImpl/doFillCredentialsIdItems.stapler
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1191,21] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSource.java:[1181,23] getDate() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/client/AbstractBitbucketApi.java:[361,45] getWebHooks() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/client/AbstractBitbucketApi.java:[383,17] removeCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/client/AbstractBitbucketApi.java:[375,17] updateCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/client/AbstractBitbucketApi.java:[369,17] registerCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[445,17] postBuildStatus(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketBuildStatus) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[619,24] getTeamAvatar() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[98,8] getWebHooks() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[98,8] removeCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[98,8] updateCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/BitbucketServerAPIClient.java:[98,8] registerCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/AbstractBitbucketEndpoint.java:[98,19] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.api.endpoint.BitbucketEndpoint has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/AbstractBitbucketEndpoint.java:[137,25] getCredentialsId() in com.cloudbees.jenkins.plugins.bitbucket.api.endpoint.BitbucketEndpoint has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/AbstractBitbucketEndpoint.java:[79,17] setManageHooks(boolean,java.lang.String) in com.cloudbees.jenkins.plugins.bitbucket.api.endpoint.BitbucketEndpoint has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/AbstractBitbucketEndpoint.java:[118,26] isManageHooks() in com.cloudbees.jenkins.plugins.bitbucket.api.endpoint.BitbucketEndpoint has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/branch/BitbucketServerCommit.java:[120,17] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/branch/BitbucketServerCommit.java:[114,19] getDate() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMNavigator.java:[232,42] lookupEndpointJenkinsRootURL(java.lang.String) in com.cloudbees.jenkins.plugins.bitbucket.api.endpoint.BitbucketEndpointProvider has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/GitClientAuthenticatorExtension.java:[39,9] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[582,24] getTeamAvatar() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/api/endpoint/BitbucketEndpointProvider.java:[112,22] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.api.endpoint.BitbucketEndpoint has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[529,17] postBuildStatus(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketBuildStatus) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[577,24] getTeamAvatar() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[515,40] getWebHooks() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[498,17] removeCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[484,17] updateCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
+[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/BitbucketCloudApiClient.java:[472,17] registerCommitWebHook(com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketWebHook) in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketApi has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/branch/BitbucketCloudCommit.java:[108,17] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/branch/BitbucketCloudCommit.java:[102,19] getDate() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/branch/BitbucketCloudBranch.java:[139,39] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/pullrequest/BitbucketCloudPullRequestCommit.java:[78,17] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/client/pullrequest/BitbucketCloudPullRequestCommit.java:[69,19] getDate() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.java:[135,19] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.java:[195,13] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpoint.java:[196,40] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/repository/BitbucketServerRepository.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/server/client/repository/BitbucketServerRepository.java: Recompile with -Xlint:deprecation for details.
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/AbstractBitbucketEndpoint.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/AbstractBitbucketEndpoint.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceRequest.java: Some input files use unchecked or unsafe operations.
 [INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/main/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceRequest.java: Recompile with -Xlint:unchecked for details.
 [INFO] 
@@ -158,87 +193,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ cloudbees-bitbucket-branch-source ---
-[INFO] Copying 118 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ cloudbees-bitbucket-branch-source ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 66 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] com.cloudbees.jenkins.plugins.bitbucket.BranchScanningIntegrationTest.BranchProperty.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.plugins.bitbucket.SCMTraitCommitTest.CommitVerifierTrait.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.plugins.bitbucket.trait.SCMNavigatorIntegrationTest.MultiBranchProjectFactoryImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] com.cloudbees.jenkins.plugins.bitbucket.MockMultiBranchProjectImpl.DescriptorImpl indexed under hudson.Extension
-[INFO] com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketMockApiFactory indexed under hudson.Extension
-[INFO] com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.DummyEndpointConfiguration.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/trait/SCMNavigatorIntegrationTest.java:[84,16] Generating com/cloudbees/jenkins/plugins/bitbucket/trait/SCMNavigatorIntegrationTest/MultiBranchProjectFactoryImpl.stapler
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[232,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[238,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[241,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[270,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[277,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[284,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BitbucketSCMSourceTest.java:[291,28] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/SCMTraitCommitTest.java:[133,67] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[137,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketCloudEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[161,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketCloudEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[180,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketCloudEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[191,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[203,32] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[213,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[224,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[234,32] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[236,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[247,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[257,32] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[259,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[270,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[280,32] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[282,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[293,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[303,32] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[305,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[316,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[329,32] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[331,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[342,39] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/BitbucketSCMSourcePushHookReceiverTest.java:[350,73] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/WebhookConfigurationTest.java:[57,19] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/hooks/WebhookConfigurationTest.java:[69,19] getEndpointJenkinsRootURL() in com.cloudbees.jenkins.plugins.bitbucket.BitbucketSCMSource has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[45,28] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketCloudEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[49,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[52,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[57,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[64,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[65,28] getEndpointJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[70,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[71,28] getEndpointJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketCloudEndpointTest.java:[78,48] getEndpointJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[43,28] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[48,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[50,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[55,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[62,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[63,28] getEndpointJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[68,28] getBitbucketJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[69,28] getEndpointJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/BitbucketServerEndpointTest.java:[77,109] getEndpointJenkinsRootUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/endpoint/DummyEndpointConfiguration.java:[45,19] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.AbstractBitbucketEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtensionTest.java:[38,37] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtensionTest.java:[40,41] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtensionTest.java:[42,21] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtensionTest.java:[44,44] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtensionTest.java:[46,21] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/extension/GitClientAuthenticatorExtensionTest.java:[48,44] GitClientAuthenticatorExtension(java.lang.String,com.cloudbees.plugins.credentials.common.StandardUsernameCredentials) in com.cloudbees.jenkins.plugins.bitbucket.impl.extension.GitClientAuthenticatorExtension has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/notifier/BitbucketBuildStatusNotificationsJUnit5Test.java:[285,56] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketServerEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/notifier/BitbucketBuildStatusNotificationsJUnit5Test.java:[321,56] getServerUrl() in com.cloudbees.jenkins.plugins.bitbucket.impl.endpoint.BitbucketCloudEndpoint has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/impl/notifier/BitbucketBuildStatusNotificationsTest.java:[124,20] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/integration/ScanningFailuresTest.java:[153,20] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/integration/ScanningFailuresTest.java:[226,20] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/integration/ScanningFailuresTest.java:[286,20] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[WARNING] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/integration/ScanningFailuresTest.java:[350,20] getDateMillis() in com.cloudbees.jenkins.plugins.bitbucket.api.BitbucketCommit has been deprecated and marked for removal
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BranchScanningTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/BranchScanningTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/MockMultiBranchProjectImpl.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/cloudbees-bitbucket-branch-source/src/test/java/com/cloudbees/jenkins/plugins/bitbucket/MockMultiBranchProjectImpl.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ cloudbees-bitbucket-branch-source ---
 [INFO] Generating /tmp/plugin-builds/cloudbees-bitbucket-branch-source/target/test-classes/the.hpl
@@ -255,150 +213,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  23.438 s
-[INFO] Finished at: 2025-08-21T18:40:07+02:00
+[INFO] Total time:  47.476 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:27:45+02:00
 [INFO] ------------------------------------------------------------------------
----------------------------------------------------
-constituent[0]: file:/home/poddingue/.sdkman/candidates/maven/current/conf/logging/
-constituent[1]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-cipher-2.0.jar
-constituent[2]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-shared-utils-3.4.2.jar
-constituent[3]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-settings-builder-3.9.10.jar
-constituent[4]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-provider-api-3.5.3.jar
-constituent[5]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-model-builder-3.9.10.jar
-constituent[6]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-plugin-api-3.9.10.jar
-constituent[7]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/httpclient-4.5.14.jar
-constituent[8]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/slf4j-api-1.7.36.jar
-constituent[9]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-core-3.9.10.jar
-constituent[10]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-repository-metadata-3.9.10.jar
-constituent[11]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-impl-1.9.23.jar
-constituent[12]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-sec-dispatcher-2.0.jar
-constituent[13]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-provider-3.9.10.jar
-constituent[14]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-builder-support-3.9.10.jar
-constituent[15]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-transport-http-1.9.23.jar
-constituent[16]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-transport-wagon-1.9.23.jar
-constituent[17]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-http-shared-3.5.3.jar
-constituent[18]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-settings-3.9.10.jar
-constituent[19]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/jspecify-1.0.0.jar
-constituent[20]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-compat-3.9.10.jar
-constituent[21]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-connector-basic-1.9.23.jar
-constituent[22]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.2.jar
-constituent[23]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-transport-file-1.9.23.jar
-constituent[24]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/httpcore-4.4.16.jar
-constituent[25]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-model-3.9.10.jar
-constituent[26]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-artifact-3.9.10.jar
-constituent[27]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-component-annotations-2.2.0.jar
-constituent[28]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-slf4j-provider-3.9.10.jar
-constituent[29]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-http-3.5.3.jar
-constituent[30]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/aopalliance-1.0.jar
-constituent[31]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/failureaccess-1.0.3.jar
-constituent[32]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/javax.annotation-api-1.3.2.jar
-constituent[33]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/jcl-over-slf4j-1.7.36.jar
-constituent[34]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-api-1.9.23.jar
-constituent[35]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/commons-codec-1.18.0.jar
-constituent[36]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-embedder-3.9.10.jar
-constituent[37]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-interpolation-1.28.jar
-constituent[38]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-util-1.9.23.jar
-constituent[39]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-named-locks-1.9.23.jar
-constituent[40]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/org.eclipse.sisu.inject-0.9.0.M4.jar
-constituent[41]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.4.8-jre.jar
-constituent[42]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/javax.inject-1.jar
-constituent[43]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/asm-9.8.jar
-constituent[44]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-spi-1.9.23.jar
-constituent[45]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-file-3.5.3.jar
-constituent[46]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/org.eclipse.sisu.plexus-0.9.0.M4.jar
-constituent[47]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-utils-3.6.0.jar
-constituent[48]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar
-constituent[49]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/commons-cli-1.9.0.jar
----------------------------------------------------
-Exception in thread "main" BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
-	at org.codehaus.groovy.control.CompilationUnit$ISourceUnitOperation.doPhaseOperation(CompilationUnit.java:901)
-	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:692)
-	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:666)
-	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:365)
-	at groovy.lang.GroovyClassLoader.lambda$parseClass$2(GroovyClassLoader.java:314)
-	at org.codehaus.groovy.runtime.memoize.StampedCommonCache.compute(StampedCommonCache.java:163)
-	at org.codehaus.groovy.runtime.memoize.StampedCommonCache.getAndPut(StampedCommonCache.java:154)
-	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:314)
-	at groovy.lang.GroovyShell.parseClass(GroovyShell.java:572)
-	at groovy.lang.GroovyShell.parse(GroovyShell.java:585)
-	at groovy.lang.GroovyShell.parse(GroovyShell.java:639)
-	at groovy.lang.GroovyShell.parse(GroovyShell.java:643)
-	at com.cloudbees.maven.license.ProcessMojo.execute(ProcessMojo.java:154)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
-	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
-	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 69
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:200)
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:180)
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:166)
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:288)
-	at org.codehaus.groovy.ast.decompiled.AsmDecompiler.parseClass(AsmDecompiler.java:83)
-	at org.codehaus.groovy.control.ClassNodeResolver.findDecompiled(ClassNodeResolver.java:255)
-	at org.codehaus.groovy.control.ClassNodeResolver.tryAsLoaderClassOrScript(ClassNodeResolver.java:193)
-	at org.codehaus.groovy.control.ClassNodeResolver.findClassNode(ClassNodeResolver.java:175)
-	at org.codehaus.groovy.control.ClassNodeResolver.resolveName(ClassNodeResolver.java:129)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveToOuter(ResolveVisitor.java:782)
-	at org.codehaus.groovy.control.ResolveVisitor.resolve(ResolveVisitor.java:423)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveFromDefaultImports(ResolveVisitor.java:577)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveFromDefaultImports(ResolveVisitor.java:541)
-	at org.codehaus.groovy.control.ResolveVisitor.resolve(ResolveVisitor.java:422)
-	at org.codehaus.groovy.control.ResolveVisitor.resolve(ResolveVisitor.java:384)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveOrFail(ResolveVisitor.java:352)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveOrFail(ResolveVisitor.java:341)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveOrFail(ResolveVisitor.java:337)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:817)
-	at org.codehaus.groovy.control.ResolveVisitor.transformDeclarationExpression(ResolveVisitor.java:1173)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:805)
-	at org.codehaus.groovy.ast.ClassCodeExpressionTransformer.visitExpressionStatement(ClassCodeExpressionTransformer.java:129)
-	at org.codehaus.groovy.ast.stmt.ExpressionStatement.visit(ExpressionStatement.java:41)
-	at org.codehaus.groovy.ast.CodeVisitorSupport.visitBlockStatement(CodeVisitorSupport.java:86)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitBlockStatement(ClassCodeVisitorSupport.java:168)
-	at org.codehaus.groovy.control.ResolveVisitor.visitBlockStatement(ResolveVisitor.java:1386)
-	at org.codehaus.groovy.ast.stmt.BlockStatement.visit(BlockStatement.java:72)
-	at org.codehaus.groovy.control.ResolveVisitor.transformClosureExpression(ResolveVisitor.java:1125)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:811)
-	at org.codehaus.groovy.ast.expr.Expression.transformExpressions(Expression.java:49)
-	at org.codehaus.groovy.ast.expr.ArgumentListExpression.transformExpression(ArgumentListExpression.java:67)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:818)
-	at org.codehaus.groovy.control.ResolveVisitor.transformMethodCallExpression(ResolveVisitor.java:1147)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:809)
-	at org.codehaus.groovy.ast.ClassCodeExpressionTransformer.visitExpressionStatement(ClassCodeExpressionTransformer.java:129)
-	at org.codehaus.groovy.ast.stmt.ExpressionStatement.visit(ExpressionStatement.java:41)
-	at org.codehaus.groovy.ast.CodeVisitorSupport.visitBlockStatement(CodeVisitorSupport.java:86)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitBlockStatement(ClassCodeVisitorSupport.java:168)
-	at org.codehaus.groovy.control.ResolveVisitor.visitBlockStatement(ResolveVisitor.java:1386)
-	at org.codehaus.groovy.ast.stmt.BlockStatement.visit(BlockStatement.java:72)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitClassCodeContainer(ClassCodeVisitorSupport.java:142)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitConstructorOrMethod(ClassCodeVisitorSupport.java:115)
-	at org.codehaus.groovy.ast.ClassCodeExpressionTransformer.visitConstructorOrMethod(ClassCodeExpressionTransformer.java:87)
-	at org.codehaus.groovy.control.ResolveVisitor.visitConstructorOrMethod(ResolveVisitor.java:329)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitMethod(ClassCodeVisitorSupport.java:110)
-	at org.codehaus.groovy.ast.ClassNode.visitMethods(ClassNode.java:1132)
-	at org.codehaus.groovy.ast.ClassNode.visitContents(ClassNode.java:1125)
-	at org.codehaus.groovy.control.ResolveVisitor.visitClass(ResolveVisitor.java:1315)
-	at org.codehaus.groovy.control.ResolveVisitor.startResolving(ResolveVisitor.java:258)
-	at org.codehaus.groovy.control.CompilationUnit.lambda$addPhaseOperations$4(CompilationUnit.java:218)
-	at org.codehaus.groovy.control.CompilationUnit$ISourceUnitOperation.doPhaseOperation(CompilationUnit.java:897)
-	... 37 more
+[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69 -> [Help 1]
+[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/GroovyBugError

@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:run-condition >----------------
 [INFO] Building Run Condition Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -116,14 +118,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/logic/ConditionContainer.java:[43,12] Generating org/jenkins_ci/plugins/run_condition/logic/ConditionContainer.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/logic/Not.java:[42,12] Generating org/jenkins_ci/plugins/run_condition/logic/Not.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/logic/Or.java:[41,12] Generating org/jenkins_ci/plugins/run_condition/logic/Or.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition.java:[93,31] Generating org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition/NumericalComparisonConditionDescriptor/doCheckRhs.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[147,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckLatest.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[96,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckWorstResult.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/FileExistsCondition.java:[80,31] Generating org/jenkins_ci/plugins/run_condition/core/FileExistsCondition/FileExistsConditionDescriptor/doCheckFile.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/BooleanCondition.java:[72,31] Generating org/jenkins_ci/plugins/run_condition/core/BooleanCondition/BooleanConditionDescriptor/doCheckToken.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/FileExistsCondition.java:[80,31] Generating org/jenkins_ci/plugins/run_condition/core/FileExistsCondition/FileExistsConditionDescriptor/doCheckFile.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition.java:[93,31] Generating org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition/NumericalComparisonConditionDescriptor/doCheckRhs.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[144,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckEarliest.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[96,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckWorstResult.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[90,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckBestResult.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition.java:[89,31] Generating org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition/NumericalComparisonConditionDescriptor/doCheckLhs.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[144,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckEarliest.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/BuildStepRunner.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/BuildStepRunner.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/common/BaseDirectory.java: Some input files use unchecked or unsafe operations.
@@ -141,13 +143,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ run-condition ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/run-condition/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ run-condition ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 6 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] /tmp/plugin-builds/run-condition/src/test/java/org/jenkins_ci/plugins/run_condition/core/CauseConditionTest.java: /tmp/plugin-builds/run-condition/src/test/java/org/jenkins_ci/plugins/run_condition/core/CauseConditionTest.java uses or overrides a deprecated API.
-[INFO] /tmp/plugin-builds/run-condition/src/test/java/org/jenkins_ci/plugins/run_condition/core/CauseConditionTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ run-condition ---
 [INFO] Generating /tmp/plugin-builds/run-condition/target/test-classes/the.hpl
@@ -203,6 +202,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  21.398 s
-[INFO] Finished at: 2025-08-21T18:47:06+02:00
+[INFO] Total time:  53.394 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:31:57+02:00
 [INFO] ------------------------------------------------------------------------

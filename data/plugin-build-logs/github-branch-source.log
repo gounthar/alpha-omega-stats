@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ------------< org.jenkins-ci.plugins:github-branch-source >-------------
 [INFO] Building GitHub Branch Source Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -32,14 +34,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- localizer:1.31:generate (default) @ github-branch-source ---
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ github-branch-source ---
-[INFO] Copying 65 resources from src/main/resources to target/classes
+[INFO] Copying 78 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.2:flatten (flatten) @ github-branch-source ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:github-branch-source:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ github-branch-source ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 67 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 76 source files with javac [debug parameters release 17] to target/classes
 [WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -84,6 +86,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] org.jenkinsci.plugins.github_branch_source.TagDiscoveryTrait.TagSCMHeadAuthority.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.github_branch_source.TeamSlugTrait.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.github_branch_source.TopicsTrait.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github_branch_source.app_credentials.AccessInferredOwner.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github_branch_source.app_credentials.AccessInferredRepository.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github_branch_source.app_credentials.AccessSpecifiedRepositories.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkinsci.plugins.github_branch_source.app_credentials.MigrationAdminMonitor indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/BranchDiscoveryTrait.java:[73,12] Generating org/jenkinsci/plugins/github_branch_source/BranchDiscoveryTrait.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Endpoint.java:[62,12] Generating org/jenkinsci/plugins/github_branch_source/Endpoint.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/ExcludeArchivedRepositoriesTrait.java:[20,12] Generating org/jenkinsci/plugins/github_branch_source/ExcludeArchivedRepositoriesTrait.stapler
@@ -95,10 +101,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/ForkPullRequestDiscoveryTrait.java:[320,16] Generating org/jenkinsci/plugins/github_branch_source/ForkPullRequestDiscoveryTrait/TrustPermission.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/ForkPullRequestDiscoveryTrait.java:[362,16] Generating org/jenkinsci/plugins/github_branch_source/ForkPullRequestDiscoveryTrait/TrustEveryone.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/ForkPullRequestDiscoveryTrait.java:[85,12] Generating org/jenkinsci/plugins/github_branch_source/ForkPullRequestDiscoveryTrait.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.java:[96,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.java:[127,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubBranchFilter.java:[44,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubBranchFilter.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubPullRequestFilter.java:[44,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubPullRequestFilter.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.java:[226,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.java:[233,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[306,12] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/IgnoreDraftPullRequestFilterTrait.java:[22,12] Generating org/jenkinsci/plugins/github_branch_source/IgnoreDraftPullRequestFilterTrait.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/OriginPullRequestDiscoveryTrait.java:[78,12] Generating org/jenkinsci/plugins/github_branch_source/OriginPullRequestDiscoveryTrait.stapler
@@ -106,24 +112,28 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/TagDiscoveryTrait.java:[51,12] Generating org/jenkinsci/plugins/github_branch_source/TagDiscoveryTrait.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/TeamSlugTrait.java:[29,12] Generating org/jenkinsci/plugins/github_branch_source/TeamSlugTrait.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/TopicsTrait.java:[29,12] Generating org/jenkinsci/plugins/github_branch_source/TopicsTrait.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/app_credentials/AccessInferredOwner.java:[11,12] Generating org/jenkinsci/plugins/github_branch_source/app_credentials/AccessInferredOwner.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/app_credentials/AccessInferredRepository.java:[25,12] Generating org/jenkinsci/plugins/github_branch_source/app_credentials/AccessInferredRepository.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/app_credentials/AccessSpecifiedRepositories.java:[39,12] Generating org/jenkinsci/plugins/github_branch_source/app_credentials/AccessSpecifiedRepositories.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/PullRequestSCMRevision.java:[39,8] Generating org/jenkinsci/plugins/github_branch_source/PullRequestSCMRevision.javadoc
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[151,8] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.javadoc
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2205,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckBuildOriginPRHead.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.java:[1812,29] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.java:[681,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials/DescriptorImpl/doCheckAppID.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2301,29] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doFillRepositoryItems.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2184,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckBuildOriginBranchWithPR.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2222,17] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckBuildForkPRHead.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/SSHCheckoutTrait.java:[179,31] Generating org/jenkinsci/plugins/github_branch_source/SSHCheckoutTrait/DescriptorImpl/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2165,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckIncludes.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2174,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckScanCredentialsId.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.java:[695,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials/DescriptorImpl/doTestConnection.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2097,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Endpoint.java:[132,31] Generating org/jenkinsci/plugins/github_branch_source/Endpoint/DescriptorImpl/doCheckApiUri.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2116,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doValidateRepositoryUrlAndCredentials.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2259,29] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doFillOrganizationItems.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2163,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckIncludes.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2299,29] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doFillRepositoryItems.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Endpoint.java:[132,31] Generating org/jenkinsci/plugins/github_branch_source/Endpoint/DescriptorImpl/doCheckApiUri.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/app_credentials/AccessSpecifiedRepositories.java:[79,31] Generating org/jenkinsci/plugins/github_branch_source/app_credentials/AccessSpecifiedRepositories/DescriptorImpl/doCheckRepositories.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.java:[1831,29] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2257,29] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doFillOrganizationItems.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.java:[817,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials/DescriptorImpl/doCheckAppID.stapler
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Endpoint.java:[171,31] Generating org/jenkinsci/plugins/github_branch_source/Endpoint/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.java:[1794,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2097,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2172,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckScanCredentialsId.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials.java:[831,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubAppCredentials/DescriptorImpl/doTestConnection.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2220,17] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckBuildForkPRHead.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/SSHCheckoutTrait.java:[179,31] Generating org/jenkinsci/plugins/github_branch_source/SSHCheckoutTrait/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2182,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckBuildOriginBranchWithPR.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSource.java:[2203,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMSource/DescriptorImpl/doCheckBuildOriginPRHead.stapler
+[INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator.java:[1813,31] Generating org/jenkinsci/plugins/github_branch_source/GitHubSCMNavigator/DescriptorImpl/doCheckCredentialsId.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -132,7 +142,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
-[WARNING] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Connector.java:[325,32] deprecated item is not annotated with @Deprecated
+[WARNING] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Connector.java:[338,32] deprecated item is not annotated with @Deprecated
 [WARNING] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/PullRequestSCMHead.java:[268,19] deprecated item is not annotated with @Deprecated
 [WARNING] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/PullRequestSCMHead.java:[328,19] deprecated item is not annotated with @Deprecated
 [INFO] /tmp/plugin-builds/github-branch-source/src/main/java/org/jenkinsci/plugins/github_branch_source/Connector.java: Some input files use or override a deprecated API.
@@ -152,18 +162,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ github-branch-source ---
-[INFO] Copying 332 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ github-branch-source ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 35 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] org.jenkinsci.plugins.github_branch_source.EndpointTest.TestRoot indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.github_branch_source.EndpointTest.CrumbExcluder indexed under org.jvnet.hudson.test.TestExtension
-[INFO] org.jenkinsci.plugins.github_branch_source.EventsTest.TestSCMEventListener indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/github-branch-source/src/test/java/org/jenkinsci/plugins/github_branch_source/AbstractGitHubWireMockTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/github-branch-source/src/test/java/org/jenkinsci/plugins/github_branch_source/AbstractGitHubWireMockTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/github-branch-source/src/test/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSourceTraitsTest.java: Some input files use unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/github-branch-source/src/test/java/org/jenkinsci/plugins/github_branch_source/GitHubSCMSourceTraitsTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ github-branch-source ---
 [INFO] Generating /tmp/plugin-builds/github-branch-source/target/test-classes/the.hpl
@@ -211,8 +213,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ github-branch-source ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Spotless.Java is keeping 100 files clean - 0 needs changes to be clean, 100 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom6817893226650999955.xml
+[INFO] Spotless.Java is keeping 113 files clean - 0 needs changes to be clean, 113 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom10867972372004095913.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -223,6 +225,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  36.222 s
-[INFO] Finished at: 2025-08-21T18:24:12+02:00
+[INFO] Total time:  01:39 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:17:33+02:00
 [INFO] ------------------------------------------------------------------------

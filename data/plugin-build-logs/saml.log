@@ -5,7 +5,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [WARNING] 
 [WARNING] Some problems were encountered while building the effective model for org.jenkins-ci.plugins:saml:hpi:4.999999-SNAPSHOT
-[WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: io.jenkins.tools.bom:bom-${jenkins.baseline}.x:pom -> duplicate declaration of version 5208.vb_69e9d049f68 @ org.jenkins-ci.plugins:saml:${revision}.${changelist}, /tmp/plugin-builds/saml/pom.xml, line 88, column 19
+[WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: io.jenkins.tools.bom:bom-${jenkins.baseline}.x:pom -> duplicate declaration of version 5294.va_d2e144c80e1 @ org.jenkins-ci.plugins:saml:${revision}.${changelist}, /tmp/plugin-builds/saml/pom.xml, line 88, column 19
 [WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.santuario:xmlsec:jar -> duplicate declaration of version 4.0.4 @ org.jenkins-ci.plugins:saml:${revision}.${changelist}, /tmp/plugin-builds/saml/pom.xml, line 105, column 19
 [WARNING] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.velocity:velocity-engine-core:jar -> duplicate declaration of version 2.4.1 @ org.jenkins-ci.plugins:saml:${revision}.${changelist}, /tmp/plugin-builds/saml/pom.xml, line 117, column 19
 [WARNING] 
@@ -14,6 +14,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
 [WARNING] 
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------------< org.jenkins-ci.plugins:saml >---------------------
 [INFO] Building SAML Plugin 4.999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -21,10 +23,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ saml ---
 [INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ saml ---
 [INFO] Created marker file /tmp/plugin-builds/saml/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ saml ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ saml ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -72,26 +74,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/conf/Attribute.java:[27,12] Generating org/jenkinsci/plugins/saml/conf/Attribute.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/user/LoginDetailsProperty.java:[50,12] Generating org/jenkinsci/plugins/saml/user/LoginDetailsProperty.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/user/SamlCustomProperty.java:[113,12] Generating org/jenkinsci/plugins/saml/user/SamlCustomProperty.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[211,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doCheckXml.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[221,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doCheckUrl.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[131,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckMaximumSessionLifetime.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[718,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckMaximumAuthenticationLifetime.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[166,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckPrivateKeyAlias.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[186,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doTestKeyStore.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[235,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doTestIdpMetadataURL.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[711,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckEmailAttributeName.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[172,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckKeystorePassword.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[205,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doCheckPeriod.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[697,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckGroupsAttributeName.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[195,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doTestIdpMetadata.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[112,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckAuthnContextClassRef.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[119,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckSpEntityId.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[704,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckUsernameAttributeName.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[125,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckNameIdPolicyFormat.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[685,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckLogoutUrl.stapler
-[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[160,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckKeystorePath.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[179,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckPrivateKeyPassword.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[718,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckMaximumAuthenticationLifetime.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[125,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckNameIdPolicyFormat.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[697,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckGroupsAttributeName.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[211,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doCheckXml.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[166,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckPrivateKeyAlias.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[691,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckDisplayNameAttributeName.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[711,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckEmailAttributeName.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[685,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckLogoutUrl.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[172,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckKeystorePassword.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[186,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doTestKeyStore.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java:[704,31] Generating org/jenkinsci/plugins/saml/SamlSecurityRealm/DescriptorImpl/doCheckUsernameAttributeName.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[195,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doTestIdpMetadata.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[131,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckMaximumSessionLifetime.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlEncryptionData.java:[160,31] Generating org/jenkinsci/plugins/saml/SamlEncryptionData/DescriptorImpl/doCheckKeystorePath.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlAdvancedConfiguration.java:[119,31] Generating org/jenkinsci/plugins/saml/SamlAdvancedConfiguration/DescriptorImpl/doCheckSpEntityId.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[205,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doCheckPeriod.stapler
+[INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java:[221,31] Generating org/jenkinsci/plugins/saml/IdpMetadataConfiguration/DescriptorImpl/doCheckUrl.stapler
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java: /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/IdpMetadataConfiguration.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java: /tmp/plugin-builds/saml/src/main/java/org/jenkinsci/plugins/saml/SamlSecurityRealm.java uses unchecked or unsafe operations.
@@ -101,7 +103,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ saml ---
 [INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ saml ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ saml ---
 [INFO] Executing tasks
@@ -109,29 +111,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ saml ---
-[INFO] Copying 1029 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ saml ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 9 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] /tmp/plugin-builds/saml/src/test/java/org/jenkinsci/plugins/saml/FakeRequest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/saml/src/test/java/org/jenkinsci/plugins/saml/FakeRequest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ saml ---
 [INFO] Generating /tmp/plugin-builds/saml/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ saml ---
 [INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ saml ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ saml ---
+[INFO] --- surefire:3.5.2:test (default-test) @ saml ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ saml ---
 [INFO] Generated /tmp/plugin-builds/saml/target/saml/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ saml ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ saml ---
 [INFO] Generating /tmp/plugin-builds/saml/target/saml/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/saml/target/saml.jar
@@ -139,53 +138,54 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Exploding webapp...
 [INFO] Copy webapp webResources to /tmp/plugin-builds/saml/target/saml
 [INFO] Assembling webapp saml in /tmp/plugin-builds/saml/target/saml
-[WARNING] Bundling transitive dependency metrics-core-4.2.26.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency metrics-json-4.2.26.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency shib-networking-9.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency shib-security-9.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency shib-support-9.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency shib-velocity-9.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency xmlsec-4.0.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency velocity-engine-core-2.4.1.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency cryptacular-1.2.7.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency jakarta.json-2.0.1.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-core-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-core-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-messaging-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-messaging-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-profile-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-profile-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-saml-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-saml-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-security-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-security-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-soap-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-soap-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-storage-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-storage-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-xmlsec-api-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency opensaml-xmlsec-impl-5.1.4.jar (via pac4j-saml)
-[WARNING] Bundling transitive dependency pac4j-core-6.1.2.jar (via pac4j-jakartaee)
+[INFO] Bundling transitive dependency metrics-core-4.2.26.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency metrics-json-4.2.26.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency shib-networking-9.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency shib-security-9.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency shib-support-9.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency shib-velocity-9.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency xmlsec-4.0.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency velocity-engine-core-2.4.1.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency cryptacular-1.2.7.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency jakarta.json-2.0.1.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-core-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-core-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-messaging-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-messaging-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-profile-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-profile-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-saml-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-saml-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-security-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-security-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-soap-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-soap-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-storage-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-storage-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-xmlsec-api-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency opensaml-xmlsec-impl-5.1.4.jar (via pac4j-saml)
+[INFO] Bundling transitive dependency pac4j-core-6.1.2.jar (via pac4j-jakartaee)
 [INFO] Bundling direct dependency pac4j-jakartaee-6.1.2.jar
 [INFO] Bundling direct dependency pac4j-saml-6.1.2.jar
+[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [cryptacular, jakarta.json, metrics-core, metrics-json, opensaml-core-api, opensaml-core-impl, opensaml-messaging-api, opensaml-messaging-impl, opensaml-profile-api, opensaml-profile-impl, opensaml-saml-api, opensaml-saml-impl, opensaml-security-api, opensaml-security-impl, opensaml-soap-api, opensaml-soap-impl, opensaml-storage-api, opensaml-storage-impl, opensaml-xmlsec-api, opensaml-xmlsec-impl, pac4j-core, pac4j-jakartaee, pac4j-saml, shib-networking, shib-security, shib-support, shib-velocity, velocity-engine-core, xmlsec]. Review the bundled artifacts and add `<hpi.bundledArtifacts>cryptacular,jakarta.json,metrics-core,metrics-json,opensaml-core-api,opensaml-core-impl,opensaml-messaging-api,opensaml-messaging-impl,opensaml-profile-api,opensaml-profile-impl,opensaml-saml-api,opensaml-saml-impl,opensaml-security-api,opensaml-security-impl,opensaml-soap-api,opensaml-soap-impl,opensaml-storage-api,opensaml-storage-impl,opensaml-xmlsec-api,opensaml-xmlsec-impl,pac4j-core,pac4j-jakartaee,pac4j-saml,shib-networking,shib-security,shib-support,shib-velocity,velocity-engine-core,xmlsec</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/saml/target/saml.hpi
 [INFO] Building jar: /tmp/plugin-builds/saml/target/saml.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ saml ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ saml >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ saml >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ saml ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ saml ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ saml <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ saml <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ saml ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ saml ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -193,7 +193,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ saml ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 35 files clean - 0 needs changes to be clean, 35 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom2599212093958822242.xml
+[INFO] Sorting file /tmp/pom58382249478479161.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -204,6 +204,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  20.963 s
-[INFO] Finished at: 2025-08-21T19:45:34+02:00
+[INFO] Total time:  01:27 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T10:01:08+02:00
 [INFO] ------------------------------------------------------------------------

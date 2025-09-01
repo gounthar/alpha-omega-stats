@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -----------------< io.jenkins.plugins:javax-mail-api >------------------
 [INFO] Building JavaMail API 1.6.2-12-SNAPSHOT
 [INFO]   from pom.xml
@@ -11,10 +13,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ javax-mail-api ---
 [INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ javax-mail-api ---
 [INFO] Created marker file /tmp/plugin-builds/javax-mail-api/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ javax-mail-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ javax-mail-api ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -30,6 +32,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ javax-mail-api ---
 [INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ javax-mail-api ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ javax-mail-api ---
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
@@ -42,9 +47,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ javax-mail-api ---
 [INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ javax-mail-api ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ javax-mail-api ---
 [INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ javax-mail-api ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ javax-mail-api ---
 [INFO] Executing tasks
@@ -52,27 +57,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ javax-mail-api ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/javax-mail-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ javax-mail-api ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ javax-mail-api ---
 [INFO] Generating /tmp/plugin-builds/javax-mail-api/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ javax-mail-api ---
 [INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ javax-mail-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ javax-mail-api ---
+[INFO] --- surefire:3.5.2:test (default-test) @ javax-mail-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ javax-mail-api ---
 [INFO] Generated /tmp/plugin-builds/javax-mail-api/target/javax-mail-api/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ javax-mail-api ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ javax-mail-api ---
 [INFO] Generating /tmp/plugin-builds/javax-mail-api/target/javax-mail-api/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/javax-mail-api/target/javax-mail-api.jar
@@ -87,18 +91,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ javax-mail-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ javax-mail-api >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ javax-mail-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ javax-mail-api ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ javax-mail-api ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ javax-mail-api <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ javax-mail-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ javax-mail-api ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ javax-mail-api ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -106,7 +110,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ javax-mail-api ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 4 files clean - 0 needs changes to be clean, 4 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom15920973246182521542.xml
+[INFO] Sorting file /tmp/pom8009998455227474567.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -117,6 +121,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  19.031 s
-[INFO] Finished at: 2025-08-21T18:28:41+02:00
+[INFO] Total time:  37.950 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:20:09+02:00
 [INFO] ------------------------------------------------------------------------

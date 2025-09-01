@@ -4,19 +4,21 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ---------------< org.jenkins-ci.plugins:script-security >---------------
 [INFO] Building Script Security Plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.4.1:clean (default-clean) @ script-security ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ script-security ---
 [INFO] 
-[INFO] --- hpi:3.63:validate (default-validate) @ script-security ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ script-security ---
 [INFO] Created marker file /tmp/plugin-builds/script-security/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.63:validate-hpi (default-validate-hpi) @ script-security ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ script-security ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ script-security ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ script-security ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
@@ -25,15 +27,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ script-security ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ script-security ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ script-security ---
 [INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ script-security ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ script-security ---
 [INFO] Copying 22 resources from src/main/resources to target/classes
 [INFO] 
-[INFO] --- flatten:1.7.0:flatten (flatten) @ script-security ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ script-security ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:script-security:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ script-security ---
@@ -65,9 +70,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/script-security/src/main/java/org/jenkinsci/plugins/scriptsecurity/sandbox/groovy/SandboxInterceptor.java: Some input files use unchecked or unsafe operations.
 [INFO] /tmp/plugin-builds/script-security/src/main/java/org/jenkinsci/plugins/scriptsecurity/sandbox/groovy/SandboxInterceptor.java: Recompile with -Xlint:unchecked for details.
 [INFO] 
-[INFO] --- access-modifier-checker:1.34:enforce (default-enforce) @ script-security ---
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ script-security ---
 [INFO] 
-[INFO] --- hpi:3.63:insert-test (default-insert-test) @ script-security ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ script-security ---
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ script-security ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ script-security ---
 [INFO] Executing tasks
@@ -75,181 +82,66 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ script-security ---
-[INFO] Copying 12 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ script-security ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 23 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.TestGroovyRecorder.DescriptorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/script-security/src/test/java/org/jenkinsci/plugins/scriptsecurity/sandbox/groovy/TestGroovyRecorder.java:[52,34] Generating org/jenkinsci/plugins/scriptsecurity/sandbox/groovy/TestGroovyRecorder.stapler
-[WARNING] /tmp/plugin-builds/script-security/src/test/java/org/jenkinsci/plugins/scriptsecurity/sandbox/whitelists/EnumeratingWhitelistTest.java:[112,61] non-varargs call of varargs method with inexact argument type for last parameter;
-  cast to java.lang.Class<?> for a varargs call
-  cast to java.lang.Class<?>[] for a non-varargs call and to suppress this warning
-[WARNING] /tmp/plugin-builds/script-security/src/test/java/org/jenkinsci/plugins/scriptsecurity/sandbox/whitelists/EnumeratingWhitelistTest.java:[136,61] non-varargs call of varargs method with inexact argument type for last parameter;
-  cast to java.lang.Class<?> for a varargs call
-  cast to java.lang.Class<?>[] for a non-varargs call and to suppress this warning
-[INFO] /tmp/plugin-builds/script-security/src/test/java/org/jenkinsci/plugins/scriptsecurity/sandbox/groovy/GroovyLanguageCoverageTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/script-security/src/test/java/org/jenkinsci/plugins/scriptsecurity/sandbox/groovy/GroovyLanguageCoverageTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.63:test-hpl (default-test-hpl) @ script-security ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ script-security ---
 [INFO] Generating /tmp/plugin-builds/script-security/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.63:resolve-test-dependencies (default-resolve-test-dependencies) @ script-security ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ script-security ---
 [INFO] 
-[INFO] --- hpi:3.63:test-runtime (default-test-runtime) @ script-security ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ script-security ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ script-security ---
+[INFO] --- surefire:3.5.2:test (default-test) @ script-security ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ script-security ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ script-security ---
+[INFO] Generated /tmp/plugin-builds/script-security/target/script-security/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ script-security ---
+[INFO] Generating /tmp/plugin-builds/script-security/target/script-security/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/script-security/target/script-security.jar
+[INFO] Building jar: /tmp/plugin-builds/script-security/target/script-security.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/script-security/target/script-security
+[INFO] Assembling webapp script-security in /tmp/plugin-builds/script-security/target/script-security
+[INFO] Bundling direct dependency groovy-sandbox-1.34.jar
+[INFO] Generating hpi /tmp/plugin-builds/script-security/target/script-security.hpi
+[INFO] Building jar: /tmp/plugin-builds/script-security/target/script-security.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ script-security ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ script-security >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ script-security ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ script-security <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ script-security ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ script-security ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ script-security ---
+[INFO] Installing /tmp/plugin-builds/script-security/target/script-security-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/script-security/999999-SNAPSHOT/script-security-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/script-security/target/script-security.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/script-security/999999-SNAPSHOT/script-security-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/script-security/target/script-security.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/script-security/999999-SNAPSHOT/script-security-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  11.413 s
-[INFO] Finished at: 2025-08-21T17:59:52+02:00
+[INFO] Total time:  01:17 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T08:56:18+02:00
 [INFO] ------------------------------------------------------------------------
----------------------------------------------------
-constituent[0]: file:/home/poddingue/.sdkman/candidates/maven/current/conf/logging/
-constituent[1]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-cipher-2.0.jar
-constituent[2]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-shared-utils-3.4.2.jar
-constituent[3]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-settings-builder-3.9.10.jar
-constituent[4]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-provider-api-3.5.3.jar
-constituent[5]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-model-builder-3.9.10.jar
-constituent[6]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-plugin-api-3.9.10.jar
-constituent[7]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/httpclient-4.5.14.jar
-constituent[8]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/slf4j-api-1.7.36.jar
-constituent[9]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-core-3.9.10.jar
-constituent[10]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-repository-metadata-3.9.10.jar
-constituent[11]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-impl-1.9.23.jar
-constituent[12]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-sec-dispatcher-2.0.jar
-constituent[13]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-provider-3.9.10.jar
-constituent[14]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-builder-support-3.9.10.jar
-constituent[15]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-transport-http-1.9.23.jar
-constituent[16]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-transport-wagon-1.9.23.jar
-constituent[17]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-http-shared-3.5.3.jar
-constituent[18]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-settings-3.9.10.jar
-constituent[19]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/jspecify-1.0.0.jar
-constituent[20]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-compat-3.9.10.jar
-constituent[21]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-connector-basic-1.9.23.jar
-constituent[22]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/jansi-2.4.2.jar
-constituent[23]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-transport-file-1.9.23.jar
-constituent[24]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/httpcore-4.4.16.jar
-constituent[25]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-model-3.9.10.jar
-constituent[26]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-artifact-3.9.10.jar
-constituent[27]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-component-annotations-2.2.0.jar
-constituent[28]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-slf4j-provider-3.9.10.jar
-constituent[29]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-http-3.5.3.jar
-constituent[30]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/aopalliance-1.0.jar
-constituent[31]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/failureaccess-1.0.3.jar
-constituent[32]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/javax.annotation-api-1.3.2.jar
-constituent[33]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/jcl-over-slf4j-1.7.36.jar
-constituent[34]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-api-1.9.23.jar
-constituent[35]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/commons-codec-1.18.0.jar
-constituent[36]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-embedder-3.9.10.jar
-constituent[37]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-interpolation-1.28.jar
-constituent[38]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-util-1.9.23.jar
-constituent[39]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-named-locks-1.9.23.jar
-constituent[40]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/org.eclipse.sisu.inject-0.9.0.M4.jar
-constituent[41]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/guava-33.4.8-jre.jar
-constituent[42]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/javax.inject-1.jar
-constituent[43]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/asm-9.8.jar
-constituent[44]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/maven-resolver-spi-1.9.23.jar
-constituent[45]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/wagon-file-3.5.3.jar
-constituent[46]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/org.eclipse.sisu.plexus-0.9.0.M4.jar
-constituent[47]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/plexus-utils-3.6.0.jar
-constituent[48]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar
-constituent[49]: file:/home/poddingue/.sdkman/candidates/maven/current/lib/commons-cli-1.9.0.jar
----------------------------------------------------
-Exception in thread "main" BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
-	at org.codehaus.groovy.control.CompilationUnit$ISourceUnitOperation.doPhaseOperation(CompilationUnit.java:901)
-	at org.codehaus.groovy.control.CompilationUnit.processPhaseOperations(CompilationUnit.java:692)
-	at org.codehaus.groovy.control.CompilationUnit.compile(CompilationUnit.java:666)
-	at groovy.lang.GroovyClassLoader.doParseClass(GroovyClassLoader.java:365)
-	at groovy.lang.GroovyClassLoader.lambda$parseClass$2(GroovyClassLoader.java:314)
-	at org.codehaus.groovy.runtime.memoize.StampedCommonCache.compute(StampedCommonCache.java:163)
-	at org.codehaus.groovy.runtime.memoize.StampedCommonCache.getAndPut(StampedCommonCache.java:154)
-	at groovy.lang.GroovyClassLoader.parseClass(GroovyClassLoader.java:314)
-	at groovy.lang.GroovyShell.parseClass(GroovyShell.java:572)
-	at groovy.lang.GroovyShell.parse(GroovyShell.java:585)
-	at groovy.lang.GroovyShell.parse(GroovyShell.java:639)
-	at groovy.lang.GroovyShell.parse(GroovyShell.java:643)
-	at com.cloudbees.maven.license.ProcessMojo.execute(ProcessMojo.java:154)
-	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
-	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
-	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
-	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
-	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
-	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
-	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
-	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
-	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
-	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:906)
-	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:283)
-	at org.apache.maven.cli.MavenCli.main(MavenCli.java:206)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:361)
-	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
-Caused by: java.lang.IllegalArgumentException: Unsupported class file major version 69
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:200)
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:180)
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:166)
-	at groovyjarjarasm.asm.ClassReader.<init>(ClassReader.java:288)
-	at org.codehaus.groovy.ast.decompiled.AsmDecompiler.parseClass(AsmDecompiler.java:83)
-	at org.codehaus.groovy.control.ClassNodeResolver.findDecompiled(ClassNodeResolver.java:255)
-	at org.codehaus.groovy.control.ClassNodeResolver.tryAsLoaderClassOrScript(ClassNodeResolver.java:193)
-	at org.codehaus.groovy.control.ClassNodeResolver.findClassNode(ClassNodeResolver.java:175)
-	at org.codehaus.groovy.control.ClassNodeResolver.resolveName(ClassNodeResolver.java:129)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveToOuter(ResolveVisitor.java:782)
-	at org.codehaus.groovy.control.ResolveVisitor.resolve(ResolveVisitor.java:423)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveFromDefaultImports(ResolveVisitor.java:577)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveFromDefaultImports(ResolveVisitor.java:541)
-	at org.codehaus.groovy.control.ResolveVisitor.resolve(ResolveVisitor.java:422)
-	at org.codehaus.groovy.control.ResolveVisitor.resolve(ResolveVisitor.java:384)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveOrFail(ResolveVisitor.java:352)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveOrFail(ResolveVisitor.java:341)
-	at org.codehaus.groovy.control.ResolveVisitor.resolveOrFail(ResolveVisitor.java:337)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:817)
-	at org.codehaus.groovy.control.ResolveVisitor.transformDeclarationExpression(ResolveVisitor.java:1173)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:805)
-	at org.codehaus.groovy.ast.ClassCodeExpressionTransformer.visitExpressionStatement(ClassCodeExpressionTransformer.java:129)
-	at org.codehaus.groovy.ast.stmt.ExpressionStatement.visit(ExpressionStatement.java:41)
-	at org.codehaus.groovy.ast.CodeVisitorSupport.visitBlockStatement(CodeVisitorSupport.java:86)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitBlockStatement(ClassCodeVisitorSupport.java:168)
-	at org.codehaus.groovy.control.ResolveVisitor.visitBlockStatement(ResolveVisitor.java:1386)
-	at org.codehaus.groovy.ast.stmt.BlockStatement.visit(BlockStatement.java:72)
-	at org.codehaus.groovy.control.ResolveVisitor.transformClosureExpression(ResolveVisitor.java:1125)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:811)
-	at org.codehaus.groovy.ast.expr.Expression.transformExpressions(Expression.java:49)
-	at org.codehaus.groovy.ast.expr.ArgumentListExpression.transformExpression(ArgumentListExpression.java:67)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:818)
-	at org.codehaus.groovy.control.ResolveVisitor.transformMethodCallExpression(ResolveVisitor.java:1147)
-	at org.codehaus.groovy.control.ResolveVisitor.transform(ResolveVisitor.java:809)
-	at org.codehaus.groovy.ast.ClassCodeExpressionTransformer.visitExpressionStatement(ClassCodeExpressionTransformer.java:129)
-	at org.codehaus.groovy.ast.stmt.ExpressionStatement.visit(ExpressionStatement.java:41)
-	at org.codehaus.groovy.ast.CodeVisitorSupport.visitBlockStatement(CodeVisitorSupport.java:86)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitBlockStatement(ClassCodeVisitorSupport.java:168)
-	at org.codehaus.groovy.control.ResolveVisitor.visitBlockStatement(ResolveVisitor.java:1386)
-	at org.codehaus.groovy.ast.stmt.BlockStatement.visit(BlockStatement.java:72)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitClassCodeContainer(ClassCodeVisitorSupport.java:142)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitConstructorOrMethod(ClassCodeVisitorSupport.java:115)
-	at org.codehaus.groovy.ast.ClassCodeExpressionTransformer.visitConstructorOrMethod(ClassCodeExpressionTransformer.java:87)
-	at org.codehaus.groovy.control.ResolveVisitor.visitConstructorOrMethod(ResolveVisitor.java:329)
-	at org.codehaus.groovy.ast.ClassCodeVisitorSupport.visitMethod(ClassCodeVisitorSupport.java:110)
-	at org.codehaus.groovy.ast.ClassNode.visitMethods(ClassNode.java:1132)
-	at org.codehaus.groovy.ast.ClassNode.visitContents(ClassNode.java:1125)
-	at org.codehaus.groovy.control.ResolveVisitor.visitClass(ResolveVisitor.java:1315)
-	at org.codehaus.groovy.control.ResolveVisitor.startResolving(ResolveVisitor.java:258)
-	at org.codehaus.groovy.control.CompilationUnit.lambda$addPhaseOperations$4(CompilationUnit.java:218)
-	at org.codehaus.groovy.control.CompilationUnit$ISourceUnitOperation.doPhaseOperation(CompilationUnit.java:897)
-	... 37 more

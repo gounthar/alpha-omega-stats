@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -----< org.jenkins-ci.plugins:apache-httpcomponents-client-4-api >------
 [INFO] Building Jenkins Apache HttpComponents Client 4.x API Plugin 4.5.14-999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -31,11 +33,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- localizer:1.31:generate (default) @ apache-httpcomponents-client-4-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ apache-httpcomponents-client-4-api ---
-[WARNING] ruleName restrictImports with implementation org.apache.maven.plugins.enforcer.RestrictImportsuses the deprecated Maven Enforcer Plugin API. This will not be supported in a future version of the plugin. Please contact the rule maintainer to upgrade the rule implementation to the current API.
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (ban-commons-httpclient-3x) @ apache-httpcomponents-client-4-api ---
-[WARNING] ruleName restrictImports with implementation org.apache.maven.plugins.enforcer.RestrictImportsuses the deprecated Maven Enforcer Plugin API. This will not be supported in a future version of the plugin. Please contact the rule maintainer to upgrade the rule implementation to the current API.
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ apache-httpcomponents-client-4-api ---
@@ -60,13 +60,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ apache-httpcomponents-client-4-api ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/apache-httpcomponents-client-4-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ apache-httpcomponents-client-4-api ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] io.jenkins.plugins.httpclient.RobustHTTPClientIntegrationTest.IntentionallyHangsAlwaysAction indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.httpclient.RobustHTTPClientIntegrationTest.IntentionallyHangsOnceAction indexed under org.jvnet.hudson.test.TestExtension
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ apache-httpcomponents-client-4-api ---
 [INFO] Generating /tmp/plugin-builds/apache-httpcomponents-client-4-api/target/test-classes/the.hpl
@@ -104,18 +101,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ apache-httpcomponents-client-4-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ apache-httpcomponents-client-4-api >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ apache-httpcomponents-client-4-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ apache-httpcomponents-client-4-api ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ apache-httpcomponents-client-4-api ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ apache-httpcomponents-client-4-api <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ apache-httpcomponents-client-4-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ apache-httpcomponents-client-4-api ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ apache-httpcomponents-client-4-api ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -123,7 +120,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ apache-httpcomponents-client-4-api ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 4 files clean - 0 needs changes to be clean, 4 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom16636583535099275896.xml
+[INFO] Sorting file /tmp/pom11272740212364154033.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -134,6 +131,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  16.229 s
-[INFO] Finished at: 2025-08-21T18:03:08+02:00
+[INFO] Total time:  01:20 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T08:58:37+02:00
 [INFO] ------------------------------------------------------------------------

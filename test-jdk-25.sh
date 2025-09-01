@@ -1,5 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Strict mode: exit on error, undefined var, and failures in pipelines
+# Ensure we are running under Bash (not sh/dash/zsh) to support 'pipefail'
+if [ -z "${BASH_VERSION:-}" ]; then
+  echo "This script must be run with bash. Try: bash \"$0\"" >&2
+  # If sourced into a non-bash shell, avoid killing the shell
+  return 1 2>/dev/null || exit 1
+fi
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -43,7 +49,6 @@ WORKSHEET_NAME="Java 25 compatibility progress" # Change to your worksheet name
 OUTPUT_TSV="plugins-jdk25.tsv"
 TSV_FILE="$OUTPUT_TSV"
 
-
 # Ensure VENV_DIR points to our venv directory (for clarity in later calls)
 VENV_DIR="$venv_dir"
 export VENV_DIR
@@ -76,12 +81,42 @@ esac
 # Call the script to install JDK versions
 # The script directory is determined and stored in the variable `script_dir`.
 script_dir=$(cd "$(dirname "$0")" && pwd)
-source "$script_dir/install-jdk-versions.sh" # Changed from direct execution to sourcing
+# Run installer in a separate bash process to avoid set -e propagation from sourced scripts
+echo "DEBUG: Starting install-jdk-versions.sh" >> "$DEBUG_LOG"
+set +e
+bash "$script_dir/install-jdk-versions.sh" >> "$DEBUG_LOG" 2>&1
+installer_ec=$?
+set -e
+if [ $installer_ec -ne 0 ]; then
+  echo "WARN: install-jdk-versions.sh exited with code $installer_ec, continuing." >> "$DEBUG_LOG"
+else
+  echo "DEBUG: install-jdk-versions.sh completed successfully." >> "$DEBUG_LOG"
+fi
 
 # Ensure JDK 25 is used for all Java and Maven commands
 export JAVA_HOME="$HOME/.jdk-25"
 export PATH="$JAVA_HOME/bin:$PATH"
 hash -r
+
+# Configure per-build threads and cross-plugin concurrency (defaults to 4)
+export BUILD_THREADS="${BUILD_THREADS:-4}"
+export PLUGIN_CONCURRENCY="${PLUGIN_CONCURRENCY:-4}"
+
+# Validate numeric, positive integers
+case "$BUILD_THREADS" in ''|*[!0-9]*|0) BUILD_THREADS=4;; esac
+case "$PLUGIN_CONCURRENCY" in ''|*[!0-9]*|0) PLUGIN_CONCURRENCY=4;; esac
+
+# Keep total concurrency roughly bounded by CPU count when both are unset or excessive
+CPU_COUNT="$(getconf _NPROCESSORS_ONLN 2>/dev/null || nproc 2>/dev/null || echo 4)"
+# Force base-10 to avoid octal interpretation of leading zeros
+bt=$((10#${BUILD_THREADS}))
+pc=$((10#${PLUGIN_CONCURRENCY}))
+if [ "$CPU_COUNT" -gt 0 ] && [ $(( bt * pc )) -gt "$CPU_COUNT" ]; then
+  # Reduce per-build threads to fit within CPU_COUNT
+  BUILD_THREADS=$(( (CPU_COUNT + pc - 1) / pc ))
+  [ "$BUILD_THREADS" -lt 1 ] && BUILD_THREADS=1
+  echo "Clamped BUILD_THREADS to ${BUILD_THREADS} based on CPU_COUNT=${CPU_COUNT} and PLUGIN_CONCURRENCY=${PLUGIN_CONCURRENCY}" >> "$DEBUG_LOG"
+fi
 
 echo "DEBUG: Output of 'java -version' after sourcing install-jdk-versions.sh (in test-jdk-25.sh):" >> "$DEBUG_LOG"
 java -version >> "$DEBUG_LOG" 2>&1
@@ -123,6 +158,27 @@ require_cmd git
 require_cmd curl
 require_cmd jq
 require_cmd timeout
+# Ensure flock is available
+# flock is optional; fall back to unlocked appends if not present
+if command -v flock >/dev/null 2>&1; then
+  HAS_FLOCK=1
+else
+  HAS_FLOCK=0
+  echo "WARNING: 'flock' not found; using non-atomic appends to $RESULTS_FILE" >> "$DEBUG_LOG"
+fi
+
+# Serialize writes to RESULTS_FILE across background jobs
+append_result() {
+  local line="$1"
+  if [ "${HAS_FLOCK:-0}" -eq 1 ]; then
+    {
+      flock 9
+      printf '%s\n' "$line" >> "$RESULTS_FILE"
+    } 9>>"$RESULTS_FILE.lock"
+  else
+    printf '%s\n' "$line" >> "$RESULTS_FILE"
+  fi
+}
 # Check if Maven is installed and accessible
 if command -v mvn &>/dev/null; then
     # Log Maven installation details to the debug log.
@@ -252,8 +308,8 @@ compile_plugin() {
                 if [ -f "pom.xml" ]; then
                     # Ensure Maven's stdout and stderr are consistently captured in the per-plugin log
                     echo "Running Maven build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: timeout 20m mvn -B -T 1C -Dorg.slf4j.simpleLogger.showDateTime=true -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn -Dorg.slf4j.simpleLogger.showThreadName=false -Dorg.slf4j.simpleLogger.showShortLogName=true -Dorg.slf4j.simpleLogger.level=info -Dorg.slf4j.simpleLogger.showLogName=false --no-transfer-progress clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
-                    timeout 20m mvn -B --no-transfer-progress -T 1C clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
+                    echo "Executing: timeout 20m mvn -B --no-transfer-progress -T \"${BUILD_THREADS}\" clean install -Dmaven.test.skip=true" >>"$DEBUG_LOG"
+                    timeout 20m mvn -B --no-transfer-progress -T "${BUILD_THREADS}" clean install -Dmaven.test.skip=true >"$plugin_log_file" 2>&1
                     maven_exit_code=$?
                     echo "Maven output for $plugin_name is in $plugin_log_file" >>"$DEBUG_LOG"
                     if [ $maven_exit_code -eq 124 ]; then
@@ -264,8 +320,8 @@ compile_plugin() {
                 elif [ -f "./gradlew" ]; then
                     # Run a Gradle build if a Gradle wrapper is found.
                     echo "Running Gradle wrapper build for $plugin_name..." >>"$DEBUG_LOG"
-                    echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $DEBUG_LOG build -x test" >>"$DEBUG_LOG"
-                    timeout 10m "$script_dir/run-gradle-build.sh" "$DEBUG_LOG" build -x test >"$plugin_log_file" 2>&1 || build_status="build_failed"
+                    echo "Executing: timeout 10m $script_dir/run-gradle-build.sh $plugin_log_file --no-daemon --parallel --max-workers=\"${BUILD_THREADS}\" build" >>"$DEBUG_LOG"
+                    timeout 10m "$script_dir/run-gradle-build.sh" "$plugin_log_file" --no-daemon --parallel --max-workers="${BUILD_THREADS}" build || build_status="build_failed"
                 else
                     # Log an error if no recognized build file is found.
                     echo "No recognized build file found for $plugin_name" >>"$DEBUG_LOG"
@@ -292,6 +348,11 @@ if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
     while IFS=$'\t' read -r name install_count pr_url is_merged; do
         line_number=$((line_number + 1))
         echo "Read TSV line $line_number: name='$name', is_merged='$is_merged'" >> "$DEBUG_LOG"
+        # Normalize potential CR from Windows line endings in TSV fields
+        name=${name%$'\r'}
+        install_count=${install_count%$'\r'}
+        pr_url=${pr_url%$'\r'}
+        is_merged=${is_merged%$'\r'}
         # Skip header
         if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then
             continue
@@ -315,6 +376,8 @@ in_jdk25_true_set() {
 
 # Phase 2: Process CSV, skipping builds for plugins already JDK25 TRUE
 line_number=0
+active_jobs=0
+max_jobs="${PLUGIN_CONCURRENCY}"
 while IFS=, read -r name popularity <&3; do
     line_number=$((line_number + 1))
     echo "Read CSV line $line_number: name='$name', popularity='$popularity'" >> "$DEBUG_LOG"
@@ -328,15 +391,32 @@ while IFS=, read -r name popularity <&3; do
     echo "Processing plugin '$name' from CSV line $line_number" >> "$DEBUG_LOG"
 
     if in_jdk25_true_set "$name"; then
-        build_status="success"
         echo "Skipping build for '$name' (already using JDK25 per TSV)." >> "$DEBUG_LOG"
+        append_result "$name,$popularity,success"
     else
-        build_status=$(compile_plugin "$name")
+        {
+            status=$(compile_plugin "$name")
+            echo "Finished processing plugin '$name' from CSV line $line_number with status: $status" >> "$DEBUG_LOG"
+            append_result "$name,$popularity,$status"
+        } &
+        active_jobs=$((active_jobs + 1))
+        if [ "$active_jobs" -ge "$max_jobs" ]; then
+            if wait -n 2>/dev/null; then
+                :
+            else
+                # Portable fallback: if wait -n is unsupported, wait for all, then reset the counter.
+                # This sacrifices fine-grained throttling but preserves correctness.
+                wait
+                active_jobs=0
+            fi
+            # In the wait -n path, the completed job reduces the active count by one.
+            [ "$active_jobs" -gt 0 ] && active_jobs=$((active_jobs - 1))
+        fi
     fi
+done 3<"$CSV_FILE" # Use file descriptor 3 for reading the CSV
 
-    echo "Finished processing plugin '$name' from CSV line $line_number with status: $build_status" >> "$DEBUG_LOG"
-    echo "$name,$popularity,$build_status" >> "$RESULTS_FILE"
-done 3< "$CSV_FILE" # Use file descriptor 3 for reading the CSV
+# Wait for any remaining background jobs to finish
+wait
 
 echo "Finished reading $CSV_FILE after $line_number lines." >> "$DEBUG_LOG"
 
@@ -346,6 +426,11 @@ if [ -n "$TSV_FILE" ] && [ -f "$TSV_FILE" ]; then
     while IFS=$'\t' read -r name install_count pr_url is_merged; do
         line_number=$((line_number + 1))
         echo "Preparing extended row from TSV line $line_number: name='$name'" >> "$DEBUG_LOG"
+        # Normalize potential CR from Windows line endings in TSV fields
+        name=${name%$'\r'}
+        install_count=${install_count%$'\r'}
+        pr_url=${pr_url%$'\r'}
+        is_merged=${is_merged%$'\r'}
 
         # Skip header
         if [ $line_number -eq 1 ] || [ "$name" = "plugin" ] || [ "$name" = "name" ] || [ "$name" = "Name" ]; then

@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ------------------< org.jenkins-ci.plugins:mercurial >------------------
 [INFO] Building Jenkins Mercurial plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -73,14 +75,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/traits/CleanMercurialSCMSourceTrait.java:[51,34] Generating hudson/plugins/mercurial/traits/CleanMercurialSCMSourceTrait.stapler
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/traits/MercurialBrowserSCMSourceTrait.java:[69,12] Generating hudson/plugins/mercurial/traits/MercurialBrowserSCMSourceTrait.stapler
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/traits/MercurialInstallationSCMSourceTrait.java:[67,34] Generating hudson/plugins/mercurial/traits/MercurialInstallationSCMSourceTrait.stapler
-[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialTagAction.java:[17,8] Generating hudson/plugins/mercurial/MercurialTagAction.javadoc
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialChangeSet.java:[25,8] Generating hudson/plugins/mercurial/MercurialChangeSet.javadoc
-[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialSCM.java:[1054,29] Generating hudson/plugins/mercurial/MercurialSCM/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/browser/RhodeCodeLegacy.java:[52,41] Generating hudson/plugins/mercurial/browser/RhodeCodeLegacy/DescriptorImpl/doCheckUrl.stapler
-[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialSCMSource.java:[355,95] Generating hudson/plugins/mercurial/MercurialSCMSource/DescriptorImpl/doCheckBranchPattern.stapler
+[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialTagAction.java:[17,8] Generating hudson/plugins/mercurial/MercurialTagAction.javadoc
+[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/browser/FishEye.java:[77,41] Generating hudson/plugins/mercurial/browser/FishEye/DescriptorImpl/doCheckUrl.stapler
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/browser/HgBrowser.java:[96,40] Generating hudson/plugins/mercurial/browser/HgBrowser/HgBrowserDescriptor/_doCheckUrl.stapler
-[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialStatus.java:[106,25] Generating hudson/plugins/mercurial/MercurialStatus/doNotifyCommit.stapler
+[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialSCMSource.java:[355,95] Generating hudson/plugins/mercurial/MercurialSCMSource/DescriptorImpl/doCheckBranchPattern.stapler
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialInstallation.java:[178,31] Generating hudson/plugins/mercurial/MercurialInstallation/DescriptorImpl/doCheckConfig.stapler
+[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialSCMSource.java:[339,29] Generating hudson/plugins/mercurial/MercurialSCMSource/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialStatus.java:[106,25] Generating hudson/plugins/mercurial/MercurialStatus/doNotifyCommit.stapler
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/Cache.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/Cache.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialSCMSource.java: /tmp/plugin-builds/mercurial/src/main/java/hudson/plugins/mercurial/MercurialSCMSource.java uses unchecked or unsafe operations.
@@ -98,15 +100,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ mercurial ---
-[INFO] Copying 5 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ mercurial ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 41 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] hudson.plugins.mercurial.ChangeComparatorTest.DummyComparator indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.plugins.mercurial.SCMTestBase.ShowChangelogs indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/mercurial/src/test/java/hudson/plugins/mercurial/CachingCustomDirSCMTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/mercurial/src/test/java/hudson/plugins/mercurial/CachingCustomDirSCMTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ mercurial ---
 [INFO] Generating /tmp/plugin-builds/mercurial/target/test-classes/the.hpl
@@ -164,6 +161,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  49.956 s
-[INFO] Finished at: 2025-08-21T18:55:42+02:00
+[INFO] Total time:  01:02 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:36:56+02:00
 [INFO] ------------------------------------------------------------------------

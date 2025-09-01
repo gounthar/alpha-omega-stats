@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------< io.jenkins.plugins:javax-activation-api >---------------
 [INFO] Building JavaBeans Activation Framework (JAF) API 1.2.0-9-SNAPSHOT
 [INFO]   from pom.xml
@@ -54,11 +56,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ javax-activation-api ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/javax-activation-api/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ javax-activation-api ---
-[INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ javax-activation-api ---
 [INFO] Generating /tmp/plugin-builds/javax-activation-api/target/test-classes/the.hpl
@@ -68,7 +69,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ javax-activation-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ javax-activation-api ---
+[INFO] --- surefire:3.5.2:test (default-test) @ javax-activation-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ javax-activation-api ---
@@ -83,26 +84,25 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Copy webapp webResources to /tmp/plugin-builds/javax-activation-api/target/javax-activation-api
 [INFO] Assembling webapp javax-activation-api in /tmp/plugin-builds/javax-activation-api/target/javax-activation-api
 [INFO] Bundling direct dependency javax.activation-1.2.0.jar
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [javax.activation]. Review the bundled artifacts and add `<hpi.bundledArtifacts>javax.activation</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/javax-activation-api/target/javax-activation-api.hpi
 [INFO] Building jar: /tmp/plugin-builds/javax-activation-api/target/javax-activation-api.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ javax-activation-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ javax-activation-api >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ javax-activation-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ javax-activation-api ---
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.3.2:spotbugs report goal
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ javax-activation-api ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ javax-activation-api <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ javax-activation-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ javax-activation-api ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ javax-activation-api ---
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ javax-activation-api ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom6819128877250265288.xml
+[INFO] Sorting file /tmp/pom10502326593892677831.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -113,6 +113,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  7.732 s
-[INFO] Finished at: 2025-08-21T18:20:27+02:00
+[INFO] Total time:  22.019 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:13:49+02:00
 [INFO] ------------------------------------------------------------------------

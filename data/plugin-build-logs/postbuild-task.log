@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] --------------< org.jvnet.hudson.plugins:postbuild-task >---------------
 [INFO] Building Post build task 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -62,11 +64,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ postbuild-task ---
-[INFO] skip non existing resourceDirectory /tmp/plugin-builds/postbuild-task/src/test/resources
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ postbuild-task ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/test-classes
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ postbuild-task ---
 [INFO] Generating /tmp/plugin-builds/postbuild-task/target/test-classes/the.hpl
@@ -100,3 +101,28 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ postbuild-task ---
 [INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ postbuild-task <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ postbuild-task ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ postbuild-task ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ postbuild-task ---
+[INFO] Installing /tmp/plugin-builds/postbuild-task/target/postbuild-task-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jvnet/hudson/plugins/postbuild-task/999999-SNAPSHOT/postbuild-task-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/postbuild-task/target/postbuild-task.hpi to /home/poddingue/.m2/repository/org/jvnet/hudson/plugins/postbuild-task/999999-SNAPSHOT/postbuild-task-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/postbuild-task/target/postbuild-task.jar to /home/poddingue/.m2/repository/org/jvnet/hudson/plugins/postbuild-task/999999-SNAPSHOT/postbuild-task-999999-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  49.051 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T10:01:49+02:00
+[INFO] ------------------------------------------------------------------------

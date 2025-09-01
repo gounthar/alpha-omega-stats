@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] -------------------< io.jenkins.plugins:checks-api >--------------------
 [INFO] Building Checks API plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
@@ -72,20 +74,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ checks-api ---
-[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ checks-api ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 74 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] io.jenkins.plugins.checks.status.BuildStatusChecksPublisherITest.CapturingChecksPublisherTestExtension indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.checks.status.BuildStatusChecksPublisherITest.ChecksPropertiesTestExtension indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.checks.steps.PublishChecksStepITest.CapturingChecksPublisherTestExtension indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.checks.steps.WithChecksStepITest.AssertChecksInfoInjectionStep indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.checks.steps.WithChecksStepITest.AssertChecksInfoInjectionStep.AssertChecksInfoStepInjectionDescriptor indexed under org.jvnet.hudson.test.TestExtension
-[INFO] io.jenkins.plugins.checks.steps.WithChecksStepITest.CapturingChecksPublisherTestExtension indexed under org.jvnet.hudson.test.TestExtension
-[INFO] /tmp/plugin-builds/checks-api/src/test/java/io/jenkins/plugins/checks/steps/WithChecksStepITest.java:[189,16] Generating io/jenkins/plugins/checks/steps/WithChecksStepITest/AssertChecksInfoInjectionStep.stapler
-[INFO] /tmp/plugin-builds/checks-api/target/generated-test-sources/assertj-assertions/io/jenkins/plugins/checks/api/AbstractChecksAnnotationAssert.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/checks-api/target/generated-test-sources/assertj-assertions/io/jenkins/plugins/checks/api/AbstractChecksAnnotationAssert.java: Recompile with -Xlint:deprecation for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ checks-api ---
 [INFO] Generating /tmp/plugin-builds/checks-api/target/test-classes/the.hpl
@@ -95,7 +87,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ checks-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ checks-api ---
+[INFO] --- surefire:3.5.2:test (default-test) @ checks-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ checks-api ---
@@ -116,20 +108,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Skipping packaging of the test-jar
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (default) @ checks-api ---
-[INFO] Building jar: /tmp/plugin-builds/checks-api/target/checks-api-tests.jar
+[INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ checks-api >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ checks-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ checks-api ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ checks-api ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ checks-api <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ checks-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ checks-api ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ checks-api ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -141,10 +133,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Installing /tmp/plugin-builds/checks-api/target/checks-api-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/io/jenkins/plugins/checks-api/999999-SNAPSHOT/checks-api-999999-SNAPSHOT.pom
 [INFO] Installing /tmp/plugin-builds/checks-api/target/checks-api.hpi to /home/poddingue/.m2/repository/io/jenkins/plugins/checks-api/999999-SNAPSHOT/checks-api-999999-SNAPSHOT.hpi
 [INFO] Installing /tmp/plugin-builds/checks-api/target/checks-api.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/checks-api/999999-SNAPSHOT/checks-api-999999-SNAPSHOT.jar
-[INFO] Installing /tmp/plugin-builds/checks-api/target/checks-api-tests.jar to /home/poddingue/.m2/repository/io/jenkins/plugins/checks-api/999999-SNAPSHOT/checks-api-999999-SNAPSHOT-tests.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  22.050 s
-[INFO] Finished at: 2025-08-21T18:19:19+02:00
+[INFO] Total time:  53.285 s (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:13:14+02:00
 [INFO] ------------------------------------------------------------------------

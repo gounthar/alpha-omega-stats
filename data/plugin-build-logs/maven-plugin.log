@@ -4,6 +4,8 @@ WARNING: Please consider reporting this to the maintainers of class com.google.i
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
 [INFO] 
+[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] 
 [INFO] ------------------< org.jenkins-ci.main:maven-plugin >------------------
 [INFO] Building Maven Integration plugin 3.28-SNAPSHOT
 [INFO]   from pom.xml
@@ -74,17 +76,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/local_repo/PerExecutorLocalRepositoryLocator.java:[15,12] Generating hudson/maven/local_repo/PerExecutorLocalRepositoryLocator.stapler
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/local_repo/PerJobLocalRepositoryLocator.java:[17,12] Generating hudson/maven/local_repo/PerJobLocalRepositoryLocator.stapler
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenMailer.java:[59,34] Generating hudson/maven/reporters/MavenMailer.stapler
+[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenArtifactRecord.java:[64,8] Generating hudson/maven/reporters/MavenArtifactRecord.javadoc
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenArtifact.java:[73,14] Generating hudson/maven/reporters/MavenArtifact.javadoc
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenAbstractArtifactRecord.java:[80,17] Generating hudson/maven/reporters/MavenAbstractArtifactRecord.javadoc
+[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenAbstractArtifactRecord.java:[82,18] Generating hudson/maven/reporters/MavenAbstractArtifactRecord/Record.javadoc
+[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModule.java:[79,8] Generating hudson/maven/MavenModule.javadoc
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModuleSetBuild.java:[131,8] Generating hudson/maven/MavenModuleSetBuild.javadoc
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenAggregatedArtifactRecord.java:[53,8] Generating hudson/maven/reporters/MavenAggregatedArtifactRecord.javadoc
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModuleSet.java:[129,8] Generating hudson/maven/MavenModuleSet.javadoc
-[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenArtifactRecord.java:[64,8] Generating hudson/maven/reporters/MavenArtifactRecord.javadoc
-[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenAbstractArtifactRecord.java:[82,18] Generating hudson/maven/reporters/MavenAbstractArtifactRecord/Record.javadoc
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenBuild.java:[115,8] Generating hudson/maven/MavenBuild.javadoc
-[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModule.java:[79,8] Generating hudson/maven/MavenModule.javadoc
-[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModuleSet.java:[1276,27] Generating hudson/maven/MavenModuleSet/doCheckFileInWorkspace.stapler
 [INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/reporters/MavenAbstractArtifactRecord.java:[215,31] Generating hudson/maven/reporters/MavenAbstractArtifactRecord/doRedeploy.stapler
+[INFO] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModuleSet.java:[1276,27] Generating hudson/maven/MavenModuleSet/doCheckFileInWorkspace.stapler
 [WARNING] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenBuild.java:[469,27] deprecated item is not annotated with @Deprecated
 [WARNING] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModule.java:[163,17] deprecated item is not annotated with @Deprecated
 [WARNING] /tmp/plugin-builds/maven-plugin/src/main/java/hudson/maven/MavenModule.java:[472,21] deprecated item is not annotated with @Deprecated
@@ -126,25 +128,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ maven-plugin ---
-[INFO] Copying 54 resources from src/test/resources to target/test-classes
+[INFO] Not copying test resources
 [INFO] 
 [INFO] --- dependency:3.8.1:unpack (unpack-mvn-home-for-test) @ maven-plugin ---
 [INFO] Configured Artifact: org.apache.maven:apache-maven:bin:3.6.3:zip
 [INFO] 
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ maven-plugin ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 47 source files with javac [debug parameters release 17] to target/test-classes
-[INFO] hudson.maven.PlexusModuleContributorTest.PlexusLoader indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.model.JobPropertyTest.JobPropertyImpl.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.tasks.SimpleBuildWrapperTest.WrapperWithDisposer.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] jenkins.tasks.SimpleBuildWrapperTest.PreCheckoutWrapperWithDisposer.DescriptorImpl indexed under org.jvnet.hudson.test.TestExtension
-[INFO] hudson.maven.MavenArgumentInterceptorTest.TestMvnBuildWrapper.TestMvnBuildWrapperDescriptor indexed under hudson.Extension
-[INFO] hudson.maven.MavenEnvironmentContributingActionTest.TestMvnBuildWrapper.TestMvnBuildWrapperDescriptor indexed under hudson.Extension
-[INFO] hudson.maven.reporters.BlockSlaveToMasterFileCallable.ChannelConfiguratorImpl indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/maven-plugin/src/test/java/hudson/maven/AbortedMavenBuildTest.java: Some input files use or override a deprecated API.
-[INFO] /tmp/plugin-builds/maven-plugin/src/test/java/hudson/maven/AbortedMavenBuildTest.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/maven-plugin/src/test/java/hudson/maven/MavenMultiModuleTest.java: /tmp/plugin-builds/maven-plugin/src/test/java/hudson/maven/MavenMultiModuleTest.java uses unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/maven-plugin/src/test/java/hudson/maven/MavenMultiModuleTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] Not compiling test sources
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ maven-plugin ---
 [INFO] Generating /tmp/plugin-builds/maven-plugin/target/test-classes/the.hpl
@@ -154,7 +144,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ maven-plugin ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ maven-plugin ---
+[INFO] --- surefire:3.5.2:test (default-test) @ maven-plugin ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ maven-plugin ---
@@ -231,25 +221,24 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Bundling direct dependency maven35-agent-1.14.jar
 [INFO] Bundling direct dependency maven35-interceptor-1.14.jar
 [INFO] Bundling direct dependency maven2.1-interceptor-1.2.jar
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [cdi-api, commons-cli, commons-net, doxia-logging-api, doxia-sink-api, jackrabbit-webdav, javax.annotation-api, javax.inject, lib-jenkins-maven-artifact-manager, lib-jenkins-maven-embedder, maven-agent, maven-artifact, maven-builder-support, maven-compat, maven-core, maven-embedder, maven-interceptor, maven-model, maven-model-builder, maven-plugin-api, maven-reporting-api, maven-repository-metadata, maven-resolver-api, maven-resolver-connector-basic, maven-resolver-impl, maven-resolver-named-locks, maven-resolver-provider, maven-resolver-spi, maven-resolver-transport-wagon, maven-resolver-util, maven-settings, maven-settings-builder, maven-shared-utils, maven2.1-interceptor, maven3-agent, maven3-interceptor, maven3-interceptor-commons, maven31-agent, maven31-interceptor, maven32-agent, maven32-interceptor, maven33-agent, maven33-interceptor, maven35-agent, maven35-interceptor, org.eclipse.sisu.inject, org.eclipse.sisu.plexus, plexus-cipher, plexus-classworlds, plexus-component-annotations, plexus-interactivity-api, plexus-interpolation, plexus-sec-dispatcher, plexus-utils, wagon-file, wagon-ftp, wagon-http, wagon-http-shared, wagon-provider-api, wagon-ssh, wagon-ssh-common, wagon-ssh-external, wagon-webdav-jackrabbit]. Review the bundled artifacts and add `<hpi.bundledArtifacts>cdi-api,commons-cli,commons-net,doxia-logging-api,doxia-sink-api,jackrabbit-webdav,javax.annotation-api,javax.inject,lib-jenkins-maven-artifact-manager,lib-jenkins-maven-embedder,maven-agent,maven-artifact,maven-builder-support,maven-compat,maven-core,maven-embedder,maven-interceptor,maven-model,maven-model-builder,maven-plugin-api,maven-reporting-api,maven-repository-metadata,maven-resolver-api,maven-resolver-connector-basic,maven-resolver-impl,maven-resolver-named-locks,maven-resolver-provider,maven-resolver-spi,maven-resolver-transport-wagon,maven-resolver-util,maven-settings,maven-settings-builder,maven-shared-utils,maven2.1-interceptor,maven3-agent,maven3-interceptor,maven3-interceptor-commons,maven31-agent,maven31-interceptor,maven32-agent,maven32-interceptor,maven33-agent,maven33-interceptor,maven35-agent,maven35-interceptor,org.eclipse.sisu.inject,org.eclipse.sisu.plexus,plexus-cipher,plexus-classworlds,plexus-component-annotations,plexus-interactivity-api,plexus-interpolation,plexus-sec-dispatcher,plexus-utils,wagon-file,wagon-ftp,wagon-http,wagon-http-shared,wagon-provider-api,wagon-ssh,wagon-ssh-common,wagon-ssh-external,wagon-webdav-jackrabbit</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/maven-plugin/target/maven-plugin.hpi
 [INFO] Building jar: /tmp/plugin-builds/maven-plugin/target/maven-plugin.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ maven-plugin ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ maven-plugin >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ maven-plugin >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ maven-plugin ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ maven-plugin ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
 [WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ maven-plugin <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ maven-plugin <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ maven-plugin ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ maven-plugin ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -264,6 +253,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  28.073 s
-[INFO] Finished at: 2025-08-21T18:32:53+02:00
+[INFO] Total time:  01:40 min (Wall Clock)
+[INFO] Finished at: 2025-09-01T09:23:40+02:00
 [INFO] ------------------------------------------------------------------------
