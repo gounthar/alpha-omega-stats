@@ -1,10 +1,14 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] 
-[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jenkins-ci.plugins:run-condition:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:run-condition >----------------
 [INFO] Building Run Condition Plugin 999999-SNAPSHOT
@@ -13,10 +17,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ run-condition ---
 [INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ run-condition ---
 [INFO] Created marker file /tmp/plugin-builds/run-condition/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ run-condition ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ run-condition ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -32,6 +36,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ run-condition ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ run-condition ---
+[INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ run-condition ---
 [INFO] Copying 84 resources from src/main/resources to target/classes
@@ -118,14 +125,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/logic/ConditionContainer.java:[43,12] Generating org/jenkins_ci/plugins/run_condition/logic/ConditionContainer.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/logic/Not.java:[42,12] Generating org/jenkins_ci/plugins/run_condition/logic/Not.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/logic/Or.java:[41,12] Generating org/jenkins_ci/plugins/run_condition/logic/Or.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[147,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckLatest.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/BooleanCondition.java:[72,31] Generating org/jenkins_ci/plugins/run_condition/core/BooleanCondition/BooleanConditionDescriptor/doCheckToken.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/FileExistsCondition.java:[80,31] Generating org/jenkins_ci/plugins/run_condition/core/FileExistsCondition/FileExistsConditionDescriptor/doCheckFile.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition.java:[93,31] Generating org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition/NumericalComparisonConditionDescriptor/doCheckRhs.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[144,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckEarliest.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[96,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckWorstResult.stapler
-[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[90,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckBestResult.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition.java:[89,31] Generating org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition/NumericalComparisonConditionDescriptor/doCheckLhs.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition.java:[93,31] Generating org/jenkins_ci/plugins/run_condition/core/NumericalComparisonCondition/NumericalComparisonConditionDescriptor/doCheckRhs.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[96,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckWorstResult.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[144,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckEarliest.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/BooleanCondition.java:[72,31] Generating org/jenkins_ci/plugins/run_condition/core/BooleanCondition/BooleanConditionDescriptor/doCheckToken.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/StatusCondition.java:[90,31] Generating org/jenkins_ci/plugins/run_condition/core/StatusCondition/StatusConditionDescriptor/doCheckBestResult.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/TimeCondition.java:[147,31] Generating org/jenkins_ci/plugins/run_condition/core/TimeCondition/TimeConditionDescriptor/doCheckLatest.stapler
+[INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/core/FileExistsCondition.java:[80,31] Generating org/jenkins_ci/plugins/run_condition/core/FileExistsCondition/FileExistsConditionDescriptor/doCheckFile.stapler
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/BuildStepRunner.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/BuildStepRunner.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/run-condition/src/main/java/org/jenkins_ci/plugins/run_condition/common/BaseDirectory.java: Some input files use unchecked or unsafe operations.
@@ -133,9 +140,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ run-condition ---
 [INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ run-condition ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ run-condition ---
 [INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ run-condition ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ run-condition ---
 [INFO] Executing tasks
@@ -148,21 +155,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ run-condition ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ run-condition ---
 [INFO] Generating /tmp/plugin-builds/run-condition/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ run-condition ---
 [INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ run-condition ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ run-condition ---
+[INFO] --- surefire:3.5.2:test (default-test) @ run-condition ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ run-condition ---
 [INFO] Generated /tmp/plugin-builds/run-condition/target/run-condition/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ run-condition ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ run-condition ---
 [INFO] Generating /tmp/plugin-builds/run-condition/target/run-condition/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/run-condition/target/run-condition.jar
@@ -176,18 +183,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ run-condition ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ run-condition >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ run-condition >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ run-condition ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ run-condition ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ run-condition <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ run-condition <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ run-condition ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ run-condition ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -196,12 +202,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ run-condition ---
-[INFO] Installing /tmp/plugin-builds/run-condition/target/run-condition-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/run-condition/999999-SNAPSHOT/run-condition-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/run-condition/target/run-condition.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/run-condition/999999-SNAPSHOT/run-condition-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/run-condition/target/run-condition.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/run-condition/999999-SNAPSHOT/run-condition-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/run-condition/target/run-condition-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/run-condition/999999-SNAPSHOT/run-condition-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/run-condition/target/run-condition.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/run-condition/999999-SNAPSHOT/run-condition-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/run-condition/target/run-condition.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/run-condition/999999-SNAPSHOT/run-condition-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  53.394 s (Wall Clock)
-[INFO] Finished at: 2025-09-01T09:31:57+02:00
+[INFO] Total time:  23.500 s
+[INFO] Finished at: 2025-09-09T09:44:11Z
 [INFO] ------------------------------------------------------------------------

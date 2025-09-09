@@ -1,8 +1,14 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for io.jenkins.blueocean:blueocean-parent:pom:1.27.22-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -29,30 +35,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Blue Ocean                                                         [hpi]
 [INFO] JIRA Integration for Blue Ocean                                    [hpi]
 [INFO] 
-[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
-[INFO] 
 [INFO] ---------------< io.jenkins.blueocean:blueocean-parent >----------------
 [INFO] Building Blue Ocean Parent 1.27.22-SNAPSHOT                       [1/22]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
-[WARNING] *****************************************************************
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] *****************************************************************
-[WARNING] The following plugins are not marked as thread-safe in Blue Ocean Parent:
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:165.v7e11f4e4a_325
-[WARNING] 
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING] *****************************************************************
 [INFO] 
-[INFO] --- clean:3.4.0:clean (default-clean) @ blueocean-parent ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ blueocean-parent ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ blueocean-parent ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
@@ -61,28 +51,257 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ blueocean-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (enforce-banned-dependencies) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (enforce-banned-dependencies) @ blueocean-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ blueocean-parent ---
 [INFO] 
-[INFO] --- flatten:1.6.0:flatten (flatten) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ blueocean-parent ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ blueocean-parent ---
 [INFO] Generating flattened POM of project io.jenkins.blueocean:blueocean-parent:pom:1.27.22-SNAPSHOT...
+[INFO] 
+[INFO] --- bridge-method-injector:1.32:process (default) @ blueocean-parent ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ blueocean-parent ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/blueocean-config/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ blueocean-parent ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ blueocean-parent ---
+[INFO] Generated /tmp/plugin-builds/blueocean-config/target/blueocean-parent/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ blueocean-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ blueocean-parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ blueocean-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ blueocean-parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ blueocean-parent ---
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ blueocean-parent ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ blueocean-parent ---
+[INFO] Installing /tmp/plugin-builds/blueocean-config/target/blueocean-parent-1.27.22-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/blueocean/blueocean-parent/1.27.22-SNAPSHOT/blueocean-parent-1.27.22-SNAPSHOT.pom
+[INFO] 
+[INFO] ------------< io.jenkins.blueocean:jenkins-design-language >------------
+[INFO] Building Jenkins Design Language 1.27.22-SNAPSHOT                 [2/22]
+[INFO]   from jenkins-design-language/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ jenkins-design-language ---
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ jenkins-design-language ---
+[INFO] Created marker file /tmp/plugin-builds/blueocean-config/jenkins-design-language/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ jenkins-design-language ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ jenkins-design-language ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ jenkins-design-language ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (enforce-banned-dependencies) @ jenkins-design-language ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- blueocean:0.0.3:process-node-dependencies (upstream-dependencies) @ jenkins-design-language ---
+[INFO] No upstream blueocean dependencies found for: jenkins-design-language
+[INFO] 
+[INFO] --- frontend:1.15.1:install-node-and-npm (install node and npm) @ jenkins-design-language ---
+[INFO] Installing node version v10.13.0
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/plugin-builds/blueocean-config/jenkins-design-language/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/blueocean-config/jenkins-design-language/node/tmp/node-v10.13.0-linux-x64/bin/node to /tmp/plugin-builds/blueocean-config/jenkins-design-language/node/node
+[INFO] Installed node locally.
+[INFO] Installing npm version 6.14.4
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz into /tmp/plugin-builds/blueocean-config/jenkins-design-language/node/node_modules
+[INFO] Installed npm locally.
+[INFO] 
+[INFO] --- frontend:1.15.1:npm (npm install) @ jenkins-design-language ---
+[INFO] Running 'npm install' in /tmp/plugin-builds/blueocean-config/jenkins-design-language
+[INFO] 
+[INFO] > node-sass@7.0.0 install /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass
+[INFO] > node scripts/install.js
+[INFO] 
+[INFO] Downloading binary from https://github.com/sass/node-sass/releases/download/v7.0.0/linux-x64-64_binding.node
+[INFO] Cannot download "https://github.com/sass/node-sass/releases/download/v7.0.0/linux-x64-64_binding.node": 
+[INFO] 
+[INFO] HTTP error 404 Not Found
+[INFO] 
+[INFO] Hint: If github.com is not accessible in your location
+[INFO]       try setting a proxy via HTTP_PROXY, e.g. 
+[INFO] 
+[INFO]       export HTTP_PROXY=http://example.com:1234
+[INFO] 
+[INFO] or configure npm proxy via
+[INFO] 
+[INFO]       npm config set proxy http://example.com:8080
+[INFO] 
+[INFO] > esbuild@0.15.7 postinstall /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/esbuild
+[INFO] > node install.js
+[INFO] 
+[INFO] 
+[INFO] > node-sass@7.0.0 postinstall /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass
+[INFO] > node scripts/build.js
+[INFO] 
+[INFO] Building: /tmp/plugin-builds/blueocean-config/jenkins-design-language/node/node /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/bin/node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
+[INFO] gyp info it worked if it ends with ok
+[INFO] gyp verb cli [ '/tmp/plugin-builds/blueocean-config/jenkins-design-language/node/node',
+[INFO] gyp verb cli   '/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/bin/node-gyp.js',
+[INFO] gyp verb cli   'rebuild',
+[INFO] gyp verb cli   '--verbose',
+[INFO] gyp verb cli   '--libsass_ext=',
+[INFO] gyp verb cli   '--libsass_cflags=',
+[INFO] gyp verb cli   '--libsass_ldflags=',
+[INFO] gyp verb cli   '--libsass_library=' ]
+[INFO] gyp info using node-gyp@7.1.2
+[INFO] gyp info using node@10.13.0 | linux | x64
+[INFO] gyp verb command rebuild []
+[INFO] gyp verb command clean []
+[INFO] gyp verb clean removing "build" directory
+[INFO] gyp verb command configure []
+[INFO] gyp verb find Python Python is not set from command line or npm configuration
+[INFO] gyp verb find Python Python is not set from environment variable PYTHON
+[INFO] gyp verb find Python checking if "python3" can be used
+[INFO] gyp verb find Python - executing "python3" to get executable path
+[INFO] gyp verb find Python - executable path is "/home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3"
+[INFO] gyp verb find Python - executing "/home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3" to get version
+[INFO] gyp verb find Python - version is "3.12.3"
+[INFO] gyp info find Python using Python version 3.12.3 found at "/home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3"
+[INFO] gyp verb get node dir no --target version specified, falling back to host node version: 10.13.0
+[INFO] gyp verb command install [ '10.13.0' ]
+[INFO] gyp verb install input version string "10.13.0"
+[INFO] gyp verb install installing version: 10.13.0
+[INFO] gyp verb install --ensure was passed, so won't reinstall if already installed
+[INFO] gyp verb install version is already installed, need to check "installVersion"
+[INFO] gyp verb got "installVersion" 9
+[INFO] gyp verb needs "installVersion" 9
+[INFO] gyp verb install version is good
+[INFO] gyp verb get node dir target node version installed: 10.13.0
+[INFO] gyp verb build dir attempting to create "build" dir: /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass/build
+[INFO] gyp verb build dir "build" dir needed to be created? undefined
+[INFO] gyp verb build/config.gypi creating config file
+[INFO] gyp verb build/config.gypi writing out config file: /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass/build/config.gypi
+[INFO] gyp verb config.gypi checking for gypi file: /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass/config.gypi
+[INFO] gyp verb common.gypi checking for gypi file: /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass/common.gypi
+[INFO] gyp verb gyp gyp format was not specified; forcing "make"
+[INFO] gyp info spawn /home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3
+[INFO] gyp info spawn args [ '/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/gyp/gyp_main.py',
+[INFO] gyp info spawn args   'binding.gyp',
+[INFO] gyp info spawn args   '-f',
+[INFO] gyp info spawn args   'make',
+[INFO] gyp info spawn args   '-I',
+[INFO] gyp info spawn args   '/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass/build/config.gypi',
+[INFO] gyp info spawn args   '-I',
+[INFO] gyp info spawn args   '/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/addon.gypi',
+[INFO] gyp info spawn args   '-I',
+[INFO] gyp info spawn args   '/home/runner/.cache/node-gyp/10.13.0/include/node/common.gypi',
+[INFO] gyp info spawn args   '-Dlibrary=shared_library',
+[INFO] gyp info spawn args   '-Dvisibility=default',
+[INFO] gyp info spawn args   '-Dnode_root_dir=/home/runner/.cache/node-gyp/10.13.0',
+[INFO] gyp info spawn args   '-Dnode_gyp_dir=/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp',
+[INFO] gyp info spawn args   '-Dnode_lib_file=/home/runner/.cache/node-gyp/10.13.0/<(target_arch)/node.lib',
+[INFO] gyp info spawn args   '-Dmodule_root_dir=/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass',
+[INFO] gyp info spawn args   '-Dnode_engine=v8',
+[INFO] gyp info spawn args   '--depth=.',
+[INFO] gyp info spawn args   '--no-parallel',
+[INFO] gyp info spawn args   '--generator-output',
+[INFO] gyp info spawn args   'build',
+[INFO] gyp info spawn args   '-Goutput_dir=.' ]
+[INFO] Traceback (most recent call last):
+[INFO]   File "/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/gyp/gyp_main.py", line 48, in <module>
+[INFO]     import gyp  # noqa: E402
+[INFO]     ^^^^^^^^^^
+[INFO]   File "/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/gyp/pylib/gyp/__init__.py", line 10, in <module>
+[INFO]     import gyp.input
+[INFO]   File "/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/gyp/pylib/gyp/input.py", line 20, in <module>
+[INFO]     from distutils.version import StrictVersion
+[INFO] ModuleNotFoundError: No module named 'distutils'
+[INFO] gyp ERR! configure error 
+[INFO] gyp ERR! stack Error: `gyp` failed with exit code: 1
+[INFO] gyp ERR! stack     at ChildProcess.onCpExit (/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/lib/configure.js:351:16)
+[INFO] gyp ERR! stack     at ChildProcess.emit (events.js:182:13)
+[INFO] gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:240:12)
+[INFO] gyp ERR! System Linux 6.11.0-1018-azure
+[INFO] gyp ERR! command "/tmp/plugin-builds/blueocean-config/jenkins-design-language/node/node" "/tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-gyp/bin/node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
+[INFO] gyp ERR! cwd /tmp/plugin-builds/blueocean-config/jenkins-design-language/node_modules/node-sass
+[INFO] gyp ERR! node -v v10.13.0
+[INFO] gyp ERR! node-gyp -v v7.1.2
+[INFO] gyp ERR! not ok 
+[INFO] Build failed with error code: 1
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: @esbuild/linux-loong64@0.15.7 (node_modules/@esbuild/linux-loong64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for @esbuild/linux-loong64@0.15.7: wanted {"os":"linux","arch":"loong64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.3 (node_modules/sass/node_modules/fsevents):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.13 (node_modules/fsevents):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-windows-arm64@0.15.7 (node_modules/esbuild-windows-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-windows-arm64@0.15.7: wanted {"os":"win32","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-windows-64@0.15.7 (node_modules/esbuild-windows-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-windows-64@0.15.7: wanted {"os":"win32","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-windows-32@0.15.7 (node_modules/esbuild-windows-32):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-windows-32@0.15.7: wanted {"os":"win32","arch":"ia32"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-sunos-64@0.15.7 (node_modules/esbuild-sunos-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-sunos-64@0.15.7: wanted {"os":"sunos","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-openbsd-64@0.15.7 (node_modules/esbuild-openbsd-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-openbsd-64@0.15.7: wanted {"os":"openbsd","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-netbsd-64@0.15.7 (node_modules/esbuild-netbsd-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-netbsd-64@0.15.7: wanted {"os":"netbsd","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-s390x@0.15.7 (node_modules/esbuild-linux-s390x):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-s390x@0.15.7: wanted {"os":"linux","arch":"s390x"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-riscv64@0.15.7 (node_modules/esbuild-linux-riscv64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-riscv64@0.15.7: wanted {"os":"linux","arch":"riscv64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-ppc64le@0.15.7 (node_modules/esbuild-linux-ppc64le):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-ppc64le@0.15.7: wanted {"os":"linux","arch":"ppc64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-mips64le@0.15.7 (node_modules/esbuild-linux-mips64le):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-mips64le@0.15.7: wanted {"os":"linux","arch":"mips64el"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-arm64@0.15.7 (node_modules/esbuild-linux-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-arm64@0.15.7: wanted {"os":"linux","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-arm@0.15.7 (node_modules/esbuild-linux-arm):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-arm@0.15.7: wanted {"os":"linux","arch":"arm"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-32@0.15.7 (node_modules/esbuild-linux-32):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-32@0.15.7: wanted {"os":"linux","arch":"ia32"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-freebsd-arm64@0.15.7 (node_modules/esbuild-freebsd-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-freebsd-arm64@0.15.7: wanted {"os":"freebsd","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-freebsd-64@0.15.7 (node_modules/esbuild-freebsd-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-freebsd-64@0.15.7: wanted {"os":"freebsd","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-darwin-arm64@0.15.7 (node_modules/esbuild-darwin-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-darwin-arm64@0.15.7: wanted {"os":"darwin","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-darwin-64@0.15.7 (node_modules/esbuild-darwin-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-darwin-64@0.15.7: wanted {"os":"darwin","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-android-arm64@0.15.7 (node_modules/esbuild-android-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-android-arm64@0.15.7: wanted {"os":"android","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-android-64@0.15.7 (node_modules/esbuild-android-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-android-64@0.15.7: wanted {"os":"android","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] 
+[INFO] npm ERR! code ELIFECYCLE
+[INFO] npm ERR! errno 1
+[INFO] npm ERR! node-sass@7.0.0 postinstall: `node scripts/build.js`
+[INFO] npm ERR! Exit status 1
+[INFO] npm ERR! 
+[INFO] npm ERR! Failed at the node-sass@7.0.0 postinstall script.
+[INFO] npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+[INFO] 
+[INFO] npm ERR! A complete log of this run can be found in:
+[INFO] npm ERR!     /home/runner/.npm/_logs/2025-09-09T09_45_41_015Z-debug.log
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Blue Ocean Parent 1.27.22-SNAPSHOT:
 [INFO] 
-[INFO] Blue Ocean Parent .................................. FAILURE [  7.101 s]
-[INFO] Jenkins Design Language ............................ SKIPPED
+[INFO] Blue Ocean Parent .................................. SUCCESS [  5.738 s]
+[INFO] Jenkins Design Language ............................ FAILURE [ 35.918 s]
 [INFO] Blue Ocean Core JS ................................. SKIPPED
 [INFO] Common API for Blue Ocean .......................... SKIPPED
 [INFO] REST API for Blue Ocean ............................ SKIPPED
@@ -106,14 +325,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  9.716 s (Wall Clock)
-[INFO] Finished at: 2025-09-01T09:32:15+02:00
+[INFO] Total time:  42.597 s
+[INFO] Finished at: 2025-09-09T09:45:41Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69 -> [Help 1]
-[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
+[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:npm (npm install) on project jenkins-design-language: Failed to run task: 'npm install' failed. org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
 [ERROR] 
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/GroovyBugError
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :jenkins-design-language

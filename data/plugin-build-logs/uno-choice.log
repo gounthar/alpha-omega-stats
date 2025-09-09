@@ -1,10 +1,14 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] 
-[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.biouno:uno-choice:hpi:2.8.9-SNAPSHOT
 [INFO] 
 [INFO] -----------------------< org.biouno:uno-choice >------------------------
 [INFO] Building Active Choices Plug-in 2.8.9-SNAPSHOT
@@ -32,11 +36,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- frontend:1.15.1:install-node-and-yarn (install node and yarn) @ uno-choice ---
 [INFO] Installing node version v22.14.0
-[INFO] Unpacking /home/poddingue/.m2/repository/com/github/eirslett/node/22.14.0/node-22.14.0-linux-x64.tar.gz into /tmp/plugin-builds/uno-choice/node/tmp
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/22.14.0/node-22.14.0-linux-x64.tar.gz into /tmp/plugin-builds/uno-choice/node/tmp
 [INFO] Copying node binary from /tmp/plugin-builds/uno-choice/node/tmp/node-v22.14.0-linux-x64/bin/node to /tmp/plugin-builds/uno-choice/node/node
 [INFO] Installed node locally.
 [INFO] Installing Yarn version v1.22.19
-[INFO] Unpacking /home/poddingue/.m2/repository/com/github/eirslett/yarn/1.22.19/yarn-1.22.19.tar.gz into /tmp/plugin-builds/uno-choice/node/yarn
+[INFO] Downloading https://github.com/yarnpkg/yarn/releases/download/v1.22.19/yarn-v1.22.19.tar.gz to /home/runner/.m2/repository/com/github/eirslett/yarn/1.22.19/yarn-1.22.19.tar.gz
+[INFO] No proxies configured
+[INFO] No proxy was configured, downloading directly
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/yarn/1.22.19/yarn-1.22.19.tar.gz into /tmp/plugin-builds/uno-choice/node/yarn
 [INFO] Installed Yarn locally.
 [INFO] 
 [INFO] --- frontend:1.15.1:yarn (yarn install) @ uno-choice ---
@@ -44,11 +51,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] yarn install v1.22.19
 [INFO] [1/4] Resolving packages...
 [INFO] [2/4] Fetching packages...
-[INFO] (node:55412) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[INFO] (node:29814) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 [INFO] (Use `node --trace-deprecation ...` to show where the warning was created)
 [INFO] [3/4] Linking dependencies...
 [INFO] [4/4] Building fresh packages...
-[INFO] Done in 19.30s.
+[INFO] Done in 19.51s.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ uno-choice ---
 [INFO] 
@@ -62,8 +69,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] asset Util.js 1.91 KiB [emitted] [minimized] (name: Util) 1 related asset
 [INFO] ./src/main/js/UnoChoice.es6 50.8 KiB [built] [code generated]
 [INFO] ./src/main/js/Util.ts 5.7 KiB [built] [code generated]
-[INFO] webpack 5.101.3 compiled successfully in 8220 ms
-[INFO] Done in 11.99s.
+[INFO] webpack 5.101.3 compiled successfully in 8393 ms
+[INFO] Done in 10.62s.
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ uno-choice ---
 [INFO] Skipping Rule Enforcement.
@@ -138,50 +145,50 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] $ jest --colors
 [INFO]  PASS  src/test/js/Util.test.ts
 [INFO]   makeRadio
-[INFO]     ✓ When only value and name are provided, a valid checkbox is built (11 ms)
-[INFO]     ✓ When checked is specified, it is set (3 ms)
-[INFO]     ✓ When disabled is specified, it is set (14 ms)
+[INFO]     ✓ When only value and name are provided, a valid checkbox is built (9 ms)
+[INFO]     ✓ When checked is specified, it is set (2 ms)
+[INFO]     ✓ When disabled is specified, it is set (4 ms)
 [INFO]   makeCheckbox
-[INFO]     ✓ When only value is provided, a valid checkbox is built (2 ms)
-[INFO]     ✓ When checked is specified, it is set (3 ms)
-[INFO]     ✓ When disabled is specified, it is set (6 ms)
+[INFO]     ✓ When only value is provided, a valid checkbox is built (12 ms)
+[INFO]     ✓ When checked is specified, it is set (1 ms)
+[INFO]     ✓ When disabled is specified, it is set (7 ms)
 [INFO]   makeHidden
-[INFO]     ✓ a valid hidden input is produced (3 ms)
+[INFO]     ✓ a valid hidden input is produced (1 ms)
 [INFO]   makeTd
-[INFO]     ✓ when no elements are provided, a valid td is produced (2 ms)
-[INFO]     ✓ when 1 element is provided, a valid td is produced (4 ms)
-[INFO]     ✓ when 2 elements are provided, a valid td is produced (2 ms)
+[INFO]     ✓ when no elements are provided, a valid td is produced (1 ms)
+[INFO]     ✓ when 1 element is provided, a valid td is produced (1 ms)
+[INFO]     ✓ when 2 elements are provided, a valid td is produced (4 ms)
 [INFO]   makeTr
-[INFO]     ✓ creates a valid tr with undefined id (2 ms)
-[INFO]     ✓ creates a valid tr with valid id (2 ms)
+[INFO]     ✓ creates a valid tr with undefined id (1 ms)
+[INFO]     ✓ creates a valid tr with valid id (1 ms)
 [INFO]   makeLabel
-[INFO]     ✓ creates a valid label with title (4 ms)
-[INFO]     ✓ creates a valid label without title (3 ms)
+[INFO]     ✓ creates a valid label with title (5 ms)
+[INFO]     ✓ creates a valid label without title (4 ms)
 [INFO]   getSelectValues
-[INFO]     ✓ returns empty array when no option is selected (10 ms)
-[INFO]     ✓ returns singleton array when one option is selected (4 ms)
-[INFO]     ✓ returns all selected options when multiple are selected (4 ms)
+[INFO]     ✓ returns empty array when no option is selected (8 ms)
+[INFO]     ✓ returns singleton array when one option is selected (6 ms)
+[INFO]     ✓ returns all selected options when multiple are selected (6 ms)
 [INFO]   getElementValue
 [INFO]     When HTML Select is passed
-[INFO]       ✓ returns empty array when no option is selected (3 ms)
-[INFO]       ✓ returns singleton array when one option is selected (3 ms)
+[INFO]       ✓ returns empty array when no option is selected (7 ms)
+[INFO]       ✓ returns singleton array when one option is selected (2 ms)
 [INFO]       ✓ returns all selected options when multiple are selected (5 ms)
 [INFO]     When checkbox is passed
-[INFO]       ✓ returns empty string when no option is selected (2 ms)
-[INFO]       ✓ returns value when checkbox is selected (2 ms)
+[INFO]       ✓ returns empty string when no option is selected (1 ms)
+[INFO]       ✓ returns value when checkbox is selected (5 ms)
 [INFO]     When radio is passed
-[INFO]       ✓ returns empty string when no option is selected (2 ms)
-[INFO]       ✓ returns value when radio is selected (3 ms)
+[INFO]       ✓ returns empty string when no option is selected (1 ms)
+[INFO]       ✓ returns value when radio is selected (1 ms)
 [INFO]     When text is passed
 [INFO]       ✓ returns empty string no input is provided (4 ms)
-[INFO]       ✓ returns value when text is provided (3 ms)
+[INFO]       ✓ returns value when text is provided (4 ms)
 [INFO] 
 [INFO] Test Suites: 1 passed, 1 total
 [INFO] Tests:       26 passed, 26 total
 [INFO] Snapshots:   0 total
-[INFO] Time:        1.803 s
+[INFO] Time:        2.878 s
 [INFO] Ran all test suites.
-[INFO] Done in 3.81s.
+[INFO] Done in 4.57s.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ uno-choice ---
 [INFO] Generated /tmp/plugin-builds/uno-choice/target/uno-choice/WEB-INF/licenses.xml
@@ -205,7 +212,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ uno-choice ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ uno-choice <<<
@@ -220,12 +226,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ uno-choice ---
-[INFO] Installing /tmp/plugin-builds/uno-choice/target/uno-choice-2.8.9-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/biouno/uno-choice/2.8.9-SNAPSHOT/uno-choice-2.8.9-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/uno-choice/target/uno-choice.hpi to /home/poddingue/.m2/repository/org/biouno/uno-choice/2.8.9-SNAPSHOT/uno-choice-2.8.9-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/uno-choice/target/uno-choice.jar to /home/poddingue/.m2/repository/org/biouno/uno-choice/2.8.9-SNAPSHOT/uno-choice-2.8.9-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/uno-choice/target/uno-choice-2.8.9-SNAPSHOT.pom to /home/runner/.m2/repository/org/biouno/uno-choice/2.8.9-SNAPSHOT/uno-choice-2.8.9-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/uno-choice/target/uno-choice.hpi to /home/runner/.m2/repository/org/biouno/uno-choice/2.8.9-SNAPSHOT/uno-choice-2.8.9-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/uno-choice/target/uno-choice.jar to /home/runner/.m2/repository/org/biouno/uno-choice/2.8.9-SNAPSHOT/uno-choice-2.8.9-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:30 min (Wall Clock)
-[INFO] Finished at: 2025-09-01T09:37:26+02:00
+[INFO] Total time:  02:17 min
+[INFO] Finished at: 2025-09-09T09:53:40Z
 [INFO] ------------------------------------------------------------------------

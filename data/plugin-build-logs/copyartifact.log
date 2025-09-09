@@ -1,10 +1,14 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
-[INFO] 
-[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jenkins-ci.plugins:copyartifact:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:copyartifact >-----------------
 [INFO] Building Copy Artifact Plugin 999999-SNAPSHOT
@@ -13,10 +17,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ copyartifact ---
 [INFO] 
-[INFO] --- hpi:3.66:validate (default-validate) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ copyartifact ---
 [INFO] Created marker file /tmp/plugin-builds/copyartifact/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.66:validate-hpi (default-validate-hpi) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ copyartifact ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ copyartifact ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -31,6 +35,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ copyartifact ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ copyartifact ---
+[INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ copyartifact ---
 [INFO] Copying 87 resources from src/main/resources to target/classes
@@ -74,13 +81,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/StatusBuildSelector.java:[49,12] Generating hudson/plugins/copyartifact/StatusBuildSelector.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/TriggeredBuildSelector.java:[102,12] Generating hudson/plugins/copyartifact/TriggeredBuildSelector.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/WorkspaceSelector.java:[47,12] Generating hudson/plugins/copyartifact/WorkspaceSelector.stapler
-[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/CopyArtifact.java:[881,31] Generating hudson/plugins/copyartifact/CopyArtifact/DescriptorImpl/doCheckResultVariableSuffix.stapler
-[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/PermalinkBuildSelector.java:[70,30] Generating hudson/plugins/copyartifact/PermalinkBuildSelector/DescriptorImpl/doFillIdItems.stapler
+[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/DownstreamBuildSelector.java:[204,31] Generating hudson/plugins/copyartifact/DownstreamBuildSelector/DescriptorImpl/doCheckUpstreamProjectName.stapler
+[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/CopyArtifactPermissionProperty.java:[236,31] Generating hudson/plugins/copyartifact/CopyArtifactPermissionProperty/DescriptorImpl/doCheckProjectNames.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/DownstreamBuildSelector.java:[347,41] Generating hudson/plugins/copyartifact/DownstreamBuildSelector/DescriptorImpl/doAutoCompleteUpstreamProjectName.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/CopyArtifact.java:[840,31] Generating hudson/plugins/copyartifact/CopyArtifact/DescriptorImpl/doCheckProjectName.stapler
+[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/PermalinkBuildSelector.java:[70,30] Generating hudson/plugins/copyartifact/PermalinkBuildSelector/DescriptorImpl/doFillIdItems.stapler
+[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/CopyArtifact.java:[881,31] Generating hudson/plugins/copyartifact/CopyArtifact/DescriptorImpl/doCheckResultVariableSuffix.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/DownstreamBuildSelector.java:[259,31] Generating hudson/plugins/copyartifact/DownstreamBuildSelector/DescriptorImpl/doCheckUpstreamBuildNumber.stapler
-[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/CopyArtifactPermissionProperty.java:[236,31] Generating hudson/plugins/copyartifact/CopyArtifactPermissionProperty/DescriptorImpl/doCheckProjectNames.stapler
-[INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/DownstreamBuildSelector.java:[204,31] Generating hudson/plugins/copyartifact/DownstreamBuildSelector/DescriptorImpl/doCheckUpstreamProjectName.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/CopyArtifactPermissionProperty.java:[250,41] Generating hudson/plugins/copyartifact/CopyArtifactPermissionProperty/DescriptorImpl/doAutoCompleteProjectNames.stapler
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/BuildSelectorParameter.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/copyartifact/src/main/java/hudson/plugins/copyartifact/BuildSelectorParameter.java: Recompile with -Xlint:deprecation for details.
@@ -89,9 +96,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ copyartifact ---
 [INFO] 
-[INFO] --- bridge-method-injector:1.31:process (default) @ copyartifact ---
+[INFO] --- bridge-method-injector:1.32:process (default) @ copyartifact ---
 [INFO] 
-[INFO] --- hpi:3.66:insert-test (default-insert-test) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:insert-test (default-insert-test) @ copyartifact ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ copyartifact ---
 [INFO] Executing tasks
@@ -104,21 +111,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ copyartifact ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.66:test-hpl (default-test-hpl) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ copyartifact ---
 [INFO] Generating /tmp/plugin-builds/copyartifact/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.66:resolve-test-dependencies (default-resolve-test-dependencies) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ copyartifact ---
 [INFO] 
-[INFO] --- hpi:3.66:test-runtime (default-test-runtime) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ copyartifact ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.3:test (default-test) @ copyartifact ---
+[INFO] --- surefire:3.5.2:test (default-test) @ copyartifact ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ copyartifact ---
 [INFO] Generated /tmp/plugin-builds/copyartifact/target/copyartifact/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.66:hpi (default-hpi) @ copyartifact ---
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ copyartifact ---
 [INFO] Generating /tmp/plugin-builds/copyartifact/target/copyartifact/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/copyartifact/target/copyartifact.jar
@@ -132,18 +139,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ copyartifact ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.3.2:check (spotbugs) > :spotbugs @ copyartifact >>>
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ copyartifact >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:spotbugs (spotbugs) @ copyartifact ---
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ copyartifact ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[WARNING] Unable to find a URL to the parent project. The parent menu will NOT be added.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.3.2:check (spotbugs) < :spotbugs @ copyartifact <<<
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ copyartifact <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.3.2:check (spotbugs) @ copyartifact ---
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ copyartifact ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -152,12 +158,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ copyartifact ---
-[INFO] Installing /tmp/plugin-builds/copyartifact/target/copyartifact-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/copyartifact/999999-SNAPSHOT/copyartifact-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/copyartifact/target/copyartifact.hpi to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/copyartifact/999999-SNAPSHOT/copyartifact-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/copyartifact/target/copyartifact.jar to /home/poddingue/.m2/repository/org/jenkins-ci/plugins/copyartifact/999999-SNAPSHOT/copyartifact-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/copyartifact/target/copyartifact-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/copyartifact/999999-SNAPSHOT/copyartifact-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/copyartifact/target/copyartifact.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/copyartifact/999999-SNAPSHOT/copyartifact-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/copyartifact/target/copyartifact.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/copyartifact/999999-SNAPSHOT/copyartifact-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:09 min (Wall Clock)
-[INFO] Finished at: 2025-09-01T09:36:33+02:00
+[INFO] Total time:  01:02 min
+[INFO] Finished at: 2025-09-09T09:51:14Z
 [INFO] ------------------------------------------------------------------------
