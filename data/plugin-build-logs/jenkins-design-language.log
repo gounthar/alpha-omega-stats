@@ -1,8 +1,14 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for io.jenkins.blueocean:blueocean-parent:pom:1.27.22-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -29,30 +35,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Blue Ocean                                                         [hpi]
 [INFO] JIRA Integration for Blue Ocean                                    [hpi]
 [INFO] 
-[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
-[INFO] 
 [INFO] ---------------< io.jenkins.blueocean:blueocean-parent >----------------
 [INFO] Building Blue Ocean Parent 1.27.22-SNAPSHOT                       [1/22]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
-[WARNING] *****************************************************************
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] *****************************************************************
-[WARNING] The following plugins are not marked as thread-safe in Blue Ocean Parent:
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:165.v7e11f4e4a_325
-[WARNING] 
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING] *****************************************************************
 [INFO] 
-[INFO] --- clean:3.4.0:clean (default-clean) @ blueocean-parent ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ blueocean-parent ---
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (display-info) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ blueocean-parent ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
@@ -61,28 +51,87 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (no-snapshots-in-release) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ blueocean-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- enforcer:3.5.0:enforce (enforce-banned-dependencies) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (enforce-banned-dependencies) @ blueocean-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ blueocean-parent ---
 [INFO] 
-[INFO] --- flatten:1.6.0:flatten (flatten) @ blueocean-parent ---
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ blueocean-parent ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ blueocean-parent ---
 [INFO] Generating flattened POM of project io.jenkins.blueocean:blueocean-parent:pom:1.27.22-SNAPSHOT...
+[INFO] 
+[INFO] --- bridge-method-injector:1.32:process (default) @ blueocean-parent ---
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ blueocean-parent ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/jenkins-design-language/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- license:165.v7e11f4e4a_325:process (default) @ blueocean-parent ---
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ blueocean-parent ---
+[INFO] Generated /tmp/plugin-builds/jenkins-design-language/target/blueocean-parent/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ blueocean-parent ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ blueocean-parent >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ blueocean-parent ---
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ blueocean-parent <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ blueocean-parent ---
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ blueocean-parent ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ blueocean-parent ---
+[INFO] Installing /tmp/plugin-builds/jenkins-design-language/target/blueocean-parent-1.27.22-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/blueocean/blueocean-parent/1.27.22-SNAPSHOT/blueocean-parent-1.27.22-SNAPSHOT.pom
+[INFO] 
+[INFO] ------------< io.jenkins.blueocean:jenkins-design-language >------------
+[INFO] Building Jenkins Design Language 1.27.22-SNAPSHOT                 [2/22]
+[INFO]   from jenkins-design-language/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ jenkins-design-language ---
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ jenkins-design-language ---
+[INFO] Created marker file /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ jenkins-design-language ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ jenkins-design-language ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ jenkins-design-language ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (enforce-banned-dependencies) @ jenkins-design-language ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] 
+[INFO] --- blueocean:0.0.3:process-node-dependencies (upstream-dependencies) @ jenkins-design-language ---
+[INFO] No upstream blueocean dependencies found for: jenkins-design-language
+[INFO] 
+[INFO] --- frontend:1.15.1:install-node-and-npm (install node and npm) @ jenkins-design-language ---
+[INFO] Installing node version v10.13.0
+[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v10.13.0/node-v10.13.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz
+[INFO] No proxies configured
+[INFO] No proxy was configured, downloading directly
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Blue Ocean Parent 1.27.22-SNAPSHOT:
 [INFO] 
-[INFO] Blue Ocean Parent .................................. FAILURE [  6.687 s]
-[INFO] Jenkins Design Language ............................ SKIPPED
+[INFO] Blue Ocean Parent .................................. SUCCESS [ 13.236 s]
+[INFO] Jenkins Design Language ............................ FAILURE [ 39.215 s]
 [INFO] Blue Ocean Core JS ................................. SKIPPED
 [INFO] Common API for Blue Ocean .......................... SKIPPED
 [INFO] REST API for Blue Ocean ............................ SKIPPED
@@ -106,14 +155,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  8.431 s (Wall Clock)
-[INFO] Finished at: 2025-09-01T09:27:28+02:00
+[INFO] Total time:  53.601 s
+[INFO] Finished at: 2025-09-09T09:36:45Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69 -> [Help 1]
-[ERROR] BUG! exception in phase 'semantic analysis' in source unit 'inlineScript' Unsupported class file major version 69
+[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:install-node-and-npm (install node and npm) on project jenkins-design-language: Could not extract the Node archive: Could not extract archive: '/home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz': /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz (No such file or directory) -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
 [ERROR] 
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/GroovyBugError
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :jenkins-design-language

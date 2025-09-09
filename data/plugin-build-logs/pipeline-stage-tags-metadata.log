@@ -1,8 +1,14 @@
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/poddingue/.sdkman/candidates/maven/current/lib/guice-5.1.0-classes.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/usr/share/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
 WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Scanning for projects...
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jenkinsci.plugins:pipeline-model-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -12,26 +18,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Pipeline: Declarative Extension Points API                         [hpi]
 [INFO] Pipeline: Declarative                                              [hpi]
 [INFO] 
-[INFO] Using the MultiThreadedBuilder implementation with a thread count of 4
-[INFO] 
 [INFO] ------------< org.jenkinsci.plugins:pipeline-model-parent >-------------
 [INFO] Building Pipeline: Model Parent POM 999999-SNAPSHOT                [1/5]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
-[WARNING] *****************************************************************
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] *****************************************************************
-[WARNING] The following plugins are not marked as thread-safe in Pipeline: Model Parent POM:
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
-[WARNING] 
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-parent ---
 [INFO] 
@@ -82,49 +72,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-parent ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
-[INFO] 
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/target/pipeline-model-parent-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-parent/999999-SNAPSHOT/pipeline-model-parent-999999-SNAPSHOT.pom
 [INFO] 
 [INFO] ---------< org.jenkinsci.plugins:pipeline-stage-tags-metadata >---------
-[INFO] --------------< org.jenkinsci.plugins:pipeline-model-api >--------------
 [INFO] Building Pipeline: Stage Tags Metadata 999999-SNAPSHOT             [2/5]
 [INFO]   from pipeline-stage-tags-metadata/pom.xml
-[INFO] Building Pipeline: Model API 999999-SNAPSHOT                       [3/5]
 [INFO] --------------------------------[ hpi ]---------------------------------
-[INFO]   from pipeline-model-api/pom.xml
-[INFO] --------------------------------[ hpi ]---------------------------------
-[WARNING] *****************************************************************
-[WARNING] *****************************************************************
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] *****************************************************************
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] The following plugins are not marked as thread-safe in Pipeline: Stage Tags Metadata:
-[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
-[WARNING]   org.kohsuke:access-modifier-checker:1.35
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
-[WARNING] *****************************************************************
-[WARNING] 
-[WARNING] The following plugins are not marked as thread-safe in Pipeline: Model API:
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
-[WARNING]   org.kohsuke:access-modifier-checker:1.35
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
-[WARNING] 
-[WARNING] *****************************************************************
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-stage-tags-metadata ---
 [INFO] 
@@ -132,13 +85,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Created marker file /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ pipeline-stage-tags-metadata ---
-[INFO] 
-[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-api ---
-[INFO] 
-[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ pipeline-model-api ---
-[INFO] Created marker file /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/java-level/17
-[INFO] 
-[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ pipeline-model-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-stage-tags-metadata ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
@@ -156,8 +102,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-stage-tags-metadata ---
-[INFO] 
-[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-model-api ---
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-stage-tags-metadata ---
@@ -166,28 +110,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-stage-tags-metadata ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 3 source files with javac [debug parameters release 17] to target/classes
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] 
-[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-model-api ---
-[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
-[INFO] 
-[INFO] --- localizer:1.31:generate (default) @ pipeline-model-api ---
-[INFO] 
-[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ pipeline-model-api ---
-[INFO] Skipping Rule Enforcement.
-[INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-api ---
-[INFO] Copying 3 resources from src/main/resources to target/classes
-[INFO] 
-[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-api ---
-[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-api:hpi:999999-SNAPSHOT...
-[INFO] 
-[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-api ---
-[INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 58 source files with javac [debug parameters release 17] to target/classes
 [INFO] org.jenkinsci.plugins.pipeline.StageStatus indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.pipeline.SyntheticStage indexed under hudson.Extension
 [INFO] 
@@ -210,12 +132,94 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ pipeline-stage-tags-metadata ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-stage-tags-metadata ---
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ pipeline-stage-tags-metadata ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-stage-tags-metadata ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-stage-tags-metadata ---
+[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
+[INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata
+[INFO] Assembling webapp pipeline-stage-tags-metadata in /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata
+[INFO] Generating hpi /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi
+[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-stage-tags-metadata ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ pipeline-stage-tags-metadata ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-tags-metadata ---
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
+[INFO] 
+[INFO] --------------< org.jenkinsci.plugins:pipeline-model-api >--------------
+[INFO] Building Pipeline: Model API 999999-SNAPSHOT                       [3/5]
+[INFO]   from pipeline-model-api/pom.xml
+[INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate (default-validate) @ pipeline-model-api ---
+[INFO] Created marker file /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/java-level/17
+[INFO] 
+[INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ pipeline-model-api ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ pipeline-model-api ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ pipeline-model-api ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ pipeline-model-api ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-model-api ---
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ pipeline-model-api ---
+[INFO] Generating flattened POM of project org.jenkinsci.plugins:pipeline-model-api:hpi:999999-SNAPSHOT...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ pipeline-model-api ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 58 source files with javac [debug parameters release 17] to target/classes
 [INFO] org.jenkinsci.plugins.pipeline.modeldefinition.ASTSchema indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.pipeline.modeldefinition.DescriptorLookupCache indexed under hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-model-api ---
-[INFO] 
-[INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-stage-tags-metadata ---
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ pipeline-model-api ---
 [INFO] 
@@ -235,35 +239,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-hpl (default-test-hpl) @ pipeline-model-api ---
 [INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ pipeline-stage-tags-metadata ---
-[INFO] Tests are skipped.
-[INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ pipeline-stage-tags-metadata ---
-[INFO] Tests are skipped.
-[INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-stage-tags-metadata ---
-[INFO] Generated /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/WEB-INF/licenses.xml
-[INFO] 
-[INFO] --- hpi:3.1746.v2e9fe7dc4d95:hpi (default-hpi) @ pipeline-stage-tags-metadata ---
-[INFO] Generating /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata/META-INF/MANIFEST.MF
-[INFO] Checking for attached .jar artifact ...
-[INFO] Generating jar /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
-[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar
-[INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-model-api ---
-[INFO] Exploding webapp...
-[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata
-[INFO] Assembling webapp pipeline-stage-tags-metadata in /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata
-[INFO] Generating hpi /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi
-[INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi
-[INFO] 
-[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-stage-tags-metadata ---
-[INFO] Skipping packaging of the test-jar
-[INFO] 
-[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
-[INFO] 
-[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] Fork Value is true
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ pipeline-model-api ---
 [INFO] Tests are skipped.
@@ -306,24 +282,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Done SpotBugs Analysis....
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
-[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
-[INFO] 
-[INFO] 
-[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ pipeline-stage-tags-metadata ---
-[INFO] BugInstance size is 0
-[INFO] Error size is 0
-[INFO] No errors/warnings found
-[INFO] 
-[INFO] --- spotless:2.46.1:check (default) @ pipeline-stage-tags-metadata ---
-[INFO] Spotless check skipped
-[INFO] 
-[INFO] --- install:3.1.4:install (default-install) @ pipeline-stage-tags-metadata ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/pipeline-stage-tags-metadata.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-stage-tags-metadata/999999-SNAPSHOT/pipeline-stage-tags-metadata-999999-SNAPSHOT.jar
-[INFO] Done SpotBugs Analysis....
-[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
-[INFO] 
 [INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
 [INFO] 
 [INFO] 
@@ -336,30 +294,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-api ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/pipeline-model-api.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-api/999999-SNAPSHOT/pipeline-model-api-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------< org.jenkinsci.plugins:pipeline-model-extensions >-----------
 [INFO] Building Pipeline: Declarative Extension Points API 999999-SNAPSHOT [4/5]
 [INFO]   from pipeline-model-extensions/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
-[WARNING] *****************************************************************
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] *****************************************************************
-[WARNING] The following plugins are not marked as thread-safe in Pipeline: Declarative Extension Points API:
-[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
-[WARNING]   org.kohsuke:access-modifier-checker:1.35
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
-[WARNING] 
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-extensions ---
 [INFO] 
@@ -463,30 +405,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-extensions ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/pipeline-model-extensions.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-extensions/999999-SNAPSHOT/pipeline-model-extensions-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------< org.jenkinsci.plugins:pipeline-model-definition >-----------
 [INFO] Building Pipeline: Declarative 999999-SNAPSHOT                     [5/5]
 [INFO]   from pipeline-model-definition/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
-[WARNING] *****************************************************************
-[WARNING] * Your build is requesting parallel execution, but this         *
-[WARNING] * project contains the following plugin(s) that have goals not  *
-[WARNING] * marked as thread-safe to support parallel execution.          *
-[WARNING] * While this /may/ work fine, please look for plugin updates    *
-[WARNING] * and/or request plugins be made thread-safe.                   *
-[WARNING] * If reporting an issue, report it against the plugin in        *
-[WARNING] * question, not against Apache Maven.                           *
-[WARNING] *****************************************************************
-[WARNING] The following plugins are not marked as thread-safe in Pipeline: Declarative:
-[WARNING]   org.jenkins-ci.tools:maven-hpi-plugin:3.1746.v2e9fe7dc4d95
-[WARNING]   org.kohsuke:access-modifier-checker:1.35
-[WARNING]   io.jenkins.tools.maven:license-maven-plugin:184.v19c87b_6b_a_9a_c
-[WARNING] 
-[WARNING] Enable debug to see precisely which goals are not marked as thread-safe.
-[WARNING] *****************************************************************
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-model-definition ---
 [INFO] 
@@ -657,15 +583,15 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[66,8] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.javadoc
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[80,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doCheckLabel.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[180,27] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doCheckStageName.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[129,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckMessage.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[76,41] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doAutoCompleteLabel.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[86,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty/DescriptorImpl/doCheckBuildCount.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[121,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator.java:[78,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator/doGenerateDirective.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[118,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doRestartPipeline.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[137,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckId.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[180,27] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doCheckStageName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator.java:[78,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator/doGenerateDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[121,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[118,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doRestartPipeline.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[76,41] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doAutoCompleteLabel.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[129,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckMessage.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[86,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty/DescriptorImpl/doCheckBuildCount.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[80,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doCheckLabel.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Any.java: Some input files use unchecked or unsafe operations.
@@ -746,21 +672,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-model-definition ---
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-999999-SNAPSHOT.pom to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.hpi to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.jar
-[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-tests.jar to /home/poddingue/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT-tests.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.hpi to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-tests.jar to /home/runner/.m2/repository/org/jenkinsci/plugins/pipeline-model-definition/999999-SNAPSHOT/pipeline-model-definition-999999-SNAPSHOT-tests.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Model Parent POM 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Model Parent POM ......................... SUCCESS [ 12.229 s]
-[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [ 30.242 s]
-[INFO] Pipeline: Model API ................................ SUCCESS [ 43.777 s]
-[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [ 37.237 s]
-[INFO] Pipeline: Declarative .............................. SUCCESS [01:20 min]
+[INFO] Pipeline: Model Parent POM ......................... SUCCESS [  9.665 s]
+[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [ 17.282 s]
+[INFO] Pipeline: Model API ................................ SUCCESS [ 35.903 s]
+[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [ 34.263 s]
+[INFO] Pipeline: Declarative .............................. SUCCESS [01:34 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:56 min (Wall Clock)
-[INFO] Finished at: 2025-09-01T09:09:14+02:00
+[INFO] Total time:  03:13 min
+[INFO] Finished at: 2025-09-09T09:16:29Z
 [INFO] ------------------------------------------------------------------------
