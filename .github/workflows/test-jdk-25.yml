@@ -43,7 +43,7 @@ jobs:
       - name: Create Pull Request if there are changes
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ github.token }}
+          token: ${{ secrets.CR_PAT }}
           commit-message: "chore: update results from test-jdk-25.sh"
           branch: test-jdk-25/update-results
           title: "Update results from test-jdk-25.sh"
