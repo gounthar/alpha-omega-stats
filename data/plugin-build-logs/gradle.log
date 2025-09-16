@@ -8,54 +8,155 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkins-ci.plugins:gradle:hpi:2.17.999999-SNAPSHOT
+[WARNING] Failed to build parent project for org.jenkins-ci.plugins:gradle-pom:pom:1.0
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
+[INFO] Gradle Plugin parent pom                                           [pom]
 [INFO] Configuration Maven extension                                      [jar]
 [INFO] Gradle Plugin                                                      [hpi]
 [INFO] Gradle Plugin Acceptance Tests                                     [jar]
-[INFO] Gradle Plugin parent pom                                           [pom]
+[INFO] 
+[INFO] -----------------< org.jenkins-ci.plugins:gradle-pom >------------------
+[INFO] Building Gradle Plugin parent pom 1.0                              [1/4]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.5.0:clean (default-clean) @ gradle-pom ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ gradle-pom ---
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ gradle-pom ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ gradle-pom ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ gradle-pom ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- flatten:1.7.2:flatten (flatten) @ gradle-pom ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:gradle-pom:pom:1.0...
+[INFO] 
+[INFO] --- bridge-method-injector:1.32:process (default) @ gradle-pom ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ gradle-pom ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/gradle/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ gradle-pom ---
+[INFO] Generated /tmp/plugin-builds/gradle/target/gradle-pom/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ gradle-pom ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.2:check (spotbugs) > :spotbugs @ gradle-pom >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.2:spotbugs (spotbugs) @ gradle-pom ---
+[INFO] No files found to run spotbugs, check compile phase has been run
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.2:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.2:check (spotbugs) < :spotbugs @ gradle-pom <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.2:check (spotbugs) @ gradle-pom ---
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ gradle-pom ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ gradle-pom ---
+[INFO] Installing /tmp/plugin-builds/gradle/target/gradle-pom-1.0.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/gradle-pom/1.0/gradle-pom-1.0.pom
 [INFO] 
 [INFO] --------------< com.gradle:configuration-maven-extension >--------------
-[INFO] Building Configuration Maven extension 1.0.0                       [1/4]
+[INFO] Building Configuration Maven extension 1.0.0                       [2/4]
 [INFO]   from configuration-maven-extension/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
-[INFO] --- clean:3.2.0:clean (default-clean) @ configuration-maven-extension ---
+[INFO] --- clean:3.5.0:clean (default-clean) @ configuration-maven-extension ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (display-info) @ configuration-maven-extension ---
+[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (no-snapshots-in-release) @ configuration-maven-extension ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ configuration-maven-extension ---
+[INFO] 
+[INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ configuration-maven-extension ---
+[INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ configuration-maven-extension ---
-[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
-[INFO] --- compiler:3.13.0:compile (default-compile) @ configuration-maven-extension ---
+[INFO] --- flatten:1.7.2:flatten (flatten) @ configuration-maven-extension ---
+[INFO] Generating flattened POM of project com.gradle:configuration-maven-extension:jar:1.0.0...
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ configuration-maven-extension ---
 [INFO] Recompiling the module because of changed source code.
-[WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
-[INFO] Compiling 1 source file with javac [debug target 17] to target/classes
-[WARNING] location of system modules is not set in conjunction with -source 17
-  not setting the location of system modules may lead to class files that cannot run on JDK 17
-    --release 17 is recommended instead of -source 17 -target 17 because it sets the location of system modules automatically
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target/classes
 [INFO] /tmp/plugin-builds/gradle/configuration-maven-extension/src/main/java/com/gradle/jenkins/maven/extension/internal/DevelocityConfigurerListener.java: /tmp/plugin-builds/gradle/configuration-maven-extension/src/main/java/com/gradle/jenkins/maven/extension/internal/DevelocityConfigurerListener.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/gradle/configuration-maven-extension/src/main/java/com/gradle/jenkins/maven/extension/internal/DevelocityConfigurerListener.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- bridge-method-injector:1.32:process (default) @ configuration-maven-extension ---
+[INFO] 
+[INFO] --- antrun:3.1.0:run (createTempDir) @ configuration-maven-extension ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/gradle/configuration-maven-extension/target/tmp
+[INFO] Executed tasks
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ configuration-maven-extension ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ configuration-maven-extension ---
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ configuration-maven-extension ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- surefire:3.2.5:test (default-test) @ configuration-maven-extension ---
+[INFO] --- surefire:3.5.2:test (default-test) @ configuration-maven-extension ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jar:3.4.1:jar (default-jar) @ configuration-maven-extension ---
-[INFO] Building jar: /tmp/plugin-builds/gradle/configuration-maven-extension/target/configuration-maven-extension-1.0.0.jar
+[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ configuration-maven-extension ---
+[INFO] Generated /tmp/plugin-builds/gradle/configuration-maven-extension/target/configuration-maven-extension/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- install:3.1.2:install (default-install) @ configuration-maven-extension ---
-[INFO] Installing /tmp/plugin-builds/gradle/configuration-maven-extension/pom.xml to /home/runner/.m2/repository/com/gradle/configuration-maven-extension/1.0.0/configuration-maven-extension-1.0.0.pom
-[INFO] Installing /tmp/plugin-builds/gradle/configuration-maven-extension/target/configuration-maven-extension-1.0.0.jar to /home/runner/.m2/repository/com/gradle/configuration-maven-extension/1.0.0/configuration-maven-extension-1.0.0.jar
+[INFO] --- jar:3.4.2:jar (default-jar) @ configuration-maven-extension ---
+[INFO] Building jar: /tmp/plugin-builds/gradle/configuration-maven-extension/target/configuration-maven-extension.jar
+[INFO] 
+[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ configuration-maven-extension ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] >>> spotbugs:4.9.4.2:check (spotbugs) > :spotbugs @ configuration-maven-extension >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.2:spotbugs (spotbugs) @ configuration-maven-extension ---
+[INFO] Fork Value is true
+[INFO] Done SpotBugs Analysis....
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.2:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.4.2:check (spotbugs) < :spotbugs @ configuration-maven-extension <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.4.2:check (spotbugs) @ configuration-maven-extension ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ configuration-maven-extension ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ configuration-maven-extension ---
+[INFO] Installing /tmp/plugin-builds/gradle/configuration-maven-extension/target/configuration-maven-extension-1.0.0.pom to /home/runner/.m2/repository/com/gradle/configuration-maven-extension/1.0.0/configuration-maven-extension-1.0.0.pom
+[INFO] Installing /tmp/plugin-builds/gradle/configuration-maven-extension/target/configuration-maven-extension.jar to /home/runner/.m2/repository/com/gradle/configuration-maven-extension/1.0.0/configuration-maven-extension-1.0.0.jar
 [INFO] 
 [INFO] -------------------< org.jenkins-ci.plugins:gradle >--------------------
-[INFO] Building Gradle Plugin 2.17.999999-SNAPSHOT                        [2/4]
+[INFO] Building Gradle Plugin 2.17.999999-SNAPSHOT                        [3/4]
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
@@ -67,9 +168,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ gradle ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ gradle ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -97,9 +195,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- flatten:1.7.2:flatten (flatten) @ gradle ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:gradle:hpi:2.17.999999-SNAPSHOT...
-[INFO] 
-[INFO] --- dependency:3.8.1:copy (copy-extension-jar) @ gradle ---
-[INFO] Configured Artifact: com.gradle:configuration-maven-extension:1.0.0:jar
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ gradle ---
 [INFO] Recompiling the module because of changed source code.
@@ -135,19 +230,19 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/NodeLabelItem.java:[20,12] Generating hudson/plugins/gradle/injection/NodeLabelItem.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/AbstractBuildScanAction.java:[21,17] Generating hudson/plugins/gradle/AbstractBuildScanAction.javadoc
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[107,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientTimeoutInSeconds.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[446,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudPluginVersion.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[456,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginRepositoryUrl.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[523,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionCustomCoordinates.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[533,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionRepositoryUrl.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[466,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckAccessKeyCredentialId.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[513,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionCustomCoordinates.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[543,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionVersion.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[117,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientMaxRetries.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[426,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckServer.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[513,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionCustomCoordinates.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[446,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudPluginVersion.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[436,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginVersion.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[543,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionVersion.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[523,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionCustomCoordinates.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[491,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckShortLivedTokenExpiry.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[456,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginRepositoryUrl.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[127,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientDelayBetweenRetriesInSeconds.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[466,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckAccessKeyCredentialId.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[533,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionRepositoryUrl.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[436,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginVersion.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[553,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionVersion.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[127,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientDelayBetweenRetriesInSeconds.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/BuildScanColumn.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/BuildScanColumn.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/Gradle.java: /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/Gradle.java uses unchecked or unsafe operations.
@@ -192,8 +287,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:test-runtime (default-test-runtime) @ gradle ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.2:test (default-test) @ gradle ---
+[INFO] --- surefire:3.5.3:test (default-test) @ gradle ---
 [INFO] Tests are skipped.
+[INFO] 
+[INFO] --- dependency:3.8.1:copy (copy-extension-jar) @ gradle ---
+[INFO] Configured Artifact: com.gradle:configuration-maven-extension:1.0.0:jar
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ gradle ---
 [INFO] Generated /tmp/plugin-builds/gradle/plugin/target/gradle/WEB-INF/licenses.xml
@@ -212,24 +310,26 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Bundling transitive dependency commons-collections-3.2.2.jar (via commons-validator)
 [INFO] Bundling transitive dependency commons-digester-2.1.jar (via commons-validator)
 [INFO] Bundling direct dependency commons-validator-1.10.0.jar
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [commons-beanutils, commons-collections, commons-digester, commons-validator, configuration-maven-extension, develocity-maven-extension]. Review the bundled artifacts and add `<hpi.bundledArtifacts>commons-beanutils,commons-collections,commons-digester,commons-validator,configuration-maven-extension,develocity-maven-extension</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/gradle/plugin/target/gradle.hpi
 [INFO] Building jar: /tmp/plugin-builds/gradle/plugin/target/gradle.hpi
 [INFO] 
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ gradle ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ gradle >>>
+[INFO] --- failsafe:3.5.3:integration-test (integration-tests) @ gradle ---
+[INFO] Tests are skipped.
 [INFO] 
-[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ gradle ---
+[INFO] >>> spotbugs:4.9.4.2:check (spotbugs) > :spotbugs @ gradle >>>
+[INFO] 
+[INFO] --- spotbugs:4.9.4.2:spotbugs (spotbugs) @ gradle ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ gradle <<<
+[INFO] <<< spotbugs:4.9.4.2:check (spotbugs) < :spotbugs @ gradle <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ gradle ---
+[INFO] --- spotbugs:4.9.4.2:check (spotbugs) @ gradle ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -237,13 +337,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:2.46.1:check (default) @ gradle ---
 [INFO] Spotless check skipped
 [INFO] 
+[INFO] --- failsafe:3.5.3:verify (integration-tests) @ gradle ---
+[INFO] Tests are skipped.
+[INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ gradle ---
 [INFO] Installing /tmp/plugin-builds/gradle/plugin/target/gradle-2.17.999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/gradle/2.17.999999-SNAPSHOT/gradle-2.17.999999-SNAPSHOT.pom
 [INFO] Installing /tmp/plugin-builds/gradle/plugin/target/gradle.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/gradle/2.17.999999-SNAPSHOT/gradle-2.17.999999-SNAPSHOT.hpi
 [INFO] Installing /tmp/plugin-builds/gradle/plugin/target/gradle.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/gradle/2.17.999999-SNAPSHOT/gradle-2.17.999999-SNAPSHOT.jar
 [INFO] 
 [INFO] -------------< com.gradle:gradle-plugin-acceptance-tests >--------------
-[INFO] Building Gradle Plugin Acceptance Tests 1.0                        [3/4]
+[INFO] Building Gradle Plugin Acceptance Tests 1.0                        [4/4]
 [INFO]   from acceptance-tests/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
@@ -278,26 +381,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- install:3.1.2:install (default-install) @ gradle-plugin-acceptance-tests ---
 [INFO] Installing /tmp/plugin-builds/gradle/acceptance-tests/pom.xml to /home/runner/.m2/repository/com/gradle/gradle-plugin-acceptance-tests/1.0/gradle-plugin-acceptance-tests-1.0.pom
 [INFO] Installing /tmp/plugin-builds/gradle/acceptance-tests/target/gradle-plugin-acceptance-tests-1.0.jar to /home/runner/.m2/repository/com/gradle/gradle-plugin-acceptance-tests/1.0/gradle-plugin-acceptance-tests-1.0.jar
-[INFO] 
-[INFO] -----------------< org.jenkins-ci.plugins:gradle-pom >------------------
-[INFO] Building Gradle Plugin parent pom 2.17.999999-SNAPSHOT             [4/4]
-[INFO]   from pom.xml
-[INFO] --------------------------------[ pom ]---------------------------------
-[INFO] 
-[INFO] --- clean:3.2.0:clean (default-clean) @ gradle-pom ---
-[INFO] 
-[INFO] --- install:3.1.2:install (default-install) @ gradle-pom ---
-[INFO] Installing /tmp/plugin-builds/gradle/pom.xml to /home/runner/.m2/repository/org/jenkins-ci/plugins/gradle-pom/2.17.999999-SNAPSHOT/gradle-pom-2.17.999999-SNAPSHOT.pom
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO] 
-[INFO] Configuration Maven extension 1.0.0 ................ SUCCESS [  9.440 s]
-[INFO] Gradle Plugin 2.17.999999-SNAPSHOT ................. SUCCESS [01:54 min]
-[INFO] Gradle Plugin Acceptance Tests 1.0 ................. SUCCESS [ 35.418 s]
-[INFO] Gradle Plugin parent pom 2.17.999999-SNAPSHOT ...... SUCCESS [  0.015 s]
+[INFO] Gradle Plugin parent pom 1.0 ....................... SUCCESS [ 22.771 s]
+[INFO] Configuration Maven extension 1.0.0 ................ SUCCESS [ 26.701 s]
+[INFO] Gradle Plugin 2.17.999999-SNAPSHOT ................. SUCCESS [01:43 min]
+[INFO] Gradle Plugin Acceptance Tests 1.0 ................. SUCCESS [ 36.409 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:42 min
-[INFO] Finished at: 2025-09-09T09:29:41Z
+[INFO] Total time:  03:12 min
+[INFO] Finished at: 2025-09-16T01:56:43Z
 [INFO] ------------------------------------------------------------------------
