@@ -60,7 +60,7 @@ jobs:
         run: |
           # Write the service account json file
           echo "$GOOGLE_CREDS" > google-credentials.json
-          echo "::set-output name=credentials_file::google-credentials.json"
+          echo "credentials_file=google-credentials.json" >> $GITHUB_OUTPUT
         shell: bash
 
       - name: Monthly Collection
