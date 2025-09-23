@@ -51,11 +51,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] yarn install v1.22.19
 [INFO] [1/4] Resolving packages...
 [INFO] [2/4] Fetching packages...
-[INFO] (node:29578) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[INFO] (node:29519) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 [INFO] (Use `node --trace-deprecation ...` to show where the warning was created)
 [INFO] [3/4] Linking dependencies...
+[INFO] warning "jsdom > cssstyle > @csstools/css-syntax-patches-for-csstree@1.0.14" has unmet peer dependency "postcss@^8.4".
 [INFO] [4/4] Building fresh packages...
-[INFO] Done in 29.10s.
+[INFO] Done in 31.91s.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ uno-choice ---
 [INFO] 
@@ -69,8 +70,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] asset Util.js 1.91 KiB [emitted] [minimized] (name: Util) 1 related asset
 [INFO] ./src/main/js/UnoChoice.es6 50.8 KiB [built] [code generated]
 [INFO] ./src/main/js/Util.ts 5.7 KiB [built] [code generated]
-[INFO] webpack 5.101.3 compiled successfully in 12245 ms
-[INFO] Done in 15.09s.
+[INFO] webpack 5.101.3 compiled successfully in 9465 ms
+[INFO] Done in 11.08s.
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (check-junit-imports) @ uno-choice ---
 [INFO] Skipping Rule Enforcement.
@@ -145,50 +146,50 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] $ jest --colors
 [INFO]  PASS  src/test/js/Util.test.ts
 [INFO]   makeRadio
-[INFO]     ✓ When only value and name are provided, a valid checkbox is built (13 ms)
-[INFO]     ✓ When checked is specified, it is set (5 ms)
-[INFO]     ✓ When disabled is specified, it is set (2 ms)
+[INFO]     ✓ When only value and name are provided, a valid checkbox is built (18 ms)
+[INFO]     ✓ When checked is specified, it is set (2 ms)
+[INFO]     ✓ When disabled is specified, it is set (8 ms)
 [INFO]   makeCheckbox
-[INFO]     ✓ When only value is provided, a valid checkbox is built (7 ms)
-[INFO]     ✓ When checked is specified, it is set (5 ms)
-[INFO]     ✓ When disabled is specified, it is set (2 ms)
+[INFO]     ✓ When only value is provided, a valid checkbox is built (1 ms)
+[INFO]     ✓ When checked is specified, it is set (7 ms)
+[INFO]     ✓ When disabled is specified, it is set (10 ms)
 [INFO]   makeHidden
-[INFO]     ✓ a valid hidden input is produced (5 ms)
+[INFO]     ✓ a valid hidden input is produced (2 ms)
 [INFO]   makeTd
-[INFO]     ✓ when no elements are provided, a valid td is produced (1 ms)
-[INFO]     ✓ when 1 element is provided, a valid td is produced (2 ms)
-[INFO]     ✓ when 2 elements are provided, a valid td is produced (4 ms)
+[INFO]     ✓ when no elements are provided, a valid td is produced (7 ms)
+[INFO]     ✓ when 1 element is provided, a valid td is produced (1 ms)
+[INFO]     ✓ when 2 elements are provided, a valid td is produced (1 ms)
 [INFO]   makeTr
-[INFO]     ✓ creates a valid tr with undefined id (1 ms)
-[INFO]     ✓ creates a valid tr with valid id (4 ms)
+[INFO]     ✓ creates a valid tr with undefined id (7 ms)
+[INFO]     ✓ creates a valid tr with valid id (1 ms)
 [INFO]   makeLabel
-[INFO]     ✓ creates a valid label with title (7 ms)
-[INFO]     ✓ creates a valid label without title (1 ms)
+[INFO]     ✓ creates a valid label with title (8 ms)
+[INFO]     ✓ creates a valid label without title (7 ms)
 [INFO]   getSelectValues
-[INFO]     ✓ returns empty array when no option is selected (16 ms)
-[INFO]     ✓ returns singleton array when one option is selected (6 ms)
-[INFO]     ✓ returns all selected options when multiple are selected (18 ms)
+[INFO]     ✓ returns empty array when no option is selected (34 ms)
+[INFO]     ✓ returns singleton array when one option is selected (9 ms)
+[INFO]     ✓ returns all selected options when multiple are selected (9 ms)
 [INFO]   getElementValue
 [INFO]     When HTML Select is passed
-[INFO]       ✓ returns empty array when no option is selected (10 ms)
-[INFO]       ✓ returns singleton array when one option is selected (6 ms)
-[INFO]       ✓ returns all selected options when multiple are selected (5 ms)
+[INFO]       ✓ returns empty array when no option is selected (8 ms)
+[INFO]       ✓ returns singleton array when one option is selected (8 ms)
+[INFO]       ✓ returns all selected options when multiple are selected (9 ms)
 [INFO]     When checkbox is passed
-[INFO]       ✓ returns empty string when no option is selected (2 ms)
-[INFO]       ✓ returns value when checkbox is selected (4 ms)
+[INFO]       ✓ returns empty string when no option is selected (7 ms)
+[INFO]       ✓ returns value when checkbox is selected (1 ms)
 [INFO]     When radio is passed
-[INFO]       ✓ returns empty string when no option is selected (1 ms)
-[INFO]       ✓ returns value when radio is selected (4 ms)
+[INFO]       ✓ returns empty string when no option is selected (7 ms)
+[INFO]       ✓ returns value when radio is selected (2 ms)
 [INFO]     When text is passed
 [INFO]       ✓ returns empty string no input is provided (1 ms)
-[INFO]       ✓ returns value when text is provided (3 ms)
+[INFO]       ✓ returns value when text is provided (1 ms)
 [INFO] 
 [INFO] Test Suites: 1 passed, 1 total
 [INFO] Tests:       26 passed, 26 total
 [INFO] Snapshots:   0 total
-[INFO] Time:        3.921 s
+[INFO] Time:        3.829 s
 [INFO] Ran all test suites.
-[INFO] Done in 6.48s.
+[INFO] Done in 6.44s.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ uno-choice ---
 [INFO] Generated /tmp/plugin-builds/uno-choice/target/uno-choice/WEB-INF/licenses.xml
@@ -232,6 +233,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:19 min
-[INFO] Finished at: 2025-09-16T02:18:00Z
+[INFO] Total time:  02:15 min
+[INFO] Finished at: 2025-09-23T02:27:46Z
 [INFO] ------------------------------------------------------------------------

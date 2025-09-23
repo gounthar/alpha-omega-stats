@@ -49,6 +49,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:compile (default-compile) @ workflow-basic-steps ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 34 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
 [INFO] org.jenkinsci.plugins.workflow.steps.ArtifactArchiverStep.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.workflow.steps.ArtifactUnarchiverStep.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.workflow.steps.CatchErrorStep.DescriptorImpl indexed under hudson.Extension
@@ -103,9 +106,15 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/WriteFileStep.java:[47,34] Generating org/jenkinsci/plugins/workflow/steps/WriteFileStep.stapler
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/support/steps/stash/StashStep.java:[59,34] Generating org/jenkinsci/plugins/workflow/support/steps/stash/StashStep.stapler
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/support/steps/stash/UnstashStep.java:[51,34] Generating org/jenkinsci/plugins/workflow/support/steps/stash/UnstashStep.stapler
-[INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/WarnErrorStep.java:[120,31] Generating org/jenkinsci/plugins/workflow/steps/WarnErrorStep/DescriptorImpl/doCheckMessage.stapler
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/ToolStep.java:[110,29] Generating org/jenkinsci/plugins/workflow/steps/ToolStep/DescriptorImpl/doFillNameItems.stapler
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/RetryStep.java:[100,31] Generating org/jenkinsci/plugins/workflow/steps/RetryStep/DescriptorImpl/doCheckCount.stapler
+[INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/UnstableStep.java:[102,31] Generating org/jenkinsci/plugins/workflow/steps/UnstableStep/DescriptorImpl/doCheckMessage.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/CoreStep.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/workflow-basic-steps/src/main/java/org/jenkinsci/plugins/workflow/steps/CoreStep.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
@@ -154,17 +163,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ workflow-basic-steps ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.4.0:check (spotbugs) > :spotbugs @ workflow-basic-steps >>>
+[INFO] >>> spotbugs:4.9.4.2:check (spotbugs) > :spotbugs @ workflow-basic-steps >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.4.0:spotbugs (spotbugs) @ workflow-basic-steps ---
+[INFO] --- spotbugs:4.9.4.2:spotbugs (spotbugs) @ workflow-basic-steps ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.4.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.4.0:check (spotbugs) < :spotbugs @ workflow-basic-steps <<<
+[INFO] <<< spotbugs:4.9.4.2:check (spotbugs) < :spotbugs @ workflow-basic-steps <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.4.0:check (spotbugs) @ workflow-basic-steps ---
+[INFO] --- spotbugs:4.9.4.2:check (spotbugs) @ workflow-basic-steps ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -179,6 +188,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:08 min
-[INFO] Finished at: 2025-09-16T01:40:01Z
+[INFO] Total time:  01:09 min
+[INFO] Finished at: 2025-09-23T01:48:32Z
 [INFO] ------------------------------------------------------------------------
