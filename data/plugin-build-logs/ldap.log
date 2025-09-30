@@ -50,8 +50,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:ldap:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ ldap ---
-[INFO] Recompiling the module because of changed source code.
+[INFO] Recompiling the module because of changed dependency.
 [INFO] Compiling 14 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
 [INFO] hudson.security.LDAPSecurityRealm.DescriptorImpl indexed under hudson.Extension
 [INFO] hudson.security.LDAPSecurityRealm.CacheConfiguration.DescriptorImpl indexed under hudson.Extension
 [INFO] hudson.security.LDAPSecurityRealm.EnvironmentProperty.DescriptorImpl indexed under hudson.Extension
@@ -64,8 +67,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/FromGroupSearchLDAPGroupMembershipStrategy.java:[63,12] Generating jenkins/security/plugins/ldap/FromGroupSearchLDAPGroupMembershipStrategy.stapler
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/FromUserRecordLDAPGroupMembershipStrategy.java:[61,12] Generating jenkins/security/plugins/ldap/FromUserRecordLDAPGroupMembershipStrategy.stapler
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[151,12] Generating jenkins/security/plugins/ldap/LDAPConfiguration.stapler
-[INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[500,31] Generating jenkins/security/plugins/ldap/LDAPConfiguration/LDAPConfigurationDescriptor/doCheckManagerPasswordSecret.stapler
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[440,31] Generating jenkins/security/plugins/ldap/LDAPConfiguration/LDAPConfigurationDescriptor/doCheckServer.stapler
+[INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[500,31] Generating jenkins/security/plugins/ldap/LDAPConfiguration/LDAPConfigurationDescriptor/doCheckManagerPasswordSecret.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java: /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/ldap/src/main/java/hudson/security/LDAPSecurityRealm.java: /tmp/plugin-builds/ldap/src/main/java/hudson/security/LDAPSecurityRealm.java uses unchecked or unsafe operations.
@@ -112,9 +121,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Assembling webapp ldap in /tmp/plugin-builds/ldap/target/ldap
 [INFO] Bundling direct dependency time4j-base-5.9.4.jar
 [INFO] Bundling direct dependency time4j-tzdata-5.0-2025a.jar
-[INFO] Bundling transitive dependency spring-ldap-core-3.2.7.jar (via spring-security-ldap)
-[INFO] Bundling direct dependency spring-security-ldap-6.3.4.jar
-[INFO] Bundling transitive dependency spring-tx-6.1.14.jar (via spring-security-ldap)
+[INFO] Bundling transitive dependency spring-ldap-core-3.2.11.jar (via spring-security-ldap)
+[INFO] Bundling direct dependency spring-security-ldap-6.4.4.jar
+[INFO] Bundling transitive dependency spring-tx-6.2.5.jar (via spring-security-ldap)
 [WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [spring-ldap-core, spring-security-ldap, spring-tx, time4j-base, time4j-tzdata]. Review the bundled artifacts and add `<hpi.bundledArtifacts>spring-ldap-core,spring-security-ldap,spring-tx,time4j-base,time4j-tzdata</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/ldap/target/ldap.hpi
 [INFO] Building jar: /tmp/plugin-builds/ldap/target/ldap.hpi
@@ -150,6 +159,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:42 min
-[INFO] Finished at: 2025-09-23T02:00:04Z
+[INFO] Total time:  01:45 min
+[INFO] Finished at: 2025-09-30T02:08:41Z
 [INFO] ------------------------------------------------------------------------

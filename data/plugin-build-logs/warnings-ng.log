@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:10.2715.v615cde31c843
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2805.vdb_e83282030b_
 [WARNING] Failed to build parent project for io.jenkins.plugins:warnings-ng-parent:pom:12.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -138,14 +138,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-tests) @ warnings-ng-parent ---
 [INFO] You have 0 Checkstyle violations.
 [INFO] 
-[INFO] >>> spotbugs:4.8.6.6:check (spotbugs) > :spotbugs @ warnings-ng-parent >>>
+[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ warnings-ng-parent >>>
 [INFO] 
-[INFO] --- spotbugs:4.8.6.6:spotbugs (spotbugs) @ warnings-ng-parent ---
+[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ warnings-ng-parent ---
+[INFO] No files found to run spotbugs, check compile phase has been run
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.8.6.6:check (spotbugs) < :spotbugs @ warnings-ng-parent <<<
+[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ warnings-ng-parent <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.8.6.6:check (spotbugs) @ warnings-ng-parent ---
+[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ warnings-ng-parent ---
 [INFO] 
 [INFO] --- spotless:2.46.1:check (default) @ warnings-ng-parent ---
 [INFO] Spotless check skipped
@@ -176,7 +178,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ warnings-ng ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ warnings-ng ---
-[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -197,7 +198,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ warnings-ng ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ warnings-ng ---
-[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -213,6 +213,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- javadoc:3.11.3:javadoc (default) @ warnings-ng ---
 [WARNING] Javadoc 1.4+ doesn't support the -1.1 switch anymore. Ignore this option.
+[WARNING] Javadoc Warnings
+[WARNING] warning: unknown enum constant When.MAYBE
+[WARNING] reason: class file for javax.annotation.meta.When not found
+[WARNING] warning: unknown enum constant When.ALWAYS
+[WARNING] 2 warnings
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ warnings-ng ---
 [INFO] Copying 242 resources from src/main/resources to target/classes
@@ -221,12 +226,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Generating flattened POM of project io.jenkins.plugins:warnings-ng:hpi:12.999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ warnings-ng ---
-[INFO] Recompiling the module because of changed source code.
+[INFO] Recompiling the module because of changed dependency.
 [INFO] Compiling 272 source files with javac [debug parameters release 17] to target/classes
+[WARNING] Cannot find annotation method 'when()' in type 'javax.annotation.Nonnull': class file for javax.annotation.Nonnull not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] Cannot find annotation method 'when()' in type 'javax.annotation.Nonnull'
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[48,42] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[49,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[77,41] containsAnyIgnoreCase(java.lang.CharSequence,java.lang.CharSequence...) in org.apache.commons.lang3.StringUtils has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.java:[155,27] <T>defaultIfNull(T,T) in org.apache.commons.lang3.ObjectUtils has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.java:[52,13] possible 'this' escape before subclass is fully initialized
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[68,40] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[69,32] non-transient instance field of a serializable class declared with a non-serializable type
@@ -234,6 +248,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[267,28] possible 'this' escape before subclass is fully initialized
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[336,50] previous possible 'this' escape happens here via invocation
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[340,24] previous possible 'this' escape happens here via invocation
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[73,41] found raw type: java.lang.Class
   missing type arguments for generic class java.lang.Class<T>
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[80,59] found raw type: java.util.Collection
@@ -252,6 +268,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[866,59] found raw type: hudson.model.AbstractProject
   missing type arguments for generic class hudson.model.AbstractProject<P,R>
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[64,28] possible 'this' escape before subclass is fully initialized
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[57,41] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[74,39] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[71,24] non-transient instance field of a serializable class declared with a non-serializable type
@@ -263,6 +281,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[213,36] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[367,40] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[405,65] <C>listCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>,com.cloudbees.plugins.credentials.CredentialsMatcher) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[87,27] containsAny(java.lang.CharSequence,java.lang.CharSequence...) in org.apache.commons.lang3.StringUtils has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[215,27] <T>defaultIfNull(T,T) in org.apache.commons.lang3.ObjectUtils has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[43,13] possible 'this' escape before subclass is fully initialized
@@ -330,7 +350,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.27.0:pmd (run-pmd-java) @ warnings-ng ---
-[INFO] PMD version: 7.16.0-metrics
+[INFO] PMD version: 7.17.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.27.0:check (run-pmd-java) > :pmd @ warnings-ng >>>
@@ -347,7 +367,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.27.0:pmd (run-pmd-tests) @ warnings-ng ---
-[INFO] PMD version: 7.16.0-metrics
+[INFO] PMD version: 7.17.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.27.0:check (run-pmd-tests) > :pmd @ warnings-ng >>>
@@ -364,7 +384,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.27.0:pmd (run-pmd-javascript) @ warnings-ng ---
-[INFO] PMD version: 7.16.0-metrics
+[INFO] PMD version: 7.17.0-metrics
 [WARNING] 3 javascript problems found:
 /tmp/plugin-builds/warnings-ng/plugin/src/main/webapp/js/reset-quality-gate.js:7:52: missing ) after argument list
 /tmp/plugin-builds/warnings-ng/plugin/src/main/webapp/js/reset-quality-gate.js:12:14: syntax error
@@ -382,7 +402,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- pmd:3.27.0:check (run-pmd-javascript) @ warnings-ng ---
 [INFO] 
 [INFO] --- pmd:3.27.0:pmd (run-pmd-metrics) @ warnings-ng ---
-[INFO] PMD version: 7.16.0-metrics
+[INFO] PMD version: 7.17.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ warnings-ng ---
@@ -410,11 +430,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Warnings Plugin 12.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 39.296 s]
-[INFO] Warnings Plugin .................................... SUCCESS [02:24 min]
+[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 21.762 s]
+[INFO] Warnings Plugin .................................... SUCCESS [02:32 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:06 min
-[INFO] Finished at: 2025-09-23T02:43:00Z
+[INFO] Total time:  02:56 min
+[INFO] Finished at: 2025-09-30T02:52:34Z
 [INFO] ------------------------------------------------------------------------
