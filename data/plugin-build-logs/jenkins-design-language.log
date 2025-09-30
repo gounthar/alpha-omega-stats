@@ -123,15 +123,19 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- frontend:1.15.1:install-node-and-npm (install node and npm) @ jenkins-design-language ---
 [INFO] Installing node version v10.13.0
-[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v10.13.0/node-v10.13.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp/node-v10.13.0-linux-x64/bin/node to /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node
+[INFO] Installed node locally.
+[INFO] Installing npm version 6.14.4
+[INFO] Downloading https://repo.jenkins-ci.org/npm-dist/npm-6.14.4.tgz to /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz
 [INFO] No proxies configured
 [INFO] No proxy was configured, downloading directly
-[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node_modules
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Blue Ocean Parent 1.27.22-SNAPSHOT:
 [INFO] 
-[INFO] Blue Ocean Parent .................................. SUCCESS [ 10.010 s]
-[INFO] Jenkins Design Language ............................ FAILURE [ 12.180 s]
+[INFO] Blue Ocean Parent .................................. SUCCESS [  7.256 s]
+[INFO] Jenkins Design Language ............................ FAILURE [  9.438 s]
 [INFO] Blue Ocean Core JS ................................. SKIPPED
 [INFO] Common API for Blue Ocean .......................... SKIPPED
 [INFO] REST API for Blue Ocean ............................ SKIPPED
@@ -155,10 +159,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  25.255 s
-[INFO] Finished at: 2025-09-23T02:12:01Z
+[INFO] Total time:  18.322 s
+[INFO] Finished at: 2025-09-30T02:20:41Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:install-node-and-npm (install node and npm) on project jenkins-design-language: Could not extract the Node archive: Could not extract archive: '/home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz': /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz (No such file or directory) -> [Help 1]
+[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:install-node-and-npm (install node and npm) on project jenkins-design-language: Could not extract the npm archive: Could not extract archive: '/home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz': /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz (No such file or directory) -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.

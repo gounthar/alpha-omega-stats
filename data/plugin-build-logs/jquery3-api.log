@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:10.2768.v905b_65744a_23
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2805.vdb_e83282030b_
 [WARNING] Failed to build parent project for io.jenkins.plugins:jquery3-api:hpi:3.7.1-999999-SNAPSHOT
 [INFO] 
 [INFO] -------------------< io.jenkins.plugins:jquery3-api >-------------------
@@ -54,7 +54,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:1.15.1:npm (npm install) @ jquery3-api ---
 [INFO] Running 'npm install' in /tmp/plugin-builds/jquery3-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 17s
+[INFO] added 227 packages, and audited 228 packages in 18s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -119,7 +119,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Copying 3 resources from node_modules/jquery/dist to target/jquery3-api/js
 [INFO] 
 [INFO] --- compiler:3.14.0:compile (default-compile) @ jquery3-api ---
-[INFO] Recompiling the module because of changed source code.
+[INFO] Recompiling the module because of changed dependency.
 [INFO] Compiling 1 source file with javac [debug parameters release 17] to target/classes
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ jquery3-api ---
@@ -239,84 +239,42 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-tests) @ jquery3-api ---
 [INFO] You have 0 Checkstyle violations.
 [INFO] 
-[INFO] >>> spotbugs:4.8.6.6:check (spotbugs) > :spotbugs @ jquery3-api >>>
+[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ jquery3-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.8.6.6:spotbugs (spotbugs) @ jquery3-api ---
+[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ jquery3-api ---
 [INFO] Fork Value is true
-     [java] The following errors occurred during analysis:
-     [java]   Error scanning java/lang/Object for referenced classes
-     [java]     java.lang.IllegalArgumentException: Unsupported class file major version 69
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:200)
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:180)
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:166)
-     [java]       At edu.umd.cs.findbugs.asm.FBClassReader.<init>(FBClassReader.java:35)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:48)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:34)
-     [java]       At edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:75)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:38)
-     [java]       At edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.buildReferencedClassSet(FindBugs2.java:803)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.execute(FindBugs2.java:251)
-     [java]       At edu.umd.cs.findbugs.FindBugs.runMain(FindBugs.java:390)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.main(FindBugs2.java:1225)
-     [java]   Unable to get XClass for java/lang/Object
-     [java]     java.lang.IllegalArgumentException: Unsupported class file major version 69
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:200)
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:180)
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:166)
-     [java]       At edu.umd.cs.findbugs.asm.FBClassReader.<init>(FBClassReader.java:35)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:48)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:34)
-     [java]       At edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:75)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:38)
-     [java]       At edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.buildReferencedClassSet(FindBugs2.java:803)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.execute(FindBugs2.java:251)
-     [java]       At edu.umd.cs.findbugs.FindBugs.runMain(FindBugs.java:390)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.main(FindBugs2.java:1225)
-     [java]   Unable to get XClass for io/jenkins/plugins/jquery3/api/JQuery3Api
-     [java]     java.lang.IllegalArgumentException: Unsupported class file major version 69
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:200)
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:180)
-     [java]       At org.objectweb.asm.ClassReader.<init>(ClassReader.java:166)
-     [java]       At edu.umd.cs.findbugs.asm.FBClassReader.<init>(FBClassReader.java:35)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:48)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:34)
-     [java]       At edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:75)
-     [java]       At edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:38)
-     [java]       At edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.buildReferencedClassSet(FindBugs2.java:803)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.execute(FindBugs2.java:251)
-     [java]       At edu.umd.cs.findbugs.FindBugs.runMain(FindBugs.java:390)
-     [java]       At edu.umd.cs.findbugs.FindBugs2.main(FindBugs2.java:1225)
-     [java] Exception in thread "main" java.lang.IllegalArgumentException: Unsupported class file major version 69
-     [java] 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:200)
-     [java] 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:180)
-     [java] 	at org.objectweb.asm.ClassReader.<init>(ClassReader.java:166)
-     [java] 	at edu.umd.cs.findbugs.asm.FBClassReader.<init>(FBClassReader.java:35)
-     [java] 	at edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:48)
-     [java] 	at edu.umd.cs.findbugs.classfile.engine.asm.ClassReaderAnalysisEngine.analyze(ClassReaderAnalysisEngine.java:34)
-     [java] 	at edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java] 	at edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:75)
-     [java] 	at edu.umd.cs.findbugs.classfile.engine.ClassInfoAnalysisEngine.analyze(ClassInfoAnalysisEngine.java:38)
-     [java] 	at edu.umd.cs.findbugs.classfile.impl.AnalysisCache.getClassAnalysis(AnalysisCache.java:266)
-     [java] 	at edu.umd.cs.findbugs.FindBugs2.buildReferencedClassSet(FindBugs2.java:803)
-     [java] 	at edu.umd.cs.findbugs.FindBugs2.execute(FindBugs2.java:251)
-     [java] 	at edu.umd.cs.findbugs.FindBugs.runMain(FindBugs.java:390)
-     [java] 	at edu.umd.cs.findbugs.FindBugs2.main(FindBugs2.java:1225)
+[INFO] Done SpotBugs Analysis....
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ jquery3-api <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ jquery3-api ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.46.1:check (default) @ jquery3-api ---
+[INFO] Spotless check skipped
+[INFO] 
+[INFO] --- failsafe:3.5.2:verify (default) @ jquery3-api ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jacoco:0.8.13:report (report) @ jquery3-api ---
+[INFO] Skipping JaCoCo execution due to missing execution data file.
+[INFO] 
+[INFO] --- revapi:0.15.1:check (run-revapi) @ jquery3-api ---
+[WARNING] 1 problem was encountered while building the effective model for org.jboss:jboss-dmr:jar:1.2.0.Final during dependency collection step for plugin (use -X to see details)
+[INFO] Comparing [io.jenkins.plugins:jquery3-api:hpi:3.7.1-3] against [io.jenkins.plugins:jquery3-api:hpi:3.7.1-999999-SNAPSHOT].
+[INFO] API checks completed without failures.
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ jquery3-api ---
+[INFO] Installing /tmp/plugin-builds/jquery3-api/target/jquery3-api-3.7.1-999999-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/plugins/jquery3-api/3.7.1-999999-SNAPSHOT/jquery3-api-3.7.1-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/jquery3-api/target/jquery3-api.hpi to /home/runner/.m2/repository/io/jenkins/plugins/jquery3-api/3.7.1-999999-SNAPSHOT/jquery3-api-3.7.1-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/jquery3-api/target/jquery3-api.jar to /home/runner/.m2/repository/io/jenkins/plugins/jquery3-api/3.7.1-999999-SNAPSHOT/jquery3-api-3.7.1-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:47 min
-[INFO] Finished at: 2025-09-23T01:54:00Z
+[INFO] Total time:  02:05 min
+[INFO] Finished at: 2025-09-30T02:02:02Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal com.github.spotbugs:spotbugs-maven-plugin:4.8.6.6:spotbugs (spotbugs) on project jquery3-api: Execution spotbugs of goal com.github.spotbugs:spotbugs-maven-plugin:4.8.6.6:spotbugs failed: Java returned: 1 -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
