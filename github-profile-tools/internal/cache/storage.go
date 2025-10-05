@@ -53,8 +53,8 @@ func NewFileStorage(config *CacheConfig) (*FileStorage, error) {
 
 // Get retrieves a cache entry by key
 func (fs *FileStorage) Get(key string) (*CacheResult, error) {
-	fs.mutex.RLock()
-	defer fs.mutex.RUnlock()
+	fs.mutex.Lock()
+	defer fs.mutex.Unlock()
 
 	filePath := fs.getFilePath(key)
 
@@ -94,6 +94,13 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 
 	atomic.AddInt64(&fs.stats.HitCount, 1)
 	fs.updateHitRatio()
+
+	// Persist the updated entry asynchronously
+	go func(path string, e *CacheEntry) {
+		if err := fs.writeCacheEntry(path, e); err != nil {
+			// Log error but don't fail the read
+		}
+	}(filePath, entry)
 
 	return &CacheResult{
 		Hit:       true,
@@ -351,6 +358,9 @@ func (fs *FileStorage) calculateChecksum(data interface{}) (string, error) {
 
 // updateHitRatio recalculates the cache hit ratio
 func (fs *FileStorage) updateHitRatio() {
+	fs.mutex.Lock()
+	defer fs.mutex.Unlock()
+
 	hitCount := atomic.LoadInt64(&fs.stats.HitCount)
 	missCount := atomic.LoadInt64(&fs.stats.MissCount)
 	total := hitCount + missCount
@@ -363,8 +373,19 @@ func (fs *FileStorage) updateHitRatio() {
 func (fs *FileStorage) updateStats() {
 	fs.updateHitRatio()
 
-	// Async save to avoid blocking
-	go fs.saveStats()
+	// Make a copy and save asynchronously to avoid blocking and races
+	fs.mutex.RLock()
+	statsCopy := *fs.stats
+	fs.mutex.RUnlock()
+
+	go func() {
+		// Create a temporary FileStorage to save the copied stats
+		tempFS := &FileStorage{
+			config: fs.config,
+			stats:  &statsCopy,
+		}
+		tempFS.saveStats()
+	}()
 }
 
 // loadStats loads cache statistics from disk
