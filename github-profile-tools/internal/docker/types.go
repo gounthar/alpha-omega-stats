@@ -130,6 +130,14 @@ type DockerSearchResult struct {
 	LastUpdated      time.Time `json:"last_updated"`
 }
 
+// DockerHubRepositoriesResponse represents the response from Docker Hub v2 repositories API
+type DockerHubRepositoriesResponse struct {
+	Count    int                    `json:"count"`
+	Next     string                 `json:"next"`
+	Previous string                 `json:"previous"`
+	Results  []DockerHubRepositoryResponse `json:"results"`
+}
+
 // DockerHubRepositoryResponse represents detailed repository info from Docker Hub API
 type DockerHubRepositoryResponse struct {
 	User              string    `json:"user"`

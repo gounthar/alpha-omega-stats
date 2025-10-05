@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-	"net/url"
 	"strings"
 	"time"
 )
@@ -78,13 +77,13 @@ func (c *Client) SearchUserRepositories(ctx context.Context, username string) ([
 		// Convert v2 API response to our search result format
 		for _, repo := range repoResponse.Results {
 			searchResult := DockerSearchResult{
-				RepoName:     repo.Name,
-				RepoOwner:    repo.Namespace,
-				Description:  repo.Description,
-				IsOfficial:   false,
-				IsAutomated:  false,
-				StarCount:    repo.StarCount,
-				PullCount:    repo.PullCount,
+				RepoName:         repo.Name,
+				RepoOwner:        repo.Namespace,
+				ShortDescription: repo.Description,
+				IsOfficial:       false,
+				IsAutomated:      false,
+				StarCount:        repo.StarCount,
+				PullCount:        repo.PullCount,
 			}
 			allRepos = append(allRepos, searchResult)
 		}
