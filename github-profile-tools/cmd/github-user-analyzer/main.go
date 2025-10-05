@@ -23,16 +23,17 @@ const (
 
 // Config holds command line configuration
 type Config struct {
-	Username     string
-	Token        string
-	OutputDir    string
-	Template     string
-	Format       string
-	Verbose      bool
-	SaveJSON     bool
-	ShowVersion  bool
-	Timeout      time.Duration
-	DebugLogFile string
+	Username         string
+	Token            string
+	OutputDir        string
+	Template         string
+	Format           string
+	Verbose          bool
+	SaveJSON         bool
+	ShowVersion      bool
+	Timeout          time.Duration
+	DebugLogFile     string
+	TemplateSpecified bool
 }
 
 func main() {
@@ -85,7 +86,7 @@ func parseFlags() Config {
 	flag.StringVar(&config.Username, "user", "", "GitHub username to analyze (required)")
 	flag.StringVar(&config.Token, "token", os.Getenv("GITHUB_TOKEN"), "GitHub API token (or set GITHUB_TOKEN env var)")
 	flag.StringVar(&config.OutputDir, "output", "./data/profiles", "Output directory for generated files")
-	flag.StringVar(&config.Template, "template", "resume", "Template type: resume, technical, executive, ats")
+	flag.StringVar(&config.Template, "template", "all", "Template type: resume, technical, executive, ats, all (default: all)")
 	flag.StringVar(&config.Format, "format", "both", "Output format: markdown, json, both")
 	flag.BoolVar(&config.Verbose, "verbose", false, "Enable verbose logging")
 	flag.BoolVar(&config.SaveJSON, "save-json", true, "Save raw JSON profile data")
@@ -99,10 +100,12 @@ func parseFlags() Config {
 		fmt.Fprintf(os.Stderr, "Usage:\n")
 		fmt.Fprintf(os.Stderr, "  %s -user USERNAME [OPTIONS]\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Examples:\n")
-		fmt.Fprintf(os.Stderr, "  %s -user octocat -template resume\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "  %s -user octocat -template technical -format markdown\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "  %s -user octocat -template ats -output ./resumes\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "  %s -user octocat -timeout 2h -verbose\n\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat                           # Generate all profile templates\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -template resume          # Generate only resume template\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -template technical       # Generate only technical template\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -format markdown          # Generate all templates in markdown only\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -output ./resumes         # Generate all templates in custom directory\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -timeout 2h -verbose      # Generate all templates with extended timeout\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Options:\n")
 		flag.PrintDefaults()
 	}
@@ -119,6 +122,13 @@ func parseFlags() Config {
 	if config.DebugLogFile == "" {
 		config.DebugLogFile = "github-user-analyzer-debug.log"
 	}
+
+	// Check if template was explicitly specified by user
+	flag.Visit(func(f *flag.Flag) {
+		if f.Name == "template" {
+			config.TemplateSpecified = true
+		}
+	})
 
 	return config
 }
@@ -201,7 +211,7 @@ func validateConfig(config Config) error {
 		return fmt.Errorf("GitHub token is required (use -token flag or set GITHUB_TOKEN environment variable)")
 	}
 
-	validTemplates := []string{"resume", "technical", "executive", "ats"}
+	validTemplates := []string{"resume", "technical", "executive", "ats", "all"}
 	if !contains(validTemplates, config.Template) {
 		return fmt.Errorf("invalid template: %s (valid options: %s)", config.Template, strings.Join(validTemplates, ", "))
 	}
@@ -246,8 +256,21 @@ func runAnalysis(ctx context.Context, config Config) error {
 	}
 
 	if config.Format == "markdown" || config.Format == "both" {
-		if err := generateMarkdownProfile(prof, config); err != nil {
-			return fmt.Errorf("failed to generate markdown profile: %w", err)
+		// Determine which templates to generate
+		var templatesToGenerate []string
+		if config.Template == "all" {
+			templatesToGenerate = []string{"resume", "technical", "executive", "ats"}
+		} else {
+			templatesToGenerate = []string{config.Template}
+		}
+
+		// Generate each template
+		for _, template := range templatesToGenerate {
+			templateConfig := config
+			templateConfig.Template = template
+			if err := generateMarkdownProfile(prof, templateConfig); err != nil {
+				return fmt.Errorf("failed to generate %s markdown profile: %w", template, err)
+			}
 		}
 	}
 
@@ -384,17 +407,31 @@ func printSummary(prof *profile.UserProfile, config Config) {
 	}
 
 	if config.Format == "markdown" || config.Format == "both" {
-		mdFile := fmt.Sprintf("%s_profile_%s.md", prof.Username, config.Template)
-		fmt.Printf("   • Markdown Profile: %s\n", filepath.Join(config.OutputDir, mdFile))
+		if config.Template == "all" {
+			templates := []string{"resume", "technical", "executive", "ats"}
+			for _, template := range templates {
+				mdFile := fmt.Sprintf("%s_profile_%s.md", prof.Username, template)
+				fmt.Printf("   • Markdown Profile (%s): %s\n", template, filepath.Join(config.OutputDir, mdFile))
+			}
+		} else {
+			mdFile := fmt.Sprintf("%s_profile_%s.md", prof.Username, config.Template)
+			fmt.Printf("   • Markdown Profile: %s\n", filepath.Join(config.OutputDir, mdFile))
+		}
 	}
 
 	fmt.Printf("\n✨ Impact Score: %.1f/10\n", prof.Insights.OverallImpactScore*10)
 
-	fmt.Printf("\nℹ️  Use different templates for various use cases:\n")
-	fmt.Printf("   • --template resume     (General resume enhancement)\n")
-	fmt.Printf("   • --template technical  (Deep technical analysis)\n")
-	fmt.Printf("   • --template executive  (Leadership focus)\n")
-	fmt.Printf("   • --template ats        (ATS/Applicant Tracking System optimized)\n")
+	fmt.Printf("\nℹ️  Template Options:\n")
+	if config.Template == "all" {
+		fmt.Printf("   • Generated all templates by default (resume, technical, executive, ats)\n")
+		fmt.Printf("   • Use --template [type] to generate a specific template only\n")
+	} else {
+		fmt.Printf("   • --template resume     (General resume enhancement)\n")
+		fmt.Printf("   • --template technical  (Deep technical analysis)\n")
+		fmt.Printf("   • --template executive  (Leadership focus)\n")
+		fmt.Printf("   • --template ats        (ATS/Applicant Tracking System optimized)\n")
+		fmt.Printf("   • --template all        (Generate all templates - default behavior)\n")
+	}
 
 	fmt.Printf("\n🚀 Ready to enhance your resume with GitHub data!\n")
 }
