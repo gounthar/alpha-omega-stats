@@ -43,7 +43,38 @@ The current implementation makes fresh API calls for every profile analysis, lea
 - `--cache-dir path` - Custom cache directory location
 - `--cache-stats` - Show cache hit/miss statistics
 
-#### Phase 2: Smart Incremental Updates
+#### Phase 2: Cache Architecture Improvements 🎯 NEXT PRIORITY
+**Goal**: Address technical debt and optimization opportunities identified in code review
+
+**Critical Tasks (Before Production Deployment)**:
+1. **Unit Tests for Cache Layer** 🚨 **BLOCKER**
+   - Test concurrent access scenarios (race conditions we fixed)
+   - Test cache expiration and cleanup logic
+   - Test error conditions and fallback behavior
+   - Test marshal/unmarshal edge cases and corruption scenarios
+   - **Priority**: Critical (required for production readiness per CodeRabbit review)
+
+**High-Priority Refactoring Tasks**:
+2. **Decouple Key Format Dependencies**
+   - Replace string prefix matching in `getFilePath()` with explicit key type passing
+   - Modify storage layer to accept `CacheKey` struct with type information
+   - Eliminate fragile coupling between storage and key generation logic
+   - **Priority**: High (affects maintainability and reliability)
+
+3. **Optimize Cache Deserialization**
+   - Extract generic helper function to reduce code duplication in cache retrieval
+   - Implement `rehydrate[T any]()` function for type-safe cache data conversion
+   - Reduce marshal/unmarshal overhead with more efficient deserialization
+   - **Priority**: Medium (affects performance and code quality)
+
+**Future Enhancements**:
+4. **Enhanced Cache Architecture**
+   - Consider codec interface to eliminate double serialization entirely
+   - Implement typed cache storage to handle struct types natively
+   - Add cache versioning for backward compatibility during upgrades
+   - **Priority**: Low (future optimization)
+
+#### Phase 3: Smart Incremental Updates
 **Goal**: Update only changed data instead of full re-analysis
 
 **Components**:
@@ -57,7 +88,7 @@ The current implementation makes fresh API calls for every profile analysis, lea
    - Smart refresh based on detected changes
    - Background refresh capabilities
 
-#### Phase 3: Advanced Cache Features
+#### Phase 4: Advanced Cache Features
 **Goal**: Production-ready caching with enterprise features
 
 **Components**:
