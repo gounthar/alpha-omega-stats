@@ -2,6 +2,7 @@ package profile
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
 	"time"
@@ -58,15 +59,21 @@ func (pcm *ProfileCacheManager) GetUserProfile(username string) (*UserProfile, b
 		return nil, false
 	}
 
-	// Type assert the cached data
-	if profile, ok := result.Data.(*UserProfile); ok {
-		log.Printf("Cache HIT for user profile: %s (age: %s)", username, time.Since(result.CreatedAt))
-		return profile, true
+	// Convert the generic interface{} to the specific type
+	jsonData, err := json.Marshal(result.Data)
+	if err != nil {
+		log.Printf("Cache corruption detected for user %s (marshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
 	}
 
-	// If type assertion fails, the cache entry is corrupted
-	log.Printf("Cache corruption detected for user %s, ignoring cached entry", username)
-	return nil, false
+	var profile UserProfile
+	if err := json.Unmarshal(jsonData, &profile); err != nil {
+		log.Printf("Cache corruption detected for user %s (unmarshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
+	}
+
+	log.Printf("Cache HIT for user profile: %s (age: %s)", username, time.Since(result.CreatedAt))
+	return &profile, true
 }
 
 // SetUserProfile stores a complete user profile in cache
@@ -100,12 +107,21 @@ func (pcm *ProfileCacheManager) GetUserRepositories(username string) ([]Reposito
 		return nil, false
 	}
 
-	if repos, ok := result.Data.([]RepositoryProfile); ok {
-		log.Printf("Cache HIT for repositories: %s (%d repos)", username, len(repos))
-		return repos, true
+	// Convert the generic interface{} to the specific type
+	jsonData, err := json.Marshal(result.Data)
+	if err != nil {
+		log.Printf("Cache corruption detected for repositories %s (marshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
 	}
 
-	return nil, false
+	var repos []RepositoryProfile
+	if err := json.Unmarshal(jsonData, &repos); err != nil {
+		log.Printf("Cache corruption detected for repositories %s (unmarshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
+	}
+
+	log.Printf("Cache HIT for repositories: %s (%d repos)", username, len(repos))
+	return repos, true
 }
 
 // SetUserRepositories stores repositories in cache
@@ -137,12 +153,21 @@ func (pcm *ProfileCacheManager) GetUserOrganizations(username string) ([]Organiz
 		return nil, false
 	}
 
-	if orgs, ok := result.Data.([]OrganizationProfile); ok {
-		log.Printf("Cache HIT for organizations: %s (%d orgs)", username, len(orgs))
-		return orgs, true
+	// Convert the generic interface{} to the specific type
+	jsonData, err := json.Marshal(result.Data)
+	if err != nil {
+		log.Printf("Cache corruption detected for organizations %s (marshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
 	}
 
-	return nil, false
+	var orgs []OrganizationProfile
+	if err := json.Unmarshal(jsonData, &orgs); err != nil {
+		log.Printf("Cache corruption detected for organizations %s (unmarshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
+	}
+
+	log.Printf("Cache HIT for organizations: %s (%d orgs)", username, len(orgs))
+	return orgs, true
 }
 
 // SetUserOrganizations stores organizations in cache
@@ -174,12 +199,21 @@ func (pcm *ProfileCacheManager) GetUserContributions(username string) (*Contribu
 		return nil, false
 	}
 
-	if contributions, ok := result.Data.(*ContributionSummary); ok {
-		log.Printf("Cache HIT for contributions: %s", username)
-		return contributions, true
+	// Convert the generic interface{} to the specific type
+	jsonData, err := json.Marshal(result.Data)
+	if err != nil {
+		log.Printf("Cache corruption detected for contributions %s (marshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
 	}
 
-	return nil, false
+	var contributions ContributionSummary
+	if err := json.Unmarshal(jsonData, &contributions); err != nil {
+		log.Printf("Cache corruption detected for contributions %s (unmarshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
+	}
+
+	log.Printf("Cache HIT for contributions: %s", username)
+	return &contributions, true
 }
 
 // SetUserContributions stores contributions in cache
@@ -211,12 +245,21 @@ func (pcm *ProfileCacheManager) GetUserLanguages(username string) ([]LanguageSta
 		return nil, false
 	}
 
-	if languages, ok := result.Data.([]LanguageStats); ok {
-		log.Printf("Cache HIT for languages: %s (%d languages)", username, len(languages))
-		return languages, true
+	// Convert the generic interface{} to the specific type
+	jsonData, err := json.Marshal(result.Data)
+	if err != nil {
+		log.Printf("Cache corruption detected for languages %s (marshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
 	}
 
-	return nil, false
+	var languages []LanguageStats
+	if err := json.Unmarshal(jsonData, &languages); err != nil {
+		log.Printf("Cache corruption detected for languages %s (unmarshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
+	}
+
+	log.Printf("Cache HIT for languages: %s (%d languages)", username, len(languages))
+	return languages, true
 }
 
 // SetUserLanguages stores language analysis in cache
@@ -248,12 +291,21 @@ func (pcm *ProfileCacheManager) GetUserSkills(username string) (*SkillProfile, b
 		return nil, false
 	}
 
-	if skills, ok := result.Data.(*SkillProfile); ok {
-		log.Printf("Cache HIT for skills: %s", username)
-		return skills, true
+	// Convert the generic interface{} to the specific type
+	jsonData, err := json.Marshal(result.Data)
+	if err != nil {
+		log.Printf("Cache corruption detected for skills %s (marshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
 	}
 
-	return nil, false
+	var skills SkillProfile
+	if err := json.Unmarshal(jsonData, &skills); err != nil {
+		log.Printf("Cache corruption detected for skills %s (unmarshal failed), ignoring cached entry: %v", username, err)
+		return nil, false
+	}
+
+	log.Printf("Cache HIT for skills: %s", username)
+	return &skills, true
 }
 
 // SetUserSkills stores skills analysis in cache

@@ -10,6 +10,7 @@ import (
 	"path/filepath"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 )
 
@@ -59,7 +60,7 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 
 	// Check if file exists
 	if _, err := os.Stat(filePath); os.IsNotExist(err) {
-		fs.stats.MissCount++
+		atomic.AddInt64(&fs.stats.MissCount, 1)
 		return &CacheResult{
 			Hit: false,
 			Key: key,
@@ -69,7 +70,7 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 	// Read and deserialize the cache entry
 	entry, err := fs.readCacheEntry(filePath)
 	if err != nil {
-		fs.stats.MissCount++
+		atomic.AddInt64(&fs.stats.MissCount, 1)
 		return &CacheResult{
 			Hit:   false,
 			Key:   key,
@@ -79,7 +80,7 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 
 	// Check if entry is expired
 	if entry.IsExpired() {
-		fs.stats.MissCount++
+		atomic.AddInt64(&fs.stats.MissCount, 1)
 		// Async cleanup of expired entry
 		go fs.deleteFile(filePath)
 		return &CacheResult{
@@ -88,13 +89,10 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 		}, nil
 	}
 
-	// Update access statistics
+	// Update access timestamp only (no need to persist this immediately)
 	entry.UpdateAccess()
 
-	// Write back updated stats (async to avoid blocking)
-	go fs.writeCacheEntry(filePath, entry)
-
-	fs.stats.HitCount++
+	atomic.AddInt64(&fs.stats.HitCount, 1)
 	fs.updateHitRatio()
 
 	return &CacheResult{
@@ -353,9 +351,11 @@ func (fs *FileStorage) calculateChecksum(data interface{}) (string, error) {
 
 // updateHitRatio recalculates the cache hit ratio
 func (fs *FileStorage) updateHitRatio() {
-	total := fs.stats.HitCount + fs.stats.MissCount
+	hitCount := atomic.LoadInt64(&fs.stats.HitCount)
+	missCount := atomic.LoadInt64(&fs.stats.MissCount)
+	total := hitCount + missCount
 	if total > 0 {
-		fs.stats.HitRatio = float64(fs.stats.HitCount) / float64(total)
+		fs.stats.HitRatio = float64(hitCount) / float64(total)
 	}
 }
 
