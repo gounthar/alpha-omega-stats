@@ -26,18 +26,33 @@ Generate professional resume-ready profiles from GitHub user data. Transform you
 
 ## 📦 Installation
 
-### Prerequisites
+### Option 1: Pre-built Binaries (Recommended)
 
-- Go 1.24.0 or higher
+Download the latest release for your platform from the [Releases page](https://github.com/gounthar/alpha-omega-stats/releases).
+
+Available platforms:
+- **Windows (x64)**: `github-profile-tools-v1.0.x-windows-amd64.zip`
+- **Linux (x64)**: `github-profile-tools-v1.0.x-linux-amd64.tar.gz`
+- **Linux (ARM64)**: `github-profile-tools-v1.0.x-linux-arm64.tar.gz`
+- **macOS (Intel)**: `github-profile-tools-v1.0.x-darwin-amd64.tar.gz`
+- **macOS (Apple Silicon)**: `github-profile-tools-v1.0.x-darwin-arm64.tar.gz`
+
+Extract the archive and run the binary directly - no additional setup required!
+
+### Option 2: Build from Source
+
+#### Prerequisites
+
+- Go 1.21 or higher
 - GitHub personal access token
 - Internet connection
 
-### Setup
+#### Setup
 
 1. **Clone or download the project**
    ```bash
-   git clone <repository-url>
-   cd github-profile-tools
+   git clone https://github.com/gounthar/alpha-omega-stats.git
+   cd alpha-omega-stats/github-profile-tools
    ```
 
 2. **Install Go dependencies**
@@ -89,6 +104,8 @@ Options:
   -template string      Template type: resume, technical, executive, ats, all (default "all")
   -format string        Output format: markdown, json, both (default "both")
   -output string        Output directory (default "./data/profiles")
+  -timeout string       Analysis timeout (e.g., '30m', '2h', '6h') (default "6h")
+  -debug-log string     Debug log file path (default "github-user-analyzer-debug.log")
   -verbose              Enable verbose logging
   -version              Show version and exit
 ```
@@ -345,7 +362,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ### Getting Help
 
-1. Check the [Issues](https://github.com/your-org/github-profile-tools/issues) page
+1. Check the [Issues](https://github.com/gounthar/alpha-omega-stats/issues) page
 2. Create a new issue with:
    - Command used
    - Error message
