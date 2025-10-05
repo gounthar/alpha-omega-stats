@@ -86,7 +86,7 @@ jobs:
         run: |
           chmod +x ${{ matrix.binary_name }}
           # Test version flag - should not require network or tokens
-          timeout 10s ./${{ matrix.binary_name }} -version || true
+          timeout 10s ./${{ matrix.binary_name }} -version
 
       - name: Create distribution package
         working-directory: ./dist
@@ -97,9 +97,17 @@ jobs:
           # Copy binary
           cp ${{ matrix.binary_name }} github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
 
-          # Copy documentation (fail if missing essential files)
-          cp ../github-profile-tools/README.md github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/ 2>/dev/null || echo "Warning: README.md not found"
-          cp ../github-profile-tools/LICENSE github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/ 2>/dev/null || echo "Warning: LICENSE not found"
+          # Copy documentation with proper error handling
+          if [ -f ../github-profile-tools/README.md ]; then
+            cp ../github-profile-tools/README.md github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+          else
+            echo "::warning::README.md not found, skipping"
+          fi
+          if [ -f ../github-profile-tools/LICENSE ]; then
+            cp ../github-profile-tools/LICENSE github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+          else
+            echo "::warning::LICENSE not found, skipping"
+          fi
 
           # Create appropriate archive
           if [ "${{ matrix.compress_format }}" = "zip" ]; then
