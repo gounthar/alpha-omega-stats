@@ -97,9 +97,9 @@ jobs:
           # Copy binary
           cp ${{ matrix.binary_name }} github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
 
-          # Copy documentation
-          cp ../github-profile-tools/README.md github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/ || true
-          cp ../github-profile-tools/LICENSE github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/ || true
+          # Copy documentation (fail if missing essential files)
+          cp ../github-profile-tools/README.md github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/ 2>/dev/null || echo "Warning: README.md not found"
+          cp ../github-profile-tools/LICENSE github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/ 2>/dev/null || echo "Warning: LICENSE not found"
 
           # Create appropriate archive
           if [ "${{ matrix.compress_format }}" = "zip" ]; then

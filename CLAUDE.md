@@ -32,10 +32,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Process PRs**: `./process_prs.sh` - General PR data processing pipeline
 
 ### GitHub Profile Tools
-- **Build analyzer**: `cd github-profile-tools && go build -o github-user-analyzer ./cmd/github-user-analyzer` - Builds the GitHub profile analyzer binary
-- **Analyze user**: `./github-profile-tools/github-user-analyzer -user=username` - Generates comprehensive GitHub profile analysis with all templates by default
-- **Analyze with specific template**: `./github-profile-tools/github-user-analyzer -user=username -template=resume` - Generates profile with specific template (resume, technical, executive, ats)
-- **Analyze with token**: `./github-profile-tools/github-user-analyzer -user=username -token="$GITHUB_TOKEN"` - Uses explicit GitHub token for API access
+- **Build analyzer**: `(cd github-profile-tools && go build -o ../github-user-analyzer ./cmd/github-user-analyzer)` - Builds the GitHub profile analyzer binary
+- **Analyze user**: `./github-user-analyzer -user=username` - Generates comprehensive GitHub profile analysis with all templates by default
+- **Analyze with specific template**: `./github-user-analyzer -user=username -template=resume` - Generates profile with specific template (resume, technical, executive, ats)
+- **Analyze with token**: `./github-user-analyzer -user=username -token="$GITHUB_TOKEN"` - Uses explicit GitHub token for API access
 
 ## Architecture
 
