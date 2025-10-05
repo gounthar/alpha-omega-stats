@@ -32,10 +32,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Process PRs**: `./process_prs.sh` - General PR data processing pipeline
 
 ### GitHub Profile Tools
-- **Build analyzer**: `cd github-profile-tools && go build -o github-user-analyzer.exe ./cmd/github-user-analyzer` - Builds the GitHub profile analyzer binary
-- **Analyze user**: `./github-profile-tools/github-user-analyzer.exe -user=username` - Generates comprehensive GitHub profile analysis with all templates by default
-- **Analyze with specific template**: `./github-profile-tools/github-user-analyzer.exe -user=username -template=resume` - Generates profile with specific template (resume, technical, executive, ats)
-- **Analyze with token**: `./github-profile-tools/github-user-analyzer.exe -user=username -token="$GITHUB_TOKEN"` - Uses explicit GitHub token for API access
+- **Build analyzer**: `cd github-profile-tools && go build -o github-user-analyzer ./cmd/github-user-analyzer` - Builds the GitHub profile analyzer binary
+- **Analyze user**: `./github-profile-tools/github-user-analyzer -user=username` - Generates comprehensive GitHub profile analysis with all templates by default
+- **Analyze with specific template**: `./github-profile-tools/github-user-analyzer -user=username -template=resume` - Generates profile with specific template (resume, technical, executive, ats)
+- **Analyze with token**: `./github-profile-tools/github-user-analyzer -user=username -token="$GITHUB_TOKEN"` - Uses explicit GitHub token for API access
 
 ## Architecture
 
@@ -82,11 +82,12 @@ The GitHub Profile Tools binary will be automatically released through GitHub Ac
 - **Changelog**: Auto-generated release notes from commit messages and PR titles
 
 #### Build Matrix
-- **Windows**: `windows-latest` → `github-user-analyzer-windows-amd64.exe`
-- **Linux x64**: `ubuntu-latest` → `github-user-analyzer-linux-amd64`
-- **Linux ARM64**: `ubuntu-latest` → `github-user-analyzer-linux-arm64`
-- **macOS x64**: `macos-latest` → `github-user-analyzer-darwin-amd64`
-- **macOS ARM64**: `macos-latest` → `github-user-analyzer-darwin-arm64`
+All builds use `ubuntu-latest` with Go cross-compilation:
+- **Windows x64**: `GOOS=windows GOARCH=amd64` → `github-user-analyzer-windows-amd64.exe`
+- **Linux x64**: `GOOS=linux GOARCH=amd64` → `github-user-analyzer-linux-amd64`
+- **Linux ARM64**: `GOOS=linux GOARCH=arm64` → `github-user-analyzer-linux-arm64`
+- **macOS x64**: `GOOS=darwin GOARCH=amd64` → `github-user-analyzer-darwin-amd64`
+- **macOS ARM64**: `GOOS=darwin GOARCH=arm64` → `github-user-analyzer-darwin-arm64`
 
 #### Release Process
 1. **Tag Creation**: Create and push a version tag (e.g., `git tag v1.0.0 && git push origin v1.0.0`)

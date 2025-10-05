@@ -64,6 +64,9 @@ jobs:
         id: version
         run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
 
+      - name: Create dist directory
+        run: mkdir -p dist
+
       - name: Build binary
         working-directory: ./github-profile-tools
         env:
