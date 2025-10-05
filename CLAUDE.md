@@ -31,6 +31,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Count PRs**: `./count_prs.sh repos.txt year` - Counts PRs for specific repositories
 - **Process PRs**: `./process_prs.sh` - General PR data processing pipeline
 
+### GitHub Profile Tools
+- **Build analyzer**: `cd github-profile-tools && go build -o github-user-analyzer.exe ./cmd/github-user-analyzer` - Builds the GitHub profile analyzer binary
+- **Analyze user**: `./github-profile-tools/github-user-analyzer.exe -user=username` - Generates comprehensive GitHub profile analysis with all templates by default
+- **Analyze with specific template**: `./github-profile-tools/github-user-analyzer.exe -user=username -template=resume` - Generates profile with specific template (resume, technical, executive, ats)
+- **Analyze with token**: `./github-profile-tools/github-user-analyzer.exe -user=username -token="$GITHUB_TOKEN"` - Uses explicit GitHub token for API access
+
 ## Architecture
 
 ### Core Components
@@ -64,12 +70,46 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **pr-collector-test.yml**: Weekly testing of PR collector functionality (Tuesdays at 07:18 UTC)
 - **generate-top-plugins.yml**: Updates plugin popularity data
 - **run-update-daily-on-merge.yml**: Triggers daily update when changes are merged
+- **release-github-profile-tools.yml**: Automated releases of GitHub Profile Tools with cross-platform binaries
+
+### Release Automation Plan
+The GitHub Profile Tools binary will be automatically released through GitHub Actions:
+
+#### Release Strategy
+- **Trigger**: Tag-based releases using semantic versioning (v1.0.0, v1.1.0, etc.)
+- **Platforms**: Cross-platform binaries for Windows (x64), Linux (x64, ARM64), and macOS (x64, ARM64)
+- **Artifacts**: Compressed binaries with checksums for verification
+- **Changelog**: Auto-generated release notes from commit messages and PR titles
+
+#### Build Matrix
+- **Windows**: `windows-latest` → `github-user-analyzer-windows-amd64.exe`
+- **Linux x64**: `ubuntu-latest` → `github-user-analyzer-linux-amd64`
+- **Linux ARM64**: `ubuntu-latest` → `github-user-analyzer-linux-arm64`
+- **macOS x64**: `macos-latest` → `github-user-analyzer-darwin-amd64`
+- **macOS ARM64**: `macos-latest` → `github-user-analyzer-darwin-arm64`
+
+#### Release Process
+1. **Tag Creation**: Create and push a version tag (e.g., `git tag v1.0.0 && git push origin v1.0.0`)
+2. **Automated Build**: GitHub Action builds binaries for all supported platforms
+3. **Testing**: Run basic smoke tests on each binary
+4. **Packaging**: Compress binaries and generate SHA256 checksums
+5. **Release**: Create GitHub release with auto-generated changelog and download links
+6. **Notification**: Optional notifications to relevant channels
 
 ### Directory Structure
 - `data/monthly/` - Monthly PR collection files (prs_YYYY_MM.json, filtered_*, grouped_*)
 - `data/consolidated/` - Aggregated data across time periods
 - `data/archive/` - Older data files (>6 months)
 - `data/junit5/` - JUnit 5 migration analysis data
+- `data/profiles/` - Generated GitHub profile analyses and templates
+- `data/cache/` - Cached analysis data for efficient template regeneration
+- `github-profile-tools/` - GitHub profile analyzer Go application
+  - `cmd/github-user-analyzer/` - Main CLI application entry point
+  - `internal/github/` - GitHub API client and GraphQL queries
+  - `internal/profile/` - Profile analysis logic and types
+  - `internal/docker/` - Docker Hub integration
+  - `internal/discourse/` - Discourse community analysis
+  - `templates/` - Profile generation templates (resume, technical, executive, ats)
 - `updatecli/` - Updatecli configuration for dependency updates
 - `.github/workflows/` - GitHub Actions automation workflows
 
