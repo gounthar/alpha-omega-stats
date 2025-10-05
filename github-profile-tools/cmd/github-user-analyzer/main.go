@@ -35,6 +35,10 @@ type Config struct {
 	DebugLogFile string
 }
 
+// main is the entry point for the GitHub User Analyzer CLI.
+// It loads environment variables from ../.env or .env, parses and validates command-line flags,
+// optionally prints the tool version and exits, configures dual debug logging, creates a context
+// with the configured timeout, and runs the profile analysis, terminating the program on fatal errors.
 func main() {
 	// Load .env file if it exists
 	if err := godotenv.Load("../.env"); err != nil {
@@ -76,7 +80,9 @@ func main() {
 	}
 }
 
-// parseFlags parses command line flags
+// parseFlags parses command-line flags and returns a Config populated from flag values and environment variables.
+// The function registers flags for username, token, output directory, template, format, verbosity, JSON saving, version, timeout, and debug log file;
+// it provides a custom usage message, resolves the timeout via parseTimeout, and selects DebugLogFile from the flag, the DEBUG_LOG_FILE environment variable, or a sensible default before returning the populated Config.
 func parseFlags() Config {
 	config := Config{}
 
