@@ -306,7 +306,7 @@ query($owner: String!, $name: String!) {
     defaultBranchRef {
       target {
         ... on Commit {
-          history(first: 100, author: {id: $authorId}) {
+          history(first: 100) {
             totalCount
             nodes {
               committedDate
