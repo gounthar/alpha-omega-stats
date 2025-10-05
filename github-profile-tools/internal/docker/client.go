@@ -14,7 +14,6 @@ import (
 
 const (
 	dockerHubAPIBaseURL = "https://hub.docker.com/v2"
-	dockerHubSearchURL  = "https://index.docker.io/v1/search"
 	maxRetries         = 3
 	requestTimeout     = 30 * time.Second
 )
@@ -173,42 +172,6 @@ func (c *Client) GetRepositoryTags(ctx context.Context, namespace, repository st
 	return tagsResponse.Results, nil
 }
 
-// searchRepositories performs the actual search request
-func (c *Client) searchRepositories(ctx context.Context, query string, limit int) ([]DockerSearchResult, error) {
-	// Use Docker Hub search endpoint
-	searchURL := fmt.Sprintf("%s?q=%s&n=%d", dockerHubSearchURL, url.QueryEscape(query), limit)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", searchURL, nil)
-	if err != nil {
-		return nil, fmt.Errorf("failed to create search request: %w", err)
-	}
-
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("User-Agent", "GitHub-Profile-Analyzer/1.0")
-
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("failed to execute search request: %w", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		body, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("search HTTP %d: %s", resp.StatusCode, string(body))
-	}
-
-	var searchResponse struct {
-		NumResults int                  `json:"num_results"`
-		Query      string               `json:"query"`
-		Results    []DockerSearchResult `json:"results"`
-	}
-
-	if err := json.NewDecoder(resp.Body).Decode(&searchResponse); err != nil {
-		return nil, fmt.Errorf("failed to decode search response: %w", err)
-	}
-
-	return searchResponse.Results, nil
-}
 
 // AnalyzeDockerProfile creates a comprehensive Docker Hub profile analysis
 func (c *Client) AnalyzeDockerProfile(ctx context.Context, username string) (*DockerHubProfile, error) {
