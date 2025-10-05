@@ -2,8 +2,11 @@ package profile
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"log"
+	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 	"time"
@@ -18,6 +21,7 @@ type Analyzer struct {
 	client          *github.Client
 	dockerClient    *docker.Client
 	discourseClient *discourse.Client
+	saveProgressDir string
 }
 
 // NewAnalyzer creates a new profile analyzer
@@ -26,6 +30,7 @@ func NewAnalyzer(githubToken string) *Analyzer {
 		client:          github.NewClient(githubToken),
 		dockerClient:    docker.NewClient(),
 		discourseClient: discourse.NewClient(),
+		saveProgressDir: "./data/progress",
 	}
 }
 
@@ -33,48 +38,93 @@ func NewAnalyzer(githubToken string) *Analyzer {
 func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfile, error) {
 	log.Printf("Starting analysis for user: %s", username)
 
-	profile := &UserProfile{
-		Username:     username,
-		LastAnalyzed: time.Now(),
+	// Try to resume from saved progress
+	profile, resumeStep := a.tryResumeProgress(username)
+	if profile == nil {
+		profile = &UserProfile{
+			Username:     username,
+			LastAnalyzed: time.Now(),
+		}
+		resumeStep = 1
 	}
 
 	// Step 1: Fetch basic user information
-	if err := a.fetchUserBasicInfo(ctx, username, profile); err != nil {
-		return nil, fmt.Errorf("failed to fetch user basic info: %w", err)
+	if resumeStep <= 1 {
+		if err := a.fetchUserBasicInfo(ctx, username, profile); err != nil {
+			return nil, fmt.Errorf("failed to fetch user basic info: %w", err)
+		}
+		if err := a.saveProgress(username, profile, 1); err != nil {
+			log.Printf("Warning: Failed to save progress after step 1: %v", err)
+		}
 	}
 
 	// Step 2: Fetch user repositories
-	if err := a.fetchUserRepositories(ctx, username, profile); err != nil {
-		return nil, fmt.Errorf("failed to fetch user repositories: %w", err)
+	if resumeStep <= 2 {
+		if err := a.fetchUserRepositories(ctx, username, profile); err != nil {
+			return nil, fmt.Errorf("failed to fetch user repositories: %w", err)
+		}
+		if err := a.saveProgress(username, profile, 2); err != nil {
+			log.Printf("Warning: Failed to save progress after step 2: %v", err)
+		}
 	}
 
 	// Step 3: Fetch organizations
-	if err := a.fetchUserOrganizations(ctx, username, profile); err != nil {
-		return nil, fmt.Errorf("failed to fetch user organizations: %w", err)
+	if resumeStep <= 3 {
+		if err := a.fetchUserOrganizations(ctx, username, profile); err != nil {
+			return nil, fmt.Errorf("failed to fetch user organizations: %w", err)
+		}
+		if err := a.saveProgress(username, profile, 3); err != nil {
+			log.Printf("Warning: Failed to save progress after step 3: %v", err)
+		}
 	}
 
 	// Step 4: Fetch contribution data
-	if err := a.fetchUserContributions(ctx, username, profile); err != nil {
-		return nil, fmt.Errorf("failed to fetch user contributions: %w", err)
+	if resumeStep <= 4 {
+		if err := a.fetchUserContributions(ctx, username, profile); err != nil {
+			return nil, fmt.Errorf("failed to fetch user contributions: %w", err)
+		}
+		if err := a.saveProgress(username, profile, 4); err != nil {
+			log.Printf("Warning: Failed to save progress after step 4: %v", err)
+		}
 	}
 
 	// Step 5: Analyze languages and technologies
-	a.analyzeLanguages(profile)
+	if resumeStep <= 5 {
+		a.analyzeLanguages(profile)
+		if err := a.saveProgress(username, profile, 5); err != nil {
+			log.Printf("Warning: Failed to save progress after step 5: %v", err)
+		}
+	}
 
 	// Step 6: Analyze Docker Hub profile (optional - may not exist for all users)
-	if err := a.analyzeDockerHub(ctx, username, profile); err != nil {
-		log.Printf("Docker Hub analysis failed (this is optional): %v", err)
-		// Continue without Docker Hub data - not all users have Docker Hub profiles
+	if resumeStep <= 6 {
+		if err := a.analyzeDockerHub(ctx, username, profile); err != nil {
+			log.Printf("Docker Hub analysis failed (this is optional): %v", err)
+			// Continue without Docker Hub data - not all users have Docker Hub profiles
+		}
+		if err := a.saveProgress(username, profile, 6); err != nil {
+			log.Printf("Warning: Failed to save progress after step 6: %v", err)
+		}
 	}
 
 	// Step 7: Analyze Discourse community engagement (optional - for Jenkins community members)
-	if err := a.analyzeDiscourseProfile(ctx, username, profile); err != nil {
-		log.Printf("Discourse analysis failed (this is optional): %v", err)
-		// Continue without Discourse data - not all users are active in Jenkins community
+	if resumeStep <= 7 {
+		if err := a.analyzeDiscourseProfile(ctx, username, profile); err != nil {
+			log.Printf("Discourse analysis failed (this is optional): %v", err)
+			// Continue without Discourse data - not all users are active in Jenkins community
+		}
+		if err := a.saveProgress(username, profile, 7); err != nil {
+			log.Printf("Warning: Failed to save progress after step 7: %v", err)
+		}
 	}
 
 	// Step 8: Generate insights
-	a.generateInsights(profile)
+	if resumeStep <= 8 {
+		a.generateInsights(profile)
+	}
+
+	// Clean up progress file on successful completion
+	a.cleanupProgress(username)
 
 	log.Printf("Analysis completed for user: %s", username)
 	return profile, nil
@@ -1061,6 +1111,81 @@ func (a *Analyzer) analyzeDiscourseProfile(ctx context.Context, username string,
 		discourseProfile.PostCount, discourseProfile.SolutionsCount, discourseProfile.TrustLevel)
 
 	return nil
+}
+
+// ProgressData represents saved analysis progress
+type ProgressData struct {
+	Username     string       `json:"username"`
+	LastStep     int          `json:"lastStep"`
+	SavedAt      time.Time    `json:"savedAt"`
+	UserProfile  *UserProfile `json:"userProfile"`
+}
+
+// saveProgress saves the current analysis progress
+func (a *Analyzer) saveProgress(username string, profile *UserProfile, step int) error {
+	// Create progress directory if it doesn't exist
+	if err := os.MkdirAll(a.saveProgressDir, 0755); err != nil {
+		return fmt.Errorf("failed to create progress directory: %w", err)
+	}
+
+	progressData := ProgressData{
+		Username:    username,
+		LastStep:    step,
+		SavedAt:     time.Now(),
+		UserProfile: profile,
+	}
+
+	filename := filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", username))
+	data, err := json.MarshalIndent(progressData, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal progress data: %w", err)
+	}
+
+	if err := os.WriteFile(filename, data, 0644); err != nil {
+		return fmt.Errorf("failed to write progress file: %w", err)
+	}
+
+	log.Printf("Progress saved after step %d for user: %s", step, username)
+	return nil
+}
+
+// tryResumeProgress attempts to resume from saved progress
+func (a *Analyzer) tryResumeProgress(username string) (*UserProfile, int) {
+	filename := filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", username))
+
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		// No progress file exists, start from beginning
+		return nil, 1
+	}
+
+	var progressData ProgressData
+	if err := json.Unmarshal(data, &progressData); err != nil {
+		log.Printf("Warning: Failed to parse progress file, starting from beginning: %v", err)
+		return nil, 1
+	}
+
+	// Check if progress file is too old (older than 1 day)
+	if time.Since(progressData.SavedAt) > 24*time.Hour {
+		log.Printf("Progress file is older than 24 hours, starting fresh")
+		a.cleanupProgress(username)
+		return nil, 1
+	}
+
+	log.Printf("Resuming analysis for user %s from step %d (saved at %s)",
+		username, progressData.LastStep+1, progressData.SavedAt.Format("2006-01-02 15:04:05"))
+
+	return progressData.UserProfile, progressData.LastStep + 1
+}
+
+// cleanupProgress removes the progress file after successful completion
+func (a *Analyzer) cleanupProgress(username string) {
+	filename := filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", username))
+	if err := os.Remove(filename); err != nil && !os.IsNotExist(err) {
+		log.Printf("Warning: Failed to clean up progress file: %v", err)
+	} else {
+		log.Printf("Progress file cleaned up for user: %s", username)
+	}
 }
 
 // GetGitHubRateLimitStatus returns current GitHub API rate limit status for monitoring

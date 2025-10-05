@@ -164,7 +164,7 @@ query($username: String!, $from: DateTime!, $to: DateTime!) {
         }
         contributions(first: 100) {
           nodes {
-            issueCount
+            occurredAt
           }
         }
       }
@@ -177,7 +177,7 @@ query($username: String!, $from: DateTime!, $to: DateTime!) {
         }
         contributions(first: 100) {
           nodes {
-            pullRequestCount
+            occurredAt
           }
         }
       }
