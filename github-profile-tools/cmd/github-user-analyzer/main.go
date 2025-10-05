@@ -17,8 +17,10 @@ import (
 	"github.com/joho/godotenv"
 )
 
-const (
-	version = "1.0.0"
+// Build-time variables set via ldflags
+var (
+	version   = "dev"       // Set via -X main.version=<version>
+	buildDate = "unknown"   // Set via -X main.buildDate=<date>
 )
 
 // Config holds command line configuration
@@ -52,6 +54,7 @@ func main() {
 
 	if config.ShowVersion {
 		fmt.Printf("GitHub User Analyzer v%s\n", version)
+		fmt.Printf("Built: %s\n", buildDate)
 		os.Exit(0)
 	}
 

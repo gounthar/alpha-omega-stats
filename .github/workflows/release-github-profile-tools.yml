@@ -1,0 +1,223 @@
+name: Release GitHub Profile Tools
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags like v1.0.0, v1.1.0, etc.
+
+permissions:
+  contents: write  # Required to create releases and upload assets
+
+jobs:
+  build-and-release:
+    name: Build and Release Cross-Platform Binaries
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Define build targets for cross-compilation
+        include:
+          - goos: windows
+            goarch: amd64
+            binary_name: github-user-analyzer-windows-amd64.exe
+            compress_format: zip
+          - goos: linux
+            goarch: amd64
+            binary_name: github-user-analyzer-linux-amd64
+            compress_format: tar.gz
+          - goos: linux
+            goarch: arm64
+            binary_name: github-user-analyzer-linux-arm64
+            compress_format: tar.gz
+          - goos: darwin
+            goarch: amd64
+            binary_name: github-user-analyzer-darwin-amd64
+            compress_format: tar.gz
+          - goos: darwin
+            goarch: arm64
+            binary_name: github-user-analyzer-darwin-arm64
+            compress_format: tar.gz
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for changelog generation
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'  # Use Go 1.21 for compatibility
+          check-latest: true
+
+      - name: Cache Go modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Create dist directory
+        run: mkdir -p dist
+
+      - name: Build binary
+        working-directory: ./github-profile-tools
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          # Build with version information embedded
+          go build \
+            -ldflags="-X main.version=${{ steps.version.outputs.VERSION }} -X main.buildDate=$(date -u +%Y-%m-%dT%H:%M:%SZ) -s -w" \
+            -o ../dist/${{ matrix.binary_name }} \
+            ./cmd/github-user-analyzer
+
+      - name: Run basic smoke test (Linux/macOS only)
+        if: matrix.goos != 'windows'
+        working-directory: ./dist
+        run: |
+          chmod +x ${{ matrix.binary_name }}
+          # Test version flag - should not require network or tokens
+          timeout 10s ./${{ matrix.binary_name }} -version
+
+      - name: Create distribution package
+        working-directory: ./dist
+        run: |
+          # Create package directory
+          mkdir -p github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}
+
+          # Copy binary
+          cp ${{ matrix.binary_name }} github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+
+          # Copy documentation with proper error handling
+          if [ -f ../github-profile-tools/README.md ]; then
+            cp ../github-profile-tools/README.md github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+          else
+            echo "::warning::README.md not found, skipping"
+          fi
+          if [ -f ../github-profile-tools/LICENSE ]; then
+            cp ../github-profile-tools/LICENSE github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+          else
+            echo "::warning::LICENSE not found, skipping"
+          fi
+
+          # Create appropriate archive
+          if [ "${{ matrix.compress_format }}" = "zip" ]; then
+            zip -r github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}.zip \
+              github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+            ARCHIVE_NAME="github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}.zip"
+          else
+            tar -czf github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz \
+              github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}/
+            ARCHIVE_NAME="github-profile-tools-${{ steps.version.outputs.VERSION }}-${{ matrix.goos }}-${{ matrix.goarch }}.tar.gz"
+          fi
+
+          # Generate checksum
+          sha256sum "$ARCHIVE_NAME" > "$ARCHIVE_NAME.sha256"
+
+          echo "ARCHIVE_NAME=$ARCHIVE_NAME" >> $GITHUB_ENV
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-profile-tools-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: |
+            dist/${{ env.ARCHIVE_NAME }}
+            dist/${{ env.ARCHIVE_NAME }}.sha256
+          retention-days: 30
+
+  create-release:
+    name: Create GitHub Release
+    needs: build-and-release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: release-assets/
+
+      - name: Organize release assets
+        run: |
+          # Flatten artifact directory structure
+          find release-assets/ -name "*.tar.gz" -o -name "*.zip" -o -name "*.sha256" | \
+            xargs -I {} mv {} release-assets/
+
+          # Clean up empty directories
+          find release-assets/ -type d -empty -delete
+
+          # List final assets
+          echo "Release assets:"
+          ls -la release-assets/
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          # Generate changelog from git history since last tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+
+          if [ -n "$PREVIOUS_TAG" ]; then
+            echo "## Changes since $PREVIOUS_TAG" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            git log --pretty=format:"- %s (%h)" $PREVIOUS_TAG..HEAD -- github-profile-tools/ >> CHANGELOG.md
+          else
+            echo "## Initial Release" > CHANGELOG.md
+            echo "" >> CHANGELOG.md
+            echo "First release of GitHub Profile Tools with the following features:" >> CHANGELOG.md
+            echo "- Comprehensive GitHub profile analysis" >> CHANGELOG.md
+            echo "- Multiple template formats (resume, technical, executive, ats)" >> CHANGELOG.md
+            echo "- Efficient caching and rate limit handling" >> CHANGELOG.md
+            echo "- Cross-platform binary support" >> CHANGELOG.md
+          fi
+
+          echo "## Download" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "Choose the appropriate binary for your platform:" >> CHANGELOG.md
+          echo "- **Windows (x64)**: \`github-profile-tools-${{ steps.version.outputs.VERSION }}-windows-amd64.zip\`" >> CHANGELOG.md
+          echo "- **Linux (x64)**: \`github-profile-tools-${{ steps.version.outputs.VERSION }}-linux-amd64.tar.gz\`" >> CHANGELOG.md
+          echo "- **Linux (ARM64)**: \`github-profile-tools-${{ steps.version.outputs.VERSION }}-linux-arm64.tar.gz\`" >> CHANGELOG.md
+          echo "- **macOS (Intel)**: \`github-profile-tools-${{ steps.version.outputs.VERSION }}-darwin-amd64.tar.gz\`" >> CHANGELOG.md
+          echo "- **macOS (Apple Silicon)**: \`github-profile-tools-${{ steps.version.outputs.VERSION }}-darwin-arm64.tar.gz\`" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "All downloads include SHA256 checksums for verification." >> CHANGELOG.md
+
+          # Output for GitHub release
+          echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+          cat CHANGELOG.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.VERSION }}
+          name: GitHub Profile Tools ${{ steps.version.outputs.VERSION }}
+          body: ${{ steps.changelog.outputs.CHANGELOG }}
+          files: release-assets/*
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.VERSION, '-') }}  # Mark as prerelease if tag contains hyphen (e.g., v1.0.0-beta)
+          generate_release_notes: true  # Auto-generate additional release notes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update latest release info
+        run: |
+          echo "✅ Released GitHub Profile Tools ${{ steps.version.outputs.VERSION }}"
+          echo "📦 Release URL: https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.VERSION }}"
+          echo "📥 Download page: https://github.com/${{ github.repository }}/releases/latest"
