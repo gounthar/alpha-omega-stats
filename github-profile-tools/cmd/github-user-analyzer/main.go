@@ -25,16 +25,21 @@ var (
 
 // Config holds command line configuration
 type Config struct {
-	Username     string
-	Token        string
-	OutputDir    string
-	Template     string
-	Format       string
-	Verbose      bool
-	SaveJSON     bool
-	ShowVersion  bool
-	Timeout      time.Duration
-	DebugLogFile string
+	Username      string
+	Token         string
+	OutputDir     string
+	Template      string
+	Format        string
+	Verbose       bool
+	SaveJSON      bool
+	ShowVersion   bool
+	Timeout       time.Duration
+	DebugLogFile  string
+	CacheDir      string
+	CacheTTL      time.Duration
+	ForceRefresh  bool
+	CacheStats    bool
+	ClearCache    bool
 }
 
 // main is the entry point for the GitHub User Analyzer CLI.
@@ -90,6 +95,7 @@ func parseFlags() Config {
 	config := Config{}
 
 	var timeoutStr string
+	var cacheTTLStr string
 
 	flag.StringVar(&config.Username, "user", "", "GitHub username to analyze (required)")
 	flag.StringVar(&config.Token, "token", os.Getenv("GITHUB_TOKEN"), "GitHub API token (or set GITHUB_TOKEN env var)")
@@ -101,6 +107,11 @@ func parseFlags() Config {
 	flag.BoolVar(&config.ShowVersion, "version", false, "Show version and exit")
 	flag.StringVar(&timeoutStr, "timeout", "", "Analysis timeout (e.g., '30m', '2h', '6h'). Default: 6h, or set ANALYSIS_TIMEOUT env var")
 	flag.StringVar(&config.DebugLogFile, "debug-log", "", "Debug log file path (default: github-user-analyzer-debug.log, or set DEBUG_LOG_FILE env var)")
+	flag.StringVar(&config.CacheDir, "cache-dir", "./data/cache", "Cache directory for storing analysis results")
+	flag.StringVar(&cacheTTLStr, "cache-ttl", "24h", "Cache time-to-live (e.g., '1h', '6h', '24h', '7d')")
+	flag.BoolVar(&config.ForceRefresh, "force-refresh", false, "Bypass cache and force fresh analysis")
+	flag.BoolVar(&config.CacheStats, "cache-stats", false, "Show cache statistics and exit")
+	flag.BoolVar(&config.ClearCache, "clear-cache", false, "Clear all cache entries and exit")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "GitHub User Analyzer v%s\n\n", version)
@@ -113,7 +124,12 @@ func parseFlags() Config {
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -template technical       # Generate only technical template\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -format markdown          # Generate all templates in markdown only\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -output ./resumes         # Generate all templates in custom directory\n", os.Args[0])
-		fmt.Fprintf(os.Stderr, "  %s -user octocat -timeout 2h -verbose      # Generate all templates with extended timeout\n\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -timeout 2h -verbose      # Generate all templates with extended timeout\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -force-refresh             # Force fresh analysis, bypass cache\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-ttl 7d              # Cache results for 7 days\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-dir ./my-cache      # Use custom cache directory\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -cache-stats                             # Show cache statistics\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -clear-cache                             # Clear all cached data\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Options:\n")
 		flag.PrintDefaults()
 	}
@@ -123,6 +139,9 @@ func parseFlags() Config {
 	// Parse timeout from command line, environment variable, or use default
 	config.Timeout = parseTimeout(timeoutStr)
 
+	// Parse cache TTL
+	config.CacheTTL = parseCacheTTL(cacheTTLStr)
+
 	// Set debug log file from command line flag, environment variable, or default
 	if config.DebugLogFile == "" {
 		config.DebugLogFile = os.Getenv("DEBUG_LOG_FILE")
@@ -131,6 +150,12 @@ func parseFlags() Config {
 		config.DebugLogFile = "github-user-analyzer-debug.log"
 	}
 
+	// Set cache directory from environment variable if not specified
+	if config.CacheDir == "./data/cache" {
+		if envCacheDir := os.Getenv("CACHE_DIR"); envCacheDir != "" {
+			config.CacheDir = envCacheDir
+		}
+	}
 
 	return config
 }
@@ -203,13 +228,45 @@ func parseTimeout(flagValue string) time.Duration {
 	return timeout
 }
 
+// parseCacheTTL parses cache TTL from command line flag or returns default
+func parseCacheTTL(flagValue string) time.Duration {
+	// Default cache TTL is 24 hours
+	defaultTTL := 24 * time.Hour
+
+	// Use flag value if provided
+	if flagValue == "" {
+		return defaultTTL
+	}
+
+	// Parse the duration string
+	ttl, err := time.ParseDuration(flagValue)
+	if err != nil {
+		log.Printf("Warning: Invalid cache TTL format '%s', using default %v", flagValue, defaultTTL)
+		return defaultTTL
+	}
+
+	// Validate reasonable bounds (1 minute to 30 days)
+	if ttl < time.Minute {
+		log.Printf("Warning: Cache TTL too short (%v), using 1 minute minimum", ttl)
+		return time.Minute
+	}
+	if ttl > 30*24*time.Hour {
+		log.Printf("Warning: Cache TTL too long (%v), using 30 day maximum", ttl)
+		return 30 * 24 * time.Hour
+	}
+
+	return ttl
+}
+
 // validateConfig validates the configuration
 func validateConfig(config Config) error {
-	if config.Username == "" {
+	// Skip username validation for cache-only operations
+	if !config.CacheStats && !config.ClearCache && config.Username == "" {
 		return fmt.Errorf("username is required (use -user flag)")
 	}
 
-	if config.Token == "" {
+	// Skip token validation for cache-only operations
+	if !config.CacheStats && !config.ClearCache && config.Token == "" {
 		return fmt.Errorf("GitHub token is required (use -token flag or set GITHUB_TOKEN environment variable)")
 	}
 
@@ -233,10 +290,37 @@ func runAnalysis(ctx context.Context, config Config) error {
 		log.Printf("Starting analysis for user: %s", config.Username)
 		log.Printf("Using template: %s", config.Template)
 		log.Printf("Output directory: %s", config.OutputDir)
+		log.Printf("Cache directory: %s", config.CacheDir)
+		log.Printf("Cache TTL: %v", config.CacheTTL)
+		log.Printf("Force refresh: %v", config.ForceRefresh)
 	}
 
-	// Create analyzer
+	// Handle cache stats command
+	if config.CacheStats {
+		return showCacheStats(config)
+	}
+
+	// Handle clear cache command
+	if config.ClearCache {
+		return clearCache(config)
+	}
+
+	// Create base analyzer
 	analyzer := profile.NewAnalyzer(config.Token)
+
+	// Wrap with cache if cache directory is specified
+	if config.CacheDir != "" {
+		cacheAwareAnalyzer, err := profile.WrapWithCache(analyzer, config.CacheDir, config.ForceRefresh)
+		if err != nil {
+			log.Printf("Warning: Failed to initialize cache, proceeding without caching: %v", err)
+		} else {
+			if config.Verbose {
+				log.Printf("Cache system initialized successfully")
+			}
+			// Use cache-aware analyzer instead
+			return runAnalysisWithCache(ctx, config, cacheAwareAnalyzer)
+		}
+	}
 
 	// Analyze user profile
 	log.Printf("Analyzing GitHub profile for user: %s", config.Username)
@@ -446,4 +530,111 @@ func contains(slice []string, item string) bool {
 		}
 	}
 	return false
+}
+
+// showCacheStats displays cache statistics and exits
+func showCacheStats(config Config) error {
+	if config.CacheDir == "" {
+		fmt.Println("Cache directory not specified, no cache statistics available")
+		return nil
+	}
+
+	cacheManager, err := profile.NewProfileCacheManager(config.CacheDir, false)
+	if err != nil {
+		return fmt.Errorf("failed to initialize cache manager: %w", err)
+	}
+
+	fmt.Printf("Cache Statistics for directory: %s\n", config.CacheDir)
+	fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+	cacheManager.PrintStats()
+
+	return nil
+}
+
+// clearCache removes all cache entries and exits
+func clearCache(config Config) error {
+	if config.CacheDir == "" {
+		fmt.Println("Cache directory not specified, nothing to clear")
+		return nil
+	}
+
+	cacheManager, err := profile.NewProfileCacheManager(config.CacheDir, false)
+	if err != nil {
+		return fmt.Errorf("failed to initialize cache manager: %w", err)
+	}
+
+	fmt.Printf("Clearing cache directory: %s\n", config.CacheDir)
+	if err := cacheManager.Clear(); err != nil {
+		return fmt.Errorf("failed to clear cache: %w", err)
+	}
+
+	fmt.Println("✅ Cache cleared successfully")
+	return nil
+}
+
+// runAnalysisWithCache performs analysis using the cache-aware analyzer
+func runAnalysisWithCache(ctx context.Context, config Config, cacheAnalyzer *profile.CacheAwareAnalyzer) error {
+	// Analyze user profile with caching
+	log.Printf("Analyzing GitHub profile for user: %s", config.Username)
+	prof, err := cacheAnalyzer.AnalyzeUser(ctx, config.Username)
+	if err != nil {
+		return fmt.Errorf("failed to analyze user %s: %w", config.Username, err)
+	}
+
+	// Create output directory
+	if err := os.MkdirAll(config.OutputDir, 0755); err != nil {
+		return fmt.Errorf("failed to create output directory: %w", err)
+	}
+
+	// Generate outputs based on format
+	if config.Format == "json" || config.Format == "both" {
+		if err := saveJSONProfile(prof, config); err != nil {
+			return fmt.Errorf("failed to save JSON profile: %w", err)
+		}
+	}
+
+	if config.Format == "markdown" || config.Format == "both" {
+		// Determine which templates to generate
+		var templatesToGenerate []string
+		if config.Template == "all" {
+			templatesToGenerate = []string{"resume", "technical", "executive", "ats"}
+		} else {
+			templatesToGenerate = []string{config.Template}
+		}
+
+		// Generate each template
+		for _, template := range templatesToGenerate {
+			templateConfig := config
+			templateConfig.Template = template
+			if err := generateMarkdownProfile(prof, templateConfig); err != nil {
+				return fmt.Errorf("failed to generate %s markdown profile: %w", template, err)
+			}
+		}
+	}
+
+	// Print summary
+	printSummary(prof, config)
+
+	// Print cache statistics if verbose
+	if config.Verbose {
+		fmt.Printf("\n📊 Cache Performance:\n")
+		fmt.Println("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+		cacheManager := cacheAnalyzer.GetCacheManager()
+		cacheManager.PrintStats()
+	}
+
+	// Print final rate limit status
+	if config.Verbose {
+		rateLimitStatus := cacheAnalyzer.GetGitHubRateLimitStatus()
+		log.Printf("Final GitHub API Rate Limit Status:")
+		log.Printf("  Resource: %s", rateLimitStatus.Resource)
+		log.Printf("  Used: %d/%d requests", rateLimitStatus.Used, rateLimitStatus.Limit)
+		log.Printf("  Remaining: %d requests", rateLimitStatus.Remaining)
+		log.Printf("  Resets at: %s", rateLimitStatus.ResetTime.Format("15:04:05 MST"))
+
+		percentUsed := float64(rateLimitStatus.Used) / float64(rateLimitStatus.Limit) * 100
+		log.Printf("  Usage: %.1f%% of hourly quota", percentUsed)
+	}
+
+	return nil
 }
