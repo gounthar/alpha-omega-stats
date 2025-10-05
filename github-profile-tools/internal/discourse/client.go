@@ -227,7 +227,8 @@ func (c *Client) fetchUserPosts(ctx context.Context, username string, profile *D
 			LikeCount:    latestPost.LikeCount,
 			ReplyCount:   latestPost.ReplyCount,
 			IsSolution:   latestPost.AcceptedAnswer,
-			CategoryName: c.getCategoryName(latestPost.CategoryID),
+			CategoryID:   latestPost.CategoryID,
+			CategoryName: "", // Will be filled later when categories map is available
 		}
 
 		// Analyze post for helpfulness and technical depth
@@ -292,7 +293,8 @@ func (c *Client) fetchUserTopics(ctx context.Context, username string, profile *
 			LastPostedAt:  topic.LastPostedAt,
 			Views:         topic.Views,
 			LikeCount:     topic.LikeCount,
-			CategoryName:  c.getCategoryName(topic.CategoryID),
+			CategoryID:    topic.CategoryID,
+			CategoryName:  "", // Will be filled later when categories map is available
 			Tags:          topic.Tags,
 			IsPinned:      topic.Pinned,
 			IsClosed:      topic.Closed,
@@ -360,6 +362,9 @@ func (c *Client) analyzeEngagement(profile *DiscourseProfile, categories map[int
 		profile.ReadingTime = profile.DaysActive * 30 // Rough estimate: 30 min per active day
 	}
 
+	// Update category names in posts and topics now that we have the categories map
+	c.updateCategoryNames(profile, categories)
+
 	// Analyze category activity
 	c.analyzeCategoryActivity(profile, categories)
 
@@ -371,6 +376,27 @@ func (c *Client) analyzeEngagement(profile *DiscourseProfile, categories map[int
 
 	// Analyze mentorship signals
 	profile.MentorshipSignals = c.analyzeMentorshipSignals(profile)
+}
+
+// updateCategoryNames updates category names in posts and topics using the categories map
+func (c *Client) updateCategoryNames(profile *DiscourseProfile, categories map[int]string) {
+	// Update category names in posts
+	for i := range profile.TopPosts {
+		if profile.TopPosts[i].CategoryName == "" && profile.TopPosts[i].CategoryID > 0 {
+			if categoryName, exists := categories[profile.TopPosts[i].CategoryID]; exists {
+				profile.TopPosts[i].CategoryName = categoryName
+			}
+		}
+	}
+
+	// Update category names in topics
+	for i := range profile.TopTopics {
+		if profile.TopTopics[i].CategoryName == "" && profile.TopTopics[i].CategoryID > 0 {
+			if categoryName, exists := categories[profile.TopTopics[i].CategoryID]; exists {
+				profile.TopTopics[i].CategoryName = categoryName
+			}
+		}
+	}
 }
 
 // analyzeCategoryActivity analyzes engagement within specific categories
@@ -493,8 +519,8 @@ func (c *Client) generateCommunityMetrics(profile *DiscourseProfile) CommunityLe
 // Helper functions for metric calculations
 
 func (c *Client) getCategoryName(categoryID int) string {
-	// This would need to be populated from the categories map
-	// For now, return empty string - will be filled in during analysis
+	// This function is deprecated - category names are now updated directly
+	// in updateCategoryNames() function using the categories map
 	return ""
 }
 

@@ -1,4 +1,4 @@
-Was the timeout part of the command we launched, or part of the exe itself?# GitHub Professional Profile - gounthar
+# GitHub Professional Profile - gounthar
 
 
 **Name:** Bruno Verachten

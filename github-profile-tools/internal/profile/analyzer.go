@@ -22,6 +22,7 @@ type Analyzer struct {
 	dockerClient    *docker.Client
 	discourseClient *discourse.Client
 	saveProgressDir string
+	cacheDir        string
 }
 
 // NewAnalyzer creates a new profile analyzer
@@ -31,6 +32,7 @@ func NewAnalyzer(githubToken string) *Analyzer {
 		dockerClient:    docker.NewClient(),
 		discourseClient: discourse.NewClient(),
 		saveProgressDir: "./data/progress",
+		cacheDir:        "./data/cache",
 	}
 }
 
@@ -38,7 +40,13 @@ func NewAnalyzer(githubToken string) *Analyzer {
 func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfile, error) {
 	log.Printf("Starting analysis for user: %s", username)
 
-	// Try to resume from saved progress
+	// First, try to load from cache (completed analysis)
+	if cachedProfile := a.tryLoadFromCache(username); cachedProfile != nil {
+		log.Printf("Using cached analysis for user: %s (analyzed at %s)", username, cachedProfile.LastAnalyzed.Format("2006-01-02 15:04:05"))
+		return cachedProfile, nil
+	}
+
+	// If no cache, try to resume from saved progress
 	profile, resumeStep := a.tryResumeProgress(username)
 	if profile == nil {
 		profile = &UserProfile{
@@ -121,6 +129,11 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 	// Step 8: Generate insights
 	if resumeStep <= 8 {
 		a.generateInsights(profile)
+	}
+
+	// Save completed analysis to cache for future template generation
+	if err := a.saveToCache(username, profile); err != nil {
+		log.Printf("Warning: Failed to save analysis to cache: %v", err)
 	}
 
 	// Clean up progress file on successful completion
@@ -1186,6 +1199,52 @@ func (a *Analyzer) cleanupProgress(username string) {
 	} else {
 		log.Printf("Progress file cleaned up for user: %s", username)
 	}
+}
+
+// saveToCache saves completed analysis to permanent cache for template reuse
+func (a *Analyzer) saveToCache(username string, profile *UserProfile) error {
+	// Create cache directory if it doesn't exist
+	if err := os.MkdirAll(a.cacheDir, 0755); err != nil {
+		return fmt.Errorf("failed to create cache directory: %w", err)
+	}
+
+	filename := filepath.Join(a.cacheDir, fmt.Sprintf("%s_analysis.json", username))
+	data, err := json.MarshalIndent(profile, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal profile to JSON: %w", err)
+	}
+
+	if err := os.WriteFile(filename, data, 0644); err != nil {
+		return fmt.Errorf("failed to write cache file: %w", err)
+	}
+
+	log.Printf("Analysis cached for user: %s", username)
+	return nil
+}
+
+// tryLoadFromCache attempts to load completed analysis from cache
+func (a *Analyzer) tryLoadFromCache(username string) *UserProfile {
+	filename := filepath.Join(a.cacheDir, fmt.Sprintf("%s_analysis.json", username))
+
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		// No cache file exists
+		return nil
+	}
+
+	var profile UserProfile
+	if err := json.Unmarshal(data, &profile); err != nil {
+		log.Printf("Warning: Failed to parse cache file, will re-analyze: %v", err)
+		return nil
+	}
+
+	// Check if cache is too old (older than 7 days)
+	if time.Since(profile.LastAnalyzed) > 7*24*time.Hour {
+		log.Printf("Cache is older than 7 days, will re-analyze")
+		return nil
+	}
+
+	return &profile
 }
 
 // GetGitHubRateLimitStatus returns current GitHub API rate limit status for monitoring

@@ -35,28 +35,70 @@ func NewClient() *Client {
 	}
 }
 
-// SearchUserRepositories searches for repositories by a specific user
+// SearchUserRepositories searches for repositories by a specific user using v2 API
 func (c *Client) SearchUserRepositories(ctx context.Context, username string) ([]DockerSearchResult, error) {
 	log.Printf("Searching Docker Hub repositories for user: %s", username)
 
-	// Search for repositories with the user's name
-	query := fmt.Sprintf("user:%s", username)
+	// Use v2 API to list user repositories with pagination
+	var allRepos []DockerSearchResult
+	page := 1
+	pageSize := 100
 
-	results, err := c.searchRepositories(ctx, query, 100)
-	if err != nil {
-		return nil, fmt.Errorf("failed to search repositories: %w", err)
-	}
+	for {
+		url := fmt.Sprintf("%s/repositories/%s/?page=%d&page_size=%d", c.baseURL, username, page, pageSize)
 
-	// Filter results to only include repositories owned by the user
-	var userRepos []DockerSearchResult
-	for _, result := range results {
-		if strings.EqualFold(result.RepoOwner, username) {
-			userRepos = append(userRepos, result)
+		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+		if err != nil {
+			return nil, fmt.Errorf("failed to create request: %w", err)
 		}
+
+		req.Header.Set("Accept", "application/json")
+		req.Header.Set("User-Agent", "GitHub-Profile-Analyzer/1.0")
+
+		resp, err := c.httpClient.Do(req)
+		if err != nil {
+			return nil, fmt.Errorf("failed to execute request: %w", err)
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode == http.StatusNotFound {
+			// User has no repositories or doesn't exist
+			break
+		}
+
+		if resp.StatusCode != http.StatusOK {
+			body, _ := io.ReadAll(resp.Body)
+			return nil, fmt.Errorf("HTTP %d: %s", resp.StatusCode, string(body))
+		}
+
+		var repoResponse DockerHubRepositoriesResponse
+		if err := json.NewDecoder(resp.Body).Decode(&repoResponse); err != nil {
+			return nil, fmt.Errorf("failed to decode response: %w", err)
+		}
+
+		// Convert v2 API response to our search result format
+		for _, repo := range repoResponse.Results {
+			searchResult := DockerSearchResult{
+				RepoName:     repo.Name,
+				RepoOwner:    repo.Namespace,
+				Description:  repo.Description,
+				IsOfficial:   false,
+				IsAutomated:  false,
+				StarCount:    repo.StarCount,
+				PullCount:    repo.PullCount,
+			}
+			allRepos = append(allRepos, searchResult)
+		}
+
+		// Check if there are more pages
+		if repoResponse.Next == "" {
+			break
+		}
+		page++
 	}
 
-	log.Printf("Found %d repositories for user %s", len(userRepos), username)
-	return userRepos, nil
+	log.Printf("Found %d repositories for user %s", len(allRepos), username)
+	return allRepos, nil
 }
 
 // GetRepositoryDetails fetches detailed information about a specific repository

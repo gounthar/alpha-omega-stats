@@ -48,6 +48,7 @@ type DiscoursePost struct {
 	LikeCount       int       `json:"like_count"`
 	ReplyCount      int       `json:"reply_count"`
 	IsSolution      bool      `json:"is_solution"`
+	CategoryID      int       `json:"category_id"`
 	CategoryName    string    `json:"category_name"`
 	Tags            []string  `json:"tags"`
 
@@ -68,6 +69,7 @@ type DiscourseTopic struct {
 	LastPostedAt    time.Time `json:"last_posted_at"`
 	Views           int       `json:"views"`
 	LikeCount       int       `json:"like_count"`
+	CategoryID      int       `json:"category_id"`
 	CategoryName    string    `json:"category_name"`
 	Tags            []string  `json:"tags"`
 	IsPinned        bool      `json:"is_pinned"`
