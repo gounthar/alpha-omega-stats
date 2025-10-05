@@ -937,8 +937,6 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 			roles = append(roles, "Principal Engineer", "Staff Engineer", "Engineering Manager")
 		case "senior":
 			roles = append(roles, "Senior Backend Engineer", "Backend Team Lead", "Staff Engineer")
-		case "mid":
-			roles = append(roles, "Backend Developer", "Software Engineer")
 		case "junior":
 			roles = append(roles, "Junior Backend Developer", "Software Engineer")
 		default:
@@ -954,8 +952,6 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 			roles = append(roles, "Principal Frontend Engineer", "Frontend Architect")
 		case "senior":
 			roles = append(roles, "Senior Frontend Engineer", "Frontend Team Lead")
-		case "mid":
-			roles = append(roles, "Frontend Developer", "UI Developer")
 		case "junior":
 			roles = append(roles, "Junior Frontend Developer", "UI Developer")
 		default:
@@ -970,8 +966,6 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 			roles = append(roles, "Principal Engineer", "Full-Stack Architect", "Technical Lead")
 		case "senior":
 			roles = append(roles, "Senior Full-Stack Engineer", "Technical Lead")
-		case "mid":
-			roles = append(roles, "Full-Stack Developer", "Software Engineer")
 		case "junior":
 			roles = append(roles, "Junior Full-Stack Developer", "Software Engineer")
 		default:
@@ -986,8 +980,6 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 			roles = append(roles, "Principal SRE", "DevOps Architect", "Platform Lead")
 		case "senior":
 			roles = append(roles, "Senior DevOps Engineer", "Senior SRE", "Platform Engineer")
-		case "mid":
-			roles = append(roles, "DevOps Engineer", "Platform Engineer", "SRE")
 		case "junior":
 			roles = append(roles, "Junior DevOps Engineer", "Platform Engineer")
 		default:
@@ -1002,8 +994,6 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 			roles = append(roles, "Principal Engineer", "Staff Engineer", "Technical Lead")
 		case "senior":
 			roles = append(roles, "Senior Software Engineer", "Technical Lead")
-		case "mid":
-			roles = append(roles, "Software Engineer", "Software Developer")
 		case "junior":
 			roles = append(roles, "Junior Software Engineer", "Software Developer")
 		default:
