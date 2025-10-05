@@ -38,19 +38,20 @@ func (c *Client) AnalyzeDiscourseProfile(ctx context.Context, username string) (
 	user := userResp.User
 
 	profile := &DiscourseProfile{
-		Username:      user.Username,
-		DisplayName:   user.Name,
-		ProfileURL:    fmt.Sprintf("%s/u/%s", c.baseURL, username),
-		CommunityURL:  c.baseURL,
-		JoinedDate:    user.CreatedAt,
-		LastActivity:  user.LastSeenAt,
-		PostCount:     user.PostCount,
-		TopicCount:    user.TopicCount,
-		LikesReceived: user.LikesReceived,
-		LikesGiven:    user.LikesGiven,
-		DaysActive:    user.DaysVisited,
-		TrustLevel:    user.TrustLevel,
-		BadgeCount:    user.BadgeCount,
+		Username:       user.Username,
+		DisplayName:    user.Name,
+		ProfileURL:     fmt.Sprintf("%s/u/%s", c.baseURL, username),
+		CommunityURL:   c.baseURL,
+		JoinedDate:     user.CreatedAt,
+		LastActivity:   user.LastSeenAt,
+		PostCount:      user.PostCount,
+		TopicCount:     user.TopicCount,
+		LikesReceived:  user.LikesReceived,
+		LikesGiven:     user.LikesGiven,
+		SolutionsCount: user.SolutionCount,
+		DaysActive:     user.DaysVisited,
+		TrustLevel:     user.TrustLevel,
+		BadgeCount:     user.BadgeCount,
 	}
 
 	// Step 2: Fetch user badges

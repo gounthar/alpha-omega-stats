@@ -63,7 +63,7 @@ Generate professional resume-ready profiles from GitHub user data. Transform you
 ### Basic Usage
 
 ```bash
-# Analyze a GitHub user with default resume template
+# Analyze a GitHub user with default (all templates)
 ./github-user-analyzer -user octocat
 
 # Generate technical deep-dive profile
@@ -86,7 +86,7 @@ Required:
 
 Options:
   -token string         GitHub API token (or set GITHUB_TOKEN env var)
-  -template string      Template type: resume, technical, executive, ats (default "resume")
+  -template string      Template type: resume, technical, executive, ats, all (default "all")
   -format string        Output format: markdown, json, both (default "both")
   -output string        Output directory (default "./data/profiles")
   -verbose              Enable verbose logging

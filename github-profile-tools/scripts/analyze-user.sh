@@ -8,7 +8,7 @@ set -e
 
 # Default configuration
 DEFAULT_OUTPUT_DIR="./data/profiles"
-DEFAULT_TEMPLATE="resume"
+DEFAULT_TEMPLATE=""
 DEFAULT_FORMAT="both"
 
 # Colors for output
@@ -78,7 +78,7 @@ check_dependencies() {
         exit 1
     fi
 
-    if [[ -z "${GITHUB_TOKEN:-}" ]]; then
+    if [[ -z "$TOKEN" ]]; then
         log_error "GitHub token is required. Set GITHUB_TOKEN environment variable or use --token flag."
         log_info "Get a token at: https://github.com/settings/tokens"
         exit 1
@@ -89,6 +89,7 @@ check_dependencies() {
 parse_args() {
     USERNAME=""
     TEMPLATE="$DEFAULT_TEMPLATE"
+    TEMPLATE_SPECIFIED=0
     OUTPUT_DIR="$DEFAULT_OUTPUT_DIR"
     FORMAT="$DEFAULT_FORMAT"
     VERBOSE=""
@@ -102,6 +103,7 @@ parse_args() {
                 ;;
             -t|--template)
                 TEMPLATE="$2"
+                TEMPLATE_SPECIFIED=1
                 shift 2
                 ;;
             -o|--output)
@@ -144,15 +146,17 @@ parse_args() {
         exit 1
     fi
 
-    # Validate template
-    case "$TEMPLATE" in
-        resume|technical|executive|ats) ;;
-        *)
-            log_error "Invalid template: $TEMPLATE"
-            log_info "Valid templates: resume, technical, executive, ats"
-            exit 1
-            ;;
-    esac
+    # Validate template (only if specified)
+    if [[ $TEMPLATE_SPECIFIED -eq 1 ]]; then
+        case "$TEMPLATE" in
+            resume|technical|executive|ats|all) ;;
+            *)
+                log_error "Invalid template: $TEMPLATE"
+                log_info "Valid templates: resume, technical, executive, ats, all"
+                exit 1
+                ;;
+        esac
+    fi
 
     # Validate format
     case "$FORMAT" in
@@ -194,7 +198,10 @@ run_analysis() {
     mkdir -p "$OUTPUT_DIR"
 
     # Run the analyzer
-    local cmd="./github-user-analyzer -user \"$USERNAME\" -template \"$TEMPLATE\" -format \"$FORMAT\" -output \"$OUTPUT_DIR\" -token \"$TOKEN\" $VERBOSE"
+    local cmd="./github-user-analyzer -user \"$USERNAME\" -format \"$FORMAT\" -output \"$OUTPUT_DIR\" -token \"$TOKEN\" $VERBOSE"
+    if [[ $TEMPLATE_SPECIFIED -eq 1 ]]; then
+        cmd+=" -template \"$TEMPLATE\""
+    fi
 
     if [[ -n "$VERBOSE" ]]; then
         log_info "Running: $cmd"

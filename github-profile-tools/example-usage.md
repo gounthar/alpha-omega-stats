@@ -207,7 +207,10 @@ github-profile-tools/
 ├── data/
 │   └── profiles/
 │       ├── octocat_profile.json
-│       └── octocat_profile_resume.md
+│       ├── octocat_profile_resume.md
+│       ├── octocat_profile_technical.md
+│       ├── octocat_profile_executive.md
+│       └── octocat_profile_ats.md
 ├── github-user-analyzer              # Built binary
 └── ... (source files)
 ```
