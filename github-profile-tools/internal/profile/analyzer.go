@@ -223,7 +223,7 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 		}
 
 		for _, repoNode := range resp.User.Repositories.Nodes {
-			repo := a.convertRepositoryNode(repoNode)
+			repo := a.convertRepositoryNode(repoNode, username)
 			allRepos = append(allRepos, repo)
 		}
 
@@ -393,7 +393,7 @@ func (a *Analyzer) fetchUserContributions(ctx context.Context, username string, 
 }
 
 // convertRepositoryNode converts a GitHub repository node to our RepositoryProfile
-func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode) RepositoryProfile {
+func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode, username string) RepositoryProfile {
 	repo := RepositoryProfile{
 		Name:        node.Name,
 		FullName:    node.NameWithOwner,
@@ -451,10 +451,8 @@ func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode) RepositoryP
 	// Set organization if different from owner
 	if node.Owner.Login != "" {
 		repo.Organization = node.Owner.Login
-		// If there's an organization, user is likely not the owner
-		if node.Owner.Name != "" {
-			repo.IsOwner = false
-		}
+		// Check if user is the owner by comparing login names
+		repo.IsOwner = (node.Owner.Login == username)
 	}
 
 	return repo
@@ -926,14 +924,24 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 	var roles []string
 
 	careerLevel := profile.Insights.CareerLevel
+	if careerLevel == "" {
+		careerLevel = "mid" // Default fallback if career level is empty
+	}
 	primaryLangs := profile.Skills.PrimaryLanguages
 
 	// Backend roles
 	backendLangs := []string{"Go", "Python", "Java", "C#", "Node.js", "Rust"}
 	if a.hasAnyLanguage(primaryLangs, backendLangs) {
-		if careerLevel == "senior" || careerLevel == "principal" {
+		switch careerLevel {
+		case "principal":
+			roles = append(roles, "Principal Engineer", "Staff Engineer", "Engineering Manager")
+		case "senior":
 			roles = append(roles, "Senior Backend Engineer", "Backend Team Lead", "Staff Engineer")
-		} else {
+		case "mid":
+			roles = append(roles, "Backend Developer", "Software Engineer")
+		case "junior":
+			roles = append(roles, "Junior Backend Developer", "Software Engineer")
+		default:
 			roles = append(roles, "Backend Developer", "Software Engineer")
 		}
 	}
@@ -941,25 +949,66 @@ func (a *Analyzer) recommendRoles(profile *UserProfile) []string {
 	// Frontend roles
 	frontendLangs := []string{"JavaScript", "TypeScript", "React", "Vue", "Angular"}
 	if a.hasAnyLanguage(primaryLangs, frontendLangs) {
-		if careerLevel == "senior" || careerLevel == "principal" {
+		switch careerLevel {
+		case "principal":
+			roles = append(roles, "Principal Frontend Engineer", "Frontend Architect")
+		case "senior":
 			roles = append(roles, "Senior Frontend Engineer", "Frontend Team Lead")
-		} else {
+		case "mid":
+			roles = append(roles, "Frontend Developer", "UI Developer")
+		case "junior":
+			roles = append(roles, "Junior Frontend Developer", "UI Developer")
+		default:
 			roles = append(roles, "Frontend Developer", "UI Developer")
 		}
 	}
 
 	// Full-stack roles
 	if a.hasAnyLanguage(primaryLangs, backendLangs) && a.hasAnyLanguage(primaryLangs, frontendLangs) {
-		if careerLevel == "senior" || careerLevel == "principal" {
+		switch careerLevel {
+		case "principal":
+			roles = append(roles, "Principal Engineer", "Full-Stack Architect", "Technical Lead")
+		case "senior":
 			roles = append(roles, "Senior Full-Stack Engineer", "Technical Lead")
-		} else {
+		case "mid":
+			roles = append(roles, "Full-Stack Developer", "Software Engineer")
+		case "junior":
+			roles = append(roles, "Junior Full-Stack Developer", "Software Engineer")
+		default:
 			roles = append(roles, "Full-Stack Developer", "Software Engineer")
 		}
 	}
 
-	// DevOps roles
+	// DevOps roles with career level consideration
 	if len(profile.Skills.DevOpsSkills) >= 3 {
-		roles = append(roles, "DevOps Engineer", "Platform Engineer", "SRE")
+		switch careerLevel {
+		case "principal":
+			roles = append(roles, "Principal SRE", "DevOps Architect", "Platform Lead")
+		case "senior":
+			roles = append(roles, "Senior DevOps Engineer", "Senior SRE", "Platform Engineer")
+		case "mid":
+			roles = append(roles, "DevOps Engineer", "Platform Engineer", "SRE")
+		case "junior":
+			roles = append(roles, "Junior DevOps Engineer", "Platform Engineer")
+		default:
+			roles = append(roles, "DevOps Engineer", "Platform Engineer", "SRE")
+		}
+	}
+
+	// Ensure we always have at least some role recommendations
+	if len(roles) == 0 {
+		switch careerLevel {
+		case "principal":
+			roles = append(roles, "Principal Engineer", "Staff Engineer", "Technical Lead")
+		case "senior":
+			roles = append(roles, "Senior Software Engineer", "Technical Lead")
+		case "mid":
+			roles = append(roles, "Software Engineer", "Software Developer")
+		case "junior":
+			roles = append(roles, "Junior Software Engineer", "Software Developer")
+		default:
+			roles = append(roles, "Software Engineer", "Software Developer")
+		}
 	}
 
 	return roles

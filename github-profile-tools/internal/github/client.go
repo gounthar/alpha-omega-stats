@@ -195,13 +195,18 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		// Special handling for rate limit responses
 		if resp.StatusCode == 403 {
 			// Check if this is a rate limit error by examining response body or headers
-			if c.rateLimitInfo.Remaining <= 0 ||
+			c.rateLimitInfo.mutex.RLock()
+			remaining := c.rateLimitInfo.Remaining
+			resetTime := c.rateLimitInfo.ResetTime
+			c.rateLimitInfo.mutex.RUnlock()
+
+			if remaining <= 0 ||
 			   contains(strings.ToLower(string(body)), "rate limit") ||
 			   contains(strings.ToLower(string(body)), "api rate limit exceeded") {
 
 				log.Printf("GitHub API rate limit exceeded (HTTP 403)")
 				// This is a rate limit error, wait until reset
-				waitDuration := time.Until(c.rateLimitInfo.ResetTime)
+				waitDuration := time.Until(resetTime)
 				if waitDuration > 0 && waitDuration < 2*time.Hour {
 					log.Printf("Waiting %v for rate limit reset", waitDuration)
 					return &RetryableError{

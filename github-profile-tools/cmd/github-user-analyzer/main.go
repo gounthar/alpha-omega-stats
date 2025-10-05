@@ -23,17 +23,16 @@ const (
 
 // Config holds command line configuration
 type Config struct {
-	Username         string
-	Token            string
-	OutputDir        string
-	Template         string
-	Format           string
-	Verbose          bool
-	SaveJSON         bool
-	ShowVersion      bool
-	Timeout          time.Duration
-	DebugLogFile     string
-	TemplateSpecified bool
+	Username     string
+	Token        string
+	OutputDir    string
+	Template     string
+	Format       string
+	Verbose      bool
+	SaveJSON     bool
+	ShowVersion  bool
+	Timeout      time.Duration
+	DebugLogFile string
 }
 
 func main() {
@@ -123,12 +122,6 @@ func parseFlags() Config {
 		config.DebugLogFile = "github-user-analyzer-debug.log"
 	}
 
-	// Check if template was explicitly specified by user
-	flag.Visit(func(f *flag.Flag) {
-		if f.Name == "template" {
-			config.TemplateSpecified = true
-		}
-	})
 
 	return config
 }
