@@ -80,8 +80,8 @@ jobs:
             -o ../dist/${{ matrix.binary_name }} \
             ./cmd/github-user-analyzer
 
-      - name: Run basic smoke test (Linux/macOS only)
-        if: matrix.goos != 'windows'
+      - name: Run basic smoke test (native architecture only)
+        if: matrix.goos == 'linux' && matrix.goarch == 'amd64'
         working-directory: ./dist
         run: |
           chmod +x ${{ matrix.binary_name }}
