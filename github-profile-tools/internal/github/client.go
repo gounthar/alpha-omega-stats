@@ -20,9 +20,9 @@ import (
 
 const (
 	githubGraphQLEndpoint = "https://api.github.com/graphql"
-	maxRetries           = 5
-	baseDelay            = 2 * time.Second
-	maxDelay             = 5 * time.Minute
+	maxRetries           = 8  // Increased for better resilience
+	baseDelay            = 3 * time.Second  // Longer initial delay
+	maxDelay             = 10 * time.Minute // Longer max delay for infrastructure issues
 )
 
 // RateLimitInfo tracks GitHub API rate limit status
@@ -124,8 +124,15 @@ func (c *Client) executeWithRetry(ctx context.Context, operation func() error) e
 
 	for attempt := 0; attempt < maxRetries; attempt++ {
 		if attempt > 0 {
-			delay := calculateBackoffDuration(attempt)
-			log.Printf("Retrying in %v (attempt %d/%d)", delay, attempt+1, maxRetries)
+			// Use appropriate backoff strategy based on previous error
+			var delay time.Duration
+			if isInfrastructureError(lastErr) {
+				delay = calculateBackoffDurationForInfrastructureError(attempt)
+				log.Printf("Infrastructure error detected, using extended backoff: %v (attempt %d/%d)", delay, attempt+1, maxRetries)
+			} else {
+				delay = calculateBackoffDuration(attempt)
+				log.Printf("Retrying in %v (attempt %d/%d)", delay, attempt+1, maxRetries)
+			}
 
 			select {
 			case <-time.After(delay):
@@ -258,8 +265,23 @@ func calculateBackoffDuration(attempt int) time.Duration {
 		delay = maxDelay
 	}
 
-	// Add jitter (up to 10% of delay)
-	jitter := time.Duration(rand.Float64() * 0.1 * float64(delay))
+	// Add jitter (up to 20% of delay) for better distribution
+	jitter := time.Duration(rand.Float64() * 0.2 * float64(delay))
+	return delay + jitter
+}
+
+// calculateBackoffDurationForInfrastructureError calculates longer backoff for infrastructure errors
+func calculateBackoffDurationForInfrastructureError(attempt int) time.Duration {
+	// Use longer base delay for infrastructure issues
+	infrastructureBaseDelay := 10 * time.Second
+	delay := infrastructureBaseDelay * time.Duration(1<<uint(attempt))
+
+	if delay > maxDelay {
+		delay = maxDelay
+	}
+
+	// Add jitter (up to 30% of delay)
+	jitter := time.Duration(rand.Float64() * 0.3 * float64(delay))
 	return delay + jitter
 }
 
@@ -268,6 +290,56 @@ func isRetryableError(err error) bool {
 	if _, ok := err.(*RetryableError); ok {
 		return true
 	}
+
+	// Check error message for common retryable patterns
+	errMsg := strings.ToLower(err.Error())
+
+	// Stream cancellation errors are retryable
+	if strings.Contains(errMsg, "stream error") && strings.Contains(errMsg, "cancel") {
+		return true
+	}
+
+	// Connection errors are retryable
+	if strings.Contains(errMsg, "connection reset") ||
+	   strings.Contains(errMsg, "connection refused") ||
+	   strings.Contains(errMsg, "network is unreachable") ||
+	   strings.Contains(errMsg, "no such host") ||
+	   strings.Contains(errMsg, "timeout") ||
+	   strings.Contains(errMsg, "eof") {
+		return true
+	}
+
+	// HTTP transport errors
+	if strings.Contains(errMsg, "transport") || strings.Contains(errMsg, "dial") {
+		return true
+	}
+
+	return false
+}
+
+// isInfrastructureError determines if an error is likely an infrastructure issue requiring longer backoff
+func isInfrastructureError(err error) bool {
+	if err == nil {
+		return false
+	}
+
+	errMsg := strings.ToLower(err.Error())
+
+	// HTTP 502 Bad Gateway and similar infrastructure errors
+	if strings.Contains(errMsg, "502") || strings.Contains(errMsg, "bad gateway") {
+		return true
+	}
+
+	// Stream cancellation often indicates infrastructure issues
+	if strings.Contains(errMsg, "stream error") && strings.Contains(errMsg, "cancel") {
+		return true
+	}
+
+	// DNS/network infrastructure issues
+	if strings.Contains(errMsg, "no such host") || strings.Contains(errMsg, "network is unreachable") {
+		return true
+	}
+
 	return false
 }
 
