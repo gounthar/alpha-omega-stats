@@ -431,6 +431,10 @@ func WrapWithCache(analyzer *Analyzer, cacheDir string, forceRefresh bool) (*Cac
 
 // AnalyzeUser performs cached analysis of a GitHub user
 func (caa *CacheAwareAnalyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfile, error) {
+	return caa.AnalyzeUserWithDockerUsername(ctx, username, username)
+}
+
+func (caa *CacheAwareAnalyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, dockerUsername string) (*UserProfile, error) {
 	// Try to get complete profile from cache first
 	if profile, hit := caa.cacheManager.GetUserProfile(username); hit {
 		log.Printf("Using complete cached profile for user: %s", username)
@@ -439,7 +443,7 @@ func (caa *CacheAwareAnalyzer) AnalyzeUser(ctx context.Context, username string)
 
 	// If not in cache or force refresh, perform full analysis
 	log.Printf("Performing fresh analysis for user: %s", username)
-	profile, err := caa.Analyzer.AnalyzeUser(ctx, username)
+	profile, err := caa.Analyzer.AnalyzeUserWithDockerUsername(ctx, username, dockerUsername)
 	if err != nil {
 		return nil, err
 	}

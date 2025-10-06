@@ -38,6 +38,11 @@ func NewAnalyzer(githubToken string) *Analyzer {
 
 // AnalyzeUser performs comprehensive analysis of a GitHub user
 func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfile, error) {
+	return a.AnalyzeUserWithDockerUsername(ctx, username, username)
+}
+
+// AnalyzeUserWithDockerUsername performs comprehensive analysis with separate Docker username
+func (a *Analyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, dockerUsername string) (*UserProfile, error) {
 	log.Printf("Starting analysis for user: %s", username)
 
 	// First, try to load from cache (completed analysis)
@@ -106,7 +111,7 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 
 	// Step 6: Analyze Docker Hub profile (optional - may not exist for all users)
 	if resumeStep <= 6 {
-		if err := a.analyzeDockerHub(ctx, username, profile); err != nil {
+		if err := a.analyzeDockerHub(ctx, dockerUsername, profile); err != nil {
 			log.Printf("Docker Hub analysis failed (this is optional): %v", err)
 			// Continue without Docker Hub data - not all users have Docker Hub profiles
 		}

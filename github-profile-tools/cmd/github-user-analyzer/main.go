@@ -25,21 +25,22 @@ var (
 
 // Config holds command line configuration
 type Config struct {
-	Username      string
-	Token         string
-	OutputDir     string
-	Template      string
-	Format        string
-	Verbose       bool
-	SaveJSON      bool
-	ShowVersion   bool
-	Timeout       time.Duration
-	DebugLogFile  string
-	CacheDir      string
-	CacheTTL      time.Duration
-	ForceRefresh  bool
-	CacheStats    bool
-	ClearCache    bool
+	Username         string
+	DockerUsername   string
+	Token            string
+	OutputDir        string
+	Template         string
+	Format           string
+	Verbose          bool
+	SaveJSON         bool
+	ShowVersion      bool
+	Timeout          time.Duration
+	DebugLogFile     string
+	CacheDir         string
+	CacheTTL         time.Duration
+	ForceRefresh     bool
+	CacheStats       bool
+	ClearCache       bool
 }
 
 // main is the entry point for the GitHub User Analyzer CLI.
@@ -98,6 +99,7 @@ func parseFlags() Config {
 	var cacheTTLStr string
 
 	flag.StringVar(&config.Username, "user", "", "GitHub username to analyze (required)")
+	flag.StringVar(&config.DockerUsername, "docker-user", "", "Docker Hub username (defaults to GitHub username if not specified)")
 	flag.StringVar(&config.Token, "token", os.Getenv("GITHUB_TOKEN"), "GitHub API token (or set GITHUB_TOKEN env var)")
 	flag.StringVar(&config.OutputDir, "output", "./data/profiles", "Output directory for generated files")
 	flag.StringVar(&config.Template, "template", "all", "Template type: resume, technical, executive, ats, all (default: all)")
@@ -128,6 +130,7 @@ func parseFlags() Config {
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -force-refresh             # Force fresh analysis, bypass cache\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-ttl 7d              # Cache results for 7 days\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-dir ./my-cache      # Use custom cache directory\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -docker-user dockercat     # Use different Docker Hub username\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -cache-stats                             # Show cache statistics\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -clear-cache                             # Clear all cached data\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Options:\n")
@@ -155,6 +158,11 @@ func parseFlags() Config {
 		if envCacheDir := os.Getenv("CACHE_DIR"); envCacheDir != "" {
 			config.CacheDir = envCacheDir
 		}
+	}
+
+	// Default Docker username to GitHub username if not specified
+	if config.DockerUsername == "" {
+		config.DockerUsername = config.Username
 	}
 
 	return config
@@ -324,7 +332,10 @@ func runAnalysis(ctx context.Context, config Config) error {
 
 	// Analyze user profile
 	log.Printf("Analyzing GitHub profile for user: %s", config.Username)
-	prof, err := analyzer.AnalyzeUser(ctx, config.Username)
+	if config.DockerUsername != config.Username {
+		log.Printf("Using Docker Hub username: %s", config.DockerUsername)
+	}
+	prof, err := analyzer.AnalyzeUserWithDockerUsername(ctx, config.Username, config.DockerUsername)
 	if err != nil {
 		return fmt.Errorf("failed to analyze user %s: %w", config.Username, err)
 	}
@@ -576,7 +587,10 @@ func clearCache(config Config) error {
 func runAnalysisWithCache(ctx context.Context, config Config, cacheAnalyzer *profile.CacheAwareAnalyzer) error {
 	// Analyze user profile with caching
 	log.Printf("Analyzing GitHub profile for user: %s", config.Username)
-	prof, err := cacheAnalyzer.AnalyzeUser(ctx, config.Username)
+	if config.DockerUsername != config.Username {
+		log.Printf("Using Docker Hub username: %s", config.DockerUsername)
+	}
+	prof, err := cacheAnalyzer.AnalyzeUserWithDockerUsername(ctx, config.Username, config.DockerUsername)
 	if err != nil {
 		return fmt.Errorf("failed to analyze user %s: %w", config.Username, err)
 	}
