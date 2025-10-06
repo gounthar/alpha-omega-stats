@@ -475,3 +475,62 @@ func (c *Client) GetRateLimitStatus() RateLimitInfo {
 		Resource:  c.rateLimitInfo.Resource,
 	}
 }
+
+// RepositoryContentResponse represents GitHub REST API response for repository contents
+type RepositoryContentResponse struct {
+	Name        string `json:"name"`
+	Path        string `json:"path"`
+	Type        string `json:"type"`
+	Size        int    `json:"size"`
+	DownloadURL string `json:"download_url"`
+	Content     string `json:"content"`
+	Encoding    string `json:"encoding"`
+}
+
+// FetchRepositoryContents fetches repository root directory contents via REST API
+func (c *Client) FetchRepositoryContents(ctx context.Context, owner, repo string) ([]RepositoryContentResponse, error) {
+	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/contents", owner, repo)
+
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create request: %w", err)
+	}
+
+	// Add authorization header if we have a token
+	if c.httpClient.Transport != nil {
+		if _, ok := c.httpClient.Transport.(*oauth2.Transport); ok {
+			// The oauth2 transport will automatically add the Authorization header
+		}
+	}
+
+	req.Header.Set("Accept", "application/vnd.github.v3+json")
+	req.Header.Set("User-Agent", "github-profile-tools/1.0")
+
+	resp, err := c.httpClient.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute request: %w", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == 404 {
+		// Repository not found or contents are empty
+		return []RepositoryContentResponse{}, nil
+	}
+
+	if resp.StatusCode != 200 {
+		body, _ := io.ReadAll(resp.Body)
+		return nil, fmt.Errorf("GitHub API returned status %d: %s", resp.StatusCode, string(body))
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response body: %w", err)
+	}
+
+	var contents []RepositoryContentResponse
+	if err := json.Unmarshal(body, &contents); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal response: %w", err)
+	}
+
+	return contents, nil
+}

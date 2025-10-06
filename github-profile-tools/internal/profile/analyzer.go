@@ -447,8 +447,15 @@ func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode, username st
 	if node.Watchers != nil {
 		repo.Watchers = node.Watchers.TotalCount
 	}
+
 	if node.Issues != nil {
 		repo.OpenIssues = node.Issues.TotalCount
+	}
+
+	// Analyze Docker configuration
+	dockerConfig := a.analyzeDockerConfig(context.Background(), repo.FullName)
+	if dockerConfig != nil {
+		repo.DockerConfig = dockerConfig
 	}
 	// Collaborators data not accessible due to permission restrictions
 	repo.CollaboratorCount = 0
@@ -565,6 +572,11 @@ func (a *Analyzer) analyzeSkills(profile *UserProfile) {
 		// Analyze repository names and descriptions
 		repoText := strings.ToLower(repo.Name + " " + repo.Description)
 		a.inferTechnologiesFromText(repoText, repo, technologyMap, &skills)
+
+		// Analyze Docker configuration if present
+		if repo.DockerConfig != nil {
+			a.categorizeDockerSkills(repo, technologyMap, &skills)
+		}
 	}
 
 	profile.Skills = skills
@@ -1294,4 +1306,310 @@ func (a *Analyzer) tryLoadFromCache(username string) *UserProfile {
 // GetGitHubRateLimitStatus returns current GitHub API rate limit status for monitoring
 func (a *Analyzer) GetGitHubRateLimitStatus() github.RateLimitInfo {
 	return a.client.GetRateLimitStatus()
+}
+
+// analyzeDockerConfig analyzes a repository for Docker configuration and expertise
+func (a *Analyzer) analyzeDockerConfig(ctx context.Context, fullName string) *DockerConfig {
+	parts := strings.Split(fullName, "/")
+	if len(parts) != 2 {
+		return nil
+	}
+	owner, repo := parts[0], parts[1]
+
+	// Fetch repository contents
+	contents, err := a.client.FetchRepositoryContents(ctx, owner, repo)
+	if err != nil {
+		log.Printf("Failed to fetch contents for %s: %v", fullName, err)
+		return nil
+	}
+
+	if len(contents) == 0 {
+		return nil
+	}
+
+	config := &DockerConfig{
+		DockerFiles:  []DockerFile{},
+		ComposeFiles: []string{},
+		BakeFiles:    []string{},
+		DockerPatterns: []string{},
+	}
+
+	var hasDockerFiles bool
+
+	// Scan repository contents for Docker-related files
+	for _, item := range contents {
+		fileName := strings.ToLower(item.Name)
+
+		switch {
+		case fileName == "dockerfile" || strings.HasSuffix(fileName, ".dockerfile"):
+			config.HasDockerfile = true
+			hasDockerFiles = true
+			dockerFile := a.analyzeDockerFile(item)
+			config.DockerFiles = append(config.DockerFiles, dockerFile)
+
+		case fileName == "docker-compose.yml" || fileName == "docker-compose.yaml" ||
+			 strings.Contains(fileName, "compose") && (strings.HasSuffix(fileName, ".yml") || strings.HasSuffix(fileName, ".yaml")):
+			config.HasCompose = true
+			hasDockerFiles = true
+			config.ComposeFiles = append(config.ComposeFiles, item.Name)
+
+		case fileName == "docker-bake.hcl" || fileName == "docker-bake.json" || strings.Contains(fileName, "bake"):
+			config.HasBakeFile = true
+			hasDockerFiles = true
+			config.BakeFiles = append(config.BakeFiles, item.Name)
+
+		case fileName == ".dockerignore":
+			config.HasDockerIgnore = true
+			hasDockerFiles = true
+		}
+	}
+
+	// Only return config if we found Docker-related files
+	if !hasDockerFiles {
+		return nil
+	}
+
+	// Calculate complexity score and expertise
+	config.ComplexityScore = a.calculateDockerComplexity(config)
+	config.ContainerExpertise = a.assessDockerExpertise(config)
+	config.DockerPatterns = a.identifyDockerPatterns(config)
+
+	return config
+}
+
+// analyzeDockerFile analyzes a specific Dockerfile for complexity and patterns
+func (a *Analyzer) analyzeDockerFile(item github.RepositoryContentResponse) DockerFile {
+	dockerFile := DockerFile{
+		Path:              item.Path,
+		Instructions:      []string{},
+		BestPractices:     []string{},
+		SecurityPatterns:  []string{},
+		OptimizationLevel: "basic",
+	}
+
+	// Note: We're not fetching file contents to avoid API rate limits
+	// Instead, we'll infer complexity from file size and name
+
+	if item.Size > 1000 {
+		dockerFile.OptimizationLevel = "intermediate"
+		dockerFile.BestPractices = append(dockerFile.BestPractices, "complex-dockerfile")
+	}
+
+	if item.Size > 3000 {
+		dockerFile.OptimizationLevel = "advanced"
+		dockerFile.IsMultiStage = true
+		dockerFile.StageCount = 2 // Estimate based on size
+	}
+
+	// Infer from filename patterns
+	if strings.Contains(strings.ToLower(item.Name), "prod") {
+		dockerFile.SecurityPatterns = append(dockerFile.SecurityPatterns, "production-optimized")
+	}
+
+	return dockerFile
+}
+
+// calculateDockerComplexity calculates overall Docker expertise complexity score (0-10)
+func (a *Analyzer) calculateDockerComplexity(config *DockerConfig) float64 {
+	score := 0.0
+
+	// Base points for different file types
+	if config.HasDockerfile {
+		score += 2.0
+	}
+	if config.HasCompose {
+		score += 2.5
+	}
+	if config.HasBakeFile {
+		score += 3.0 // More advanced
+	}
+	if config.HasDockerIgnore {
+		score += 0.5
+	}
+
+	// Additional points for multiple files
+	score += float64(len(config.DockerFiles)) * 0.5
+	score += float64(len(config.ComposeFiles)) * 0.3
+	score += float64(len(config.BakeFiles)) * 1.0
+
+	// Advanced dockerfile patterns
+	for _, dockerFile := range config.DockerFiles {
+		switch dockerFile.OptimizationLevel {
+		case "advanced":
+			score += 2.0
+		case "intermediate":
+			score += 1.0
+		}
+		if dockerFile.IsMultiStage {
+			score += 1.5
+		}
+	}
+
+	// Cap at 10
+	if score > 10.0 {
+		score = 10.0
+	}
+
+	return score
+}
+
+// assessDockerExpertise determines the user's Docker expertise level based on configuration
+func (a *Analyzer) assessDockerExpertise(config *DockerConfig) DockerExpertiseLevel {
+	expertise := DockerExpertiseLevel{
+		Evidence:         []string{},
+		TechnologiesUsed: []string{},
+		AdvancedPatterns: []string{},
+	}
+
+	score := config.ComplexityScore
+
+	// Determine expertise level
+	switch {
+	case score >= 7.0:
+		expertise.Level = "expert"
+		expertise.ProductionReadiness = true
+	case score >= 5.0:
+		expertise.Level = "advanced"
+		expertise.ProductionReadiness = true
+	case score >= 3.0:
+		expertise.Level = "intermediate"
+	default:
+		expertise.Level = "beginner"
+	}
+
+	// Collect evidence
+	if config.HasDockerfile {
+		expertise.Evidence = append(expertise.Evidence, "dockerfile-usage")
+		expertise.TechnologiesUsed = append(expertise.TechnologiesUsed, "docker")
+	}
+	if config.HasCompose {
+		expertise.Evidence = append(expertise.Evidence, "docker-compose-usage")
+		expertise.TechnologiesUsed = append(expertise.TechnologiesUsed, "docker-compose")
+	}
+	if config.HasBakeFile {
+		expertise.Evidence = append(expertise.Evidence, "docker-buildx-bake")
+		expertise.TechnologiesUsed = append(expertise.TechnologiesUsed, "docker-buildx")
+		expertise.AdvancedPatterns = append(expertise.AdvancedPatterns, "buildx-bake")
+	}
+
+	// Advanced patterns detection
+	for _, dockerFile := range config.DockerFiles {
+		if dockerFile.IsMultiStage {
+			expertise.AdvancedPatterns = append(expertise.AdvancedPatterns, "multi-stage-builds")
+		}
+		if dockerFile.OptimizationLevel == "advanced" {
+			expertise.AdvancedPatterns = append(expertise.AdvancedPatterns, "optimized-builds")
+		}
+	}
+
+	return expertise
+}
+
+// identifyDockerPatterns identifies specific Docker usage patterns
+func (a *Analyzer) identifyDockerPatterns(config *DockerConfig) []string {
+	patterns := []string{}
+
+	if config.HasDockerfile && config.HasCompose {
+		patterns = append(patterns, "full-docker-stack")
+	}
+
+	if config.HasBakeFile {
+		patterns = append(patterns, "advanced-build-system")
+	}
+
+	if len(config.DockerFiles) > 1 {
+		patterns = append(patterns, "multi-dockerfile-project")
+	}
+
+	if config.HasDockerIgnore {
+		patterns = append(patterns, "optimized-build-context")
+	}
+
+	// Multi-stage detection
+	hasMultiStage := false
+	for _, dockerFile := range config.DockerFiles {
+		if dockerFile.IsMultiStage {
+			hasMultiStage = true
+			break
+		}
+	}
+	if hasMultiStage {
+		patterns = append(patterns, "multi-stage-optimization")
+	}
+
+	return patterns
+}
+
+// categorizeDockerSkills analyzes Docker configuration and adds appropriate skills
+func (a *Analyzer) categorizeDockerSkills(repo RepositoryProfile, techMap map[string]*TechnologySkill, skills *SkillProfile) {
+	config := repo.DockerConfig
+	if config == nil {
+		return
+	}
+
+	// Add Docker as a DevOps skill with confidence based on expertise level
+	confidence := 0.7 // Base confidence
+	switch config.ContainerExpertise.Level {
+	case "expert":
+		confidence = 0.95
+	case "advanced":
+		confidence = 0.9
+	case "intermediate":
+		confidence = 0.8
+	case "beginner":
+		confidence = 0.6
+	}
+
+	// Add Docker skill
+	dockerSkill := TechnologySkill{
+		Name:             "Docker",
+		Confidence:       confidence,
+		Evidence:         []string{repo.FullName},
+		ProjectCount:     1,
+		ProficiencyLevel: config.ContainerExpertise.Level,
+	}
+
+	// Add evidence from Docker configuration
+	dockerSkill.Evidence = append(dockerSkill.Evidence, config.ContainerExpertise.Evidence...)
+	skills.DevOpsSkills = append(skills.DevOpsSkills, dockerSkill)
+
+	// Also add as cloud platform skill if expertise is high
+	if confidence >= 0.8 {
+		skills.CloudPlatforms = append(skills.CloudPlatforms, dockerSkill)
+	}
+
+	// Add specific Docker technologies based on files found
+	if config.HasCompose {
+		composeSkill := TechnologySkill{
+			Name:             "Docker Compose",
+			Confidence:       confidence,
+			Evidence:         []string{repo.FullName},
+			ProjectCount:     1,
+			ProficiencyLevel: config.ContainerExpertise.Level,
+		}
+		skills.DevOpsSkills = append(skills.DevOpsSkills, composeSkill)
+		skills.Tools = append(skills.Tools, composeSkill)
+	}
+
+	if config.HasBakeFile {
+		bakeSkill := TechnologySkill{
+			Name:             "Docker Buildx",
+			Confidence:       0.9, // High confidence for advanced tool
+			Evidence:         []string{repo.FullName},
+			ProjectCount:     1,
+			ProficiencyLevel: "advanced", // Using bake files indicates advanced usage
+		}
+		skills.DevOpsSkills = append(skills.DevOpsSkills, bakeSkill)
+		skills.Tools = append(skills.Tools, bakeSkill)
+	}
+
+	// Add containerization as a technical area
+	containerArea := TechnicalArea{
+		Area:         "Containerization",
+		Competency:   confidence,
+		Technologies: config.ContainerExpertise.TechnologiesUsed,
+		ProjectCount: 1,
+		YearsActive:  1.0, // Estimate based on repository activity
+	}
+	skills.TechnicalAreas = append(skills.TechnicalAreas, containerArea)
 }
