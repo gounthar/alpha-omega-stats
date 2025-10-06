@@ -43,6 +43,10 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 
 // AnalyzeUserWithDockerUsername performs comprehensive analysis with separate Docker username
 func (a *Analyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, dockerUsername string) (*UserProfile, error) {
+	return a.AnalyzeUserWithCustomUsernames(ctx, username, dockerUsername, "")
+}
+
+func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username, dockerUsername, discourseUsername string) (*UserProfile, error) {
 	log.Printf("Starting analysis for user: %s", username)
 
 	// First, try to load from cache (completed analysis)
@@ -71,30 +75,34 @@ func (a *Analyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, 
 		}
 	}
 
-	// Step 2: Fetch user repositories
+	// Step 2: Fetch user repositories (incremental, continues with partial data on error)
 	if resumeStep <= 2 {
 		if err := a.fetchUserRepositories(ctx, username, profile); err != nil {
-			return nil, fmt.Errorf("failed to fetch user repositories: %w", err)
+			log.Printf("Warning: Repository fetching encountered issues: %v", err)
+			log.Printf("Continuing with %d repositories already fetched", len(profile.Repositories))
+			// Don't return error - continue with whatever repositories we have
 		}
 		if err := a.saveProgress(username, profile, 2); err != nil {
 			log.Printf("Warning: Failed to save progress after step 2: %v", err)
 		}
 	}
 
-	// Step 3: Fetch organizations
+	// Step 3: Fetch organizations (non-critical, continue on failure)
 	if resumeStep <= 3 {
 		if err := a.fetchUserOrganizations(ctx, username, profile); err != nil {
-			return nil, fmt.Errorf("failed to fetch user organizations: %w", err)
+			log.Printf("Warning: Failed to fetch organizations (continuing): %v", err)
+			// Continue without organizations data
 		}
 		if err := a.saveProgress(username, profile, 3); err != nil {
 			log.Printf("Warning: Failed to save progress after step 3: %v", err)
 		}
 	}
 
-	// Step 4: Fetch contribution data
+	// Step 4: Fetch contribution data (non-critical, continue on failure)
 	if resumeStep <= 4 {
 		if err := a.fetchUserContributions(ctx, username, profile); err != nil {
-			return nil, fmt.Errorf("failed to fetch user contributions: %w", err)
+			log.Printf("Warning: Failed to fetch contributions (continuing): %v", err)
+			// Continue without detailed contribution data
 		}
 		if err := a.saveProgress(username, profile, 4); err != nil {
 			log.Printf("Warning: Failed to save progress after step 4: %v", err)
@@ -122,7 +130,7 @@ func (a *Analyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, 
 
 	// Step 7: Analyze Discourse community engagement (optional - for Jenkins community members)
 	if resumeStep <= 7 {
-		if err := a.analyzeDiscourseProfile(ctx, username, profile); err != nil {
+		if err := a.analyzeDiscourseProfile(ctx, username, discourseUsername, profile); err != nil {
 			log.Printf("Discourse analysis failed (this is optional): %v", err)
 			// Continue without Discourse data - not all users are active in Jenkins community
 		}
@@ -135,6 +143,9 @@ func (a *Analyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, 
 	if resumeStep <= 8 {
 		a.generateInsights(profile)
 	}
+
+	// Provide analysis summary
+	a.logAnalysisSummary(profile)
 
 	// Save completed analysis to cache for future template generation
 	if err := a.saveToCache(username, profile); err != nil {
@@ -206,13 +217,21 @@ func (a *Analyzer) fetchUserBasicInfo(ctx context.Context, username string, prof
 
 // fetchUserRepositories fetches user's repositories with pagination
 func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, profile *UserProfile) error {
-	log.Printf("Fetching repositories for user: %s", username)
+	log.Printf("Starting incremental repository fetching for user: %s", username)
 
-	var allRepos []RepositoryProfile
+	// Initialize repositories if not already present
+	if profile.Repositories == nil {
+		profile.Repositories = []RepositoryProfile{}
+	}
+
 	var cursor string
-	const pageSize = 100
+	const pageSize = 50 // Smaller page size for better incremental processing
+	pageNum := 1
+	totalFetched := len(profile.Repositories)
 
 	for {
+		log.Printf("Fetching repository page %d for user: %s (cursor: %s)", pageNum, username, cursor)
+
 		req := &github.GraphQLRequest{
 			Query: github.UserRepositoriesQuery,
 			Variables: map[string]interface{}{
@@ -224,22 +243,59 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 
 		var resp github.UserRepositoriesResponse
 		if err := a.client.ExecuteGraphQL(ctx, req, &resp); err != nil {
-			return fmt.Errorf("GraphQL query failed: %w", err)
+			// Save progress with whatever we have so far
+			if len(profile.Repositories) > 0 {
+				log.Printf("GraphQL error after fetching %d repositories, saving progress: %v", len(profile.Repositories), err)
+				if saveErr := a.saveProgress(username, profile, 2); saveErr != nil {
+					log.Printf("Warning: Failed to save progress during repository fetching: %v", saveErr)
+				}
+				// Continue with partial data rather than failing completely
+				log.Printf("Continuing analysis with %d repositories fetched so far", len(profile.Repositories))
+				return nil
+			}
+			return fmt.Errorf("GraphQL query failed on first page: %w", err)
 		}
 
+		// Process repositories from this page immediately
+		newReposThisPage := 0
 		for _, repoNode := range resp.User.Repositories.Nodes {
 			repo := a.convertRepositoryNode(repoNode, username)
-			allRepos = append(allRepos, repo)
+			profile.Repositories = append(profile.Repositories, repo)
+			newReposThisPage++
+		}
+
+		totalFetched += newReposThisPage
+		log.Printf("Processed page %d: %d repositories (%d total fetched)", pageNum, newReposThisPage, totalFetched)
+
+		// Save progress after each page
+		if err := a.saveProgress(username, profile, 2); err != nil {
+			log.Printf("Warning: Failed to save progress after page %d: %v", pageNum, err)
+		}
+
+		// Update skills analysis incrementally every few pages for better progress tracking
+		if pageNum%3 == 0 {
+			log.Printf("Running incremental skills analysis after page %d", pageNum)
+			a.analyzeSkills(profile)
 		}
 
 		if !resp.User.Repositories.PageInfo.HasNextPage {
+			log.Printf("Completed repository fetching: %d total repositories", totalFetched)
 			break
 		}
+
 		cursor = resp.User.Repositories.PageInfo.EndCursor
+		pageNum++
+
+		// Add small delay between pages to be nice to GitHub's servers
+		select {
+		case <-time.After(100 * time.Millisecond):
+		case <-ctx.Done():
+			log.Printf("Context cancelled, saving progress with %d repositories", totalFetched)
+			return ctx.Err()
+		}
 	}
 
-	profile.Repositories = allRepos
-	log.Printf("Fetched %d repositories for user: %s", len(allRepos), username)
+	log.Printf("Successfully fetched %d repositories for user: %s", len(profile.Repositories), username)
 	return nil
 }
 
@@ -1117,23 +1173,30 @@ func (a *Analyzer) analyzeDockerHub(ctx context.Context, username string, profil
 }
 
 // analyzeDiscourseProfile analyzes the user's Discourse community engagement
-func (a *Analyzer) analyzeDiscourseProfile(ctx context.Context, username string, profile *UserProfile) error {
-	log.Printf("Analyzing Discourse profile for user: %s", username)
+func (a *Analyzer) analyzeDiscourseProfile(ctx context.Context, username, discourseUsername string, profile *UserProfile) error {
+	// Use custom Discourse username if provided, otherwise fall back to GitHub username
+	targetUsername := username
+	if discourseUsername != "" {
+		targetUsername = discourseUsername
+		log.Printf("Analyzing Discourse profile for user: %s (using custom Discourse username: %s)", username, discourseUsername)
+	} else {
+		log.Printf("Analyzing Discourse profile for user: %s", username)
+	}
 
 	// For Jenkins community, try common username variations
-	usernamesToTry := []string{username}
+	usernamesToTry := []string{targetUsername}
 
 	// Add common variations if not already present
-	if username != strings.ToLower(username) {
-		usernamesToTry = append(usernamesToTry, strings.ToLower(username))
+	if targetUsername != strings.ToLower(targetUsername) {
+		usernamesToTry = append(usernamesToTry, strings.ToLower(targetUsername))
 	}
 
 	// Try with underscores instead of hyphens and vice versa
-	if strings.Contains(username, "-") {
-		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(username, "-", "_"))
+	if strings.Contains(targetUsername, "-") {
+		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(targetUsername, "-", "_"))
 	}
-	if strings.Contains(username, "_") {
-		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(username, "_", "-"))
+	if strings.Contains(targetUsername, "_") {
+		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(targetUsername, "_", "-"))
 	}
 
 	var discourseProfile *discourse.DiscourseProfile
@@ -1612,4 +1675,71 @@ func (a *Analyzer) categorizeDockerSkills(repo RepositoryProfile, techMap map[st
 		YearsActive:  1.0, // Estimate based on repository activity
 	}
 	skills.TechnicalAreas = append(skills.TechnicalAreas, containerArea)
+}
+
+// logAnalysisSummary provides a summary of what data was successfully collected
+func (a *Analyzer) logAnalysisSummary(profile *UserProfile) {
+	log.Printf("=== Analysis Summary for %s ===", profile.Username)
+
+	// Repository analysis
+	repoCount := len(profile.Repositories)
+	dockerRepoCount := 0
+	for _, repo := range profile.Repositories {
+		if repo.DockerConfig != nil {
+			dockerRepoCount++
+		}
+	}
+
+	log.Printf("📦 Repositories: %d total", repoCount)
+	if dockerRepoCount > 0 {
+		log.Printf("🐳 Docker repositories detected: %d", dockerRepoCount)
+	}
+
+	// Language analysis
+	if len(profile.Languages) > 0 {
+		log.Printf("💻 Programming languages: %d", len(profile.Languages))
+		if len(profile.Languages) >= 3 {
+			log.Printf("    Primary languages: %s, %s, %s",
+				profile.Languages[0].Language,
+				profile.Languages[1].Language,
+				profile.Languages[2].Language)
+		}
+	}
+
+	// Skills analysis
+	skillCounts := map[string]int{
+		"DevOps": len(profile.Skills.DevOpsSkills),
+		"Cloud": len(profile.Skills.CloudPlatforms),
+		"Tools": len(profile.Skills.Tools),
+		"Frameworks": len(profile.Skills.Frameworks),
+		"Technical Areas": len(profile.Skills.TechnicalAreas),
+	}
+
+	log.Printf("🛠️  Skills detected:")
+	for category, count := range skillCounts {
+		if count > 0 {
+			log.Printf("    %s: %d", category, count)
+		}
+	}
+
+	// Organization analysis
+	if len(profile.Organizations) > 0 {
+		log.Printf("🏢 Organizations: %d", len(profile.Organizations))
+	}
+
+	// Docker Hub analysis
+	if profile.DockerHubProfile != nil {
+		log.Printf("🐳 Docker Hub: %d images, %.1fM downloads, %s level",
+			profile.DockerHubProfile.TotalImages,
+			float64(profile.DockerHubProfile.TotalDownloads)/1000000,
+			profile.DockerHubProfile.ProficiencyLevel)
+	}
+
+	// Overall metrics
+	log.Printf("📊 Overall: %d commits, %d repos, %.1f impact score",
+		profile.Contributions.TotalCommits,
+		repoCount,
+		profile.Insights.OverallImpactScore)
+
+	log.Printf("✅ Profile analysis ready for template generation")
 }

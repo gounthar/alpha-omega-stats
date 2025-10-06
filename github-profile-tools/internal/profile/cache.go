@@ -435,6 +435,10 @@ func (caa *CacheAwareAnalyzer) AnalyzeUser(ctx context.Context, username string)
 }
 
 func (caa *CacheAwareAnalyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, dockerUsername string) (*UserProfile, error) {
+	return caa.AnalyzeUserWithCustomUsernames(ctx, username, dockerUsername, "")
+}
+
+func (caa *CacheAwareAnalyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username, dockerUsername, discourseUsername string) (*UserProfile, error) {
 	// Try to get complete profile from cache first
 	if profile, hit := caa.cacheManager.GetUserProfile(username); hit {
 		log.Printf("Using complete cached profile for user: %s", username)
@@ -443,7 +447,7 @@ func (caa *CacheAwareAnalyzer) AnalyzeUserWithDockerUsername(ctx context.Context
 
 	// If not in cache or force refresh, perform full analysis
 	log.Printf("Performing fresh analysis for user: %s", username)
-	profile, err := caa.Analyzer.AnalyzeUserWithDockerUsername(ctx, username, dockerUsername)
+	profile, err := caa.Analyzer.AnalyzeUserWithCustomUsernames(ctx, username, dockerUsername, discourseUsername)
 	if err != nil {
 		return nil, err
 	}

@@ -28,6 +28,7 @@ var (
 type Config struct {
 	Username         string
 	DockerUsername   string
+	DiscourseUsername string
 	Token            string
 	OutputDir        string
 	Template         string
@@ -102,6 +103,7 @@ func parseFlags() Config {
 
 	flag.StringVar(&config.Username, "user", "", "GitHub username to analyze (required)")
 	flag.StringVar(&config.DockerUsername, "docker-user", "", "Docker Hub username (defaults to GitHub username if not specified)")
+	flag.StringVar(&config.DiscourseUsername, "discourse-user", "", "Discourse username (defaults to GitHub username if not specified)")
 	flag.StringVar(&config.Token, "token", os.Getenv("GITHUB_TOKEN"), "GitHub API token (or set GITHUB_TOKEN env var)")
 	flag.StringVar(&config.OutputDir, "output", "./data/profiles", "Output directory for generated files")
 	flag.StringVar(&config.Template, "template", "all", "Template type: resume, technical, executive, ats, all (default: all)")
@@ -134,6 +136,7 @@ func parseFlags() Config {
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-ttl 7d              # Cache results for 7 days\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-dir ./my-cache      # Use custom cache directory\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -docker-user dockercat     # Use different Docker Hub username\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -user octocat -discourse-user octodisco  # Use different Discourse username\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -docker-user dockercat -docker-only      # Analyze only Docker Hub profile\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -cache-stats                             # Show cache statistics\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -clear-cache                             # Clear all cached data\n\n", os.Args[0])
@@ -349,7 +352,10 @@ func runAnalysis(ctx context.Context, config Config) error {
 	if config.DockerUsername != config.Username {
 		log.Printf("Using Docker Hub username: %s", config.DockerUsername)
 	}
-	prof, err := analyzer.AnalyzeUserWithDockerUsername(ctx, config.Username, config.DockerUsername)
+	if config.DiscourseUsername != "" && config.DiscourseUsername != config.Username {
+		log.Printf("Using Discourse username: %s", config.DiscourseUsername)
+	}
+	prof, err := analyzer.AnalyzeUserWithCustomUsernames(ctx, config.Username, config.DockerUsername, config.DiscourseUsername)
 	if err != nil {
 		return fmt.Errorf("failed to analyze user %s: %w", config.Username, err)
 	}
@@ -604,7 +610,10 @@ func runAnalysisWithCache(ctx context.Context, config Config, cacheAnalyzer *pro
 	if config.DockerUsername != config.Username {
 		log.Printf("Using Docker Hub username: %s", config.DockerUsername)
 	}
-	prof, err := cacheAnalyzer.AnalyzeUserWithDockerUsername(ctx, config.Username, config.DockerUsername)
+	if config.DiscourseUsername != "" && config.DiscourseUsername != config.Username {
+		log.Printf("Using Discourse username: %s", config.DiscourseUsername)
+	}
+	prof, err := cacheAnalyzer.AnalyzeUserWithCustomUsernames(ctx, config.Username, config.DockerUsername, config.DiscourseUsername)
 	if err != nil {
 		return fmt.Errorf("failed to analyze user %s: %w", config.Username, err)
 	}
@@ -710,26 +719,100 @@ func runDockerOnlyAnalysis(ctx context.Context, config Config) error {
 		fmt.Printf("\n🌟 Most Downloaded Image: %s\n", dockerProfile.ImpactMetrics.MostDownloadedImage)
 	}
 
-	// Save JSON if requested
-	if config.Format == "json" || config.Format == "both" {
-		if err := os.MkdirAll(config.OutputDir, 0755); err != nil {
-			return fmt.Errorf("failed to create output directory: %w", err)
+	// Convert docker.DockerHubProfile to profile.DockerHubProfile
+	var profileDockerHub *profile.DockerHubProfile
+	if dockerProfile != nil {
+		profileDockerHub = &profile.DockerHubProfile{
+			Username:           dockerProfile.Username,
+			TotalDownloads:     dockerProfile.ImpactMetrics.TotalDownloads,
+			TotalImages:        dockerProfile.TotalImages,
+			TopRepositories:    dockerProfile.ImpactMetrics.TopRepositories,
+			MostDownloadedImage: dockerProfile.ImpactMetrics.MostDownloadedImage,
+			CommunityImpact:    dockerProfile.ImpactMetrics.CommunityImpact,
+			ExperienceYears:    dockerProfile.ContainerExpertise.ExperienceYears,
+			ProficiencyLevel:   dockerProfile.ContainerExpertise.ProficiencyLevel,
+			LastActivity:       dockerProfile.LastActivity,
+		}
+	}
+
+	// Create a minimal user profile for markdown generation
+	userProfile := &profile.UserProfile{
+		Username:         config.DockerUsername,
+		Name:             config.DockerUsername, // Use username as name for Docker-only
+		Bio:              "Docker Hub Profile Analysis",
+		LastAnalyzed:     time.Now(),
+		DockerHubProfile: profileDockerHub,
+		// Set minimal values for other required fields
+		Organizations:    []profile.OrganizationProfile{},
+		Repositories:     []profile.RepositoryProfile{},
+		Languages:        []profile.LanguageStats{},
+		Collaborations:   []profile.CollaborationProfile{},
+	}
+
+	// Create output directory
+	if err := os.MkdirAll(config.OutputDir, 0755); err != nil {
+		return fmt.Errorf("failed to create output directory: %w", err)
+	}
+
+	// Generate markdown files for all templates
+	generator := markdown.NewGenerator()
+	templates := []string{"resume", "technical", "executive", "ats"}
+
+	fmt.Printf("\n📁 Output Files:\n")
+
+	if config.Template == "all" || config.Template == "" {
+		// Generate all templates
+		for _, tmpl := range templates {
+			templateType := markdown.TemplateType(tmpl)
+			content, err := generator.GenerateMarkdown(userProfile, templateType)
+			if err != nil {
+				log.Printf("Failed to generate %s template: %v", tmpl, err)
+				continue
+			}
+
+			filename := fmt.Sprintf("%s_docker_profile_%s.md", config.DockerUsername, tmpl)
+			filepath := filepath.Join(config.OutputDir, filename)
+
+			if err := os.WriteFile(filepath, []byte(content), 0644); err != nil {
+				log.Printf("Failed to write %s template: %v", tmpl, err)
+				continue
+			}
+
+			fmt.Printf("   • %s Template: %s\n", strings.Title(tmpl), filepath)
+		}
+	} else {
+		// Generate specific template
+		templateType := markdown.TemplateType(config.Template)
+		content, err := generator.GenerateMarkdown(userProfile, templateType)
+		if err != nil {
+			return fmt.Errorf("failed to generate %s template: %w", config.Template, err)
 		}
 
+		filename := fmt.Sprintf("%s_docker_profile_%s.md", config.DockerUsername, config.Template)
+		filepath := filepath.Join(config.OutputDir, filename)
+
+		if err := os.WriteFile(filepath, []byte(content), 0644); err != nil {
+			return fmt.Errorf("failed to write markdown file: %w", err)
+		}
+
+		fmt.Printf("   • %s Template: %s\n", strings.Title(config.Template), filepath)
+	}
+
+	// Save JSON if requested
+	if config.Format == "json" || config.Format == "both" {
 		filename := fmt.Sprintf("%s_docker_profile.json", config.DockerUsername)
 		filepath := filepath.Join(config.OutputDir, filename)
 
-		data, err := json.MarshalIndent(dockerProfile, "", "  ")
+		data, err := json.MarshalIndent(userProfile, "", "  ")
 		if err != nil {
-			return fmt.Errorf("failed to marshal Docker profile to JSON: %w", err)
+			return fmt.Errorf("failed to marshal profile to JSON: %w", err)
 		}
 
 		if err := os.WriteFile(filepath, data, 0644); err != nil {
 			return fmt.Errorf("failed to write JSON file: %w", err)
 		}
 
-		fmt.Printf("\n📁 Output File:\n")
-		fmt.Printf("   • Docker JSON: %s\n", filepath)
+		fmt.Printf("   • Profile JSON: %s\n", filepath)
 	}
 
 	fmt.Printf("\n✨ Docker Hub analysis complete!\n")
