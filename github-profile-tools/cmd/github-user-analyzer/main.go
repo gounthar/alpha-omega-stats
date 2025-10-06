@@ -12,6 +12,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/jenkins/github-profile-tools/internal/docker"
 	"github.com/jenkins/github-profile-tools/internal/markdown"
 	"github.com/jenkins/github-profile-tools/internal/profile"
 	"github.com/joho/godotenv"
@@ -41,6 +42,7 @@ type Config struct {
 	ForceRefresh     bool
 	CacheStats       bool
 	ClearCache       bool
+	DockerOnly       bool
 }
 
 // main is the entry point for the GitHub User Analyzer CLI.
@@ -114,6 +116,7 @@ func parseFlags() Config {
 	flag.BoolVar(&config.ForceRefresh, "force-refresh", false, "Bypass cache and force fresh analysis")
 	flag.BoolVar(&config.CacheStats, "cache-stats", false, "Show cache statistics and exit")
 	flag.BoolVar(&config.ClearCache, "clear-cache", false, "Clear all cache entries and exit")
+	flag.BoolVar(&config.DockerOnly, "docker-only", false, "Analyze only Docker Hub profile (skip GitHub analysis)")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "GitHub User Analyzer v%s\n\n", version)
@@ -131,6 +134,7 @@ func parseFlags() Config {
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-ttl 7d              # Cache results for 7 days\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -cache-dir ./my-cache      # Use custom cache directory\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -user octocat -docker-user dockercat     # Use different Docker Hub username\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "  %s -docker-user dockercat -docker-only      # Analyze only Docker Hub profile\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -cache-stats                             # Show cache statistics\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "  %s -clear-cache                             # Clear all cached data\n\n", os.Args[0])
 		fmt.Fprintf(os.Stderr, "Options:\n")
@@ -268,14 +272,19 @@ func parseCacheTTL(flagValue string) time.Duration {
 
 // validateConfig validates the configuration
 func validateConfig(config Config) error {
-	// Skip username validation for cache-only operations
-	if !config.CacheStats && !config.ClearCache && config.Username == "" {
+	// Skip username validation for cache-only operations and Docker-only mode
+	if !config.CacheStats && !config.ClearCache && !config.DockerOnly && config.Username == "" {
 		return fmt.Errorf("username is required (use -user flag)")
 	}
 
-	// Skip token validation for cache-only operations
-	if !config.CacheStats && !config.ClearCache && config.Token == "" {
+	// Skip GitHub token validation for Docker-only operations
+	if !config.CacheStats && !config.ClearCache && !config.DockerOnly && config.Token == "" {
 		return fmt.Errorf("GitHub token is required (use -token flag or set GITHUB_TOKEN environment variable)")
+	}
+
+	// For Docker-only mode, require docker-user flag since no GitHub username may be provided
+	if config.DockerOnly && config.DockerUsername == "" {
+		return fmt.Errorf("Docker-only mode requires a Docker username (use -docker-user flag)")
 	}
 
 	validTemplates := []string{"resume", "technical", "executive", "ats", "all"}
@@ -311,6 +320,11 @@ func runAnalysis(ctx context.Context, config Config) error {
 	// Handle clear cache command
 	if config.ClearCache {
 		return clearCache(config)
+	}
+
+	// Handle Docker-only mode
+	if config.DockerOnly {
+		return runDockerOnlyAnalysis(ctx, config)
 	}
 
 	// Create base analyzer
@@ -652,3 +666,73 @@ func runAnalysisWithCache(ctx context.Context, config Config, cacheAnalyzer *pro
 
 	return nil
 }
+
+// runDockerOnlyAnalysis performs Docker Hub analysis only
+func runDockerOnlyAnalysis(ctx context.Context, config Config) error {
+	log.Printf("Running Docker-only analysis for user: %s", config.DockerUsername)
+
+	// Create Docker client directly
+	dockerClient := docker.NewClient()
+
+	// Analyze Docker Hub profile
+	dockerProfile, err := dockerClient.AnalyzeDockerProfile(ctx, config.DockerUsername)
+	if err != nil {
+		return fmt.Errorf("failed to analyze Docker Hub profile: %w", err)
+	}
+
+	if dockerProfile == nil {
+		log.Printf("No Docker Hub profile found for user: %s", config.DockerUsername)
+		return nil
+	}
+
+	// Print Docker Hub information
+	fmt.Printf("\n🐳 Docker Hub Analysis for @%s\n", dockerProfile.Username)
+	fmt.Printf("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n")
+
+	fmt.Printf("📊 Docker Hub Statistics:\n")
+	fmt.Printf("   • Total Images: %d\n", dockerProfile.TotalImages)
+	fmt.Printf("   • Total Downloads: %d\n", dockerProfile.ImpactMetrics.TotalDownloads)
+	fmt.Printf("   • Community Impact: %.2f\n", dockerProfile.ImpactMetrics.CommunityImpact)
+	fmt.Printf("   • Experience Years: %.1f\n", dockerProfile.ContainerExpertise.ExperienceYears)
+	fmt.Printf("   • Proficiency Level: %s\n", dockerProfile.ContainerExpertise.ProficiencyLevel)
+
+	if len(dockerProfile.ImpactMetrics.TopRepositories) > 0 {
+		fmt.Printf("\n🏆 Top Repositories:\n")
+		for i, repo := range dockerProfile.ImpactMetrics.TopRepositories {
+			if i >= 5 { // Show top 5
+				break
+			}
+			fmt.Printf("   • %s\n", repo)
+		}
+	}
+
+	if dockerProfile.ImpactMetrics.MostDownloadedImage != "" {
+		fmt.Printf("\n🌟 Most Downloaded Image: %s\n", dockerProfile.ImpactMetrics.MostDownloadedImage)
+	}
+
+	// Save JSON if requested
+	if config.Format == "json" || config.Format == "both" {
+		if err := os.MkdirAll(config.OutputDir, 0755); err != nil {
+			return fmt.Errorf("failed to create output directory: %w", err)
+		}
+
+		filename := fmt.Sprintf("%s_docker_profile.json", config.DockerUsername)
+		filepath := filepath.Join(config.OutputDir, filename)
+
+		data, err := json.MarshalIndent(dockerProfile, "", "  ")
+		if err != nil {
+			return fmt.Errorf("failed to marshal Docker profile to JSON: %w", err)
+		}
+
+		if err := os.WriteFile(filepath, data, 0644); err != nil {
+			return fmt.Errorf("failed to write JSON file: %w", err)
+		}
+
+		fmt.Printf("\n📁 Output File:\n")
+		fmt.Printf("   • Docker JSON: %s\n", filepath)
+	}
+
+	fmt.Printf("\n✨ Docker Hub analysis complete!\n")
+	return nil
+}
+
