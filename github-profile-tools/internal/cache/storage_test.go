@@ -3,6 +3,7 @@ package cache
 import (
 	"os"
 	"path/filepath"
+	"strconv"
 	"sync"
 	"sync/atomic"
 	"testing"
@@ -75,7 +76,7 @@ func TestConcurrentAccess(t *testing.T) {
 			defer wg.Done()
 
 			for j := 0; j < numOperations; j++ {
-				key := "concurrent_test_" + string(rune(id)) + "_" + string(rune(j))
+				key := "concurrent_test_" + strconv.Itoa(id) + "_" + strconv.Itoa(j)
 				entry := *testEntry
 				entry.Key = key
 
@@ -93,7 +94,7 @@ func TestConcurrentAccess(t *testing.T) {
 			defer wg.Done()
 
 			for j := 0; j < numOperations; j++ {
-				key := "concurrent_test_" + string(rune(id)) + "_" + string(rune(j))
+				key := "concurrent_test_" + strconv.Itoa(id) + "_" + strconv.Itoa(j)
 
 				// Give Set operations a chance to complete
 				time.Sleep(1 * time.Millisecond)
@@ -314,6 +315,12 @@ func TestStatisticsAccuracy(t *testing.T) {
 		t.Fatalf("Failed to set test entry: %v", err)
 	}
 
+	// Warm up cache with a Get operation to ensure we have a baseline hit count
+	_, err = storage.Get("stats_test")
+	if err != nil {
+		t.Fatalf("Failed to warm cache: %v", err)
+	}
+
 	var wg sync.WaitGroup
 
 	// Concurrent hits (should all hit the same cached entry)
@@ -330,7 +337,7 @@ func TestStatisticsAccuracy(t *testing.T) {
 	for i := 0; i < numOperations; i++ {
 		go func(id int) {
 			defer wg.Done()
-			storage.Get("non_existent_" + string(rune(id))) // Should be a miss
+			storage.Get("non_existent_" + strconv.Itoa(id)) // Should be a miss
 		}(i)
 	}
 

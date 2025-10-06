@@ -3,6 +3,7 @@ package cache
 import (
 	"encoding/json"
 	"os"
+	"strconv"
 	"sync"
 	"testing"
 	"time"
@@ -367,7 +368,7 @@ func TestConcurrentManagerOperations(t *testing.T) {
 			for j := 0; j < numOperations; j++ {
 				key := CacheKey{
 					Type:     "concurrent",
-					Username: "user" + string(rune(id)),
+					Username: "user" + strconv.Itoa(id),
 				}
 
 				data := map[string]interface{}{
@@ -380,15 +381,15 @@ func TestConcurrentManagerOperations(t *testing.T) {
 				switch j % 4 {
 				case 0: // Set
 					if err := manager.Set(key, data, 1*time.Hour); err != nil {
-						errors.Store("set_"+string(rune(id))+"_"+string(rune(j)), err)
+						errors.Store("set_"+strconv.Itoa(id)+"_"+strconv.Itoa(j), err)
 					}
 				case 1: // Get
 					if _, err := manager.Get(key); err != nil {
-						errors.Store("get_"+string(rune(id))+"_"+string(rune(j)), err)
+						errors.Store("get_"+strconv.Itoa(id)+"_"+strconv.Itoa(j), err)
 					}
 				case 2: // Delete
 					if err := manager.Delete(key); err != nil {
-						errors.Store("delete_"+string(rune(id))+"_"+string(rune(j)), err)
+						errors.Store("delete_"+strconv.Itoa(id)+"_"+strconv.Itoa(j), err)
 					}
 				case 3: // Stats
 					manager.GetStats()

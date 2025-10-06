@@ -3,6 +3,8 @@ package profile
 import (
 	"context"
 	"os"
+	"path/filepath"
+	"reflect"
 	"testing"
 	"time"
 )
@@ -128,14 +130,8 @@ func TestProfileCacheBasicOperations(t *testing.T) {
 	}
 
 	// Verify profile data integrity
-	if cachedProfile.Username != profile.Username {
-		t.Errorf("Username mismatch: expected %s, got %s", profile.Username, cachedProfile.Username)
-	}
-	if cachedProfile.Name != profile.Name {
-		t.Errorf("Name mismatch: expected %s, got %s", profile.Name, cachedProfile.Name)
-	}
-	if cachedProfile.PublicRepos != profile.PublicRepos {
-		t.Errorf("PublicRepos mismatch: expected %d, got %d", profile.PublicRepos, cachedProfile.PublicRepos)
+	if !reflect.DeepEqual(cachedProfile, profile) {
+		t.Errorf("Cached profile does not match original profile. Got %+v, want %+v", cachedProfile, profile)
 	}
 }
 
@@ -355,20 +351,19 @@ func TestCacheCorruption(t *testing.T) {
 		t.Error("Expected cache hit for valid data")
 	}
 
-	// Simulate cache corruption by directly manipulating the cache manager
-	// This tests the JSON marshal/unmarshal error handling paths
-	corruptData := map[string]interface{}{
-		"invalid_field": func() {}, // Functions can't be marshaled
+	key := pcm.cacheManager.GetUserProfileKey(username)
+
+	// Manually overwrite cache file with invalid JSON to simulate corruption
+	cachePath := filepath.Join(tempDir, "user_profile_"+username+".json")
+	err = os.WriteFile(cachePath, []byte("invalid json {{{"), 0644)
+	if err != nil {
+		t.Fatalf("Failed to write corrupt data: %v", err)
 	}
 
-	key := pcm.cacheManager.GetUserProfileKey(username)
-	err = pcm.cacheManager.Set(key, corruptData, 1*time.Hour)
-	if err == nil {
-		// If setting succeeded, getting should handle the unmarshal error gracefully
-		_, hit = pcm.GetUserProfile(username)
-		if hit {
-			t.Error("Expected cache miss for corrupted data")
-		}
+	// Verify graceful handling of corrupted data (should return cache miss)
+	_, hit = pcm.GetUserProfile(username)
+	if hit {
+		t.Error("Expected cache miss for corrupted data")
 	}
 }
 
