@@ -74,6 +74,11 @@
 - **Experience:** 5.7 years (1 projects)
 - **Proficiency Score:** 1.9/10
 
+#### Dockerfile
+- **Usage:** 0.0% of total codebase (0 lines)
+- **Experience:** 15.7 years (201 projects)
+- **Proficiency Score:** 5.4/10
+
 ## 📊 Repository Analysis
 
 - **Repository Ownership:** 1503 owned, 3223 contributed

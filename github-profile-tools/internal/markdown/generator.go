@@ -363,7 +363,9 @@ func (g *Generator) generateTechnicalTemplate(prof *profile.UserProfile) string 
 	md.WriteString("### Language Proficiency Analysis\n\n")
 
 	for _, lang := range prof.Languages {
-		if lang.Percentage < 1 { // Skip languages with very low usage
+		// Skip languages with very low usage, but always include Dockerfile if it exists
+		isDockerfile := strings.ToLower(lang.Language) == "dockerfile"
+		if lang.Percentage < 1 && !isDockerfile {
 			continue
 		}
 
