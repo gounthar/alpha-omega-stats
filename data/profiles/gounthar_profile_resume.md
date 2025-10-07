@@ -10,11 +10,11 @@
 ## 📊 Contribution Overview
 
 - **8004** total contributions across **17** years of active development
-- **150** repositories with **45850** stars received
+- **4726** repositories with **103621** stars received
 - **2.2M** Docker Hub downloads across **37** container images 🐳
 - **0** community posts with **0** solutions provided in Jenkins forums 💬
 - Active contributor in **19** organizations
-- Proficient in **32** programming languages
+- Proficient in **104** programming languages
 - Career Level: **Principal**
 
 ## 🏢 Organization Contributions
@@ -160,71 +160,73 @@
 - **Technologies:** jenkins, docker, hacktoberfest
 - **Contributions:** 3 commits
 
+### [pipeline-examples](https://github.com/jenkinsci/pipeline-examples) ⭐ 4280
+**Description:** A collection of examples, tips and tricks and snippets of scripting for the Jenkins Pipeline plugin
+
+- **Language:** Groovy | **Size:** 0.1 MB
+
+### [blueocean-plugin](https://github.com/jenkinsci/blueocean-plugin) ⭐ 2891
+**Description:** Blue Ocean is a reboot of the Jenkins CI/CD User Experience
+
+- **Language:** Java | **Size:** 32.4 MB
+- **Technologies:** jenkins-blue-ocean
+
 ### [configuration-as-code-plugin](https://github.com/jenkinsci/configuration-as-code-plugin) ⭐ 2757
 **Description:** Jenkins Configuration as Code Plugin
 
 - **Language:** Java | **Size:** 6.0 MB
 - **Technologies:** configuration-as-code, jenkins, jenkins-configuration, jcasc, hacktoberfest
 
-### [Global-Campus-Teachers](https://github.com/community/Global-Campus-Teachers) ⭐ 1422
-**Description:** This repository is a place to communicate with teachers signed up with GitHub Education benefits.
+### [kubernetes-plugin](https://github.com/jenkinsci/kubernetes-plugin) ⭐ 2297
+**Description:** Jenkins plugin to run dynamic agents in a Kubernetes/Docker environment
 
-- **Language:**  | **Size:** 0.0 MB
+- **Language:** Java | **Size:** 8.0 MB
+- **Technologies:** kubernetes, cloud, agent
 
-### [git-plugin](https://github.com/jenkinsci/git-plugin) ⭐ 685
-**Description:** Git repository access for Jenkins jobs
+### [job-dsl-plugin](https://github.com/jenkinsci/job-dsl-plugin) ⭐ 1925
+**Description:** A Groovy DSL for Jenkins Jobs - Sweeeeet!
 
-- **Language:** Java | **Size:** 9.7 MB
-- **Technologies:** git, scm
+- **Language:** Groovy | **Size:** 19.1 MB
+- **Technologies:** jenkins, groovy, adopt-this-plugin
 
-### [kubernetes-operator](https://github.com/jenkinsci/kubernetes-operator) ⭐ 626
-**Description:** Kubernetes native Jenkins Operator
+### [pipeline-plugin](https://github.com/jenkinsci/pipeline-plugin) ⭐ 1698
+**Description:** Obsolete home for Pipeline plugins
 
-- **Language:** Go | **Size:** 23.4 MB
-- **Technologies:** kubernetes, jenkins, operator, cloud-native, continuous-integration
+- **Language:**  | **Size:** 5.4 MB
 
-### [helm-charts](https://github.com/jenkinsci/helm-charts) ⭐ 622
-**Description:** Jenkins helm charts
+### [JenkinsPipelineUnit](https://github.com/jenkinsci/JenkinsPipelineUnit) ⭐ 1578
+**Description:** Framework for unit testing Jenkins pipelines 
 
-- **Language:** Mustache | **Size:** 11.3 MB
-- **Technologies:** helm-charts, jenkins, charts, helm, kubernetes
+- **Language:** Groovy | **Size:** 1.3 MB
+- **Technologies:** jenkins, pipelines-as-code, test, hactoberfest
 
-### [pipeline-model-definition-plugin](https://github.com/jenkinsci/pipeline-model-definition-plugin) ⭐ 565
-- **Language:** Groovy | **Size:** 5.0 MB
-- **Technologies:** jenkins-pipeline, declarative-pipeline
+### [gitlab-plugin](https://github.com/jenkinsci/gitlab-plugin) ⭐ 1443
+**Description:** A Jenkins plugin for interfacing with GitLab
 
-### [simple-java-maven-app](https://github.com/jenkins-docs/simple-java-maven-app) ⭐ 517
-**Description:** For an introductory tutorial on how to use Jenkins to build a simple Java application with Maven.
-
-- **Language:** Shell | **Size:** 0.1 MB
-- **Contributions:** 32 commits
-
-### [docker-workflow-plugin](https://github.com/jenkinsci/docker-workflow-plugin) ⭐ 513
-**Description:** Jenkins plugin which allows building, testing, and using Docker images from Jenkins Pipeline projects.
-
-- **Language:** Java | **Size:** 1.0 MB
-- **Technologies:** jenkins, docker, jenkins-plugin, jenkins-pipeline
+- **Language:** Java | **Size:** 6.7 MB
+- **Contributions:** 26 commits
 
 ## 🛠 Technical Skills
 
 ### Programming Languages
-- **Java:** Advanced (73.2% of codebase, 121 projects)
-- **HTML:** Intermediate (13.2% of codebase, 80 projects)
-- **JavaScript:** Beginner (3.1% of codebase, 39 projects)
-- **Groovy:** Beginner (2.1% of codebase, 36 projects)
-- **Go:** Beginner (1.4% of codebase, 4 projects)
-- **C#:** Beginner (1.4% of codebase, 5 projects)
-- **Python:** Beginner (1.1% of codebase, 12 projects)
-- **TypeScript:** Beginner (1.0% of codebase, 5 projects)
+- **Java:** Advanced (52.3% of codebase, 3988 projects)
+- **JavaScript:** Intermediate (9.4% of codebase, 648 projects)
+- **C++:** Intermediate (5.5% of codebase, 28 projects)
+- **HTML:** Beginner (4.3% of codebase, 2460 projects)
+- **C:** Beginner (3.3% of codebase, 39 projects)
+- **Perl:** Beginner (3.2% of codebase, 225 projects)
+- **Groovy:** Beginner (3.2% of codebase, 771 projects)
+- **Shell:** Beginner (2.8% of codebase, 783 projects)
 
 ### Technology Stack
-- **Frameworks:** reactjs
-- **Cloud Platforms:** aws, docker-image, kubernetes, docker, Docker
-- **DevOps & Tools:** jenkins-configuration, jenkins-warnings, jenkins, jenkins-pipeline, cicd
+- **Frameworks:** reactive, react, spring-boot, reactjs, spring-integration
+- **Databases:** redis, postgresql
+- **Cloud Platforms:** docker-image, azure, kubernetes, docker, aws
+- **DevOps & Tools:** jenkins-configuration, jenkins-status, jenkins-plugin, jenkins-agent, jenkins-security-scan-enabled
 
 ## 🤝 Professional Insights
 
-- **Open Source Contributions:** 146 repositories
+- **Open Source Contributions:** 4704 repositories
 - **Cross-Organization Work:** Contributed to 19 different organizations
 - **Leadership Experience:** Demonstrates ability to create and maintain projects; Shows collaborative leadership across multiple teams
 - **Overall Impact Score:** 10.0/10
@@ -233,7 +235,7 @@
 
 - **Most Active Period:** 2025
 - **Consistency Score:** 0.0/10
-- **Recent Activity:** Active in 150 repositories in the last 30 days
+- **Recent Activity:** Active in 653 repositories in the last 30 days
 - **Recommended Roles:** Backend Developer, Software Engineer, Frontend Developer, UI Developer, Full-Stack Developer, Software Engineer, DevOps Engineer, Platform Engineer, SRE
 
 ---
