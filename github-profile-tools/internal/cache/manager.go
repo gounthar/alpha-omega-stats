@@ -112,6 +112,16 @@ func (m *Manager) GetUserProfileKey(username string) CacheKey {
 	}
 }
 
+// GetUserProfileKeyWithScope creates a cache key for a user's profile with additional scope
+// The scope is used to differentiate profiles with different configurations (e.g., different Docker usernames)
+func (m *Manager) GetUserProfileKeyWithScope(username, scope string) CacheKey {
+	return CacheKey{
+		Type:     "profile",
+		Username: username,
+		Scope:    scope,
+	}
+}
+
 // GetUserRepositoriesKey creates a cache key for a user's repositories
 func (m *Manager) GetUserRepositoriesKey(username string) CacheKey {
 	return CacheKey{
