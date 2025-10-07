@@ -26,16 +26,25 @@ Users need to specify separate Docker Hub usernames when their Docker Hub accoun
 - Removed progress files with PII from git tracking
 - Added `/data/progress/` directories to `.gitignore`
 
+**Phase 3 - Cache Invalidation Fix** ✅ (Commit bfe43b2)
+- Added `DeleteByPrefix()` method to FileStorage for prefix-based cache deletion
+- Updated `InvalidateUser()` to delete all scoped cache variants
+- Pattern matching: `"profile_username"` matches both `"profile_username"` and `"profile_username_scope:docker:alice,discourse:bob"`
+- Ensures `-force-refresh` and cache clearing work correctly with scoped keys
+- Applies to all cache types: profile, repositories, organizations, contributions, languages, skills
+
 **Files Modified**:
 - `cmd/github-user-analyzer/main.go` - CLI flag and analysis workflow
 - `internal/profile/analyzer.go` - Docker username parameter threading
 - `internal/profile/cache.go` - Scoped cache key implementation
-- `internal/cache/manager.go` - Scoped key generation method
+- `internal/cache/manager.go` - Scoped key generation and prefix-based invalidation
+- `internal/cache/storage.go` - Prefix-based deletion implementation
 - `.gitignore` - Exclude progress files
 
 **Critical Issues Addressed**:
 - ✅ Cache poisoning bug (gemini-code-assist & CodeRabbit)
 - ✅ Progress files with PII removed from git (CodeRabbit)
+- ✅ Cache invalidation now removes all scoped variants
 - 📝 Code duplication noted for follow-up (CodeRabbit)
 
 ### Next Steps

@@ -177,7 +177,10 @@ All builds use `ubuntu-latest` with Go cross-compilation:
 - **Scope format**: `"docker:{dockerUsername},discourse:{discourseUsername}"` appended to cache key
 - **Scope conditions**: Only applied when Docker/Discourse usernames differ from GitHub username
 - **Implementation**: `GetUserProfileKeyWithScope()`, `GetUserProfileWithCustomUsernames()`, `SetUserProfileWithCustomUsernames()`
-- **Files**: `internal/cache/manager.go`, `internal/profile/cache.go`
+- **Cache invalidation**: `DeleteByPrefix()` removes all scoped variants when invalidating user cache
+  - Pattern: `"profile_username"` matches `"profile_username"` and `"profile_username_scope:..."`
+  - Ensures `-force-refresh` and cache clearing work with scoped keys
+- **Files**: `internal/cache/manager.go`, `internal/cache/storage.go`, `internal/profile/cache.go`
 
 ### Planned Improvements
 
