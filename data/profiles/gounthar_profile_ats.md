@@ -6,13 +6,11 @@ Current Company: @cloudbees
 
 TECHNICAL SKILLS
 
-Programming Languages: Java, JavaScript, C++, HTML, C, Perl, Groovy, Shell, Go, C#, Python, Jupyter Notebook, CodeQL, G-code
+Programming Languages: Java, HTML, JavaScript, Groovy, Go, C#, Python, TypeScript
 
-Frameworks and Libraries: reactive, react, spring-boot, reactjs, spring-integration
+Frameworks and Libraries: reactjs
 
-Databases: redis, postgresql
-
-Cloud Platforms: docker, azure, aws, kubernetes, docker-image, docker-compose, aws-ecr, terraform, terraform-module, aws-ssm
+Cloud Platforms: aws, docker-image, kubernetes, docker, Docker, Docker, Docker, Docker, Docker, azure
 
 PROFESSIONAL EXPERIENCE
 
@@ -20,9 +18,10 @@ Software Developer | 17 Years Active Development
 Career Level: Principal
 
 Key Achievements:
-- Developed and maintained 4725 software repositories
-- Contributed 5494 commits across 104 programming languages
-- Received 103575 community stars for open source contributions
+- Developed and maintained 150 software repositories
+- Created 37 Docker containers with 2.2M total downloads
+- Contributed 5557 commits across 32 programming languages
+- Received 45850 community stars for open source contributions
 - Collaborated across 19 professional organizations
 - Demonstrated high-impact technical leadership and project ownership
 
@@ -90,42 +89,42 @@ NOTABLE PROJECTS
 jenkins
 Description: Jenkins automation server
 Technology: Java
-Community Recognition: 24494 stars
+Community Recognition: 24504 stars
 
 docker
 Description: Docker official jenkins repo
 Technology: PowerShell
-Community Recognition: 7185 stars
-
-pipeline-examples
-Description: A collection of examples, tips and tricks and snippets of scripting for the Jenkins Pipeline plugin
-Technology: Groovy
-Community Recognition: 4280 stars
-
-blueocean-plugin
-Description: Blue Ocean is a reboot of the Jenkins CI/CD User Experience
-Technology: Java
-Community Recognition: 2891 stars
+Community Recognition: 7186 stars
 
 configuration-as-code-plugin
 Description: Jenkins Configuration as Code Plugin
 Technology: Java
 Community Recognition: 2757 stars
 
+Global-Campus-Teachers
+Description: This repository is a place to communicate with teachers signed up with GitHub Education benefits.
+Technology: 
+Community Recognition: 1422 stars
+
+git-plugin
+Description: Git repository access for Jenkins jobs
+Technology: Java
+Community Recognition: 685 stars
+
 TECHNICAL CERTIFICATIONS AND EXPERTISE
 
 Java Development - Advanced Level
-Experience: 3987 projects, 16.5 years
-
-JavaScript Development - Intermediate Level
-Experience: 648 projects, 15.7 years
-
-C++ Development - Intermediate Level
-Experience: 28 projects, 14.8 years
+Experience: 121 projects, 15.7 years
 
 HTML Development - Intermediate Level
-Experience: 2459 projects, 15.7 years
+Experience: 80 projects, 15.5 years
 
-C Development - Intermediate Level
-Experience: 39 projects, 15.7 years
+JavaScript Development - Intermediate Level
+Experience: 39 projects, 15.5 years
+
+Groovy Development - Intermediate Level
+Experience: 36 projects, 15.5 years
+
+Go Development - Intermediate Level
+Experience: 4 projects, 6.7 years
 

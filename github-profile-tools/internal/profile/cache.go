@@ -82,7 +82,9 @@ func (pcm *ProfileCacheManager) SetUserProfile(username string, profile *UserPro
 		return nil
 	}
 
+	log.Printf("SetUserProfile: Getting cache key for %s", username)
 	key := pcm.cacheManager.GetUserProfileKey(username)
+	log.Printf("SetUserProfile: Calling Set with key: %s", key.String())
 	err := pcm.cacheManager.Set(key, profile, 0) // Use default TTL
 
 	if err != nil {
@@ -440,10 +442,12 @@ func (caa *CacheAwareAnalyzer) AnalyzeUserWithDockerUsername(ctx context.Context
 
 func (caa *CacheAwareAnalyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username, dockerUsername, discourseUsername string) (*UserProfile, error) {
 	// Try to get complete profile from cache first
-	if profile, hit := caa.cacheManager.GetUserProfile(username); hit {
-		log.Printf("Using complete cached profile for user: %s", username)
-		return profile, nil
-	}
+	// WORKAROUND: Temporarily disabled cache read due to hang on large gzip files
+	log.Printf("Skipping cache read for user: %s (workaround for cache hang)", username)
+	// if profile, hit := caa.cacheManager.GetUserProfile(username); hit {
+	// 	log.Printf("Using complete cached profile for user: %s", username)
+	// 	return profile, nil
+	// }
 
 	// If not in cache or force refresh, perform full analysis
 	log.Printf("Performing fresh analysis for user: %s", username)
@@ -453,9 +457,13 @@ func (caa *CacheAwareAnalyzer) AnalyzeUserWithCustomUsernames(ctx context.Contex
 	}
 
 	// Cache the complete profile
-	if err := caa.cacheManager.SetUserProfile(username, profile); err != nil {
-		log.Printf("Warning: Failed to cache profile for %s: %v", username, err)
-	}
+	// WORKAROUND: Temporarily disabled due to hang when writing large profiles
+	log.Printf("Skipping cache write for user: %s (workaround for large profile hang)", username)
+	// if err := caa.cacheManager.SetUserProfile(username, profile); err != nil {
+	// 	log.Printf("Warning: Failed to cache profile for %s: %v", username, err)
+	// } else {
+	// 	log.Printf("Profile successfully cached for user: %s", username)
+	// }
 
 	return profile, nil
 }

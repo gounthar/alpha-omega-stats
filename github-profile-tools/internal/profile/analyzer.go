@@ -242,6 +242,7 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 		}
 
 		var resp github.UserRepositoriesResponse
+		log.Printf("Executing GraphQL query for page %d...", pageNum)
 		if err := a.client.ExecuteGraphQL(ctx, req, &resp); err != nil {
 			// Save progress with whatever we have so far
 			if len(profile.Repositories) > 0 {
@@ -255,14 +256,20 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 			}
 			return fmt.Errorf("GraphQL query failed on first page: %w", err)
 		}
+		log.Printf("GraphQL query completed for page %d, got %d repositories in response", pageNum, len(resp.User.Repositories.Nodes))
 
 		// Process repositories from this page immediately
+		log.Printf("Starting to process %d repositories from page %d", len(resp.User.Repositories.Nodes), pageNum)
 		newReposThisPage := 0
-		for _, repoNode := range resp.User.Repositories.Nodes {
+		for i, repoNode := range resp.User.Repositories.Nodes {
+			if i > 0 && i%10 == 0 {
+				log.Printf("Processed %d/%d repositories on page %d", i, len(resp.User.Repositories.Nodes), pageNum)
+			}
 			repo := a.convertRepositoryNode(repoNode, username)
 			profile.Repositories = append(profile.Repositories, repo)
 			newReposThisPage++
 		}
+		log.Printf("Finished processing all %d repositories from page %d", newReposThisPage, pageNum)
 
 		totalFetched += newReposThisPage
 		log.Printf("Processed page %d: %d repositories (%d total fetched)", pageNum, newReposThisPage, totalFetched)

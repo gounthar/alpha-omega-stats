@@ -33,8 +33,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### GitHub Profile Tools
 - **Build analyzer**: `(cd github-profile-tools && go build -o ../github-user-analyzer ./cmd/github-user-analyzer)` - Builds the GitHub profile analyzer binary
+- **Run tests**: `(cd github-profile-tools && go test ./...)` - Runs unit test suite
+- **Test specific package**: `(cd github-profile-tools && go test -v ./internal/cache)` - Tests specific package with verbose output
 - **Analyze user**: `./github-user-analyzer -user=username` - Generates comprehensive GitHub profile analysis with all templates by default
 - **Analyze with specific template**: `./github-user-analyzer -user=username -template=resume` - Generates profile with specific template (resume, technical, executive, ats)
+- **Analyze with custom usernames**: `./github-user-analyzer -user=username -docker-user=dockerhub_user -discourse-user=discourse_user` - Uses separate usernames for different platforms
+- **Cache management**: `./github-user-analyzer -cache-stats` - Shows cache statistics, `./github-user-analyzer -clear-cache` - Clears cache, `./github-user-analyzer -force-refresh` - Forces refresh ignoring cache
 - **Analyze with token**: `./github-user-analyzer -user=username -token="$GITHUB_TOKEN"` - Uses explicit GitHub token for API access
 
 ## Architecture
@@ -44,6 +48,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 2. **Shell scripts ecosystem** - Bash scripts orchestrate data collection, processing, and reporting
 3. **Python integration** - Handles Google Sheets uploads and data processing via `upload_to_sheets.py`
 4. **GitHub Actions workflows** - Automated scheduling and execution in `.github/workflows/`
+5. **GitHub Profile Tools** - Standalone Go application for analyzing GitHub user profiles and generating professional documentation
 
 ### Data Flow
 1. **Collection**: `jenkins-pr-collector.go` fetches PR data via GitHub GraphQL API
@@ -103,13 +108,16 @@ All builds use `ubuntu-latest` with Go cross-compilation:
 - `data/archive/` - Older data files (>6 months)
 - `data/junit5/` - JUnit 5 migration analysis data
 - `data/profiles/` - Generated GitHub profile analyses and templates
-- `data/cache/` - Cached analysis data for efficient template regeneration
+- `data/cache/` - Cached analysis data for efficient template regeneration and incremental updates
+- `data/progress/` - Temporary progress files for resuming interrupted analyses
 - `github-profile-tools/` - GitHub profile analyzer Go application
   - `cmd/github-user-analyzer/` - Main CLI application entry point
-  - `internal/github/` - GitHub API client and GraphQL queries
-  - `internal/profile/` - Profile analysis logic and types
-  - `internal/docker/` - Docker Hub integration
-  - `internal/discourse/` - Discourse community analysis
+  - `internal/github/` - GitHub API client with exponential backoff and retry logic (8 attempts)
+  - `internal/profile/` - Profile analysis logic with incremental processing (50 repos per page)
+  - `internal/cache/` - File-based cache system with TTL, compression, and thread-safety
+  - `internal/docker/` - Docker Hub integration and expertise scoring
+  - `internal/discourse/` - Discourse community engagement analysis
+  - `internal/markdown/` - Template generator for multiple profile formats
   - `templates/` - Profile generation templates (resume, technical, executive, ats)
 - `updatecli/` - Updatecli configuration for dependency updates
 - `.github/workflows/` - GitHub Actions automation workflows
@@ -128,27 +136,38 @@ All builds use `ubuntu-latest` with Go cross-compilation:
 - Comprehensive logging to stdout/stderr and dedicated log files
 - Debug logging to `build-debug.log`, `fetch_prs_debug.log`, and other log files
 
-### GitHub Profile Tools - Development Status
+### GitHub Profile Tools - Key Implementation Details
 
-#### Latest Completed Work (2025-10-06)
-**Feature**: Comprehensive Cache Unit Tests (PR #192)
-- **Status**: ✅ COMPLETED - All CodeRabbit issues resolved
-- **Branch**: `feature/cache-unit-tests` (ready for merge)
-- **Testing Coverage**: Concurrent access, expiration, error handling, data integrity
-- **Critical Fixes**: Control character injection, cache warming, comprehensive verification
+#### Caching System
+- **File-based cache** with gzip compression and JSON serialization
+- **TTL support** with configurable expiration (default 24 hours)
+- **Thread-safe operations** with proper mutex locking
+- **Cache key types**: profile, repositories, organizations, contributions, languages, skills
+- **Cache management**: Statistics, clearing, force refresh, and invalidation by user
+- **Storage location**: `data/cache/` with files named by cache key type and username
 
-#### Production Ready Components
-- ✅ **Core Caching System** - File-based cache with TTL, compression, thread-safety
-- ✅ **CLI Integration** - Full cache management flags (`--force-refresh`, `--cache-stats`, etc.)
-- ✅ **Unit Test Suite** - Comprehensive coverage addressing all production blockers
-- ✅ **Profile Analysis** - Complete GitHub profile analysis with templates
-- ✅ **Cross-Platform Builds** - Automated releases for Windows/Linux/macOS
+#### Incremental Analysis
+- **Page-by-page processing**: Repositories fetched in batches of 50 to handle large profiles
+- **Progress saving**: Analysis state saved after each major step for resumability
+- **Graceful degradation**: Continues with partial data if API calls fail
+- **Progress files**: Stored in `data/progress/` for interrupted analysis resumption
+- **Analysis steps**: 8 sequential steps from basic info → Docker/Discourse → insights generation
 
-#### Ready for Next Feature Development
-The caching system is now production-ready with comprehensive test coverage. All technical debt identified in code reviews has been addressed.
+#### API Resilience
+- **Retry logic**: Up to 8 attempts with exponential backoff and jitter
+- **Retryable errors**: Infrastructure failures (502, 503, 504), rate limits, timeouts, stream cancellations
+- **Rate limit handling**: Respects GitHub API rate limits with automatic backoff
+- **Context support**: All API calls respect context timeouts (default 6 hours for large analyses)
 
-#### Development Best Practices Learned
-- **PR Review Process**: Always fetch complete review data with `gh api` commands
-- **Code Quality**: Address specific technical issues identified by automated reviewers
-- **Testing**: Comprehensive unit tests are critical for production readiness
-- **Concurrency**: Use proper string conversion (`strconv.Itoa()` vs `string(rune())`) to avoid control characters
+#### Docker & Discourse Integration
+- **Docker Hub**: Fetches public repositories, pull counts, expertise scoring (0-10 scale)
+- **Docker expertise**: Proficiency levels from beginner to expert based on usage patterns
+- **Docker file detection**: Scans for Dockerfile, docker-compose.yml, docker-bake.hcl, .dockerignore
+- **Discourse**: Jenkins community engagement analysis with separate username support
+- **Optional platforms**: Both Docker Hub and Discourse are optional and gracefully handle missing data
+
+#### Testing Best Practices
+- **Comprehensive unit tests** for cache system covering concurrency, expiration, data integrity
+- **String conversion**: Use `strconv.Itoa()` instead of `string(rune())` to avoid control character injection
+- **Test coverage**: Critical paths tested including error scenarios and edge cases
+- **Test location**: `github-profile-tools/internal/cache/*_test.go`, `internal/profile/*_test.go`

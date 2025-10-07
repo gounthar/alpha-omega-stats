@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -113,14 +114,17 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 
 // Set stores a cache entry
 func (fs *FileStorage) Set(key string, data interface{}, ttl time.Duration) error {
+	log.Printf("FileStorage.Set: Starting for key: %s", key)
 	fs.mutex.Lock()
 	defer fs.mutex.Unlock()
+	log.Printf("FileStorage.Set: Acquired mutex for key: %s", key)
 
 	// Use default TTL if none specified
 	if ttl == 0 {
 		ttl = fs.config.DefaultTTL
 	}
 
+	log.Printf("FileStorage.Set: Creating cache entry for key: %s with TTL: %v", key, ttl)
 	// Create cache entry
 	entry := &CacheEntry{
 		Key:        key,
@@ -131,13 +135,19 @@ func (fs *FileStorage) Set(key string, data interface{}, ttl time.Duration) erro
 		AccessedAt: time.Now(),
 		HitCount:   0,
 	}
+	log.Printf("FileStorage.Set: Cache entry created for key: %s", key)
 
 	// Calculate checksum for data integrity
+	log.Printf("FileStorage.Set: Calculating checksum for key: %s", key)
 	if checksum, err := fs.calculateChecksum(data); err == nil {
 		entry.Checksum = checksum
+		log.Printf("FileStorage.Set: Checksum calculated for key: %s", key)
+	} else {
+		log.Printf("FileStorage.Set: Failed to calculate checksum for key %s: %v", key, err)
 	}
 
 	filePath := fs.getFilePath(key)
+	log.Printf("FileStorage.Set: Writing to file: %s", filePath)
 
 	// Ensure directory exists
 	if err := os.MkdirAll(filepath.Dir(filePath), 0755); err != nil {
@@ -145,13 +155,16 @@ func (fs *FileStorage) Set(key string, data interface{}, ttl time.Duration) erro
 	}
 
 	// Write cache entry
+	log.Printf("FileStorage.Set: Calling writeCacheEntry for: %s", filePath)
 	if err := fs.writeCacheEntry(filePath, entry); err != nil {
 		return fmt.Errorf("failed to write cache entry: %w", err)
 	}
+	log.Printf("FileStorage.Set: writeCacheEntry completed for: %s", filePath)
 
 	fs.stats.TotalEntries++
 	fs.updateStats()
 
+	log.Printf("FileStorage.Set: Successfully stored cache for key: %s", key)
 	return nil
 }
 

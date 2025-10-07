@@ -168,10 +168,12 @@ func (c *Client) executeWithRetry(ctx context.Context, operation func() error) e
 
 // executeGraphQLRequest performs the actual GraphQL request
 func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest, result interface{}) error {
+	log.Printf("Marshaling GraphQL request...")
 	jsonData, err := json.Marshal(req)
 	if err != nil {
 		return fmt.Errorf("failed to marshal GraphQL request: %w", err)
 	}
+	log.Printf("GraphQL request marshaled, size: %d bytes", len(jsonData))
 
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(jsonData))
 	if err != nil {
@@ -180,6 +182,7 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 
 	httpReq.Header.Set("Content-Type", "application/json")
 
+	log.Printf("Sending HTTP request to GitHub API...")
 	resp, err := c.httpClient.Do(httpReq)
 	if err != nil {
 		return &RetryableError{
@@ -188,14 +191,17 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		}
 	}
 	defer resp.Body.Close()
+	log.Printf("HTTP response received, status: %d", resp.StatusCode)
 
 	// Parse and update rate limit information from headers
 	c.updateRateLimitFromHeaders(resp.Header)
 
+	log.Printf("Reading response body...")
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return fmt.Errorf("failed to read response body: %w", err)
 	}
+	log.Printf("Response body read, size: %d bytes", len(body))
 
 	// Handle HTTP errors
 	if resp.StatusCode != http.StatusOK {
@@ -233,10 +239,12 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		return fmt.Errorf("HTTP %d: %s", resp.StatusCode, string(body))
 	}
 
+	log.Printf("Unmarshaling GraphQL response envelope...")
 	var graphqlResp GraphQLResponse
 	if err := json.Unmarshal(body, &graphqlResp); err != nil {
 		return fmt.Errorf("failed to unmarshal GraphQL response: %w", err)
 	}
+	log.Printf("GraphQL response envelope unmarshaled successfully")
 
 	// Handle GraphQL errors
 	if len(graphqlResp.Errors) > 0 {
@@ -251,9 +259,11 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		return fmt.Errorf("GraphQL errors: %+v", graphqlResp.Errors)
 	}
 
+	log.Printf("Unmarshaling GraphQL data into result structure (size: %d bytes)...", len(graphqlResp.Data))
 	if err := json.Unmarshal(graphqlResp.Data, result); err != nil {
 		return fmt.Errorf("failed to unmarshal GraphQL data: %w", err)
 	}
+	log.Printf("GraphQL data unmarshaled successfully into result")
 
 	return nil
 }

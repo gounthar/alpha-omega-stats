@@ -9,10 +9,12 @@
 
 ## 📊 Contribution Overview
 
-- **7924** total contributions across **17** years of active development
-- **4725** repositories with **103575** stars received
+- **8004** total contributions across **17** years of active development
+- **150** repositories with **45850** stars received
+- **2.2M** Docker Hub downloads across **37** container images 🐳
+- **0** community posts with **0** solutions provided in Jenkins forums 💬
 - Active contributor in **19** organizations
-- Proficient in **104** programming languages
+- Proficient in **32** programming languages
 - Career Level: **Principal**
 
 ## 🏢 Organization Contributions
@@ -130,31 +132,33 @@
 - **Contributions:** 1 repositories
 - **Key Projects:** sdkman/sdkman-cli
 
+## 🐳 Container Infrastructure Impact
+
+### Docker Hub Profile: [@gounthar](https://hub.docker.com/u/gounthar)
+
+- **Total Downloads**: 2.2M across all images
+- **Container Images**: 37 published images
+- **Community Impact**: 6.0/10 (Infrastructure influence)
+- **Container Expertise**: Advanced level (7.5 years experience)
+- **Most Popular Image**: `gounthar/docker-adb`
+- **Key Container Projects**: `gounthar/alpine-linux-curl`, `gounthar/armv7hf-python-dockerhub`, `gounthar/docker-rethinkdb`
+
+**Infrastructure Impact**: This level of container adoption demonstrates significant influence on development workflows and production deployments across the software community.
+
 ## 💼 Notable Projects
 
-### [jenkins](https://github.com/jenkinsci/jenkins) ⭐ 24494
+### [jenkins](https://github.com/jenkinsci/jenkins) ⭐ 24504
 **Description:** Jenkins automation server
 
 - **Language:** Java | **Size:** 164.1 MB
 - **Technologies:** continuous-integration, continuous-delivery, continuous-deployment, java, groovy, jenkins, pipelines-as-code, devops, cicd, hacktoberfest
 
-### [docker](https://github.com/jenkinsci/docker) ⭐ 7185
+### [docker](https://github.com/jenkinsci/docker) ⭐ 7186
 **Description:** Docker official jenkins repo
 
 - **Language:** PowerShell | **Size:** 2.5 MB
 - **Technologies:** jenkins, docker, hacktoberfest
 - **Contributions:** 3 commits
-
-### [pipeline-examples](https://github.com/jenkinsci/pipeline-examples) ⭐ 4280
-**Description:** A collection of examples, tips and tricks and snippets of scripting for the Jenkins Pipeline plugin
-
-- **Language:** Groovy | **Size:** 0.1 MB
-
-### [blueocean-plugin](https://github.com/jenkinsci/blueocean-plugin) ⭐ 2891
-**Description:** Blue Ocean is a reboot of the Jenkins CI/CD User Experience
-
-- **Language:** Java | **Size:** 32.4 MB
-- **Technologies:** jenkins-blue-ocean
 
 ### [configuration-as-code-plugin](https://github.com/jenkinsci/configuration-as-code-plugin) ⭐ 2757
 **Description:** Jenkins Configuration as Code Plugin
@@ -162,56 +166,65 @@
 - **Language:** Java | **Size:** 6.0 MB
 - **Technologies:** configuration-as-code, jenkins, jenkins-configuration, jcasc, hacktoberfest
 
-### [kubernetes-plugin](https://github.com/jenkinsci/kubernetes-plugin) ⭐ 2297
-**Description:** Jenkins plugin to run dynamic agents in a Kubernetes/Docker environment
+### [Global-Campus-Teachers](https://github.com/community/Global-Campus-Teachers) ⭐ 1422
+**Description:** This repository is a place to communicate with teachers signed up with GitHub Education benefits.
 
-- **Language:** Java | **Size:** 8.0 MB
-- **Technologies:** kubernetes, cloud, agent
+- **Language:**  | **Size:** 0.0 MB
 
-### [job-dsl-plugin](https://github.com/jenkinsci/job-dsl-plugin) ⭐ 1925
-**Description:** A Groovy DSL for Jenkins Jobs - Sweeeeet!
+### [git-plugin](https://github.com/jenkinsci/git-plugin) ⭐ 685
+**Description:** Git repository access for Jenkins jobs
 
-- **Language:** Groovy | **Size:** 19.0 MB
-- **Technologies:** jenkins, groovy, adopt-this-plugin
+- **Language:** Java | **Size:** 9.7 MB
+- **Technologies:** git, scm
 
-### [pipeline-plugin](https://github.com/jenkinsci/pipeline-plugin) ⭐ 1698
-**Description:** Obsolete home for Pipeline plugins
+### [kubernetes-operator](https://github.com/jenkinsci/kubernetes-operator) ⭐ 626
+**Description:** Kubernetes native Jenkins Operator
 
-- **Language:**  | **Size:** 5.4 MB
+- **Language:** Go | **Size:** 23.4 MB
+- **Technologies:** kubernetes, jenkins, operator, cloud-native, continuous-integration
 
-### [JenkinsPipelineUnit](https://github.com/jenkinsci/JenkinsPipelineUnit) ⭐ 1578
-**Description:** Framework for unit testing Jenkins pipelines 
+### [helm-charts](https://github.com/jenkinsci/helm-charts) ⭐ 622
+**Description:** Jenkins helm charts
 
-- **Language:** Groovy | **Size:** 1.3 MB
-- **Technologies:** jenkins, pipelines-as-code, test, hactoberfest
+- **Language:** Mustache | **Size:** 11.3 MB
+- **Technologies:** helm-charts, jenkins, charts, helm, kubernetes
 
-### [gitlab-plugin](https://github.com/jenkinsci/gitlab-plugin) ⭐ 1443
-**Description:** A Jenkins plugin for interfacing with GitLab
+### [pipeline-model-definition-plugin](https://github.com/jenkinsci/pipeline-model-definition-plugin) ⭐ 565
+- **Language:** Groovy | **Size:** 5.0 MB
+- **Technologies:** jenkins-pipeline, declarative-pipeline
 
-- **Language:** Java | **Size:** 6.7 MB
-- **Contributions:** 26 commits
+### [simple-java-maven-app](https://github.com/jenkins-docs/simple-java-maven-app) ⭐ 517
+**Description:** For an introductory tutorial on how to use Jenkins to build a simple Java application with Maven.
+
+- **Language:** Shell | **Size:** 0.1 MB
+- **Contributions:** 32 commits
+
+### [docker-workflow-plugin](https://github.com/jenkinsci/docker-workflow-plugin) ⭐ 513
+**Description:** Jenkins plugin which allows building, testing, and using Docker images from Jenkins Pipeline projects.
+
+- **Language:** Java | **Size:** 1.0 MB
+- **Technologies:** jenkins, docker, jenkins-plugin, jenkins-pipeline
 
 ## 🛠 Technical Skills
 
 ### Programming Languages
-- **Java:** Advanced (52.3% of codebase, 3987 projects)
-- **JavaScript:** Intermediate (9.4% of codebase, 648 projects)
-- **C++:** Intermediate (5.5% of codebase, 28 projects)
-- **HTML:** Beginner (4.3% of codebase, 2459 projects)
-- **C:** Beginner (3.3% of codebase, 39 projects)
-- **Perl:** Beginner (3.2% of codebase, 225 projects)
-- **Groovy:** Beginner (3.2% of codebase, 771 projects)
-- **Shell:** Beginner (2.8% of codebase, 783 projects)
+- **Java:** Advanced (73.2% of codebase, 121 projects)
+- **HTML:** Intermediate (13.2% of codebase, 80 projects)
+- **JavaScript:** Beginner (3.1% of codebase, 39 projects)
+- **Groovy:** Beginner (2.1% of codebase, 36 projects)
+- **Go:** Beginner (1.4% of codebase, 4 projects)
+- **C#:** Beginner (1.4% of codebase, 5 projects)
+- **Python:** Beginner (1.1% of codebase, 12 projects)
+- **TypeScript:** Beginner (1.0% of codebase, 5 projects)
 
 ### Technology Stack
-- **Frameworks:** reactive, react, spring-boot, reactjs, spring-integration
-- **Databases:** redis, postgresql
-- **Cloud Platforms:** docker, azure, aws, kubernetes, docker-image
-- **DevOps & Tools:** jenkins-builder, jenkins-agent, jenkins-plugin, jenkins-ci, jenkins-pipeline
+- **Frameworks:** reactjs
+- **Cloud Platforms:** aws, docker-image, kubernetes, docker, Docker
+- **DevOps & Tools:** jenkins-configuration, jenkins-warnings, jenkins, jenkins-pipeline, cicd
 
 ## 🤝 Professional Insights
 
-- **Open Source Contributions:** 4703 repositories
+- **Open Source Contributions:** 146 repositories
 - **Cross-Organization Work:** Contributed to 19 different organizations
 - **Leadership Experience:** Demonstrates ability to create and maintain projects; Shows collaborative leadership across multiple teams
 - **Overall Impact Score:** 10.0/10
@@ -220,8 +233,8 @@
 
 - **Most Active Period:** 2025
 - **Consistency Score:** 0.0/10
-- **Recent Activity:** Active in 643 repositories in the last 30 days
+- **Recent Activity:** Active in 150 repositories in the last 30 days
 - **Recommended Roles:** Backend Developer, Software Engineer, Frontend Developer, UI Developer, Full-Stack Developer, Software Engineer, DevOps Engineer, Platform Engineer, SRE
 
 ---
-*Profile generated on October 5, 2025 | GitHub: [@gounthar](https://github.com/gounthar)*
+*Profile generated on October 7, 2025 | GitHub: [@gounthar](https://github.com/gounthar)*
