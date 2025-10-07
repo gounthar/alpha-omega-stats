@@ -9,7 +9,7 @@
 
 ## 📊 Contribution Overview
 
-- **8004** total contributions across **17** years of active development
+- **8007** total contributions across **17** years of active development
 - **4726** repositories with **103621** stars received
 - **2.2M** Docker Hub downloads across **37** container images 🐳
 - **0** community posts with **0** solutions provided in Jenkins forums 💬
@@ -221,8 +221,8 @@
 ### Technology Stack
 - **Frameworks:** reactive, react, spring-boot, reactjs, spring-integration
 - **Databases:** redis, postgresql
-- **Cloud Platforms:** docker-image, azure, kubernetes, docker, aws
-- **DevOps & Tools:** jenkins-configuration, jenkins-status, jenkins-plugin, jenkins-agent, jenkins-security-scan-enabled
+- **Cloud Platforms:** azure, kubernetes, docker, aws, docker-image
+- **DevOps & Tools:** logging, jenkins-api-plugin, jenkins-plugin, jenkins-agent, jenkins-security-scan-enabled
 
 ## 🤝 Professional Insights
 

@@ -571,48 +571,91 @@ type RepositoryContentResponse struct {
 
 // FetchRepositoryContents fetches repository root directory contents via REST API
 func (c *Client) FetchRepositoryContents(ctx context.Context, owner, repo string) ([]RepositoryContentResponse, error) {
-	url := fmt.Sprintf("https://api.github.com/repos/%s/%s/contents", owner, repo)
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("failed to create request: %w", err)
-	}
-
-	// Add authorization header if we have a token
-	if c.httpClient.Transport != nil {
-		if _, ok := c.httpClient.Transport.(*oauth2.Transport); ok {
-			// The oauth2 transport will automatically add the Authorization header
-		}
-	}
-
-	req.Header.Set("Accept", "application/vnd.github.v3+json")
-	req.Header.Set("User-Agent", "github-profile-tools/1.0")
-
-	resp, err := c.httpClient.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("failed to execute request: %w", err)
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode == 404 {
-		// Repository not found or contents are empty
-		return []RepositoryContentResponse{}, nil
-	}
-
-	if resp.StatusCode != 200 {
-		body, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("GitHub API returned status %d: %s", resp.StatusCode, string(body))
-	}
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, fmt.Errorf("failed to read response body: %w", err)
-	}
-
 	var contents []RepositoryContentResponse
-	if err := json.Unmarshal(body, &contents); err != nil {
-		return nil, fmt.Errorf("failed to unmarshal response: %w", err)
-	}
 
-	return contents, nil
+	err := c.executeWithRetry(ctx, func() error {
+		url := fmt.Sprintf("https://api.github.com/repos/%s/%s/contents", owner, repo)
+
+		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+		if err != nil {
+			return fmt.Errorf("failed to create request: %w", err)
+		}
+
+		// Add authorization header if we have a token
+		if c.httpClient.Transport != nil {
+			if _, ok := c.httpClient.Transport.(*oauth2.Transport); ok {
+				// The oauth2 transport will automatically add the Authorization header
+			}
+		}
+
+		req.Header.Set("Accept", "application/vnd.github.v3+json")
+		req.Header.Set("User-Agent", "github-profile-tools/1.0")
+
+		resp, err := c.httpClient.Do(req)
+		if err != nil {
+			return &RetryableError{
+				Err:       fmt.Errorf("failed to execute request: %w", err),
+				ShouldLog: true,
+			}
+		}
+		defer resp.Body.Close()
+
+		// Parse and update rate limit information from headers
+		c.updateRateLimitFromHeaders(resp.Header)
+
+		if resp.StatusCode == 404 {
+			// Repository not found or contents are empty
+			contents = []RepositoryContentResponse{}
+			return nil
+		}
+
+		body, readErr := io.ReadAll(resp.Body)
+		if readErr != nil {
+			return fmt.Errorf("failed to read response body: %w", readErr)
+		}
+
+		if resp.StatusCode != 200 {
+			// Handle rate limit errors (403)
+			if resp.StatusCode == 403 {
+				c.rateLimitInfo.mutex.RLock()
+				remaining := c.rateLimitInfo.Remaining
+				resetTime := c.rateLimitInfo.ResetTime
+				c.rateLimitInfo.mutex.RUnlock()
+
+				if remaining <= 0 ||
+					contains(strings.ToLower(string(body)), "rate limit") ||
+					contains(strings.ToLower(string(body)), "api rate limit exceeded") {
+
+					log.Printf("GitHub REST API rate limit exceeded (HTTP 403)")
+					// Calculate wait duration until rate limit resets
+					waitDuration := time.Until(resetTime)
+					if waitDuration > 0 {
+						log.Printf("Waiting %v until rate limit resets at %v", waitDuration, resetTime)
+						select {
+						case <-time.After(waitDuration + 10*time.Second):
+							// Add 10 seconds buffer after reset
+						case <-ctx.Done():
+							return ctx.Err()
+						}
+					}
+
+					return &RetryableError{
+						Err:       fmt.Errorf("GitHub REST API rate limit exceeded, reset at %v", resetTime),
+						ShouldLog: true,
+					}
+				}
+			}
+
+			// Other HTTP errors
+			return fmt.Errorf("GitHub API returned status %d: %s", resp.StatusCode, string(body))
+		}
+
+		if err := json.Unmarshal(body, &contents); err != nil {
+			return fmt.Errorf("failed to unmarshal response: %w", err)
+		}
+
+		return nil
+	})
+
+	return contents, err
 }

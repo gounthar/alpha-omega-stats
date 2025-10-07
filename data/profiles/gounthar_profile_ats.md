@@ -12,7 +12,7 @@ Frameworks and Libraries: reactive, react, spring-boot, reactjs, spring-integrat
 
 Databases: redis, postgresql
 
-Cloud Platforms: docker-image, azure, kubernetes, docker, aws, Docker, Docker, Docker, Docker, Docker
+Cloud Platforms: azure, kubernetes, docker, aws, docker-image, Docker, Docker, Docker, Docker, Docker
 
 PROFESSIONAL EXPERIENCE
 

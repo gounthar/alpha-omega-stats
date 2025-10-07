@@ -1673,15 +1673,43 @@ func (a *Analyzer) categorizeDockerSkills(repo RepositoryProfile, techMap map[st
 		skills.Tools = append(skills.Tools, bakeSkill)
 	}
 
-	// Add containerization as a technical area
-	containerArea := TechnicalArea{
-		Area:         "Containerization",
-		Competency:   confidence,
-		Technologies: config.ContainerExpertise.TechnologiesUsed,
-		ProjectCount: 1,
-		YearsActive:  1.0, // Estimate based on repository activity
+	// Add containerization as a technical area (check if it already exists to avoid duplicates)
+	containerFound := false
+	for i := range skills.TechnicalAreas {
+		if skills.TechnicalAreas[i].Area == "Containerization" {
+			// Update existing entry with higher competency if found
+			if confidence > skills.TechnicalAreas[i].Competency {
+				skills.TechnicalAreas[i].Competency = confidence
+			}
+			skills.TechnicalAreas[i].ProjectCount++
+			// Merge technologies
+			for _, tech := range config.ContainerExpertise.TechnologiesUsed {
+				exists := false
+				for _, existing := range skills.TechnicalAreas[i].Technologies {
+					if existing == tech {
+						exists = true
+						break
+					}
+				}
+				if !exists {
+					skills.TechnicalAreas[i].Technologies = append(skills.TechnicalAreas[i].Technologies, tech)
+				}
+			}
+			containerFound = true
+			break
+		}
 	}
-	skills.TechnicalAreas = append(skills.TechnicalAreas, containerArea)
+
+	if !containerFound {
+		containerArea := TechnicalArea{
+			Area:         "Containerization",
+			Competency:   confidence,
+			Technologies: config.ContainerExpertise.TechnologiesUsed,
+			ProjectCount: 1,
+			YearsActive:  1.0, // Estimate based on repository activity
+		}
+		skills.TechnicalAreas = append(skills.TechnicalAreas, containerArea)
+	}
 }
 
 // logAnalysisSummary provides a summary of what data was successfully collected
