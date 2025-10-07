@@ -171,3 +171,24 @@ All builds use `ubuntu-latest` with Go cross-compilation:
 - **String conversion**: Use `strconv.Itoa()` instead of `string(rune())` to avoid control character injection
 - **Test coverage**: Critical paths tested including error scenarios and edge cases
 - **Test location**: `github-profile-tools/internal/cache/*_test.go`, `internal/profile/*_test.go`
+
+#### Cache Key Scoping (PR #193)
+- **Scoped cache keys**: Prevents cache poisoning when same GitHub user has different Docker/Discourse usernames
+- **Scope format**: `"docker:{dockerUsername},discourse:{discourseUsername}"` appended to cache key
+- **Scope conditions**: Only applied when Docker/Discourse usernames differ from GitHub username
+- **Implementation**: `GetUserProfileKeyWithScope()`, `GetUserProfileWithCustomUsernames()`, `SetUserProfileWithCustomUsernames()`
+- **Files**: `internal/cache/manager.go`, `internal/profile/cache.go`
+
+### Planned Improvements
+
+#### Follow-up Refactoring (Post PR #193)
+- **Code duplication**: Refactor `runAnalysis()` and `runAnalysisWithCache()` in `cmd/github-user-analyzer/main.go`
+  - Both functions share similar structure and logic
+  - Extract common analysis workflow into shared helper function
+  - Reduce maintenance burden and improve code clarity
+  - Identified in CodeRabbit review comment
+- **Progress file cache key alignment**: Ensure progress files use same scoped key format as cache
+  - Store `dockerUsername` and `discourseUsername` in `ProgressData` struct
+  - Validate on resume that usernames match requested analysis
+  - Prevents resuming with wrong Docker/Discourse username data
+  - Identified in CodeRabbit review comment on `analyzer.go:1182-1246`
