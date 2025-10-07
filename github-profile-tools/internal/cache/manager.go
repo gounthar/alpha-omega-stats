@@ -74,26 +74,32 @@ func (m *Manager) Delete(key CacheKey) error {
 	return m.storage.Delete(key.String())
 }
 
-// InvalidateUser removes all cache entries for a specific user
+// InvalidateUser removes all cache entries for a specific user, including all scoped variants
 func (m *Manager) InvalidateUser(username string) error {
 	if !m.isEnabled {
 		return nil
 	}
+
+	log.Printf("Invalidating all cache entries for user: %s", username)
 
 	// Define all possible cache types for a user
 	cacheTypes := []string{"profile", "repositories", "organizations", "contributions", "languages", "skills"}
 
 	var lastError error
 	for _, cacheType := range cacheTypes {
-		key := CacheKey{
-			Type:     cacheType,
-			Username: username,
-		}
+		// Use prefix-based deletion to remove all entries for this type and user
+		// This will match both unscoped (e.g., "profile_username") and
+		// scoped entries (e.g., "profile_username_scope:docker:alice,discourse:bob")
+		keyPrefix := cacheType + "_" + username
 
-		if err := m.Delete(key); err != nil {
+		if err := m.storage.DeleteByPrefix(keyPrefix); err != nil {
 			lastError = err
-			log.Printf("Warning: Failed to invalidate cache for %s: %v", key.String(), err)
+			log.Printf("Warning: Failed to invalidate cache with prefix %s: %v", keyPrefix, err)
 		}
+	}
+
+	if lastError == nil {
+		log.Printf("Successfully invalidated all cache entries for user: %s", username)
 	}
 
 	return lastError
