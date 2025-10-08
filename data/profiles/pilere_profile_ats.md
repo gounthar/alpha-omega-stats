@@ -7,14 +7,16 @@ TECHNICAL SKILLS
 
 Programming Languages: JavaScript, TypeScript, C++, Vim Script, C, Python, ColdFusion, Java, Go, Shell
 
+Cloud Platforms: Docker, Docker, Docker, Docker
+
 PROFESSIONAL EXPERIENCE
 
 Software Developer | 13 Years Active Development
 Career Level: Senior
 
 Key Achievements:
-- Developed and maintained 37 software repositories
-- Contributed 333 commits across 31 programming languages
+- Developed and maintained 39 software repositories
+- Contributed 367 commits across 31 programming languages
 - Received 1 community stars for open source contributions
 - Collaborated across 2 professional organizations
 - Demonstrated high-impact technical leadership and project ownership
@@ -56,10 +58,10 @@ JavaScript Development - Intermediate Level
 Experience: 9 projects, 10.0 years
 
 TypeScript Development - Intermediate Level
-Experience: 2 projects, 0.3 years
+Experience: 2 projects, 0.4 years
 
 C++ Development - Intermediate Level
-Experience: 8 projects, 8.3 years
+Experience: 8 projects, 8.4 years
 
 Vim Script Development - Intermediate Level
 Experience: 1 projects, 9.7 years

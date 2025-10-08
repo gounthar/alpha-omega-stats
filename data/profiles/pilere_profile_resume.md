@@ -5,8 +5,8 @@
 
 ## 📊 Contribution Overview
 
-- **572** total contributions across **13** years of active development
-- **37** repositories with **1** stars received
+- **637** total contributions across **13** years of active development
+- **39** repositories with **1** stars received
 - Active contributor in **2** organizations
 - Proficient in **31** programming languages
 - Career Level: **Senior**
@@ -60,6 +60,9 @@
 
 - **Language:** JavaScript | **Size:** 34.6 MB
 
+### [linkedin-profile-scraper](https://github.com/gounthar/linkedin-profile-scraper)
+- **Language:** Python | **Size:** 27.4 MB
+
 ### [cryptoGlance-web-app](https://github.com/pilere/cryptoGlance-web-app)
 **Description:** Self-hosted, PHP-based frontend interface for cgminer, MPOS pools, and other APIs, all in one responsive UI.
 
@@ -76,22 +79,21 @@
 - **Language:** C++ | **Size:** 19.8 MB
 - **Contributions:** 4 commits
 
-### [apis](https://github.com/pilere/apis)
-**Description:** OAuth Authorization as a Service
-
-- **Language:** Java | **Size:** 7.3 MB
-
 ## 🛠 Technical Skills
 
 ### Programming Languages
-- **JavaScript:** Intermediate (21.7% of codebase, 9 projects)
-- **TypeScript:** Intermediate (15.6% of codebase, 2 projects)
-- **C++:** Intermediate (14.9% of codebase, 8 projects)
-- **Vim Script:** Intermediate (12.6% of codebase, 1 projects)
-- **C:** Intermediate (10.5% of codebase, 4 projects)
-- **Python:** Intermediate (9.1% of codebase, 5 projects)
-- **ColdFusion:** Beginner (4.0% of codebase, 3 projects)
-- **Java:** Beginner (3.9% of codebase, 4 projects)
+- **JavaScript:** Intermediate (21.4% of codebase, 9 projects)
+- **TypeScript:** Intermediate (15.4% of codebase, 2 projects)
+- **C++:** Intermediate (14.7% of codebase, 8 projects)
+- **Vim Script:** Intermediate (12.4% of codebase, 1 projects)
+- **C:** Intermediate (10.4% of codebase, 4 projects)
+- **Python:** Intermediate (10.2% of codebase, 6 projects)
+- **ColdFusion:** Beginner (3.9% of codebase, 3 projects)
+- **Java:** Beginner (3.8% of codebase, 4 projects)
+
+### Technology Stack
+- **Cloud Platforms:** Docker, Docker, Docker, Docker
+- **DevOps & Tools:** Docker, Docker Buildx, Docker, Docker, Docker
 
 ## 🤝 Professional Insights
 
@@ -103,9 +105,9 @@
 ## 📈 Activity Timeline
 
 - **Most Active Period:** 2025
-- **Consistency Score:** 0.7/10
-- **Recent Activity:** Active in 2 repositories in the last 30 days
-- **Recommended Roles:** Frontend Developer, UI Developer
+- **Consistency Score:** 0.8/10
+- **Recent Activity:** Active in 4 repositories in the last 30 days
+- **Recommended Roles:** Frontend Developer, UI Developer, DevOps Engineer, Platform Engineer, SRE
 
 ---
-*Profile generated on October 5, 2025 | GitHub: [@pilere](https://github.com/pilere)*
+*Profile generated on October 8, 2025 | GitHub: [@pilere](https://github.com/pilere)*
