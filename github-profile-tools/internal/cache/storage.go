@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -113,14 +114,17 @@ func (fs *FileStorage) Get(key string) (*CacheResult, error) {
 
 // Set stores a cache entry
 func (fs *FileStorage) Set(key string, data interface{}, ttl time.Duration) error {
+	log.Printf("FileStorage.Set: Starting for key: %s", key)
 	fs.mutex.Lock()
 	defer fs.mutex.Unlock()
+	log.Printf("FileStorage.Set: Acquired mutex for key: %s", key)
 
 	// Use default TTL if none specified
 	if ttl == 0 {
 		ttl = fs.config.DefaultTTL
 	}
 
+	log.Printf("FileStorage.Set: Creating cache entry for key: %s with TTL: %v", key, ttl)
 	// Create cache entry
 	entry := &CacheEntry{
 		Key:        key,
@@ -131,13 +135,19 @@ func (fs *FileStorage) Set(key string, data interface{}, ttl time.Duration) erro
 		AccessedAt: time.Now(),
 		HitCount:   0,
 	}
+	log.Printf("FileStorage.Set: Cache entry created for key: %s", key)
 
 	// Calculate checksum for data integrity
+	log.Printf("FileStorage.Set: Calculating checksum for key: %s", key)
 	if checksum, err := fs.calculateChecksum(data); err == nil {
 		entry.Checksum = checksum
+		log.Printf("FileStorage.Set: Checksum calculated for key: %s", key)
+	} else {
+		log.Printf("FileStorage.Set: Failed to calculate checksum for key %s: %v", key, err)
 	}
 
 	filePath := fs.getFilePath(key)
+	log.Printf("FileStorage.Set: Writing to file: %s", filePath)
 
 	// Ensure directory exists
 	if err := os.MkdirAll(filepath.Dir(filePath), 0755); err != nil {
@@ -145,13 +155,16 @@ func (fs *FileStorage) Set(key string, data interface{}, ttl time.Duration) erro
 	}
 
 	// Write cache entry
+	log.Printf("FileStorage.Set: Calling writeCacheEntry for: %s", filePath)
 	if err := fs.writeCacheEntry(filePath, entry); err != nil {
 		return fmt.Errorf("failed to write cache entry: %w", err)
 	}
+	log.Printf("FileStorage.Set: writeCacheEntry completed for: %s", filePath)
 
 	fs.stats.TotalEntries++
 	fs.updateStats()
 
+	log.Printf("FileStorage.Set: Successfully stored cache for key: %s", key)
 	return nil
 }
 
@@ -168,6 +181,67 @@ func (fs *FileStorage) Delete(key string) error {
 
 	fs.stats.TotalEntries--
 	return nil
+}
+
+// DeleteByPrefix removes all cache entries whose keys start with the given prefix
+func (fs *FileStorage) DeleteByPrefix(keyPrefix string) error {
+	fs.mutex.Lock()
+	defer fs.mutex.Unlock()
+
+	var deletedCount int
+	var lastError error
+
+	// Walk through cache directory to find matching entries
+	err := filepath.Walk(fs.config.BaseDir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		// Skip directories and metadata files
+		if info.IsDir() || strings.HasSuffix(path, "_stats.json") {
+			return nil
+		}
+
+		// Extract the original key from the file path
+		// Files are stored as: <BaseDir>/<subdir>/<sanitized_key>.json[.gz]
+		filename := filepath.Base(path)
+		// Remove .gz extension if present
+		if strings.HasSuffix(filename, ".gz") {
+			filename = strings.TrimSuffix(filename, ".gz")
+		}
+		// Remove .json extension
+		filename = strings.TrimSuffix(filename, ".json")
+
+		// Reconstruct the original key by reversing the sanitization
+		// Note: This is a simple check - the sanitization replaces : with _
+		// So we check if the sanitized version starts with the sanitized prefix
+		sanitizedPrefix := strings.ReplaceAll(keyPrefix, "/", "_")
+		sanitizedPrefix = strings.ReplaceAll(sanitizedPrefix, "\\", "_")
+		sanitizedPrefix = strings.ReplaceAll(sanitizedPrefix, ":", "_")
+
+		if strings.HasPrefix(filename, sanitizedPrefix) {
+			if err := fs.deleteFile(path); err != nil {
+				lastError = err
+				log.Printf("Warning: Failed to delete cache file %s: %v", path, err)
+			} else {
+				deletedCount++
+			}
+		}
+
+		return nil
+	})
+
+	if err != nil {
+		return fmt.Errorf("failed to walk cache directory: %w", err)
+	}
+
+	// Update stats
+	fs.stats.TotalEntries -= int64(deletedCount)
+	if deletedCount > 0 {
+		log.Printf("Deleted %d cache entries matching prefix: %s", deletedCount, keyPrefix)
+	}
+
+	return lastError
 }
 
 // Clear removes all cache entries
