@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2794.veb_b_8d02f3648
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2812.vde3e22ec61c7
 [WARNING] Failed to build parent project for io.jenkins.plugins:coverage-parent:pom:2.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -178,6 +178,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ coverage ---
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -198,6 +199,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ coverage ---
+[INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -213,11 +215,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- javadoc:3.11.3:javadoc (default) @ coverage ---
 [WARNING] Javadoc 1.4+ doesn't support the -1.1 switch anymore. Ignore this option.
-[WARNING] Javadoc Warnings
-[WARNING] warning: unknown enum constant When.ALWAYS
-[WARNING] reason: class file for javax.annotation.meta.When not found
-[WARNING] warning: unknown enum constant When.MAYBE
-[WARNING] 2 warnings
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ coverage ---
 [INFO] Copying 80 resources from src/main/resources to target/classes
@@ -228,11 +225,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.0:compile (default-compile) @ coverage ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 61 source files with javac [debug parameters release 17] to target/classes
-[WARNING] Cannot find annotation method 'when()' in type 'javax.annotation.Nonnull': class file for javax.annotation.Nonnull not found
-[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
-  reason: class file for javax.annotation.meta.When not found
-[WARNING] Cannot find annotation method 'when()' in type 'javax.annotation.Nonnull'
-[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/CoverageSourcePrinter.java:[39,32] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/SourceCodeFacade.java:[67,61] removeEnd(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
 [WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/SourceCodePainter.java:[123,61] non-transient instance field of a serializable class declared with a non-serializable type
@@ -314,7 +306,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Exploding webapp...
 [INFO] Copy webapp webResources to /tmp/plugin-builds/coverage/plugin/target/coverage
 [INFO] Assembling webapp coverage in /tmp/plugin-builds/coverage/plugin/target/coverage
-[INFO] Bundling direct dependency coverage-model-0.56.0.jar
+[INFO] Bundling direct dependency coverage-model-0.57.0.jar
 [WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [coverage-model]. Review the bundled artifacts and add `<hpi.bundledArtifacts>coverage-model</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/coverage/plugin/target/coverage.hpi
 [INFO] Building jar: /tmp/plugin-builds/coverage/plugin/target/coverage.hpi
@@ -425,11 +417,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Coverage Plugin 2.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 21.172 s]
-[INFO] Coverage Plugin .................................... SUCCESS [01:09 min]
+[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 20.311 s]
+[INFO] Coverage Plugin .................................... SUCCESS [01:07 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:32 min
-[INFO] Finished at: 2025-10-07T02:50:21Z
+[INFO] Total time:  01:30 min
+[INFO] Finished at: 2025-10-14T02:51:39Z
 [INFO] ------------------------------------------------------------------------
