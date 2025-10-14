@@ -75,6 +75,7 @@ type RepositoryProfile struct {
 	ContributionStats ContributionStats `json:"contribution_stats"`
 	Organization      string            `json:"organization,omitempty"`
 	CollaboratorCount int               `json:"collaborator_count"`
+	DockerConfig      *DockerConfig     `json:"docker_config,omitempty"`
 }
 
 // ContributionStats represents user's contribution statistics to a repository
@@ -271,4 +272,39 @@ type DiscourseProfile struct {
 	ExpertiseAreas   []discourse.ExpertiseArea                   `json:"expertise_areas"`
 	MentorshipSignals discourse.MentorshipIndicators             `json:"mentorship_signals"`
 	CategoryActivity []discourse.CategoryEngagement              `json:"category_activity"`
+}
+
+// DockerConfig represents Docker-related configuration and complexity in a repository
+type DockerConfig struct {
+	HasDockerfile       bool                `json:"has_dockerfile"`
+	HasCompose          bool                `json:"has_compose"`
+	HasBakeFile         bool                `json:"has_bake_file"`
+	HasDockerIgnore     bool                `json:"has_docker_ignore"`
+	DockerFiles         []DockerFile        `json:"docker_files"`
+	ComposeFiles        []string            `json:"compose_files"`
+	BakeFiles           []string            `json:"bake_files"`
+	ComplexityScore     float64             `json:"complexity_score"`     // 0-10 scale
+	DockerPatterns      []string            `json:"docker_patterns"`      // detected patterns
+	ContainerExpertise  DockerExpertiseLevel `json:"container_expertise"`
+}
+
+// DockerFile represents information about a specific Dockerfile
+type DockerFile struct {
+	Path                string   `json:"path"`
+	BaseImage           string   `json:"base_image"`
+	IsMultiStage        bool     `json:"is_multi_stage"`
+	StageCount          int      `json:"stage_count"`
+	Instructions        []string `json:"instructions"`          // RUN, COPY, etc.
+	BestPractices       []string `json:"best_practices"`        // detected best practices
+	SecurityPatterns    []string `json:"security_patterns"`     // security-related patterns
+	OptimizationLevel   string   `json:"optimization_level"`    // basic, intermediate, advanced
+}
+
+// DockerExpertiseLevel represents the level of Docker expertise demonstrated in a repository
+type DockerExpertiseLevel struct {
+	Level               string   `json:"level"`                // beginner, intermediate, advanced, expert
+	Evidence            []string `json:"evidence"`             // specific evidence of expertise
+	TechnologiesUsed    []string `json:"technologies_used"`    // docker, compose, swarm, kubernetes, etc.
+	AdvancedPatterns    []string `json:"advanced_patterns"`    // multi-stage, distroless, init containers, etc.
+	ProductionReadiness bool     `json:"production_readiness"` // indicates production-level Docker usage
 }

@@ -43,11 +43,28 @@ func NewProfileCacheManager(cacheDir string, forceRefresh bool) (*ProfileCacheMa
 
 // GetUserProfile attempts to retrieve a complete user profile from cache
 func (pcm *ProfileCacheManager) GetUserProfile(username string) (*UserProfile, bool) {
+	return pcm.GetUserProfileWithCustomUsernames(username, username, username)
+}
+
+// GetUserProfileWithCustomUsernames retrieves a cached profile with custom Docker and Discourse usernames
+func (pcm *ProfileCacheManager) GetUserProfileWithCustomUsernames(username, dockerUsername, discourseUsername string) (*UserProfile, bool) {
 	if !pcm.isEnabled || pcm.forceRefresh {
 		return nil, false
 	}
 
-	key := pcm.cacheManager.GetUserProfileKey(username)
+	// Create scope from custom usernames to differentiate cache entries
+	scope := ""
+	if dockerUsername != username || discourseUsername != username {
+		scope = fmt.Sprintf("docker:%s,discourse:%s", dockerUsername, discourseUsername)
+	}
+
+	var key cache.CacheKey
+	if scope != "" {
+		key = pcm.cacheManager.GetUserProfileKeyWithScope(username, scope)
+	} else {
+		key = pcm.cacheManager.GetUserProfileKey(username)
+	}
+
 	result, err := pcm.cacheManager.Get(key)
 
 	if err != nil {
@@ -72,17 +89,45 @@ func (pcm *ProfileCacheManager) GetUserProfile(username string) (*UserProfile, b
 		return nil, false
 	}
 
-	log.Printf("Cache HIT for user profile: %s (age: %s)", username, time.Since(result.CreatedAt))
+	log.Printf("Cache HIT for user profile: %s (scope: %s, age: %s)", username, scope, time.Since(result.CreatedAt))
 	return &profile, true
 }
 
 // SetUserProfile stores a complete user profile in cache
 func (pcm *ProfileCacheManager) SetUserProfile(username string, profile *UserProfile) error {
+	dockerUsername := username
+	discourseUsername := username
+	if profile.DockerHubProfile != nil && profile.DockerHubProfile.Username != "" {
+		dockerUsername = profile.DockerHubProfile.Username
+	}
+	if profile.DiscourseProfile != nil && profile.DiscourseProfile.Username != "" {
+		discourseUsername = profile.DiscourseProfile.Username
+	}
+	return pcm.SetUserProfileWithCustomUsernames(username, dockerUsername, discourseUsername, profile)
+}
+
+// SetUserProfileWithCustomUsernames stores a complete user profile in cache with custom usernames
+func (pcm *ProfileCacheManager) SetUserProfileWithCustomUsernames(username, dockerUsername, discourseUsername string, profile *UserProfile) error {
 	if !pcm.isEnabled {
 		return nil
 	}
 
-	key := pcm.cacheManager.GetUserProfileKey(username)
+	// Create scope from custom usernames to differentiate cache entries
+	scope := ""
+	if dockerUsername != username || discourseUsername != username {
+		scope = fmt.Sprintf("docker:%s,discourse:%s", dockerUsername, discourseUsername)
+	}
+
+	var key cache.CacheKey
+	if scope != "" {
+		log.Printf("SetUserProfile: Getting cache key for %s with scope %s", username, scope)
+		key = pcm.cacheManager.GetUserProfileKeyWithScope(username, scope)
+	} else {
+		log.Printf("SetUserProfile: Getting cache key for %s", username)
+		key = pcm.cacheManager.GetUserProfileKey(username)
+	}
+
+	log.Printf("SetUserProfile: Calling Set with key: %s", key.String())
 	err := pcm.cacheManager.Set(key, profile, 0) // Use default TTL
 
 	if err != nil {
@@ -431,23 +476,45 @@ func WrapWithCache(analyzer *Analyzer, cacheDir string, forceRefresh bool) (*Cac
 
 // AnalyzeUser performs cached analysis of a GitHub user
 func (caa *CacheAwareAnalyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfile, error) {
-	// Try to get complete profile from cache first
-	if profile, hit := caa.cacheManager.GetUserProfile(username); hit {
-		log.Printf("Using complete cached profile for user: %s", username)
-		return profile, nil
+	return caa.AnalyzeUserWithDockerUsername(ctx, username, username)
+}
+
+func (caa *CacheAwareAnalyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, dockerUsername string) (*UserProfile, error) {
+	return caa.AnalyzeUserWithCustomUsernames(ctx, username, dockerUsername, "")
+}
+
+func (caa *CacheAwareAnalyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username, dockerUsername, discourseUsername string) (*UserProfile, error) {
+	// Use default usernames if not provided
+	if dockerUsername == "" {
+		dockerUsername = username
 	}
+	if discourseUsername == "" {
+		discourseUsername = username
+	}
+
+	// Try to get complete profile from cache first
+	// WORKAROUND: Temporarily disabled cache read due to hang on large gzip files
+	log.Printf("Skipping cache read for user: %s (workaround for cache hang)", username)
+	// if profile, hit := caa.cacheManager.GetUserProfileWithCustomUsernames(username, dockerUsername, discourseUsername); hit {
+	// 	log.Printf("Using complete cached profile for user: %s", username)
+	// 	return profile, nil
+	// }
 
 	// If not in cache or force refresh, perform full analysis
 	log.Printf("Performing fresh analysis for user: %s", username)
-	profile, err := caa.Analyzer.AnalyzeUser(ctx, username)
+	profile, err := caa.Analyzer.AnalyzeUserWithCustomUsernames(ctx, username, dockerUsername, discourseUsername)
 	if err != nil {
 		return nil, err
 	}
 
 	// Cache the complete profile
-	if err := caa.cacheManager.SetUserProfile(username, profile); err != nil {
-		log.Printf("Warning: Failed to cache profile for %s: %v", username, err)
-	}
+	// WORKAROUND: Temporarily disabled due to hang when writing large profiles
+	log.Printf("Skipping cache write for user: %s (workaround for large profile hang)", username)
+	// if err := caa.cacheManager.SetUserProfileWithCustomUsernames(username, dockerUsername, discourseUsername, profile); err != nil {
+	// 	log.Printf("Warning: Failed to cache profile for %s: %v", username, err)
+	// } else {
+	// 	log.Printf("Profile successfully cached for user: %s", username)
+	// }
 
 	return profile, nil
 }

@@ -12,7 +12,7 @@ Frameworks and Libraries: reactive, react, spring-boot, reactjs, spring-integrat
 
 Databases: redis, postgresql
 
-Cloud Platforms: docker, azure, aws, kubernetes, docker-image, docker-compose, aws-ecr, terraform, terraform-module, aws-ssm
+Cloud Platforms: azure, kubernetes, docker, aws, docker-image, Docker, Docker, Docker, Docker, Docker
 
 PROFESSIONAL EXPERIENCE
 
@@ -20,9 +20,10 @@ Software Developer | 17 Years Active Development
 Career Level: Principal
 
 Key Achievements:
-- Developed and maintained 4725 software repositories
-- Contributed 5494 commits across 104 programming languages
-- Received 103575 community stars for open source contributions
+- Developed and maintained 4726 software repositories
+- Created 37 Docker containers with 2.2M total downloads
+- Contributed 5557 commits across 104 programming languages
+- Received 103621 community stars for open source contributions
 - Collaborated across 19 professional organizations
 - Demonstrated high-impact technical leadership and project ownership
 
@@ -90,12 +91,12 @@ NOTABLE PROJECTS
 jenkins
 Description: Jenkins automation server
 Technology: Java
-Community Recognition: 24494 stars
+Community Recognition: 24504 stars
 
 docker
 Description: Docker official jenkins repo
 Technology: PowerShell
-Community Recognition: 7185 stars
+Community Recognition: 7186 stars
 
 pipeline-examples
 Description: A collection of examples, tips and tricks and snippets of scripting for the Jenkins Pipeline plugin
@@ -115,7 +116,7 @@ Community Recognition: 2757 stars
 TECHNICAL CERTIFICATIONS AND EXPERTISE
 
 Java Development - Advanced Level
-Experience: 3987 projects, 16.5 years
+Experience: 3988 projects, 16.5 years
 
 JavaScript Development - Intermediate Level
 Experience: 648 projects, 15.7 years
@@ -124,7 +125,7 @@ C++ Development - Intermediate Level
 Experience: 28 projects, 14.8 years
 
 HTML Development - Intermediate Level
-Experience: 2459 projects, 15.7 years
+Experience: 2460 projects, 15.7 years
 
 C Development - Intermediate Level
 Experience: 39 projects, 15.7 years
