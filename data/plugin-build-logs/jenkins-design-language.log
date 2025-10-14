@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for io.jenkins.blueocean:blueocean-parent:pom:1.27.22-SNAPSHOT
+[WARNING] Failed to build parent project for io.jenkins.blueocean:blueocean-parent:pom:1.27.24-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -36,7 +36,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] JIRA Integration for Blue Ocean                                    [hpi]
 [INFO] 
 [INFO] ---------------< io.jenkins.blueocean:blueocean-parent >----------------
-[INFO] Building Blue Ocean Parent 1.27.22-SNAPSHOT                       [1/22]
+[INFO] Building Blue Ocean Parent 1.27.24-SNAPSHOT                       [1/22]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
 [INFO] 
@@ -63,7 +63,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- flatten:1.7.2:flatten (flatten) @ blueocean-parent ---
-[INFO] Generating flattened POM of project io.jenkins.blueocean:blueocean-parent:pom:1.27.22-SNAPSHOT...
+[INFO] Generating flattened POM of project io.jenkins.blueocean:blueocean-parent:pom:1.27.24-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ blueocean-parent ---
 [INFO] 
@@ -92,10 +92,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ blueocean-parent ---
-[INFO] Installing /tmp/plugin-builds/jenkins-design-language/target/blueocean-parent-1.27.22-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/blueocean/blueocean-parent/1.27.22-SNAPSHOT/blueocean-parent-1.27.22-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/jenkins-design-language/target/blueocean-parent-1.27.24-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/blueocean/blueocean-parent/1.27.24-SNAPSHOT/blueocean-parent-1.27.24-SNAPSHOT.pom
 [INFO] 
 [INFO] ------------< io.jenkins.blueocean:jenkins-design-language >------------
-[INFO] Building Jenkins Design Language 1.27.22-SNAPSHOT                 [2/22]
+[INFO] Building Jenkins Design Language 1.27.24-SNAPSHOT                 [2/22]
 [INFO]   from jenkins-design-language/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
@@ -123,15 +123,508 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- frontend:1.15.1:install-node-and-npm (install node and npm) @ jenkins-design-language ---
 [INFO] Installing node version v10.13.0
-[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v10.13.0/node-v10.13.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz
-[INFO] No proxies configured
-[INFO] No proxy was configured, downloading directly
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp
-[INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary for Blue Ocean Parent 1.27.22-SNAPSHOT:
+[INFO] Copying node binary from /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp/node-v10.13.0-linux-x64/bin/node to /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node
+[INFO] Installed node locally.
+[INFO] Installing npm version 6.14.4
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node_modules
+[INFO] Installed npm locally.
 [INFO] 
-[INFO] Blue Ocean Parent .................................. SUCCESS [ 12.185 s]
-[INFO] Jenkins Design Language ............................ FAILURE [ 12.404 s]
+[INFO] --- frontend:1.15.1:npm (npm install) @ jenkins-design-language ---
+[INFO] Running 'npm install' in /tmp/plugin-builds/jenkins-design-language/jenkins-design-language
+[INFO] 
+[INFO] > node-sass@7.0.0 install /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass
+[INFO] > node scripts/install.js
+[INFO] 
+[INFO] Downloading binary from https://github.com/sass/node-sass/releases/download/v7.0.0/linux-x64-64_binding.node
+[INFO] Cannot download "https://github.com/sass/node-sass/releases/download/v7.0.0/linux-x64-64_binding.node": 
+[INFO] 
+[INFO] HTTP error 404 Not Found
+[INFO] 
+[INFO] Hint: If github.com is not accessible in your location
+[INFO]       try setting a proxy via HTTP_PROXY, e.g. 
+[INFO] 
+[INFO]       export HTTP_PROXY=http://example.com:1234
+[INFO] 
+[INFO] or configure npm proxy via
+[INFO] 
+[INFO]       npm config set proxy http://example.com:8080
+[INFO] 
+[INFO] > esbuild@0.15.7 postinstall /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/esbuild
+[INFO] > node install.js
+[INFO] 
+[INFO] 
+[INFO] > node-sass@7.0.0 postinstall /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass
+[INFO] > node scripts/build.js
+[INFO] 
+[INFO] Building: /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/bin/node-gyp.js rebuild --verbose --libsass_ext= --libsass_cflags= --libsass_ldflags= --libsass_library=
+[INFO] gyp info it worked if it ends with ok
+[INFO] gyp verb cli [ '/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node',
+[INFO] gyp verb cli   '/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/bin/node-gyp.js',
+[INFO] gyp verb cli   'rebuild',
+[INFO] gyp verb cli   '--verbose',
+[INFO] gyp verb cli   '--libsass_ext=',
+[INFO] gyp verb cli   '--libsass_cflags=',
+[INFO] gyp verb cli   '--libsass_ldflags=',
+[INFO] gyp verb cli   '--libsass_library=' ]
+[INFO] gyp info using node-gyp@7.1.2
+[INFO] gyp info using node@10.13.0 | linux | x64
+[INFO] gyp verb command rebuild []
+[INFO] gyp verb command clean []
+[INFO] gyp verb clean removing "build" directory
+[INFO] gyp verb command configure []
+[INFO] gyp verb find Python Python is not set from command line or npm configuration
+[INFO] gyp verb find Python Python is not set from environment variable PYTHON
+[INFO] gyp verb find Python checking if "python3" can be used
+[INFO] gyp verb find Python - executing "python3" to get executable path
+[INFO] gyp verb find Python - executable path is "/home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3"
+[INFO] gyp verb find Python - executing "/home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3" to get version
+[INFO] gyp verb find Python - version is "3.12.3"
+[INFO] gyp info find Python using Python version 3.12.3 found at "/home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3"
+[INFO] gyp verb get node dir no --target version specified, falling back to host node version: 10.13.0
+[INFO] gyp verb command install [ '10.13.0' ]
+[INFO] gyp verb install input version string "10.13.0"
+[INFO] gyp verb install installing version: 10.13.0
+[INFO] gyp verb install --ensure was passed, so won't reinstall if already installed
+[INFO] gyp verb install version is already installed, need to check "installVersion"
+[INFO] gyp verb got "installVersion" 0
+[INFO] gyp verb needs "installVersion" 9
+[INFO] gyp verb install version is no good; reinstalling
+[INFO] gyp verb ensuring nodedir is created /home/runner/.cache/node-gyp/10.13.0
+[INFO] gyp http GET https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz
+[INFO] gyp http 200 https://nodejs.org/download/release/v10.13.0/node-v10.13.0-headers.tar.gz
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/common.gypi
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/config.gypi
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/node.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/node_api.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/node_api_types.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/node_buffer.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/node_object_wrap.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/node_version.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-inspector-protocol.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-inspector.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-platform.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-profiler.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-testing.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-util.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-value-serializer-version.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-version-string.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8-version.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/v8config.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/zconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/zlib.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/aix.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/android-ifaddrs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/bsd.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/darwin.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/errno.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/linux.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/os390.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/posix.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/stdint-msvc2008.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/sunos.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/threadpool.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/tree.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/unix.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/version.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/uv/win.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/aes.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/asn1.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/asn1_mac.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/asn1t.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/async.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/bio.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/blowfish.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/bn.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/bn_conf_asm.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/bn_conf_no-asm.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/buffer.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/camellia.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/cast.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/cmac.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/cms.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/comp.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/conf_api.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/crypto.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ct.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/des.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/dh.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/dsa.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/dso_conf_asm.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/dso_conf_no-asm.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/dtls1.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/e_os2.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ebcdic.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ec.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ecdh.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ecdsa.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/engine.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/err.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/evp.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/hmac.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/idea.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/kdf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/lhash.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/md2.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/md4.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/md5.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/mdc2.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/modes.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/obj_mac.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/objects.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ocsp.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/opensslconf_asm.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/opensslconf_no-asm.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/opensslv.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ossl_typ.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/pem.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/pem2.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/pkcs12.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/pkcs7.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/rand.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/rc2.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/rc4.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/rc5.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ripemd.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/rsa.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/safestack.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/seed.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/sha.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/srp.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/srtp.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ssl.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ssl2.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ssl3.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/stack.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/symhacks.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/tls1.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ts.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/txt_db.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/ui.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/whrlpool.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/x509.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/x509_vfy.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/x509v3.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN64A/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/VC-WIN32/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris64-x86_64-gcc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/solaris-x86-gcc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux64-s390x/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux32-s390x/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x86_64/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-x32/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64le/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc64/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-ppc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-elf/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-armv4/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/linux-aarch64/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin64-x86_64-cc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/darwin-i386-cc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/BSD-x86_64/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix64-gcc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/no-asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/no-asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/no-asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/no-asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/no-asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/asm/include/progs.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/asm/include/openssl/opensslconf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/asm/crypto/buildinf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/asm/crypto/include/internal/bn_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/openssl/archs/aix-gcc/asm/crypto/include/internal/dso_conf.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/libplatform/libplatform-export.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/libplatform/libplatform.h
+[INFO] gyp verb extracted file from tarball node-v10.13.0/include/node/libplatform/v8-tracing.h
+[INFO] gyp verb content checksum node-v10.13.0-headers.tar.gz 33b1eb17ab4e03b43aea4abdccdc31872e3e345d190eeb64714f1cf5280d5732
+[INFO] gyp verb tarball done parsing tarball
+[INFO] gyp verb check download content checksum, need to download `SHASUMS256.txt`... 
+[INFO] gyp verb checksum url https://nodejs.org/download/release/v10.13.0/SHASUMS256.txt
+[INFO] gyp http GET https://nodejs.org/download/release/v10.13.0/SHASUMS256.txt
+[INFO] gyp http 200 https://nodejs.org/download/release/v10.13.0/SHASUMS256.txt
+[INFO] gyp verb checksum data {"node-v10.13.0-aix-ppc64.tar.gz":"9e8d0b86ef67ea2bf660a50f560ba8eb5b91665af7489c5ba8475708624dbd30","node-v10.13.0-darwin-x64.tar.gz":"815a5d18516934a3963ace9f0574f7d41f0c0ce9186a19be3d89e039e57598c5","node-v10.13.0-darwin-x64.tar.xz":"d84966a26e44b98c5408dbab7c67c02af327eb9a9012fee9827f69cd8b722766","node-v10.13.0-headers.tar.gz":"33b1eb17ab4e03b43aea4abdccdc31872e3e345d190eeb64714f1cf5280d5732","node-v10.13.0-headers.tar.xz":"6678b6280e3829132d4a5b21714c35162eb5666cf4c8a3be7214e8b78b165d71","node-v10.13.0-linux-arm64.tar.gz":"de4e92103d228f5a5d0e67f8a681b1bce63036776bb7a46e014fae072d188036","node-v10.13.0-linux-arm64.tar.xz":"1537ebe64dc34a2a9b8ab6254213079789e9d59ed0ed26987afb1da37b6a8f87","node-v10.13.0-linux-armv6l.tar.gz":"6b99f473dbfeebf4d0360a70bc9d7566dd6a3a229714d7fcf1b72cb7639bf1e7","node-v10.13.0-linux-armv6l.tar.xz":"c170b4a8ad0e2f6518bfc01c7419fb47180118e39596c015049f0979215a0437","node-v10.13.0-linux-armv7l.tar.gz":"5c888b9e7f0438e0eb811988348917d1e7ca9ea17152d36d72752d3d73b7e9a7","node-v10.13.0-linux-armv7l.tar.xz":"43891e40147ac15fca955174c2556a7be38c4cec006daf824fe05bb3609be684","node-v10.13.0-linux-ppc64le.tar.gz":"41fb140bc0e345df13647dc7f1622fcfac2c68bb91260fc353b5f693bfbcb0b1","node-v10.13.0-linux-ppc64le.tar.xz":"e4df6165d68e5a59cfed6ba4a60f4d316f5ecdc2cd5f0ed0a1cac46d4679e74b","node-v10.13.0-linux-s390x.tar.gz":"3939987f3ae563fa9c43c1a25256c92fb3c3ba5c80ee5578bd5a1e94d3428b0f","node-v10.13.0-linux-s390x.tar.xz":"5b7c867ab5ec11f4e038ec381bcba9f346da8b8ec2bb099541e6a22a7602c763","node-v10.13.0-linux-x64.tar.gz":"b4b5d8f73148dcf277df413bb16827be476f4fa117cbbec2aaabc8cc0a8588e1","node-v10.13.0-linux-x64.tar.xz":"0dc6dba645550b66f8f00541a428c29da7c3cde32fb7eda2eb626a9db3bbf08d","node-v10.13.0.pkg":"4246d8ceafe3c5f8b3a5012b2fccc030e788a263d71eb83620397f25e001fc59","node-v10.13.0-sunos-x64.tar.gz":"3412f5d348f3693e25be4014badb8b607ed57db460eb1158ab673003541487e7","node-v10.13.0-sunos-x64.tar.xz":"bb0f3f4035c11ea8e26df231399476f9aa417c91af8b5c920e8639030bd260f3","node-v10.13.0.tar.gz":"aa06825fff375ece7c0d881ae0de5d402a857e8cabff9b4a50f2f0b7b44906be","node-v10.13.0.tar.xz":"8d80c96a0c28fb508c90de474b1967acd800896f184b8a18235a7e4613fae641","node-v10.13.0-win-x64.7z":"8de84e68f79c7f399d31e03a25d08ecef9f72facc971e613f7cd70a8e4896fed","node-v10.13.0-win-x64.zip":"eb09c9e9677f1919ec1ca78623c09b2a718ec5388b72b7662d5c41e5f628a52c","node-v10.13.0-win-x86.7z":"25736103dfc0aea43c960324b686008ab357d600518f7ff7f38429cf453f12f9","node-v10.13.0-win-x86.zip":"487bcae322a07d46aaad8d0cf0a33ee8c71cee8b9ea77fd78a1724a122443ae7","node-v10.13.0-x64.msi":"a4810c4198d358bdc789a22e52fd86cb49cb9f7585f62215c6b9d0797b55113a","node-v10.13.0-x86.msi":"9f9ff8b4b4dce9c52ee5cd777d444d008932a196254db5be48b954106b1ba096","win-x64/node.exe":"0bc0b675da429e09c9832123fd45e1a1721f3f68b3a201b7bd66466a9e9311b4","win-x64/node.lib":"c5126b09691549bbb4bc0a8bce1bf104dd872ade502421787f3d24b1d03d63b0","win-x64/node_pdb.7z":"f6f29280602f0d4442ea81f20857e6583fd7a474db98ab8a7305c34435694eb3","win-x64/node_pdb.zip":"58aa732ab9bffd272da366dc4eb2ed7eb559c791162ebf3f408881f739e316ef","win-x86/node.exe":"cc4784d620f026366b936e711023c54a45d37c04c84fc9de7b72c7e611ba843e","win-x86/node.lib":"bfbb48de49910400e871567f5b27767bfb75e241e351fd2e5e754d28885d111f","win-x86/node_pdb.7z":"17a01c8e945712798e14344a1ab42ef580c278be75e31ec5f8746ee131247168","win-x86/node_pdb.zip":"b0500f2397cd72c12b3b62d560748a153a50a62aab93616672ec224b43985718"}
+[INFO] gyp verb download contents checksum {"node-v10.13.0-headers.tar.gz":"33b1eb17ab4e03b43aea4abdccdc31872e3e345d190eeb64714f1cf5280d5732"}
+[INFO] gyp verb validating download checksum for node-v10.13.0-headers.tar.gz (33b1eb17ab4e03b43aea4abdccdc31872e3e345d190eeb64714f1cf5280d5732 == 33b1eb17ab4e03b43aea4abdccdc31872e3e345d190eeb64714f1cf5280d5732)
+[INFO] gyp verb get node dir target node version installed: 10.13.0
+[INFO] gyp verb build dir attempting to create "build" dir: /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass/build
+[INFO] gyp verb build dir "build" dir needed to be created? undefined
+[INFO] gyp verb build/config.gypi creating config file
+[INFO] gyp verb build/config.gypi writing out config file: /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass/build/config.gypi
+[INFO] gyp verb config.gypi checking for gypi file: /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass/config.gypi
+[INFO] gyp verb common.gypi checking for gypi file: /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass/common.gypi
+[INFO] gyp verb gyp gyp format was not specified; forcing "make"
+[INFO] gyp info spawn /home/runner/work/alpha-omega-stats/alpha-omega-stats/venv/bin/python3
+[INFO] gyp info spawn args [ '/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/gyp/gyp_main.py',
+[INFO] gyp info spawn args   'binding.gyp',
+[INFO] gyp info spawn args   '-f',
+[INFO] gyp info spawn args   'make',
+[INFO] gyp info spawn args   '-I',
+[INFO] gyp info spawn args   '/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass/build/config.gypi',
+[INFO] gyp info spawn args   '-I',
+[INFO] gyp info spawn args   '/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/addon.gypi',
+[INFO] gyp info spawn args   '-I',
+[INFO] gyp info spawn args   '/home/runner/.cache/node-gyp/10.13.0/include/node/common.gypi',
+[INFO] gyp info spawn args   '-Dlibrary=shared_library',
+[INFO] gyp info spawn args   '-Dvisibility=default',
+[INFO] gyp info spawn args   '-Dnode_root_dir=/home/runner/.cache/node-gyp/10.13.0',
+[INFO] gyp info spawn args   '-Dnode_gyp_dir=/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp',
+[INFO] gyp info spawn args   '-Dnode_lib_file=/home/runner/.cache/node-gyp/10.13.0/<(target_arch)/node.lib',
+[INFO] gyp info spawn args   '-Dmodule_root_dir=/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass',
+[INFO] gyp info spawn args   '-Dnode_engine=v8',
+[INFO] gyp info spawn args   '--depth=.',
+[INFO] gyp info spawn args   '--no-parallel',
+[INFO] gyp info spawn args   '--generator-output',
+[INFO] gyp info spawn args   'build',
+[INFO] gyp info spawn args   '-Goutput_dir=.' ]
+[INFO] Traceback (most recent call last):
+[INFO]   File "/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/gyp/gyp_main.py", line 48, in <module>
+[INFO]     import gyp  # noqa: E402
+[INFO]     ^^^^^^^^^^
+[INFO]   File "/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/gyp/pylib/gyp/__init__.py", line 10, in <module>
+[INFO]     import gyp.input
+[INFO]   File "/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/gyp/pylib/gyp/input.py", line 20, in <module>
+[INFO]     from distutils.version import StrictVersion
+[INFO] ModuleNotFoundError: No module named 'distutils'
+[INFO] gyp ERR! configure error 
+[INFO] gyp ERR! stack Error: `gyp` failed with exit code: 1
+[INFO] gyp ERR! stack     at ChildProcess.onCpExit (/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/lib/configure.js:351:16)
+[INFO] gyp ERR! stack     at ChildProcess.emit (events.js:182:13)
+[INFO] gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:240:12)
+[INFO] gyp ERR! System Linux 6.11.0-1018-azure
+[INFO] gyp ERR! command "/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node" "/tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-gyp/bin/node-gyp.js" "rebuild" "--verbose" "--libsass_ext=" "--libsass_cflags=" "--libsass_ldflags=" "--libsass_library="
+[INFO] gyp ERR! cwd /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node_modules/node-sass
+[INFO] gyp ERR! node -v v10.13.0
+[INFO] gyp ERR! node-gyp -v v7.1.2
+[INFO] gyp ERR! not ok 
+[INFO] Build failed with error code: 1
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: @esbuild/linux-loong64@0.15.7 (node_modules/@esbuild/linux-loong64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for @esbuild/linux-loong64@0.15.7: wanted {"os":"linux","arch":"loong64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@2.3.3 (node_modules/sass/node_modules/fsevents):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@2.3.3: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.13 (node_modules/fsevents):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-windows-arm64@0.15.7 (node_modules/esbuild-windows-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-windows-arm64@0.15.7: wanted {"os":"win32","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-windows-64@0.15.7 (node_modules/esbuild-windows-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-windows-64@0.15.7: wanted {"os":"win32","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-windows-32@0.15.7 (node_modules/esbuild-windows-32):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-windows-32@0.15.7: wanted {"os":"win32","arch":"ia32"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-sunos-64@0.15.7 (node_modules/esbuild-sunos-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-sunos-64@0.15.7: wanted {"os":"sunos","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-openbsd-64@0.15.7 (node_modules/esbuild-openbsd-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-openbsd-64@0.15.7: wanted {"os":"openbsd","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-netbsd-64@0.15.7 (node_modules/esbuild-netbsd-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-netbsd-64@0.15.7: wanted {"os":"netbsd","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-s390x@0.15.7 (node_modules/esbuild-linux-s390x):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-s390x@0.15.7: wanted {"os":"linux","arch":"s390x"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-riscv64@0.15.7 (node_modules/esbuild-linux-riscv64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-riscv64@0.15.7: wanted {"os":"linux","arch":"riscv64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-ppc64le@0.15.7 (node_modules/esbuild-linux-ppc64le):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-ppc64le@0.15.7: wanted {"os":"linux","arch":"ppc64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-mips64le@0.15.7 (node_modules/esbuild-linux-mips64le):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-mips64le@0.15.7: wanted {"os":"linux","arch":"mips64el"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-arm64@0.15.7 (node_modules/esbuild-linux-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-arm64@0.15.7: wanted {"os":"linux","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-arm@0.15.7 (node_modules/esbuild-linux-arm):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-arm@0.15.7: wanted {"os":"linux","arch":"arm"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-linux-32@0.15.7 (node_modules/esbuild-linux-32):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-linux-32@0.15.7: wanted {"os":"linux","arch":"ia32"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-freebsd-arm64@0.15.7 (node_modules/esbuild-freebsd-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-freebsd-arm64@0.15.7: wanted {"os":"freebsd","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-freebsd-64@0.15.7 (node_modules/esbuild-freebsd-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-freebsd-64@0.15.7: wanted {"os":"freebsd","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-darwin-arm64@0.15.7 (node_modules/esbuild-darwin-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-darwin-arm64@0.15.7: wanted {"os":"darwin","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-darwin-64@0.15.7 (node_modules/esbuild-darwin-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-darwin-64@0.15.7: wanted {"os":"darwin","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-android-arm64@0.15.7 (node_modules/esbuild-android-arm64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-android-arm64@0.15.7: wanted {"os":"android","arch":"arm64"} (current: {"os":"linux","arch":"x64"})
+[INFO] npm WARN optional SKIPPING OPTIONAL DEPENDENCY: esbuild-android-64@0.15.7 (node_modules/esbuild-android-64):
+[INFO] npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for esbuild-android-64@0.15.7: wanted {"os":"android","arch":"x64"} (current: {"os":"linux","arch":"x64"})
+[INFO] 
+[INFO] npm ERR! code ELIFECYCLE
+[INFO] npm ERR! errno 1
+[INFO] npm ERR! node-sass@7.0.0 postinstall: `node scripts/build.js`
+[INFO] npm ERR! Exit status 1
+[INFO] npm ERR! 
+[INFO] npm ERR! Failed at the node-sass@7.0.0 postinstall script.
+[INFO] npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+[INFO] 
+[INFO] npm ERR! A complete log of this run can be found in:
+[INFO] npm ERR!     /home/runner/.npm/_logs/2025-10-14T02_15_08_407Z-debug.log
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Blue Ocean Parent 1.27.24-SNAPSHOT:
+[INFO] 
+[INFO] Blue Ocean Parent .................................. SUCCESS [ 10.311 s]
+[INFO] Jenkins Design Language ............................ FAILURE [01:18 min]
 [INFO] Blue Ocean Core JS ................................. SKIPPED
 [INFO] Common API for Blue Ocean .......................... SKIPPED
 [INFO] REST API for Blue Ocean ............................ SKIPPED
@@ -155,10 +648,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  26.594 s
-[INFO] Finished at: 2025-10-07T02:12:56Z
+[INFO] Total time:  01:31 min
+[INFO] Finished at: 2025-10-14T02:15:08Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:install-node-and-npm (install node and npm) on project jenkins-design-language: Could not extract the Node archive: Could not extract archive: '/home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz': /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz (No such file or directory) -> [Help 1]
+[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:npm (npm install) on project jenkins-design-language: Failed to run task: 'npm install' failed. org.apache.commons.exec.ExecuteException: Process exited with an error: 1 (Exit value: 1) -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
