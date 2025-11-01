@@ -2,6 +2,7 @@ package markdown
 
 import (
 	"fmt"
+	"log"
 	"sort"
 	"strings"
 	"time"
@@ -362,7 +363,9 @@ func (g *Generator) generateTechnicalTemplate(prof *profile.UserProfile) string 
 	md.WriteString("### Language Proficiency Analysis\n\n")
 
 	for _, lang := range prof.Languages {
-		if lang.Percentage < 1 { // Skip languages with very low usage
+		// Skip languages with very low usage, but always include Dockerfile if it exists
+		isDockerfile := strings.ToLower(lang.Language) == "dockerfile"
+		if lang.Percentage < 1 && !isDockerfile {
 			continue
 		}
 
@@ -374,6 +377,36 @@ func (g *Generator) generateTechnicalTemplate(prof *profile.UserProfile) string 
 			yearsUsed, lang.ProjectCount))
 		md.WriteString(fmt.Sprintf("- **Proficiency Score:** %.1f/10\n", lang.ProficiencyScore*10))
 		md.WriteString("\n")
+	}
+
+	// Add Docker/Dockerfile if containerization expertise exists but wasn't detected as a language
+	// (can happen when REST API rate limits prevent file content analysis)
+	hasDockerLanguage := false
+	for _, lang := range prof.Languages {
+		if strings.ToLower(lang.Language) == "dockerfile" {
+			hasDockerLanguage = true
+			break
+		}
+	}
+
+	log.Printf("Checking for Docker language: hasDockerLanguage=%v, technical_areas_count=%d", hasDockerLanguage, len(prof.Skills.TechnicalAreas))
+
+	if !hasDockerLanguage {
+		for _, area := range prof.Skills.TechnicalAreas {
+			log.Printf("Checking technical area: %s, project_count=%d", area.Area, area.ProjectCount)
+			if area.Area == "Containerization" && area.ProjectCount > 0 {
+				log.Printf("Adding Dockerfile language section from containerization data")
+				md.WriteString("#### Dockerfile\n")
+				md.WriteString(fmt.Sprintf("- **Usage:** Docker/containerization expertise across %d projects\n", area.ProjectCount))
+				md.WriteString(fmt.Sprintf("- **Experience:** %.1f years (%d projects)\n", area.YearsActive, area.ProjectCount))
+				md.WriteString(fmt.Sprintf("- **Proficiency Score:** %.1f/10\n", area.Competency*10))
+				if len(area.Technologies) > 0 {
+					md.WriteString(fmt.Sprintf("- **Technologies:** %s\n", strings.Join(area.Technologies, ", ")))
+				}
+				md.WriteString("\n")
+				break
+			}
+		}
 	}
 
 	// Repository Analysis

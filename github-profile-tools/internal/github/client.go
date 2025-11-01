@@ -20,9 +20,9 @@ import (
 
 const (
 	githubGraphQLEndpoint = "https://api.github.com/graphql"
-	maxRetries           = 5
-	baseDelay            = 2 * time.Second
-	maxDelay             = 5 * time.Minute
+	maxRetries           = 8  // Increased for better resilience
+	baseDelay            = 3 * time.Second  // Longer initial delay
+	maxDelay             = 10 * time.Minute // Longer max delay for infrastructure issues
 )
 
 // RateLimitInfo tracks GitHub API rate limit status
@@ -124,8 +124,15 @@ func (c *Client) executeWithRetry(ctx context.Context, operation func() error) e
 
 	for attempt := 0; attempt < maxRetries; attempt++ {
 		if attempt > 0 {
-			delay := calculateBackoffDuration(attempt)
-			log.Printf("Retrying in %v (attempt %d/%d)", delay, attempt+1, maxRetries)
+			// Use appropriate backoff strategy based on previous error
+			var delay time.Duration
+			if isInfrastructureError(lastErr) {
+				delay = calculateBackoffDurationForInfrastructureError(attempt)
+				log.Printf("Infrastructure error detected, using extended backoff: %v (attempt %d/%d)", delay, attempt+1, maxRetries)
+			} else {
+				delay = calculateBackoffDuration(attempt)
+				log.Printf("Retrying in %v (attempt %d/%d)", delay, attempt+1, maxRetries)
+			}
 
 			select {
 			case <-time.After(delay):
@@ -161,10 +168,12 @@ func (c *Client) executeWithRetry(ctx context.Context, operation func() error) e
 
 // executeGraphQLRequest performs the actual GraphQL request
 func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest, result interface{}) error {
+	log.Printf("Marshaling GraphQL request...")
 	jsonData, err := json.Marshal(req)
 	if err != nil {
 		return fmt.Errorf("failed to marshal GraphQL request: %w", err)
 	}
+	log.Printf("GraphQL request marshaled, size: %d bytes", len(jsonData))
 
 	httpReq, err := http.NewRequestWithContext(ctx, "POST", c.endpoint, bytes.NewBuffer(jsonData))
 	if err != nil {
@@ -173,6 +182,7 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 
 	httpReq.Header.Set("Content-Type", "application/json")
 
+	log.Printf("Sending HTTP request to GitHub API...")
 	resp, err := c.httpClient.Do(httpReq)
 	if err != nil {
 		return &RetryableError{
@@ -181,14 +191,17 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		}
 	}
 	defer resp.Body.Close()
+	log.Printf("HTTP response received, status: %d", resp.StatusCode)
 
 	// Parse and update rate limit information from headers
 	c.updateRateLimitFromHeaders(resp.Header)
 
+	log.Printf("Reading response body...")
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return fmt.Errorf("failed to read response body: %w", err)
 	}
+	log.Printf("Response body read, size: %d bytes", len(body))
 
 	// Handle HTTP errors
 	if resp.StatusCode != http.StatusOK {
@@ -226,10 +239,12 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		return fmt.Errorf("HTTP %d: %s", resp.StatusCode, string(body))
 	}
 
+	log.Printf("Unmarshaling GraphQL response envelope...")
 	var graphqlResp GraphQLResponse
 	if err := json.Unmarshal(body, &graphqlResp); err != nil {
 		return fmt.Errorf("failed to unmarshal GraphQL response: %w", err)
 	}
+	log.Printf("GraphQL response envelope unmarshaled successfully")
 
 	// Handle GraphQL errors
 	if len(graphqlResp.Errors) > 0 {
@@ -244,9 +259,11 @@ func (c *Client) executeGraphQLRequest(ctx context.Context, req *GraphQLRequest,
 		return fmt.Errorf("GraphQL errors: %+v", graphqlResp.Errors)
 	}
 
+	log.Printf("Unmarshaling GraphQL data into result structure (size: %d bytes)...", len(graphqlResp.Data))
 	if err := json.Unmarshal(graphqlResp.Data, result); err != nil {
 		return fmt.Errorf("failed to unmarshal GraphQL data: %w", err)
 	}
+	log.Printf("GraphQL data unmarshaled successfully into result")
 
 	return nil
 }
@@ -258,8 +275,23 @@ func calculateBackoffDuration(attempt int) time.Duration {
 		delay = maxDelay
 	}
 
-	// Add jitter (up to 10% of delay)
-	jitter := time.Duration(rand.Float64() * 0.1 * float64(delay))
+	// Add jitter (up to 20% of delay) for better distribution
+	jitter := time.Duration(rand.Float64() * 0.2 * float64(delay))
+	return delay + jitter
+}
+
+// calculateBackoffDurationForInfrastructureError calculates longer backoff for infrastructure errors
+func calculateBackoffDurationForInfrastructureError(attempt int) time.Duration {
+	// Use longer base delay for infrastructure issues
+	infrastructureBaseDelay := 10 * time.Second
+	delay := infrastructureBaseDelay * time.Duration(1<<uint(attempt))
+
+	if delay > maxDelay {
+		delay = maxDelay
+	}
+
+	// Add jitter (up to 30% of delay)
+	jitter := time.Duration(rand.Float64() * 0.3 * float64(delay))
 	return delay + jitter
 }
 
@@ -268,6 +300,56 @@ func isRetryableError(err error) bool {
 	if _, ok := err.(*RetryableError); ok {
 		return true
 	}
+
+	// Check error message for common retryable patterns
+	errMsg := strings.ToLower(err.Error())
+
+	// Stream cancellation errors are retryable
+	if strings.Contains(errMsg, "stream error") && strings.Contains(errMsg, "cancel") {
+		return true
+	}
+
+	// Connection errors are retryable
+	if strings.Contains(errMsg, "connection reset") ||
+	   strings.Contains(errMsg, "connection refused") ||
+	   strings.Contains(errMsg, "network is unreachable") ||
+	   strings.Contains(errMsg, "no such host") ||
+	   strings.Contains(errMsg, "timeout") ||
+	   strings.Contains(errMsg, "eof") {
+		return true
+	}
+
+	// HTTP transport errors
+	if strings.Contains(errMsg, "transport") || strings.Contains(errMsg, "dial") {
+		return true
+	}
+
+	return false
+}
+
+// isInfrastructureError determines if an error is likely an infrastructure issue requiring longer backoff
+func isInfrastructureError(err error) bool {
+	if err == nil {
+		return false
+	}
+
+	errMsg := strings.ToLower(err.Error())
+
+	// HTTP 502 Bad Gateway and similar infrastructure errors
+	if strings.Contains(errMsg, "502") || strings.Contains(errMsg, "bad gateway") {
+		return true
+	}
+
+	// Stream cancellation often indicates infrastructure issues
+	if strings.Contains(errMsg, "stream error") && strings.Contains(errMsg, "cancel") {
+		return true
+	}
+
+	// DNS/network infrastructure issues
+	if strings.Contains(errMsg, "no such host") || strings.Contains(errMsg, "network is unreachable") {
+		return true
+	}
+
 	return false
 }
 
@@ -474,4 +556,106 @@ func (c *Client) GetRateLimitStatus() RateLimitInfo {
 		Used:      c.rateLimitInfo.Used,
 		Resource:  c.rateLimitInfo.Resource,
 	}
+}
+
+// RepositoryContentResponse represents GitHub REST API response for repository contents
+type RepositoryContentResponse struct {
+	Name        string `json:"name"`
+	Path        string `json:"path"`
+	Type        string `json:"type"`
+	Size        int    `json:"size"`
+	DownloadURL string `json:"download_url"`
+	Content     string `json:"content"`
+	Encoding    string `json:"encoding"`
+}
+
+// FetchRepositoryContents fetches repository root directory contents via REST API
+func (c *Client) FetchRepositoryContents(ctx context.Context, owner, repo string) ([]RepositoryContentResponse, error) {
+	var contents []RepositoryContentResponse
+
+	err := c.executeWithRetry(ctx, func() error {
+		url := fmt.Sprintf("https://api.github.com/repos/%s/%s/contents", owner, repo)
+
+		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+		if err != nil {
+			return fmt.Errorf("failed to create request: %w", err)
+		}
+
+		// Add authorization header if we have a token
+		if c.httpClient.Transport != nil {
+			if _, ok := c.httpClient.Transport.(*oauth2.Transport); ok {
+				// The oauth2 transport will automatically add the Authorization header
+			}
+		}
+
+		req.Header.Set("Accept", "application/vnd.github.v3+json")
+		req.Header.Set("User-Agent", "github-profile-tools/1.0")
+
+		resp, err := c.httpClient.Do(req)
+		if err != nil {
+			return &RetryableError{
+				Err:       fmt.Errorf("failed to execute request: %w", err),
+				ShouldLog: true,
+			}
+		}
+		defer resp.Body.Close()
+
+		// Parse and update rate limit information from headers
+		c.updateRateLimitFromHeaders(resp.Header)
+
+		if resp.StatusCode == 404 {
+			// Repository not found or contents are empty
+			contents = []RepositoryContentResponse{}
+			return nil
+		}
+
+		body, readErr := io.ReadAll(resp.Body)
+		if readErr != nil {
+			return fmt.Errorf("failed to read response body: %w", readErr)
+		}
+
+		if resp.StatusCode != 200 {
+			// Handle rate limit errors (403)
+			if resp.StatusCode == 403 {
+				c.rateLimitInfo.mutex.RLock()
+				remaining := c.rateLimitInfo.Remaining
+				resetTime := c.rateLimitInfo.ResetTime
+				c.rateLimitInfo.mutex.RUnlock()
+
+				if remaining <= 0 ||
+					contains(strings.ToLower(string(body)), "rate limit") ||
+					contains(strings.ToLower(string(body)), "api rate limit exceeded") {
+
+					log.Printf("GitHub REST API rate limit exceeded (HTTP 403)")
+					// Calculate wait duration until rate limit resets
+					waitDuration := time.Until(resetTime)
+					if waitDuration > 0 {
+						log.Printf("Waiting %v until rate limit resets at %v", waitDuration, resetTime)
+						select {
+						case <-time.After(waitDuration + 10*time.Second):
+							// Add 10 seconds buffer after reset
+						case <-ctx.Done():
+							return ctx.Err()
+						}
+					}
+
+					return &RetryableError{
+						Err:       fmt.Errorf("GitHub REST API rate limit exceeded, reset at %v", resetTime),
+						ShouldLog: true,
+					}
+				}
+			}
+
+			// Other HTTP errors
+			return fmt.Errorf("GitHub API returned status %d: %s", resp.StatusCode, string(body))
+		}
+
+		if err := json.Unmarshal(body, &contents); err != nil {
+			return fmt.Errorf("failed to unmarshal response: %w", err)
+		}
+
+		return nil
+	})
+
+	return contents, err
 }

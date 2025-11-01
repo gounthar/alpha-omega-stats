@@ -6,7 +6,7 @@
 
 #### Java
 - **Usage:** 52.3% of total codebase (0 lines)
-- **Experience:** 16.5 years (3987 projects)
+- **Experience:** 16.5 years (3988 projects)
 - **Proficiency Score:** 10.0/10
 
 #### JavaScript
@@ -21,7 +21,7 @@
 
 #### HTML
 - **Usage:** 4.3% of total codebase (0 lines)
-- **Experience:** 15.7 years (2459 projects)
+- **Experience:** 15.7 years (2460 projects)
 - **Proficiency Score:** 7.1/10
 
 #### C
@@ -45,7 +45,7 @@
 - **Proficiency Score:** 5.9/10
 
 #### Go
-- **Usage:** 2.6% of total codebase (0 lines)
+- **Usage:** 2.7% of total codebase (0 lines)
 - **Experience:** 14.8 years (55 projects)
 - **Proficiency Score:** 5.1/10
 
@@ -74,25 +74,31 @@
 - **Experience:** 5.7 years (1 projects)
 - **Proficiency Score:** 1.9/10
 
+#### Dockerfile
+- **Usage:** 0.0% of total codebase (0 lines)
+- **Experience:** 15.7 years (201 projects)
+- **Proficiency Score:** 5.4/10
+
 ## 📊 Repository Analysis
 
-- **Repository Ownership:** 1515 owned, 3210 contributed
-- **Community Impact:** 103575 stars, 132874 forks received
-- **Code Volume:** 0 total lines across 4725 repositories
+- **Repository Ownership:** 1503 owned, 3223 contributed
+- **Community Impact:** 103621 stars, 132893 forks received
+- **Code Volume:** 0 total lines across 4726 repositories
 
 ### Technical Expertise Areas
 
-- **Ml:** 10.0/10 competency (262 projects, 0.2 years active)
-- **Backend:** 10.0/10 competency (250 projects, 12.1 years active)
+- **Backend:** 10.0/10 competency (250 projects, 1.8 years active)
+- **Ml:** 10.0/10 competency (262 projects, 6.0 years active)
 - **Mobile:** 10.0/10 competency (54 projects, 3.3 years active)
 - **Data:** 10.0/10 competency (9 projects, 2.1 years active)
 - **Architecture:** 10.0/10 competency (10 projects, 4.5 years active)
+- **Containerization:** 9.5/10 competency (142 projects, 1.0 years active)
 
 ## 🚀 Project Portfolio
 
 ### Java Projects
 
-- **[jenkins](https://github.com/jenkinsci/jenkins)** ⭐ 24494
+- **[jenkins](https://github.com/jenkinsci/jenkins)** ⭐ 24504
   - Jenkins automation server
   - Technologies: continuous-integration, continuous-delivery, continuous-deployment, java, groovy, jenkins, pipelines-as-code, devops, cicd, hacktoberfest
 - **[blueocean-plugin](https://github.com/jenkinsci/blueocean-plugin)** ⭐ 2891

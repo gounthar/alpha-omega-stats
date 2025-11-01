@@ -38,6 +38,15 @@ func NewAnalyzer(githubToken string) *Analyzer {
 
 // AnalyzeUser performs comprehensive analysis of a GitHub user
 func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfile, error) {
+	return a.AnalyzeUserWithDockerUsername(ctx, username, username)
+}
+
+// AnalyzeUserWithDockerUsername performs comprehensive analysis with separate Docker username
+func (a *Analyzer) AnalyzeUserWithDockerUsername(ctx context.Context, username, dockerUsername string) (*UserProfile, error) {
+	return a.AnalyzeUserWithCustomUsernames(ctx, username, dockerUsername, "")
+}
+
+func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username, dockerUsername, discourseUsername string) (*UserProfile, error) {
 	log.Printf("Starting analysis for user: %s", username)
 
 	// First, try to load from cache (completed analysis)
@@ -66,30 +75,34 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 		}
 	}
 
-	// Step 2: Fetch user repositories
+	// Step 2: Fetch user repositories (incremental, continues with partial data on error)
 	if resumeStep <= 2 {
 		if err := a.fetchUserRepositories(ctx, username, profile); err != nil {
-			return nil, fmt.Errorf("failed to fetch user repositories: %w", err)
+			log.Printf("Warning: Repository fetching encountered issues: %v", err)
+			log.Printf("Continuing with %d repositories already fetched", len(profile.Repositories))
+			// Don't return error - continue with whatever repositories we have
 		}
 		if err := a.saveProgress(username, profile, 2); err != nil {
 			log.Printf("Warning: Failed to save progress after step 2: %v", err)
 		}
 	}
 
-	// Step 3: Fetch organizations
+	// Step 3: Fetch organizations (non-critical, continue on failure)
 	if resumeStep <= 3 {
 		if err := a.fetchUserOrganizations(ctx, username, profile); err != nil {
-			return nil, fmt.Errorf("failed to fetch user organizations: %w", err)
+			log.Printf("Warning: Failed to fetch organizations (continuing): %v", err)
+			// Continue without organizations data
 		}
 		if err := a.saveProgress(username, profile, 3); err != nil {
 			log.Printf("Warning: Failed to save progress after step 3: %v", err)
 		}
 	}
 
-	// Step 4: Fetch contribution data
+	// Step 4: Fetch contribution data (non-critical, continue on failure)
 	if resumeStep <= 4 {
 		if err := a.fetchUserContributions(ctx, username, profile); err != nil {
-			return nil, fmt.Errorf("failed to fetch user contributions: %w", err)
+			log.Printf("Warning: Failed to fetch contributions (continuing): %v", err)
+			// Continue without detailed contribution data
 		}
 		if err := a.saveProgress(username, profile, 4); err != nil {
 			log.Printf("Warning: Failed to save progress after step 4: %v", err)
@@ -106,7 +119,7 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 
 	// Step 6: Analyze Docker Hub profile (optional - may not exist for all users)
 	if resumeStep <= 6 {
-		if err := a.analyzeDockerHub(ctx, username, profile); err != nil {
+		if err := a.analyzeDockerHub(ctx, dockerUsername, profile); err != nil {
 			log.Printf("Docker Hub analysis failed (this is optional): %v", err)
 			// Continue without Docker Hub data - not all users have Docker Hub profiles
 		}
@@ -117,7 +130,7 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 
 	// Step 7: Analyze Discourse community engagement (optional - for Jenkins community members)
 	if resumeStep <= 7 {
-		if err := a.analyzeDiscourseProfile(ctx, username, profile); err != nil {
+		if err := a.analyzeDiscourseProfile(ctx, username, discourseUsername, profile); err != nil {
 			log.Printf("Discourse analysis failed (this is optional): %v", err)
 			// Continue without Discourse data - not all users are active in Jenkins community
 		}
@@ -130,6 +143,9 @@ func (a *Analyzer) AnalyzeUser(ctx context.Context, username string) (*UserProfi
 	if resumeStep <= 8 {
 		a.generateInsights(profile)
 	}
+
+	// Provide analysis summary
+	a.logAnalysisSummary(profile)
 
 	// Save completed analysis to cache for future template generation
 	if err := a.saveToCache(username, profile); err != nil {
@@ -201,13 +217,21 @@ func (a *Analyzer) fetchUserBasicInfo(ctx context.Context, username string, prof
 
 // fetchUserRepositories fetches user's repositories with pagination
 func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, profile *UserProfile) error {
-	log.Printf("Fetching repositories for user: %s", username)
+	log.Printf("Starting incremental repository fetching for user: %s", username)
 
-	var allRepos []RepositoryProfile
+	// Initialize repositories if not already present
+	if profile.Repositories == nil {
+		profile.Repositories = []RepositoryProfile{}
+	}
+
 	var cursor string
-	const pageSize = 100
+	const pageSize = 50 // Smaller page size for better incremental processing
+	pageNum := 1
+	totalFetched := len(profile.Repositories)
 
 	for {
+		log.Printf("Fetching repository page %d for user: %s (cursor: %s)", pageNum, username, cursor)
+
 		req := &github.GraphQLRequest{
 			Query: github.UserRepositoriesQuery,
 			Variables: map[string]interface{}{
@@ -218,23 +242,67 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 		}
 
 		var resp github.UserRepositoriesResponse
+		log.Printf("Executing GraphQL query for page %d...", pageNum)
 		if err := a.client.ExecuteGraphQL(ctx, req, &resp); err != nil {
-			return fmt.Errorf("GraphQL query failed: %w", err)
+			// Save progress with whatever we have so far
+			if len(profile.Repositories) > 0 {
+				log.Printf("GraphQL error after fetching %d repositories, saving progress: %v", len(profile.Repositories), err)
+				if saveErr := a.saveProgress(username, profile, 2); saveErr != nil {
+					log.Printf("Warning: Failed to save progress during repository fetching: %v", saveErr)
+				}
+				// Continue with partial data rather than failing completely
+				log.Printf("Continuing analysis with %d repositories fetched so far", len(profile.Repositories))
+				return nil
+			}
+			return fmt.Errorf("GraphQL query failed on first page: %w", err)
+		}
+		log.Printf("GraphQL query completed for page %d, got %d repositories in response", pageNum, len(resp.User.Repositories.Nodes))
+
+		// Process repositories from this page immediately
+		log.Printf("Starting to process %d repositories from page %d", len(resp.User.Repositories.Nodes), pageNum)
+		newReposThisPage := 0
+		for i, repoNode := range resp.User.Repositories.Nodes {
+			if i > 0 && i%10 == 0 {
+				log.Printf("Processed %d/%d repositories on page %d", i, len(resp.User.Repositories.Nodes), pageNum)
+			}
+			repo := a.convertRepositoryNode(repoNode, username)
+			profile.Repositories = append(profile.Repositories, repo)
+			newReposThisPage++
+		}
+		log.Printf("Finished processing all %d repositories from page %d", newReposThisPage, pageNum)
+
+		totalFetched += newReposThisPage
+		log.Printf("Processed page %d: %d repositories (%d total fetched)", pageNum, newReposThisPage, totalFetched)
+
+		// Save progress after each page
+		if err := a.saveProgress(username, profile, 2); err != nil {
+			log.Printf("Warning: Failed to save progress after page %d: %v", pageNum, err)
 		}
 
-		for _, repoNode := range resp.User.Repositories.Nodes {
-			repo := a.convertRepositoryNode(repoNode, username)
-			allRepos = append(allRepos, repo)
+		// Update skills analysis incrementally every few pages for better progress tracking
+		if pageNum%3 == 0 {
+			log.Printf("Running incremental skills analysis after page %d", pageNum)
+			a.analyzeSkills(profile)
 		}
 
 		if !resp.User.Repositories.PageInfo.HasNextPage {
+			log.Printf("Completed repository fetching: %d total repositories", totalFetched)
 			break
 		}
+
 		cursor = resp.User.Repositories.PageInfo.EndCursor
+		pageNum++
+
+		// Add small delay between pages to be nice to GitHub's servers
+		select {
+		case <-time.After(100 * time.Millisecond):
+		case <-ctx.Done():
+			log.Printf("Context cancelled, saving progress with %d repositories", totalFetched)
+			return ctx.Err()
+		}
 	}
 
-	profile.Repositories = allRepos
-	log.Printf("Fetched %d repositories for user: %s", len(allRepos), username)
+	log.Printf("Successfully fetched %d repositories for user: %s", len(profile.Repositories), username)
 	return nil
 }
 
@@ -442,8 +510,15 @@ func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode, username st
 	if node.Watchers != nil {
 		repo.Watchers = node.Watchers.TotalCount
 	}
+
 	if node.Issues != nil {
 		repo.OpenIssues = node.Issues.TotalCount
+	}
+
+	// Analyze Docker configuration
+	dockerConfig := a.analyzeDockerConfig(context.Background(), repo.FullName)
+	if dockerConfig != nil {
+		repo.DockerConfig = dockerConfig
 	}
 	// Collaborators data not accessible due to permission restrictions
 	repo.CollaboratorCount = 0
@@ -560,6 +635,11 @@ func (a *Analyzer) analyzeSkills(profile *UserProfile) {
 		// Analyze repository names and descriptions
 		repoText := strings.ToLower(repo.Name + " " + repo.Description)
 		a.inferTechnologiesFromText(repoText, repo, technologyMap, &skills)
+
+		// Analyze Docker configuration if present
+		if repo.DockerConfig != nil {
+			a.categorizeDockerSkills(repo, technologyMap, &skills)
+		}
 	}
 
 	profile.Skills = skills
@@ -1100,23 +1180,30 @@ func (a *Analyzer) analyzeDockerHub(ctx context.Context, username string, profil
 }
 
 // analyzeDiscourseProfile analyzes the user's Discourse community engagement
-func (a *Analyzer) analyzeDiscourseProfile(ctx context.Context, username string, profile *UserProfile) error {
-	log.Printf("Analyzing Discourse profile for user: %s", username)
+func (a *Analyzer) analyzeDiscourseProfile(ctx context.Context, username, discourseUsername string, profile *UserProfile) error {
+	// Use custom Discourse username if provided, otherwise fall back to GitHub username
+	targetUsername := username
+	if discourseUsername != "" {
+		targetUsername = discourseUsername
+		log.Printf("Analyzing Discourse profile for user: %s (using custom Discourse username: %s)", username, discourseUsername)
+	} else {
+		log.Printf("Analyzing Discourse profile for user: %s", username)
+	}
 
 	// For Jenkins community, try common username variations
-	usernamesToTry := []string{username}
+	usernamesToTry := []string{targetUsername}
 
 	// Add common variations if not already present
-	if username != strings.ToLower(username) {
-		usernamesToTry = append(usernamesToTry, strings.ToLower(username))
+	if targetUsername != strings.ToLower(targetUsername) {
+		usernamesToTry = append(usernamesToTry, strings.ToLower(targetUsername))
 	}
 
 	// Try with underscores instead of hyphens and vice versa
-	if strings.Contains(username, "-") {
-		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(username, "-", "_"))
+	if strings.Contains(targetUsername, "-") {
+		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(targetUsername, "-", "_"))
 	}
-	if strings.Contains(username, "_") {
-		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(username, "_", "-"))
+	if strings.Contains(targetUsername, "_") {
+		usernamesToTry = append(usernamesToTry, strings.ReplaceAll(targetUsername, "_", "-"))
 	}
 
 	var discourseProfile *discourse.DiscourseProfile
@@ -1289,4 +1376,405 @@ func (a *Analyzer) tryLoadFromCache(username string) *UserProfile {
 // GetGitHubRateLimitStatus returns current GitHub API rate limit status for monitoring
 func (a *Analyzer) GetGitHubRateLimitStatus() github.RateLimitInfo {
 	return a.client.GetRateLimitStatus()
+}
+
+// analyzeDockerConfig analyzes a repository for Docker configuration and expertise
+func (a *Analyzer) analyzeDockerConfig(ctx context.Context, fullName string) *DockerConfig {
+	parts := strings.Split(fullName, "/")
+	if len(parts) != 2 {
+		return nil
+	}
+	owner, repo := parts[0], parts[1]
+
+	// Fetch repository contents
+	contents, err := a.client.FetchRepositoryContents(ctx, owner, repo)
+	if err != nil {
+		log.Printf("Failed to fetch contents for %s: %v", fullName, err)
+		return nil
+	}
+
+	if len(contents) == 0 {
+		return nil
+	}
+
+	config := &DockerConfig{
+		DockerFiles:  []DockerFile{},
+		ComposeFiles: []string{},
+		BakeFiles:    []string{},
+		DockerPatterns: []string{},
+	}
+
+	var hasDockerFiles bool
+
+	// Scan repository contents for Docker-related files
+	for _, item := range contents {
+		fileName := strings.ToLower(item.Name)
+
+		switch {
+		case fileName == "dockerfile" || strings.HasSuffix(fileName, ".dockerfile"):
+			config.HasDockerfile = true
+			hasDockerFiles = true
+			dockerFile := a.analyzeDockerFile(item)
+			config.DockerFiles = append(config.DockerFiles, dockerFile)
+
+		case fileName == "docker-compose.yml" || fileName == "docker-compose.yaml" ||
+			 strings.Contains(fileName, "compose") && (strings.HasSuffix(fileName, ".yml") || strings.HasSuffix(fileName, ".yaml")):
+			config.HasCompose = true
+			hasDockerFiles = true
+			config.ComposeFiles = append(config.ComposeFiles, item.Name)
+
+		case fileName == "docker-bake.hcl" || fileName == "docker-bake.json" || strings.Contains(fileName, "bake"):
+			config.HasBakeFile = true
+			hasDockerFiles = true
+			config.BakeFiles = append(config.BakeFiles, item.Name)
+
+		case fileName == ".dockerignore":
+			config.HasDockerIgnore = true
+			hasDockerFiles = true
+		}
+	}
+
+	// Only return config if we found Docker-related files
+	if !hasDockerFiles {
+		return nil
+	}
+
+	// Calculate complexity score and expertise
+	config.ComplexityScore = a.calculateDockerComplexity(config)
+	config.ContainerExpertise = a.assessDockerExpertise(config)
+	config.DockerPatterns = a.identifyDockerPatterns(config)
+
+	return config
+}
+
+// analyzeDockerFile analyzes a specific Dockerfile for complexity and patterns
+func (a *Analyzer) analyzeDockerFile(item github.RepositoryContentResponse) DockerFile {
+	dockerFile := DockerFile{
+		Path:              item.Path,
+		Instructions:      []string{},
+		BestPractices:     []string{},
+		SecurityPatterns:  []string{},
+		OptimizationLevel: "basic",
+	}
+
+	// Note: We're not fetching file contents to avoid API rate limits
+	// Instead, we'll infer complexity from file size and name
+
+	if item.Size > 1000 {
+		dockerFile.OptimizationLevel = "intermediate"
+		dockerFile.BestPractices = append(dockerFile.BestPractices, "complex-dockerfile")
+	}
+
+	if item.Size > 3000 {
+		dockerFile.OptimizationLevel = "advanced"
+		dockerFile.IsMultiStage = true
+		dockerFile.StageCount = 2 // Estimate based on size
+	}
+
+	// Infer from filename patterns
+	if strings.Contains(strings.ToLower(item.Name), "prod") {
+		dockerFile.SecurityPatterns = append(dockerFile.SecurityPatterns, "production-optimized")
+	}
+
+	return dockerFile
+}
+
+// calculateDockerComplexity calculates overall Docker expertise complexity score (0-10)
+func (a *Analyzer) calculateDockerComplexity(config *DockerConfig) float64 {
+	score := 0.0
+
+	// Base points for different file types
+	if config.HasDockerfile {
+		score += 2.0
+	}
+	if config.HasCompose {
+		score += 2.5
+	}
+	if config.HasBakeFile {
+		score += 3.0 // More advanced
+	}
+	if config.HasDockerIgnore {
+		score += 0.5
+	}
+
+	// Additional points for multiple files
+	score += float64(len(config.DockerFiles)) * 0.5
+	score += float64(len(config.ComposeFiles)) * 0.3
+	score += float64(len(config.BakeFiles)) * 1.0
+
+	// Advanced dockerfile patterns
+	for _, dockerFile := range config.DockerFiles {
+		switch dockerFile.OptimizationLevel {
+		case "advanced":
+			score += 2.0
+		case "intermediate":
+			score += 1.0
+		}
+		if dockerFile.IsMultiStage {
+			score += 1.5
+		}
+	}
+
+	// Cap at 10
+	if score > 10.0 {
+		score = 10.0
+	}
+
+	return score
+}
+
+// assessDockerExpertise determines the user's Docker expertise level based on configuration
+func (a *Analyzer) assessDockerExpertise(config *DockerConfig) DockerExpertiseLevel {
+	expertise := DockerExpertiseLevel{
+		Evidence:         []string{},
+		TechnologiesUsed: []string{},
+		AdvancedPatterns: []string{},
+	}
+
+	score := config.ComplexityScore
+
+	// Determine expertise level
+	switch {
+	case score >= 7.0:
+		expertise.Level = "expert"
+		expertise.ProductionReadiness = true
+	case score >= 5.0:
+		expertise.Level = "advanced"
+		expertise.ProductionReadiness = true
+	case score >= 3.0:
+		expertise.Level = "intermediate"
+	default:
+		expertise.Level = "beginner"
+	}
+
+	// Collect evidence
+	if config.HasDockerfile {
+		expertise.Evidence = append(expertise.Evidence, "dockerfile-usage")
+		expertise.TechnologiesUsed = append(expertise.TechnologiesUsed, "docker")
+	}
+	if config.HasCompose {
+		expertise.Evidence = append(expertise.Evidence, "docker-compose-usage")
+		expertise.TechnologiesUsed = append(expertise.TechnologiesUsed, "docker-compose")
+	}
+	if config.HasBakeFile {
+		expertise.Evidence = append(expertise.Evidence, "docker-buildx-bake")
+		expertise.TechnologiesUsed = append(expertise.TechnologiesUsed, "docker-buildx")
+		expertise.AdvancedPatterns = append(expertise.AdvancedPatterns, "buildx-bake")
+	}
+
+	// Advanced patterns detection
+	for _, dockerFile := range config.DockerFiles {
+		if dockerFile.IsMultiStage {
+			expertise.AdvancedPatterns = append(expertise.AdvancedPatterns, "multi-stage-builds")
+		}
+		if dockerFile.OptimizationLevel == "advanced" {
+			expertise.AdvancedPatterns = append(expertise.AdvancedPatterns, "optimized-builds")
+		}
+	}
+
+	return expertise
+}
+
+// identifyDockerPatterns identifies specific Docker usage patterns
+func (a *Analyzer) identifyDockerPatterns(config *DockerConfig) []string {
+	patterns := []string{}
+
+	if config.HasDockerfile && config.HasCompose {
+		patterns = append(patterns, "full-docker-stack")
+	}
+
+	if config.HasBakeFile {
+		patterns = append(patterns, "advanced-build-system")
+	}
+
+	if len(config.DockerFiles) > 1 {
+		patterns = append(patterns, "multi-dockerfile-project")
+	}
+
+	if config.HasDockerIgnore {
+		patterns = append(patterns, "optimized-build-context")
+	}
+
+	// Multi-stage detection
+	hasMultiStage := false
+	for _, dockerFile := range config.DockerFiles {
+		if dockerFile.IsMultiStage {
+			hasMultiStage = true
+			break
+		}
+	}
+	if hasMultiStage {
+		patterns = append(patterns, "multi-stage-optimization")
+	}
+
+	return patterns
+}
+
+// categorizeDockerSkills analyzes Docker configuration and adds appropriate skills
+func (a *Analyzer) categorizeDockerSkills(repo RepositoryProfile, techMap map[string]*TechnologySkill, skills *SkillProfile) {
+	config := repo.DockerConfig
+	if config == nil {
+		return
+	}
+
+	// Add Docker as a DevOps skill with confidence based on expertise level
+	confidence := 0.7 // Base confidence
+	switch config.ContainerExpertise.Level {
+	case "expert":
+		confidence = 0.95
+	case "advanced":
+		confidence = 0.9
+	case "intermediate":
+		confidence = 0.8
+	case "beginner":
+		confidence = 0.6
+	}
+
+	// Add Docker skill
+	dockerSkill := TechnologySkill{
+		Name:             "Docker",
+		Confidence:       confidence,
+		Evidence:         []string{repo.FullName},
+		ProjectCount:     1,
+		ProficiencyLevel: config.ContainerExpertise.Level,
+	}
+
+	// Add evidence from Docker configuration
+	dockerSkill.Evidence = append(dockerSkill.Evidence, config.ContainerExpertise.Evidence...)
+	skills.DevOpsSkills = append(skills.DevOpsSkills, dockerSkill)
+
+	// Also add as cloud platform skill if expertise is high
+	if confidence >= 0.8 {
+		skills.CloudPlatforms = append(skills.CloudPlatforms, dockerSkill)
+	}
+
+	// Add specific Docker technologies based on files found
+	if config.HasCompose {
+		composeSkill := TechnologySkill{
+			Name:             "Docker Compose",
+			Confidence:       confidence,
+			Evidence:         []string{repo.FullName},
+			ProjectCount:     1,
+			ProficiencyLevel: config.ContainerExpertise.Level,
+		}
+		skills.DevOpsSkills = append(skills.DevOpsSkills, composeSkill)
+		skills.Tools = append(skills.Tools, composeSkill)
+	}
+
+	if config.HasBakeFile {
+		bakeSkill := TechnologySkill{
+			Name:             "Docker Buildx",
+			Confidence:       0.9, // High confidence for advanced tool
+			Evidence:         []string{repo.FullName},
+			ProjectCount:     1,
+			ProficiencyLevel: "advanced", // Using bake files indicates advanced usage
+		}
+		skills.DevOpsSkills = append(skills.DevOpsSkills, bakeSkill)
+		skills.Tools = append(skills.Tools, bakeSkill)
+	}
+
+	// Add containerization as a technical area (check if it already exists to avoid duplicates)
+	containerFound := false
+	for i := range skills.TechnicalAreas {
+		if skills.TechnicalAreas[i].Area == "Containerization" {
+			// Update existing entry with higher competency if found
+			if confidence > skills.TechnicalAreas[i].Competency {
+				skills.TechnicalAreas[i].Competency = confidence
+			}
+			skills.TechnicalAreas[i].ProjectCount++
+			// Merge technologies
+			for _, tech := range config.ContainerExpertise.TechnologiesUsed {
+				exists := false
+				for _, existing := range skills.TechnicalAreas[i].Technologies {
+					if existing == tech {
+						exists = true
+						break
+					}
+				}
+				if !exists {
+					skills.TechnicalAreas[i].Technologies = append(skills.TechnicalAreas[i].Technologies, tech)
+				}
+			}
+			containerFound = true
+			break
+		}
+	}
+
+	if !containerFound {
+		containerArea := TechnicalArea{
+			Area:         "Containerization",
+			Competency:   confidence,
+			Technologies: config.ContainerExpertise.TechnologiesUsed,
+			ProjectCount: 1,
+			YearsActive:  1.0, // Estimate based on repository activity
+		}
+		skills.TechnicalAreas = append(skills.TechnicalAreas, containerArea)
+	}
+}
+
+// logAnalysisSummary provides a summary of what data was successfully collected
+func (a *Analyzer) logAnalysisSummary(profile *UserProfile) {
+	log.Printf("=== Analysis Summary for %s ===", profile.Username)
+
+	// Repository analysis
+	repoCount := len(profile.Repositories)
+	dockerRepoCount := 0
+	for _, repo := range profile.Repositories {
+		if repo.DockerConfig != nil {
+			dockerRepoCount++
+		}
+	}
+
+	log.Printf("📦 Repositories: %d total", repoCount)
+	if dockerRepoCount > 0 {
+		log.Printf("🐳 Docker repositories detected: %d", dockerRepoCount)
+	}
+
+	// Language analysis
+	if len(profile.Languages) > 0 {
+		log.Printf("💻 Programming languages: %d", len(profile.Languages))
+		if len(profile.Languages) >= 3 {
+			log.Printf("    Primary languages: %s, %s, %s",
+				profile.Languages[0].Language,
+				profile.Languages[1].Language,
+				profile.Languages[2].Language)
+		}
+	}
+
+	// Skills analysis
+	skillCounts := map[string]int{
+		"DevOps": len(profile.Skills.DevOpsSkills),
+		"Cloud": len(profile.Skills.CloudPlatforms),
+		"Tools": len(profile.Skills.Tools),
+		"Frameworks": len(profile.Skills.Frameworks),
+		"Technical Areas": len(profile.Skills.TechnicalAreas),
+	}
+
+	log.Printf("🛠️  Skills detected:")
+	for category, count := range skillCounts {
+		if count > 0 {
+			log.Printf("    %s: %d", category, count)
+		}
+	}
+
+	// Organization analysis
+	if len(profile.Organizations) > 0 {
+		log.Printf("🏢 Organizations: %d", len(profile.Organizations))
+	}
+
+	// Docker Hub analysis
+	if profile.DockerHubProfile != nil {
+		log.Printf("🐳 Docker Hub: %d images, %.1fM downloads, %s level",
+			profile.DockerHubProfile.TotalImages,
+			float64(profile.DockerHubProfile.TotalDownloads)/1000000,
+			profile.DockerHubProfile.ProficiencyLevel)
+	}
+
+	// Overall metrics
+	log.Printf("📊 Overall: %d commits, %d repos, %.1f impact score",
+		profile.Contributions.TotalCommits,
+		repoCount,
+		profile.Insights.OverallImpactScore)
+
+	log.Printf("✅ Profile analysis ready for template generation")
 }

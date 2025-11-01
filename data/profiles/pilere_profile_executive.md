@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Senior-level software professional with 13 years of active development experience. Primary expertise in JavaScript, TypeScript, C++ development. Led or contributed to 37 software projects with 1 community stars received. Cross-functional collaboration experience across 2 organizations. Overall technical impact score: 10.0/10.
+Senior-level software professional with 13 years of active development experience. Primary expertise in JavaScript, TypeScript, C++ development. Led or contributed to 39 software projects with 1 community stars received. Cross-functional collaboration experience across 2 organizations. Overall technical impact score: 10.0/10.
 
 ## Leadership & Impact
 
@@ -13,11 +13,12 @@ Senior-level software professional with 13 years of active development experienc
 ## Strategic Technical Focus
 
 ### Core Technology Stack
-- **JavaScript:** 21.7% of codebase, 9 projects, 10.0 years experience
-- **TypeScript:** 15.6% of codebase, 2 projects, 0.3 years experience
-- **C++:** 14.9% of codebase, 8 projects, 8.3 years experience
-- **Vim Script:** 12.6% of codebase, 1 projects, 9.7 years experience
-- **C:** 10.5% of codebase, 4 projects, 7.5 years experience
+- **JavaScript:** 21.4% of codebase, 9 projects, 10.0 years experience
+- **TypeScript:** 15.4% of codebase, 2 projects, 0.4 years experience
+- **C++:** 14.7% of codebase, 8 projects, 8.4 years experience
+- **Vim Script:** 12.4% of codebase, 1 projects, 9.7 years experience
+- **C:** 10.4% of codebase, 4 projects, 7.5 years experience
+- **Python:** 10.2% of codebase, 6 projects, 9.7 years experience
 
 ### Organizational Contributions
 - **FishMoiLaPaix:** Contributor role, 34 project contributions
@@ -27,10 +28,13 @@ Senior-level software professional with 13 years of active development experienc
 
 - Frontend Developer
 - UI Developer
+- DevOps Engineer
+- Platform Engineer
+- SRE
 
 ## Key Performance Metrics
 
-- **Technical Productivity:** 333 commits, 235 pull requests, 4 issues resolved
+- **Technical Productivity:** 367 commits, 266 pull requests, 4 issues resolved
 - **Project Leadership:** 30 owned repositories, 0.0 average stars per project
-- **Team Collaboration:** 2 organization partnerships, 0.7 consistency score
-- **Technical Breadth:** 31 programming languages, 3 technology areas
+- **Team Collaboration:** 2 organization partnerships, 0.8 consistency score
+- **Technical Breadth:** 31 programming languages, 4 technology areas
