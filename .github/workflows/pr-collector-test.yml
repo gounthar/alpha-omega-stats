@@ -58,12 +58,13 @@ jobs:
           title: 'Update PR statistics report'
           body: |
             This PR updates the PR statistics report using the jenkins-pr-collector.
-            
+
             - Generated automatically by the PR Collector Test workflow
             - Data collection period: From August 2024 to current date
             - Using latest Jenkins plugins data from update-center.actual.json
           branch: update-pr-stats
           delete-branch: true
           base: main
+          labels: automation
           committer: GitHub <noreply@github.com>
           author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
