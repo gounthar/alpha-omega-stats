@@ -265,7 +265,7 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 			if i > 0 && i%10 == 0 {
 				log.Printf("Processed %d/%d repositories on page %d", i, len(resp.User.Repositories.Nodes), pageNum)
 			}
-			repo := a.convertRepositoryNode(repoNode, username)
+			repo := a.convertRepositoryNode(ctx, repoNode, username)
 			profile.Repositories = append(profile.Repositories, repo)
 			newReposThisPage++
 		}
@@ -461,7 +461,7 @@ func (a *Analyzer) fetchUserContributions(ctx context.Context, username string, 
 }
 
 // convertRepositoryNode converts a GitHub repository node to our RepositoryProfile
-func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode, username string) RepositoryProfile {
+func (a *Analyzer) convertRepositoryNode(ctx context.Context, node github.RepositoryNode, username string) RepositoryProfile {
 	repo := RepositoryProfile{
 		Name:        node.Name,
 		FullName:    node.NameWithOwner,
@@ -516,7 +516,7 @@ func (a *Analyzer) convertRepositoryNode(node github.RepositoryNode, username st
 	}
 
 	// Analyze Docker configuration
-	dockerConfig := a.analyzeDockerConfig(context.Background(), repo.FullName)
+	dockerConfig := a.analyzeDockerConfig(ctx, repo.FullName)
 	if dockerConfig != nil {
 		repo.DockerConfig = dockerConfig
 	}
