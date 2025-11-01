@@ -236,7 +236,7 @@ func (fs *FileStorage) DeleteByPrefix(keyPrefix string) error {
 	}
 
 	// Update stats
-	fs.stats.TotalEntries -= int64(deletedCount)
+	fs.stats.TotalEntries -= deletedCount
 	if deletedCount > 0 {
 		log.Printf("Deleted %d cache entries matching prefix: %s", deletedCount, keyPrefix)
 	}

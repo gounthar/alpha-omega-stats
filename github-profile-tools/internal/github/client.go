@@ -581,13 +581,6 @@ func (c *Client) FetchRepositoryContents(ctx context.Context, owner, repo string
 			return fmt.Errorf("failed to create request: %w", err)
 		}
 
-		// Add authorization header if we have a token
-		if c.httpClient.Transport != nil {
-			if _, ok := c.httpClient.Transport.(*oauth2.Transport); ok {
-				// The oauth2 transport will automatically add the Authorization header
-			}
-		}
-
 		req.Header.Set("Accept", "application/vnd.github.v3+json")
 		req.Header.Set("User-Agent", "github-profile-tools/1.0")
 
