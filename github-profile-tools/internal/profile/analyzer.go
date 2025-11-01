@@ -268,6 +268,15 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 			repo := a.convertRepositoryNode(ctx, repoNode, username)
 			profile.Repositories = append(profile.Repositories, repo)
 			newReposThisPage++
+
+			// Check if context was cancelled during processing
+			if ctx.Err() != nil {
+				log.Printf("Context cancelled during repository processing, saving progress with %d repositories", totalFetched+newReposThisPage)
+				if err := a.saveProgress(username, profile, 2); err != nil {
+					log.Printf("Warning: Failed to save progress: %v", err)
+				}
+				return ctx.Err()
+			}
 		}
 		log.Printf("Finished processing all %d repositories from page %d", newReposThisPage, pageNum)
 
