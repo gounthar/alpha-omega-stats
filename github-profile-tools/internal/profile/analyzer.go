@@ -56,7 +56,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 	}
 
 	// If no cache, try to resume from saved progress
-	profile, resumeStep := a.tryResumeProgress(username)
+	profile, resumeStep := a.tryResumeProgress(username, dockerUsername, discourseUsername)
 	if profile == nil {
 		profile = &UserProfile{
 			Username:     username,
@@ -70,19 +70,19 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 		if err := a.fetchUserBasicInfo(ctx, username, profile); err != nil {
 			return nil, fmt.Errorf("failed to fetch user basic info: %w", err)
 		}
-		if err := a.saveProgress(username, profile, 1); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 1); err != nil {
 			log.Printf("Warning: Failed to save progress after step 1: %v", err)
 		}
 	}
 
 	// Step 2: Fetch user repositories (incremental, continues with partial data on error)
 	if resumeStep <= 2 {
-		if err := a.fetchUserRepositories(ctx, username, profile); err != nil {
+		if err := a.fetchUserRepositories(ctx, username, dockerUsername, discourseUsername, profile); err != nil {
 			log.Printf("Warning: Repository fetching encountered issues: %v", err)
 			log.Printf("Continuing with %d repositories already fetched", len(profile.Repositories))
 			// Don't return error - continue with whatever repositories we have
 		}
-		if err := a.saveProgress(username, profile, 2); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 2); err != nil {
 			log.Printf("Warning: Failed to save progress after step 2: %v", err)
 		}
 	}
@@ -93,7 +93,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 			log.Printf("Warning: Failed to fetch organizations (continuing): %v", err)
 			// Continue without organizations data
 		}
-		if err := a.saveProgress(username, profile, 3); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 3); err != nil {
 			log.Printf("Warning: Failed to save progress after step 3: %v", err)
 		}
 	}
@@ -104,7 +104,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 			log.Printf("Warning: Failed to fetch contributions (continuing): %v", err)
 			// Continue without detailed contribution data
 		}
-		if err := a.saveProgress(username, profile, 4); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 4); err != nil {
 			log.Printf("Warning: Failed to save progress after step 4: %v", err)
 		}
 	}
@@ -112,7 +112,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 	// Step 5: Analyze languages and technologies
 	if resumeStep <= 5 {
 		a.analyzeLanguages(profile)
-		if err := a.saveProgress(username, profile, 5); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 5); err != nil {
 			log.Printf("Warning: Failed to save progress after step 5: %v", err)
 		}
 	}
@@ -123,7 +123,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 			log.Printf("Docker Hub analysis failed (this is optional): %v", err)
 			// Continue without Docker Hub data - not all users have Docker Hub profiles
 		}
-		if err := a.saveProgress(username, profile, 6); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 6); err != nil {
 			log.Printf("Warning: Failed to save progress after step 6: %v", err)
 		}
 	}
@@ -134,7 +134,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 			log.Printf("Discourse analysis failed (this is optional): %v", err)
 			// Continue without Discourse data - not all users are active in Jenkins community
 		}
-		if err := a.saveProgress(username, profile, 7); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 7); err != nil {
 			log.Printf("Warning: Failed to save progress after step 7: %v", err)
 		}
 	}
@@ -153,7 +153,7 @@ func (a *Analyzer) AnalyzeUserWithCustomUsernames(ctx context.Context, username,
 	}
 
 	// Clean up progress file on successful completion
-	a.cleanupProgress(username)
+	a.cleanupProgress(username, dockerUsername, discourseUsername)
 
 	log.Printf("Analysis completed for user: %s", username)
 	return profile, nil
@@ -216,7 +216,7 @@ func (a *Analyzer) fetchUserBasicInfo(ctx context.Context, username string, prof
 }
 
 // fetchUserRepositories fetches user's repositories with pagination
-func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, profile *UserProfile) error {
+func (a *Analyzer) fetchUserRepositories(ctx context.Context, username, dockerUsername, discourseUsername string, profile *UserProfile) error {
 	log.Printf("Starting incremental repository fetching for user: %s", username)
 
 	// Initialize repositories if not already present
@@ -247,7 +247,7 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 			// Save progress with whatever we have so far
 			if len(profile.Repositories) > 0 {
 				log.Printf("GraphQL error after fetching %d repositories, saving progress: %v", len(profile.Repositories), err)
-				if saveErr := a.saveProgress(username, profile, 2); saveErr != nil {
+				if saveErr := a.saveProgress(username, dockerUsername, discourseUsername, profile, 2); saveErr != nil {
 					log.Printf("Warning: Failed to save progress during repository fetching: %v", saveErr)
 				}
 				// Continue with partial data rather than failing completely
@@ -272,7 +272,7 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 			// Check if context was cancelled during processing
 			if ctx.Err() != nil {
 				log.Printf("Context cancelled during repository processing, saving progress with %d repositories", totalFetched+newReposThisPage)
-				if err := a.saveProgress(username, profile, 2); err != nil {
+				if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 2); err != nil {
 					log.Printf("Warning: Failed to save progress: %v", err)
 				}
 				return ctx.Err()
@@ -284,7 +284,7 @@ func (a *Analyzer) fetchUserRepositories(ctx context.Context, username string, p
 		log.Printf("Processed page %d: %d repositories (%d total fetched)", pageNum, newReposThisPage, totalFetched)
 
 		// Save progress after each page
-		if err := a.saveProgress(username, profile, 2); err != nil {
+		if err := a.saveProgress(username, dockerUsername, discourseUsername, profile, 2); err != nil {
 			log.Printf("Warning: Failed to save progress after page %d: %v", pageNum, err)
 		}
 
@@ -1263,27 +1263,53 @@ func (a *Analyzer) analyzeDiscourseProfile(ctx context.Context, username, discou
 
 // ProgressData represents saved analysis progress
 type ProgressData struct {
-	Username     string       `json:"username"`
-	LastStep     int          `json:"lastStep"`
-	SavedAt      time.Time    `json:"savedAt"`
-	UserProfile  *UserProfile `json:"userProfile"`
+	Username          string       `json:"username"`
+	DockerUsername    string       `json:"dockerUsername,omitempty"`
+	DiscourseUsername string       `json:"discourseUsername,omitempty"`
+	LastStep          int          `json:"lastStep"`
+	SavedAt           time.Time    `json:"savedAt"`
+	UserProfile       *UserProfile `json:"userProfile"`
+}
+
+// defaultToGitHubUsername returns customUsername if non-empty, otherwise githubUsername
+// This helper reduces code duplication when normalizing usernames
+func defaultToGitHubUsername(customUsername, githubUsername string) string {
+	if customUsername == "" {
+		return githubUsername
+	}
+	return customUsername
+}
+
+// getProgressFilename generates a progress filename, optionally scoped by custom usernames
+func (a *Analyzer) getProgressFilename(username, dockerUsername, discourseUsername string) string {
+	// Create scoped filename if custom usernames differ from GitHub username
+	scopedName := username
+	if (dockerUsername != "" && dockerUsername != username) || (discourseUsername != "" && discourseUsername != username) {
+		// Use format similar to cache scope: username_docker_dockerusername_discourse_discourseusername
+		effectiveDockerUser := defaultToGitHubUsername(dockerUsername, username)
+		effectiveDiscourseUser := defaultToGitHubUsername(discourseUsername, username)
+		scopedName = fmt.Sprintf("%s_docker_%s_discourse_%s", username, effectiveDockerUser, effectiveDiscourseUser)
+	}
+	return filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", scopedName))
 }
 
 // saveProgress saves the current analysis progress
-func (a *Analyzer) saveProgress(username string, profile *UserProfile, step int) error {
+func (a *Analyzer) saveProgress(username, dockerUsername, discourseUsername string, profile *UserProfile, step int) error {
 	// Create progress directory if it doesn't exist
 	if err := os.MkdirAll(a.saveProgressDir, 0755); err != nil {
 		return fmt.Errorf("failed to create progress directory: %w", err)
 	}
 
 	progressData := ProgressData{
-		Username:    username,
-		LastStep:    step,
-		SavedAt:     time.Now(),
-		UserProfile: profile,
+		Username:          username,
+		DockerUsername:    dockerUsername,
+		DiscourseUsername: discourseUsername,
+		LastStep:          step,
+		SavedAt:           time.Now(),
+		UserProfile:       profile,
 	}
 
-	filename := filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", username))
+	filename := a.getProgressFilename(username, dockerUsername, discourseUsername)
 	data, err := json.MarshalIndent(progressData, "", "  ")
 	if err != nil {
 		return fmt.Errorf("failed to marshal progress data: %w", err)
@@ -1298,10 +1324,26 @@ func (a *Analyzer) saveProgress(username string, profile *UserProfile, step int)
 }
 
 // tryResumeProgress attempts to resume from saved progress
-func (a *Analyzer) tryResumeProgress(username string) (*UserProfile, int) {
-	filename := filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", username))
+func (a *Analyzer) tryResumeProgress(username, dockerUsername, discourseUsername string) (*UserProfile, int) {
+	// Try to read the scoped progress file first
+	scopedFilename := a.getProgressFilename(username, dockerUsername, discourseUsername)
 
-	data, err := os.ReadFile(filename)
+	// Try scoped file first
+	data, err := os.ReadFile(scopedFilename)
+	filename := scopedFilename
+	
+	// Fallback to unscoped file if scoped file doesn't exist
+	if err != nil && os.IsNotExist(err) {
+		unscopedFilename := a.getProgressFilename(username, "", "")
+		if unscopedFilename != scopedFilename {
+			data, err = os.ReadFile(unscopedFilename)
+			if err == nil {
+				filename = unscopedFilename
+				log.Printf("Found unscoped progress file, will validate usernames")
+			}
+		}
+	}
+
 	if err != nil {
 		// No progress file exists, start from beginning
 		return nil, 1
@@ -1313,10 +1355,30 @@ func (a *Analyzer) tryResumeProgress(username string) (*UserProfile, int) {
 		return nil, 1
 	}
 
+	// Validate that the custom usernames match the requested analysis
+	// This prevents resuming with wrong Docker/Discourse username data
+	requestedDocker := defaultToGitHubUsername(dockerUsername, username)
+	savedDocker := defaultToGitHubUsername(progressData.DockerUsername, username)
+	requestedDiscourse := defaultToGitHubUsername(discourseUsername, username)
+	savedDiscourse := defaultToGitHubUsername(progressData.DiscourseUsername, username)
+
+	if requestedDocker != savedDocker || requestedDiscourse != savedDiscourse {
+		log.Printf("Progress file username mismatch (saved Docker: %s, requested: %s; saved Discourse: %s, requested: %s), starting fresh",
+			savedDocker, requestedDocker, savedDiscourse, requestedDiscourse)
+		// Delete the file that was actually read (could be scoped or unscoped)
+		if err := os.Remove(filename); err != nil && !os.IsNotExist(err) {
+			log.Printf("Warning: Failed to clean up mismatched progress file %s: %v", filename, err)
+		}
+		return nil, 1
+	}
+
 	// Check if progress file is too old (older than 1 day)
 	if time.Since(progressData.SavedAt) > 24*time.Hour {
 		log.Printf("Progress file is older than 24 hours, starting fresh")
-		a.cleanupProgress(username)
+		// Delete the file that was actually read
+		if err := os.Remove(filename); err != nil && !os.IsNotExist(err) {
+			log.Printf("Warning: Failed to clean up old progress file %s: %v", filename, err)
+		}
 		return nil, 1
 	}
 
@@ -1327,8 +1389,8 @@ func (a *Analyzer) tryResumeProgress(username string) (*UserProfile, int) {
 }
 
 // cleanupProgress removes the progress file after successful completion
-func (a *Analyzer) cleanupProgress(username string) {
-	filename := filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", username))
+func (a *Analyzer) cleanupProgress(username, dockerUsername, discourseUsername string) {
+	filename := a.getProgressFilename(username, dockerUsername, discourseUsername)
 	if err := os.Remove(filename); err != nil && !os.IsNotExist(err) {
 		log.Printf("Warning: Failed to clean up progress file: %v", err)
 	} else {
