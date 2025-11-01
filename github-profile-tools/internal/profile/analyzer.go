@@ -1327,7 +1327,7 @@ func (a *Analyzer) saveProgress(username, dockerUsername, discourseUsername stri
 func (a *Analyzer) tryResumeProgress(username, dockerUsername, discourseUsername string) (*UserProfile, int) {
 	// Try to read the scoped progress file first
 	scopedFilename := a.getProgressFilename(username, dockerUsername, discourseUsername)
-	
+
 	// Try scoped file first
 	data, err := os.ReadFile(scopedFilename)
 	filename := scopedFilename
