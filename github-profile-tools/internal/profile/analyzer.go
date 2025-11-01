@@ -1271,19 +1271,24 @@ type ProgressData struct {
 	UserProfile       *UserProfile `json:"userProfile"`
 }
 
+// defaultToGitHubUsername returns customUsername if non-empty, otherwise githubUsername
+// This helper reduces code duplication when normalizing usernames
+func defaultToGitHubUsername(customUsername, githubUsername string) string {
+	if customUsername == "" {
+		return githubUsername
+	}
+	return customUsername
+}
+
 // getProgressFilename generates a progress filename, optionally scoped by custom usernames
 func (a *Analyzer) getProgressFilename(username, dockerUsername, discourseUsername string) string {
 	// Create scoped filename if custom usernames differ from GitHub username
 	scopedName := username
 	if (dockerUsername != "" && dockerUsername != username) || (discourseUsername != "" && discourseUsername != username) {
 		// Use format similar to cache scope: username_docker_dockerusername_discourse_discourseusername
-		if dockerUsername == "" {
-			dockerUsername = username
-		}
-		if discourseUsername == "" {
-			discourseUsername = username
-		}
-		scopedName = fmt.Sprintf("%s_docker_%s_discourse_%s", username, dockerUsername, discourseUsername)
+		effectiveDockerUser := defaultToGitHubUsername(dockerUsername, username)
+		effectiveDiscourseUser := defaultToGitHubUsername(discourseUsername, username)
+		scopedName = fmt.Sprintf("%s_docker_%s_discourse_%s", username, effectiveDockerUser, effectiveDiscourseUser)
 	}
 	return filepath.Join(a.saveProgressDir, fmt.Sprintf("%s_progress.json", scopedName))
 }
@@ -1320,9 +1325,25 @@ func (a *Analyzer) saveProgress(username, dockerUsername, discourseUsername stri
 
 // tryResumeProgress attempts to resume from saved progress
 func (a *Analyzer) tryResumeProgress(username, dockerUsername, discourseUsername string) (*UserProfile, int) {
-	filename := a.getProgressFilename(username, dockerUsername, discourseUsername)
+	// Try to read the scoped progress file first
+	scopedFilename := a.getProgressFilename(username, dockerUsername, discourseUsername)
+	
+	// Try scoped file first
+	data, err := os.ReadFile(scopedFilename)
+	filename := scopedFilename
+	
+	// Fallback to unscoped file if scoped file doesn't exist
+	if err != nil && os.IsNotExist(err) {
+		unscopedFilename := a.getProgressFilename(username, "", "")
+		if unscopedFilename != scopedFilename {
+			data, err = os.ReadFile(unscopedFilename)
+			if err == nil {
+				filename = unscopedFilename
+				log.Printf("Found unscoped progress file, will validate usernames")
+			}
+		}
+	}
 
-	data, err := os.ReadFile(filename)
 	if err != nil {
 		// No progress file exists, start from beginning
 		return nil, 1
@@ -1336,35 +1357,28 @@ func (a *Analyzer) tryResumeProgress(username, dockerUsername, discourseUsername
 
 	// Validate that the custom usernames match the requested analysis
 	// This prevents resuming with wrong Docker/Discourse username data
-	requestedDocker := dockerUsername
-	if requestedDocker == "" {
-		requestedDocker = username
-	}
-	savedDocker := progressData.DockerUsername
-	if savedDocker == "" {
-		savedDocker = username
-	}
-
-	requestedDiscourse := discourseUsername
-	if requestedDiscourse == "" {
-		requestedDiscourse = username
-	}
-	savedDiscourse := progressData.DiscourseUsername
-	if savedDiscourse == "" {
-		savedDiscourse = username
-	}
+	requestedDocker := defaultToGitHubUsername(dockerUsername, username)
+	savedDocker := defaultToGitHubUsername(progressData.DockerUsername, username)
+	requestedDiscourse := defaultToGitHubUsername(discourseUsername, username)
+	savedDiscourse := defaultToGitHubUsername(progressData.DiscourseUsername, username)
 
 	if requestedDocker != savedDocker || requestedDiscourse != savedDiscourse {
 		log.Printf("Progress file username mismatch (saved Docker: %s, requested: %s; saved Discourse: %s, requested: %s), starting fresh",
 			savedDocker, requestedDocker, savedDiscourse, requestedDiscourse)
-		a.cleanupProgress(username, dockerUsername, discourseUsername)
+		// Delete the file that was actually read (could be scoped or unscoped)
+		if err := os.Remove(filename); err != nil && !os.IsNotExist(err) {
+			log.Printf("Warning: Failed to clean up mismatched progress file %s: %v", filename, err)
+		}
 		return nil, 1
 	}
 
 	// Check if progress file is too old (older than 1 day)
 	if time.Since(progressData.SavedAt) > 24*time.Hour {
 		log.Printf("Progress file is older than 24 hours, starting fresh")
-		a.cleanupProgress(username, dockerUsername, discourseUsername)
+		// Delete the file that was actually read
+		if err := os.Remove(filename); err != nil && !os.IsNotExist(err) {
+			log.Printf("Warning: Failed to clean up old progress file %s: %v", filename, err)
+		}
 		return nil, 1
 	}
 
