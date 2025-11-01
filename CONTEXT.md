@@ -45,14 +45,41 @@ Users need to specify separate Docker Hub usernames when their Docker Hub accoun
 - ✅ Cache poisoning bug (gemini-code-assist & CodeRabbit)
 - ✅ Progress files with PII removed from git (CodeRabbit)
 - ✅ Cache invalidation now removes all scoped variants
-- 📝 Code duplication noted for follow-up (CodeRabbit)
+- ✅ REST API retry logic and rate limiting (CodeRabbit)
+- 📝 Code duplication noted for follow-up (gemini-code-assist)
+- 📝 Docker analysis performance noted for follow-up (CodeRabbit)
 
 ### Next Steps
 1. **Follow-up Refactoring PR** (Planned):
-   - Refactor `runAnalysis()` and `runAnalysisWithCache()` duplication
-   - Align progress file naming with scoped cache keys
-   - Add `dockerUsername`/`discourseUsername` to `ProgressData` struct
-   - Validate usernames on progress resume
+   - **Code Duplication**: Refactor `runAnalysis()` and `runAnalysisWithCache()` duplication (gemini-code-assist)
+     - Extract common analysis workflow into shared helper function
+     - Use interface abstraction for `Analyzer` and `CacheAwareAnalyzer`
+     - Conditionally handle cache-specific logic (statistics logging)
+   
+   - **Dead Code Removal**: Remove unnecessary oauth2 transport check in `FetchRepositoryContents` (CodeRabbit)
+     - Lines 584-589 in `internal/github/client.go`
+     - oauth2.Transport automatically adds Authorization header
+   
+   - **Progress File Alignment**: Align progress file naming with scoped cache keys
+     - Add `dockerUsername`/`discourseUsername` to `ProgressData` struct
+     - Validate usernames on progress resume
+
+2. **Performance Optimization PR** (Planned):
+   - **Docker Analysis Refactoring** (CodeRabbit, critical):
+     - Remove per-repo Docker analysis from `convertRepositoryNode` (line 519)
+     - Implement targeted Docker analysis in separate pass
+     - Options:
+       1. Analyze only top N repositories (by stars/activity)
+       2. Make Docker analysis opt-in with `-analyze-docker` flag
+       3. Perform only in `-docker-only` mode
+     - Fix context propagation (use parent ctx instead of `context.Background()`)
+     - Add rate-limit awareness and caching for Docker analysis
+     - Prevents rate limit exhaustion for users with 100+ repositories
+
+3. **Data Quality Improvements** (Non-blocking):
+   - Fix duplicate Docker entries in Cloud Platforms lists
+   - Fix confidence score calculation (values exceeding 10/10 scale)
+   - Improve repository ownership detection to prevent cross-user leaks
 
 ---
 
