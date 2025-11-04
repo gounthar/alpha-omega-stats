@@ -26,10 +26,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ git-client ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -65,8 +66,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/git-client/src/main/java/org/jenkinsci/plugins/gitclient/verifier/KnownHostsFileVerificationStrategy.java:[21,12] Generating org/jenkinsci/plugins/gitclient/verifier/KnownHostsFileVerificationStrategy.stapler
 [INFO] /tmp/plugin-builds/git-client/src/main/java/org/jenkinsci/plugins/gitclient/verifier/ManuallyProvidedKeyVerificationStrategy.java:[27,12] Generating org/jenkinsci/plugins/gitclient/verifier/ManuallyProvidedKeyVerificationStrategy.stapler
 [INFO] /tmp/plugin-builds/git-client/src/main/java/org/jenkinsci/plugins/gitclient/verifier/NoHostKeyVerificationStrategy.java:[12,12] Generating org/jenkinsci/plugins/gitclient/verifier/NoHostKeyVerificationStrategy.stapler
-[INFO] /tmp/plugin-builds/git-client/src/main/java/hudson/plugins/git/Revision.java:[21,8] Generating hudson/plugins/git/Revision.javadoc
 [INFO] /tmp/plugin-builds/git-client/src/main/java/hudson/plugins/git/GitObject.java:[16,8] Generating hudson/plugins/git/GitObject.javadoc
+[INFO] /tmp/plugin-builds/git-client/src/main/java/hudson/plugins/git/Revision.java:[21,8] Generating hudson/plugins/git/Revision.javadoc
 [INFO] /tmp/plugin-builds/git-client/src/main/java/hudson/plugins/git/GitTool.java:[166,31] Generating hudson/plugins/git/GitTool/DescriptorImpl/doCheckHome.stapler
 [INFO] /tmp/plugin-builds/git-client/src/main/java/org/jenkinsci/plugins/gitclient/verifier/ManuallyProvidedKeyVerificationStrategy.java:[55,31] Generating org/jenkinsci/plugins/gitclient/verifier/ManuallyProvidedKeyVerificationStrategy/ManuallyTrustedKeyVerificationStrategyDescriptor/doCheckApprovedHostKeys.stapler
 [INFO] /tmp/plugin-builds/git-client/src/main/java/org/jenkinsci/plugins/gitclient/AbstractGitAPIImpl.java: Some input files use or override a deprecated API.
@@ -80,7 +81,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ git-client ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ git-client ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ git-client ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/git-client/target/tmp
 [INFO] Executed tasks
@@ -125,17 +126,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ git-client ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ git-client >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ git-client >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ git-client ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ git-client ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ git-client <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ git-client <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ git-client ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ git-client ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -143,7 +144,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.0.0:check (default) @ git-client ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 134 files clean - 0 needs changes to be clean, 134 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom10309463332356098276.xml
+[INFO] Sorting file /tmp/pom1736221574404616015.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -154,6 +155,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:33 min
-[INFO] Finished at: 2025-10-28T01:50:18Z
+[INFO] Total time:  01:39 min
+[INFO] Finished at: 2025-11-04T01:52:11Z
 [INFO] ------------------------------------------------------------------------

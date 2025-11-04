@@ -28,10 +28,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ gradle-pom ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -46,7 +47,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ gradle-pom ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ gradle-pom ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ gradle-pom ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/gradle/target/tmp
 [INFO] Executed tasks
@@ -57,16 +58,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ gradle-pom ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ gradle-pom >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ gradle-pom >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ gradle-pom ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ gradle-pom ---
 [INFO] No files found to run spotbugs, check compile phase has been run
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ gradle-pom <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ gradle-pom <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ gradle-pom ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ gradle-pom ---
 [INFO] 
 [INFO] --- spotless:3.0.0:check (default) @ gradle-pom ---
 [INFO] Spotless check skipped
@@ -82,11 +83,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- clean:3.5.0:clean (default-clean) @ configuration-maven-extension ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ configuration-maven-extension ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ configuration-maven-extension ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -110,7 +112,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ configuration-maven-extension ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ configuration-maven-extension ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ configuration-maven-extension ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/gradle/configuration-maven-extension/target/tmp
 [INFO] Executed tasks
@@ -133,17 +135,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ configuration-maven-extension ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ configuration-maven-extension >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ configuration-maven-extension >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ configuration-maven-extension ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ configuration-maven-extension ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ configuration-maven-extension <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ configuration-maven-extension <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ configuration-maven-extension ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ configuration-maven-extension ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -168,11 +170,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ gradle ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ gradle ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ gradle ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -229,20 +232,20 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/WithGradle.java:[21,12] Generating hudson/plugins/gradle/WithGradle.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/NodeLabelItem.java:[20,12] Generating hudson/plugins/gradle/injection/NodeLabelItem.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/AbstractBuildScanAction.java:[21,17] Generating hudson/plugins/gradle/AbstractBuildScanAction.javadoc
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[533,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionRepositoryUrl.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[127,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientDelayBetweenRetriesInSeconds.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[553,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionVersion.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[117,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientMaxRetries.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[426,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckServer.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[456,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginRepositoryUrl.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[523,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionCustomCoordinates.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[466,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckAccessKeyCredentialId.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[436,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginVersion.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[543,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionVersion.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[107,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientTimeoutInSeconds.stapler
-[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[491,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckShortLivedTokenExpiry.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[446,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudPluginVersion.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[491,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckShortLivedTokenExpiry.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[436,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginVersion.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[513,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionCustomCoordinates.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[456,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckGradlePluginRepositoryUrl.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[107,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientTimeoutInSeconds.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[127,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientDelayBetweenRetriesInSeconds.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[426,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckServer.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[553,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionVersion.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[533,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionRepositoryUrl.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[523,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckCcudExtensionCustomCoordinates.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/enriched/EnrichedSummaryConfig.java:[117,27] Generating hudson/plugins/gradle/enriched/EnrichedSummaryConfig/doCheckHttpClientMaxRetries.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[543,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckMavenExtensionVersion.stapler
+[INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/injection/InjectionConfig.java:[466,27] Generating hudson/plugins/gradle/injection/InjectionConfig/doCheckAccessKeyCredentialId.stapler
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/BuildScanColumn.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/BuildScanColumn.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/Gradle.java: /tmp/plugin-builds/gradle/plugin/src/main/java/hudson/plugins/gradle/Gradle.java uses unchecked or unsafe operations.
@@ -263,7 +266,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- gplus:4.2.1:generateTestStubs (default) @ gradle ---
 [INFO] Generation of test stubs is skipped.
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ gradle ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ gradle ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/gradle/plugin/target/tmp
 [INFO] Executed tasks
@@ -304,7 +307,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Copy webapp webResources to /tmp/plugin-builds/gradle/plugin/target/gradle
 [INFO] Assembling webapp gradle in /tmp/plugin-builds/gradle/plugin/target/gradle
 [INFO] Bundling direct dependency configuration-maven-extension-1.0.0.jar
-[INFO] Bundling transitive dependency develocity-maven-extension-2.2.jar (via configuration-maven-extension)
+[INFO] Bundling transitive dependency develocity-maven-extension-2.2.1.jar (via configuration-maven-extension)
 [INFO] Bundling transitive dependency commons-beanutils-1.11.0.jar (via commons-validator)
 [INFO] Bundling transitive dependency commons-collections-3.2.2.jar (via commons-validator)
 [INFO] Bundling transitive dependency commons-digester-2.1.jar (via commons-validator)
@@ -321,17 +324,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- failsafe:3.5.4:integration-test (integration-tests-parallel) @ gradle ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ gradle >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ gradle >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ gradle ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ gradle ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ gradle <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ gradle <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ gradle ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ gradle ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -389,13 +392,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
 [INFO] 
-[INFO] Gradle Plugin parent pom 1.0 ....................... SUCCESS [ 25.457 s]
-[INFO] Configuration Maven extension 1.0.0 ................ SUCCESS [ 25.649 s]
-[INFO] Gradle Plugin 2.17.999999-SNAPSHOT ................. SUCCESS [02:13 min]
-[INFO] Gradle Plugin Acceptance Tests 1.0 ................. SUCCESS [ 54.465 s]
+[INFO] Gradle Plugin parent pom 1.0 ....................... SUCCESS [ 23.169 s]
+[INFO] Configuration Maven extension 1.0.0 ................ SUCCESS [ 26.510 s]
+[INFO] Gradle Plugin 2.17.999999-SNAPSHOT ................. SUCCESS [01:43 min]
+[INFO] Gradle Plugin Acceptance Tests 1.0 ................. SUCCESS [ 34.962 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  04:00 min
-[INFO] Finished at: 2025-10-28T02:13:05Z
+[INFO] Total time:  03:09 min
+[INFO] Finished at: 2025-11-04T02:14:04Z
 [INFO] ------------------------------------------------------------------------
