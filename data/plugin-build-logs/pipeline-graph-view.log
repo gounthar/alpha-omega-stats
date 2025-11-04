@@ -26,21 +26,22 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-graph-view ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:1.15.4:install-node-and-npm (install node and npm) @ pipeline-graph-view ---
-[INFO] Installing node version v24.10.0
-[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v24.10.0/node-v24.10.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/24.10.0/node-24.10.0-linux-x64.tar.gz
+[INFO] Installing node version v24.11.0
+[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v24.11.0/node-v24.11.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/24.11.0/node-24.11.0-linux-x64.tar.gz
 [INFO] No proxies configured
 [INFO] No proxy was configured, downloading directly
-[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.10.0/node-24.10.0-linux-x64.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/tmp
-[INFO] Copying node binary from /tmp/plugin-builds/pipeline-graph-view/node/tmp/node-v24.10.0-linux-x64/bin/node to /tmp/plugin-builds/pipeline-graph-view/node/node
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.11.0/node-24.11.0-linux-x64.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/pipeline-graph-view/node/tmp/node-v24.11.0-linux-x64/bin/node to /tmp/plugin-builds/pipeline-graph-view/node/node
 [INFO] Installed node locally.
 [INFO] Installing npm version 11.6.2
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/11.6.2/npm-11.6.2.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/node_modules
@@ -49,9 +50,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:1.15.4:npm (npm install) @ pipeline-graph-view ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/pipeline-graph-view
 [INFO] 
-[INFO] added 460 packages, and audited 461 packages in 30s
+[INFO] added 470 packages, and audited 471 packages in 28s
 [INFO] 
-[INFO] 165 packages are looking for funding
+[INFO] 167 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
 [INFO] found 0 vulnerabilities
@@ -70,17 +71,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] vite v7.1.12 building for production...
 [INFO] transforming...
-[INFO] ✓ 269 modules transformed.
+[INFO] ✓ 270 modules transformed.
 [INFO] rendering chunks...
 [INFO] computing gzip size...
 [INFO] src/main/webapp/js/bundles/pipeline-graph-view-bundle.js          0.58 kB │ gzip:   0.38 kB │ map:     2.06 kB
-[INFO] src/main/webapp/js/bundles/assets/symbols-DiVGS_Qp.js             3.84 kB │ gzip:   1.60 kB │ map:     9.79 kB
-[INFO] src/main/webapp/js/bundles/multi-pipeline-graph-view-bundle.js    8.50 kB │ gzip:   2.79 kB │ map:    17.61 kB
-[INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-C2Ya03UN.js   22.67 kB │ gzip:   5.45 kB │ map:    77.92 kB
-[INFO] src/main/webapp/js/bundles/assets/stages-Ww_ccHKX.js             40.59 kB │ gzip:  12.37 kB │ map:   165.19 kB
-[INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js       64.63 kB │ gzip:  23.10 kB │ map:   161.85 kB
-[INFO] src/main/webapp/js/bundles/assets/tree-api-DO1zA_sT.js          407.40 kB │ gzip: 130.10 kB │ map: 1,989.05 kB
-[INFO] ✓ built in 9.79s
+[INFO] src/main/webapp/js/bundles/assets/symbols-DqTE07At.js             3.84 kB │ gzip:   1.60 kB │ map:     9.79 kB
+[INFO] src/main/webapp/js/bundles/multi-pipeline-graph-view-bundle.js    8.50 kB │ gzip:   2.80 kB │ map:    17.61 kB
+[INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-B8OJT1Zh.js   22.47 kB │ gzip:   5.45 kB │ map:    77.37 kB
+[INFO] src/main/webapp/js/bundles/assets/stages-B61x5_xm.js             40.59 kB │ gzip:  12.37 kB │ map:   165.19 kB
+[INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js       68.32 kB │ gzip:  24.12 kB │ map:   165.65 kB
+[INFO] src/main/webapp/js/bundles/assets/tree-api-D90a8nZg.js          408.09 kB │ gzip: 130.36 kB │ map: 1,991.70 kB
+[INFO] ✓ built in 10.36s
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ pipeline-graph-view ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -121,7 +122,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-graph-view ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-graph-view ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-graph-view ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-graph-view/target/tmp
 [INFO] Executed tasks
@@ -168,20 +169,24 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] > vitest run --reporter default --reporter junit --outputFile "$PWD/target/surefire-reports/vitest-junit.xml" || ([ -n "$CI" ] && [ -f target/surefire-reports/vitest-junit.xml ])
 [INFO] 
 [INFO] 
-[INFO]  RUN  v4.0.3 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
+[INFO]  RUN  v3.2.4 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
 [INFO] 
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (8 tests) 29ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (8 tests) 27ms
+[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 315ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1222ms
 [INFO] stderr | common/tree-api.spec.ts > useRunPoller > should ignore fetch error for previous
 [INFO] Fetch previous run Error: foo
-[INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:106:19
-[INFO]     at Mock (file:///tmp/plugin-builds/pipeline-graph-view/node_modules/@vitest/spy/dist/index.js:274:34)
+[INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:104:19
+[INFO]     at mockCall (file:///tmp/plugin-builds/pipeline-graph-view/node_modules/@vitest/spy/dist/index.js:96:15)
+[INFO]     at spy (file:///tmp/plugin-builds/pipeline-graph-view/node_modules/tinyspy/dist/index.js:47:80)
 [INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.ts:24:39
 [INFO]     at poll (/tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/utils/use-polling.ts:22:29)
 [INFO] 
 [INFO] stderr | common/tree-api.spec.ts > useRunPoller > should ignore fetch error for current
 [INFO] Error: throw once
-[INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:133:15
-[INFO]     at Mock (file:///tmp/plugin-builds/pipeline-graph-view/node_modules/@vitest/spy/dist/index.js:274:34)
+[INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:131:15
+[INFO]     at mockCall (file:///tmp/plugin-builds/pipeline-graph-view/node_modules/@vitest/spy/dist/index.js:96:15)
+[INFO]     at spy (file:///tmp/plugin-builds/pipeline-graph-view/node_modules/tinyspy/dist/index.js:47:80)
 [INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.ts:38:11
 [INFO]     at poll (/tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/utils/use-polling.ts:18:30)
 [INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/utils/use-polling.ts:38:5
@@ -189,54 +194,48 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO]     at runWithFiberInDEV (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:874:13)
 [INFO]     at commitHookEffectListMount (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29)
 [INFO]     at commitHookPassiveMountEffects (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:13336:11)
-[INFO]     at commitPassiveMountOnFiber (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:15484:13)
 [INFO] 
-[INFO]  ✓ common/tree-api.spec.ts (6 tests) 813ms
-[INFO]      ✓ should merge stages when not complete  319ms
-[INFO] (node:19809) TimeoutNegativeWarning: -0.6078099999999722 is a negative number.
-[INFO] Timeout duration was set to 1.
-[INFO] (Use `node --trace-warnings ...` to show where the warning was created)
-[INFO]  ✓ common/utils/timings.spec.tsx (4 tests) 71ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (14 tests) 1652ms
-[INFO]  ✓ common/utils/run-estimator.spec.ts (16 tests) 13ms
-[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 134ms
-[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 14ms
-[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 34ms
-[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 21ms
+[INFO]  ✓ common/tree-api.spec.ts (6 tests) 791ms
+[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 22ms
+[INFO]  ✓ common/components/status-icon.spec.tsx (14 tests) 263ms
+[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 104ms
+[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 235ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 594ms
-[INFO]      ✓ renders step header only when not expanded  312ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 519ms
+[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 15ms
+[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 18ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/stage-details.spec.tsx > StageDetails > renders stage name and status color class
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (5 tests) 821ms
-[INFO]      ✓ renders stage name and status color class  470ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (7 tests) 1347ms
+[INFO]    ✓ StageDetails > renders stage name and status color class  769ms
 [INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should render settings button in portal
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 183ms
-[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1692ms
-[INFO]      ✓ should toggle dropdown when clicking settings button  763ms
-[INFO]      ✓ should update preferences when toggling checkboxes  750ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 349ms
+[INFO]    ✓ ConsoleLogStream > renders step console  302ms
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1999ms
+[INFO]    ✓ SettingsButton > should toggle dropdown when clicking settings button  943ms
+[INFO]    ✓ SettingsButton > should update preferences when toggling checkboxes  830ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/StageView.spec.tsx > StageView > renders StageDetails and StageSteps with provided props
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 776ms
-[INFO]      ✓ renders StageDetails and StageSteps with provided props  774ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 14ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 1196ms
+[INFO]    ✓ StageView > renders StageDetails and StageSteps with provided props  1191ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 10ms
 [INFO] 
-[INFO]  Test Files  15 passed (15)
-[INFO]       Tests  87 passed (87)
-[INFO]    Start at  02:16:49
-[INFO]    Duration  11.81s (transform 2.07s, setup 2.65s, collect 5.17s, tests 6.86s, environment 14.80s, prepare 242ms)
+[INFO]  Test Files  16 passed (16)
+[INFO]       Tests  103 passed (103)
+[INFO]    Start at  02:18:44
+[INFO]    Duration  18.88s (transform 1.97s, setup 2.86s, collect 6.62s, tests 8.43s, environment 25.37s, prepare 3.80s)
 [INFO] 
 [INFO] JUNIT report written to /tmp/plugin-builds/pipeline-graph-view/target/surefire-reports/vitest-junit.xml
 [INFO] 
@@ -257,17 +256,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-graph-view ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-graph-view >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-graph-view >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-graph-view ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-graph-view ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-graph-view <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-graph-view <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-graph-view ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-graph-view ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -275,7 +274,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.0.0:check (default) @ pipeline-graph-view ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 67 files clean - 0 needs changes to be clean, 67 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom9881908415330499637.xml
+[INFO] Sorting file /tmp/pom4397176125475187969.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -286,6 +285,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:48 min
-[INFO] Finished at: 2025-10-28T02:17:42Z
+[INFO] Total time:  03:03 min
+[INFO] Finished at: 2025-11-04T02:19:46Z
 [INFO] ------------------------------------------------------------------------
