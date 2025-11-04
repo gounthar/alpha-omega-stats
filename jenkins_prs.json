@@ -7553,7 +7553,7 @@
     "updatedAt": "2025-04-01T08:24:11Z",
     "user": "gounthar",
     "repository": "jenkinsci/dtkit-plugin",
-    "pluginName": "dtkit-api",
+    "pluginName": "dtkit",
     "labels": null,
     "url": "https://github.com/jenkinsci/dtkit-plugin/pull/17",
     "description": "Hello dtkit developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
@@ -10859,5 +10859,421 @@
     "url": "https://github.com/jenkinsci/safe-batch-environment-filter-plugin/pull/11",
     "description": "Hello safe-batch-environment-filter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.504.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.504.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
     "checkStatus": "PENDING"
+  },
+  {
+    "number": 2,
+    "title": "chore(pom): Use recommended core version 2.504.3, and Java 11",
+    "state": "CLOSED",
+    "createdAt": "2025-10-31T15:55:29Z",
+    "updatedAt": "2025-10-31T16:05:57Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/simple-priority-sorter-plugin",
+    "pluginName": "simple-priority-sorter",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/simple-priority-sorter-plugin/pull/2",
+    "description": "Hello simple-priority-sorter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 289,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:53:05Z",
+    "updatedAt": "2025-10-31T16:05:20Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/skip-notifications-trait-plugin",
+    "pluginName": "skip-notifications-trait",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/skip-notifications-trait-plugin/pull/289",
+    "description": "Hello skip-notifications-trait developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 41,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:50:21Z",
+    "updatedAt": "2025-10-31T16:04:11Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/s3-jobcacher-storage-plugin",
+    "pluginName": "s3-jobcacher-storage",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/s3-jobcacher-storage-plugin/pull/41",
+    "description": "Hello s3-jobcacher-storage developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 387,
+    "title": "chore(pom): Use recommended core version 2.504.3, and Java 11",
+    "state": "OPEN",
+    "createdAt": "2025-10-31T15:45:30Z",
+    "updatedAt": "2025-10-31T16:09:39Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/postgresql-fingerprint-storage-plugin",
+    "pluginName": "postgresql-fingerprint-storage",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/postgresql-fingerprint-storage-plugin/pull/387",
+    "description": "Hello postgresql-fingerprint-storage developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "FAILURE"
+  },
+  {
+    "number": 27,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:43:22Z",
+    "updatedAt": "2025-10-31T16:00:40Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/pipeline-cps-oras-plugin",
+    "pluginName": "pipeline-cps-oras",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/pipeline-cps-oras-plugin/pull/27",
+    "description": "Hello pipeline-cps-oras developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 23,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:40:36Z",
+    "updatedAt": "2025-10-31T16:00:56Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/pipeline-lib-oras-plugin",
+    "pluginName": "pipeline-lib-oras",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/pipeline-lib-oras-plugin/pull/23",
+    "description": "Hello pipeline-lib-oras developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 233,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:37:52Z",
+    "updatedAt": "2025-10-31T16:01:45Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/pipeline-npm-plugin",
+    "pluginName": "pipeline-npm",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/pipeline-npm-plugin/pull/233",
+    "description": "Hello pipeline-npm developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 300,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "CLOSED",
+    "createdAt": "2025-10-31T15:31:59Z",
+    "updatedAt": "2025-10-31T16:02:00Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/openshift-k8s-credentials-plugin",
+    "pluginName": "openshift-k8s-credentials",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/openshift-k8s-credentials-plugin/pull/300",
+    "description": "Hello openshift-k8s-credentials developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 186,
+    "title": "chore(pom): Use recommended core version 2.504.3, and Java 11",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:28:09Z",
+    "updatedAt": "2025-10-31T16:02:34Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/next-executions-plugin",
+    "pluginName": "next-executions",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/next-executions-plugin/pull/186",
+    "description": "Hello next-executions developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 338,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:24:13Z",
+    "updatedAt": "2025-10-31T16:02:54Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/locale-plugin",
+    "pluginName": "locale",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/locale-plugin/pull/338",
+    "description": "Hello locale developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 192,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:21:41Z",
+    "updatedAt": "2025-10-31T16:03:19Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/junit-attachments-plugin",
+    "pluginName": "junit-attachments",
+    "labels": [
+      "dependencies"
+    ],
+    "url": "https://github.com/jenkinsci/junit-attachments-plugin/pull/192",
+    "description": "Hello junit-attachments developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 42,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:18:34Z",
+    "updatedAt": "2025-10-31T15:28:10Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/jobcacher-oras-storage-plugin",
+    "pluginName": "jobcacher-oras-storage",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/jobcacher-oras-storage-plugin/pull/42",
+    "description": "Hello jobcacher-oras-storage developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 112,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:15:44Z",
+    "updatedAt": "2025-10-31T15:27:48Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/jobcacher-artifactory-storage-plugin",
+    "pluginName": "jobcacher-artifactory-storage",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/jobcacher-artifactory-storage-plugin/pull/112",
+    "description": "Hello jobcacher-artifactory-storage developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 463,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:13:02Z",
+    "updatedAt": "2025-10-31T16:03:43Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/jobcacher-plugin",
+    "pluginName": "jobcacher",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/jobcacher-plugin/pull/463",
+    "description": "Hello jobcacher developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 30,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:07:36Z",
+    "updatedAt": "2025-10-31T15:24:43Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/jcaptcha-plugin",
+    "pluginName": "jcaptcha-plugin",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/jcaptcha-plugin/pull/30",
+    "description": "Hello jcaptcha-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 236,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T15:05:46Z",
+    "updatedAt": "2025-10-31T15:24:59Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/hidden-parameter-plugin",
+    "pluginName": "hidden-parameter",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/hidden-parameter-plugin/pull/236",
+    "description": "Hello hidden-parameter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 273,
+    "title": "chore(pom): Use recommended core version 2.504.3, and Java 11",
+    "state": "CLOSED",
+    "createdAt": "2025-10-31T15:02:46Z",
+    "updatedAt": "2025-11-02T10:29:03Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/gitlab-kubernetes-credentials-plugin",
+    "pluginName": "gitlab-kubernetes-credentials",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/gitlab-kubernetes-credentials-plugin/pull/273",
+    "description": "Hello gitlab-kubernetes-credentials developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "FAILURE"
+  },
+  {
+    "number": 171,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:56:28Z",
+    "updatedAt": "2025-10-31T15:25:08Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/extra-tool-installers-plugin",
+    "pluginName": "extra-tool-installers",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/extra-tool-installers-plugin/pull/171",
+    "description": "Hello extra-tool-installers developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 141,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:53:33Z",
+    "updatedAt": "2025-10-31T15:25:41Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/extension-filter-plugin",
+    "pluginName": "extension-filter",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/extension-filter-plugin/pull/141",
+    "description": "Hello extension-filter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 96,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:51:13Z",
+    "updatedAt": "2025-10-31T15:25:50Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/database-mariadb-plugin",
+    "pluginName": "database-mariadb",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/database-mariadb-plugin/pull/96",
+    "description": "Hello database-mariadb developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 109,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:48:35Z",
+    "updatedAt": "2025-10-31T15:25:56Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/coverage-badges-extension-plugin",
+    "pluginName": "coverage-badges-extension",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/coverage-badges-extension-plugin/pull/109",
+    "description": "Hello coverage-badges-extension developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 81,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:45:39Z",
+    "updatedAt": "2025-10-31T15:26:06Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/build-history-metrics-plugin",
+    "pluginName": "build-history-metrics-plugin",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/build-history-metrics-plugin/pull/81",
+    "description": "Hello build-history-metrics-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 323,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:43:08Z",
+    "updatedAt": "2025-10-31T15:27:14Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/bitbucket-kubernetes-credentials-plugin",
+    "pluginName": "bitbucket-kubernetes-credentials",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/bitbucket-kubernetes-credentials-plugin/pull/323",
+    "description": "Hello bitbucket-kubernetes-credentials developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 133,
+    "title": "chore(pom): Use recommended core version 2.504.3",
+    "state": "MERGED",
+    "createdAt": "2025-10-31T14:40:16Z",
+    "updatedAt": "2025-10-31T15:27:07Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/artifactory-artifact-manager-plugin",
+    "pluginName": "artifactory-artifact-manager",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/artifactory-artifact-manager-plugin/pull/133",
+    "description": "Hello artifactory-artifact-manager developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.504.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.504.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 149,
+    "title": "Applied recipe UpgradeParent5Version",
+    "state": "MERGED",
+    "createdAt": "2025-11-02T11:00:30Z",
+    "updatedAt": "2025-11-02T11:43:20Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/pipeline-as-yaml-plugin",
+    "pluginName": "pipeline-as-yaml",
+    "labels": [
+      "dependencies"
+    ],
+    "url": "https://github.com/jenkinsci/pipeline-as-yaml-plugin/pull/149",
+    "description": "Hello pipeline-as-yaml developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade parent version to latest available in the 5.x line\n    io.jenkins.tools.pluginmodernizer.UpgradeParent5Version\n    Upgrade the parent version to latest available in the 5.x line.",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 8,
+    "title": "Applied recipe UpgradeParent5Version",
+    "state": "MERGED",
+    "createdAt": "2025-11-02T10:55:47Z",
+    "updatedAt": "2025-11-02T11:43:08Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/jackson3-api-plugin",
+    "pluginName": "jackson3-api",
+    "labels": [
+      "dependencies"
+    ],
+    "url": "https://github.com/jenkinsci/jackson3-api-plugin/pull/8",
+    "description": "Hello jackson3-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade parent version to latest available in the 5.x line\n    io.jenkins.tools.pluginmodernizer.UpgradeParent5Version\n    Upgrade the parent version to latest available in the 5.x line.",
+    "checkStatus": "SUCCESS"
   }
 ]
