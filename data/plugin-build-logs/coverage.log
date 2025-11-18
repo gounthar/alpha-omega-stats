@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2852.v88a_36fe3230d
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2908.va_a_0dc7dddeb_1
 [WARNING] Failed to build parent project for io.jenkins.plugins:coverage-parent:pom:2.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -25,12 +25,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 1: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -44,9 +45,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -64,13 +66,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ coverage-parent ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ coverage-parent ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ coverage-parent ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/coverage/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- jacoco:0.8.13:prepare-agent (default) @ coverage-parent ---
-[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/tmp/plugin-builds/coverage/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
+[INFO] --- jacoco:0.8.14:prepare-agent (default) @ coverage-parent ---
+[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/coverage/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ coverage-parent ---
 [INFO] Generated /tmp/plugin-builds/coverage/target/coverage-parent/WEB-INF/licenses.xml
@@ -155,7 +157,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- failsafe:3.5.4:verify (default) @ coverage-parent ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.13:report (report) @ coverage-parent ---
+[INFO] --- jacoco:0.8.14:report (report) @ coverage-parent ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ coverage-parent ---
@@ -181,9 +183,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -203,9 +206,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -226,42 +230,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.1:compile (default-compile) @ coverage ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 61 source files with javac [debug parameters release 17] to target/classes
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/CoverageSourcePrinter.java:[39,32] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/SourceCodeFacade.java:[67,61] removeEnd(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/source/SourceCodePainter.java:[123,61] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CodeDeltaCalculator.java:[85,17] calculateDelta(hudson.model.Run<?,?>,hudson.model.Run<?,?>,java.lang.String,edu.hm.hafner.util.FilteredLog) in io.jenkins.plugins.forensics.delta.DeltaCalculator has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageAppearanceConfiguration.java:[57,13] possible 'this' escape before subclass is fully initialized
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[53,62] removeStart(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[53,40] removeEnd(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[134,41] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[219,41] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[232,32] contains(java.lang.CharSequence,java.lang.CharSequence) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[189,47] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageXmlStream.java:[299,41] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[74,41] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[80,49] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[83,41] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[89,49] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[92,41] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[98,49] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageBuildAction.java:[101,41] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageViewModel.java:[440,46] removeEnd(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageTool.java:[44,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageTool.java:[44,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.java:[632,59] found raw type: hudson.model.AbstractProject
-  missing type arguments for generic class hudson.model.AbstractProject<P,R>
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageQualityGate.java:[44,13] possible 'this' escape before subclass is fully initialized
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageQualityGate.java:[50,21] previous possible 'this' escape happens here via invocation
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[60,32] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[61,39] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[73,38] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/PathResolver.java:[81,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/PathResolver.java:[82,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/PathResolver.java:[83,35] non-transient instance field of a serializable class declared with a non-serializable type
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ coverage ---
 [INFO] 
@@ -271,7 +239,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- assertj:2.2.0:generate-assertions (default) @ coverage ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ coverage ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ coverage ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/coverage/plugin/target/tmp
 [INFO] Executed tasks
@@ -290,8 +258,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-runtime (default-test-runtime) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.13:prepare-agent (default) @ coverage ---
-[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/tmp/plugin-builds/coverage/plugin/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
+[INFO] --- jacoco:0.8.14:prepare-agent (default) @ coverage ---
+[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/coverage/plugin/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ coverage ---
 [INFO] Tests are skipped.
@@ -307,7 +275,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Exploding webapp...
 [INFO] Copy webapp webResources to /tmp/plugin-builds/coverage/plugin/target/coverage
 [INFO] Assembling webapp coverage in /tmp/plugin-builds/coverage/plugin/target/coverage
-[INFO] Bundling direct dependency coverage-model-0.57.0.jar
+[INFO] Bundling direct dependency coverage-model-0.61.0.jar
 [WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [coverage-model]. Review the bundled artifacts and add `<hpi.bundledArtifacts>coverage-model</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/coverage/plugin/target/coverage.hpi
 [INFO] Building jar: /tmp/plugin-builds/coverage/plugin/target/coverage.hpi
@@ -322,7 +290,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ coverage ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ coverage >>>
@@ -339,7 +307,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ coverage ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ coverage >>>
@@ -356,7 +324,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ coverage ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [WARNING] 4 javascript problems found:
 /tmp/plugin-builds/coverage/plugin/src/main/resources/io/jenkins/plugins/coverage/metrics/steps/CoverageViewModel/view-model.js:45:59: missing ) after formal parameters
 /tmp/plugin-builds/coverage/plugin/src/main/resources/io/jenkins/plugins/coverage/metrics/steps/CoverageViewModel/view-model.js:45:59: missing } after function body
@@ -375,7 +343,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ coverage ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ coverage ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ coverage ---
@@ -405,7 +373,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- failsafe:3.5.4:verify (default) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.13:report (report) @ coverage ---
+[INFO] --- jacoco:0.8.14:report (report) @ coverage ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ coverage ---
@@ -418,11 +386,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Coverage Plugin 2.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 20.245 s]
-[INFO] Coverage Plugin .................................... SUCCESS [01:11 min]
+[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 20.243 s]
+[INFO] Coverage Plugin .................................... SUCCESS [01:05 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:34 min
-[INFO] Finished at: 2025-11-04T02:57:37Z
+[INFO] Total time:  01:30 min
+[INFO] Finished at: 2025-11-18T10:35:18Z
 [INFO] ------------------------------------------------------------------------

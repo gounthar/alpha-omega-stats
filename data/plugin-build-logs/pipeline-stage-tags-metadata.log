@@ -29,10 +29,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-model-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -47,7 +48,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ pipeline-model-parent ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-parent ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-model-parent ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-tags-metadata/target/tmp
 [INFO] Executed tasks
@@ -58,16 +59,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-model-parent >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-model-parent >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-model-parent ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-model-parent ---
 [INFO] No files found to run spotbugs, check compile phase has been run
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-model-parent <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-model-parent <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-model-parent ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-model-parent ---
 [INFO] 
 [INFO] --- spotless:3.0.0:check (default) @ pipeline-model-parent ---
 [INFO] Spotless check skipped
@@ -88,11 +89,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ pipeline-stage-tags-metadata ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-stage-tags-metadata ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-stage-tags-metadata ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -126,7 +128,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-stage-tags-metadata ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-stage-tags-metadata ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-stage-tags-metadata ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-stage-tags-metadata/target/tmp
 [INFO] Executed tasks
@@ -165,17 +167,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-stage-tags-metadata ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-stage-tags-metadata >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-stage-tags-metadata ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-stage-tags-metadata <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-stage-tags-metadata ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-stage-tags-metadata ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -201,10 +203,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ pipeline-model-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-model-api ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-model-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -241,7 +244,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-model-api ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-api ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-model-api ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-api/target/tmp
 [INFO] Executed tasks
@@ -291,17 +294,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-model-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-model-api ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-model-api ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-model-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-model-api ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-model-api ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -327,11 +330,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ pipeline-model-extensions ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-model-extensions ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-model-extensions ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -375,7 +379,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-model-extensions ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-extensions ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-model-extensions ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-extensions/target/tmp
 [INFO] Executed tasks
@@ -414,17 +418,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-extensions ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-model-extensions >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-model-extensions ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-model-extensions ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-model-extensions <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-model-extensions ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-model-extensions ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -450,11 +454,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ pipeline-model-definition ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-model-definition ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-model-definition ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -615,15 +620,15 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.java:[48,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TagConditional.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.java:[50,12] Generating org/jenkinsci/plugins/pipeline/modeldefinition/when/impl/TriggeredByConditional.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[66,8] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.javadoc
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[121,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[76,41] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doAutoCompleteLabel.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[86,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty/DescriptorImpl/doCheckBuildCount.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[118,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doRestartPipeline.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[180,27] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doCheckStageName.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator.java:[78,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator/doGenerateDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[129,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckMessage.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[137,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckId.stapler
 [INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[80,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doCheckLabel.stapler
-[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective.java:[129,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/InputDirective/DescriptorImpl/doCheckMessage.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective.java:[121,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/StageDirective/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[118,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doRestartPipeline.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction.java:[180,27] Generating org/jenkinsci/plugins/pipeline/modeldefinition/actions/RestartDeclarativePipelineAction/doCheckStageName.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label.java:[76,41] Generating org/jenkinsci/plugins/pipeline/modeldefinition/agent/impl/Label/DescriptorImpl/doAutoCompleteLabel.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator.java:[78,25] Generating org/jenkinsci/plugins/pipeline/modeldefinition/generator/DirectiveGenerator/doGenerateDirective.stapler
+[INFO] /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/src/main/java/org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty.java:[86,31] Generating org/jenkinsci/plugins/pipeline/modeldefinition/properties/PreserveStashesJobProperty/DescriptorImpl/doCheckBuildCount.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -648,7 +653,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-model-definition ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-model-definition ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-model-definition ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/tmp
 [INFO] Executed tasks
@@ -689,17 +694,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-model-definition ---
 [INFO] Building jar: /tmp/plugin-builds/pipeline-stage-tags-metadata/pipeline-model-definition/target/pipeline-model-definition-tests.jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-model-definition >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-model-definition >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-model-definition ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-model-definition ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-model-definition <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-model-definition <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-model-definition ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-model-definition ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -715,14 +720,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Model Parent POM 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Model Parent POM ......................... SUCCESS [ 13.275 s]
-[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [ 20.497 s]
-[INFO] Pipeline: Model API ................................ SUCCESS [ 32.062 s]
-[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [ 37.630 s]
-[INFO] Pipeline: Declarative .............................. SUCCESS [01:29 min]
+[INFO] Pipeline: Model Parent POM ......................... SUCCESS [ 14.735 s]
+[INFO] Pipeline: Stage Tags Metadata ...................... SUCCESS [ 21.596 s]
+[INFO] Pipeline: Model API ................................ SUCCESS [ 31.771 s]
+[INFO] Pipeline: Declarative Extension Points API ......... SUCCESS [ 34.728 s]
+[INFO] Pipeline: Declarative .............................. SUCCESS [01:54 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:14 min
-[INFO] Finished at: 2025-11-04T01:59:24Z
+[INFO] Total time:  03:39 min
+[INFO] Finished at: 2025-11-18T09:33:49Z
 [INFO] ------------------------------------------------------------------------

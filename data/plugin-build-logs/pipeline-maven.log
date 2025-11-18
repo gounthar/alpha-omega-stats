@@ -29,10 +29,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-maven-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -47,7 +48,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ pipeline-maven-parent ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-maven-parent ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-maven-parent ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-maven/target/tmp
 [INFO] Executed tasks
@@ -58,21 +59,21 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-maven-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-maven-parent >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-maven-parent >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-maven-parent ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-maven-parent ---
 [INFO] No files found to run spotbugs, check compile phase has been run
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-maven-parent <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-maven-parent <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-maven-parent ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-maven-parent ---
 [INFO] 
 [INFO] --- spotless:3.0.0:check (default) @ pipeline-maven-parent ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom8893353714947672183.xml
-[INFO] Saved sorted pom file to /tmp/pom8893353714947672183.xml
+[INFO] Sorting file /tmp/pom3039586633006636482.xml
+[INFO] Saved sorted pom file to /tmp/pom3039586633006636482.xml
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-maven-parent ---
@@ -91,10 +92,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ pipeline-maven-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-maven-api ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-maven-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -123,7 +125,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-maven-api ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-maven-api ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-maven-api ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-maven/pipeline-maven-api/target/tmp
 [INFO] Executed tasks
@@ -162,17 +164,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-maven-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-maven-api >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-maven-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-maven-api ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-maven-api ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-maven-api <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-maven-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-maven-api ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-maven-api ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -180,7 +182,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.0.0:check (default) @ pipeline-maven-api ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 9 files clean - 0 needs changes to be clean, 9 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom16200205564228201196.xml
+[INFO] Sorting file /tmp/pom4775718907828951036.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -198,9 +200,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-maven-spy ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-maven-spy ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -229,7 +232,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- sisu:0.3.5:main-index (generate-index) @ pipeline-maven-spy ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-maven-spy ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-maven-spy ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-maven/pipeline-maven-spy/target/tmp
 [INFO] Executed tasks
@@ -252,17 +255,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-maven-spy ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-maven-spy >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-maven-spy >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-maven-spy ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-maven-spy ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-maven-spy <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-maven-spy <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-maven-spy ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-maven-spy ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -270,7 +273,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.0.0:check (default) @ pipeline-maven-spy ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 33 files clean - 0 needs changes to be clean, 33 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom8760514387317216966.xml
+[INFO] Sorting file /tmp/pom16430775481653420366.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -294,12 +297,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 7: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 8: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-maven ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -373,7 +377,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-maven ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-maven ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-maven ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-maven/pipeline-maven/target/tmp
 [INFO] Executed tasks
@@ -414,160 +418,70 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-maven ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-maven >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ pipeline-maven >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-maven ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ pipeline-maven ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-maven <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ pipeline-maven <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-maven ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ pipeline-maven ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:3.0.0:check (default) @ pipeline-maven ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Spotless.Java is keeping 98 files clean - 0 needs changes to be clean, 98 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom15344655939161390656.xml
-[INFO] Pom file is already sorted, exiting
-[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] 
-[INFO] --- install:3.1.4:install (default-install) @ pipeline-maven ---
-[INFO] Installing /tmp/plugin-builds/pipeline-maven/pipeline-maven/target/pipeline-maven-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/pipeline-maven/999999-SNAPSHOT/pipeline-maven-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-maven/pipeline-maven/target/pipeline-maven.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/pipeline-maven/999999-SNAPSHOT/pipeline-maven-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-maven/pipeline-maven/target/pipeline-maven.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/pipeline-maven/999999-SNAPSHOT/pipeline-maven-999999-SNAPSHOT.jar
-[INFO] 
-[INFO] -----------< org.jenkins-ci.plugins:pipeline-maven-database >-----------
-[INFO] Building Pipeline Maven Plugin Database 999999-SNAPSHOT            [5/5]
-[INFO]   from pipeline-maven-database/pom.xml
-[INFO] --------------------------------[ hpi ]---------------------------------
-[INFO] 
-[INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate (default-validate) @ pipeline-maven-database ---
-[INFO] Created marker file /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/java-level/17
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-maven-database ---
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-maven-database ---
-[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
-[INFO] 
-[INFO] --- localizer:1.31:generate (default) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ pipeline-maven-database ---
-[INFO] Skipping Rule Enforcement.
-[INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ pipeline-maven-database ---
-[INFO] Copying 33 resources from src/main/resources to target/classes
-[INFO] 
-[INFO] --- flatten:1.7.3:flatten (flatten) @ pipeline-maven-database ---
-[INFO] Generating flattened POM of project org.jenkins-ci.plugins:pipeline-maven-database:hpi:999999-SNAPSHOT...
-[INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ pipeline-maven-database ---
-[INFO] Recompiling the module because of changed dependency.
-[INFO] Compiling 14 source files with javac [debug parameters release 17] to target/classes
-[INFO] org.jenkinsci.plugins.pipeline.maven.db.PipelineMavenPluginH2Dao indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.pipeline.maven.db.PipelineMavenPluginMySqlDao indexed under hudson.Extension
-[INFO] org.jenkinsci.plugins.pipeline.maven.db.PipelineMavenPluginPostgreSqlDao indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/src/main/java/org/jenkinsci/plugins/pipeline/maven/db/AbstractPipelineMavenPluginDao.java: /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/src/main/java/org/jenkinsci/plugins/pipeline/maven/db/AbstractPipelineMavenPluginDao.java uses or overrides a deprecated API.
-[INFO] /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/src/main/java/org/jenkinsci/plugins/pipeline/maven/db/AbstractPipelineMavenPluginDao.java: Recompile with -Xlint:deprecation for details.
-[INFO] /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/src/main/java/org/jenkinsci/plugins/pipeline/maven/db/AbstractPipelineMavenPluginDao.java: /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/src/main/java/org/jenkinsci/plugins/pipeline/maven/db/AbstractPipelineMavenPluginDao.java uses unchecked or unsafe operations.
-[INFO] /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/src/main/java/org/jenkinsci/plugins/pipeline/maven/db/AbstractPipelineMavenPluginDao.java: Recompile with -Xlint:unchecked for details.
-[INFO] 
-[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- bridge-method-injector:1.32:process (default) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ pipeline-maven-database ---
-[INFO] Executing tasks
-[INFO]     [mkdir] Created dir: /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/tmp
-[INFO] Executed tasks
-[INFO] 
-[INFO] --- resources:3.3.1:testResources (default-testResources) @ pipeline-maven-database ---
-[INFO] Not copying test resources
-[INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ pipeline-maven-database ---
-[INFO] Not compiling test sources
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-hpl (default-test-hpl) @ pipeline-maven-database ---
-[INFO] Generating /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/test-classes/the.hpl
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-maven-database ---
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-runtime (default-test-runtime) @ pipeline-maven-database ---
-[INFO] Tests are skipped.
-[INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ pipeline-maven-database ---
-[INFO] Tests are skipped.
-[INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-maven-database ---
-[INFO] Generated /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database/WEB-INF/licenses.xml
-[INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:hpi (default-hpi) @ pipeline-maven-database ---
-[INFO] Generating /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database/META-INF/MANIFEST.MF
-[INFO] Checking for attached .jar artifact ...
-[INFO] Generating jar /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database.jar
-[INFO] Building jar: /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database.jar
-[INFO] Exploding webapp...
-[INFO] Copy webapp webResources to /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database
-[INFO] Assembling webapp pipeline-maven-database in /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database
-[INFO] Bundling direct dependency HikariCP-7.0.2.jar
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [HikariCP]. Review the bundled artifacts and add `<hpi.bundledArtifacts>HikariCP</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
-[INFO] Generating hpi /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database.hpi
-[INFO] Building jar: /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database.hpi
-[INFO] 
-[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ pipeline-maven-database ---
-[INFO] Skipping packaging of the test-jar
-[INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ pipeline-maven-database >>>
-[INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ pipeline-maven-database ---
-[INFO] Fork Value is true
-[INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
-[INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ pipeline-maven-database <<<
-[INFO] 
-[INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ pipeline-maven-database ---
-[INFO] BugInstance size is 0
-[INFO] Error size is 0
-[INFO] No errors/warnings found
-[INFO] 
-[INFO] --- spotless:3.0.0:check (default) @ pipeline-maven-database ---
-[INFO] Index file does not exist. Fallback to an empty index
-[INFO] Spotless.Java is keeping 24 files clean - 0 needs changes to be clean, 24 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom17763322979451413405.xml
-[INFO] Pom file is already sorted, exiting
-[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] 
-[INFO] --- install:3.1.4:install (default-install) @ pipeline-maven-database ---
-[INFO] Installing /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/pipeline-maven-database/999999-SNAPSHOT/pipeline-maven-database-999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/pipeline-maven-database/999999-SNAPSHOT/pipeline-maven-database-999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/pipeline-maven/pipeline-maven-database/target/pipeline-maven-database.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/pipeline-maven-database/999999-SNAPSHOT/pipeline-maven-database-999999-SNAPSHOT.jar
+[INFO] Spotless.Java is keeping 98 files clean - 2 needs changes to be clean, 96 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline Maven Integration Plugin Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline Maven Integration Plugin Parent ........... SUCCESS [ 21.692 s]
-[INFO] Pipeline Maven Plugin API .......................... SUCCESS [ 32.968 s]
-[INFO] Maven Spy for the Pipeline Maven Integration Plugin  SUCCESS [ 30.315 s]
-[INFO] Pipeline Maven Integration Plugin .................. SUCCESS [01:16 min]
-[INFO] Pipeline Maven Plugin Database ..................... SUCCESS [ 30.047 s]
+[INFO] Pipeline Maven Integration Plugin Parent ........... SUCCESS [ 21.006 s]
+[INFO] Pipeline Maven Plugin API .......................... SUCCESS [ 34.665 s]
+[INFO] Maven Spy for the Pipeline Maven Integration Plugin  SUCCESS [ 30.391 s]
+[INFO] Pipeline Maven Integration Plugin .................. FAILURE [01:20 min]
+[INFO] Pipeline Maven Plugin Database ..................... SKIPPED
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
+[INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:14 min
-[INFO] Finished at: 2025-11-04T02:47:37Z
+[INFO] Total time:  02:51 min
+[INFO] Finished at: 2025-11-18T10:25:00Z
 [INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:3.0.0:check (default) on project pipeline-maven: The following files had format violations:
+[ERROR]     src/main/java/org/jenkinsci/plugins/pipeline/maven/publishers/JacocoReportPublisher.java
+[ERROR]         @@ -112,8 +112,7 @@
+[ERROR]          ····@Override
+[ERROR]          ····public·void·process(@NonNull·StepContext·context,·@NonNull·Element·mavenSpyLogsElt)
+[ERROR]          ············throws·IOException,·InterruptedException·{
+[ERROR]         -········throw·new·AbortException(
+[ERROR]         -················"""
+[ERROR]         +········throw·new·AbortException("""
+[ERROR]          ········The·jacocoPublisher·is·deprecated·as·is·the·Jacoco·plugin·and·you·should·not·use·it.
+[ERROR]          ········Alternatively,·you·should·rely·on·CoveragePublisher.
+[ERROR]          ········Or,·if·continuing·to·use·the·JaCoCo·plugin·for·now,·run·it·explicitly·rather·than·expecting·withMaven·to·run·it·implicitly.
+[ERROR]     src/main/java/org/jenkinsci/plugins/pipeline/maven/MavenPublisherStrategy.java
+[ERROR]         @@ -73,9 +73,7 @@
+[ERROR]          ············for·(Descriptor<MavenPublisher>·descriptor·:·descriptorList)·{
+[ERROR]          ················try·{
+[ERROR]          ····················if·(JacocoReportPublisher.DescriptorImpl.class.isAssignableFrom(descriptor.getClass()))·{
+[ERROR]         -························listener.getLogger()
+[ERROR]         -································.println(
+[ERROR]         -········································"""
+[ERROR]         +························listener.getLogger().println("""
+[ERROR]          ························[withMaven]·JacocoPublisher·is·no·longer·implicitly·used·with·`withMaven`·step.
+[ERROR]          ························[withMaven]·Jacoco·plugin·has·been·deprecated·and·should·not·be·used·anymore.
+[ERROR]          ························[withMaven]·CoveragePublisher·will·be·used·instead.
+[ERROR] Run 'mvn spotless:apply' to fix these violations.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <args> -rf :pipeline-maven

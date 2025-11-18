@@ -26,10 +26,11 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ ansible ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -71,12 +72,12 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsibleAdhocStep.java:[77,12] Generating org/jenkinsci/plugins/ansible/workflow/AnsibleAdhocStep.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.java:[93,12] Generating org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep.java:[61,12] Generating org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep.java:[157,29] Generating org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep/DescriptorImpl/doFillNewVaultCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor.java:[66,25] Generating org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor/doFillVaultCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor.java:[71,25] Generating org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor/doFillNewVaultCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsibleVaultBuilder.java:[187,31] Generating org/jenkinsci/plugins/ansible/AnsibleVaultBuilder/DescriptorImpl/doCheckVaultCredentialsId.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor.java:[46,25] Generating org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsiblePlaybookBuilder.java:[351,31] Generating org/jenkinsci/plugins/ansible/AnsiblePlaybookBuilder/DescriptorImpl/doCheckPlaybook.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsibleAdHocCommandBuilder.java:[284,31] Generating org/jenkinsci/plugins/ansible/AnsibleAdHocCommandBuilder/DescriptorImpl/doCheckHostPattern.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsibleVaultBuilder.java:[187,31] Generating org/jenkinsci/plugins/ansible/AnsibleVaultBuilder/DescriptorImpl/doCheckVaultCredentialsId.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsiblePlaybookBuilder.java:[351,31] Generating org/jenkinsci/plugins/ansible/AnsiblePlaybookBuilder/DescriptorImpl/doCheckPlaybook.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.java:[316,29] Generating org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/Inventory.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/Inventory.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleInvocation.java: Some input files use unchecked or unsafe operations.
@@ -88,7 +89,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ ansible ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ ansible ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ ansible ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/ansible/target/tmp
 [INFO] Executed tasks
@@ -129,17 +130,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ ansible ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ ansible >>>
+[INFO] >>> spotbugs:4.9.8.1:check (spotbugs) > :spotbugs @ ansible >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ ansible ---
+[INFO] --- spotbugs:4.9.8.1:spotbugs (spotbugs) @ ansible ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ ansible <<<
+[INFO] <<< spotbugs:4.9.8.1:check (spotbugs) < :spotbugs @ ansible <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ ansible ---
+[INFO] --- spotbugs:4.9.8.1:check (spotbugs) @ ansible ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
@@ -147,7 +148,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.0.0:check (default) @ ansible ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 29 files clean - 0 needs changes to be clean, 29 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom9643107316991319248.xml
+[INFO] Sorting file /tmp/pom6597204206793644824.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -158,6 +159,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:07 min
-[INFO] Finished at: 2025-11-04T02:52:33Z
+[INFO] Total time:  01:08 min
+[INFO] Finished at: 2025-11-18T10:30:37Z
 [INFO] ------------------------------------------------------------------------
