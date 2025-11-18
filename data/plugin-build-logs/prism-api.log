@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2867.v81ec3848d647
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2892.vb_fb_a_fdf482c6
 [WARNING] Failed to build parent project for io.jenkins.plugins:prism-api:hpi:1.30.0-999999-SNAPSHOT
 [INFO] 
 [INFO] --------------------< io.jenkins.plugins:prism-api >--------------------
@@ -27,12 +27,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ prism-api ---
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 1: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ prism-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -49,12 +50,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:1.15.4:npm (npm install) @ prism-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/prism-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 7s
+[INFO] added 227 packages, and audited 228 packages in 6s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] found 0 vulnerabilities
+[INFO] 1 high severity vulnerability
+[INFO] 
+[INFO] To address all issues, run:
+[INFO]   npm audit fix
+[INFO] 
+[INFO] Run `npm audit` for details.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ prism-api ---
 [INFO] 
@@ -73,9 +79,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ prism-api ---
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ prism-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -87,12 +94,17 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:1.15.4:npm (npm install) @ prism-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/prism-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 6s
+[INFO] added 227 packages, and audited 228 packages in 5s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] found 0 vulnerabilities
+[INFO] 1 high severity vulnerability
+[INFO] 
+[INFO] To address all issues, run:
+[INFO]   npm audit fix
+[INFO] 
+[INFO] Run `npm audit` for details.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ prism-api ---
 [INFO] 
@@ -128,7 +140,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ prism-api ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ prism-api ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ prism-api ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/prism-api/target/tmp
 [INFO] Executed tasks
@@ -147,8 +159,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-runtime (default-test-runtime) @ prism-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.13:prepare-agent (default) @ prism-api ---
-[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.13/org.jacoco.agent-0.8.13-runtime.jar=destfile=/tmp/plugin-builds/prism-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
+[INFO] --- jacoco:0.8.14:prepare-agent (default) @ prism-api ---
+[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/prism-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ prism-api ---
 [INFO] Tests are skipped.
@@ -180,7 +192,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ prism-api ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ prism-api >>>
@@ -197,7 +209,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ prism-api ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ prism-api >>>
@@ -214,7 +226,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ prism-api ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-javascript) > :pmd @ prism-api >>>
@@ -228,7 +240,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ prism-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ prism-api ---
-[INFO] PMD version: 7.17.0-metrics
+[INFO] PMD version: 7.18.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ prism-api ---
@@ -258,7 +270,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- failsafe:3.5.4:verify (default) @ prism-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.13:report (report) @ prism-api ---
+[INFO] --- jacoco:0.8.14:report (report) @ prism-api ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ prism-api ---
@@ -272,6 +284,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:03 min
-[INFO] Finished at: 2025-11-04T02:33:25Z
+[INFO] Total time:  01:48 min
+[INFO] Finished at: 2025-11-18T10:11:05Z
 [INFO] ------------------------------------------------------------------------
