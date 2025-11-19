@@ -103,6 +103,43 @@ jobs:
         id: timestamp
         run: echo "timestamp=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
 
+      - name: Validate PAT_TOKEN
+        id: validate-token
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          if [ -z "$PAT_TOKEN" ]; then
+            echo "::error::PAT_TOKEN secret is not set or empty"
+            echo "Please configure PAT_TOKEN in repository Settings → Secrets and variables → Actions"
+            echo "The token needs 'repo' scope for creating pull requests"
+            exit 1
+          fi
+
+          # Test token validity by making a simple API call
+          echo "Testing PAT_TOKEN validity..."
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer $PAT_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/user")
+
+          if [ "$HTTP_CODE" = "200" ]; then
+            echo "✓ PAT_TOKEN is valid"
+            echo "valid=true" >> "$GITHUB_OUTPUT"
+          elif [ "$HTTP_CODE" = "401" ]; then
+            echo "::error::PAT_TOKEN is invalid or expired (HTTP 401)"
+            echo "Please regenerate the token at https://github.com/settings/tokens"
+            echo "Required scopes: repo"
+            exit 1
+          elif [ "$HTTP_CODE" = "403" ]; then
+            echo "::error::PAT_TOKEN lacks required permissions (HTTP 403)"
+            echo "Ensure the token has 'repo' scope"
+            exit 1
+          else
+            echo "::warning::Unexpected HTTP response: $HTTP_CODE"
+            echo "Proceeding anyway, but the Create Pull Request step may fail"
+            echo "valid=unknown" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create Pull Request
         if: success()
         uses: peter-evans/create-pull-request@v6
@@ -117,3 +154,4 @@ jobs:
           delete-branch: true
           base: main
           labels: automation
+
