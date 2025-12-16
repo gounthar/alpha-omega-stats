@@ -52,14 +52,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] yarn install v1.22.19
 [INFO] [1/4] Resolving packages...
 [INFO] [2/4] Fetching packages...
-[INFO] (node:31983) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+[INFO] (node:32586) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
 [INFO] (Use `node --trace-deprecation ...` to show where the warning was created)
 [INFO] [3/4] Linking dependencies...
 [INFO] warning "jsdom > cssstyle > @csstools/css-syntax-patches-for-csstree@1.0.14" has unmet peer dependency "postcss@^8.4".
 [INFO] warning Workspaces can only be enabled in private projects.
 [INFO] warning Workspaces can only be enabled in private projects.
 [INFO] [4/4] Building fresh packages...
-[INFO] Done in 32.22s.
+[INFO] Done in 19.85s.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ uno-choice ---
 [INFO] 
@@ -69,12 +69,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] $ yarn build
 [INFO] $ yarn prod
 [INFO] $ webpack --config webpack.config.js --mode=production
+[INFO] [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
 [INFO] asset UnoChoice.js 20 KiB [emitted] [minimized] (name: UnoChoice) 1 related asset
 [INFO] asset Util.js 1.91 KiB [emitted] [minimized] (name: Util) 1 related asset
 [INFO] ./src/main/js/UnoChoice.es6 50.8 KiB [built] [code generated]
 [INFO] ./src/main/js/Util.ts 5.7 KiB [built] [code generated]
-[INFO] webpack 5.103.0 compiled successfully in 12713 ms
-[INFO] Done in 16.69s.
+[INFO] webpack 5.103.0 compiled successfully in 9263 ms
+[INFO] Done in 10.97s.
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ uno-choice ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -147,52 +148,53 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] yarn run v1.22.19
 [INFO] $ yarn test
 [INFO] $ jest --colors
+[INFO] [baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
 [INFO]  PASS  src/test/js/Util.test.ts
 [INFO]   makeRadio
-[INFO]     ✓ When only value and name are provided, a valid checkbox is built (13 ms)
-[INFO]     ✓ When checked is specified, it is set (3 ms)
-[INFO]     ✓ When disabled is specified, it is set (4 ms)
+[INFO]     ✓ When only value and name are provided, a valid checkbox is built (7 ms)
+[INFO]     ✓ When checked is specified, it is set (2 ms)
+[INFO]     ✓ When disabled is specified, it is set (2 ms)
 [INFO]   makeCheckbox
-[INFO]     ✓ When only value is provided, a valid checkbox is built (4 ms)
-[INFO]     ✓ When checked is specified, it is set (4 ms)
-[INFO]     ✓ When disabled is specified, it is set (6 ms)
+[INFO]     ✓ When only value is provided, a valid checkbox is built (2 ms)
+[INFO]     ✓ When checked is specified, it is set (2 ms)
+[INFO]     ✓ When disabled is specified, it is set (10 ms)
 [INFO]   makeHidden
-[INFO]     ✓ a valid hidden input is produced (2 ms)
+[INFO]     ✓ a valid hidden input is produced (4 ms)
 [INFO]   makeTd
-[INFO]     ✓ when no elements are provided, a valid td is produced (2 ms)
-[INFO]     ✓ when 1 element is provided, a valid td is produced (8 ms)
-[INFO]     ✓ when 2 elements are provided, a valid td is produced (2 ms)
+[INFO]     ✓ when no elements are provided, a valid td is produced (1 ms)
+[INFO]     ✓ when 1 element is provided, a valid td is produced (2 ms)
+[INFO]     ✓ when 2 elements are provided, a valid td is produced (5 ms)
 [INFO]   makeTr
-[INFO]     ✓ creates a valid tr with undefined id (26 ms)
+[INFO]     ✓ creates a valid tr with undefined id (1 ms)
 [INFO]     ✓ creates a valid tr with valid id (1 ms)
 [INFO]   makeLabel
-[INFO]     ✓ creates a valid label with title (2 ms)
+[INFO]     ✓ creates a valid label with title (6 ms)
 [INFO]     ✓ creates a valid label without title (1 ms)
 [INFO]   getSelectValues
-[INFO]     ✓ returns empty array when no option is selected (29 ms)
-[INFO]     ✓ returns singleton array when one option is selected (8 ms)
-[INFO]     ✓ returns all selected options when multiple are selected (9 ms)
+[INFO]     ✓ returns empty array when no option is selected (17 ms)
+[INFO]     ✓ returns singleton array when one option is selected (6 ms)
+[INFO]     ✓ returns all selected options when multiple are selected (6 ms)
 [INFO]   getElementValue
 [INFO]     When HTML Select is passed
-[INFO]       ✓ returns empty array when no option is selected (10 ms)
-[INFO]       ✓ returns singleton array when one option is selected (6 ms)
-[INFO]       ✓ returns all selected options when multiple are selected (12 ms)
+[INFO]       ✓ returns empty array when no option is selected (6 ms)
+[INFO]       ✓ returns singleton array when one option is selected (5 ms)
+[INFO]       ✓ returns all selected options when multiple are selected (8 ms)
 [INFO]     When checkbox is passed
-[INFO]       ✓ returns empty string when no option is selected (8 ms)
+[INFO]       ✓ returns empty string when no option is selected (4 ms)
 [INFO]       ✓ returns value when checkbox is selected (1 ms)
 [INFO]     When radio is passed
-[INFO]       ✓ returns empty string when no option is selected (10 ms)
+[INFO]       ✓ returns empty string when no option is selected (4 ms)
 [INFO]       ✓ returns value when radio is selected (1 ms)
 [INFO]     When text is passed
-[INFO]       ✓ returns empty string no input is provided (1 ms)
-[INFO]       ✓ returns value when text is provided (1 ms)
+[INFO]       ✓ returns empty string no input is provided (2 ms)
+[INFO]       ✓ returns value when text is provided (2 ms)
 [INFO] 
 [INFO] Test Suites: 1 passed, 1 total
 [INFO] Tests:       26 passed, 26 total
 [INFO] Snapshots:   0 total
-[INFO] Time:        4.314 s
+[INFO] Time:        3.823 s
 [INFO] Ran all test suites.
-[INFO] Done in 6.98s.
+[INFO] Done in 6.68s.
 [INFO] 
 [INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ uno-choice ---
 [INFO] Generated /tmp/plugin-builds/uno-choice/target/uno-choice/WEB-INF/licenses.xml
@@ -236,6 +238,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:22 min
-[INFO] Finished at: 2025-12-09T02:46:26Z
+[INFO] Total time:  02:05 min
+[INFO] Finished at: 2025-12-16T02:51:21Z
 [INFO] ------------------------------------------------------------------------
