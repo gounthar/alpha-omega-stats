@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2908.va_a_0dc7dddeb_1
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2958.v63511c4c1160
 [WARNING] Failed to build parent project for io.jenkins.plugins:echarts-api:hpi:6.0.0-999999-SNAPSHOT
 [INFO] 
 [INFO] -------------------< io.jenkins.plugins:echarts-api >-------------------
@@ -26,9 +26,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ echarts-api ---
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -49,7 +49,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:1.15.4:npm (npm install) @ echarts-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/echarts-api
 [INFO] 
-[INFO] added 230 packages, and audited 231 packages in 9s
+[INFO] added 230 packages, and audited 231 packages in 10s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -120,6 +120,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- compiler:3.14.1:compile (default-compile) @ echarts-api ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 9 source files with javac [debug parameters release 17] to target/classes
+[WARNING] No processor claimed any of these annotations: /org.kohsuke.stapler.bind.JavaScriptMethod,/edu.umd.cs.findbugs.annotations.NonNull
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ echarts-api ---
 [INFO] 
@@ -179,7 +180,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ echarts-api ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ echarts-api >>>
@@ -196,7 +197,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ echarts-api ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ echarts-api >>>
@@ -213,7 +214,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ echarts-api ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [WARNING] 21 javascript problems found:
 /tmp/plugin-builds/echarts-api/src/main/webapp/js/echarts-api.js:248:37: invalid property id
 /tmp/plugin-builds/echarts-api/src/main/webapp/js/echarts-api.js:273:131: missing ) after formal parameters
@@ -249,7 +250,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ echarts-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ echarts-api ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ echarts-api ---
@@ -293,6 +294,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:05 min
-[INFO] Finished at: 2025-12-09T02:10:07Z
+[INFO] Total time:  02:00 min
+[INFO] Finished at: 2025-12-16T02:14:45Z
 [INFO] ------------------------------------------------------------------------
