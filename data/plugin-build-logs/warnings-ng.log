@@ -8,7 +8,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2934.va_a_d795c46a_7b_
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2958.v63511c4c1160
 [WARNING] Failed to build parent project for io.jenkins.plugins:warnings-ng-parent:pom:12.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -25,9 +25,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ warnings-ng-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
@@ -186,14 +186,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 Failed while enforcing RequireUpperBoundDeps. The error(s) are [
 Require upper bound dependencies error for com.sun.xml.bind:jaxb-impl:2.3.9. Paths to dependency are:
 +-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
-  +-io.jenkins.plugins:analysis-model-api:13.17.0-931.v730d8659ea_9c
+  +-io.jenkins.plugins:analysis-model-api:13.18.0-935.v784ca_107400a_
     +-io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706 (managed) <-- io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706
       +-com.sun.xml.bind:jaxb-impl:2.3.9
 and
 +-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
   +-org.jenkins-ci.plugins:jackson2-api:2.20.1-423.v13951f6b_6532
-    +-io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9 (managed) <-- io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9
-      +-com.sun.xml.bind:jaxb-impl:4.0.5
+    +-io.jenkins.plugins:jakarta-xml-bind-api:4.0.6-10.v9b_7e1d1fc40b_ (managed) <-- io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9
+      +-com.sun.xml.bind:jaxb-impl:4.0.6
 ]
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
@@ -221,14 +221,14 @@ and
 Failed while enforcing RequireUpperBoundDeps. The error(s) are [
 Require upper bound dependencies error for com.sun.xml.bind:jaxb-impl:2.3.9. Paths to dependency are:
 +-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
-  +-io.jenkins.plugins:analysis-model-api:13.17.0-931.v730d8659ea_9c
+  +-io.jenkins.plugins:analysis-model-api:13.18.0-935.v784ca_107400a_
     +-io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706 (managed) <-- io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706
       +-com.sun.xml.bind:jaxb-impl:2.3.9
 and
 +-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
   +-org.jenkins-ci.plugins:jackson2-api:2.20.1-423.v13951f6b_6532
-    +-io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9 (managed) <-- io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9
-      +-com.sun.xml.bind:jaxb-impl:4.0.5
+    +-io.jenkins.plugins:jakarta-xml-bind-api:4.0.6-10.v9b_7e1d1fc40b_ (managed) <-- io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9
+      +-com.sun.xml.bind:jaxb-impl:4.0.6
 ]
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
@@ -438,10 +438,10 @@ and
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[37,12] Generating io/jenkins/plugins/analysis/core/model/ToolSelection.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.java:[49,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.java:[53,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[142,12] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[145,12] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[93,12] Generating io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[112,12] Generating io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[56,12] Generating io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[59,12] Generating io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[29,12] Generating io/jenkins/plugins/analysis/core/steps/ToolProxy.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[44,12] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AcuCobol.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/AcuCobol.stapler
@@ -582,32 +582,32 @@ and
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[73,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.java:[44,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[184,12] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ToolApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/ToolApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/IssueApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/IssueApi.javadoc
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AggregationApi.java:[16,8] Generating io/jenkins/plugins/analysis/core/restapi/AggregationApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ToolApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/ToolApi.javadoc
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ReportApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/ReportApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[382,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckExample.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[222,31] Generating io/jenkins/plugins/analysis/core/model/Tool/ToolDescriptor/doCheckId.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[261,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExcludePattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[95,31] Generating io/jenkins/plugins/analysis/core/filter/RegexpFilter/RegexpFilterDescriptor/doCheckPattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[292,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckProjectUrl.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[985,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckHealthy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[390,29] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[291,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExample.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[74,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckReportEncoding.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[338,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckScript.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[94,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckSourceCodeEncoding.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[164,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckUnhealthy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[275,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[302,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckRegexp.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/IssueApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/IssueApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AggregationApi.java:[16,8] Generating io/jenkins/plugins/analysis/core/restapi/AggregationApi.javadoc
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[349,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[320,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckBasedir.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[338,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[382,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckExample.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[923,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckId.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1048,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckUnhealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[95,31] Generating io/jenkins/plugins/analysis/core/filter/RegexpFilter/RegexpFilterDescriptor/doCheckPattern.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[241,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckIncludePattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[228,31] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate/WarningsQualityGateDescriptor/doCheckThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[193,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckHighThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[159,27] Generating io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration/doCheckConsoleLogScanningPermitted.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1005,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckSourceCodeEncoding.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportScanningTool.java:[299,31] Generating io/jenkins/plugins/analysis/core/model/ReportScanningTool/ReportScanningToolDescriptor/doCheckReportEncoding.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[215,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckNormalThreshold.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[292,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckProjectUrl.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[302,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckRegexp.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[261,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExcludePattern.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[159,27] Generating io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration/doCheckConsoleLogScanningPermitted.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[291,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExample.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[193,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckHighThreshold.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[143,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckHealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[228,31] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate/WarningsQualityGateDescriptor/doCheckThreshold.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[390,29] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[320,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckBasedir.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[275,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckName.stapler
 [WARNING] No processor claimed any of these annotations: /org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro.Parameter,/hudson.init.Initializer,/edu.umd.cs.findbugs.annotations.NonNull,/org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.Whitelisted,/org.kohsuke.stapler.DataBoundSetter,/com.google.errorprone.annotations.MustBeClosed,/edu.umd.cs.findbugs.annotations.CheckForNull,/org.kohsuke.stapler.bind.JavaScriptMethod,/org.kohsuke.stapler.AncestorInPath,/edu.hm.hafner.util.Generated,/org.kohsuke.stapler.verb.POST,/edu.hm.hafner.util.VisibleForTesting,/org.kohsuke.stapler.export.ExportedBean,/org.kohsuke.stapler.DataBoundConstructor,/org.kohsuke.accmod.Restricted,/org.kohsuke.stapler.QueryParameter,/com.google.errorprone.annotations.CheckReturnValue,/org.jenkinsci.Symbol,/edu.umd.cs.findbugs.annotations.SuppressFBWarnings,/org.kohsuke.stapler.export.Exported,/com.google.errorprone.annotations.FormatMethod,/edu.umd.cs.findbugs.annotations.DefaultAnnotation,/hudson.Extension
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[48,42] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[49,42] non-transient instance field of a serializable class declared with a non-serializable type
@@ -650,10 +650,10 @@ and
   missing type arguments for generic class java.lang.Class<T>
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnnotatedReport.java:[38,40] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/AffectedFilesResolver.java:[89,24] removeEnd(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[263,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[264,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[266,42] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[866,59] found raw type: hudson.model.AbstractProject
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[267,35] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[268,35] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[270,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[908,59] found raw type: hudson.model.AbstractProject
   missing type arguments for generic class hudson.model.AbstractProject<P,R>
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[64,28] possible 'this' escape before subclass is fully initialized
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
@@ -668,8 +668,8 @@ and
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[74,38] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[83,32] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[99,39] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[241,42] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[242,35] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[276,42] non-transient instance field of a serializable class declared with a non-serializable type
+[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[277,35] non-transient instance field of a serializable class declared with a non-serializable type
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[213,36] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[367,40] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
 [WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[405,65] <C>listCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>,com.cloudbees.plugins.credentials.CredentialsMatcher) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
@@ -755,7 +755,7 @@ and
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ warnings-ng ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ warnings-ng >>>
@@ -772,7 +772,7 @@ and
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ warnings-ng ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ warnings-ng >>>
@@ -789,7 +789,7 @@ and
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ warnings-ng ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [WARNING] 3 javascript problems found:
 /tmp/plugin-builds/warnings-ng/plugin/src/main/webapp/js/reset-quality-gate.js:7:52: missing ) after argument list
 /tmp/plugin-builds/warnings-ng/plugin/src/main/webapp/js/reset-quality-gate.js:12:14: syntax error
@@ -807,7 +807,7 @@ and
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ warnings-ng ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ warnings-ng ---
-[INFO] PMD version: 7.18.0-metrics
+[INFO] PMD version: 7.19.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ warnings-ng ---
@@ -835,11 +835,11 @@ and
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Warnings Plugin 12.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 21.595 s]
-[INFO] Warnings Plugin .................................... SUCCESS [02:25 min]
+[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 21.197 s]
+[INFO] Warnings Plugin .................................... SUCCESS [02:27 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:50 min
-[INFO] Finished at: 2025-12-16T03:06:34Z
+[INFO] Total time:  02:51 min
+[INFO] Finished at: 2025-12-23T03:05:57Z
 [INFO] ------------------------------------------------------------------------
