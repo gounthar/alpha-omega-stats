@@ -36,6 +36,9 @@
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ ansible ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ ansible ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ ansible ---
 [INFO] Copying 59 resources from src/main/resources to target/classes
 [INFO] 
@@ -45,6 +48,8 @@
 [INFO] --- compiler:3.14.1:compile (default-compile) @ ansible ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 24 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
 [INFO] org.jenkinsci.plugins.ansible.AnsibleAdHocCommandBuilder.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.ansible.AnsibleInstallation.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkinsci.plugins.ansible.AnsiblePlaybookBuilder.DescriptorImpl indexed under hudson.Extension
@@ -68,12 +73,16 @@
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsibleAdhocStep.java:[77,12] Generating org/jenkinsci/plugins/ansible/workflow/AnsibleAdhocStep.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.java:[93,12] Generating org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep.java:[61,12] Generating org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.java:[316,29] Generating org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep.java:[157,29] Generating org/jenkinsci/plugins/ansible/workflow/AnsibleVaultStep/DescriptorImpl/doFillNewVaultCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor.java:[66,25] Generating org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor/doFillVaultCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsibleVaultBuilder.java:[187,31] Generating org/jenkinsci/plugins/ansible/AnsibleVaultBuilder/DescriptorImpl/doCheckVaultCredentialsId.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor.java:[71,25] Generating org/jenkinsci/plugins/ansible/AbstractAnsibleBuilderDescriptor/doFillNewVaultCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsiblePlaybookBuilder.java:[351,31] Generating org/jenkinsci/plugins/ansible/AnsiblePlaybookBuilder/DescriptorImpl/doCheckPlaybook.stapler
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsibleAdHocCommandBuilder.java:[284,31] Generating org/jenkinsci/plugins/ansible/AnsibleAdHocCommandBuilder/DescriptorImpl/doCheckHostPattern.stapler
-[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep.java:[316,29] Generating org/jenkinsci/plugins/ansible/workflow/AnsiblePlaybookStep/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AnsibleVaultBuilder.java:[187,31] Generating org/jenkinsci/plugins/ansible/AnsibleVaultBuilder/DescriptorImpl/doCheckVaultCredentialsId.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+  reason: class file for javax.annotation.meta.When not found
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/Inventory.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/Inventory.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/ansible/src/main/java/org/jenkinsci/plugins/ansible/AbstractAnsibleInvocation.java: Some input files use unchecked or unsafe operations.
@@ -107,7 +116,7 @@
 [INFO] --- surefire:3.5.4:test (default-test) @ ansible ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ ansible ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ ansible ---
 [INFO] Generated /tmp/plugin-builds/ansible/target/ansible/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ ansible ---
@@ -146,7 +155,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotle
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 29 files clean - 0 needs changes to be clean, 29 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom17859159631394424200.xml
+[INFO] Sorting file /tmp/pom2872032390648716645.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -157,6 +166,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:15 min
-[INFO] Finished at: 2026-01-13T03:07:35Z
+[INFO] Total time:  01:18 min
+[INFO] Finished at: 2026-01-20T03:21:46Z
 [INFO] ------------------------------------------------------------------------

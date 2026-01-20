@@ -15,9 +15,6 @@
 [INFO] 
 [INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ parameterized-scheduler ---
 [INFO] Created marker file /tmp/plugin-builds/parameterized-scheduler/target/java-level/17
-[INFO] Setting maven.compiler.release to 17
-[INFO] Setting maven.compiler.testRelease to 17
-[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
 [INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ parameterized-scheduler ---
 [INFO] 
@@ -26,10 +23,11 @@
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ parameterized-scheduler ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -38,6 +36,9 @@
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ parameterized-scheduler ---
 [INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ parameterized-scheduler ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ parameterized-scheduler ---
 [INFO] Copying 5 resources from src/main/resources to target/classes
@@ -85,7 +86,7 @@
 [INFO] --- surefire:3.5.4:test (default-test) @ parameterized-scheduler ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ parameterized-scheduler ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ parameterized-scheduler ---
 [INFO] Generated /tmp/plugin-builds/parameterized-scheduler/target/parameterized-scheduler/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ parameterized-scheduler ---
@@ -127,6 +128,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  53.290 s
-[INFO] Finished at: 2026-01-13T03:07:02Z
+[INFO] Total time:  57.144 s
+[INFO] Finished at: 2026-01-20T03:20:57Z
 [INFO] ------------------------------------------------------------------------
