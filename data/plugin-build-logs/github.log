@@ -50,9 +50,9 @@ WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
 WARNING: sun.misc.Unsafe::arrayBaseOffset has been called by org.jruby.util.StringSupport (file:/home/runner/.m2/repository/org/jruby/jruby-complete/9.2.7.0/jruby-complete-9.2.7.0.jar)
 WARNING: Please consider reporting this to the maintainers of class org.jruby.util.StringSupport
 WARNING: sun.misc.Unsafe::arrayBaseOffset will be removed in a future release
-2026-01-20T02:32:22.243Z [main] WARN FilenoUtil : Native subprocess control requires open access to sun.nio.ch
+2026-01-27T02:29:08.732Z [main] WARN FilenoUtil : Native subprocess control requires open access to sun.nio.ch
 Pass '--add-opens java.base/sun.nio.ch=org.jruby.dist' or '=org.jruby.core' to enable.
-java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @2370819c
+java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @2c156416
 	at java.base/java.lang.Module.addOpens(Module.java:915)
 	at com.headius.backport9.modules.impl.Module9.addOpens(Module9.java:28)
 	at com.headius.backport9.modules.Modules.addOpens(Modules.java:22)
@@ -179,13 +179,14 @@ java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @2370
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/ManuallyEnteredShaSource.java:[25,12] Generating org/jenkinsci/plugins/github/status/sources/ManuallyEnteredShaSource.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/misc/AnyBuildResult.java:[20,12] Generating org/jenkinsci/plugins/github/status/sources/misc/AnyBuildResult.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/status/sources/misc/BetterThanOrEqualBuildResult.java:[32,12] Generating org/jenkinsci/plugins/github/status/sources/misc/BetterThanOrEqualBuildResult.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[343,29] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[384,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doCheckApiUrl.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[361,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doVerifyCredentials.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[94,25] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[166,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByPassword.stapler
-[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[118,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByCredentials.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/HookSecretConfig.java:[133,29] Generating org/jenkinsci/plugins/github/config/HookSecretConfig/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[94,25] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubPluginConfig.java:[250,27] Generating org/jenkinsci/plugins/github/config/GitHubPluginConfig/doCheckHookUrl.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[118,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByCredentials.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubServerConfig.java:[361,31] Generating org/jenkinsci/plugins/github/config/GitHubServerConfig/DescriptorImpl/doVerifyCredentials.stapler
+[INFO] /tmp/plugin-builds/github/src/main/java/org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator.java:[166,27] Generating org/jenkinsci/plugins/github/config/GitHubTokenCredentialsCreator/doCreateTokenByPassword.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -271,6 +272,6 @@ java.lang.IllegalCallerException: sun.nio.ch is not open to unnamed module @2370
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  09:18 min
-[INFO] Finished at: 2026-01-20T02:32:42Z
+[INFO] Total time:  02:08 min
+[INFO] Finished at: 2026-01-27T02:30:26Z
 [INFO] ------------------------------------------------------------------------
