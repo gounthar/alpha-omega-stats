@@ -7553,7 +7553,7 @@
     "updatedAt": "2025-04-01T08:24:11Z",
     "user": "gounthar",
     "repository": "jenkinsci/dtkit-plugin",
-    "pluginName": "dtkit",
+    "pluginName": "dtkit-api",
     "labels": null,
     "url": "https://github.com/jenkinsci/dtkit-plugin/pull/17",
     "description": "Hello dtkit developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
@@ -12119,318 +12119,51 @@
     "checkStatus": "SUCCESS"
   },
   {
-    "number": 192,
-    "title": "Migrate Commons Lang from 2 to 3",
+    "number": 52,
+    "title": "Migrate plugins to Java 25 LTS",
     "state": "MERGED",
-    "createdAt": "2026-01-16T16:03:30Z",
-    "updatedAt": "2026-01-19T10:51:06Z",
+    "createdAt": "2026-02-01T19:59:56Z",
+    "updatedAt": "2026-02-01T20:00:33Z",
     "user": "jonesbusy",
-    "repository": "jenkinsci/xunit-plugin",
-    "pluginName": "xunit",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/xunit-plugin/pull/192",
-    "description": "Hello xunit developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 212,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T16:01:51Z",
-    "updatedAt": "2026-01-16T17:41:21Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/gitlab-oauth-plugin",
-    "pluginName": "gitlab-oauth",
+    "repository": "jenkinsci/mysql-api-plugin",
+    "pluginName": "mysql-api",
     "labels": [
-      "chore"
-    ],
-    "url": "https://github.com/jenkinsci/gitlab-oauth-plugin/pull/212",
-    "description": "Hello gitlab-oauth developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 390,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T15:01:03Z",
-    "updatedAt": "2026-01-16T19:44:47Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/testng-plugin-plugin",
-    "pluginName": "testng-plugin",
-    "labels": [
-      "enhancement"
-    ],
-    "url": "https://github.com/jenkinsci/testng-plugin-plugin/pull/390",
-    "description": "Hello testng-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 424,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T14:55:39Z",
-    "updatedAt": "2026-01-18T09:41:40Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/office-365-connector-plugin",
-    "pluginName": "Office-365-Connector",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/office-365-connector-plugin/pull/424",
-    "description": "Hello Office-365-Connector developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 458,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T14:53:43Z",
-    "updatedAt": "2026-01-16T15:12:22Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/throttle-concurrent-builds-plugin",
-    "pluginName": "throttle-concurrents",
-    "labels": [
-      "enhancement"
-    ],
-    "url": "https://github.com/jenkinsci/throttle-concurrent-builds-plugin/pull/458",
-    "description": "Hello throttle-concurrents developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 29,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "CLOSED",
-    "createdAt": "2026-01-16T14:49:36Z",
-    "updatedAt": "2026-01-27T07:39:16Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/filesystem-list-parameter-plugin",
-    "pluginName": "filesystem-list-parameter-plugin",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/filesystem-list-parameter-plugin/pull/29",
-    "description": "Hello filesystem-list-parameter-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "PENDING"
-  },
-  {
-    "number": 70,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T14:40:29Z",
-    "updatedAt": "2026-01-16T19:00:29Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/scmskip-plugin",
-    "pluginName": "scmskip",
-    "labels": [
-      "enhancement"
-    ],
-    "url": "https://github.com/jenkinsci/scmskip-plugin/pull/70",
-    "description": "Hello scmskip developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "FAILURE"
-  },
-  {
-    "number": 237,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "OPEN",
-    "createdAt": "2026-01-16T13:49:12Z",
-    "updatedAt": "2026-01-26T15:52:36Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/cloudbees-jenkins-advisor-plugin",
-    "pluginName": "cloudbees-jenkins-advisor",
-    "labels": [
-      "chore"
-    ],
-    "url": "https://github.com/jenkinsci/cloudbees-jenkins-advisor-plugin/pull/237",
-    "description": "Hello cloudbees-jenkins-advisor developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 96,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "OPEN",
-    "createdAt": "2026-01-16T13:43:37Z",
-    "updatedAt": "2026-01-16T13:43:38Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/extra-columns-plugin",
-    "pluginName": "extra-columns",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/extra-columns-plugin/pull/96",
-    "description": "Hello extra-columns developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 596,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T13:42:03Z",
-    "updatedAt": "2026-01-16T15:04:55Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/nodelabelparameter-plugin",
-    "pluginName": "nodelabelparameter",
-    "labels": [
-      "bug",
       "dependencies"
     ],
-    "url": "https://github.com/jenkinsci/nodelabelparameter-plugin/pull/596",
-    "description": "Hello nodelabelparameter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 2797,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "OPEN",
-    "createdAt": "2026-01-16T13:33:45Z",
-    "updatedAt": "2026-01-24T06:48:07Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/kubernetes-plugin",
-    "pluginName": "kubernetes",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/kubernetes-plugin/pull/2797",
-    "description": "Hello kubernetes developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 567,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T09:59:22Z",
-    "updatedAt": "2026-01-16T15:05:15Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/copyartifact-plugin",
-    "pluginName": "copyartifact",
-    "labels": [
-      "enhancement"
-    ],
-    "url": "https://github.com/jenkinsci/copyartifact-plugin/pull/567",
-    "description": "Hello copyartifact developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 1194,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-16T09:59:07Z",
-    "updatedAt": "2026-01-16T13:19:15Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/docker-plugin",
-    "pluginName": "docker-plugin",
-    "labels": [
-      "enhancement"
-    ],
-    "url": "https://github.com/jenkinsci/docker-plugin/pull/1194",
-    "description": "Hello docker-plugin developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 691,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "CLOSED",
-    "createdAt": "2026-01-15T16:39:51Z",
-    "updatedAt": "2026-01-19T20:45:51Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/active-directory-plugin",
-    "pluginName": "active-directory",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/active-directory-plugin/pull/691",
-    "description": "Hello active-directory developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "FAILURE"
-  },
-  {
-    "number": 235,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-15T16:35:27Z",
-    "updatedAt": "2026-01-15T16:46:47Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/ivy-plugin",
-    "pluginName": "ivy",
-    "labels": [
-      "enhancement"
-    ],
-    "url": "https://github.com/jenkinsci/ivy-plugin/pull/235",
-    "description": "Hello ivy developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 40,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "MERGED",
-    "createdAt": "2026-01-15T16:33:10Z",
-    "updatedAt": "2026-01-16T11:50:53Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/powershell-plugin",
-    "pluginName": "powershell",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/powershell-plugin/pull/40",
-    "description": "Hello powershell developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 485,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "OPEN",
-    "createdAt": "2026-01-15T16:23:50Z",
-    "updatedAt": "2026-01-15T16:23:51Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/pipeline-utility-steps-plugin",
-    "pluginName": "pipeline-utility-steps",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/pipeline-utility-steps-plugin/pull/485",
-    "description": "Hello pipeline-utility-steps developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 175,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "CLOSED",
-    "createdAt": "2026-01-15T16:18:34Z",
-    "updatedAt": "2026-01-15T16:28:35Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/pipeline-build-step-plugin",
-    "pluginName": "pipeline-build-step",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/pipeline-build-step-plugin/pull/175",
-    "description": "Hello pipeline-build-step developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
+    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/52",
+    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate plugins to Java 25\n    io.jenkins.tools.pluginmodernizer.MigrateToJava25\n    Migrate plugins to Java 25 LTS.\n\nWhat's Changed?\nWe have introduced changes to improve the plugin's compatibility with Java 25 and align it with modern Jenkins development standards\n\nReplaced deprecated API calls with their current equivalents where a clear migration path exists.\nUpgrade build files to use Java 25 as the target/source.\nUpgrade plugins to versions that are compatible with Java 25.\nAdd Java 25 configuration in Jenkinsfile for testing on ci.jenkins.io.",
     "checkStatus": "PENDING"
   },
   {
-    "number": 329,
-    "title": "Migrate Commons Lang from 2 to 3",
+    "number": 49,
+    "title": "chore(dependencies): Switch to Renovate for automated dependency updates",
     "state": "MERGED",
-    "createdAt": "2026-01-15T14:52:15Z",
-    "updatedAt": "2026-01-15T15:22:57Z",
+    "createdAt": "2026-02-01T19:53:16Z",
+    "updatedAt": "2026-02-01T19:53:52Z",
     "user": "jonesbusy",
-    "repository": "jenkinsci/git-parameter-plugin",
-    "pluginName": "git-parameter",
+    "repository": "jenkinsci/mysql-api-plugin",
+    "pluginName": "mysql-api",
     "labels": [
-      "enhancement"
+      "chore"
     ],
-    "url": "https://github.com/jenkinsci/git-parameter-plugin/pull/329",
-    "description": "Hello git-parameter developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
+    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/49",
+    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Switch from Dependabot to Renovate\n    io.jenkins.tools.pluginmodernizer.SwitchToRenovate\n    Switch from Dependabot to Renovate for the Jenkins plugin.",
+    "checkStatus": "PENDING"
   },
   {
-    "number": 738,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "OPEN",
-    "createdAt": "2026-01-15T14:43:51Z",
-    "updatedAt": "2026-01-15T14:43:51Z",
+    "number": 48,
+    "title": "chore(workflows): Setup auto-merge workflows for safe dependencies updates and BOM updates.",
+    "state": "MERGED",
+    "createdAt": "2026-02-01T19:48:09Z",
+    "updatedAt": "2026-02-01T19:52:20Z",
     "user": "jonesbusy",
-    "repository": "jenkinsci/docker-workflow-plugin",
-    "pluginName": "docker-workflow",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/docker-workflow-plugin/pull/738",
-    "description": "Hello docker-workflow developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 985,
-    "title": "Migrate Commons Lang from 2 to 3",
-    "state": "OPEN",
-    "createdAt": "2026-01-15T14:35:54Z",
-    "updatedAt": "2026-01-15T14:42:20Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/ssh-agents-plugin",
-    "pluginName": "ssh-slaves",
-    "labels": null,
-    "url": "https://github.com/jenkinsci/ssh-agents-plugin/pull/985",
-    "description": "Hello ssh-slaves developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
-    "checkStatus": "SUCCESS"
+    "repository": "jenkinsci/mysql-api-plugin",
+    "pluginName": "mysql-api",
+    "labels": [
+      "chore"
+    ],
+    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/48",
+    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Setup auto-merge workflows\n    io.jenkins.tools.pluginmodernizer.AutoMergeWorkflows\n    Setup auto-merge workflows for safe dependency updates and bom.\n\nSetup auto-merge workflows\nSetup the auto-merge workflows from Jenkins plugin archetype for safe dependencies updates (like parent pom or extensions).\nWorkflows either merge or close the PRs depending on the dependency.\nWhy is this important?\nReduce maintenance burden and noise in automatic PRs by auto-merging safe dependency updates.\nClosing BOM update PRs will ensure that the plugin depends on minimum plugins version for the given Jenkins baseline.\nBumping the BOM version is only required when the plugin needs a newer version of a plugin dependency.\nSee Archetype for more details.",
+    "checkStatus": "PENDING"
   }
 ]
