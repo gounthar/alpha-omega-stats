@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:bitbucket:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] ------------------< org.jenkins-ci.plugins:bitbucket >------------------
@@ -13,21 +13,22 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ bitbucket ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate (default-validate) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ bitbucket ---
 [INFO] Created marker file /tmp/plugin-builds/bitbucket/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ bitbucket ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ bitbucket ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ bitbucket ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -37,7 +38,10 @@
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ bitbucket ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ bitbucket ---
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ bitbucket ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ bitbucket ---
 [INFO] Copying 7 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ bitbucket ---
@@ -54,7 +58,7 @@
 [INFO] com.cloudbees.jenkins.plugins.extensions.dsl.BitbucketHookJobDslExtension indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/bitbucket/src/main/java/com/cloudbees/jenkins/plugins/BitBucketMultibranchTrigger.java:[26,12] Generating com/cloudbees/jenkins/plugins/BitBucketMultibranchTrigger.stapler
 [INFO] /tmp/plugin-builds/bitbucket/src/main/java/com/cloudbees/jenkins/plugins/BitBucketTrigger.java:[40,12] Generating com/cloudbees/jenkins/plugins/BitBucketTrigger.stapler
-[INFO] /tmp/plugin-builds/bitbucket/src/main/java/com/cloudbees/jenkins/plugins/BitBucketMultibranchTrigger.java:[51,31] Generating com/cloudbees/jenkins/plugins/BitBucketMultibranchTrigger/MultibranchDescriptor/doCheckOverrideUrl.stapler
+[INFO] /tmp/plugin-builds/bitbucket/src/main/java/com/cloudbees/jenkins/plugins/BitBucketTrigger.java:[137,31] Generating com/cloudbees/jenkins/plugins/BitBucketTrigger/DescriptorImpl/doCheckOverrideUrl.stapler
 [INFO] /tmp/plugin-builds/bitbucket/src/main/java/com/cloudbees/jenkins/plugins/BitBucketTrigger.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/bitbucket/src/main/java/com/cloudbees/jenkins/plugins/BitBucketTrigger.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
@@ -63,34 +67,34 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ bitbucket ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:insert-test (default-insert-test) @ bitbucket ---
 [INFO] 
-[INFO] --- antrun:3.1.0:run (createTempDir) @ bitbucket ---
+[INFO] --- antrun:3.2.0:run (createTempDir) @ bitbucket ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/bitbucket/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.3.1:testResources (default-testResources) @ bitbucket ---
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ bitbucket ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ bitbucket ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-hpl (default-test-hpl) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-hpl (default-test-hpl) @ bitbucket ---
 [INFO] Generating /tmp/plugin-builds/bitbucket/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:resolve-test-dependencies (default-resolve-test-dependencies) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:resolve-test-dependencies (default-resolve-test-dependencies) @ bitbucket ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-runtime (default-test-runtime) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-runtime (default-test-runtime) @ bitbucket ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ bitbucket ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ bitbucket ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ bitbucket ---
 [INFO] Generated /tmp/plugin-builds/bitbucket/target/bitbucket/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:hpi (default-hpi) @ bitbucket ---
+[INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ bitbucket ---
 [INFO] Generating /tmp/plugin-builds/bitbucket/target/bitbucket/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/bitbucket/target/bitbucket.jar
@@ -101,25 +105,25 @@
 [INFO] Generating hpi /tmp/plugin-builds/bitbucket/target/bitbucket.hpi
 [INFO] Building jar: /tmp/plugin-builds/bitbucket/target/bitbucket.hpi
 [INFO] 
-[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ bitbucket ---
+[INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ bitbucket ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.6.0:check (spotbugs) > :spotbugs @ bitbucket >>>
+[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ bitbucket >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:spotbugs (spotbugs) @ bitbucket ---
+[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ bitbucket ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.6.0:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.6.0:check (spotbugs) < :spotbugs @ bitbucket <<<
+[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ bitbucket <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ bitbucket ---
+[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ bitbucket ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.0.0:check (default) @ bitbucket ---
+[INFO] --- spotless:3.1.0:check (default) @ bitbucket ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ bitbucket ---
@@ -129,6 +133,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:00 min
-[INFO] Finished at: 2026-01-27T03:16:38Z
+[INFO] Total time:  55.287 s
+[INFO] Finished at: 2026-02-03T03:37:36Z
 [INFO] ------------------------------------------------------------------------
