@@ -101,7 +101,7 @@
   {
     "number": 10,
     "title": "feat(java): Require Jenkins core 2.492.3 and Java 17",
-    "state": "OPEN",
+    "state": "MERGED",
     "createdAt": "2025-09-02T14:04:12Z",
     "updatedAt": "2025-09-02T14:06:09Z",
     "user": "gounthar",
@@ -110,31 +110,31 @@
     "labels": null,
     "url": "https://github.com/jenkinsci/absint-a3-plugin/pull/10",
     "description": "Hello absint-a3 developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17\n    io.jenkins.tools.pluginmodernizer.UpgradeNextMajorParentVersion\n    Upgrade to the next major parent version (5.X) requiring Jenkins 2.492 and Java 17.\n\nWhy Upgrade to Java 17 and Jenkins 2.504.x?\n\n\nEmbrace Java 17 LTS Stability: Benefit from long-term support with modern language features that improve development practice and plugin performance.\n\n\nHarness Jenkins 2.504.x Innovations: Stay aligned with the latest features and stability improvements, ensuring smooth integration and future-proofing.\n\n\nEnhance Security: Protect your plugin with up-to-date security fixes from both Java 17 and Jenkins core improvements.\n\n\nAlign with the Community: Keep pace with ecosystem shifts towards Java 17, ensuring compatibility and expanding your plugin's user base.\n\n\nEnjoy a Better Developer Experience: Make the most of advanced tooling support and simplified dependency management with Java 17's enhancements.\n\n\nRemoving developers Tag from pom.xml\nJenkins no longer requires the developers tag in pom.xml, as the developers section was traditionally used to list individuals responsible for the plugin.\nInstead, Jenkins now uses the Repository Permission Updater (RPU) to manage permissions and developer information.\nBenefits of Removing developers Tag:\n\nSimplification: Removes unnecessary metadata from the pom.xml, resulting in a cleaner and more maintainable file.\nConsistency: Centralizes developer information management through the RPU, minimizing discrepancies.\nSecurity: Utilizes the RPU's controlled permission management, enhancing the security of artifact deployments.\n\nRemoving the developers tag aligns with modern Jenkins infrastructure standards and prevents outdated or redundant developer information from being included in plugin metadata.\nJEP-227: Replace Acegi Security with Spring Security\nMigrating Jenkins plugin code from Acegi Security to Spring Security is important for several reasons:\n\nSecurity updates: Spring Security is the modern, actively maintained successor to Acegi Security, providing up-to-date security features and patches.\nCompatibility: Jenkins core version 2.266 and later have replaced Acegi Security with Spring Security, so plugins need to be updated to remain compatible with newer Jenkins versions.\nEliminating false positives: Security scanners often flag the outdated Acegi Security library as vulnerable, causing unnecessary concerns and exemption requests in security-conscious organizations.\nReducing technical debt: The Acegi Security code in Jenkins was written over 13 years ago and has barely been touched since, making it difficult to maintain and understand.\nAccess to modern features: Spring Security offers more current security implementations and features that weren't available in Acegi Security.\nCommunity support: With the Jenkins ecosystem moving to Spring Security, plugins using the newer library will benefit from better community support and compatibility with other plugins.\nSimplified API: The migration offers an opportunity to introduce a new simplified security API in Jenkins, potentially making it easier for plugin developers to work with security-related functions.\n\nBy migrating to Spring Security, plugin developers ensure their code remains compatible with current Jenkins versions, benefit from modern security features, and contribute to a more secure and maintainable Jenkins ecosystem.\nSummary\nBy upgrading, you'll be positioning your plugin at the forefront of performance, security, and user satisfaction. We encourage you to explore these updates and provide feedback. Let's continue to build a robust Jenkins ecosystem together!",
-    "checkStatus": "ERROR",
+    "checkStatus": "UNKNOWN",
     "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-10/3/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2026-02-08T09:10:00Z",
+        "status": "IN_PROGRESS",
+        "workflowName": ""
+      },
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-09-02T14:07:53Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-10/2/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-09-02T14:07:52Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-10/2/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-09-02T14:06:41Z",
-        "status": "COMPLETED",
-        "workflowName": ""
+        "startedAt": "2026-02-08T09:09:49Z",
+        "state": "PENDING",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-10/display/redirect"
       }
     ]
   },
   {
     "number": 11,
     "title": "feat: upgrade to Jenkins LTS Core 2.462.3 for Java 11 support",
-    "state": "OPEN",
+    "state": "MERGED",
     "createdAt": "2025-09-02T14:12:59Z",
     "updatedAt": "2025-09-03T07:38:29Z",
     "user": "gounthar",
@@ -143,31 +143,31 @@
     "labels": null,
     "url": "https://github.com/jenkinsci/absint-a3-plugin/pull/11",
     "description": "Hello absint-a3 developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to latest LTS core version supporting Java 11\n    io.jenkins.tools.pluginmodernizer.UpgradeToLatestJava11CoreVersion\n    Upgrade to latest LTS core version supporting Java 11.\n\nWhy is this important?\nTransitional Step to Java 17\nUpgrading to Jenkins LTS Core 2.462.3 is a critical step in our roadmap towards leveraging Java 17. This transition serves as an intermediary phase, ensuring that all systems are optimized for Java 11 before making the leap to Java 17.\nEnhancements and Security\nBy moving to this LTS version, we benefit from the latest performance and security improvements foundational to Java 11. Ensuring our dependencies are up-to-date and secure prepares the groundwork for a smoother transition to Java 17.\nLong-Term Support\nThe LTS version provides the necessary support and stability for Java 11, offering assurance during our gradual migration process. This allows us to take advantage of long-term updates and critical patches.\nEmbracing these incremental changes aligns our development environment with current standards and strategically positions us for future advancement. We appreciate your feedback and testing as we aim for a seamless adjustment period.",
-    "checkStatus": "ERROR",
+    "checkStatus": "UNKNOWN",
     "statusCheckRollup": [
+      {
+        "__typename": "CheckRun",
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-11/6/display/redirect",
+        "name": "Jenkins",
+        "startedAt": "2026-02-08T09:07:19Z",
+        "status": "IN_PROGRESS",
+        "workflowName": ""
+      },
       {
         "__typename": "StatusContext",
         "context": "continuous-integration/jenkins/pr-head",
-        "startedAt": "2025-09-03T07:41:10Z",
-        "state": "ERROR",
-        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-11/4/display/redirect"
-      },
-      {
-        "__typename": "CheckRun",
-        "completedAt": "2025-09-03T07:41:09Z",
-        "conclusion": "FAILURE",
-        "detailsUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-11/4/display/redirect",
-        "name": "Jenkins",
-        "startedAt": "2025-09-03T07:39:00Z",
-        "status": "COMPLETED",
-        "workflowName": ""
+        "startedAt": "2026-02-08T09:07:09Z",
+        "state": "PENDING",
+        "targetUrl": "https://ci.jenkins.io/job/Plugins/job/absint-a3-plugin/job/PR-11/display/redirect"
       }
     ]
   },
   {
     "number": 12,
     "title": "chore(dependencies): Automate dependency updates with Dependabot",
-    "state": "OPEN",
+    "state": "MERGED",
     "createdAt": "2025-09-02T14:22:06Z",
     "updatedAt": "2025-09-02T14:22:06Z",
     "user": "gounthar",
