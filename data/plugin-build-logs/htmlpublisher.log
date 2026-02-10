@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:htmlpublisher:hpi:428-SNAPSHOT
 [INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:htmlpublisher >----------------
@@ -13,22 +13,20 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ htmlpublisher ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate (default-validate) @ htmlpublisher ---
 [INFO] Created marker file /tmp/plugin-builds/htmlpublisher/target/java-level/17
-[INFO] Setting maven.compiler.release to 17
-[INFO] Setting maven.compiler.testRelease to 17
-[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate-hpi (default-validate-hpi) @ htmlpublisher ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ htmlpublisher ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ htmlpublisher ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -37,6 +35,9 @@
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ htmlpublisher ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ htmlpublisher ---
+[INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ htmlpublisher ---
 [INFO] Copying 23 resources from src/main/resources to target/classes
@@ -62,7 +63,7 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ htmlpublisher ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:insert-test (default-insert-test) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:insert-test (default-insert-test) @ htmlpublisher ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ htmlpublisher ---
 [INFO] Executing tasks
@@ -75,21 +76,21 @@
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ htmlpublisher ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-hpl (default-test-hpl) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-hpl (default-test-hpl) @ htmlpublisher ---
 [INFO] Generating /tmp/plugin-builds/htmlpublisher/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:resolve-test-dependencies (default-resolve-test-dependencies) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:resolve-test-dependencies (default-resolve-test-dependencies) @ htmlpublisher ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-runtime (default-test-runtime) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-runtime (default-test-runtime) @ htmlpublisher ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ htmlpublisher ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ htmlpublisher ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ htmlpublisher ---
 [INFO] Generated /tmp/plugin-builds/htmlpublisher/target/htmlpublisher/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ htmlpublisher ---
+[INFO] --- hpi:3.1801.v26037216c7d3:hpi (default-hpi) @ htmlpublisher ---
 [INFO] Generating /tmp/plugin-builds/htmlpublisher/target/htmlpublisher/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/htmlpublisher/target/htmlpublisher.jar
@@ -119,7 +120,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ htmlpublisher ---
+[INFO] --- spotless:3.2.0:check (default) @ htmlpublisher ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ htmlpublisher ---
@@ -129,6 +130,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  59.849 s
-[INFO] Finished at: 2026-02-03T03:04:00Z
+[INFO] Total time:  01:04 min
+[INFO] Finished at: 2026-02-10T03:14:12Z
 [INFO] ------------------------------------------------------------------------

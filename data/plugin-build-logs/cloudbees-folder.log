@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:cloudbees-folder:hpi:6.999999-SNAPSHOT
 [INFO] 
 [INFO] --------------< org.jenkins-ci.plugins:cloudbees-folder >---------------
@@ -13,22 +13,20 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ cloudbees-folder ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate (default-validate) @ cloudbees-folder ---
 [INFO] Created marker file /tmp/plugin-builds/cloudbees-folder/target/java-level/17
-[INFO] Setting maven.compiler.release to 17
-[INFO] Setting maven.compiler.testRelease to 17
-[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate-hpi (default-validate-hpi) @ cloudbees-folder ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ cloudbees-folder ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ cloudbees-folder ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -36,6 +34,9 @@
 [INFO] --- localizer:1.31:generate (default) @ cloudbees-folder ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ cloudbees-folder ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ cloudbees-folder ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ cloudbees-folder ---
@@ -81,9 +82,9 @@
 [INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/views/DefaultFolderViewHolder.java:[66,12] Generating com/cloudbees/hudson/plugins/folder/views/DefaultFolderViewHolder.stapler
 [INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/computed/ComputedFolder.java:[102,17] Generating com/cloudbees/hudson/plugins/folder/computed/ComputedFolder.javadoc
 [INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/AbstractFolder.java:[139,17] Generating com/cloudbees/hudson/plugins/folder/AbstractFolder.javadoc
+[INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/relocate/DefaultRelocationUI.java:[101,25] Generating com/cloudbees/hudson/plugins/folder/relocate/DefaultRelocationUI/doMove.stapler
 [INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/health/NamedChildHealthMetric.java:[113,41] Generating com/cloudbees/hudson/plugins/folder/health/NamedChildHealthMetric/DescriptorImpl/doAutoCompleteChildName.stapler
 [INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/AbstractFolder.java:[735,27] Generating com/cloudbees/hudson/plugins/folder/AbstractFolder/doViewExistsCheck.stapler
-[INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/relocate/DefaultRelocationUI.java:[101,25] Generating com/cloudbees/hudson/plugins/folder/relocate/DefaultRelocationUI/doMove.stapler
 [INFO] /tmp/plugin-builds/cloudbees-folder/src/main/java/com/cloudbees/hudson/plugins/folder/computed/ComputedFolder.java:[591,25] Generating com/cloudbees/hudson/plugins/folder/computed/ComputedFolder/doBuild.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
@@ -102,7 +103,7 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ cloudbees-folder ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:insert-test (default-insert-test) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:insert-test (default-insert-test) @ cloudbees-folder ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ cloudbees-folder ---
 [INFO] Executing tasks
@@ -115,21 +116,21 @@
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ cloudbees-folder ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-hpl (default-test-hpl) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-hpl (default-test-hpl) @ cloudbees-folder ---
 [INFO] Generating /tmp/plugin-builds/cloudbees-folder/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:resolve-test-dependencies (default-resolve-test-dependencies) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:resolve-test-dependencies (default-resolve-test-dependencies) @ cloudbees-folder ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-runtime (default-test-runtime) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-runtime (default-test-runtime) @ cloudbees-folder ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ cloudbees-folder ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ cloudbees-folder ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ cloudbees-folder ---
 [INFO] Generated /tmp/plugin-builds/cloudbees-folder/target/cloudbees-folder/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ cloudbees-folder ---
+[INFO] --- hpi:3.1801.v26037216c7d3:hpi (default-hpi) @ cloudbees-folder ---
 [INFO] Generating /tmp/plugin-builds/cloudbees-folder/target/cloudbees-folder/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/cloudbees-folder/target/cloudbees-folder.jar
@@ -158,7 +159,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ cloudbees-folder ---
+[INFO] --- spotless:3.2.0:check (default) @ cloudbees-folder ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ cloudbees-folder ---
@@ -169,6 +170,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:21 min
-[INFO] Finished at: 2026-02-03T02:37:20Z
+[INFO] Total time:  01:25 min
+[INFO] Finished at: 2026-02-10T02:48:06Z
 [INFO] ------------------------------------------------------------------------
