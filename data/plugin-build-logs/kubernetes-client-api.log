@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:kubernetes-client-api:hpi:7.3.1-999999-SNAPSHOT
 [INFO] 
 [INFO] ------------< org.jenkins-ci.plugins:kubernetes-client-api >------------
@@ -13,22 +13,20 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ kubernetes-client-api ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate (default-validate) @ kubernetes-client-api ---
 [INFO] Created marker file /tmp/plugin-builds/kubernetes-client-api/target/java-level/17
-[INFO] Setting maven.compiler.release to 17
-[INFO] Setting maven.compiler.testRelease to 17
-[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate-hpi (default-validate-hpi) @ kubernetes-client-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ kubernetes-client-api ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ kubernetes-client-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -36,6 +34,9 @@
 [INFO] --- localizer:1.31:generate (default) @ kubernetes-client-api ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ kubernetes-client-api ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ kubernetes-client-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ kubernetes-client-api ---
@@ -51,7 +52,7 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ kubernetes-client-api ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:insert-test (default-insert-test) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:insert-test (default-insert-test) @ kubernetes-client-api ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ kubernetes-client-api ---
 [INFO] Executing tasks
@@ -64,21 +65,21 @@
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ kubernetes-client-api ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-hpl (default-test-hpl) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-hpl (default-test-hpl) @ kubernetes-client-api ---
 [INFO] Generating /tmp/plugin-builds/kubernetes-client-api/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:resolve-test-dependencies (default-resolve-test-dependencies) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:resolve-test-dependencies (default-resolve-test-dependencies) @ kubernetes-client-api ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-runtime (default-test-runtime) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-runtime (default-test-runtime) @ kubernetes-client-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ kubernetes-client-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ kubernetes-client-api ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ kubernetes-client-api ---
 [INFO] Generated /tmp/plugin-builds/kubernetes-client-api/target/kubernetes-client-api/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ kubernetes-client-api ---
+[INFO] --- hpi:3.1801.v26037216c7d3:hpi (default-hpi) @ kubernetes-client-api ---
 [INFO] Generating /tmp/plugin-builds/kubernetes-client-api/target/kubernetes-client-api/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/kubernetes-client-api/target/kubernetes-client-api.jar
@@ -149,7 +150,7 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ kubernetes-client-api ---
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ kubernetes-client-api ---
+[INFO] --- spotless:3.2.0:check (default) @ kubernetes-client-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ kubernetes-client-api ---
@@ -159,6 +160,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  36.349 s
-[INFO] Finished at: 2026-02-03T03:23:58Z
+[INFO] Total time:  01:34 min
+[INFO] Finished at: 2026-02-10T03:35:41Z
 [INFO] ------------------------------------------------------------------------

@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for io.jenkins.plugins:pipeline-groovy-lib:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] ---------------< io.jenkins.plugins:pipeline-groovy-lib >---------------
@@ -13,23 +13,21 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-groovy-lib ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate (default-validate) @ pipeline-groovy-lib ---
 [INFO] Created marker file /tmp/plugin-builds/pipeline-groovy-lib/target/java-level/17
-[INFO] Setting maven.compiler.release to 17
-[INFO] Setting maven.compiler.testRelease to 17
-[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:validate-hpi (default-validate-hpi) @ pipeline-groovy-lib ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-groovy-lib ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-groovy-lib ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -37,6 +35,9 @@
 [INFO] --- localizer:1.31:generate (default) @ pipeline-groovy-lib ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ pipeline-groovy-lib ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ pipeline-groovy-lib ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ pipeline-groovy-lib ---
@@ -84,11 +85,11 @@
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMSourceRetriever.java:[63,34] Generating org/jenkinsci/plugins/workflow/libs/SCMSourceRetriever.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryRecord.java:[42,14] Generating org/jenkinsci/plugins/workflow/libs/LibraryRecord.javadoc
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibrariesAction.java:[43,8] Generating org/jenkinsci/plugins/workflow/libs/LibrariesAction.javadoc
-[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever.java:[257,31] Generating org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever/SCMBasedRetrieverDescriptor/doCheckLibraryPath.stapler
-[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryStep.java:[144,41] Generating org/jenkinsci/plugins/workflow/libs/LibraryStep/DescriptorImpl/doAutoCompleteIdentifier.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryConfiguration.java:[166,31] Generating org/jenkinsci/plugins/workflow/libs/LibraryConfiguration/DescriptorImpl/doCheckName.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryCachingConfiguration.java:[118,31] Generating org/jenkinsci/plugins/workflow/libs/LibraryCachingConfiguration/DescriptorImpl/doClearCache.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryConfiguration.java:[175,31] Generating org/jenkinsci/plugins/workflow/libs/LibraryConfiguration/DescriptorImpl/doCheckDefaultVersion.stapler
+[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryStep.java:[144,41] Generating org/jenkinsci/plugins/workflow/libs/LibraryStep/DescriptorImpl/doAutoCompleteIdentifier.stapler
+[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever.java:[257,31] Generating org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever/SCMBasedRetrieverDescriptor/doCheckLibraryPath.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -102,7 +103,7 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ pipeline-groovy-lib ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:insert-test (default-insert-test) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:insert-test (default-insert-test) @ pipeline-groovy-lib ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-groovy-lib ---
 [INFO] Executing tasks
@@ -115,21 +116,21 @@
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ pipeline-groovy-lib ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-hpl (default-test-hpl) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-hpl (default-test-hpl) @ pipeline-groovy-lib ---
 [INFO] Generating /tmp/plugin-builds/pipeline-groovy-lib/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:resolve-test-dependencies (default-resolve-test-dependencies) @ pipeline-groovy-lib ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-runtime (default-test-runtime) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:test-runtime (default-test-runtime) @ pipeline-groovy-lib ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ pipeline-groovy-lib ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ pipeline-groovy-lib ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ pipeline-groovy-lib ---
 [INFO] Generated /tmp/plugin-builds/pipeline-groovy-lib/target/pipeline-groovy-lib/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ pipeline-groovy-lib ---
+[INFO] --- hpi:3.1801.v26037216c7d3:hpi (default-hpi) @ pipeline-groovy-lib ---
 [INFO] Generating /tmp/plugin-builds/pipeline-groovy-lib/target/pipeline-groovy-lib/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/pipeline-groovy-lib/target/pipeline-groovy-lib.jar
@@ -159,7 +160,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ pipeline-groovy-lib ---
+[INFO] --- spotless:3.2.0:check (default) @ pipeline-groovy-lib ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-groovy-lib ---
@@ -169,6 +170,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:05 min
-[INFO] Finished at: 2026-02-03T02:56:07Z
+[INFO] Total time:  01:06 min
+[INFO] Finished at: 2026-02-10T03:06:31Z
 [INFO] ------------------------------------------------------------------------

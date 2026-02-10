@@ -56,8 +56,12 @@ Audit done.
 [INFO] 
 [INFO] --- spotbugs:4.7.3.6:check (validate) @ allure-jenkins-plugin ---
 [INFO] 
-[INFO] --- spotless:2.40.0:check (validate) @ allure-jenkins-plugin ---
-[INFO] Spotless check skipped
+[INFO] --- spotless:2.43.0:check (validate) @ allure-jenkins-plugin ---
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/2.45.0/spotless-lib-2.45.0.jar)
+WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Index file does not exist. Fallback to an empty index
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ allure-jenkins-plugin ---
 [INFO] 
@@ -69,16 +73,12 @@ Audit done.
 [INFO] 
 [INFO] --- compiler:3.11.0:compile (default-compile) @ allure-jenkins-plugin ---
 [INFO] Changes detected - recompiling the module! :source
-[INFO] Compiling 32 source files with javac [debug release 11] to target/classes
-WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::objectFieldOffset has been called by lombok.permit.Permit
-WARNING: Please consider reporting this to the maintainers of class lombok.permit.Permit
-WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[INFO] Compiling 34 source files with javac [debug release 11] to target/classes
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:50 min
-[INFO] Finished at: 2026-02-03T03:46:53Z
+[INFO] Total time:  02:51 min
+[INFO] Finished at: 2026-02-10T04:00:07Z
 [INFO] ------------------------------------------------------------------------
 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project allure-jenkins-plugin: Fatal error compiling: java.lang.ExceptionInInitializerError: com.sun.tools.javac.code.TypeTag :: UNKNOWN -> [Help 1]
 [ERROR] 
