@@ -1,13 +1,13 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkins-ci.plugins:powershell:hpi:2.4-SNAPSHOT
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jenkins-ci.plugins:powershell:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] -----------------< org.jenkins-ci.plugins:powershell >------------------
-[INFO] Building Jenkins PowerShell plugin 2.4-SNAPSHOT
+[INFO] Building Jenkins PowerShell plugin 999999-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
@@ -19,13 +19,14 @@
 [INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ powershell ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ powershell ---
-[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ powershell ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -40,6 +41,9 @@
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ powershell ---
 [INFO] Copying 10 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.3:flatten (flatten) @ powershell ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:powershell:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.1:compile (default-compile) @ powershell ---
 [INFO] Recompiling the module because of changed source code.
@@ -125,12 +129,12 @@
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ powershell ---
-[INFO] Installing /tmp/plugin-builds/powershell/pom.xml to /home/runner/.m2/repository/org/jenkins-ci/plugins/powershell/2.4-SNAPSHOT/powershell-2.4-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/powershell/target/powershell.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/powershell/2.4-SNAPSHOT/powershell-2.4-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/powershell/target/powershell.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/powershell/2.4-SNAPSHOT/powershell-2.4-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/powershell/target/powershell-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/powershell/999999-SNAPSHOT/powershell-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/powershell/target/powershell.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/powershell/999999-SNAPSHOT/powershell-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/powershell/target/powershell.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/powershell/999999-SNAPSHOT/powershell-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  49.369 s
-[INFO] Finished at: 2026-02-10T03:52:59Z
+[INFO] Total time:  52.757 s
+[INFO] Finished at: 2026-02-17T03:42:19Z
 [INFO] ------------------------------------------------------------------------
