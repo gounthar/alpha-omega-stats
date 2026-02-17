@@ -7553,7 +7553,7 @@
     "updatedAt": "2025-04-01T08:24:11Z",
     "user": "gounthar",
     "repository": "jenkinsci/dtkit-plugin",
-    "pluginName": "dtkit",
+    "pluginName": "dtkit-api",
     "labels": null,
     "url": "https://github.com/jenkinsci/dtkit-plugin/pull/17",
     "description": "Hello dtkit developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.462.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.462.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 11, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
@@ -12117,53 +12117,5 @@
     "url": "https://github.com/jenkinsci/jira-plugin/pull/1151",
     "description": "Hello jira developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text\n    io.jenkins.tools.pluginmodernizer.MigrateCommonsLang2ToLang3AndCommonText\n    Migrate Commons Lang from 2 to 3 and StringEscapeUtils to Commons Text.\n\nThis pull request upgrades Apache Commons Lang 2 to Apache Commons Lang 3. Additionally, if the plugin uses StringEscapeUtils from Apache Commons Lang, it will be migrated to use Apache Commons Text instead.\nThe Apache Commons community recommends using Apache Commons Text for string escaping operations, as it offers a more focused and feature-rich API for text processing.\nWhat's Changed?\n\nMigrated from deprecated/EOL Apache Commons Lang 2 to Commons Lang 3.\nIf applicable: Transitioned from deprecated/EOL StringEscapeUtils in Apache Commons Lang to Commons Text.",
     "checkStatus": "SUCCESS"
-  },
-  {
-    "number": 52,
-    "title": "Migrate plugins to Java 25 LTS",
-    "state": "MERGED",
-    "createdAt": "2026-02-01T19:59:56Z",
-    "updatedAt": "2026-02-01T20:00:33Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/mysql-api-plugin",
-    "pluginName": "mysql-api",
-    "labels": [
-      "dependencies"
-    ],
-    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/52",
-    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Migrate plugins to Java 25\n    io.jenkins.tools.pluginmodernizer.MigrateToJava25\n    Migrate plugins to Java 25 LTS.\n\nWhat's Changed?\nWe have introduced changes to improve the plugin's compatibility with Java 25 and align it with modern Jenkins development standards\n\nReplaced deprecated API calls with their current equivalents where a clear migration path exists.\nUpgrade build files to use Java 25 as the target/source.\nUpgrade plugins to versions that are compatible with Java 25.\nAdd Java 25 configuration in Jenkinsfile for testing on ci.jenkins.io.",
-    "checkStatus": "PENDING"
-  },
-  {
-    "number": 49,
-    "title": "chore(dependencies): Switch to Renovate for automated dependency updates",
-    "state": "MERGED",
-    "createdAt": "2026-02-01T19:53:16Z",
-    "updatedAt": "2026-02-01T19:53:52Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/mysql-api-plugin",
-    "pluginName": "mysql-api",
-    "labels": [
-      "chore"
-    ],
-    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/49",
-    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Switch from Dependabot to Renovate\n    io.jenkins.tools.pluginmodernizer.SwitchToRenovate\n    Switch from Dependabot to Renovate for the Jenkins plugin.",
-    "checkStatus": "PENDING"
-  },
-  {
-    "number": 48,
-    "title": "chore(workflows): Setup auto-merge workflows for safe dependencies updates and BOM updates.",
-    "state": "MERGED",
-    "createdAt": "2026-02-01T19:48:09Z",
-    "updatedAt": "2026-02-01T19:52:20Z",
-    "user": "jonesbusy",
-    "repository": "jenkinsci/mysql-api-plugin",
-    "pluginName": "mysql-api",
-    "labels": [
-      "chore"
-    ],
-    "url": "https://github.com/jenkinsci/mysql-api-plugin/pull/48",
-    "description": "Hello mysql-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Setup auto-merge workflows\n    io.jenkins.tools.pluginmodernizer.AutoMergeWorkflows\n    Setup auto-merge workflows for safe dependency updates and bom.\n\nSetup auto-merge workflows\nSetup the auto-merge workflows from Jenkins plugin archetype for safe dependencies updates (like parent pom or extensions).\nWorkflows either merge or close the PRs depending on the dependency.\nWhy is this important?\nReduce maintenance burden and noise in automatic PRs by auto-merging safe dependency updates.\nClosing BOM update PRs will ensure that the plugin depends on minimum plugins version for the given Jenkins baseline.\nBumping the BOM version is only required when the plugin needs a newer version of a plugin dependency.\nSee Archetype for more details.",
-    "checkStatus": "PENDING"
   }
 ]
