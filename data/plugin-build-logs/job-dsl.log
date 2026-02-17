@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkins-ci.plugins:job-dsl-parent:pom:1.95-SNAPSHOT
+[WARNING] Failed to build parent project for org.jenkins-ci.plugins:job-dsl-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -14,7 +14,7 @@
 [INFO] Job DSL                                                            [hpi]
 [INFO] 
 [INFO] ---------------< org.jenkins-ci.plugins:job-dsl-parent >----------------
-[INFO] Building Job DSL Parent 1.95-SNAPSHOT                              [1/4]
+[INFO] Building Job DSL Parent 999999-SNAPSHOT                            [1/4]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
 [INFO] 
@@ -42,7 +42,7 @@
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-parent ---
-[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-parent:pom:1.95-SNAPSHOT...
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-parent:pom:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ job-dsl-parent ---
 [INFO] 
@@ -69,13 +69,16 @@
 [INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ job-dsl-parent ---
 [INFO] 
 [INFO] --- spotless:3.2.0:check (default) @ job-dsl-parent ---
-[INFO] Spotless check skipped
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Sorting file /tmp/pom3673456046725046128.xml
+[INFO] Pom file is already sorted, exiting
+[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-parent ---
-[INFO] Installing /tmp/plugin-builds/job-dsl/target/job-dsl-parent-1.95-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-parent/1.95-SNAPSHOT/job-dsl-parent-1.95-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/job-dsl/target/job-dsl-parent-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-parent/999999-SNAPSHOT/job-dsl-parent-999999-SNAPSHOT.pom
 [INFO] 
 [INFO] -----------------< org.jenkins-ci.plugins:job-dsl-ast >-----------------
-[INFO] Building Job DSL Abstract Syntax Tree (AST) 1.95-SNAPSHOT          [2/4]
+[INFO] Building Job DSL Abstract Syntax Tree (AST) 999999-SNAPSHOT        [2/4]
 [INFO]   from job-dsl-ast/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
@@ -110,7 +113,7 @@
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-ast ---
-[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-ast:jar:1.95-SNAPSHOT...
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-ast:jar:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.1:compile (default-compile) @ job-dsl-ast ---
 [INFO] Recompiling the module because of changed source code.
@@ -165,12 +168,15 @@
 [INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:3.2.0:check (default) @ job-dsl-ast ---
-[INFO] Spotless check skipped
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Sorting file /tmp/pom15591948625019571204.xml
+[INFO] Pom file is already sorted, exiting
+[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl-ast ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 49ms; 385 rules
+[INFO] Loaded properties file in 85ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -189,21 +195,21 @@
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=928ms; Files with analysis errors: 0
-CodeNarc Report - Feb 10, 2026, 3:37:06 AM
+[INFO] Analysis time=1597ms; Files with analysis errors: 0
+CodeNarc Report - Feb 17, 2026, 3:26:23 AM
 
 Summary: TotalFiles=5 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 2523ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 5875ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-ast ---
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-ast/target/job-dsl-ast-1.95-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-ast/1.95-SNAPSHOT/job-dsl-ast-1.95-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-ast/target/job-dsl-ast.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-ast/1.95-SNAPSHOT/job-dsl-ast-1.95-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-ast/target/job-dsl-ast-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-ast/999999-SNAPSHOT/job-dsl-ast-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-ast/target/job-dsl-ast.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-ast/999999-SNAPSHOT/job-dsl-ast-999999-SNAPSHOT.jar
 [INFO] 
 [INFO] ----------------< org.jenkins-ci.plugins:job-dsl-core >-----------------
-[INFO] Building Job DSL Core 1.95-SNAPSHOT                                [3/4]
+[INFO] Building Job DSL Core 999999-SNAPSHOT                              [3/4]
 [INFO]   from job-dsl-core/pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
@@ -240,7 +246,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 2523ms
 [INFO] Copying 19 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-core ---
-[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-core:jar:1.95-SNAPSHOT...
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-core:jar:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.1:compile (default-compile) @ job-dsl-core ---
 [INFO] Recompiling the module because of changed dependency.
@@ -314,12 +320,16 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:3.2.0:check (default) @ job-dsl-core ---
-[INFO] Spotless check skipped
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 4 files clean - 0 needs changes to be clean, 4 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom3758290674832346460.xml
+[INFO] Pom file is already sorted, exiting
+[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl-core ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 0ms; 385 rules
+[INFO] Loaded properties file in 1ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -338,15 +348,15 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=9602ms; Files with analysis errors: 0
-CodeNarc Report - Feb 10, 2026, 3:38:35 AM
+[INFO] Analysis time=12639ms; Files with analysis errors: 0
+CodeNarc Report - Feb 17, 2026, 3:28:42 AM
 
 Summary: TotalFiles=327 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 10030ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 13231ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
-[INFO] Loaded properties file in 6ms; 385 rules
+[INFO] Loaded properties file in 3ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
 [INFO] Loading ruleset from [rulesets/junit.xml]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
@@ -367,15 +377,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 10030ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=7548ms; Files with analysis errors: 0
-CodeNarc Report - Feb 10, 2026, 3:38:43 AM
+[INFO] Analysis time=7984ms; Files with analysis errors: 0
+CodeNarc Report - Feb 17, 2026, 3:28:51 AM
 
 Summary: TotalFiles=79 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 8233ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 8825ms
 [INFO]      [echo] Checking src/main/docs/examples code with CodeNarc
-[INFO] Loaded properties file in 1ms; 385 rules
+[INFO] Loaded properties file in 10ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-examples.groovy]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
@@ -395,22 +405,22 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 8233ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=3390ms; Files with analysis errors: 0
-CodeNarc Report - Feb 10, 2026, 3:38:47 AM
+[INFO] Analysis time=2391ms; Files with analysis errors: 0
+CodeNarc Report - Feb 17, 2026, 3:28:54 AM
 
 Summary: TotalFiles=417 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 2827ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-core ---
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core-1.95-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-core/1.95-SNAPSHOT/job-dsl-core-1.95-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-core/1.95-SNAPSHOT/job-dsl-core-1.95-SNAPSHOT.jar
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core-jar-with-dependencies.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-core/1.95-SNAPSHOT/job-dsl-core-1.95-SNAPSHOT-jar-with-dependencies.jar
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-core/999999-SNAPSHOT/job-dsl-core-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-core/999999-SNAPSHOT/job-dsl-core-999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core-jar-with-dependencies.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl-core/999999-SNAPSHOT/job-dsl-core-999999-SNAPSHOT-jar-with-dependencies.jar
 [INFO] 
 [INFO] -------------------< org.jenkins-ci.plugins:job-dsl >-------------------
-[INFO] Building Job DSL 1.95-SNAPSHOT                                     [4/4]
+[INFO] Building Job DSL 999999-SNAPSHOT                                   [4/4]
 [INFO]   from job-dsl-plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
@@ -438,6 +448,9 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ job-dsl ---
 [INFO] Installing node version v24.13.0
+[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v24.13.0/node-v24.13.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/24.13.0/node-24.13.0-linux-x64.tar.gz
+[INFO] No proxies configured
+[INFO] No proxy was configured, downloading directly
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.13.0/node-24.13.0-linux-x64.tar.gz into /tmp/plugin-builds/job-dsl/job-dsl-plugin/node/tmp
 [INFO] Copying node binary from /tmp/plugin-builds/job-dsl/job-dsl-plugin/node/tmp/node-v24.13.0-linux-x64/bin/node to /tmp/plugin-builds/job-dsl/job-dsl-plugin/node/node
 [INFO] Installed node locally.
@@ -451,12 +464,12 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] --- frontend:2.0.0:npm (npm install) @ job-dsl ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/job-dsl/job-dsl-plugin
 [INFO] 
-[INFO] added 537 packages, and audited 538 packages in 8s
+[INFO] added 537 packages, and audited 538 packages in 17s
 [INFO] 
 [INFO] 109 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 3 moderate severity vulnerabilities
+[INFO] 4 vulnerabilities (1 low, 3 moderate)
 [INFO] 
 [INFO] To address issues that do not require attention, run:
 [INFO]   npm audit fix
@@ -490,6 +503,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] Using Groovy 2.4.21 to perform execute.
 [INFO] Running Groovy script from file:////tmp/plugin-builds/job-dsl/job-dsl-plugin/copyData.groovy.
 [INFO] Writing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/versions/dsl.json
+[INFO] Writing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/versions/job-dsl-core-3654.vdf58f53e2d15-apidoc.json
 [INFO] Writing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/versions/job-dsl-core-1.93-apidoc.json
 [INFO] Writing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/versions/job-dsl-core-1.92-apidoc.json
 [INFO] Writing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/versions/job-dsl-core-1.91-apidoc.json
@@ -552,7 +566,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] 
 [INFO] assets by info 1.65 MiB [immutable]
 [INFO]   assets by chunk 1.43 MiB (name: app)
-[INFO]     asset app.dcb1268b455a5c9d45a3.js 1.28 MiB [emitted] [immutable] [big] (name: app)
+[INFO]     asset app.422da884c64eef9d7fac.js 1.28 MiB [emitted] [immutable] [big] (name: app)
 [INFO]     asset app.66a15e71865c6957928d.css 152 KiB [emitted] [immutable] [minimized] (name: app)
 [INFO]   assets by path *.png 7.69 KiB
 [INFO]     asset 32px.7b8ef9809145cfec0aa6.png 5.53 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/32px.png]
@@ -565,7 +579,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO]   asset throbber.f3bc149017432b87da2e.gif 1.43 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/throbber.gif]
 [INFO] asset index.html 237 bytes [emitted]
 [INFO] asset config.json 23 bytes [emitted] [from: src/main/json/embedded/config.json] [copied]
-[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.dcb1268b455a5c9d45a3.js 1.28 MiB
+[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.422da884c64eef9d7fac.js 1.28 MiB
 [INFO] orphan modules 312 KiB (javascript) 220 KiB (asset) 3.94 KiB (runtime) [orphan] 220 modules
 [INFO] runtime modules 891 bytes 4 modules
 [INFO] cacheable modules 1.28 MiB (javascript) 187 KiB (css/mini-extract)
@@ -575,8 +589,8 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO]       css ./node_modules/css-loader/dist/cjs.js!./node_modules/bootstrap/dist/css/bootstrap.css 143 KiB [built] [code generated]
 [INFO]       + 2 modules
 [INFO]     + 8 modules
-[INFO]   modules by path ./src/main/ 88.7 KiB (javascript) 8.89 KiB (css/mini-extract)
-[INFO]     modules by path ./src/main/hbs/*.hbs 53.2 KiB
+[INFO]   modules by path ./src/main/ 88.8 KiB (javascript) 8.89 KiB (css/mini-extract)
+[INFO]     modules by path ./src/main/hbs/*.hbs 53.3 KiB
 [INFO]       ./src/main/hbs/searchResults.hbs 2.94 KiB [built] [code generated]
 [INFO]       + 7 modules
 [INFO]     ./src/main/js/app.js + 15 modules 35.5 KiB [built] [code generated]
@@ -585,35 +599,35 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 [INFO] This can impact web performance.
 [INFO] Assets: 
-[INFO]   app.dcb1268b455a5c9d45a3.js (1.28 MiB)
+[INFO]   app.422da884c64eef9d7fac.js (1.28 MiB)
 [INFO] 
 [INFO] WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 [INFO] Entrypoints:
 [INFO]   app (1.43 MiB)
 [INFO]       app.66a15e71865c6957928d.css
-[INFO]       app.dcb1268b455a5c9d45a3.js
+[INFO]       app.422da884c64eef9d7fac.js
 [INFO] 
 [INFO] 
 [INFO] WARNING in webpack performance recommendations: 
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.105.0 compiled with 3 warnings in 4339 ms
+[INFO] webpack 5.105.1 compiled with 3 warnings in 10465 ms
 [INFO] 
 [INFO] > job-dsl-plugin@1.0.0 gh-pages
 [INFO] > webpack --config webpack.gh-pages.mjs
 [INFO] 
-[INFO] assets by status 107 MiB [big]
+[INFO] assets by status 109 MiB [big]
 [INFO]   asset update-center.json 3.16 MiB [emitted] [from: target/update-center.json] [copied] [big]
 [INFO]   asset job-dsl-core-1.48-apidoc.json 2.23 MiB [emitted] [from: target/versions/job-dsl-core-1.48-apidoc.json] [copied] [big]
 [INFO]   asset job-dsl-core-1.58-apidoc.json 2.22 MiB [emitted] [from: target/versions/job-dsl-core-1.58-apidoc.json] [copied] [big]
 [INFO]   asset job-dsl-core-1.51-apidoc.json 2.22 MiB [emitted] [from: target/versions/job-dsl-core-1.51-apidoc.json] [copied] [big]
-[INFO]   + 48 assets
+[INFO]   + 49 assets
 [INFO] assets by path *.png 7.69 KiB
 [INFO]   asset 32px.7b8ef9809145cfec0aa6.png 5.53 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/32px.png]
 [INFO]   asset 40px.106a7abc109fb5e78742.png 2.16 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/40px.png]
 [INFO] + 9 assets
-[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.dcb1268b455a5c9d45a3.js 1.28 MiB
+[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.422da884c64eef9d7fac.js 1.28 MiB
 [INFO] orphan modules 312 KiB (javascript) 220 KiB (asset) 3.94 KiB (runtime) [orphan] 220 modules
 [INFO] runtime modules 891 bytes 4 modules
 [INFO] cacheable modules 1.28 MiB (javascript) 187 KiB (css/mini-extract)
@@ -623,8 +637,8 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO]       css ./node_modules/css-loader/dist/cjs.js!./node_modules/bootstrap/dist/css/bootstrap.css 143 KiB [built] [code generated]
 [INFO]       + 2 modules
 [INFO]     + 8 modules
-[INFO]   modules by path ./src/main/ 88.7 KiB (javascript) 8.89 KiB (css/mini-extract)
-[INFO]     modules by path ./src/main/hbs/*.hbs 53.2 KiB
+[INFO]   modules by path ./src/main/ 88.8 KiB (javascript) 8.89 KiB (css/mini-extract)
+[INFO]     modules by path ./src/main/hbs/*.hbs 53.3 KiB
 [INFO]       ./src/main/hbs/searchResults.hbs 2.94 KiB [built] [code generated]
 [INFO]       + 7 modules
 [INFO]     ./src/main/js/app.js + 15 modules 35.5 KiB [built] [code generated]
@@ -684,20 +698,21 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO]   job-dsl-core-1.91-apidoc.json (1.98 MiB)
 [INFO]   job-dsl-core-1.92-apidoc.json (1.98 MiB)
 [INFO]   job-dsl-core-1.93-apidoc.json (1.98 MiB)
-[INFO]   app.dcb1268b455a5c9d45a3.js (1.28 MiB)
+[INFO]   job-dsl-core-3654.vdf58f53e2d15-apidoc.json (1.98 MiB)
+[INFO]   app.422da884c64eef9d7fac.js (1.28 MiB)
 [INFO] 
 [INFO] WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 [INFO] Entrypoints:
 [INFO]   app (1.43 MiB)
 [INFO]       app.66a15e71865c6957928d.css
-[INFO]       app.dcb1268b455a5c9d45a3.js
+[INFO]       app.422da884c64eef9d7fac.js
 [INFO] 
 [INFO] 
 [INFO] WARNING in webpack performance recommendations: 
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.105.0 compiled with 3 warnings in 8354 ms
+[INFO] webpack 5.105.1 compiled with 3 warnings in 10481 ms
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ job-dsl ---
 [INFO] Skipping Rule Enforcement.
@@ -709,7 +724,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] Copying 32 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl ---
-[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl:hpi:1.95-SNAPSHOT...
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.14.1:compile (default-compile) @ job-dsl ---
 [INFO] Recompiling the module because of changed dependency.
@@ -797,7 +812,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] Exploding webapp...
 [INFO] Copy webapp webResources to /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl
 [INFO] Assembling webapp job-dsl in /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl
-[INFO] Bundling direct dependency job-dsl-core-1.95-SNAPSHOT.jar
+[INFO] Bundling direct dependency job-dsl-core-999999-SNAPSHOT.jar
 [INFO] Bundling transitive dependency xmlunit-1.6.jar (via job-dsl-core)
 [INFO] Generating hpi /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.hpi
 [INFO] Building jar: /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.hpi
@@ -821,7 +836,11 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] No errors/warnings found
 [INFO] 
 [INFO] --- spotless:3.2.0:check (default) @ job-dsl ---
-[INFO] Spotless check skipped
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Spotless.Java is keeping 48 files clean - 0 needs changes to be clean, 48 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom9974654343906002759.xml
+[INFO] Pom file is already sorted, exiting
+[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl ---
 [INFO] Executing tasks
@@ -845,13 +864,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 3832ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=583ms; Files with analysis errors: 0
-CodeNarc Report - Feb 10, 2026, 3:40:38 AM
+[INFO] Analysis time=1189ms; Files with analysis errors: 0
+CodeNarc Report - Feb 17, 2026, 3:31:41 AM
 
 Summary: TotalFiles=37 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 667ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 1615ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
 [INFO] Loaded properties file in 1ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
@@ -874,29 +893,29 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 667ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=892ms; Files with analysis errors: 0
-CodeNarc Report - Feb 10, 2026, 3:40:39 AM
+[INFO] Analysis time=3310ms; Files with analysis errors: 0
+CodeNarc Report - Feb 17, 2026, 3:31:45 AM
 
 Summary: TotalFiles=22 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 1013ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 3755ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl ---
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl-1.95-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl/1.95-SNAPSHOT/job-dsl-1.95-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl/1.95-SNAPSHOT/job-dsl-1.95-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl/1.95-SNAPSHOT/job-dsl-1.95-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl-999999-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl/999999-SNAPSHOT/job-dsl-999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl/999999-SNAPSHOT/job-dsl-999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/job-dsl/999999-SNAPSHOT/job-dsl-999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary for Job DSL Parent 1.95-SNAPSHOT:
+[INFO] Reactor Summary for Job DSL Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Job DSL Parent ..................................... SUCCESS [ 20.589 s]
-[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 21.098 s]
-[INFO] Job DSL Core ....................................... SUCCESS [01:40 min]
-[INFO] Job DSL ............................................ SUCCESS [01:51 min]
+[INFO] Job DSL Parent ..................................... SUCCESS [ 17.747 s]
+[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 29.936 s]
+[INFO] Job DSL Core ....................................... SUCCESS [02:30 min]
+[INFO] Job DSL ............................................ SUCCESS [02:50 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  04:15 min
-[INFO] Finished at: 2026-02-10T03:40:39Z
+[INFO] Total time:  06:10 min
+[INFO] Finished at: 2026-02-17T03:31:45Z
 [INFO] ------------------------------------------------------------------------
