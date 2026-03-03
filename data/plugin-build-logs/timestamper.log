@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1787.vd08d76c755ef is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:timestamper:hpi:1.31-SNAPSHOT
 [INFO] 
 [INFO] -----------------< org.jenkins-ci.plugins:timestamper >-----------------
@@ -13,21 +13,22 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ timestamper ---
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:validate (default-validate) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ timestamper ---
 [INFO] Created marker file /tmp/plugin-builds/timestamper/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:validate-hpi (default-validate-hpi) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ timestamper ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ timestamper ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ timestamper ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -37,13 +38,16 @@
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ timestamper ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ timestamper ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ timestamper ---
 [INFO] Copying 29 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ timestamper ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:timestamper:hpi:1.31-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ timestamper ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ timestamper ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 37 source files with javac [debug parameters release 17] to target/classes
 [INFO] hudson.plugins.timestamper.TimestamperBuildWrapper.DescriptorImpl indexed under hudson.Extension
@@ -56,8 +60,8 @@
 [INFO] hudson.plugins.timestamper.pipeline.TimestamperStep.DescriptorImpl indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/TimestamperBuildWrapper.java:[65,12] Generating hudson/plugins/timestamper/TimestamperBuildWrapper.stapler
 [INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/pipeline/TimestamperStep.java:[57,12] Generating hudson/plugins/timestamper/pipeline/TimestamperStep.stapler
-[INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/TimestamperConfig.java:[119,27] Generating hudson/plugins/timestamper/TimestamperConfig/doCheckSystemTimeFormat.stapler
 [INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/TimestamperConfig.java:[149,27] Generating hudson/plugins/timestamper/TimestamperConfig/doCheckElapsedTimeFormat.stapler
+[INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/TimestamperConfig.java:[119,27] Generating hudson/plugins/timestamper/TimestamperConfig/doCheckSystemTimeFormat.stapler
 [INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/accessor/TimestampLogFileLineAccessor.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/timestamper/src/main/java/hudson/plugins/timestamper/accessor/TimestampLogFileLineAccessor.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
@@ -65,7 +69,7 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ timestamper ---
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:insert-test (default-insert-test) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ timestamper ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ timestamper ---
 [INFO] Executing tasks
@@ -75,24 +79,24 @@
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ timestamper ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ timestamper ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ timestamper ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:test-hpl (default-test-hpl) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ timestamper ---
 [INFO] Generating /tmp/plugin-builds/timestamper/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:resolve-test-dependencies (default-resolve-test-dependencies) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ timestamper ---
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:test-runtime (default-test-runtime) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ timestamper ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ timestamper ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ timestamper ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ timestamper ---
 [INFO] Generated /tmp/plugin-builds/timestamper/target/timestamper/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:hpi (default-hpi) @ timestamper ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ timestamper ---
 [INFO] Generating /tmp/plugin-builds/timestamper/target/timestamper/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/timestamper/target/timestamper.jar
@@ -121,14 +125,14 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ timestamper ---
+[INFO] --- spotless:3.2.1:check (default) @ timestamper ---
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.1.0/spotless-lib-4.1.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.3.0/spotless-lib-4.3.0.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 64 files clean - 0 needs changes to be clean, 64 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom12172992998262756457.xml
+[INFO] Sorting file /tmp/pom10831026887920754567.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -139,6 +143,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:13 min
-[INFO] Finished at: 2026-02-24T02:49:23Z
+[INFO] Total time:  01:08 min
+[INFO] Finished at: 2026-03-03T02:49:49Z
 [INFO] ------------------------------------------------------------------------
