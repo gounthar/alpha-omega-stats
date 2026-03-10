@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1787.vd08d76c755ef is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1787.vd08d76c755ef is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:jira:hpi:3.22-SNAPSHOT
 [INFO] 
 [INFO] --------------------< org.jenkins-ci.plugins:jira >---------------------
@@ -13,21 +13,22 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ jira ---
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:validate (default-validate) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ jira ---
 [INFO] Created marker file /tmp/plugin-builds/jira/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:validate-hpi (default-validate-hpi) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ jira ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ jira ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ jira ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -37,13 +38,16 @@
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ jira ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ jira ---
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
+[INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ jira ---
 [INFO] Copying 117 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ jira ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:jira:hpi:3.22-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ jira ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ jira ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 76 source files with javac [debug parameters release 17] to target/classes
 [INFO] hudson.plugins.jira.JiraChangeLogAnnotator indexed under hudson.Extension
@@ -100,21 +104,21 @@
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/versionparameter/JiraVersionParameterDefinition.java:[40,12] Generating hudson/plugins/jira/versionparameter/JiraVersionParameterDefinition.stapler
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/versionparameter/JiraVersionParameterValue.java:[20,12] Generating hudson/plugins/jira/versionparameter/JiraVersionParameterValue.stapler
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/model/JiraIssue.java:[18,14] Generating hudson/plugins/jira/model/JiraIssue.javadoc
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraCarryOverAction.java:[19,8] Generating hudson/plugins/jira/JiraCarryOverAction.javadoc
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraJobAction.java:[34,8] Generating hudson/plugins/jira/JiraJobAction.javadoc
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraBuildAction.java:[19,8] Generating hudson/plugins/jira/JiraBuildAction.javadoc
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/listissuesparameter/JiraIssueParameterValue.java:[27,8] Generating hudson/plugins/jira/listissuesparameter/JiraIssueParameterValue.javadoc
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraJobAction.java:[34,8] Generating hudson/plugins/jira/JiraJobAction.javadoc
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraCarryOverAction.java:[19,8] Generating hudson/plugins/jira/JiraCarryOverAction.javadoc
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraIssueUpdateBuilder.java:[141,31] Generating hudson/plugins/jira/JiraIssueUpdateBuilder/DescriptorImpl/doCheckWorkflowActionName.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1456,29] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraIssueUpdateBuilder.java:[133,31] Generating hudson/plugins/jira/JiraIssueUpdateBuilder/DescriptorImpl/doCheckJqlSearch.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/listissuesparameter/JiraIssueParameterDefinition.java:[138,29] Generating hudson/plugins/jira/listissuesparameter/JiraIssueParameterDefinition/DescriptorImpl/doFillValueItems.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1464,31] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1456,29] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1353,31] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doCheckAlternativeUrl.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraCreateIssueNotifier.java:[492,31] Generating hudson/plugins/jira/JiraCreateIssueNotifier/DescriptorImpl/doCheckProjectKey.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1373,31] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doValidate.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/pipeline/IssueFieldUpdateStep.java:[178,31] Generating hudson/plugins/jira/pipeline/IssueFieldUpdateStep/DescriptorImpl/doCheckField_id.stapler
-[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/versionparameter/JiraVersionParameterDefinition.java:[188,29] Generating hudson/plugins/jira/versionparameter/JiraVersionParameterDefinition/DescriptorImpl/doFillVersionItems.stapler
 [INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1348,31] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doCheckUrl.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/versionparameter/JiraVersionParameterDefinition.java:[188,29] Generating hudson/plugins/jira/versionparameter/JiraVersionParameterDefinition/DescriptorImpl/doFillVersionItems.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1373,31] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doValidate.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraSite.java:[1464,31] Generating hudson/plugins/jira/JiraSite/DescriptorImpl/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/listissuesparameter/JiraIssueParameterDefinition.java:[138,29] Generating hudson/plugins/jira/listissuesparameter/JiraIssueParameterDefinition/DescriptorImpl/doFillValueItems.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/JiraCreateIssueNotifier.java:[492,31] Generating hudson/plugins/jira/JiraCreateIssueNotifier/DescriptorImpl/doCheckProjectKey.stapler
+[INFO] /tmp/plugin-builds/jira/src/main/java/hudson/plugins/jira/pipeline/IssueFieldUpdateStep.java:[178,31] Generating hudson/plugins/jira/pipeline/IssueFieldUpdateStep/DescriptorImpl/doCheckField_id.stapler
 [INFO] /tmp/plugin-builds/jira/src/main/java/com/atlassian/httpclient/apache/httpcomponents/ApacheAsyncHttpClient.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/jira/src/main/java/com/atlassian/httpclient/apache/httpcomponents/ApacheAsyncHttpClient.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/jira/src/main/java/com/atlassian/httpclient/apache/httpcomponents/DefaultHttpClientFactory.java: Some input files use unchecked or unsafe operations.
@@ -124,7 +128,7 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ jira ---
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:insert-test (default-insert-test) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ jira ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ jira ---
 [INFO] Executing tasks
@@ -134,24 +138,24 @@
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ jira ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ jira ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ jira ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:test-hpl (default-test-hpl) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ jira ---
 [INFO] Generating /tmp/plugin-builds/jira/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:resolve-test-dependencies (default-resolve-test-dependencies) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ jira ---
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:test-runtime (default-test-runtime) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ jira ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ jira ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ jira ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ jira ---
 [INFO] Generated /tmp/plugin-builds/jira/target/jira/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1787.vd08d76c755ef:hpi (default-hpi) @ jira ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ jira ---
 [INFO] Generating /tmp/plugin-builds/jira/target/jira/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/jira/target/jira.jar
@@ -191,14 +195,14 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ jira ---
+[INFO] --- spotless:3.2.1:check (default) @ jira ---
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.1.0/spotless-lib-4.1.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.3.0/spotless-lib-4.3.0.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 133 files clean - 0 needs changes to be clean, 133 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom15415337799934130118.xml
+[INFO] Sorting file /tmp/pom7288391464329774672.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -209,6 +213,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:19 min
-[INFO] Finished at: 2026-03-03T03:29:54Z
+[INFO] Total time:  01:27 min
+[INFO] Finished at: 2026-03-10T03:11:40Z
 [INFO] ------------------------------------------------------------------------
