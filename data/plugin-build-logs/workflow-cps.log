@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1795.v6fb_496fc129b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins.workflow:workflow-cps-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -24,11 +24,12 @@
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ workflow-cps-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -36,6 +37,9 @@
 [INFO] --- localizer:1.31:generate (default) @ workflow-cps-parent ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ workflow-cps-parent ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ workflow-cps-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ workflow-cps-parent ---
@@ -48,7 +52,7 @@
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/workflow-cps/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ workflow-cps-parent ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ workflow-cps-parent ---
 [INFO] Generated /tmp/plugin-builds/workflow-cps/target/workflow-cps-parent/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ workflow-cps-parent ---
@@ -65,9 +69,9 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ workflow-cps-parent ---
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ workflow-cps-parent ---
+[INFO] --- spotless:3.2.1:check (default) @ workflow-cps-parent ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom16570910946575457796.xml
+[INFO] Sorting file /tmp/pom7942831551270015133.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -82,11 +86,11 @@
 [INFO] --- clean:3.5.0:clean (default-clean) @ groovy-cps-dgm-builder ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ groovy-cps-dgm-builder ---
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ groovy-cps-dgm-builder ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -96,13 +100,16 @@
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ groovy-cps-dgm-builder ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ groovy-cps-dgm-builder ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ groovy-cps-dgm-builder ---
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ groovy-cps-dgm-builder ---
 [INFO] Generating flattened POM of project com.cloudbees:groovy-cps-dgm-builder:jar:999999-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ groovy-cps-dgm-builder ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ groovy-cps-dgm-builder ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 2 source files with javac [debug parameters release 17] to target/classes
 [INFO] /tmp/plugin-builds/workflow-cps/dgm-builder/src/main/java/com/cloudbees/groovy/cps/tool/Translator.java: /tmp/plugin-builds/workflow-cps/dgm-builder/src/main/java/com/cloudbees/groovy/cps/tool/Translator.java uses or overrides a deprecated API.
@@ -118,13 +125,13 @@
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ groovy-cps-dgm-builder ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ groovy-cps-dgm-builder ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ groovy-cps-dgm-builder ---
 [INFO] Not compiling test sources
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ groovy-cps-dgm-builder ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ groovy-cps-dgm-builder ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ groovy-cps-dgm-builder ---
 [INFO] Generated /tmp/plugin-builds/workflow-cps/dgm-builder/target/groovy-cps-dgm-builder/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- jar:3.5.0:jar (default-jar) @ groovy-cps-dgm-builder ---
@@ -151,14 +158,14 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ groovy-cps-dgm-builder ---
+[INFO] --- spotless:3.2.1:check (default) @ groovy-cps-dgm-builder ---
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.1.0/spotless-lib-4.1.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.3.0/spotless-lib-4.3.0.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 2 files clean - 0 needs changes to be clean, 2 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom8994816392857899315.xml
+[INFO] Sorting file /tmp/pom1326770895333737725.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -175,18 +182,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- clean:3.5.0:clean (default-clean) @ groovy-cps ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ groovy-cps ---
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ groovy-cps ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ groovy-cps ---
 [INFO] 
-[INFO] --- dependency:3.9.0:copy (default) @ groovy-cps ---
+[INFO] --- dependency:3.10.0:copy (default) @ groovy-cps ---
 [INFO] 
 [INFO] --- exec:3.6.3:exec (default) @ groovy-cps ---
 /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps-dgm-builder-999999-SNAPSHOT-jar-with-dependencies.jar(/org/codehaus/groovy/runtime/DefaultGroovyMethods.java):389: warning: [removal] java.security.AccessController in java.security has been deprecated and marked for removal
@@ -209,13 +216,16 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ groovy-cps ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ groovy-cps ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ groovy-cps ---
 [INFO] skip non existing resourceDirectory /tmp/plugin-builds/workflow-cps/lib/src/main/resources
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ groovy-cps ---
 [INFO] Generating flattened POM of project com.cloudbees:groovy-cps:jar:999999-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ groovy-cps ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ groovy-cps ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 97 source files with javac [debug parameters release 17] to target/classes
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -242,13 +252,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ groovy-cps ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ groovy-cps ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ groovy-cps ---
 [INFO] Not compiling test sources
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ groovy-cps ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ groovy-cps ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ groovy-cps ---
 [INFO] Generated /tmp/plugin-builds/workflow-cps/lib/target/groovy-cps/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- jar:3.5.0:jar (default-jar) @ groovy-cps ---
@@ -273,10 +283,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ groovy-cps ---
+[INFO] --- spotless:3.2.1:check (default) @ groovy-cps ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 111 files clean - 0 needs changes to be clean, 111 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom10405366157290273675.xml
+[INFO] Sorting file /tmp/pom9938527366943994204.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -292,18 +302,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ workflow-cps ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate (default-validate) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ workflow-cps ---
 [INFO] Created marker file /tmp/plugin-builds/workflow-cps/plugin/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:validate-hpi (default-validate-hpi) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ workflow-cps ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ workflow-cps ---
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ workflow-cps ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -311,6 +321,9 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- localizer:1.31:generate (default) @ workflow-cps ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ workflow-cps ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ workflow-cps ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-corepack (install node and corepack) @ workflow-cps ---
@@ -330,18 +343,18 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ➤ YN0000: ┌ Resolution step
 [INFO] ::group::Resolution step
 [INFO] ::endgroup::
-[INFO] ➤ YN0000: └ Completed in 0s 339ms
+[INFO] ➤ YN0000: └ Completed in 0s 321ms
 [INFO] ➤ YN0000: ┌ Fetch step
 [INFO] ::group::Fetch step
-[INFO] ➤ YN0013: │ 537 packages were added to the project (+ 148.51 MiB).
+[INFO] ➤ YN0013: │ 537 packages were added to the project (+ 148.52 MiB).
 [INFO] ::endgroup::
-[INFO] ➤ YN0000: └ Completed in 8s 585ms
+[INFO] ➤ YN0000: └ Completed in 8s 45ms
 [INFO] ➤ YN0000: ┌ Link step
 [INFO] ::group::Link step
 [INFO] ➤ YN0007: │ less@npm:4.5.1 must be built because it never has been before or the last one failed
 [INFO] ::endgroup::
-[INFO] ➤ YN0000: └ Completed in 10s 726ms
-[INFO] ➤ YN0000: · Done in 19s 973ms
+[INFO] ➤ YN0000: └ Completed in 12s 611ms
+[INFO] ➤ YN0000: · Done in 21s 326ms
 [INFO] 
 [INFO] --- frontend:2.0.0:corepack (yarn mvnbuild) @ workflow-cps ---
 [INFO] Running 'corepack yarn mvnbuild' in /tmp/plugin-builds/workflow-cps/plugin
@@ -383,7 +396,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.104.1 compiled with 3 warnings in 25606 ms
+[INFO] webpack 5.104.1 compiled with 3 warnings in 23616 ms
 [INFO] 
 [INFO] --- resources:3.4.0:resources (default-resources) @ workflow-cps ---
 [INFO] Copying 47 resources from src/main/resources to target/classes
@@ -392,7 +405,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- flatten:1.7.3:flatten (flatten) @ workflow-cps ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins.workflow:workflow-cps:hpi:999999-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ workflow-cps ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ workflow-cps ---
 [INFO] Recompiling the module because of changed dependency.
 [INFO] Compiling 70 source files with javac [debug parameters release 17] to target/classes
 [INFO] org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition.DescriptorImpl indexed under hudson.Extension
@@ -430,13 +443,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[84,12] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.stapler
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsScmFlowDefinition.java:[81,12] Generating org/jenkinsci/plugins/workflow/cps/CpsScmFlowDefinition.stapler
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/steps/LoadStep.java:[25,12] Generating org/jenkinsci/plugins/workflow/cps/steps/LoadStep.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[90,19] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction/InterpolatedWarnings.javadoc
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/EnvActionImpl.java:[60,8] Generating org/jenkinsci/plugins/workflow/cps/EnvActionImpl.javadoc
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[41,8] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.javadoc
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[181,31] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/EnvActionImpl.java:[60,8] Generating org/jenkinsci/plugins/workflow/cps/EnvActionImpl.javadoc
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction.java:[90,19] Generating org/jenkinsci/plugins/workflow/cps/view/InterpolatedSecretsAction/InterpolatedWarnings.javadoc
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[189,21] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScriptCompile.stapler
-[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/replay/ReplayAction.java:[416,27] Generating org/jenkinsci/plugins/workflow/cps/replay/ReplayAction/doCheckScript.stapler
 [INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/Snippetizer.java:[511,25] Generating org/jenkinsci/plugins/workflow/cps/Snippetizer/doGenerateSnippet.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition.java:[181,31] Generating org/jenkinsci/plugins/workflow/cps/CpsFlowDefinition/DescriptorImpl/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/replay/ReplayAction.java:[416,27] Generating org/jenkinsci/plugins/workflow/cps/replay/ReplayAction/doCheckScript.stapler
 [WARNING] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
   reason: class file for com.google.j2objc.annotations.ReflectionSupport$Level not found
 [WARNING] /tmp/plugin-builds/workflow-cps/plugin/src/main/java/org/jenkinsci/plugins/workflow/cps/CpsFlowExecution.java: unknown enum constant com.google.j2objc.annotations.ReflectionSupport.Level.FULL
@@ -449,7 +462,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ workflow-cps ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:insert-test (default-insert-test) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ workflow-cps ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ workflow-cps ---
 [INFO] Executing tasks
@@ -459,15 +472,15 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- resources:3.4.0:testResources (default-testResources) @ workflow-cps ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ workflow-cps ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ workflow-cps ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-hpl (default-test-hpl) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ workflow-cps ---
 [INFO] Generating /tmp/plugin-builds/workflow-cps/plugin/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ workflow-cps ---
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:test-runtime (default-test-runtime) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ workflow-cps ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- surefire:3.5.4:test (default-test) @ workflow-cps ---
@@ -476,10 +489,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- frontend:2.0.0:corepack (yarn mvntest) @ workflow-cps ---
 [INFO] Running 'corepack yarn mvntest' in /tmp/plugin-builds/workflow-cps/plugin
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ workflow-cps ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ workflow-cps ---
 [INFO] Generated /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1795.v6fb_496fc129b_:hpi (default-hpi) @ workflow-cps ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ workflow-cps ---
 [INFO] Generating /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/workflow-cps/plugin/target/workflow-cps.jar
@@ -510,10 +523,10 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.1.0:check (default) @ workflow-cps ---
+[INFO] --- spotless:3.2.1:check (default) @ workflow-cps ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 149 files clean - 0 needs changes to be clean, 149 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom3558214107664179680.xml
+[INFO] Sorting file /tmp/pom1252751406344182416.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -525,13 +538,13 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline: Groovy Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline: Groovy Parent ............................ SUCCESS [ 17.351 s]
-[INFO] CpsDefaultGroovyMethods generator .................. SUCCESS [ 37.783 s]
-[INFO] Groovy CPS Execution ............................... SUCCESS [01:19 min]
-[INFO] Pipeline: Groovy ................................... SUCCESS [02:18 min]
+[INFO] Pipeline: Groovy Parent ............................ SUCCESS [ 16.346 s]
+[INFO] CpsDefaultGroovyMethods generator .................. SUCCESS [ 40.462 s]
+[INFO] Groovy CPS Execution ............................... SUCCESS [01:18 min]
+[INFO] Pipeline: Groovy ................................... SUCCESS [02:21 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  04:37 min
-[INFO] Finished at: 2026-03-17T02:39:31Z
+[INFO] Total time:  04:40 min
+[INFO] Finished at: 2026-03-24T02:39:05Z
 [INFO] ------------------------------------------------------------------------
