@@ -1,0 +1,98 @@
+[
+  {
+    "number": 193,
+    "title": "Introduce standard code style automation",
+    "state": "MERGED",
+    "createdAt": "2026-03-30T16:44:46Z",
+    "updatedAt": "2026-04-01T19:00:00Z",
+    "user": "jimklimov",
+    "repository": "jenkinsci/github-autostatus-plugin",
+    "pluginName": "github-autostatus",
+    "labels": [
+      "java"
+    ],
+    "url": "https://github.com/jenkinsci/github-autostatus-plugin/pull/193",
+    "description": "Although spotless:apply yields IMHO ugly results, it is well-known in Java community, easily reproducible and applicable by developers and CI alike.\nThis PR enables and applies \"spotless\" styling (and later iterations would refuse to accept code styled differently), so touches nearly every source file. Fixed a semi-bug in pom.xml where success of a build depended on dependency listing order (exclusions were needed).\nIn the interim it also un-commented the \"spotbugs\" lines and compiler setup for linting in pom.xml, but the warnings seemed non-fatal in a local build. Will try to address at least some of these for the code base to be as clean as possible.\nUPDATE: Ultimately these were shuttered back to pass the PR green again:\n\ncompiler settings for linting (or the finding of flaws with that) had broken tests in Java 25, apparently the JenkinsRule instances did not load the built plugin and had nothing to play with\nspotbugs have a separate checking phase in Jenkins CI farm recipe, so the plugin code having any issues in that area blocked the artifact publication",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 105,
+    "title": "chore(workflows): Setup auto-merge workflows for safe dependencies updates and BOM updates.",
+    "state": "MERGED",
+    "createdAt": "2026-03-20T15:47:27Z",
+    "updatedAt": "2026-03-20T16:16:46Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/sqlserver-api-plugin",
+    "pluginName": "sqlserver-api",
+    "labels": [
+      "chore"
+    ],
+    "url": "https://github.com/jenkinsci/sqlserver-api-plugin/pull/105",
+    "description": "Hello sqlserver-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Setup auto-merge workflows\n    io.jenkins.tools.pluginmodernizer.AutoMergeWorkflows\n    Setup auto-merge workflows for safe dependency updates and bom.\n\nSetup auto-merge workflows\nSetup the auto-merge workflows from Jenkins plugin archetype for safe dependencies updates (like parent pom or extensions).\nWorkflows either merge or close the PRs depending on the dependency.\nWhy is this important?\nReduce maintenance burden and noise in automatic PRs by auto-merging safe dependency updates.\nClosing BOM update PRs will ensure that the plugin depends on minimum plugins version for the given Jenkins baseline.\nBumping the BOM version is only required when the plugin needs a newer version of a plugin dependency.\nSee Archetype for more details.",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 94,
+    "title": "chore(workflows): Setup auto-merge workflows for safe dependencies updates and BOM updates.",
+    "state": "MERGED",
+    "createdAt": "2026-03-20T15:45:51Z",
+    "updatedAt": "2026-03-20T16:16:56Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/database-sqlserver-plugin",
+    "pluginName": "database-sqlserver",
+    "labels": [
+      "chore"
+    ],
+    "url": "https://github.com/jenkinsci/database-sqlserver-plugin/pull/94",
+    "description": "Hello database-sqlserver developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Setup auto-merge workflows\n    io.jenkins.tools.pluginmodernizer.AutoMergeWorkflows\n    Setup auto-merge workflows for safe dependency updates and bom.\n\nSetup auto-merge workflows\nSetup the auto-merge workflows from Jenkins plugin archetype for safe dependencies updates (like parent pom or extensions).\nWorkflows either merge or close the PRs depending on the dependency.\nWhy is this important?\nReduce maintenance burden and noise in automatic PRs by auto-merging safe dependency updates.\nClosing BOM update PRs will ensure that the plugin depends on minimum plugins version for the given Jenkins baseline.\nBumping the BOM version is only required when the plugin needs a newer version of a plugin dependency.\nSee Archetype for more details.",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 93,
+    "title": "chore(pom): Use recommended core version 2.516.3",
+    "state": "MERGED",
+    "createdAt": "2026-03-20T12:22:29Z",
+    "updatedAt": "2026-03-20T12:30:44Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/database-sqlserver-plugin",
+    "pluginName": "database-sqlserver",
+    "labels": [
+      "developer"
+    ],
+    "url": "https://github.com/jenkinsci/database-sqlserver-plugin/pull/93",
+    "description": "Hello database-sqlserver developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version\n    io.jenkins.tools.pluginmodernizer.UpgradeToRecommendCoreVersion\n    Upgrade to the latest recommended core version and ensure the BOM matches the core version.\n\nWhy is this important?\nJenkins plugins declare a minimum supported Jenkins version.\nThe minimum Jenkins version is a useful way for plugin developers to indicate the range of Jenkins versions they are willing to support and test.\nSee the developer documentation to learn more about the recommended minimum Jenkins version.\nThe current minimum required Jenkins version is 2.516.3, which is why this pull request has been made.\nIf the plugin is already using the plugin bill of materials, then the bill of materials also needs to be updated with the matching artifactId for the minimum required Jenkins version.\nI can't see any change to the Jenkins version, how come?\nThis means your plugin POM was already using the 2.516.3 version but still required a few adjustments.\nThe checks fail, why?\nFor security reasons, the Jenkins infrastructure does not execute Jenkinsfiles proposed in pull requests.\nInstead, it builds the code using the Jenkinsfile from the default branch.\nIn this case, the existing Jenkinsfile specifies Java 8, not Java 17, which is causing the check to fail.\nTo resolve this,\na maintainer can replay the failed build\nby substituting the current Jenkinsfile content with our proposed changes using the \"replay the build\"\nfeature in Jenkins.\nPlease let us know if you need any assistance with this process.\nThanks for taking the time to review this PR.\n🙏",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 90,
+    "title": "chore(dependencies): Switch to Renovate for automated dependency updates",
+    "state": "MERGED",
+    "createdAt": "2026-03-20T11:25:32Z",
+    "updatedAt": "2026-03-20T12:09:22Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/database-sqlserver-plugin",
+    "pluginName": "database-sqlserver",
+    "labels": [
+      "chore"
+    ],
+    "url": "https://github.com/jenkinsci/database-sqlserver-plugin/pull/90",
+    "description": "Hello database-sqlserver developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Switch from Dependabot to Renovate\n    io.jenkins.tools.pluginmodernizer.SwitchToRenovate\n    Switch from Dependabot to Renovate for the Jenkins plugin.",
+    "checkStatus": "SUCCESS"
+  },
+  {
+    "number": 102,
+    "title": "chore(dependencies): Switch to Renovate for automated dependency updates",
+    "state": "MERGED",
+    "createdAt": "2026-03-20T11:22:54Z",
+    "updatedAt": "2026-03-20T12:11:56Z",
+    "user": "jonesbusy",
+    "repository": "jenkinsci/sqlserver-api-plugin",
+    "pluginName": "sqlserver-api",
+    "labels": [
+      "chore"
+    ],
+    "url": "https://github.com/jenkinsci/sqlserver-api-plugin/pull/102",
+    "description": "Hello sqlserver-api developers! 👋\nThis is an automated pull request created by the Jenkins Plugin Modernizer tool. The tool has applied the following recipes to modernize the plugin:\n\n    Switch from Dependabot to Renovate\n    io.jenkins.tools.pluginmodernizer.SwitchToRenovate\n    Switch from Dependabot to Renovate for the Jenkins plugin.",
+    "checkStatus": "SUCCESS"
+  }
+]
