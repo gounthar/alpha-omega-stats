@@ -34,12 +34,12 @@
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ pipeline-graph-view ---
-[INFO] Installing node version v24.14.1
-[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v24.14.1/node-v24.14.1-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/24.14.1/node-24.14.1-linux-x64.tar.gz
+[INFO] Installing node version v24.15.0
+[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v24.15.0/node-v24.15.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/24.15.0/node-24.15.0-linux-x64.tar.gz
 [INFO] No proxies configured
 [INFO] No proxy was configured, downloading directly
-[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.14.1/node-24.14.1-linux-x64.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/tmp
-[INFO] Copying node binary from /tmp/plugin-builds/pipeline-graph-view/node/tmp/node-v24.14.1-linux-x64/bin/node to /tmp/plugin-builds/pipeline-graph-view/node/node
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.15.0/node-24.15.0-linux-x64.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/pipeline-graph-view/node/tmp/node-v24.15.0-linux-x64/bin/node to /tmp/plugin-builds/pipeline-graph-view/node/node
 [INFO] Installed node locally.
 [INFO] Installing npm version 11.12.1
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/11.12.1/npm-11.12.1.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/node_modules
@@ -48,7 +48,7 @@
 [INFO] --- frontend:2.0.0:npm (npm install) @ pipeline-graph-view ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/pipeline-graph-view
 [INFO] 
-[INFO] added 442 packages, and audited 443 packages in 28s
+[INFO] added 442 packages, and audited 443 packages in 31s
 [INFO] 
 [INFO] 167 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -77,14 +77,15 @@
 [INFO] ✓ 270 modules transformed.
 [INFO] rendering chunks...
 [INFO] computing gzip size...
-[INFO] src/main/webapp/js/bundles/pipeline-graph-view-bundle.js          0.58 kB │ gzip:   0.38 kB │ map:     2.06 kB
-[INFO] src/main/webapp/js/bundles/assets/symbols-BvnZ4jXy.js             3.84 kB │ gzip:   1.60 kB │ map:     9.79 kB
+[INFO] src/main/webapp/js/bundles/pipeline-graph-view-bundle.js          1.26 kB │ gzip:   0.69 kB │ map:     4.11 kB
+[INFO] src/main/webapp/js/bundles/assets/symbols-CKAGsXIj.js             3.84 kB │ gzip:   1.61 kB │ map:     9.79 kB
 [INFO] src/main/webapp/js/bundles/multi-pipeline-graph-view-bundle.js    8.50 kB │ gzip:   2.80 kB │ map:    17.61 kB
-[INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-CtR6ZaoF.js   22.47 kB │ gzip:   5.45 kB │ map:    77.37 kB
-[INFO] src/main/webapp/js/bundles/assets/stages-D5yQEmjy.js             47.96 kB │ gzip:  14.81 kB │ map:   201.27 kB
-[INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js       69.37 kB │ gzip:  24.46 kB │ map:   169.31 kB
-[INFO] src/main/webapp/js/bundles/assets/tree-api-V6ApEnFX.js          406.49 kB │ gzip: 130.00 kB │ map: 1,991.56 kB
-[INFO] ✓ built in 10.56s
+[INFO] src/main/webapp/js/bundles/assets/linkify-js-CKdQs7qJ.js         17.24 kB │ gzip:   9.75 kB │ map:    89.60 kB
+[INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-CAyPxsKD.js   22.47 kB │ gzip:   5.43 kB │ map:    77.57 kB
+[INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js       46.83 kB │ gzip:  13.30 kB │ map:    50.83 kB
+[INFO] src/main/webapp/js/bundles/assets/console-log-card-DDcj2nUH.js   53.83 kB │ gzip:  16.57 kB │ map:   137.24 kB
+[INFO] src/main/webapp/js/bundles/assets/tree-api-CATIxQ4A.js          406.69 kB │ gzip: 130.06 kB │ map: 1,992.53 kB
+[INFO] ✓ built in 10.59s
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ pipeline-graph-view ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -182,9 +183,9 @@
 [INFO] 
 [INFO]  RUN  v3.2.4 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
 [INFO] 
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (8 tests) 38ms
-[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 364ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1500ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (8 tests) 35ms
+[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 396ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1440ms
 [INFO] stderr | common/tree-api.spec.ts > useRunPoller > should ignore fetch error for previous
 [INFO] Fetch previous run Error: foo
 [INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:104:19
@@ -206,48 +207,49 @@
 [INFO]     at commitHookEffectListMount (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:13249:29)
 [INFO]     at commitHookPassiveMountEffects (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:13336:11)
 [INFO] 
-[INFO]  ✓ common/tree-api.spec.ts (6 tests) 875ms
-[INFO]  ✓ common/components/status-icon.spec.tsx (14 tests) 178ms
-[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 22ms
-[INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
-[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
-[INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 548ms
-[INFO]    ✓ ConsoleLogCard > renders step header only when not expanded  312ms
-[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 152ms
+[INFO]  ✓ common/tree-api.spec.ts (6 tests) 900ms
+[INFO]    ✓ useRunPoller > should merge stages when not complete  332ms
+[INFO]  ✓ common/components/status-icon.spec.tsx (14 tests) 288ms
+[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 18ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/stage-details.spec.tsx > StageDetails > renders stage name and status color class
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (7 tests) 2038ms
-[INFO]    ✓ StageDetails > renders stage name and status color class  897ms
-[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 92ms
-[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 29ms
-[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 25ms
+[INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
+[INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[INFO] 
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 661ms
+[INFO]    ✓ ConsoleLogCard > renders step header only when not expanded  383ms
+[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 221ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (7 tests) 1967ms
+[INFO]    ✓ StageDetails > renders stage name and status color class  968ms
+[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 89ms
+[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 22ms
+[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 19ms
 [INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should render settings button in portal
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 384ms
+[INFO]    ✓ ConsoleLogStream > renders step console  312ms
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1253ms
+[INFO]    ✓ SettingsButton > should toggle dropdown when clicking settings button  706ms
+[INFO]    ✓ SettingsButton > should update preferences when toggling checkboxes  339ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/StageView.spec.tsx > StageView > renders StageDetails and StageSteps with provided props
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1301ms
-[INFO]    ✓ SettingsButton > should toggle dropdown when clicking settings button  745ms
-[INFO]    ✓ SettingsButton > should update preferences when toggling checkboxes  328ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 1059ms
-[INFO]    ✓ StageView > renders StageDetails and StageSteps with provided props  1057ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 334ms
-[INFO]    ✓ ConsoleLogStream > renders step console  306ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 11ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 1404ms
+[INFO]    ✓ StageView > renders StageDetails and StageSteps with provided props  1396ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 9ms
 [INFO] 
 [INFO]  Test Files  16 passed (16)
 [INFO]       Tests  103 passed (103)
-[INFO]    Start at  03:25:43
-[INFO]    Duration  24.53s (transform 2.13s, setup 3.28s, collect 6.31s, tests 8.57s, environment 37.76s, prepare 3.79s)
+[INFO]    Start at  03:27:08
+[INFO]    Duration  26.03s (transform 1.93s, setup 2.92s, collect 6.26s, tests 9.11s, environment 41.69s, prepare 4.09s)
 [INFO] 
 [INFO] JUNIT report written to /tmp/plugin-builds/pipeline-graph-view/target/surefire-reports/vitest-junit.xml
 [INFO] 
@@ -290,7 +292,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotle
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 69 files clean - 0 needs changes to be clean, 69 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom9563309307189287630.xml
+[INFO] Sorting file /tmp/pom11946253834624496169.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -302,5 +304,5 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  03:18 min
-[INFO] Finished at: 2026-04-14T03:26:57Z
+[INFO] Finished at: 2026-04-21T03:28:21Z
 [INFO] ------------------------------------------------------------------------

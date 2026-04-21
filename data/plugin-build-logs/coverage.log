@@ -1,10 +1,10 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3140.v667559b_d0470
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3159.v1734d34dfb_fc
 [WARNING] Failed to build parent project for io.jenkins.plugins:coverage-parent:pom:3.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -38,6 +38,9 @@
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ coverage-parent ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ coverage-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ coverage-parent >>>
@@ -82,7 +85,7 @@
 [INFO] --- jar:3.5.0:test-jar (default) @ coverage-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- failsafe:3.5.4:integration-test (default) @ coverage-parent ---
+[INFO] --- failsafe:3.5.5:integration-test (default) @ coverage-parent ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ coverage-parent ---
@@ -150,10 +153,10 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ coverage-parent ---
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ coverage-parent ---
+[INFO] --- spotless:3.4.0:check (default) @ coverage-parent ---
 [INFO] Spotless check skipped
 [INFO] 
-[INFO] --- failsafe:3.5.4:verify (default) @ coverage-parent ---
+[INFO] --- failsafe:3.5.5:verify (default) @ coverage-parent ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- jacoco:0.8.14:report (report) @ coverage-parent ---
@@ -173,13 +176,13 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ coverage ---
 [INFO] Created marker file /tmp/plugin-builds/coverage/plugin/target/java-level/21
 [INFO] Setting maven.compiler.release to 21
 [INFO] Setting maven.compiler.testRelease to 21
 [WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
@@ -199,11 +202,14 @@
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ coverage ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ coverage ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ coverage >>>
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
@@ -222,7 +228,7 @@
 [INFO] 
 [INFO] --- javadoc:3.12.0:javadoc (default) @ coverage ---
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ coverage ---
+[INFO] --- resources:3.5.0:resources (default-resources) @ coverage ---
 [INFO] Copying 80 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ coverage ---
@@ -244,19 +250,19 @@
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.java:[106,12] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.stapler
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[83,12] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageStep.stapler
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageTool.java:[58,12] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageTool.stapler
-[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.java:[25,8] Generating io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.javadoc
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesCoverageApi.java:[20,1] Generating io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesCoverageApi.javadoc
+[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.java:[25,8] Generating io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.javadoc
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/FileWithModifiedLines.java:[14,1] Generating io/jenkins/plugins/coverage/metrics/restapi/FileWithModifiedLines.javadoc
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesBlock.java:[15,1] Generating io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesBlock.javadoc
+[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.java:[691,31] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder/Descriptor/doCheckSourceCodeEncoding.stapler
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageTool.java:[176,31] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageTool/CoverageToolDescriptor/doCheckId.stapler
-[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[463,31] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageStep/Descriptor/doCheckSourceCodeEncoding.stapler
 [WARNING] No processor claimed any of these annotations: /org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro.Parameter,/org.kohsuke.accmod.Restricted,/edu.umd.cs.findbugs.annotations.NonNull,/org.kohsuke.stapler.QueryParameter,/org.jenkinsci.plugins.variant.OptionalExtension,/org.kohsuke.stapler.DataBoundSetter,/org.jenkinsci.Symbol,/edu.umd.cs.findbugs.annotations.CheckForNull,/org.kohsuke.stapler.bind.JavaScriptMethod,/org.kohsuke.stapler.AncestorInPath,/org.kohsuke.stapler.verb.POST,/edu.umd.cs.findbugs.annotations.SuppressFBWarnings,/org.kohsuke.stapler.export.Exported,/edu.hm.hafner.util.VisibleForTesting,/org.kohsuke.stapler.export.ExportedBean,/org.kohsuke.stapler.DataBoundConstructor,/edu.umd.cs.findbugs.annotations.DefaultAnnotation,/hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ coverage ---
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:insert-test (default-insert-test) @ coverage ---
 [INFO] 
 [INFO] --- assertj:2.2.0:generate-assertions (default) @ coverage ---
 [INFO] 
@@ -265,30 +271,30 @@
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/coverage/plugin/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ coverage ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ coverage ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ coverage ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-hpl (default-test-hpl) @ coverage ---
 [INFO] Generating /tmp/plugin-builds/coverage/plugin/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:resolve-test-dependencies (default-resolve-test-dependencies) @ coverage ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- jacoco:0.8.14:prepare-agent (default) @ coverage ---
 [INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/coverage/plugin/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ coverage ---
+[INFO] --- surefire:3.5.5:test (default-test) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:203.vffb_768f15d51:process (default) @ coverage ---
 [INFO] Generated /tmp/plugin-builds/coverage/plugin/target/coverage/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ coverage ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ coverage ---
 [INFO] Generating /tmp/plugin-builds/coverage/plugin/target/coverage/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/coverage/plugin/target/coverage.jar
@@ -307,7 +313,7 @@
 [INFO] --- jar:3.5.0:test-jar (default) @ coverage ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- failsafe:3.5.4:integration-test (default) @ coverage ---
+[INFO] --- failsafe:3.5.5:integration-test (default) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ coverage ---
@@ -383,10 +389,10 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ coverage ---
+[INFO] --- spotless:3.4.0:check (default) @ coverage ---
 [INFO] Spotless check skipped
 [INFO] 
-[INFO] --- failsafe:3.5.4:verify (default) @ coverage ---
+[INFO] --- failsafe:3.5.5:verify (default) @ coverage ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- jacoco:0.8.14:report (report) @ coverage ---
@@ -402,11 +408,11 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Coverage Plugin 3.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 16.689 s]
-[INFO] Coverage Plugin .................................... SUCCESS [01:19 min]
+[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 17.485 s]
+[INFO] Coverage Plugin .................................... SUCCESS [01:18 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
 [INFO] Total time:  01:37 min
-[INFO] Finished at: 2026-04-14T04:08:12Z
+[INFO] Finished at: 2026-04-21T04:09:52Z
 [INFO] ------------------------------------------------------------------------
