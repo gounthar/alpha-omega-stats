@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:badge:hpi:3.999999-SNAPSHOT
 [INFO] 
 [INFO] --------------------< org.jenkins-ci.plugins:badge >--------------------
@@ -13,10 +13,10 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ badge ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ badge ---
 [INFO] Created marker file /tmp/plugin-builds/badge/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ badge ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ badge ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -40,18 +40,23 @@
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ badge ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ badge ---
-[INFO] Copying 48 resources from src/main/resources to target/classes
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ badge ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ badge ---
+[INFO] Copying 52 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ badge ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:badge:hpi:3.999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ badge ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 14 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 16 source files with javac [debug parameters release 17] to target/classes
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [INFO] com.jenkinsci.plugins.badge.decorator.BadgePageDecorator indexed under hudson.Extension
+[INFO] com.jenkinsci.plugins.badge.detail.BadgeDetail.BadgeDetailGroup indexed under hudson.Extension
+[INFO] com.jenkinsci.plugins.badge.detail.BadgeDetail.BadgeDetailFactory indexed under hudson.Extension
 [INFO] com.jenkinsci.plugins.badge.dsl.AddBadgeStep.DescriptorImpl indexed under hudson.Extension
 [INFO] com.jenkinsci.plugins.badge.dsl.AddErrorBadgeStep.DescriptorImpl indexed under hudson.Extension
 [INFO] com.jenkinsci.plugins.badge.dsl.AddInfoBadgeStep.DescriptorImpl indexed under hudson.Extension
@@ -59,6 +64,7 @@
 [INFO] com.jenkinsci.plugins.badge.dsl.AddWarningBadgeStep.DescriptorImpl indexed under hudson.Extension
 [INFO] com.jenkinsci.plugins.badge.dsl.RemoveBadgesStep.DescriptorImpl indexed under hudson.Extension
 [INFO] com.jenkinsci.plugins.badge.dsl.RemoveSummariesStep.DescriptorImpl indexed under hudson.Extension
+[INFO] com.jenkinsci.plugins.badge.tab.SummaryTab.SummaryTabFactory indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/AddBadgeStep.java:[39,12] Generating com/jenkinsci/plugins/badge/dsl/AddBadgeStep.stapler
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/AddErrorBadgeStep.java:[39,12] Generating com/jenkinsci/plugins/badge/dsl/AddErrorBadgeStep.stapler
 [INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/dsl/AddInfoBadgeStep.java:[39,12] Generating com/jenkinsci/plugins/badge/dsl/AddInfoBadgeStep.stapler
@@ -73,39 +79,41 @@
   reason: class file for javax.annotation.meta.When not found
 [WARNING] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/BadgeAction.java:[42,9] AbstractBadgeAction(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) in com.jenkinsci.plugins.badge.action.AbstractBadgeAction has been deprecated and marked for removal
 [WARNING] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/action/BadgeSummaryAction.java:[41,9] AbstractBadgeAction(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) in com.jenkinsci.plugins.badge.action.AbstractBadgeAction has been deprecated and marked for removal
+[INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/tab/SummaryTab.java: /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/tab/SummaryTab.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/badge/src/main/java/com/jenkinsci/plugins/badge/tab/SummaryTab.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ badge ---
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ badge ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:insert-test (default-insert-test) @ badge ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ badge ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/badge/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ badge ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ badge ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ badge ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-hpl (default-test-hpl) @ badge ---
 [INFO] Generating /tmp/plugin-builds/badge/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:resolve-test-dependencies (default-resolve-test-dependencies) @ badge ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ badge ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ badge ---
+[INFO] --- surefire:3.5.5:test (default-test) @ badge ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:203.vffb_768f15d51:process (default) @ badge ---
 [INFO] Generated /tmp/plugin-builds/badge/target/badge/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ badge ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ badge ---
 [INFO] Generating /tmp/plugin-builds/badge/target/badge/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/badge/target/badge.jar
@@ -119,29 +127,29 @@
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ badge ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ badge >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ badge >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ badge ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ badge ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ badge <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ badge <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ badge ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ badge ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ badge ---
+[INFO] --- spotless:3.4.0:check (default) @ badge ---
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.3.0/spotless-lib-4.3.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.5.0/spotless-lib-4.5.0.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
-[INFO] Spotless.Java is keeping 30 files clean - 0 needs changes to be clean, 30 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom9112509234080770888.xml
+[INFO] Spotless.Java is keeping 34 files clean - 0 needs changes to be clean, 34 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom8930895026013987166.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -152,6 +160,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:20 min
-[INFO] Finished at: 2026-03-31T03:56:39Z
+[INFO] Total time:  01:02 min
+[INFO] Finished at: 2026-04-21T04:02:09Z
 [INFO] ------------------------------------------------------------------------

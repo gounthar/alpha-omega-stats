@@ -1,11 +1,11 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1762.vd3ff902a_5b_c4 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:11.2958.v63511c4c1160
-[WARNING] Failed to build parent project for io.jenkins.plugins:warnings-ng-parent:pom:12.999999-SNAPSHOT
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3140.v667559b_d0470
+[WARNING] Failed to build parent project for io.jenkins.plugins:warnings-ng-parent:pom:13.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
 [INFO] 
@@ -13,7 +13,7 @@
 [INFO] Warnings Plugin                                                    [hpi]
 [INFO] 
 [INFO] ---------------< io.jenkins.plugins:warnings-ng-parent >----------------
-[INFO] Building Aggregator for Warnings Plugin 12.999999-SNAPSHOT         [1/2]
+[INFO] Building Aggregator for Warnings Plugin 13.999999-SNAPSHOT         [1/2]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
 [INFO] 
@@ -21,11 +21,11 @@
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ warnings-ng-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 1: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 1: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 3: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
@@ -37,12 +37,15 @@
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ warnings-ng-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ warnings-ng-parent ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ warnings-ng-parent >>>
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ warnings-ng-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 1: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
@@ -58,7 +61,7 @@
 [INFO] Skipping org.apache.maven.plugins:maven-javadoc-plugin:3.12.0:javadoc report goal
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ warnings-ng-parent ---
-[INFO] Generating flattened POM of project io.jenkins.plugins:warnings-ng-parent:pom:12.999999-SNAPSHOT...
+[INFO] Generating flattened POM of project io.jenkins.plugins:warnings-ng-parent:pom:13.999999-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ warnings-ng-parent ---
 [INFO] 
@@ -70,13 +73,13 @@
 [INFO] --- jacoco:0.8.14:prepare-agent (default) @ warnings-ng-parent ---
 [INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/warnings-ng/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ warnings-ng-parent ---
+[INFO] --- license:203.vffb_768f15d51:process (default) @ warnings-ng-parent ---
 [INFO] Generated /tmp/plugin-builds/warnings-ng/target/warnings-ng-parent/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ warnings-ng-parent ---
+[INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ warnings-ng-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- jar:3.4.2:test-jar (default) @ warnings-ng-parent ---
+[INFO] --- jar:3.5.0:test-jar (default) @ warnings-ng-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
 [INFO] --- failsafe:3.5.4:integration-test (default) @ warnings-ng-parent ---
@@ -147,7 +150,7 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ warnings-ng-parent ---
 [INFO] 
-[INFO] --- spotless:3.0.0:check (default) @ warnings-ng-parent ---
+[INFO] --- spotless:3.2.1:check (default) @ warnings-ng-parent ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.4:verify (default) @ warnings-ng-parent ---
@@ -161,40 +164,29 @@
 [INFO] API checks completed without failures.
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ warnings-ng-parent ---
-[INFO] Installing /tmp/plugin-builds/warnings-ng/target/warnings-ng-parent-12.999999-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng-parent/12.999999-SNAPSHOT/warnings-ng-parent-12.999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/warnings-ng/target/warnings-ng-parent-13.999999-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng-parent/13.999999-SNAPSHOT/warnings-ng-parent-13.999999-SNAPSHOT.pom
 [INFO] 
 [INFO] -------------------< io.jenkins.plugins:warnings-ng >-------------------
-[INFO] Building Warnings Plugin 12.999999-SNAPSHOT                        [2/2]
+[INFO] Building Warnings Plugin 13.999999-SNAPSHOT                        [2/2]
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ warnings-ng ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate (default-validate) @ warnings-ng ---
-[INFO] Created marker file /tmp/plugin-builds/warnings-ng/plugin/target/java-level/17
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ warnings-ng ---
+[INFO] Created marker file /tmp/plugin-builds/warnings-ng/plugin/target/java-level/21
+[INFO] Setting maven.compiler.release to 21
+[INFO] Setting maven.compiler.testRelease to 21
+[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ warnings-ng ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ warnings-ng ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
-[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[WARNING] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps warned with message:
-Failed while enforcing RequireUpperBoundDeps. The error(s) are [
-Require upper bound dependencies error for com.sun.xml.bind:jaxb-impl:2.3.9. Paths to dependency are:
-+-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
-  +-io.jenkins.plugins:analysis-model-api:13.17.0-931.v730d8659ea_9c
-    +-io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706 (managed) <-- io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706
-      +-com.sun.xml.bind:jaxb-impl:2.3.9
-and
-+-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
-  +-org.jenkins-ci.plugins:jackson2-api:2.20.1-423.v13951f6b_6532
-    +-io.jenkins.plugins:jakarta-xml-bind-api:4.0.6-10.v9b_7e1d1fc40b_ (managed) <-- io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9
-      +-com.sun.xml.bind:jaxb-impl:4.0.6
-]
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ warnings-ng ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -204,32 +196,21 @@ and
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ warnings-ng ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ warnings-ng ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ warnings-ng >>>
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate (default-validate) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ warnings-ng ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:validate-hpi (default-validate-hpi) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ warnings-ng ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ warnings-ng ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
-[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[WARNING] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps warned with message:
-Failed while enforcing RequireUpperBoundDeps. The error(s) are [
-Require upper bound dependencies error for com.sun.xml.bind:jaxb-impl:2.3.9. Paths to dependency are:
-+-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
-  +-io.jenkins.plugins:analysis-model-api:13.17.0-931.v730d8659ea_9c
-    +-io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706 (managed) <-- io.jenkins.plugins:jaxb:2.3.9-133.vb_ec76a_73f706
-      +-com.sun.xml.bind:jaxb-impl:2.3.9
-and
-+-io.jenkins.plugins:warnings-ng:12.999999-SNAPSHOT
-  +-org.jenkins-ci.plugins:jackson2-api:2.20.1-423.v13951f6b_6532
-    +-io.jenkins.plugins:jakarta-xml-bind-api:4.0.6-10.v9b_7e1d1fc40b_ (managed) <-- io.jenkins.plugins:jakarta-xml-bind-api:4.0.5-3.v3d5b_a_73965b_9
-      +-com.sun.xml.bind:jaxb-impl:4.0.6
-]
+[INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ warnings-ng ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -241,15 +222,21 @@ and
 [INFO] 
 [INFO] --- javadoc:3.12.0:javadoc (default) @ warnings-ng ---
 [INFO] 
-[INFO] --- resources:3.3.1:resources (default-resources) @ warnings-ng ---
-[INFO] Copying 246 resources from src/main/resources to target/classes
+[INFO] --- resources:3.4.0:resources (default-resources) @ warnings-ng ---
+[INFO] Copying 250 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ warnings-ng ---
-[INFO] Generating flattened POM of project io.jenkins.plugins:warnings-ng:hpi:12.999999-SNAPSHOT...
+[INFO] Generating flattened POM of project io.jenkins.plugins:warnings-ng:hpi:13.999999-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ warnings-ng ---
+[INFO] --- compiler:3.15.0:compile (default-compile) @ warnings-ng ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 274 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 278 source files with javac [debug parameters release 21] to target/classes
+[INFO] io.jenkins.plugins.analysis.core.mcp.WarningsMcpServerExtension indexed under org.jenkinsci.plugins.variant.OptionalExtension
+[INFO] io.jenkins.plugins.analysis.core.portlets.IssuesChartPortlet.IssuesChartPortletDescriptor indexed under org.jenkinsci.plugins.variant.OptionalExtension
+[INFO] io.jenkins.plugins.analysis.core.portlets.IssuesTablePortlet.IssuesTablePortletDescriptor indexed under org.jenkinsci.plugins.variant.OptionalExtension
+[INFO] io.jenkins.plugins.analysis.core.portlets.PullRequestMonitoringPortlet.PortletFactory indexed under org.jenkinsci.plugins.variant.OptionalExtension
+[INFO] io.jenkins.plugins.analysis.core.steps.MatrixBridge indexed under org.jenkinsci.plugins.variant.OptionalExtension
+[INFO] io.jenkins.plugins.analysis.core.tokens.IssuesSizeTokenMacro indexed under org.jenkinsci.plugins.variant.OptionalExtension
 [INFO] io.jenkins.plugins.analysis.core.columns.IssuesTotalColumn.IssuesTablePortletDescriptor indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.columns.WarningsAppearanceConfiguration indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.filter.ExcludeCategory.DescriptorImpl indexed under hudson.Extension
@@ -265,17 +252,13 @@ and
 [INFO] io.jenkins.plugins.analysis.core.filter.IncludePackage.DescriptorImpl indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.filter.IncludeType.DescriptorImpl indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.model.MissingResultFallbackHandler indexed under hudson.Extension
+[INFO] io.jenkins.plugins.analysis.core.model.RunTabFactory indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.model.ToolSelection.ToolSelectionDescriptor indexed under hudson.Extension
-[INFO] io.jenkins.plugins.analysis.core.portlets.IssuesChartPortlet.IssuesChartPortletDescriptor indexed under hudson.Extension
-[INFO] io.jenkins.plugins.analysis.core.portlets.IssuesTablePortlet.IssuesTablePortletDescriptor indexed under hudson.Extension
-[INFO] io.jenkins.plugins.analysis.core.portlets.PullRequestMonitoringPortlet.PortletFactory indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.steps.IssuesRecorder.Descriptor indexed under hudson.Extension
-[INFO] io.jenkins.plugins.analysis.core.steps.MatrixBridge indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.steps.PublishIssuesStep.Descriptor indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.steps.RecordIssuesStep.Descriptor indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.steps.ScanForIssuesStep.Descriptor indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.steps.ToolProxy.DescriptorImpl indexed under hudson.Extension
-[INFO] io.jenkins.plugins.analysis.core.tokens.IssuesSizeTokenMacro indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.core.util.WarningsQualityGate.WarningsQualityGateDescriptor indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.warnings.AcuCobol.Descriptor indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.warnings.Ajc.Descriptor indexed under hudson.Extension
@@ -417,7 +400,7 @@ and
 [INFO] io.jenkins.plugins.analysis.warnings.groovy.ParserConfiguration indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.warnings.groovy.ParserConfiguration.ParserFactory indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.warnings.tasks.OpenTasks.Descriptor indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.java:[58,12] Generating io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.java:[57,12] Generating io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.java:[47,12] Generating io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeCategory.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeCategory.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeFile.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeFile.stapler
@@ -431,12 +414,12 @@ and
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeModule.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeModule.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludePackage.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludePackage.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeType.java:[32,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeType.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[37,12] Generating io/jenkins/plugins/analysis/core/model/ToolSelection.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.java:[49,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[39,12] Generating io/jenkins/plugins/analysis/core/model/ToolSelection.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.java:[51,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.java:[53,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[148,12] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[95,12] Generating io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[113,12] Generating io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[97,12] Generating io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[115,12] Generating io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[59,12] Generating io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[29,12] Generating io/jenkins/plugins/analysis/core/steps/ToolProxy.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[44,12] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate.stapler
@@ -574,117 +557,43 @@ and
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YoctoScanner.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/YoctoScanner.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YuiCompressor.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/YuiCompressor.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ZptLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/ZptLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[84,12] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[73,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[82,12] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[74,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.java:[44,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[184,12] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ReportApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/ReportApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/IssueApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/IssueApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ToolApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/ToolApi.javadoc
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AggregationApi.java:[16,8] Generating io/jenkins/plugins/analysis/core/restapi/AggregationApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ToolApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/ToolApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/IssueApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/IssueApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1086,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckHealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[164,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckUnhealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[339,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckScript.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[196,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckId.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[143,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckHealthy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[313,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckProjectUrl.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[338,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckScript.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1106,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckUnhealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[241,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckIncludePattern.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[291,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExample.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1043,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckReportEncoding.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1063,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckSourceCodeEncoding.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[348,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1044,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckReportEncoding.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[286,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckProjectUrl.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[303,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckRegexp.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[215,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckNormalThreshold.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[95,31] Generating io/jenkins/plugins/analysis/core/filter/RegexpFilter/RegexpFilterDescriptor/doCheckPattern.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[261,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExcludePattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[374,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[241,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckIncludePattern.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[228,31] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate/WarningsQualityGateDescriptor/doCheckThreshold.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[159,27] Generating io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration/doCheckConsoleLogScanningPermitted.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[345,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckBasedir.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[215,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckNormalThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[415,29] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[275,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[302,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckRegexp.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[319,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckBasedir.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[94,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckSourceCodeEncoding.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[193,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckHighThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[382,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckExample.stapler
-[WARNING] No processor claimed any of these annotations: /org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro.Parameter,/hudson.init.Initializer,/edu.umd.cs.findbugs.annotations.NonNull,/org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.Whitelisted,/org.kohsuke.stapler.DataBoundSetter,/com.google.errorprone.annotations.MustBeClosed,/edu.umd.cs.findbugs.annotations.CheckForNull,/org.kohsuke.stapler.bind.JavaScriptMethod,/org.kohsuke.stapler.AncestorInPath,/edu.hm.hafner.util.Generated,/org.kohsuke.stapler.verb.POST,/edu.hm.hafner.util.VisibleForTesting,/org.kohsuke.stapler.export.ExportedBean,/org.kohsuke.stapler.DataBoundConstructor,/org.kohsuke.accmod.Restricted,/org.kohsuke.stapler.QueryParameter,/com.google.errorprone.annotations.CheckReturnValue,/org.jenkinsci.Symbol,/edu.umd.cs.findbugs.annotations.SuppressFBWarnings,/org.kohsuke.stapler.export.Exported,/com.google.errorprone.annotations.FormatMethod,/edu.umd.cs.findbugs.annotations.DefaultAnnotation,/hudson.Extension
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[48,42] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/IssuesStatistics.java:[49,42] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[32,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[77,41] containsAnyIgnoreCase(java.lang.CharSequence,java.lang.CharSequence...) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.java:[155,27] <T>defaultIfNull(T,T) in org.apache.commons.lang3.ObjectUtils has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/Tool.java:[39,36] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.java:[52,13] possible 'this' escape before subclass is fully initialized
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[68,40] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[69,32] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[70,32] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[267,28] possible 'this' escape before subclass is fully initialized
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[336,50] previous possible 'this' escape happens here via invocation
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/AnalysisResult.java:[340,24] previous possible 'this' escape happens here via invocation
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[31,44] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[73,41] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[80,59] found raw type: java.util.Collection
-  missing type arguments for generic class java.util.Collection<E>
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[87,49] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[108,41] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportXmlStream.java:[136,41] found raw type: java.lang.Class
-  missing type arguments for generic class java.lang.Class<T>
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnnotatedReport.java:[39,40] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/AffectedFilesResolver.java:[100,24] removeEnd(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[267,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[268,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesScanner.java:[270,42] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[966,59] found raw type: hudson.model.AbstractProject
-  missing type arguments for generic class hudson.model.AbstractProject<P,R>
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[64,28] possible 'this' escape before subclass is fully initialized
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[19,32] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[58,41] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[76,39] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[71,24] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[74,38] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[83,32] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[99,39] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[276,42] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[277,35] non-transient instance field of a serializable class declared with a non-serializable type
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[217,36] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[392,40] <C>lookupCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[430,65] <C>listCredentials(java.lang.Class<C>,hudson.model.Item,org.acegisecurity.Authentication,java.util.List<com.cloudbees.plugins.credentials.domains.DomainRequirement>,com.cloudbees.plugins.credentials.CredentialsMatcher) in com.cloudbees.plugins.credentials.CredentialsProvider has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[43,35] hudson.model.AbstractDescribableImpl in hudson.model has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[87,27] containsAny(java.lang.CharSequence,java.lang.CharSequence...) in org.apache.commons.lang3.StringUtils has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[215,27] <T>defaultIfNull(T,T) in org.apache.commons.lang3.ObjectUtils has been deprecated
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[43,13] possible 'this' escape before subclass is fully initialized
-[WARNING] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/TaskScanner.java:[259,43] removeStart(java.lang.String,java.lang.String) in org.apache.commons.lang3.StringUtils has been deprecated
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[276,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[383,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckExample.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[389,29] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doFillCredentialsIdItems.stapler
+[WARNING] No processor claimed any of these annotations: /org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro.Parameter,/io.jenkins.plugins.mcp.server.annotation.ToolParam,/hudson.init.Initializer,/edu.umd.cs.findbugs.annotations.NonNull,/org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.Whitelisted,/org.jenkinsci.plugins.variant.OptionalExtension,/org.kohsuke.stapler.DataBoundSetter,/com.google.errorprone.annotations.MustBeClosed,/edu.umd.cs.findbugs.annotations.CheckForNull,/org.kohsuke.stapler.bind.JavaScriptMethod,/org.kohsuke.stapler.AncestorInPath,/edu.hm.hafner.util.Generated,/org.kohsuke.stapler.verb.POST,/edu.hm.hafner.util.VisibleForTesting,/io.jenkins.plugins.mcp.server.annotation.Tool,/org.kohsuke.stapler.export.ExportedBean,/org.kohsuke.stapler.DataBoundConstructor,/org.kohsuke.accmod.Restricted,/org.kohsuke.stapler.QueryParameter,/com.google.errorprone.annotations.CheckReturnValue,/org.jenkinsci.Symbol,/edu.umd.cs.findbugs.annotations.SuppressFBWarnings,/org.kohsuke.stapler.export.Exported,/com.google.errorprone.annotations.FormatMethod,/edu.umd.cs.findbugs.annotations.DefaultAnnotation,/hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ warnings-ng ---
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ warnings-ng ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:insert-test (default-insert-test) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ warnings-ng ---
 [INFO] 
 [INFO] --- assertj:2.2.0:generate-assertions (default) @ warnings-ng ---
 [INFO] 
@@ -693,18 +602,18 @@ and
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/warnings-ng/plugin/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.3.1:testResources (default-testResources) @ warnings-ng ---
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ warnings-ng ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ warnings-ng ---
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ warnings-ng ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-hpl (default-test-hpl) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ warnings-ng ---
 [INFO] Generating /tmp/plugin-builds/warnings-ng/plugin/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:resolve-test-dependencies (default-resolve-test-dependencies) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ warnings-ng ---
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:test-runtime (default-test-runtime) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ warnings-ng ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- jacoco:0.8.14:prepare-agent (default) @ warnings-ng ---
@@ -715,19 +624,10 @@ and
 [INFO] --- surefire:3.5.4:test (default-test) @ warnings-ng ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:184.v19c87b_6b_a_9a_c:process (default) @ warnings-ng ---
-[WARNING] Failed to build parent project for org.apache.logging.log4j:log4j-api:jar:2.25.1
-[WARNING] Some problems were encountered while processing the POMs:
-[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-surefire-plugin is missing. @ 
-[WARNING] 'build.plugins.plugin.version' for org.codehaus.gmavenplus:gmavenplus-plugin is missing. @ 
-[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-clean-plugin is missing. @ 
-[WARNING] 'build.plugins.plugin.version' for org.codehaus.mojo:build-helper-maven-plugin is missing. @ line 69, column 15
-[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-enforcer-plugin is missing. @ 
-[ERROR] 'dependencies.dependency.version' for com.google.errorprone:error_prone_annotations:jar must be a valid version but is '${error-prone.version}'. @ 
-
+[INFO] --- license:203.vffb_768f15d51:process (default) @ warnings-ng ---
 [INFO] Generated /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1762.vd3ff902a_5b_c4:hpi (default-hpi) @ warnings-ng ---
+[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ warnings-ng ---
 [INFO] Generating /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.jar
@@ -740,17 +640,17 @@ and
 [INFO] Generating hpi /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi
 [INFO] Building jar: /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi
 [INFO] 
-[INFO] --- jar:3.4.2:test-jar (maybe-test-jar) @ warnings-ng ---
+[INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ warnings-ng ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- jar:3.4.2:test-jar (default) @ warnings-ng ---
+[INFO] --- jar:3.5.0:test-jar (default) @ warnings-ng ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
 [INFO] --- failsafe:3.5.4:integration-test (default) @ warnings-ng ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ warnings-ng ---
-[INFO] PMD version: 7.19.0-metrics
+[INFO] PMD version: 7.23.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ warnings-ng >>>
@@ -767,7 +667,7 @@ and
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ warnings-ng ---
-[INFO] PMD version: 7.19.0-metrics
+[INFO] PMD version: 7.23.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ warnings-ng >>>
@@ -784,7 +684,7 @@ and
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ warnings-ng ---
-[INFO] PMD version: 7.19.0-metrics
+[INFO] PMD version: 7.23.0-metrics
 [WARNING] 3 javascript problems found:
 /tmp/plugin-builds/warnings-ng/plugin/src/main/webapp/js/reset-quality-gate.js:7:52: missing ) after argument list
 /tmp/plugin-builds/warnings-ng/plugin/src/main/webapp/js/reset-quality-gate.js:12:14: syntax error
@@ -802,7 +702,7 @@ and
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ warnings-ng ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ warnings-ng ---
-[INFO] PMD version: 7.19.0-metrics
+[INFO] PMD version: 7.23.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ warnings-ng ---
@@ -811,7 +711,7 @@ and
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-tests) @ warnings-ng ---
 [INFO] You have 0 Checkstyle violations.
 [INFO] 
-[INFO] --- spotless:3.0.0:check (default) @ warnings-ng ---
+[INFO] --- spotless:3.2.1:check (default) @ warnings-ng ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.4:verify (default) @ warnings-ng ---
@@ -824,17 +724,17 @@ and
 [INFO] Skipping execution
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ warnings-ng ---
-[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng-12.999999-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng/12.999999-SNAPSHOT/warnings-ng-12.999999-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng/12.999999-SNAPSHOT/warnings-ng-12.999999-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.jar to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng/12.999999-SNAPSHOT/warnings-ng-12.999999-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng-13.999999-SNAPSHOT.pom to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng/13.999999-SNAPSHOT/warnings-ng-13.999999-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.hpi to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng/13.999999-SNAPSHOT/warnings-ng-13.999999-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/warnings-ng/plugin/target/warnings-ng.jar to /home/runner/.m2/repository/io/jenkins/plugins/warnings-ng/13.999999-SNAPSHOT/warnings-ng-13.999999-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] Reactor Summary for Aggregator for Warnings Plugin 12.999999-SNAPSHOT:
+[INFO] Reactor Summary for Aggregator for Warnings Plugin 13.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 18.330 s]
-[INFO] Warnings Plugin .................................... SUCCESS [03:14 min]
+[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 22.234 s]
+[INFO] Warnings Plugin .................................... SUCCESS [03:01 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:35 min
-[INFO] Finished at: 2026-03-31T03:56:47Z
+[INFO] Total time:  03:26 min
+[INFO] Finished at: 2026-04-21T04:03:18Z
 [INFO] ------------------------------------------------------------------------
