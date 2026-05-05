@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:job-dsl-parent:pom:999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -42,6 +42,9 @@
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl-parent ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl-parent ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-parent ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:job-dsl-parent:pom:999999-SNAPSHOT...
 [INFO] 
@@ -58,20 +61,20 @@
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ job-dsl-parent ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ job-dsl-parent >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ job-dsl-parent >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ job-dsl-parent ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ job-dsl-parent ---
 [INFO] No files found to run spotbugs; check compile phase has been run.
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ job-dsl-parent <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ job-dsl-parent <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ job-dsl-parent ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ job-dsl-parent ---
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ job-dsl-parent ---
+[INFO] --- spotless:3.4.0:check (default) @ job-dsl-parent ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom14314065627313654142.xml
+[INFO] Sorting file /tmp/pom18034249851431368907.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -111,7 +114,10 @@
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl-ast ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ job-dsl-ast ---
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl-ast ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ job-dsl-ast ---
 [INFO] Copying 1 resource from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-ast ---
@@ -137,13 +143,13 @@
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/job-dsl/job-dsl-ast/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ job-dsl-ast ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ job-dsl-ast ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ job-dsl-ast ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ job-dsl-ast ---
+[INFO] --- surefire:3.5.5:test (default-test) @ job-dsl-ast ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:203.vffb_768f15d51:process (default) @ job-dsl-ast ---
@@ -155,31 +161,31 @@
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ job-dsl-ast ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ job-dsl-ast >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ job-dsl-ast >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ job-dsl-ast ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ job-dsl-ast ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ job-dsl-ast <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ job-dsl-ast <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ job-dsl-ast ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ job-dsl-ast ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ job-dsl-ast ---
+[INFO] --- spotless:3.4.0:check (default) @ job-dsl-ast ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom16810022680762751274.xml
+[INFO] Sorting file /tmp/pom12527620862072919565.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl-ast ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 55ms; 385 rules
+[INFO] Loaded properties file in 68ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -198,13 +204,13 @@
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=2350ms; Files with analysis errors: 0
-CodeNarc Report - Apr 28, 2026, 4:27:58 AM
+[INFO] Analysis time=1688ms; Files with analysis errors: 0
+CodeNarc Report - May 5, 2026, 3:56:08 AM
 
 Summary: TotalFiles=5 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 6576ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 5965ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-ast ---
@@ -246,7 +252,10 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 6576ms
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl-core ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ job-dsl-core ---
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl-core ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ job-dsl-core ---
 [INFO] Copying 19 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-core ---
@@ -277,7 +286,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 6576ms
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/job-dsl/job-dsl-core/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ job-dsl-core ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ job-dsl-core ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ job-dsl-core ---
@@ -288,7 +297,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 6576ms
 [INFO] 
 [INFO] --- gplus:4.3.1:removeTestStubs (default) @ job-dsl-core ---
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ job-dsl-core ---
+[INFO] --- surefire:3.5.5:test (default-test) @ job-dsl-core ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- exec:3.6.3:java (generate-api-doc) @ job-dsl-core ---
@@ -309,25 +318,25 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] --- assembly:3.8.0:single (default) @ job-dsl-core ---
 [INFO] Building jar: /tmp/plugin-builds/job-dsl/job-dsl-core/target/job-dsl-core-jar-with-dependencies.jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ job-dsl-core >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ job-dsl-core >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ job-dsl-core ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ job-dsl-core ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ job-dsl-core <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ job-dsl-core <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ job-dsl-core ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ job-dsl-core ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ job-dsl-core ---
+[INFO] --- spotless:3.4.0:check (default) @ job-dsl-core ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 4 files clean - 0 needs changes to be clean, 4 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom4968167441784354438.xml
+[INFO] Sorting file /tmp/pom11038400951254015531.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -353,15 +362,15 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=7814ms; Files with analysis errors: 0
-CodeNarc Report - Apr 28, 2026, 4:30:19 AM
+[INFO] Analysis time=10942ms; Files with analysis errors: 0
+CodeNarc Report - May 5, 2026, 3:58:36 AM
 
 Summary: TotalFiles=327 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 8107ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 11247ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
-[INFO] Loaded properties file in 0ms; 385 rules
+[INFO] Loaded properties file in 11ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
 [INFO] Loading ruleset from [rulesets/junit.xml]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
@@ -382,15 +391,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 8107ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=8323ms; Files with analysis errors: 0
-CodeNarc Report - Apr 28, 2026, 4:30:27 AM
+[INFO] Analysis time=11418ms; Files with analysis errors: 0
+CodeNarc Report - May 5, 2026, 3:58:48 AM
 
 Summary: TotalFiles=79 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 8851ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 12183ms
 [INFO]      [echo] Checking src/main/docs/examples code with CodeNarc
-[INFO] Loaded properties file in 4ms; 385 rules
+[INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-examples.groovy]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
@@ -410,13 +419,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 8851ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=4007ms; Files with analysis errors: 0
-CodeNarc Report - Apr 28, 2026, 4:30:32 AM
+[INFO] Analysis time=4132ms; Files with analysis errors: 0
+CodeNarc Report - May 5, 2026, 3:58:53 AM
 
 Summary: TotalFiles=417 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 4726ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-core ---
@@ -431,10 +440,10 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ job-dsl ---
 [INFO] Created marker file /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ job-dsl ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ job-dsl ---
 [INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
@@ -469,12 +478,12 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] --- frontend:2.0.0:npm (npm install) @ job-dsl ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/job-dsl/job-dsl-plugin
 [INFO] 
-[INFO] added 534 packages, and audited 535 packages in 22s
+[INFO] added 534 packages, and audited 535 packages in 24s
 [INFO] 
 [INFO] 110 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 17 vulnerabilities (1 low, 11 moderate, 5 high)
+[INFO] 16 vulnerabilities (1 low, 10 moderate, 5 high)
 [INFO] 
 [INFO] To address issues that do not require attention, run:
 [INFO]   npm audit fix
@@ -618,7 +627,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.105.4 compiled with 3 warnings in 9468 ms
+[INFO] webpack 5.106.2 compiled with 3 warnings in 11514 ms
 [INFO] 
 [INFO] > job-dsl-plugin@1.0.0 gh-pages
 [INFO] > webpack --config webpack.gh-pages.mjs
@@ -718,7 +727,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.105.4 compiled with 3 warnings in 10382 ms
+[INFO] webpack 5.106.2 compiled with 3 warnings in 12066 ms
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ job-dsl ---
 [INFO] Skipping Rule Enforcement.
@@ -726,7 +735,10 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ job-dsl ---
+[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ job-dsl ---
 [INFO] Copying 32 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl ---
@@ -765,7 +777,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ job-dsl ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:insert-test (default-insert-test) @ job-dsl ---
 [INFO] 
 [INFO] --- gplus:4.3.1:generateTestStubs (default) @ job-dsl ---
 [INFO] Generation of test stubs is skipped.
@@ -775,26 +787,26 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ job-dsl ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ job-dsl ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ job-dsl ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-hpl (default-test-hpl) @ job-dsl ---
 [INFO] Generating /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:resolve-test-dependencies (default-resolve-test-dependencies) @ job-dsl ---
 [INFO] 
 [INFO] --- gplus:4.3.1:compileTests (default) @ job-dsl ---
 [INFO] Compilation of tests is skipped.
 [INFO] 
 [INFO] --- gplus:4.3.1:removeTestStubs (default) @ job-dsl ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ job-dsl ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ job-dsl ---
+[INFO] --- surefire:3.5.5:test (default-test) @ job-dsl ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- frontend:2.0.0:npm (npm mvntest) @ job-dsl ---
@@ -811,7 +823,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] --- license:203.vffb_768f15d51:process (default) @ job-dsl ---
 [INFO] Generated /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ job-dsl ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ job-dsl ---
 [INFO] Generating /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/job-dsl/job-dsl-plugin/target/job-dsl.jar
@@ -827,32 +839,32 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ job-dsl ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ job-dsl >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ job-dsl >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ job-dsl ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ job-dsl ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ job-dsl <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ job-dsl <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ job-dsl ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ job-dsl ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ job-dsl ---
+[INFO] --- spotless:3.4.0:check (default) @ job-dsl ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 48 files clean - 0 needs changes to be clean, 48 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom12081516468062625969.xml
+[INFO] Sorting file /tmp/pom11996357474629821753.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 0ms; 385 rules
+[INFO] Loaded properties file in 2ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -871,13 +883,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4528ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=1202ms; Files with analysis errors: 0
-CodeNarc Report - Apr 28, 2026, 4:33:17 AM
+[INFO] Analysis time=1329ms; Files with analysis errors: 0
+CodeNarc Report - May 5, 2026, 4:01:47 AM
 
 Summary: TotalFiles=37 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 1630ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 1732ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
 [INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
@@ -900,13 +912,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 1630ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=3583ms; Files with analysis errors: 0
-CodeNarc Report - Apr 28, 2026, 4:33:22 AM
+[INFO] Analysis time=3427ms; Files with analysis errors: 0
+CodeNarc Report - May 5, 2026, 4:01:50 AM
 
 Summary: TotalFiles=22 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 4063ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 3837ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl ---
@@ -916,13 +928,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4063ms
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Job DSL Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Job DSL Parent ..................................... SUCCESS [ 19.844 s]
-[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 29.489 s]
-[INFO] Job DSL Core ....................................... SUCCESS [02:33 min]
-[INFO] Job DSL ............................................ SUCCESS [02:49 min]
+[INFO] Job DSL Parent ..................................... SUCCESS [ 18.110 s]
+[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 28.718 s]
+[INFO] Job DSL Core ....................................... SUCCESS [02:44 min]
+[INFO] Job DSL ............................................ SUCCESS [02:57 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  06:14 min
-[INFO] Finished at: 2026-04-28T04:33:22Z
+[INFO] Total time:  06:30 min
+[INFO] Finished at: 2026-05-05T04:01:50Z
 [INFO] ------------------------------------------------------------------------

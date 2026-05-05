@@ -48,7 +48,7 @@
 [INFO] --- frontend:2.0.0:npm (npm install) @ pipeline-graph-view ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/pipeline-graph-view
 [INFO] 
-[INFO] added 429 packages, and audited 430 packages in 30s
+[INFO] added 431 packages, and audited 432 packages in 33s
 [INFO] 
 [INFO] 170 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -74,19 +74,19 @@
 [INFO] 
 [INFO] vite v8.0.10 building client environment for production...
 [INFO] 
-[INFO] transforming...✓ 162 modules transformed.rendering chunks...
+[INFO] transforming...✓ 163 modules transformed.rendering chunks...
 [INFO] computing gzip size...
 [INFO] src/main/webapp/js/bundles/pipeline-graph-view-bundle.js            1.45 kB │ gzip:   0.77 kB │ map:     3.55 kB
-[INFO] src/main/webapp/js/bundles/assets/symbols-DTZ7BIHj.js               3.98 kB │ gzip:   1.65 kB │ map:     9.21 kB
+[INFO] src/main/webapp/js/bundles/assets/symbols-CjOLZK0q.js               3.98 kB │ gzip:   1.65 kB │ map:     9.21 kB
 [INFO] src/main/webapp/js/bundles/assets/PipelineGraphModel-BZNBvm1y.js   10.54 kB │ gzip:   4.03 kB │ map:    39.16 kB
 [INFO] src/main/webapp/js/bundles/multi-pipeline-graph-view-bundle.js     13.40 kB │ gzip:   2.87 kB │ map:    17.33 kB
 [INFO] src/main/webapp/js/bundles/assets/linkify-js-DUZk7akn.js           16.90 kB │ gzip:   9.59 kB │ map:    83.08 kB
 [INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-7hpA3Xr4.js     22.42 kB │ gzip:   5.38 kB │ map:    68.83 kB
-[INFO] src/main/webapp/js/bundles/assets/console-log-card-B76uAMDu.js     27.18 kB │ gzip:   5.12 kB │ map:    19.10 kB
+[INFO] src/main/webapp/js/bundles/assets/console-log-card-DILcUab5.js     27.18 kB │ gzip:   5.12 kB │ map:    19.10 kB
 [INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js         61.63 kB │ gzip:  13.60 kB │ map:   119.71 kB
-[INFO] src/main/webapp/js/bundles/assets/tree-api-BwJYjm97.js            359.89 kB │ gzip: 108.71 kB │ map: 1,549.13 kB
+[INFO] src/main/webapp/js/bundles/assets/tree-api-CoEjLYJ9.js            360.00 kB │ gzip: 108.62 kB │ map: 1,549.90 kB
 [INFO] 
-[INFO] ✓ built in 2.55s
+[INFO] ✓ built in 2.59s
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ pipeline-graph-view ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -228,9 +228,10 @@ Chrome Headless Shell 147.0.7727.15 (playwright chromium-headless-shell v1217) d
 [INFO] 
 [INFO]  RUN  v4.1.5 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
 [INFO] 
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (13 tests) 50ms
-[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 493ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1380ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (13 tests) 59ms
+[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 602ms
+[INFO]        ✓ should format milliseconds to hours, minutes, and seconds  374ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1254ms
 [INFO] stderr | common/tree-api.spec.ts > useRunPoller > should ignore fetch error for previous
 [INFO] Fetch previous run Error: foo
 [INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:104:19
@@ -251,55 +252,55 @@ Chrome Headless Shell 147.0.7727.15 (playwright chromium-headless-shell v1217) d
 [INFO]     at commitHookPassiveMountEffects (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:13336:11)
 [INFO]     at commitPassiveMountOnFiber (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:15484:13)
 [INFO] 
-[INFO]  ✓ common/tree-api.spec.ts (6 tests) 879ms
-[INFO]      ✓ should merge stages when not complete  333ms
-[INFO]  ✓ common/components/status-icon.spec.tsx (16 tests) 658ms
-[INFO]        ✓ renders with the accent color class  517ms
-[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 17ms
+[INFO]  ✓ common/tree-api.spec.ts (6 tests) 827ms
+[INFO]      ✓ should merge stages when not complete  311ms
+[INFO]  ✓ common/components/status-icon.spec.tsx (16 tests) 623ms
+[INFO]        ✓ renders with the accent color class  396ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/PipelineConsole.spec.tsx > PipelineConsole — queued placeholder fallback > renders StageDetails + NoStageStepsFallback when only stage is a queued placeholder
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/PipelineConsole.spec.tsx (2 tests) 889ms
-[INFO]      ✓ renders StageDetails + NoStageStepsFallback when only stage is a queued placeholder  600ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/PipelineConsole.spec.tsx (2 tests) 669ms
+[INFO]      ✓ renders StageDetails + NoStageStepsFallback when only stage is a queued placeholder  434ms
+[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 38ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/stage-details.spec.tsx > StageDetails > renders stage name and status color class
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (9 tests) 2058ms
-[INFO]      ✓ renders stage name and status color class  1168ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 246ms
-[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 183ms
-[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 36ms
-[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 12ms
-[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 25ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (9 tests) 1761ms
+[INFO]      ✓ renders stage name and status color class  710ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 349ms
+[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 107ms
+[INFO]  ✓ common/utils/stage-merge.spec.ts (3 tests) 20ms
+[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 18ms
+[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 115ms
 [INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should render settings button in portal
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1364ms
+[INFO]      ✓ should render settings button in portal  316ms
+[INFO]      ✓ should toggle dropdown when clicking settings button  747ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/StageView.spec.tsx > StageView > renders StageDetails and StageSteps with provided props
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1281ms
-[INFO]      ✓ should toggle dropdown when clicking settings button  649ms
-[INFO]      ✓ should update preferences when toggling checkboxes  352ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 340ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 1112ms
-[INFO]      ✓ renders StageDetails and StageSteps with provided props  1103ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 6ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 280ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 928ms
+[INFO]      ✓ renders StageDetails and StageSteps with provided props  912ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 14ms
 [INFO] 
 [INFO]  Test Files  17 passed (17)
 [INFO]       Tests  114 passed (114)
-[INFO]    Start at  04:08:00
-[INFO]    Duration  25.80s (transform 2.99s, setup 3.32s, import 7.10s, tests 9.67s, environment 43.26s)
+[INFO]    Start at  03:35:10
+[INFO]    Duration  25.87s (transform 2.65s, setup 3.44s, import 6.76s, tests 9.03s, environment 43.44s)
 [INFO] 
 [INFO] JUNIT report written to /tmp/plugin-builds/pipeline-graph-view/target/surefire-reports/vitest-junit.xml
 [INFO] 
@@ -342,7 +343,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotle
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 84 files clean - 0 needs changes to be clean, 84 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom677646342488911361.xml
+[INFO] Sorting file /tmp/pom17105458197213309636.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -353,6 +354,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:33 min
-[INFO] Finished at: 2026-04-28T04:09:14Z
+[INFO] Total time:  04:03 min
+[INFO] Finished at: 2026-05-05T03:36:34Z
 [INFO] ------------------------------------------------------------------------
