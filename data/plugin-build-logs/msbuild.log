@@ -1,13 +1,13 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jenkins-ci.plugins:msbuild:hpi:1.41-SNAPSHOT
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] Failed to build parent project for org.jenkins-ci.plugins:msbuild:hpi:1.42-SNAPSHOT
 [INFO] 
 [INFO] -------------------< org.jenkins-ci.plugins:msbuild >-------------------
-[INFO] Building Jenkins MSBuild Plugin 1.41-SNAPSHOT
+[INFO] Building Jenkins MSBuild Plugin 1.42-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
 [INFO] 
@@ -19,14 +19,15 @@
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ msbuild ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ msbuild ---
-[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ msbuild ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -44,6 +45,9 @@
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ msbuild ---
 [INFO] Copying 56 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.7.3:flatten (flatten) @ msbuild ---
+[INFO] Generating flattened POM of project org.jenkins-ci.plugins:msbuild:hpi:1.42-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ msbuild ---
 [INFO] Recompiling the module because of changed source code.
@@ -121,12 +125,12 @@
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ msbuild ---
-[INFO] Installing /tmp/plugin-builds/msbuild/pom.xml to /home/runner/.m2/repository/org/jenkins-ci/plugins/msbuild/1.41-SNAPSHOT/msbuild-1.41-SNAPSHOT.pom
-[INFO] Installing /tmp/plugin-builds/msbuild/target/msbuild.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/msbuild/1.41-SNAPSHOT/msbuild-1.41-SNAPSHOT.hpi
-[INFO] Installing /tmp/plugin-builds/msbuild/target/msbuild.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/msbuild/1.41-SNAPSHOT/msbuild-1.41-SNAPSHOT.jar
+[INFO] Installing /tmp/plugin-builds/msbuild/target/msbuild-1.42-SNAPSHOT.pom to /home/runner/.m2/repository/org/jenkins-ci/plugins/msbuild/1.42-SNAPSHOT/msbuild-1.42-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/msbuild/target/msbuild.hpi to /home/runner/.m2/repository/org/jenkins-ci/plugins/msbuild/1.42-SNAPSHOT/msbuild-1.42-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/msbuild/target/msbuild.jar to /home/runner/.m2/repository/org/jenkins-ci/plugins/msbuild/1.42-SNAPSHOT/msbuild-1.42-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  51.271 s
-[INFO] Finished at: 2026-04-28T04:45:54Z
+[INFO] Total time:  51.576 s
+[INFO] Finished at: 2026-05-05T04:14:24Z
 [INFO] ------------------------------------------------------------------------
