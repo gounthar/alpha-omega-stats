@@ -19,15 +19,16 @@
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ ldap ---
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ ldap ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ ldap ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -71,8 +72,8 @@
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/FromGroupSearchLDAPGroupMembershipStrategy.java:[63,12] Generating jenkins/security/plugins/ldap/FromGroupSearchLDAPGroupMembershipStrategy.stapler
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/FromUserRecordLDAPGroupMembershipStrategy.java:[61,12] Generating jenkins/security/plugins/ldap/FromUserRecordLDAPGroupMembershipStrategy.stapler
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[150,12] Generating jenkins/security/plugins/ldap/LDAPConfiguration.stapler
-[INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[499,31] Generating jenkins/security/plugins/ldap/LDAPConfiguration/LDAPConfigurationDescriptor/doCheckManagerPasswordSecret.stapler
 [INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[439,31] Generating jenkins/security/plugins/ldap/LDAPConfiguration/LDAPConfigurationDescriptor/doCheckServer.stapler
+[INFO] /tmp/plugin-builds/ldap/src/main/java/jenkins/security/plugins/ldap/LDAPConfiguration.java:[499,31] Generating jenkins/security/plugins/ldap/LDAPConfiguration/LDAPConfigurationDescriptor/doCheckManagerPasswordSecret.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -152,7 +153,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ ldap ---
+[INFO] --- spotless:3.5.1:check (default) @ ldap ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ ldap ---
@@ -162,6 +163,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:24 min
-[INFO] Finished at: 2026-05-19T04:16:51Z
+[INFO] Total time:  01:37 min
+[INFO] Finished at: 2026-05-26T04:21:40Z
 [INFO] ------------------------------------------------------------------------
