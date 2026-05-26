@@ -18,30 +18,31 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ branch-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ branch-api ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ branch-api ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ branch-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ branch-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ branch-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ branch-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ branch-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ branch-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ branch-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ branch-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ branch-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ branch-api ---
@@ -127,13 +128,13 @@
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/RateLimitBranchProperty.java:[319,16] Generating jenkins/branch/RateLimitBranchProperty/JobPropertyImpl.stapler
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/RateLimitBranchProperty.java:[125,12] Generating jenkins/branch/RateLimitBranchProperty.stapler
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/UntrustedBranchProperty.java:[73,12] Generating jenkins/branch/UntrustedBranchProperty.stapler
+[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/MultiBranchProject.java:[129,17] Generating jenkins/branch/MultiBranchProject.javadoc
+[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/Branch.java:[55,8] Generating jenkins/branch/Branch.javadoc
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/ParameterDefinitionBranchProperty.java:[46,17] Generating jenkins/branch/ParameterDefinitionBranchProperty.javadoc
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/BranchSource.java:[49,8] Generating jenkins/branch/BranchSource.javadoc
-[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/Branch.java:[55,8] Generating jenkins/branch/Branch.javadoc
-[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/MultiBranchProject.java:[129,17] Generating jenkins/branch/MultiBranchProject.javadoc
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/NoTriggerBranchProperty.java:[102,31] Generating jenkins/branch/NoTriggerBranchProperty/DescriptorImpl/doCheckTriggeredBranchesRegex.stapler
+[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/RateLimitBranchProperty.java:[216,31] Generating jenkins/branch/RateLimitBranchProperty/DescriptorImpl/doCheckCount.stapler
 [INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/NoTriggerOrganizationFolderProperty.java:[95,31] Generating jenkins/branch/NoTriggerOrganizationFolderProperty/DescriptorImpl/doCheckBranches.stapler
-[INFO] /tmp/plugin-builds/branch-api/src/main/java/jenkins/branch/RateLimitBranchProperty.java:[437,35] Generating jenkins/branch/RateLimitBranchProperty/JobPropertyImpl/DescriptorImpl/doCheckCount.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -206,7 +207,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ branch-api ---
+[INFO] --- spotless:3.5.1:check (default) @ branch-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ branch-api ---
@@ -217,6 +218,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  57.837 s
-[INFO] Finished at: 2026-05-19T04:06:11Z
+[INFO] Total time:  01:25 min
+[INFO] Finished at: 2026-05-26T04:08:17Z
 [INFO] ------------------------------------------------------------------------
