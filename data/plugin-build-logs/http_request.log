@@ -18,30 +18,31 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ http_request ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ http_request ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ http_request ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ http_request ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ http_request ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ http_request ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ http_request ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ http_request ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ http_request ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ http_request ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ http_request ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ http_request ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ http_request ---
@@ -68,16 +69,16 @@
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/HttpRequestFormDataPart.java:[29,12] Generating jenkins/plugins/http_request/util/HttpRequestFormDataPart.stapler
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/HttpRequestNameValuePair.java:[29,12] Generating jenkins/plugins/http_request/util/HttpRequestNameValuePair.stapler
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/RequestAction.java:[36,12] Generating jenkins/plugins/http_request/util/RequestAction.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/HttpRequestNameValuePair.java:[60,31] Generating jenkins/plugins/http_request/util/HttpRequestNameValuePair/NameValueParamDescriptor/doCheckName.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/auth/BasicDigestAuthentication.java:[75,31] Generating jenkins/plugins/http_request/auth/BasicDigestAuthentication/BasicDigestAuthenticationDescriptor/doCheckUserName.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequest.java:[591,31] Generating jenkins/plugins/http_request/HttpRequest/DescriptorImpl/doCheckValidResponseCodes.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequest.java:[519,29] Generating jenkins/plugins/http_request/HttpRequest/DescriptorImpl/doFillProxyAuthenticationItems.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/RequestAction.java:[77,31] Generating jenkins/plugins/http_request/util/RequestAction/ActionFormAuthenticationDescriptor/doCheckUrl.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/auth/BasicDigestAuthentication.java:[71,31] Generating jenkins/plugins/http_request/auth/BasicDigestAuthentication/BasicDigestAuthenticationDescriptor/doCheckKeyName.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequestStep.java:[368,29] Generating jenkins/plugins/http_request/HttpRequestStep/DescriptorImpl/doFillAuthenticationItems.stapler
-[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/auth/BasicDigestAuthentication.java:[79,31] Generating jenkins/plugins/http_request/auth/BasicDigestAuthentication/BasicDigestAuthenticationDescriptor/doCheckPassword.stapler
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/RequestAction.java:[81,31] Generating jenkins/plugins/http_request/util/RequestAction/ActionFormAuthenticationDescriptor/doCheckTimeout.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/HttpRequestNameValuePair.java:[60,31] Generating jenkins/plugins/http_request/util/HttpRequestNameValuePair/NameValueParamDescriptor/doCheckName.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequest.java:[514,29] Generating jenkins/plugins/http_request/HttpRequest/DescriptorImpl/doFillAuthenticationItems.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequest.java:[591,31] Generating jenkins/plugins/http_request/HttpRequest/DescriptorImpl/doCheckValidResponseCodes.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequestStep.java:[373,29] Generating jenkins/plugins/http_request/HttpRequestStep/DescriptorImpl/doFillProxyAuthenticationItems.stapler
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/HttpRequestNameValuePair.java:[64,31] Generating jenkins/plugins/http_request/util/HttpRequestNameValuePair/NameValueParamDescriptor/doCheckValue.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/auth/BasicDigestAuthentication.java:[71,31] Generating jenkins/plugins/http_request/auth/BasicDigestAuthentication/BasicDigestAuthenticationDescriptor/doCheckKeyName.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/auth/BasicDigestAuthentication.java:[75,31] Generating jenkins/plugins/http_request/auth/BasicDigestAuthentication/BasicDigestAuthenticationDescriptor/doCheckUserName.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/auth/BasicDigestAuthentication.java:[79,31] Generating jenkins/plugins/http_request/auth/BasicDigestAuthentication/BasicDigestAuthenticationDescriptor/doCheckPassword.stapler
+[INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/util/RequestAction.java:[77,31] Generating jenkins/plugins/http_request/util/RequestAction/ActionFormAuthenticationDescriptor/doCheckUrl.stapler
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequestExecution.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/http_request/src/main/java/jenkins/plugins/http_request/HttpRequestExecution.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
@@ -141,7 +142,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ http_request ---
+[INFO] --- spotless:3.5.1:check (default) @ http_request ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ http_request ---
@@ -151,6 +152,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:03 min
-[INFO] Finished at: 2026-05-26T05:04:39Z
+[INFO] Total time:  01:09 min
+[INFO] Finished at: 2026-06-02T05:17:52Z
 [INFO] ------------------------------------------------------------------------

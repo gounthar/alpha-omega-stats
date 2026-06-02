@@ -18,30 +18,31 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ gitlab-plugin ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ gitlab-plugin ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ gitlab-plugin ---
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 1: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 6: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ gitlab-plugin ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ gitlab-plugin ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ gitlab-plugin ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ gitlab-plugin ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ gitlab-plugin ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ gitlab-plugin ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ gitlab-plugin ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ gitlab-plugin ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ gitlab-plugin ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ gitlab-plugin ---
@@ -131,34 +132,34 @@
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/workflow/GitLabCommitStatusStep.java:[34,12] Generating com/dabsquared/gitlabjenkins/workflow/GitLabCommitStatusStep.stapler
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/workflow/GitLabMergeRequestLabelExistsStep.java:[30,12] Generating com/dabsquared/gitlabjenkins/workflow/GitLabMergeRequestLabelExistsStep.stapler
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/workflow/UpdateGitLabCommitStatusStep.java:[33,12] Generating com/dabsquared/gitlabjenkins/workflow/UpdateGitLabCommitStatusStep.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/cause/CauseData.java:[19,14] Generating com/dabsquared/gitlabjenkins/cause/CauseData.javadoc
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/gitlab/api/model/MergeRequest.java:[17,8] Generating com/dabsquared/gitlabjenkins/gitlab/api/model/MergeRequest.javadoc
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/cause/GitLabWebHookCause.java:[12,8] Generating com/dabsquared/gitlabjenkins/cause/GitLabWebHookCause.javadoc
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[696,29] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doFillTriggerOpenMergeRequestOnPushItems.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/cause/CauseData.java:[19,14] Generating com/dabsquared/gitlabjenkins/cause/CauseData.javadoc
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider.java:[87,28] Generating com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider/checkMatchingLabels.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[722,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckExcludeBranchesSpec.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[237,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckConnectionTimeout.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/publisher/GitLabCommitStatusPublisher.java:[105,31] Generating com/dabsquared/gitlabjenkins/publisher/GitLabCommitStatusPublisher/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider.java:[109,21] Generating com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider/containsNoLabel.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[732,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteExcludeMergeRequestLabels.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[283,29] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doFillApiTokenIdItems.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider.java:[87,28] Generating com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider/checkMatchingBranches.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[712,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteExcludeBranchesSpec.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[742,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckExcludeMergeRequestLabels.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnectionProperty.java:[160,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnectionProperty/DescriptorImpl/doTestConnection.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider.java:[111,21] Generating com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider/containsNoBranches.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[717,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckIncludeBranchesSpec.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[229,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckApiTokenId.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider.java:[72,27] Generating com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider/doCheckBranchesSpec.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[707,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteIncludeBranchesSpec.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[255,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doTestConnection.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[737,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckIncludeMergeRequestLabels.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[245,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckReadTimeout.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider.java:[73,27] Generating com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider/doCheckLabels.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[213,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckName.stapler
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[221,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckUrl.stapler
-[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[727,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteIncludeMergeRequestLabels.stapler
 [INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnectionProperty.java:[136,29] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnectionProperty/DescriptorImpl/doFillJobCredentialIdItems.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[742,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckExcludeMergeRequestLabels.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[213,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[229,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckApiTokenId.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[712,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteExcludeBranchesSpec.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider.java:[72,27] Generating com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider/doCheckBranchesSpec.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[696,29] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doFillTriggerOpenMergeRequestOnPushItems.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[283,29] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doFillApiTokenIdItems.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[732,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteExcludeMergeRequestLabels.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[237,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckConnectionTimeout.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[255,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doTestConnection.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnection.java:[245,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnection/DescriptorImpl/doCheckReadTimeout.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[707,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteIncludeBranchesSpec.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider.java:[109,21] Generating com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider/containsNoLabel.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/connection/GitLabConnectionProperty.java:[160,31] Generating com/dabsquared/gitlabjenkins/connection/GitLabConnectionProperty/DescriptorImpl/doTestConnection.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider.java:[87,28] Generating com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider/checkMatchingBranches.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider.java:[73,27] Generating com/dabsquared/gitlabjenkins/trigger/label/ProjectLabelsProvider/doCheckLabels.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[737,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckIncludeMergeRequestLabels.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[717,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckIncludeBranchesSpec.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider.java:[111,21] Generating com/dabsquared/gitlabjenkins/trigger/branch/ProjectBranchesProvider/containsNoBranches.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[722,31] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doCheckExcludeBranchesSpec.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/publisher/GitLabCommitStatusPublisher.java:[105,31] Generating com/dabsquared/gitlabjenkins/publisher/GitLabCommitStatusPublisher/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/gitlab-plugin/src/main/java/com/dabsquared/gitlabjenkins/GitLabPushTrigger.java:[727,41] Generating com/dabsquared/gitlabjenkins/GitLabPushTrigger/DescriptorImpl/doAutoCompleteIncludeMergeRequestLabels.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
@@ -168,7 +169,7 @@
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
-[INFO] [PojoBuilder] Finished (2861 ms)
+[INFO] [PojoBuilder] Finished (2746 ms)
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
@@ -252,14 +253,15 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ gitlab-plugin ---
+[INFO] --- spotless:3.5.1:check (default) @ gitlab-plugin ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.5.0/spotless-lib-4.5.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.6.1/spotless-lib-4.6.1.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 198 files clean - 0 needs changes to be clean, 198 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom6363405123758121095.xml
+[INFO] Sorting file /tmp/pom4600390369818657365.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -270,6 +272,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:57 min
-[INFO] Finished at: 2026-05-26T04:51:49Z
+[INFO] Total time:  02:30 min
+[INFO] Finished at: 2026-06-02T05:06:33Z
 [INFO] ------------------------------------------------------------------------

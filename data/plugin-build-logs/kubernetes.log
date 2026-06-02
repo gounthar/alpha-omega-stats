@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.csanchez.jenkins.plugins:kubernetes:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] --------------< org.csanchez.jenkins.plugins:kubernetes >---------------
@@ -13,39 +13,42 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ kubernetes ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ kubernetes ---
 [INFO] Created marker file /tmp/plugin-builds/kubernetes/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ kubernetes ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ kubernetes ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ kubernetes ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ kubernetes ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ kubernetes ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (enforce-okhttp-consistency) @ kubernetes ---
+[INFO] --- enforcer:3.6.3:enforce (enforce-okhttp-consistency) @ kubernetes ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.RequireSameVersions passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.RequireSameVersions passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ kubernetes ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ kubernetes ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ kubernetes ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ kubernetes ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ kubernetes ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ kubernetes ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ kubernetes ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ kubernetes ---
 [INFO] Copying 219 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ kubernetes ---
@@ -179,24 +182,24 @@
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/NfsWorkspaceVolume.java:[49,12] Generating org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/NfsWorkspaceVolume.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/PersistentVolumeClaimWorkspaceVolume.java:[48,12] Generating org/csanchez/jenkins/plugins/kubernetes/volumes/workspace/PersistentVolumeClaimWorkspaceVolume.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.java:[44,8] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.javadoc
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1160,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckMaxRequestsPerHostStr.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/GarbageCollection.java:[119,31] Generating org/csanchez/jenkins/plugins/kubernetes/GarbageCollection/DescriptorImpl/doCheckTimeout.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1114,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerCertificate.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1098,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckSkipTlsVerify.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/pipeline/PodTemplateStep.java:[486,29] Generating org/csanchez/jenkins/plugins/kubernetes/pipeline/PodTemplateStep/DescriptorImpl/doFillInheritFromItems.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1173,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckReadTimeout.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1185,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckDirectConnection.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/pipeline/KubernetesDeclarativeAgent.java:[507,29] Generating org/csanchez/jenkins/plugins/kubernetes/pipeline/KubernetesDeclarativeAgent/DescriptorImpl/doFillInheritFromItems.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1098,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckSkipTlsVerify.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1275,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckWebSocket.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1144,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[344,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckImage.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[337,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1129,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerUrl.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1263,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckJenkinsUrl.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1044,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doTestConnection.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1160,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckMaxRequestsPerHostStr.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1114,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerCertificate.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer.java:[140,17] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesComputer/doContainerLog.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper.java:[151,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper/DescriptorImpl/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1167,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckConnectTimeout.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1179,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckRetentionTimeout.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1263,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckJenkinsUrl.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[337,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1167,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckConnectTimeout.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1144,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1129,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckServerUrl.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/GarbageCollection.java:[119,31] Generating org/csanchez/jenkins/plugins/kubernetes/GarbageCollection/DescriptorImpl/doCheckTimeout.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1044,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doTestConnection.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java:[1275,31] Generating org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud/DescriptorImpl/doCheckWebSocket.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate.java:[344,31] Generating org/csanchez/jenkins/plugins/kubernetes/ContainerTemplate/DescriptorImpl/doCheckImage.stapler
+[INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper.java:[151,29] Generating org/csanchez/jenkins/plugins/kubernetes/KubectlBuildWrapper/DescriptorImpl/doFillCredentialsIdItems.stapler
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/kubernetes/src/main/java/org/csanchez/jenkins/plugins/kubernetes/KubernetesCloud.java: Some input files use unchecked or unsafe operations.
@@ -206,34 +209,34 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ kubernetes ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:insert-test (default-insert-test) @ kubernetes ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ kubernetes ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/kubernetes/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ kubernetes ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ kubernetes ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ kubernetes ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-hpl (default-test-hpl) @ kubernetes ---
 [INFO] Generating /tmp/plugin-builds/kubernetes/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:resolve-test-dependencies (default-resolve-test-dependencies) @ kubernetes ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ kubernetes ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ kubernetes ---
+[INFO] --- surefire:3.5.5:test (default-test) @ kubernetes ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:203.vffb_768f15d51:process (default) @ kubernetes ---
 [INFO] Generated /tmp/plugin-builds/kubernetes/target/kubernetes/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ kubernetes ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ kubernetes ---
 [INFO] Generating /tmp/plugin-builds/kubernetes/target/kubernetes/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/kubernetes/target/kubernetes.jar
@@ -247,29 +250,30 @@
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ kubernetes ---
 [INFO] Building jar: /tmp/plugin-builds/kubernetes/target/kubernetes-tests.jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ kubernetes >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ kubernetes >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ kubernetes ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ kubernetes ---
 [INFO] Fork Value is true
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ kubernetes <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ kubernetes <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ kubernetes ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ kubernetes ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ kubernetes ---
+[INFO] --- spotless:3.5.1:check (default) @ kubernetes ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.3.0/spotless-lib-4.3.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.6.1/spotless-lib-4.6.1.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 181 files clean - 0 needs changes to be clean, 181 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom12536251632691150984.xml
+[INFO] Sorting file /tmp/pom13323239531983993761.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -281,6 +285,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:42 min
-[INFO] Finished at: 2026-05-26T04:58:02Z
+[INFO] Total time:  01:57 min
+[INFO] Finished at: 2026-06-02T05:12:14Z
 [INFO] ------------------------------------------------------------------------
