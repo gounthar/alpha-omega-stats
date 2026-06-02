@@ -18,41 +18,42 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ lockable-resources ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ lockable-resources ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ lockable-resources ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ lockable-resources ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ lockable-resources ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ lockable-resources ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ lockable-resources ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ lockable-resources ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ lockable-resources ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ lockable-resources ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ lockable-resources ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ lockable-resources ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ lockable-resources ---
-[INFO] Copying 101 resources from src/main/resources to target/classes
+[INFO] Copying 107 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ lockable-resources ---
 [INFO] Generating flattened POM of project org.6wind.jenkins:lockable-resources:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ lockable-resources ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 28 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 29 source files with javac [debug parameters release 17] to target/classes
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -65,9 +66,10 @@
 [INFO] org.jenkins.plugins.lockableresources.LockableResourcesManager indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.RequiredResourcesProperty.DescriptorImpl indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.UpdateLockStep.DescriptorImpl indexed under hudson.Extension
+[INFO] org.jenkins.plugins.lockableresources.actions.LockableResourcesManagementLink indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.actions.LockableResourcesRootAction indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.actions.ResourceVariableNameAction.ResourceVariableNameActionEnvironmentContributor indexed under hudson.Extension
-[INFO] org.jenkins.plugins.lockableresources.NodesMirror indexed under hudson.Extension
+[INFO] org.jenkins.plugins.lockableresources.nodes.NodesMirror indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.queue.LockRunListener indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.queue.LockWaitTimeoutPeriodicWork indexed under hudson.Extension
 [INFO] org.jenkins.plugins.lockableresources.queue.LockableResourcesQueueTaskDispatcher indexed under hudson.Extension
@@ -77,23 +79,23 @@
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockableResourceProperty.java:[21,12] Generating org/jenkins/plugins/lockableresources/LockableResourceProperty.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[55,12] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[66,12] Generating org/jenkins/plugins/lockableresources/UpdateLockStep.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockableResources.java:[15,8] Generating org/jenkins/plugins/lockableresources/LockableResources.javadoc
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockableResource.java:[55,8] Generating org/jenkins/plugins/lockableresources/LockableResource.javadoc
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/actions/LockableResourcesRootAction.java:[46,8] Generating org/jenkins/plugins/lockableresources/actions/LockableResourcesRootAction.javadoc
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/actions/LockableResourcesRootAction.java:[48,8] Generating org/jenkins/plugins/lockableresources/actions/LockableResourcesRootAction.javadoc
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockableResourceProperty.java:[14,8] Generating org/jenkins/plugins/lockableresources/LockableResourceProperty.javadoc
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStepResource.java:[187,41] Generating org/jenkins/plugins/lockableresources/LockStepResource/DescriptorImpl/doAutoCompleteResource.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[249,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckAddLabels.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[271,31] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doCheckResourceNumber.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStepResource.java:[217,38] Generating org/jenkins/plugins/lockableresources/LockStepResource/DescriptorImpl/doCheckResource.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockableResources.java:[15,8] Generating org/jenkins/plugins/lockableresources/LockableResources.javadoc
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[284,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckDeleteResource.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStep.java:[229,38] Generating org/jenkins/plugins/lockableresources/LockStep/DescriptorImpl/doCheckLabel.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[242,31] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doCheckLabelName.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[249,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckAddLabels.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStepResource.java:[187,41] Generating org/jenkins/plugins/lockableresources/LockStepResource/DescriptorImpl/doAutoCompleteResource.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[205,31] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doCheckResourceNames.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[232,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckResource.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStep.java:[241,38] Generating org/jenkins/plugins/lockableresources/LockStep/DescriptorImpl/doCheckResourceSelectStrategy.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStep.java:[235,38] Generating org/jenkins/plugins/lockableresources/LockStep/DescriptorImpl/doCheckResource.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[337,48] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doAutoCompleteResourceNames.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[263,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckRemoveLabels.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[284,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckDeleteResource.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/LockStep.java:[241,38] Generating org/jenkins/plugins/lockableresources/LockStep/DescriptorImpl/doCheckResourceSelectStrategy.stapler
+[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[271,31] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doCheckResourceNumber.stapler
 [INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[315,41] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doAutoCompleteLabelName.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/UpdateLockStep.java:[232,31] Generating org/jenkins/plugins/lockableresources/UpdateLockStep/DescriptorImpl/doCheckResource.stapler
-[INFO] /tmp/plugin-builds/lockable-resources/src/main/java/org/jenkins/plugins/lockableresources/RequiredResourcesProperty.java:[205,31] Generating org/jenkins/plugins/lockableresources/RequiredResourcesProperty/DescriptorImpl/doCheckResourceNames.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -166,14 +168,15 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ lockable-resources ---
+[INFO] --- spotless:3.5.1:check (default) @ lockable-resources ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.5.0/spotless-lib-4.5.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.6.1/spotless-lib-4.6.1.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
-[INFO] Spotless.Java is keeping 58 files clean - 0 needs changes to be clean, 58 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom16403365014926036738.xml
+[INFO] Spotless.Java is keeping 62 files clean - 0 needs changes to be clean, 62 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom17793506507777965768.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -184,6 +187,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:37 min
-[INFO] Finished at: 2026-05-26T04:35:30Z
+[INFO] Total time:  01:30 min
+[INFO] Finished at: 2026-06-02T04:49:29Z
 [INFO] ------------------------------------------------------------------------

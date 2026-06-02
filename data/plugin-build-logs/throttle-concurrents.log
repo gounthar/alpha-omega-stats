@@ -18,30 +18,31 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ throttle-concurrents ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ throttle-concurrents ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ throttle-concurrents ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ throttle-concurrents ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ throttle-concurrents ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ throttle-concurrents ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ throttle-concurrents ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ throttle-concurrents ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ throttle-concurrents ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ throttle-concurrents ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ throttle-concurrents ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ throttle-concurrents ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ throttle-concurrents ---
@@ -64,9 +65,9 @@
 [INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleJobProperty.java:[89,12] Generating hudson/plugins/throttleconcurrents/ThrottleJobProperty.stapler
 [INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleMatrixProjectOptions.java:[54,12] Generating hudson/plugins/throttleconcurrents/ThrottleMatrixProjectOptions.stapler
 [INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/pipeline/ThrottleStep.java:[26,12] Generating hudson/plugins/throttleconcurrents/pipeline/ThrottleStep.stapler
-[INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleJobProperty.java:[460,31] Generating hudson/plugins/throttleconcurrents/ThrottleJobProperty/DescriptorImpl/doCheckMaxConcurrentTotal.stapler
-[INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleJobProperty.java:[437,31] Generating hudson/plugins/throttleconcurrents/ThrottleJobProperty/DescriptorImpl/doCheckCategoryName.stapler
 [INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleJobProperty.java:[446,31] Generating hudson/plugins/throttleconcurrents/ThrottleJobProperty/DescriptorImpl/doCheckMaxConcurrentPerNode.stapler
+[INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleJobProperty.java:[437,31] Generating hudson/plugins/throttleconcurrents/ThrottleJobProperty/DescriptorImpl/doCheckCategoryName.stapler
+[INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleJobProperty.java:[460,31] Generating hudson/plugins/throttleconcurrents/ThrottleJobProperty/DescriptorImpl/doCheckMaxConcurrentTotal.stapler
 [INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleQueueTaskDispatcher.java: /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleQueueTaskDispatcher.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/throttle-concurrents/src/main/java/hudson/plugins/throttleconcurrents/ThrottleQueueTaskDispatcher.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
@@ -130,14 +131,15 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ throttle-concurrents ---
+[INFO] --- spotless:3.5.1:check (default) @ throttle-concurrents ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.5.0/spotless-lib-4.5.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.6.1/spotless-lib-4.6.1.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 15 files clean - 0 needs changes to be clean, 15 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom12656043624800191562.xml
+[INFO] Sorting file /tmp/pom15571795163012544486.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -148,6 +150,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:12 min
-[INFO] Finished at: 2026-05-26T05:11:59Z
+[INFO] Total time:  01:06 min
+[INFO] Finished at: 2026-06-02T05:25:25Z
 [INFO] ------------------------------------------------------------------------

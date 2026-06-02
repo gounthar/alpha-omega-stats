@@ -20,29 +20,30 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl-parent ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ job-dsl-parent ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ job-dsl-parent ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ job-dsl-parent ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ job-dsl-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ job-dsl-parent ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ job-dsl-parent ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ job-dsl-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl-parent ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ job-dsl-parent ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl-parent ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ job-dsl-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ job-dsl-parent ---
@@ -72,9 +73,10 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ job-dsl-parent ---
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ job-dsl-parent ---
+[INFO] --- spotless:3.5.1:check (default) @ job-dsl-parent ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom9208200015655365441.xml
+[INFO] Sorting file /tmp/pom13987064109440070480.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -88,14 +90,16 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl-ast ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ job-dsl-ast ---
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ job-dsl-ast ---
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ job-dsl-ast ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ job-dsl-ast ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- gplus:4.3.1:addSources (default) @ job-dsl-ast ---
@@ -108,13 +112,13 @@
 [INFO] Using Groovy 2.4.21 to perform generateStubs.
 [INFO] Generated 5 stubs.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ job-dsl-ast ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ job-dsl-ast ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl-ast ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ job-dsl-ast ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl-ast ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ job-dsl-ast ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ job-dsl-ast ---
@@ -176,16 +180,17 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ job-dsl-ast ---
+[INFO] --- spotless:3.5.1:check (default) @ job-dsl-ast ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom13115036963719028902.xml
+[INFO] Sorting file /tmp/pom13890300849256091008.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl-ast ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 57ms; 385 rules
+[INFO] Loaded properties file in 76ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -204,13 +209,13 @@
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=1770ms; Files with analysis errors: 0
-CodeNarc Report - May 26, 2026, 4:56:57 AM
+[INFO] Analysis time=1781ms; Files with analysis errors: 0
+CodeNarc Report - Jun 2, 2026, 5:10:53 AM
 
 Summary: TotalFiles=5 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 6080ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 6260ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-ast ---
@@ -224,14 +229,16 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 6080ms
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ job-dsl-core ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ job-dsl-core ---
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ job-dsl-core ---
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ job-dsl-core ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ job-dsl-core ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- gplus:4.3.1:addSources (default) @ job-dsl-core ---
@@ -246,13 +253,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 6080ms
 [INFO] Using Groovy 2.4.21 to perform generateStubs.
 [INFO] Generated 327 stubs.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ job-dsl-core ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ job-dsl-core ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl-core ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ job-dsl-core ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl-core ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ job-dsl-core ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ job-dsl-core ---
@@ -333,17 +340,18 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ job-dsl-core ---
+[INFO] --- spotless:3.5.1:check (default) @ job-dsl-core ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 4 files clean - 0 needs changes to be clean, 4 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom8717204658210890884.xml
+[INFO] Sorting file /tmp/pom10753658206312155917.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl-core ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 4ms; 385 rules
+[INFO] Loaded properties file in 7ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -362,15 +370,15 @@ WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=10164ms; Files with analysis errors: 0
-CodeNarc Report - May 26, 2026, 4:59:03 AM
+[INFO] Analysis time=12128ms; Files with analysis errors: 0
+CodeNarc Report - Jun 2, 2026, 5:13:22 AM
 
 Summary: TotalFiles=327 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 10576ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 12725ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
-[INFO] Loaded properties file in 1ms; 385 rules
+[INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
 [INFO] Loading ruleset from [rulesets/junit.xml]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
@@ -391,15 +399,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 10576ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=7695ms; Files with analysis errors: 0
-CodeNarc Report - May 26, 2026, 4:59:11 AM
+[INFO] Analysis time=8191ms; Files with analysis errors: 0
+CodeNarc Report - Jun 2, 2026, 5:13:31 AM
 
 Summary: TotalFiles=79 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 8521ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 8911ms
 [INFO]      [echo] Checking src/main/docs/examples code with CodeNarc
-[INFO] Loaded properties file in 0ms; 385 rules
+[INFO] Loaded properties file in 1ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-examples.groovy]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
@@ -419,13 +427,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 8521ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=3959ms; Files with analysis errors: 0
-CodeNarc Report - May 26, 2026, 4:59:16 AM
+[INFO] Analysis time=2833ms; Files with analysis errors: 0
+CodeNarc Report - Jun 2, 2026, 5:13:34 AM
 
 Summary: TotalFiles=417 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 3046ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl-core ---
@@ -445,15 +453,17 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ job-dsl ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ job-dsl ---
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ job-dsl ---
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ job-dsl ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ job-dsl ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- gplus:4.3.1:addSources (default) @ job-dsl ---
@@ -478,7 +488,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] --- frontend:2.0.0:npm (npm install) @ job-dsl ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/job-dsl/job-dsl-plugin
 [INFO] 
-[INFO] added 534 packages, and audited 535 packages in 19s
+[INFO] added 534 packages, and audited 535 packages in 21s
 [INFO] 
 [INFO] 111 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -579,9 +589,12 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] > job-dsl-plugin@1.0.0 build
 [INFO] > webpack --config webpack.plugin.mjs
 [INFO] 
+[INFO] Browserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+[INFO]   npx update-browserslist-db@latest
+[INFO]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
 [INFO] assets by info 1.65 MiB [immutable]
 [INFO]   assets by chunk 1.43 MiB (name: app)
-[INFO]     asset app.abe4736d016fef16978a.js 1.28 MiB [emitted] [immutable] [big] (name: app)
+[INFO]     asset app.3521de729b39b60fc6a9.js 1.28 MiB [emitted] [immutable] [big] (name: app)
 [INFO]     asset app.66a15e71865c6957928d.css 152 KiB [emitted] [immutable] [minimized] (name: app)
 [INFO]   assets by path *.png 7.69 KiB
 [INFO]     asset 32px.7b8ef9809145cfec0aa6.png 5.53 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/32px.png]
@@ -594,7 +607,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO]   asset throbber.f3bc149017432b87da2e.gif 1.43 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/throbber.gif]
 [INFO] asset index.html 237 bytes [emitted]
 [INFO] asset config.json 23 bytes [emitted] [from: src/main/json/embedded/config.json] [copied]
-[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.abe4736d016fef16978a.js 1.28 MiB
+[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.3521de729b39b60fc6a9.js 1.28 MiB
 [INFO] orphan modules 312 KiB (javascript) 220 KiB (asset) 3.94 KiB (runtime) [orphan] 220 modules
 [INFO] runtime modules 891 bytes 4 modules
 [INFO] cacheable modules 1.27 MiB (javascript) 187 KiB (css/mini-extract)
@@ -604,8 +617,8 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO]       css ./node_modules/css-loader/dist/cjs.js!./node_modules/bootstrap/dist/css/bootstrap.css 143 KiB [built] [code generated]
 [INFO]       + 2 modules
 [INFO]     + 8 modules
-[INFO]   modules by path ./src/main/ 88.1 KiB (javascript) 8.89 KiB (css/mini-extract)
-[INFO]     modules by path ./src/main/hbs/*.hbs 52.6 KiB
+[INFO]   modules by path ./src/main/ 88 KiB (javascript) 8.89 KiB (css/mini-extract)
+[INFO]     modules by path ./src/main/hbs/*.hbs 52.5 KiB
 [INFO]       ./src/main/hbs/searchResults.hbs 2.94 KiB [built] [code generated]
 [INFO]       + 7 modules
 [INFO]     ./src/main/js/app.js + 15 modules 35.5 KiB [built] [code generated]
@@ -614,26 +627,29 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 [INFO] This can impact web performance.
 [INFO] Assets: 
-[INFO]   app.abe4736d016fef16978a.js (1.28 MiB)
+[INFO]   app.3521de729b39b60fc6a9.js (1.28 MiB)
 [INFO] 
 [INFO] WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 [INFO] Entrypoints:
 [INFO]   app (1.43 MiB)
 [INFO]       app.66a15e71865c6957928d.css
-[INFO]       app.abe4736d016fef16978a.js
+[INFO]       app.3521de729b39b60fc6a9.js
 [INFO] 
 [INFO] 
 [INFO] WARNING in webpack performance recommendations: 
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.106.2 compiled with 3 warnings in 10870 ms
+[INFO] webpack 5.106.2 compiled with 3 warnings in 11124 ms
 [INFO] 
 [INFO] > job-dsl-plugin@1.0.0 gh-pages
 [INFO] > webpack --config webpack.gh-pages.mjs
 [INFO] 
+[INFO] Browserslist: browsers data (caniuse-lite) is 6 months old. Please run:
+[INFO]   npx update-browserslist-db@latest
+[INFO]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
 [INFO] assets by status 109 MiB [big]
-[INFO]   asset update-center.json 3.19 MiB [emitted] [from: target/update-center.json] [copied] [big]
+[INFO]   asset update-center.json 3.2 MiB [emitted] [from: target/update-center.json] [copied] [big]
 [INFO]   asset job-dsl-core-1.48-apidoc.json 2.23 MiB [emitted] [from: target/versions/job-dsl-core-1.48-apidoc.json] [copied] [big]
 [INFO]   asset job-dsl-core-1.58-apidoc.json 2.22 MiB [emitted] [from: target/versions/job-dsl-core-1.58-apidoc.json] [copied] [big]
 [INFO]   asset job-dsl-core-1.51-apidoc.json 2.22 MiB [emitted] [from: target/versions/job-dsl-core-1.51-apidoc.json] [copied] [big]
@@ -642,7 +658,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO]   asset 32px.7b8ef9809145cfec0aa6.png 5.53 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/32px.png]
 [INFO]   asset 40px.106a7abc109fb5e78742.png 2.16 KiB [emitted] [immutable] [from: node_modules/jstree/dist/themes/default/40px.png]
 [INFO] + 9 assets
-[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.abe4736d016fef16978a.js 1.28 MiB
+[INFO] Entrypoint app [big] 1.43 MiB = app.66a15e71865c6957928d.css 152 KiB app.3521de729b39b60fc6a9.js 1.28 MiB
 [INFO] orphan modules 312 KiB (javascript) 220 KiB (asset) 3.94 KiB (runtime) [orphan] 220 modules
 [INFO] runtime modules 891 bytes 4 modules
 [INFO] cacheable modules 1.27 MiB (javascript) 187 KiB (css/mini-extract)
@@ -652,8 +668,8 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO]       css ./node_modules/css-loader/dist/cjs.js!./node_modules/bootstrap/dist/css/bootstrap.css 143 KiB [built] [code generated]
 [INFO]       + 2 modules
 [INFO]     + 8 modules
-[INFO]   modules by path ./src/main/ 88.1 KiB (javascript) 8.89 KiB (css/mini-extract)
-[INFO]     modules by path ./src/main/hbs/*.hbs 52.6 KiB
+[INFO]   modules by path ./src/main/ 88 KiB (javascript) 8.89 KiB (css/mini-extract)
+[INFO]     modules by path ./src/main/hbs/*.hbs 52.5 KiB
 [INFO]       ./src/main/hbs/searchResults.hbs 2.94 KiB [built] [code generated]
 [INFO]       + 7 modules
 [INFO]     ./src/main/js/app.js + 15 modules 35.5 KiB [built] [code generated]
@@ -662,7 +678,7 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] WARNING in asset size limit: The following asset(s) exceed the recommended size limit (244 KiB).
 [INFO] This can impact web performance.
 [INFO] Assets: 
-[INFO]   update-center.json (3.19 MiB)
+[INFO]   update-center.json (3.2 MiB)
 [INFO]   dsl.json (1.98 MiB)
 [INFO]   job-dsl-core-1.46-apidoc.json (2.2 MiB)
 [INFO]   job-dsl-core-1.47-apidoc.json (2.21 MiB)
@@ -714,28 +730,28 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO]   job-dsl-core-1.92-apidoc.json (1.98 MiB)
 [INFO]   job-dsl-core-1.93-apidoc.json (1.98 MiB)
 [INFO]   job-dsl-core-3654.vdf58f53e2d15-apidoc.json (1.98 MiB)
-[INFO]   app.abe4736d016fef16978a.js (1.28 MiB)
+[INFO]   app.3521de729b39b60fc6a9.js (1.28 MiB)
 [INFO] 
 [INFO] WARNING in entrypoint size limit: The following entrypoint(s) combined asset size exceeds the recommended limit (244 KiB). This can impact web performance.
 [INFO] Entrypoints:
 [INFO]   app (1.43 MiB)
 [INFO]       app.66a15e71865c6957928d.css
-[INFO]       app.abe4736d016fef16978a.js
+[INFO]       app.3521de729b39b60fc6a9.js
 [INFO] 
 [INFO] 
 [INFO] WARNING in webpack performance recommendations: 
 [INFO] You can limit the size of your bundles by using import() or require.ensure to lazy load some parts of your application.
 [INFO] For more info visit https://webpack.js.org/guides/code-splitting/
 [INFO] 
-[INFO] webpack 5.106.2 compiled with 3 warnings in 10875 ms
+[INFO] webpack 5.106.2 compiled with 3 warnings in 10927 ms
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ job-dsl ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ job-dsl ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ job-dsl ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ job-dsl ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ job-dsl ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ job-dsl ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ job-dsl ---
@@ -854,17 +870,18 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ job-dsl ---
+[INFO] --- spotless:3.5.1:check (default) @ job-dsl ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 48 files clean - 0 needs changes to be clean, 48 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom15884766209872263938.xml
+[INFO] Sorting file /tmp/pom7451147135961153379.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- antrun:3.2.0:run (default) @ job-dsl ---
 [INFO] Executing tasks
 [INFO]      [echo] Checking src/main/groovy code with CodeNarc
-[INFO] Loaded properties file in 0ms; 385 rules
+[INFO] Loaded properties file in 1ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules.groovy]
 [INFO] Loading ruleset from [rulesets/basic.xml]
 [INFO] Loading ruleset from [rulesets/braces.xml]
@@ -883,15 +900,15 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4353ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=1275ms; Files with analysis errors: 0
-CodeNarc Report - May 26, 2026, 5:02:19 AM
+[INFO] Analysis time=1010ms; Files with analysis errors: 0
+CodeNarc Report - Jun 2, 2026, 5:16:19 AM
 
 Summary: TotalFiles=37 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 1677ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 1327ms
 [INFO]      [echo] Checking src/test/groovy code with CodeNarc
-[INFO] Loaded properties file in 4ms; 385 rules
+[INFO] Loaded properties file in 0ms; 385 rules
 [INFO] Loading ruleset from [file:/tmp/plugin-builds/job-dsl/config/codenarc/rules-test.groovy]
 [INFO] Loading ruleset from [rulesets/junit.xml]
 [INFO] Loading ruleset from [file:config/codenarc/rules.groovy]
@@ -912,13 +929,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 1677ms
 [INFO] Loading ruleset from [rulesets/unnecessary.xml]
 [INFO] Loading ruleset from [rulesets/unused.xml]
 [INFO] RuleSet configuration properties file [codenarc.properties] not found.
-[INFO] Analysis time=3836ms; Files with analysis errors: 0
-CodeNarc Report - May 26, 2026, 5:02:23 AM
+[INFO] Analysis time=2742ms; Files with analysis errors: 0
+CodeNarc Report - Jun 2, 2026, 5:16:22 AM
 
 Summary: TotalFiles=22 FilesWithViolations=0 P1=0 P2=0 P3=0
 
 [CodeNarc (https://www.codenarc.org) v1.6.1]
-CodeNarc completed: (p1=0; p2=0; p3=0) 4392ms
+CodeNarc completed: (p1=0; p2=0; p3=0) 3129ms
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ job-dsl ---
@@ -928,13 +945,13 @@ CodeNarc completed: (p1=0; p2=0; p3=0) 4392ms
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Job DSL Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Job DSL Parent ..................................... SUCCESS [ 19.959 s]
-[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 29.711 s]
-[INFO] Job DSL Core ....................................... SUCCESS [02:18 min]
-[INFO] Job DSL ............................................ SUCCESS [03:07 min]
+[INFO] Job DSL Parent ..................................... SUCCESS [ 18.571 s]
+[INFO] Job DSL Abstract Syntax Tree (AST) ................. SUCCESS [ 30.098 s]
+[INFO] Job DSL Core ....................................... SUCCESS [02:40 min]
+[INFO] Job DSL ............................................ SUCCESS [02:48 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  06:17 min
-[INFO] Finished at: 2026-05-26T05:02:23Z
+[INFO] Total time:  06:18 min
+[INFO] Finished at: 2026-06-02T05:16:22Z
 [INFO] ------------------------------------------------------------------------
