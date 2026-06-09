@@ -18,29 +18,30 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ pipeline-build-step ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ pipeline-build-step ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ pipeline-build-step ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ pipeline-build-step ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ pipeline-build-step ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ pipeline-build-step ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ pipeline-build-step ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ pipeline-build-step ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ pipeline-build-step ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ pipeline-build-step ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ pipeline-build-step ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ pipeline-build-step ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ pipeline-build-step ---
@@ -59,11 +60,11 @@
 [INFO] org.jenkinsci.plugins.workflow.support.steps.build.WaitForBuildStep.DescriptorImpl indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[61,12] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.stapler
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/WaitForBuildStep.java:[29,12] Generating org/jenkinsci/plugins/workflow/support/steps/build/WaitForBuildStep.stapler
-[INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[300,31] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep/DescriptorImpl/doCheckPropagate.stapler
-[INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[307,31] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep/DescriptorImpl/doCheckWait.stapler
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/WaitForBuildStep.java:[81,27] Generating org/jenkinsci/plugins/workflow/support/steps/build/WaitForBuildStep/doCheckRunId.stapler
+[INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[300,31] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep/DescriptorImpl/doCheckPropagate.stapler
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[237,41] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep/DescriptorImpl/doAutoCompleteJob.stapler
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[321,31] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep/DescriptorImpl/doCheckJob.stapler
+[INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java:[307,31] Generating org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep/DescriptorImpl/doCheckWait.stapler
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStepExecution.java: /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStepExecution.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStepExecution.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java: /tmp/plugin-builds/pipeline-build-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/build/BuildTriggerStep.java uses unchecked or unsafe operations.
@@ -129,7 +130,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ pipeline-build-step ---
+[INFO] --- spotless:3.5.1:check (default) @ pipeline-build-step ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ pipeline-build-step ---
@@ -139,6 +140,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  48.945 s
-[INFO] Finished at: 2026-06-02T04:26:39Z
+[INFO] Total time:  52.332 s
+[INFO] Finished at: 2026-06-09T04:01:29Z
 [INFO] ------------------------------------------------------------------------
