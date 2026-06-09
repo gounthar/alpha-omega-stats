@@ -14,7 +14,10 @@
 [INFO] --- clean:3.5.0:clean (default-clean) @ role-strategy ---
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ role-strategy ---
-[INFO] Created marker file /tmp/plugin-builds/role-strategy/target/java-level/17
+[INFO] Created marker file /tmp/plugin-builds/role-strategy/target/java-level/21
+[INFO] Setting maven.compiler.release to 21
+[INFO] Setting maven.compiler.testRelease to 21
+[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ role-strategy ---
 [INFO] 
@@ -23,12 +26,11 @@
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] banObsoleteDependencyOverrides skipped
-[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
+[INFO] Rule 7: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ role-strategy ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -47,14 +49,18 @@
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ role-strategy ---
-[INFO] Copying 43 resources from src/main/resources to target/classes
+[INFO] Copying 42 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ role-strategy ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:role-strategy:hpi:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ role-strategy ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 33 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 33 source files with javac [debug parameters release 21] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
 [INFO] com.michelin.cio.hudson.plugins.rolestrategy.RoleBasedAuthorizationStrategy.DESCRIPTOR indexed under hudson.Extension
 [INFO] com.michelin.cio.hudson.plugins.rolestrategy.RoleStrategyConfig indexed under hudson.Extension
 [INFO] com.michelin.cio.hudson.plugins.rolestrategy.RoleStrategyRootAction indexed under hudson.Extension
@@ -78,28 +84,36 @@
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/org/jenkinsci/plugins/rolestrategy/casc/RoleDefinition.java:[58,10] Generating org/jenkinsci/plugins/rolestrategy/casc/RoleDefinition.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/org/jenkinsci/plugins/rolestrategy/pipeline/UserGlobalRoles.java:[20,10] Generating org/jenkinsci/plugins/rolestrategy/pipeline/UserGlobalRoles.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/org/jenkinsci/plugins/rolestrategy/pipeline/UserItemRoles.java:[30,10] Generating org/jenkinsci/plugins/rolestrategy/pipeline/UserItemRoles.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[885,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignGroupRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[781,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteUser.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[586,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[922,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetTemplate.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[976,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRole.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[512,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddTemplate.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1145,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingAgents.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[829,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[705,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignUserRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1028,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetAllRoles.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1118,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingJobs.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1745,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckPattern.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[885,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignGroupRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1077,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRoleAssignments.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1407,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckForWhitespace.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1765,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[857,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignUserRole.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[677,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[922,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetTemplate.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[733,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignGroupRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[781,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteUser.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1028,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetAllRoles.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[705,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignUserRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[976,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1745,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckPattern.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1765,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckName.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[802,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteGroup.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[541,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doRemoveTemplates.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1077,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRoleAssignments.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[586,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddRole.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[760,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteSid.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[643,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doRemoveRoles.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[733,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignGroupRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[857,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignUserRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1145,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingAgents.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1118,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingJobs.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java: /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java uses unchecked or unsafe operations.
@@ -187,6 +201,6 @@ Audit done.
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:16 min
-[INFO] Finished at: 2026-06-02T04:49:25Z
+[INFO] Total time:  01:30 min
+[INFO] Finished at: 2026-06-09T04:25:04Z
 [INFO] ------------------------------------------------------------------------

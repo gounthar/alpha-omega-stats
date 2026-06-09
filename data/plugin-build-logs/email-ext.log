@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:email-ext:hpi:999999-SNAPSHOT
 [INFO] 
 [INFO] ------------------< org.jenkins-ci.plugins:email-ext >------------------
@@ -13,35 +13,39 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ email-ext ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate (default-validate) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ email-ext ---
 [INFO] Created marker file /tmp/plugin-builds/email-ext/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ email-ext ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ email-ext ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ email-ext ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ email-ext ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ email-ext ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ email-ext ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ email-ext ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ email-ext ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ email-ext ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ email-ext ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ email-ext ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ email-ext ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ email-ext ---
 [INFO] Copying 118 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.7.3:flatten (flatten) @ email-ext ---
@@ -105,11 +109,11 @@
 [INFO] hudson.plugins.emailext.watching.EmailExtWatchJobProperty.DescriptorImpl indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/EmailExtRecipientStep.java:[28,12] Generating hudson/plugins/emailext/EmailExtRecipientStep.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/EmailExtStep.java:[73,12] Generating hudson/plugins/emailext/EmailExtStep.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisher.java:[248,12] Generating hudson/plugins/emailext/ExtendedEmailPublisher.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisher.java:[252,12] Generating hudson/plugins/emailext/ExtendedEmailPublisher.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/GroovyScriptPath.java:[27,12] Generating hudson/plugins/emailext/GroovyScriptPath.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/GroovyTemplateConfig.java:[22,12] Generating hudson/plugins/emailext/GroovyTemplateConfig.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/JellyTemplateConfig.java:[22,12] Generating hudson/plugins/emailext/JellyTemplateConfig.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[64,12] Generating hudson/plugins/emailext/MailAccount.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[69,12] Generating hudson/plugins/emailext/MailAccount.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/recipients/BuildUserRecipientProvider.java:[28,12] Generating hudson/plugins/emailext/plugins/recipients/BuildUserRecipientProvider.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/recipients/ContributorMetadataRecipientProvider.java:[25,12] Generating hudson/plugins/emailext/plugins/recipients/ContributorMetadataRecipientProvider.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/recipients/CulpritsRecipientProvider.java:[37,12] Generating hudson/plugins/emailext/plugins/recipients/CulpritsRecipientProvider.stapler
@@ -143,15 +147,15 @@
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/trigger/UnstableTrigger.java:[20,12] Generating hudson/plugins/emailext/plugins/trigger/UnstableTrigger.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/plugins/trigger/XNthFailureTrigger.java:[20,12] Generating hudson/plugins/emailext/plugins/trigger/XNthFailureTrigger.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/watching/EmailExtWatchAction.java:[36,19] Generating hudson/plugins/emailext/watching/EmailExtWatchAction/UserProperty.javadoc
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[947,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doCheckInlineAttachmentsPattern.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[879,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doAddressCheck.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[115,29] Generating hudson/plugins/emailext/MailAccount/MailAccountDescriptor/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[138,31] Generating hudson/plugins/emailext/MailAccount/MailAccountDescriptor/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[894,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doMaxAttachmentSizeCheck.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[947,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doCheckInlineAttachmentsPattern.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[554,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doCheckDefaultSuffix.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[889,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doRecipientListRecipientsCheck.stapler
-[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/EmailExtTemplateAction.java:[64,27] Generating hudson/plugins/emailext/EmailExtTemplateAction/doTemplateFileCheck.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[894,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doMaxAttachmentSizeCheck.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[157,31] Generating hudson/plugins/emailext/MailAccount/MailAccountDescriptor/doCheckCredentialsId.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/EmailExtTemplateAction.java:[67,27] Generating hudson/plugins/emailext/EmailExtTemplateAction/doTemplateFileCheck.stapler
 [INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[942,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doCheckAttachmentsPattern.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/ExtendedEmailPublisherDescriptor.java:[889,27] Generating hudson/plugins/emailext/ExtendedEmailPublisherDescriptor/doRecipientListRecipientsCheck.stapler
+[INFO] /tmp/plugin-builds/email-ext/src/main/java/hudson/plugins/emailext/MailAccount.java:[134,29] Generating hudson/plugins/emailext/MailAccount/MailAccountDescriptor/doFillCredentialsIdItems.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -167,34 +171,34 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ email-ext ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:insert-test (default-insert-test) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:insert-test (default-insert-test) @ email-ext ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ email-ext ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/email-ext/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ email-ext ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ email-ext ---
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ email-ext ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-hpl (default-test-hpl) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-hpl (default-test-hpl) @ email-ext ---
 [INFO] Generating /tmp/plugin-builds/email-ext/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:resolve-test-dependencies (default-resolve-test-dependencies) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:resolve-test-dependencies (default-resolve-test-dependencies) @ email-ext ---
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:test-runtime (default-test-runtime) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ email-ext ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ email-ext ---
+[INFO] --- surefire:3.5.5:test (default-test) @ email-ext ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:203.vffb_768f15d51:process (default) @ email-ext ---
 [INFO] Generated /tmp/plugin-builds/email-ext/target/email-ext/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1802.v14f4709445a_b_:hpi (default-hpi) @ email-ext ---
+[INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ email-ext ---
 [INFO] Generating /tmp/plugin-builds/email-ext/target/email-ext/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/email-ext/target/email-ext.jar
@@ -209,32 +213,33 @@
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ email-ext ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ email-ext >>>
+[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ email-ext >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ email-ext ---
+[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ email-ext ---
 [INFO] Fork Value is true
      [java] The following classes needed for analysis were missing:
      [java]   org.jenkinsci.plugins.workflow.flow.BlockableResume
      [java]   org.jenkinsci.plugins.workflow.flow.FlowExecutionOwner$Executable
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ email-ext <<<
+[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ email-ext <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ email-ext ---
+[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ email-ext ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.1:check (default) @ email-ext ---
+[INFO] --- spotless:3.5.1:check (default) @ email-ext ---
+[WARNING] Could not resolve project dependencies for expandWildcardImports: Unable to resolve dependencies
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.3.0/spotless-lib-4.3.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.6.1/spotless-lib-4.6.1.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
-[INFO] Spotless.Java is keeping 137 files clean - 0 needs changes to be clean, 137 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom4598862137326539488.xml
+[INFO] Spotless.Java is keeping 141 files clean - 0 needs changes to be clean, 141 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom10619249679220458399.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -245,6 +250,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:41 min
-[INFO] Finished at: 2026-06-02T04:38:09Z
+[INFO] Total time:  01:44 min
+[INFO] Finished at: 2026-06-09T04:13:15Z
 [INFO] ------------------------------------------------------------------------

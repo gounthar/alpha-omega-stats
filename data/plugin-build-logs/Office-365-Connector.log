@@ -18,30 +18,31 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ Office-365-Connector ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ Office-365-Connector ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ Office-365-Connector ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ Office-365-Connector ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ Office-365-Connector ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ Office-365-Connector ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ Office-365-Connector ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ Office-365-Connector ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ Office-365-Connector ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ Office-365-Connector ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ Office-365-Connector ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ Office-365-Connector ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ Office-365-Connector ---
@@ -65,8 +66,8 @@
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/model/Macro.java:[42,12] Generating jenkins/plugins/office365connector/model/Macro.stapler
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/workflow/Office365ConnectorSendStep.java:[37,12] Generating jenkins/plugins/office365connector/workflow/Office365ConnectorSendStep.stapler
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/Webhook.java:[212,31] Generating jenkins/plugins/office365connector/Webhook/DescriptorImpl/doCheckUrl.stapler
-[INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/Webhook.java:[216,31] Generating jenkins/plugins/office365connector/Webhook/DescriptorImpl/doCheckGlobalUrl.stapler
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/workflow/Office365ConnectorSendStep.java:[116,31] Generating jenkins/plugins/office365connector/workflow/Office365ConnectorSendStep/DescriptorImpl/doCheckWebhookUrl.stapler
+[INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/Webhook.java:[216,31] Generating jenkins/plugins/office365connector/Webhook/DescriptorImpl/doCheckGlobalUrl.stapler
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/Office365ConnectorWebhookNotifier.java: /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/Office365ConnectorWebhookNotifier.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/Office365ConnectorWebhookNotifier.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/Office-365-Connector/src/main/java/jenkins/plugins/office365connector/FactsBuilder.java: Some input files use unchecked or unsafe operations.
@@ -137,7 +138,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ Office-365-Connector ---
+[INFO] --- spotless:3.5.1:check (default) @ Office-365-Connector ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.5:verify (default) @ Office-365-Connector ---
@@ -150,6 +151,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  54.301 s
-[INFO] Finished at: 2026-06-02T05:28:08Z
+[INFO] Total time:  53.465 s
+[INFO] Finished at: 2026-06-09T05:04:22Z
 [INFO] ------------------------------------------------------------------------
