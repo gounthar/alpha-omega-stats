@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3200.vc79dce20f68b_
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3251.v465c8cec2c4e
 [WARNING] Failed to build parent project for io.jenkins.plugins:plugin-util-api:hpi:7.999999-SNAPSHOT
 [INFO] 
 [INFO] -----------------< io.jenkins.plugins:plugin-util-api >-----------------
@@ -22,27 +22,29 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ plugin-util-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ plugin-util-api ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ plugin-util-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ plugin-util-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ plugin-util-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ plugin-util-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ plugin-util-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ plugin-util-api >>>
@@ -51,13 +53,16 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ plugin-util-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ plugin-util-api ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ plugin-util-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ plugin-util-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ plugin-util-api ---
@@ -142,7 +147,7 @@
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ plugin-util-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ plugin-util-api >>>
@@ -159,7 +164,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ plugin-util-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ plugin-util-api >>>
@@ -177,7 +182,7 @@
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ plugin-util-api ---
 [WARNING] No files found to process. Did you forget to add additional source directories? (see also build-helper-maven-plugin)
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [WARNING] No files to analyze. Check input paths and exclude parameters, use --debug to see file collection traces.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
@@ -192,7 +197,7 @@
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ plugin-util-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ plugin-util-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ plugin-util-api ---
@@ -216,7 +221,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ plugin-util-api ---
+[INFO] --- spotless:3.5.1:check (default) @ plugin-util-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.5:verify (default) @ plugin-util-api ---
@@ -237,6 +242,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:39 min
-[INFO] Finished at: 2026-06-16T04:45:40Z
+[INFO] Total time:  03:19 min
+[INFO] Finished at: 2026-06-23T04:09:25Z
 [INFO] ------------------------------------------------------------------------

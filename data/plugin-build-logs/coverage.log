@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3202.v601fa_4082d0a_
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3251.v465c8cec2c4e
 [WARNING] Failed to build parent project for io.jenkins.plugins:coverage-parent:pom:3.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -19,40 +19,43 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ coverage-parent ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 7: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ coverage-parent ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ coverage-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ coverage-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ coverage-parent ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ coverage-parent >>>
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
-[INFO] Rule 5: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 7: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage-parent ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ coverage-parent ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ coverage-parent ---
@@ -153,7 +156,7 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ coverage-parent ---
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ coverage-parent ---
+[INFO] --- spotless:3.5.1:check (default) @ coverage-parent ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.5:verify (default) @ coverage-parent ---
@@ -184,25 +187,28 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ coverage ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ coverage ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ coverage ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ coverage ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ coverage ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ coverage ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ coverage >>>
@@ -211,14 +217,17 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ coverage ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ coverage ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ coverage ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ coverage ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ coverage ---
@@ -250,12 +259,12 @@
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.java:[106,12] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.stapler
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[83,12] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageStep.stapler
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageTool.java:[58,12] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageTool.stapler
-[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/FileWithModifiedLines.java:[14,1] Generating io/jenkins/plugins/coverage/metrics/restapi/FileWithModifiedLines.javadoc
+[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.java:[25,8] Generating io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.javadoc
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesBlock.java:[15,1] Generating io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesBlock.javadoc
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesCoverageApi.java:[20,1] Generating io/jenkins/plugins/coverage/metrics/restapi/ModifiedLinesCoverageApi.javadoc
-[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.java:[25,8] Generating io/jenkins/plugins/coverage/metrics/restapi/CoverageApi.javadoc
-[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder.java:[691,31] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageRecorder/Descriptor/doCheckSourceCodeEncoding.stapler
+[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/restapi/FileWithModifiedLines.java:[14,1] Generating io/jenkins/plugins/coverage/metrics/restapi/FileWithModifiedLines.javadoc
 [INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageTool.java:[176,31] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageTool/CoverageToolDescriptor/doCheckId.stapler
+[INFO] /tmp/plugin-builds/coverage/plugin/src/main/java/io/jenkins/plugins/coverage/metrics/steps/CoverageStep.java:[463,31] Generating io/jenkins/plugins/coverage/metrics/steps/CoverageStep/Descriptor/doCheckSourceCodeEncoding.stapler
 [WARNING] No processor claimed any of these annotations: /org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro.Parameter,/org.kohsuke.accmod.Restricted,/edu.umd.cs.findbugs.annotations.NonNull,/org.kohsuke.stapler.QueryParameter,/org.jenkinsci.plugins.variant.OptionalExtension,/org.kohsuke.stapler.DataBoundSetter,/org.jenkinsci.Symbol,/edu.umd.cs.findbugs.annotations.CheckForNull,/org.kohsuke.stapler.bind.JavaScriptMethod,/org.kohsuke.stapler.AncestorInPath,/org.kohsuke.stapler.verb.POST,/edu.umd.cs.findbugs.annotations.SuppressFBWarnings,/org.kohsuke.stapler.export.Exported,/edu.hm.hafner.util.VisibleForTesting,/org.kohsuke.stapler.export.ExportedBean,/org.kohsuke.stapler.DataBoundConstructor,/edu.umd.cs.findbugs.annotations.DefaultAnnotation,/hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ coverage ---
@@ -302,8 +311,11 @@
 [INFO] Exploding webapp...
 [INFO] Copy webapp webResources to /tmp/plugin-builds/coverage/plugin/target/coverage
 [INFO] Assembling webapp coverage in /tmp/plugin-builds/coverage/plugin/target/coverage
-[INFO] Bundling direct dependency coverage-model-0.69.0.jar
-[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [coverage-model]. Review the bundled artifacts and add `<hpi.bundledArtifacts>coverage-model</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
+[INFO] Bundling transitive dependency jackson-annotations-2.22.jar (via coverage-model)
+[INFO] Bundling direct dependency coverage-model-0.71.1.jar
+[INFO] Bundling transitive dependency jackson-core-3.2.0.jar (via coverage-model)
+[INFO] Bundling transitive dependency jackson-databind-3.2.0.jar (via coverage-model)
+[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [coverage-model, jackson-annotations, jackson-core, jackson-databind]. Review the bundled artifacts and add `<hpi.bundledArtifacts>coverage-model,jackson-annotations,jackson-core,jackson-databind</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
 [INFO] Generating hpi /tmp/plugin-builds/coverage/plugin/target/coverage.hpi
 [INFO] Building jar: /tmp/plugin-builds/coverage/plugin/target/coverage.hpi
 [INFO] 
@@ -317,7 +329,7 @@
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ coverage ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ coverage >>>
@@ -334,7 +346,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ coverage ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ coverage >>>
@@ -351,7 +363,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ coverage ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-javascript) > :pmd @ coverage >>>
@@ -365,7 +377,7 @@
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ coverage ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ coverage ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ coverage ---
@@ -389,7 +401,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ coverage ---
+[INFO] --- spotless:3.5.1:check (default) @ coverage ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.5:verify (default) @ coverage ---
@@ -408,11 +420,11 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Coverage Plugin 3.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 18.037 s]
-[INFO] Coverage Plugin .................................... SUCCESS [01:23 min]
+[INFO] Aggregator for Coverage Plugin ..................... SUCCESS [ 13.669 s]
+[INFO] Coverage Plugin .................................... SUCCESS [01:29 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:43 min
-[INFO] Finished at: 2026-06-16T05:49:12Z
+[INFO] Total time:  01:45 min
+[INFO] Finished at: 2026-06-23T05:18:02Z
 [INFO] ------------------------------------------------------------------------
