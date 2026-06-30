@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3200.vc79dce20f68b_
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3267.va_a_ee2687b_0a_c
 [WARNING] Failed to build parent project for io.jenkins.plugins:bootstrap5-api:hpi:5.3.8-999999-SNAPSHOT
 [INFO] 
 [INFO] -----------------< io.jenkins.plugins:bootstrap5-api >------------------
@@ -22,16 +22,18 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ bootstrap5-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ bootstrap5-api ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ bootstrap5-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ bootstrap5-api ---
@@ -610,13 +612,13 @@
 [INFO] > postcss --config etc/postcss.config.js --replace "target/bootstrap5-api/css/*.css" "!target/bootstrap5-api/css/*.rtl*.css" "!target/bootstrap5-api/css/*.min.css"
 [INFO] 
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ bootstrap5-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ bootstrap5-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ bootstrap5-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ bootstrap5-api >>>
@@ -625,13 +627,16 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ bootstrap5-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ bootstrap5-api ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ bootstrap5-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ bootstrap5-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ bootstrap5-api ---
@@ -641,7 +646,7 @@
 [INFO] --- frontend:2.0.0:npm (npm install) @ bootstrap5-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/bootstrap5-api
 [INFO] 
-[INFO] added 313 packages, and audited 314 packages in 10s
+[INFO] added 313 packages, and audited 314 packages in 8s
 [INFO] 
 [INFO] 146 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -1283,7 +1288,7 @@
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ bootstrap5-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ bootstrap5-api >>>
@@ -1300,7 +1305,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ bootstrap5-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ bootstrap5-api >>>
@@ -1317,7 +1322,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ bootstrap5-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-javascript) > :pmd @ bootstrap5-api >>>
@@ -1331,7 +1336,7 @@
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ bootstrap5-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ bootstrap5-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ bootstrap5-api ---
@@ -1355,7 +1360,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ bootstrap5-api ---
+[INFO] --- spotless:3.5.1:check (default) @ bootstrap5-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.5:verify (default) @ bootstrap5-api ---
@@ -1376,6 +1381,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:17 min
-[INFO] Finished at: 2026-06-23T04:13:58Z
+[INFO] Total time:  02:07 min
+[INFO] Finished at: 2026-06-30T04:18:08Z
 [INFO] ------------------------------------------------------------------------
