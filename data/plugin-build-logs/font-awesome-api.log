@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3202.v601fa_4082d0a_
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3267.va_a_ee2687b_0a_c
 [WARNING] Failed to build parent project for io.jenkins.plugins:font-awesome-api:hpi:7.2.0-999999-SNAPSHOT
 [INFO] 
 [INFO] ----------------< io.jenkins.plugins:font-awesome-api >-----------------
@@ -22,16 +22,18 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ font-awesome-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ font-awesome-api ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ font-awesome-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ font-awesome-api ---
@@ -46,7 +48,7 @@
 [INFO] --- frontend:2.0.0:npm (npm install) @ font-awesome-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/font-awesome-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 6s
+[INFO] added 227 packages, and audited 228 packages in 5s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -63,13 +65,13 @@
 [INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ font-awesome-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/font-awesome-api
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ font-awesome-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ font-awesome-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ font-awesome-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ font-awesome-api >>>
@@ -78,13 +80,16 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ font-awesome-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ font-awesome-api ---
+[INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ font-awesome-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ font-awesome-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ font-awesome-api ---
@@ -94,7 +99,7 @@
 [INFO] --- frontend:2.0.0:npm (npm install) @ font-awesome-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/font-awesome-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 6s
+[INFO] added 227 packages, and audited 228 packages in 8s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -192,7 +197,7 @@
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ font-awesome-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ font-awesome-api >>>
@@ -209,7 +214,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ font-awesome-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ font-awesome-api >>>
@@ -227,7 +232,7 @@
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ font-awesome-api ---
 [WARNING] No files found to process. Did you forget to add additional source directories? (see also build-helper-maven-plugin)
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [WARNING] No files to analyze. Check input paths and exclude parameters, use --debug to see file collection traces.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
@@ -242,7 +247,7 @@
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ font-awesome-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ font-awesome-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.25.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ font-awesome-api ---
@@ -266,7 +271,7 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ font-awesome-api ---
+[INFO] --- spotless:3.5.1:check (default) @ font-awesome-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- failsafe:3.5.5:verify (default) @ font-awesome-api ---
@@ -287,6 +292,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:58 min
-[INFO] Finished at: 2026-06-23T04:10:41Z
+[INFO] Total time:  01:54 min
+[INFO] Finished at: 2026-06-30T04:15:15Z
 [INFO] ------------------------------------------------------------------------
