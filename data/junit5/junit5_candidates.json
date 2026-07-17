@@ -157,18 +157,6 @@
       "createdAt": "2025-04-09T12:37:00Z"
     },
     {
-      "title": "Upgrade tests to JUnit5",
-      "url": "https://github.com/jenkinsci/scm-api-plugin/pull/279",
-      "repository": "jenkinsci/scm-api-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": [
-        "chore"
-      ],
-      "body": "Upgrades all tests to run with JUnit5. Notable changes besides the obvious:\n\nDataPoint based Theory tests now use ParameterizedTest with a MethodSource or EnumSource as appropriate.\nRules AbstractSampleRepoRule and AbstractSampleDVCSRepoRule were not upgraded as they are used by other plugin. Consequently I left the dependency to JUnit4 in pom.xml be. If desired I can look into upgrading them, too.\n\nTesting done\nRan mvn clean verify before and after changes. While all are successful, the overall number of reported tests increased from 124 to 135 due to the way ParameterizedTest work.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2024-09-18T09:58:02Z"
-    },
-    {
       "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/environment-filter-utils-plugin/pull/13",
       "repository": "jenkinsci/environment-filter-utils-plugin",
@@ -179,6 +167,18 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-08-15T06:51:32Z"
+    },
+    {
+      "title": "Upgrade tests to JUnit5",
+      "url": "https://github.com/jenkinsci/scm-api-plugin/pull/279",
+      "repository": "jenkinsci/scm-api-plugin",
+      "state": "OPEN",
+      "author": "strangelookingnerd",
+      "labels": [
+        "chore"
+      ],
+      "body": "Upgrades all tests to run with JUnit5. Notable changes besides the obvious:\n\nDataPoint based Theory tests now use ParameterizedTest with a MethodSource or EnumSource as appropriate.\nRules AbstractSampleRepoRule and AbstractSampleDVCSRepoRule were not upgraded as they are used by other plugin. Consequently I left the dependency to JUnit4 in pom.xml be. If desired I can look into upgrading them, too.\n\nTesting done\nRan mvn clean verify before and after changes. While all are successful, the overall number of reported tests increased from 124 to 135 due to the way ParameterizedTest work.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2024-09-18T09:58:02Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -234,6 +234,16 @@
     },
     {
       "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/google-oauth-plugin/pull/244",
+      "repository": "jenkinsci/google-oauth-plugin",
+      "state": "OPEN",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-03-11T11:13:06Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/safe-batch-environment-filter-plugin/pull/10",
       "repository": "jenkinsci/safe-batch-environment-filter-plugin",
       "state": "OPEN",
@@ -243,16 +253,6 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-08-15T06:55:23Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/google-oauth-plugin/pull/244",
-      "repository": "jenkinsci/google-oauth-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-03-11T11:13:06Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -325,6 +325,16 @@
       "createdAt": "2025-04-16T08:26:49Z"
     },
     {
+      "title": "JUnit5 JenkinsRule supports timeout",
+      "url": "https://github.com/jenkinsci/jenkins-test-harness/pull/979",
+      "repository": "jenkinsci/jenkins-test-harness",
+      "state": "OPEN",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Trying to fix #977.\nDraft for now, implementation is very rough.\nTesting done\nAutomated testing will be an issue as it is tricky to make tests pass that have failed with a timeout 😄\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-06-05T13:13:59Z"
+    },
+    {
       "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/signpath-plugin/pull/41",
       "repository": "jenkinsci/signpath-plugin",
@@ -343,16 +353,6 @@
       "labels": null,
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-05-12T12:09:30Z"
-    },
-    {
-      "title": "JUnit5 JenkinsRule supports timeout",
-      "url": "https://github.com/jenkinsci/jenkins-test-harness/pull/979",
-      "repository": "jenkinsci/jenkins-test-harness",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Trying to fix #977.\nDraft for now, implementation is very rough.\nTesting done\nAutomated testing will be an issue as it is tricky to make tests pass that have failed with a timeout 😄\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-06-05T13:13:59Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -466,16 +466,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/propelo-job-reporter-plugin/pull/28",
-      "repository": "jenkinsci/propelo-job-reporter-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-05-06T09:41:06Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/wiz-scanner-plugin/pull/10",
       "repository": "jenkinsci/wiz-scanner-plugin",
       "state": "OPEN",
@@ -495,6 +485,16 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nThere are two exceptions where tests use rules that have not yet been migrated to JUnit5:\n\nDockerServerCredentialsBindingTest using JenkinsSessionRule (migrated from RestartableJenkinsRule)\nDockerServerCredentialsHandlerTest using JenkinsSessionRule (migrated from RestartableJenkinsRule)\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-03-11T10:34:17Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/propelo-job-reporter-plugin/pull/28",
+      "repository": "jenkinsci/propelo-job-reporter-plugin",
+      "state": "OPEN",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-05-06T09:41:06Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -1221,16 +1221,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/build-user-vars-plugin/pull/181",
-      "repository": "jenkinsci/build-user-vars-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-09-09T11:52:42Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/s3-plugin/pull/306",
       "repository": "jenkinsci/s3-plugin",
       "state": "MERGED",
@@ -1240,6 +1230,16 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations\nMigrate assertions\nMinor cleanup\nRemove public visibility of test classes and methods\n\nThere is once exception in hudson.plugins.s3.MinIOTest which was not migrated as it uses RealJenkinsRule for which there is no JUnit4 equivalent yet.\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewd.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-02-10T15:23:58Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/build-user-vars-plugin/pull/181",
+      "repository": "jenkinsci/build-user-vars-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-09-09T11:52:42Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -2376,18 +2376,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/gitea-checks-plugin/pull/227",
-      "repository": "jenkinsci/gitea-checks-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": [
-        "test"
-      ],
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-04-24T08:46:05Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/authentication-tokens-plugin/pull/203",
       "repository": "jenkinsci/authentication-tokens-plugin",
       "state": "MERGED",
@@ -2397,6 +2385,18 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-04-23T08:19:14Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/gitea-checks-plugin/pull/227",
+      "repository": "jenkinsci/gitea-checks-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": [
+        "test"
+      ],
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-04-24T08:46:05Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -2434,16 +2434,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/xtrigger-api-plugin/pull/101",
-      "repository": "jenkinsci/xtrigger-api-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-03-24T11:05:05Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/startup-trigger-plugin/pull/46",
       "repository": "jenkinsci/startup-trigger-plugin",
       "state": "MERGED",
@@ -2451,6 +2441,16 @@
       "labels": null,
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-04-07T13:10:06Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/xtrigger-api-plugin/pull/101",
+      "repository": "jenkinsci/xtrigger-api-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-03-24T11:05:05Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -2711,16 +2711,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/next-build-number-plugin/pull/37",
-      "repository": "jenkinsci/next-build-number-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-04-07T14:02:59Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/github-oauth-plugin/pull/290",
       "repository": "jenkinsci/github-oauth-plugin",
       "state": "MERGED",
@@ -2730,6 +2720,16 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-03-04T14:52:09Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/next-build-number-plugin/pull/37",
+      "repository": "jenkinsci/next-build-number-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-04-07T14:02:59Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -2743,6 +2743,16 @@
     },
     {
       "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/generic-webhook-trigger-plugin/pull/358",
+      "repository": "jenkinsci/generic-webhook-trigger-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-04-04T08:00:23Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/statusmonitor-plugin/pull/15",
       "repository": "jenkinsci/statusmonitor-plugin",
       "state": "MERGED",
@@ -2752,16 +2762,6 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-04-07T13:29:52Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/generic-webhook-trigger-plugin/pull/358",
-      "repository": "jenkinsci/generic-webhook-trigger-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-04-04T08:00:23Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -3282,16 +3282,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/token-macro-plugin/pull/254",
-      "repository": "jenkinsci/token-macro-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-03-11T13:32:35Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/implied-labels-plugin/pull/264",
       "repository": "jenkinsci/implied-labels-plugin",
       "state": "MERGED",
@@ -3301,6 +3291,16 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-03-10T12:19:17Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/token-macro-plugin/pull/254",
+      "repository": "jenkinsci/token-macro-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-03-11T13:32:35Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -3416,16 +3416,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/build-user-vars-plugin/pull/166",
-      "repository": "jenkinsci/build-user-vars-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-03-10T09:46:04Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/gitlab-kubernetes-credentials-plugin/pull/222",
       "repository": "jenkinsci/gitlab-kubernetes-credentials-plugin",
       "state": "MERGED",
@@ -3435,6 +3425,16 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-03-10T13:05:03Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/build-user-vars-plugin/pull/166",
+      "repository": "jenkinsci/build-user-vars-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-03-10T09:46:04Z"
     },
     {
       "title": "Upgrade tests to use JUnit5",
@@ -3516,16 +3516,6 @@
     },
     {
       "title": "Migrate tests to JUnit5",
-      "url": "https://github.com/jenkinsci/promoted-builds-plugin/pull/302",
-      "repository": "jenkinsci/promoted-builds-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
-      "createdAt": "2025-03-04T08:22:51Z"
-    },
-    {
-      "title": "Migrate tests to JUnit5",
       "url": "https://github.com/jenkinsci/jobcacher-plugin/pull/403",
       "repository": "jenkinsci/jobcacher-plugin",
       "state": "MERGED",
@@ -3535,6 +3525,16 @@
       ],
       "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
       "createdAt": "2025-03-07T14:15:18Z"
+    },
+    {
+      "title": "Migrate tests to JUnit5",
+      "url": "https://github.com/jenkinsci/promoted-builds-plugin/pull/302",
+      "repository": "jenkinsci/promoted-builds-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "This PR aims to migrate all tests to JUnit5. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\n\n Make sure you are requesting to pull a topic/feature/bugfix branch (right side) and not your master branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests - that demonstrates feature works or fixes the issue",
+      "createdAt": "2025-03-04T08:22:51Z"
     },
     {
       "title": "Migrate tests to JUnit5",
@@ -4110,6 +4110,16 @@
       ],
       "body": "This PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\ncom.squareup.okhttp3:mockwebserver (source)\n4.11.0 → 5.4.0\n\n\n\n\n\n\nRelease Notes\n\nsquare/okhttp (com.squareup.okhttp3:mockwebserver)\nv5.4.0\n2026-06-08\n\nNew: Add superpowers to interceptors. Interceptors can now override anything settable on\nOkHttpClient.Builder, such as the cache, connection pool, socket factory, and DNS. We expect\nthis will allow most users to use interceptors everywhere, insted of mixing and matching\ninterceptors with custom Call.Factory wrappers.\nFix: Limit each HTTP/2 response to 256 KiB of total headers.\nUpgrade: [kotlinx.coroutines 1.11.0][coroutines_1_11_0]. This is used by the optional\nokhttp-coroutines artifact.\nUpgrade: [GraalVM 25.0.3][graalvm_25].\nUpgrade: [Okio 3.17.0][okio_3_17_0].\n\nv5.3.2\n2025-11-18\n\n\nFix: Don't delay triggering timeouts. In Okio 3.16.0 we introduced a regression that caused\ntimeouts to fire later than they were supposed to.\n\n\nUpgrade: [Okio 3.16.4][okio_3_16_4].\n\n\nv5.3.1\n2025-11-16\nThis release is the same as 5.3.0. Okio 3.16.3 didn't have a necessary fix!\n\nUpgrade: [Okio 3.16.3][okio_3_16_3].\n\nv5.3.0\n2025-10-30\n\n\nNew: Add tags to Call, including computable tags. Use this to attach application-specific\nmetadata to a Call in an EventListener or Interceptor. The tag can be read in any other\nEventListener or Interceptor.\n  override fun intercept(chain: Interceptor.Chain): Response {\n    chain.call().tag(MyAnalyticsTag::class) {\n      MyAnalyticsTag(...)\n    }\n\n    return chain.proceed(chain.request())\n  }\n\n\nNew: Support request bodies on HTTP/1.1 connection upgrades.\n\n\nNew: EventListener.plus() makes it easier to observe events in multiple listeners.\n\n\nFix: Don't spam logs with ‘Method isLoggable in android.util.Log not mocked.’ when using\nOkHttp in Robolectric and Paparazzi tests.\n\n\nUpgrade: [Kotlin 2.2.21][kotlin_2_2_21].\n\n\nUpgrade: [Okio 3.16.2][okio_3_16_2].\n\n\nUpgrade: [ZSTD-KMP 0.4.0][zstd_kmp_0_4_0]. This update fixes a bug that caused APKs to fail\n[16 KB ELF alignment checks][elf_alignment].\n\n\nv5.2.3\n2025-11-18\n\n\nFix: Don't delay triggering timeouts. In Okio 3.16.0 we introduced a regression that caused\ntimeouts to fire later than they were supposed to.\n\n\nUpgrade: [Okio 3.16.4][okio_3_16_4].\n\n\nv5.2.2\n2025-11-16\nThis release is the same as 5.2.1. Okio 3.16.3 didn't have a necessary fix!\n\nUpgrade: [Okio 3.16.3][okio_3_16_3].\n\nv5.2.1\n2025-10-09\n\n\nFix: Don't crash when calling Socket.shutdownOutput() or shutdownInput() on an SSLSocket\non Android API 21 through 23. This method throws an UnsupportedOperationException, so we now\ncatch that and close the underlying stream instead.\n\n\nUpgrade: [Okio 3.16.1][okio_3_16_1].\n\n\nv5.2.0\n2025-10-07\n\n\nNew: Support [HTTP 101] responses with Response.socket. This mechanism is only supported on\nHTTP/1.1. We also reimplemented our websocket client to use this new mechanism.\n\n\nNew: The okhttp-zstd module negotiates [Zstandard (zstd)][zstd] compression with servers that\nsupport it. It integrates a new (unstable) [ZSTD-KMP] library, also from Square. Enable it like\nthis:\nval client = OkHttpClient.Builder()\n  .addInterceptor(CompressionInterceptor(Zstd, Gzip))\n  .build()\n\n\nNew: Support the QUERY HTTP method. You will need to set the Request.cacheUrlOverride\nproperty to cache calls made with this method. The RequestBody.sha256() may be helpful here;\nuse it to compose a cache URL from the query body.\n\n\nNew: Publish events when calls must wait to execute. EventListener.dispatcherQueueStart()\nis invoked when a call starts waiting, and dispatcherQueueEnd() is invoked when it's done.\n\n\nNew: Request.toCurl() returns a copy-pasteable [curl] command consistent with Chrome’s and\nFirefox’s ‘copy as cURL’ features.\n\n\nNew: Support [JPMS]. We replaced our Automatic-Module-Name metadata with proper\nmodule-info.java files.\n\n\nFix: Recover gracefully when worker threads are interrupted. When we introduced fast fallback in\nOkHttp 5.0, we started using background threads while connecting. Sadly that code didn't handle\ninterruptions well. This is now fixed.\n\n\nUpgrade: [Kotlin 2.2.20][kotlin_2_2_20].\n\n\nUpgrade: [Okio 3.16.0][okio_3_16_0].\n\n\nv5.1.0\n2025-07-07\n\n\nNew: Response.peekTrailers(). When we changed Response.trailers() to block instead of\nthrowing in 5.0.0, we inadvertently removed the ability for callers to peek the trailers\n(by catching the IllegalStateException if they weren't available). This new API restores that\ncapability.\n\n\nFix: Don't crash on trailers() if the response doesn't have a body. We broke [Retrofit] users\nwho read the trailers on the raw() OkHttp response, after its body was decoded.\n\n\nv5.0.0\n2025-07-02\nThis is our first stable release of OkHttp since 2023. Here's the highlights if you're upgrading\nfrom OkHttp 4.x:\nOkHttp is now packaged as separate JVM and Android artifacts. This allows us to offer\nplatform-specific features and optimizations. If your build system handles [Gradle module metadata],\nthis change should be automatic.\nMockWebServer has a new coordinate and package name. We didn’t like that our old artifact\ndepends on JUnit 4 so the new one doesn’t. It also has a better API built on immutable values. (We\nintend to continue publishing the old okhttp3.mockwebserver artifact so there’s no urgency to\nmigrate.)\n\n\n\nCoordinate\nPackage Name\nDescription\n\n\n\n\ncom.squareup.okhttp3:mockwebserver3:5.0.0\nmockwebserver3\nCore module. No JUnit dependency!\n\n\ncom.squareup.okhttp3:mockwebserver3-junit4:5.0.0\nmockwebserver3.junit4\nOptional JUnit 4 integration.\n\n\ncom.squareup.okhttp3:mockwebserver3-junit5:5.0.0\nmockwebserver3.junit5\nOptional JUnit 5 integration.\n\n\ncom.squareup.okhttp3:mockwebserver:5.0.0\nokhttp3.mockwebserver\nObsolete. Depends on JUnit 4.\n\n\n\nOkHttp now supports Happy Eyeballs ([RFC 8305][rfc_8305]) for IPv4+IPv6 networks. It attempts\nboth IPv6 and IPv4 connections concurrently, keeping whichever connects first.\nWe’ve improved our Kotlin APIs. You can skip the builder:\nval request = Request(\n  url = \"https://cash.app/\".toHttpUrl(),\n)\nOkHttp now supports [GraalVM].\nHere’s what has changed since 5.0.0-alpha.17:\n\nUpgrade: [Okio 3.15.0][okio_3_15_0].\nUpgrade: [Kotlin 2.2.0][kotlin_2_2_0].\nFix: Don't crash with a NoSuchMethodError when using OkHttp with the Sentry SDK.\nFix: Retain the query data in the old okhttp3.mockwebserver.RecordedRequest.path property. We\ninadvertently changed this behavior when we introduced the mockwebserver3 API.\n\n\n\nConfiguration\n📅 Schedule: (UTC)\n\nBranch creation\n\n\"every 2 weeks on monday\"\n\n\nAutomerge\n\nAt any time (no schedule defined)\n\n\n\n🚦 Automerge: Disabled by config. Please merge this manually once you are satisfied.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
       "createdAt": "2026-04-01T00:41:06Z"
+    },
+    {
+      "title": "chore(deps): update dependency kubernetes to v4467",
+      "url": "https://github.com/jenkinsci/helm-charts/pull/1710",
+      "repository": "jenkinsci/helm-charts",
+      "state": "MERGED",
+      "author": "jenkins-dependency-updater",
+      "labels": null,
+      "body": "This PR contains the following updates:\n\n\n\nPackage\nUpdate\nChange\n\n\n\n\nkubernetes\nmajor\n4423.vb_59f230b_ce53 → 4467.vf26561292824\n\n\n\n\nRelease Notes\n\njenkinsci/kubernetes-plugin (kubernetes)\nv4467.vf26561292824\n\n🐛 Bug fixes\n\nWait for pod template on resume to avoid leaking agent pods after restart (#​2851) @​RanjitCS\n\n🚦 Tests\n\nUpdate Windows tests from LTSC 2019 to LTSC 2022 (#​2848) @​jglick\nMigrate tests to JUnit5 (#​1734) @​strangelookingnerd\n\n\n\nConfiguration\n📅 Schedule: (UTC)\n\nBranch creation\n\nAt any time (no schedule defined)\n\n\nAutomerge\n\nAt any time (no schedule defined)\n\n\n\n🚦 Automerge: Disabled by config. Please merge this manually once you are satisfied.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR has been generated by Mend Renovate.",
+      "createdAt": "2026-07-16T05:03:07Z"
     },
     {
       "title": "Update dependency org.csanchez.jenkins.plugins:kubernetes to v4467",
@@ -4842,18 +4852,6 @@
       "createdAt": "2025-12-31T20:33:31Z"
     },
     {
-      "title": "Update dependency org.jenkins-ci.plugins:azure-credentials to v404 - autoclosed",
-      "url": "https://github.com/jenkinsci/azure-keyvault-plugin/pull/337",
-      "repository": "jenkinsci/azure-keyvault-plugin",
-      "state": "CLOSED",
-      "author": "renovate",
-      "labels": [
-        "dependencies"
-      ],
-      "body": "This PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\norg.jenkins-ci.plugins:azure-credentials\n357.v6447d38fb_007 -\u003e 404.vd0fb_33a_8a_14e\n\n\n\n\n\n\nRelease Notes\n\njenkinsci/azure-credentials-plugin (org.jenkins-ci.plugins:azure-credentials)\nv404.vd0fb_33a_8a_14e\nCompare Source\n\n🐛 Bug fixes\n\nPrevent null Secret clientSecret in ServicePrincipal class (#​340) @​dwhjames\n\n📦 Dependency updates\n\nUpdate dependency com.puppycrawl.tools:checkstyle to v12.1.1 (#​339) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v254 (#​338) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v12.1.0 (#​337) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.27 (#​335) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v12 (#​336) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v248 (#​333) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.26 (#​332) @​renovate[bot]\nUpdate dependency io.jenkins.tools.incrementals:git-changelist-maven-extension to v1.13 (#​331) @​renovate[bot]\n\nv395.vb_a_9203343ef5\nCompare Source\n\n🐛 Bug fixes\n\nHandle credential expiry on validation button (#​330) @​timja\n\n👻 Maintenance\n\nBan JUnit 4 imports (#​325) @​strangelookingnerd\n\n🚦 Tests\n\nMigrate tests to JUnit5 (#​299) @​strangelookingnerd\n\n📦 Dependency updates\n\n35 changes\n\nUpdate dependency com.puppycrawl.tools:checkstyle to v11.0.1 (#​329) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.24 (#​327) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v243 (#​328) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.22 (#​326) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v11 (#​324) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.19 (#​323) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v239 (#​322) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v5054 (#​321) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v5043 (#​320) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.18 (#​319) @​renovate[bot]\nUpdate dependency io.jenkins.tools.incrementals:git-changelist-maven-extension to v1.10 (#​318) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.26.1 (#​317) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4948 (#​316) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.25.1 (#​315) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v223 (#​314) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.25.0 (#​313) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.24.0 (#​312) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4770 (#​311) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.17 (#​310) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4740 (#​309) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.16 (#​308) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4710 (#​307) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.14 (#​306) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.12 (#​305) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.23.1 (#​304) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v211 (#​303) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.11 (#​302) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4607 (#​301) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.10 (#​300) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.23.0 (#​297) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.22.0 (#​295) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.9 (#​292) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.21.4 (#​291) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4228 (#​290) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.21.3 (#​289) @​renovate[bot]\n\n\n\n\nConfiguration\n📅 Schedule: Branch creation - Between 12:00 AM and 03:59 AM, only on Monday ( * 0-3 * * 1 ) (UTC), Automerge - At any time (no schedule defined).\n🚦 Automerge: Enabled.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
-      "createdAt": "2025-11-03T01:48:59Z"
-    },
-    {
       "title": "chore(deps): bump org.jenkins-ci.plugins:pipeline-utility-steps from 2.19.0 to 2.20.0 in /bom-weekly",
       "url": "https://github.com/jenkinsci/bom/pull/5727",
       "repository": "jenkinsci/bom",
@@ -4864,6 +4862,18 @@
       ],
       "body": "Bumps org.jenkins-ci.plugins:pipeline-utility-steps from 2.19.0 to 2.20.0.\n\nRelease notes\nSourced from org.jenkins-ci.plugins:pipeline-utility-steps's releases.\n\n2.20.0\n\n🚀 New features and improvements\n\nAdd MD5 hash step support (#312) @​fabiodcasilva\n\n🐛 Bug fixes\n\nDo not consider arguments other than file for display (#288) @​zbynek\n\n📝 Documentation updates\n\nfix:link correction in pipeline utility steps page (#307) @​biru-codeastromer\n\n👻 Maintenance\n\nBan JUnit 4 imports (#331) @​strangelookingnerd\nMigrate tests to JUnit5 (#299) @​strangelookingnerd\nPrepare for Java 25 (#325) @​MarkEWaite\nCommons compress was removed from core (#314) @​jonesbusy\n\n📦 Dependency updates\n\nPrepare for Java 25 (#325) @​MarkEWaite\n\n\n\n\nCommits\n\nd043799 [maven-release-plugin] prepare release pipeline-utility-steps-2.20.0\n7d65c43 Merge pull request #288 from zbynek/patch-1\n4f06d20 Merge branch 'master' into patch-1\n44dc48f Merge pull request #312\naf2e9ed Merge branch 'migrate_to_junit5' of github.com:strangelookingnerd/pipeline-ut...\n5e52457 Merge branch 'support-md5-hash-step' of github.com:fabiodcasilva/pipeline-uti...\n478ed4f Migrate tests to JUnit5\n93db8cf Merge pull request #331 from strangelookingnerd/ban_junit4_imports\n7315412 Ban JUnit 4 imports\na3864ab Merge pull request #299 from strangelookingnerd/migrate_to_junit5\nAdditional commits viewable in compare view\n\n\n\n\nDependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting @dependabot rebase.\n\n\nDependabot commands and options\n\nYou can trigger Dependabot actions by commenting on this PR:\n\n@dependabot rebase will rebase this PR\n@dependabot recreate will recreate this PR, overwriting any edits that have been made to it\n@dependabot merge will merge this PR after your CI passes on it\n@dependabot squash and merge will squash and merge this PR after your CI passes on it\n@dependabot cancel merge will cancel a previously requested merge and block automerging\n@dependabot reopen will reopen this PR if it is closed\n@dependabot close will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually\n@dependabot show \u003cdependency name\u003e ignore conditions will show all of the ignore conditions of the specified dependency\n@dependabot ignore this major version will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)\n@dependabot ignore this minor version will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)\n@dependabot ignore this dependency will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)",
       "createdAt": "2025-09-24T15:57:02Z"
+    },
+    {
+      "title": "Update dependency org.jenkins-ci.plugins:azure-credentials to v404 - autoclosed",
+      "url": "https://github.com/jenkinsci/azure-keyvault-plugin/pull/337",
+      "repository": "jenkinsci/azure-keyvault-plugin",
+      "state": "CLOSED",
+      "author": "renovate",
+      "labels": [
+        "dependencies"
+      ],
+      "body": "This PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\norg.jenkins-ci.plugins:azure-credentials\n357.v6447d38fb_007 -\u003e 404.vd0fb_33a_8a_14e\n\n\n\n\n\n\nRelease Notes\n\njenkinsci/azure-credentials-plugin (org.jenkins-ci.plugins:azure-credentials)\nv404.vd0fb_33a_8a_14e\nCompare Source\n\n🐛 Bug fixes\n\nPrevent null Secret clientSecret in ServicePrincipal class (#​340) @​dwhjames\n\n📦 Dependency updates\n\nUpdate dependency com.puppycrawl.tools:checkstyle to v12.1.1 (#​339) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v254 (#​338) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v12.1.0 (#​337) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.27 (#​335) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v12 (#​336) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v248 (#​333) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.26 (#​332) @​renovate[bot]\nUpdate dependency io.jenkins.tools.incrementals:git-changelist-maven-extension to v1.13 (#​331) @​renovate[bot]\n\nv395.vb_a_9203343ef5\nCompare Source\n\n🐛 Bug fixes\n\nHandle credential expiry on validation button (#​330) @​timja\n\n👻 Maintenance\n\nBan JUnit 4 imports (#​325) @​strangelookingnerd\n\n🚦 Tests\n\nMigrate tests to JUnit5 (#​299) @​strangelookingnerd\n\n📦 Dependency updates\n\n35 changes\n\nUpdate dependency com.puppycrawl.tools:checkstyle to v11.0.1 (#​329) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.24 (#​327) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v243 (#​328) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.22 (#​326) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v11 (#​324) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.19 (#​323) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v239 (#​322) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v5054 (#​321) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v5043 (#​320) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.18 (#​319) @​renovate[bot]\nUpdate dependency io.jenkins.tools.incrementals:git-changelist-maven-extension to v1.10 (#​318) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.26.1 (#​317) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4948 (#​316) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.25.1 (#​315) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v223 (#​314) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.25.0 (#​313) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.24.0 (#​312) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4770 (#​311) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.17 (#​310) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4740 (#​309) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.16 (#​308) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4710 (#​307) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.14 (#​306) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.12 (#​305) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.23.1 (#​304) @​renovate[bot]\nUpdate dependency io.jenkins.plugins:azure-sdk to v211 (#​303) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.11 (#​302) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4607 (#​301) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.10 (#​300) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.23.0 (#​297) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.22.0 (#​295) @​renovate[bot]\nUpdate dependency org.jenkins-ci.plugins:plugin to v5.9 (#​292) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.21.4 (#​291) @​renovate[bot]\nUpdate dependency io.jenkins.tools.bom:bom-2.479.x to v4228 (#​290) @​renovate[bot]\nUpdate dependency com.puppycrawl.tools:checkstyle to v10.21.3 (#​289) @​renovate[bot]\n\n\n\n\nConfiguration\n📅 Schedule: Branch creation - Between 12:00 AM and 03:59 AM, only on Monday ( * 0-3 * * 1 ) (UTC), Automerge - At any time (no schedule defined).\n🚦 Automerge: Enabled.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
+      "createdAt": "2025-11-03T01:48:59Z"
     },
     {
       "title": "Update dependency org.testcontainers:testcontainers to v2 - autoclosed",
@@ -5120,18 +5130,6 @@
       "createdAt": "2026-01-13T12:31:06Z"
     },
     {
-      "title": "Update dependency org.testcontainers:testcontainers to v2 - autoclosed",
-      "url": "https://github.com/jenkinsci/pipeline-cps-oras-plugin/pull/40",
-      "repository": "jenkinsci/pipeline-cps-oras-plugin",
-      "state": "CLOSED",
-      "author": "renovate",
-      "labels": [
-        "dependencies"
-      ],
-      "body": "This PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\norg.testcontainers:testcontainers (source)\n1.21.4 → 2.0.3\n\n\n\n\n\n\nRelease Notes\n\ntestcontainers/testcontainers-java (org.testcontainers:testcontainers)\nv2.0.3\nCompare Source\nWhat's Changed\n\nUpdate questdb/questdb image version to 9.2.2 (#​11347) @​eddumelendez\nFix GitHub-Action Generate PR descriptions (#​11129) @​JackPGreen\nUpdate testcontainers version to ${GITHUB_REF##*/} (#​11220) @​github-actions[bot]\nUpdate docs version to ${GITHUB_REF##*/} (#​11221) @​github-actions[bot]\n\n🐛 Bug Fixes\n\nFix compatibility with older Docker Engines by falling back to v1.32 (#​11346) @​eddumelendez\n\n📖 Documentation\n\nDead links in CircleCI reference documentation (#​10789) @​JohnWill14\n\n📦 Dependency updates\n\n7 changes\n\nCombined dependencies PR (#​11353) @​eddumelendez\nCombined dependencies PR (#​11352) @​eddumelendez\nCombined dependencies PR (#​11341) @​eddumelendez\nCombined dependencies PR (#​11334) @​eddumelendez\nCombined dependencies PR (#​11333) @​eddumelendez\nCombined dependencies PR (#​11332) @​eddumelendez\nCombined dependencies PR (#​11323) @​eddumelendez\n\n\nv2.0.2\nCompare Source\nWhat's Changed\n\nUpdate docker image version to 25.0.5 (#​11219) @​eddumelendez\nSet default docker API version to 1.44 (#​11216) @​eddumelendez\nFix ollama example (#​11217) @​eddumelendez\nUpdate testcontainers version to ${GITHUB_REF##*/} (#​11125) @​github-actions[bot]\nUpdate docs version to ${GITHUB_REF##*/} (#​11126) @​github-actions[bot]\n\n🐛 Bug Fixes\n\nOptimize ScriptSplitter from O(n*m) to O(1) when initializing database (#​11130) @​hspragg-godaddy\n\n📖 Documentation\n\nUpdate kotest-extensions-testcontainers link (#​11138) @​noojung\n\n🧹 Housekeeping\n\nAdd getBaseUrl() to NginxContainer using NGINX_DEFAULT_PORT (#​11137) @​ghusta\n\n📦 Dependency updates\n\nUpdate docker-java version to 3.7.0 (#​11218) @​eddumelendez\n\nv2.0.1\nCompare Source\nWhat's Changed\n\nFixes exclusion of testcontainers-jdbc-test from publication (#​11115) @​froque\nUpdate docs version to ${GITHUB_REF##*/} (#​11110) @​github-actions[bot]\nUpdate testcontainers version to ${GITHUB_REF##*/} (#​11111) @​github-actions[bot]\n\n🐛 Bug Fixes\n\nAdd MySQLR2DBCDatabaseContainer compatible with org.testcontainers.mysql.MySQLContainer (#​11119) @​eddumelendez\nAdd MariaDBR2DBCDatabaseContainer compatible with org.testcontainers.mariadb.MariaDBContainer (#​11117) @​eddumelendez\nAdd MSSQLR2DBCDatabaseContainer compatible with org.testcontainers.mssqlserver.MSSQLServerContainer (#​11118) @​eddumelendez\nAdd PostgreSQLR2DBCDatabaseContainer compatible with org.testcontainers.postgresql.PostgreSQLContainer (#​11120) @​eddumelendez\n\n📖 Documentation\n\nFix artifact coordinates listed in docs (#​11121) @​ox-sag\nFix doc about Testcontainers JUnit Jupiter coordinates (#​11113) @​Chessray\n\n🧹 Housekeeping\n\nRemove lombok from OracleR2DBCDatabaseContainer (#​11116) @​eddumelendez\n\nv2.0.0\nCompare Source\nTestcontainers 2.0.0\nMain changes\n\nRemoved JUnit 4 support\nUpdated transitive dependencies\nAll modules are now prefixed with testcontainers-. For example, org.testcontainers:mysql is now org.testcontainers:testcontainers-mysql\nContainer classes relocated to org.testcontainers.\u003cmodule-name\u003e package. For example, new MySQLContainer class is under org.testcontainers.mysql\n\nWhat's Changed\n\nAdd support for ComposeContainer with Spock (#​11109) @​eddumelendez\norg.testcontainers.mysql.MySQLContainer do not copy default config (#​11107) @​eddumelendez\norg.testcontainers.mariadb.MariaDBContainer do not copy default config (#​11108) @​eddumelendez\nRemove org.testcontainers.neo4j.Neo4jContainer#withEnterpriseEdition (#​11106) @​eddumelendez\nMove CassandraDatabaseDelegate and CassandraQueryWaitStrategy to org.testcontainers.cassandra (#​11105) @​eddumelendez\nSwitch to com.mysql:mysql-connector-j (#​11078) @​rajucomp\nFix missing junit4 leftovers (#​10808) @​eddumelendez\nMove Selenium tests to JUnit Jupiter (#​10804) @​eddumelendez\nMove Testcontainers tests to JUnit Jupiter (#​10803) @​eddumelendez\nMove Toxiproxy tests to JUnit Jupiter (#​10757) @​vlsi\nReplace deprecated XmlSlurper with groovy.xml.XmlSlurper (#​10801) @​eddumelendez\nUpdate spring boot version to 3.5.6 in selenium example (#​10797) @​eddumelendez\nSkip databend module in CI (#​10793) @​eddumelendez\nMove database tests to JUnit Jupiter (#​10786) @​eddumelendez\nMove missing K3s tests to JUnit Jupiter (#​10785) @​eddumelendez\nMove database-commons tests to JUnit Jupiter (#​10772) @​eddumelendez\nMove R2DBC tests to JUnit Jupiter (#​10771) @​eddumelendez\nMove JDBC tests to JUnit Jupiter (#​10770) @​eddumelendez\nMove Weaviate tests to JUnit Jupiter (#​10769) @​eddumelendez\nMove Vault tests to JUnit Jupiter (#​10768) @​eddumelendez\nMove Solace assertions to assertj (#​10765) @​eddumelendez\nMove Solace tests to JUnit Jupiter (#​10764) @​eddumelendez\nMove ScyllaDB tests to JUnit Jupiter (#​10763) @​eddumelendez\nMove RabbitMQ tests to JUnit Jupiter (#​10761) @​eddumelendez\nMove Redpanda tests to JUnit Jupiter (#​10762) @​eddumelendez\nMove Qdrant tests to JUnit Jupiter (#​10760) @​eddumelendez\nMove Pulsar tests to JUnit Jupiter (#​10759) @​eddumelendez\nMove Pinecone tests to JUnit Jupiter (#​10758) @​eddumelendez\nMove OrientDB tests to JUnit Jupiter (#​10755) @​eddumelendez\nMove OpenFGA tests to JUnit Jupiter (#​10754) @​eddumelendez\nMove Ollama tests to JUnit Jupiter (#​10753) @​eddumelendez\nMove Nginx tests to JUnit Jupiter (#​10752) @​eddumelendez\nMove Neo4j tests to JUnit Jupiter (#​10751) @​eddumelendez\nMove MongoDB tests to JUnit Jupiter (#​10750) @​eddumelendez\nMove MockServer tests to JUnit Jupiter (#​10749) @​eddumelendez\nMove MinIO tests to JUnit Jupiter (#​10748) @​eddumelendez\nMove Milvus tests to JUnit Jupiter (#​10747) @​eddumelendez\nMove LocalStack tests to JUnit Jupiter (#​10746) @​eddumelendez\nUpdate ryuk version to 0.13.0 (#​10745) @​eddumelendez\nMove LDAP tests to JUnit Jupiter (#​10744) @​eddumelendez\nMove Kafka tests to JUnit Jupiter (#​10743) @​eddumelendez\nMove K6 tests to JUnit Jupiter (#​10742) @​eddumelendez\nMove K3s tests to JUnit Jupiter (#​10741) @​eddumelendez\nMove InfluxDB tests to JUnit Jupiter (#​10738) @​eddumelendez\nMove Grafana tests to JUnit Jupiter (#​10737) @​eddumelendez\nMove GCloud tests to JUnit Jupiter (#​10736) @​eddumelendez\nMove Elasticsearch tests to JUnit Jupiter (#​10735) @​eddumelendez\nMove Couchbase tests to JUnit Jupiter (#​10734) @​eddumelendez\nMove Consul tests to JUnit Jupiter (#​10732) @​eddumelendez\nMove ChromaDB tests to JUnit Jupiter (#​10730) @​eddumelendez\nMove Cassandra tests to JUnit Jupiter (#​10728) @​eddumelendez\nMove Azure tests to JUnit Jupiter (#​10727) @​eddumelendez\nMove ActiveMQ tests to JUnit Jupiter (#​10726) @​eddumelendez\nAdd testcontainers prefix to modules (#​10591) @​eddumelendez\nUse azure-sdk-bom (#​10480) @​eddumelendez\nUpdate Weaviate to v1.29.0 (#​10066) @​antas-marcin\n[Bug]: SolaceContainer misses permissions when using non-default VPN … (#​10450) @​infoShare\nRemove dynalite module (#​10384) @​eddumelendez\nMove cucumber example to junit5 (#​10383) @​eddumelendez\nUpdate testcontainers version to 1.21.3 (#​10379) @​github-actions[bot]\nUpdate docs version to 1.21.3 (#​10380) @​github-actions[bot]\n\n⚠️ Breaking API changes\n\nAdd support for specifying Docker image in DockerComposeContainer and ComposeContainer (#​9871) @​fokion\nRemove JUnit 4 support (#​10805) @​eddumelendez\nMake Neo4jContainer generic and drop deprecated method (#​10388) @​eddumelendez\nDrop module's default constructors (#​10385) @​eddumelendez\nRemove LinkableContainer from NginxContainer (#​10386) @​eddumelendez\n\n🚀 Features \u0026 Enhancements\n\nExpose gRPC endpoint from BigQueryEmulator (#​10779) @​Eliassen-Steinar\nAdd method getHttpUrl for ClickHouseContainer (#​10526) @​sbushmelev\n\n🐛 Bug Fixes\n\nFix Kafka listeners and advertised listeners config to come out of sync (#​11068) @​ThomasKasene\nFix support to set a custom database name in Host-less JDBC urls (#​10603) @​maxhov\nMake MySQLContainer compatible with mysql:9.3.0 (#​10185) @​livk-cloud\n\n📖 Documentation\n\nFix CassandraContainer wait strategy when SSL is configured (#​9419) @​maximevw\nAdd Solr container implementation under org.testcontainers.solr (#​11104) @​eddumelendez\nAdd OrientDB container implementation under org.testcontainers.orientdb (#​11098) @​eddumelendez\nAdd Neo4J container implementation under org.testcontainers.neo4j (#​11097) @​eddumelendez\nAdd Selenium container implementation under org.testcontainers.selenium (#​11096) @​eddumelendez\nAdd MongoDB container implementation under org.testcontainers.mongodb (#​11095) @​eddumelendez\nAdd DB2 container implementation under org.testcontainers.db2 (#​11094) @​eddumelendez\nMove TiDB tests under org.testcontainers.tidb (#​11093) @​eddumelendez\nAdd Trino container implementation under org.testcontainers.trino (#​11092) @​eddumelendez\nAdd Toxiproxy container implementation under org.testcontainers.toxiproxy (#​11091) @​eddumelendez\nAdd RabbitMQ container implementation under org.testcontainers.rabbitmq (#​11090) @​eddumelendez\nAdd Pulsar container implementation under org.testcontainers.pulsar (#​11089) @​eddumelendez\nAdd PostgreSQL container implementation under org.testcontainers.postgresql (#​11088) @​eddumelendez\nAdd Nginx container implementation under org.testcontainers.nginx (#​11087) @​eddumelendez\nAdd MySQL container implementation under org.testcontainers.mysql (#​11086) @​eddumelendez\nAdd MSSQLServer container implementation under org.testcontainers.mssqlserver (#​11085) @​eddumelendez\nAdd MockServer container implementation under org.testcontainers.mockserver (#​11084) @​eddumelendez\nAdd MariaDB container implementation under org.testcontainers.mariadb (#​11083) @​eddumelendez\nAdd LocalStack container implementation under org.testcontainers.localstack (#​11082) @​eddumelendez\nAdd GCloud container implementations under org.testcontainers.gcloud (#​11081) @​eddumelendez\nAdd CockroachDB container implementation under org.testcontainers.cockroachdb (#​11080) @​eddumelendez\nRemoving doc examples of the deprecated kafka container  (#​10712) @​etrandafir93\nAdd Testcontainers JDBC URL section to modules (#​10609) @​eddumelendez\nFix JDBC docs (#​10608) @​eddumelendez\nImprove database docs (#​10607) @​eddumelendez\nFix redpanda docs link (#​10606) @​eddumelendez\nFix grafana docs (#​10605) @​eddumelendez\nMove localstack's tests to aws sdk v2 (#​10592) @​eddumelendez\n\n🧹 Housekeeping\n\nCentralize junit jupiter and assertj dependencies (#​11067) @​eddumelendez\nFix javadoc ConfluentKafkaContainer.java (#​10714) @​gusega\nRemove httpclient5 dependency from clickhouse (#​10610) @​eddumelendez\nFix parameter check in Kafka cluster examples (#​10361) @​winfriedgerlach\nImplement AutoCloseable for TestcontainersExtension$StoreAdapter (#​10529) @​linghengqian\nUse rest-assured in mockserver module (#​10523) @​eddumelendez\nRestore JibTest (#​10520) @​eddumelendez\nRemove support for docker/agents_gateway (#​10473) @​eddumelendez\n\n📦 Dependency updates\n\n46 changes\n\nCombined dependencies PR (#​11077) @​eddumelendez\nCombined dependencies PR (#​11076) @​eddumelendez\nCombined dependencies PR (#​11075) @​eddumelendez\nCombined dependencies PR (#​11071) @​eddumelendez\nCombined dependencies PR (#​11070) @​eddumelendez\nCombined dependencies PR (#​11069) @​eddumelendez\nCombined dependencies PR (#​10800) @​eddumelendez\nCombined dependencies PR (#​10798) @​eddumelendez\nCombined dependencies PR (#​10722) @​eddumelendez\nCombined dependencies PR (#​10721) @​eddumelendez\nCombined dependencies PR (#​10720) @​eddumelendez\nCombined dependencies PR (#​10717) @​eddumelendez\nCombined dependencies PR (#​10716) @​eddumelendez\nCombined dependencies PR (#​10715) @​eddumelendez\nCombined dependencies PR (#​10709) @​eddumelendez\nCombined dependencies PR (#​10602) @​eddumelendez\nUpdate clickhouse version to 0.9.1 (#​10593) @​eddumelendez\nMove localstack's tests to aws sdk v2 (#​10592) @​eddumelendez\nCombined dependencies PR (#​10589) @​eddumelendez\nCombined dependencies PR (#​10587) @​eddumelendez\nCombined dependencies PR (#​10560) @​eddumelendez\nCombined dependencies PR (#​10559) @​eddumelendez\nRemove junit-toolbox dependency (#​10522) @​eddumelendez\nCombined dependencies PR (#​10521) @​eddumelendez\nCombined dependencies PR (#​10519) @​eddumelendez\nUpdate jackson, snakeyaml and docker-java versions (#​10258) @​ZachChuba\nUpdate org.questdb:questdb version to 9.0.0 (#​10486) @​eddumelendez\nUpdate com.google.cloud:libraries-bom version to 26.63.0 (#​10485) @​eddumelendez\nCombined dependencies PR (#​10484) @​eddumelendez\nCombined dependencies PR (#​10483) @​eddumelendez\nCombined dependencies PR (#​10482) @​eddumelendez\nCombined dependencies PR (#​10481) @​eddumelendez\nCombined dependencies PR (#​10474) @​eddumelendez\nCombined dependencies PR (#​10472) @​eddumelendez\nCombined dependencies PR (#​10471) @​eddumelendez\nCombined dependencies PR (#​10469) @​eddumelendez\nCombined dependencies PR (#​10468) @​eddumelendez\nCombined dependencies PR (#​10467) @​eddumelendez\nCombined dependencies PR (#​10466) @​eddumelendez\nCombined dependencies PR (#​10464) @​eddumelendez\nCombined dependencies PR (#​10463) @​eddumelendez\nCombined dependencies PR (#​10462) @​eddumelendez\nCombined dependencies PR (#​10460) @​eddumelendez\nCombined dependencies PR (#​10459) @​eddumelendez\nCombined dependencies PR (#​10456) @​eddumelendez\nUpdate Gradle Wrapper from undefined to 8.14.3 (#​10452) @​github-actions[bot]\n\n\n\n\nConfiguration\n📅 Schedule: Branch creation - Between 12:00 AM and 03:59 AM, on day 1 of the month ( * 0-3 1 * * ) (UTC), Automerge - At any time (no schedule defined).\n🚦 Automerge: Disabled by config. Please merge this manually once you are satisfied.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
-      "createdAt": "2026-01-11T07:17:40Z"
-    },
-    {
       "title": "build(deps): Bump com.squareup.okhttp3:okhttp from 4.11.0 to 5.1.0",
       "url": "https://github.com/jenkinsci/tuleap-git-branch-source-plugin/pull/645",
       "repository": "jenkinsci/tuleap-git-branch-source-plugin",
@@ -5157,6 +5155,18 @@
       ],
       "body": "Coming soon: The Renovate bot (GitHub App) will be renamed to Mend. PRs from Renovate will soon appear from 'Mend'. Learn more here.\nThis PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\norg.jenkins-ci.plugins:credentials (source)\n1419.v2337d1ceceef -\u003e 1447.v4cb_b_539b_5321\n\n\n\n\n\n\nRelease Notes\n\njenkinsci/credentials-plugin (org.jenkins-ci.plugins:credentials)\nv1447.v4cb_b_539b_5321\nCompare Source\n\n🐛 Bug fixes\n\nJENKINS-19413 - Use CredentialsDescriptor.findContextInPath rather than directly StaplerRequest2.findAncestorObject (#​651) @​jglick\n\n🚦 Tests\n\nMigrate tests to JUnit5 (#​600) @​strangelookingnerd\n\nv1442.v292d4234d1b_f\nCompare Source\n\n🚀 New features and improvements\n\nRefine Credentials page (#​637) @​janfaracik\nimprove dialog to add credentials (#​602) @​mawinter69\nInline Add button (#​640) @​janfaracik\n\n🐛 Bug fixes\n\nFix missing url for credentials used by agents (#​647) @​mawinter69\n\n📝 Documentation updates\n\nUpdate user.adoc - Example of adding a 'secret text' credential and correction of a misspelling. (#​561) @​kovacstim\nAddress javadoc warnings: no {@\u0026#8203;inheritDoc} for Constructors and Classes (#​642) @​jimklimov\n\n👻 Maintenance\n\nRemove action.jelly (#​627) @​janfaracik\nConsistently use Commons Text library plugin (#​644) @​basil\n\n📦 Dependency updates\n\nBump org.xmlunit:xmlunit-matchers from 2.10.0 to 2.10.3 (#​630) @​dependabot[bot]\nBump io.jenkins.tools.incrementals:git-changelist-maven-extension from 1.8 to 1.13 (#​649) @​dependabot[bot]\nBump org.jenkins-ci.plugins:plugin from 5.19 to 5.26 (#​650) @​dependabot[bot]\nBump org.jenkins-ci.plugins:plugin from 5.9 to 5.19 (#​643) @​dependabot[bot]\n\n\n\nConfiguration\n📅 Schedule: Branch creation - At any time (no schedule defined), Automerge - At any time (no schedule defined).\n🚦 Automerge: Disabled by config. Please merge this manually once you are satisfied.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
       "createdAt": "2025-09-12T20:05:31Z"
+    },
+    {
+      "title": "Update dependency org.testcontainers:testcontainers to v2 - autoclosed",
+      "url": "https://github.com/jenkinsci/pipeline-cps-oras-plugin/pull/40",
+      "repository": "jenkinsci/pipeline-cps-oras-plugin",
+      "state": "CLOSED",
+      "author": "renovate",
+      "labels": [
+        "dependencies"
+      ],
+      "body": "This PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\norg.testcontainers:testcontainers (source)\n1.21.4 → 2.0.3\n\n\n\n\n\n\nRelease Notes\n\ntestcontainers/testcontainers-java (org.testcontainers:testcontainers)\nv2.0.3\nCompare Source\nWhat's Changed\n\nUpdate questdb/questdb image version to 9.2.2 (#​11347) @​eddumelendez\nFix GitHub-Action Generate PR descriptions (#​11129) @​JackPGreen\nUpdate testcontainers version to ${GITHUB_REF##*/} (#​11220) @​github-actions[bot]\nUpdate docs version to ${GITHUB_REF##*/} (#​11221) @​github-actions[bot]\n\n🐛 Bug Fixes\n\nFix compatibility with older Docker Engines by falling back to v1.32 (#​11346) @​eddumelendez\n\n📖 Documentation\n\nDead links in CircleCI reference documentation (#​10789) @​JohnWill14\n\n📦 Dependency updates\n\n7 changes\n\nCombined dependencies PR (#​11353) @​eddumelendez\nCombined dependencies PR (#​11352) @​eddumelendez\nCombined dependencies PR (#​11341) @​eddumelendez\nCombined dependencies PR (#​11334) @​eddumelendez\nCombined dependencies PR (#​11333) @​eddumelendez\nCombined dependencies PR (#​11332) @​eddumelendez\nCombined dependencies PR (#​11323) @​eddumelendez\n\n\nv2.0.2\nCompare Source\nWhat's Changed\n\nUpdate docker image version to 25.0.5 (#​11219) @​eddumelendez\nSet default docker API version to 1.44 (#​11216) @​eddumelendez\nFix ollama example (#​11217) @​eddumelendez\nUpdate testcontainers version to ${GITHUB_REF##*/} (#​11125) @​github-actions[bot]\nUpdate docs version to ${GITHUB_REF##*/} (#​11126) @​github-actions[bot]\n\n🐛 Bug Fixes\n\nOptimize ScriptSplitter from O(n*m) to O(1) when initializing database (#​11130) @​hspragg-godaddy\n\n📖 Documentation\n\nUpdate kotest-extensions-testcontainers link (#​11138) @​noojung\n\n🧹 Housekeeping\n\nAdd getBaseUrl() to NginxContainer using NGINX_DEFAULT_PORT (#​11137) @​ghusta\n\n📦 Dependency updates\n\nUpdate docker-java version to 3.7.0 (#​11218) @​eddumelendez\n\nv2.0.1\nCompare Source\nWhat's Changed\n\nFixes exclusion of testcontainers-jdbc-test from publication (#​11115) @​froque\nUpdate docs version to ${GITHUB_REF##*/} (#​11110) @​github-actions[bot]\nUpdate testcontainers version to ${GITHUB_REF##*/} (#​11111) @​github-actions[bot]\n\n🐛 Bug Fixes\n\nAdd MySQLR2DBCDatabaseContainer compatible with org.testcontainers.mysql.MySQLContainer (#​11119) @​eddumelendez\nAdd MariaDBR2DBCDatabaseContainer compatible with org.testcontainers.mariadb.MariaDBContainer (#​11117) @​eddumelendez\nAdd MSSQLR2DBCDatabaseContainer compatible with org.testcontainers.mssqlserver.MSSQLServerContainer (#​11118) @​eddumelendez\nAdd PostgreSQLR2DBCDatabaseContainer compatible with org.testcontainers.postgresql.PostgreSQLContainer (#​11120) @​eddumelendez\n\n📖 Documentation\n\nFix artifact coordinates listed in docs (#​11121) @​ox-sag\nFix doc about Testcontainers JUnit Jupiter coordinates (#​11113) @​Chessray\n\n🧹 Housekeeping\n\nRemove lombok from OracleR2DBCDatabaseContainer (#​11116) @​eddumelendez\n\nv2.0.0\nCompare Source\nTestcontainers 2.0.0\nMain changes\n\nRemoved JUnit 4 support\nUpdated transitive dependencies\nAll modules are now prefixed with testcontainers-. For example, org.testcontainers:mysql is now org.testcontainers:testcontainers-mysql\nContainer classes relocated to org.testcontainers.\u003cmodule-name\u003e package. For example, new MySQLContainer class is under org.testcontainers.mysql\n\nWhat's Changed\n\nAdd support for ComposeContainer with Spock (#​11109) @​eddumelendez\norg.testcontainers.mysql.MySQLContainer do not copy default config (#​11107) @​eddumelendez\norg.testcontainers.mariadb.MariaDBContainer do not copy default config (#​11108) @​eddumelendez\nRemove org.testcontainers.neo4j.Neo4jContainer#withEnterpriseEdition (#​11106) @​eddumelendez\nMove CassandraDatabaseDelegate and CassandraQueryWaitStrategy to org.testcontainers.cassandra (#​11105) @​eddumelendez\nSwitch to com.mysql:mysql-connector-j (#​11078) @​rajucomp\nFix missing junit4 leftovers (#​10808) @​eddumelendez\nMove Selenium tests to JUnit Jupiter (#​10804) @​eddumelendez\nMove Testcontainers tests to JUnit Jupiter (#​10803) @​eddumelendez\nMove Toxiproxy tests to JUnit Jupiter (#​10757) @​vlsi\nReplace deprecated XmlSlurper with groovy.xml.XmlSlurper (#​10801) @​eddumelendez\nUpdate spring boot version to 3.5.6 in selenium example (#​10797) @​eddumelendez\nSkip databend module in CI (#​10793) @​eddumelendez\nMove database tests to JUnit Jupiter (#​10786) @​eddumelendez\nMove missing K3s tests to JUnit Jupiter (#​10785) @​eddumelendez\nMove database-commons tests to JUnit Jupiter (#​10772) @​eddumelendez\nMove R2DBC tests to JUnit Jupiter (#​10771) @​eddumelendez\nMove JDBC tests to JUnit Jupiter (#​10770) @​eddumelendez\nMove Weaviate tests to JUnit Jupiter (#​10769) @​eddumelendez\nMove Vault tests to JUnit Jupiter (#​10768) @​eddumelendez\nMove Solace assertions to assertj (#​10765) @​eddumelendez\nMove Solace tests to JUnit Jupiter (#​10764) @​eddumelendez\nMove ScyllaDB tests to JUnit Jupiter (#​10763) @​eddumelendez\nMove RabbitMQ tests to JUnit Jupiter (#​10761) @​eddumelendez\nMove Redpanda tests to JUnit Jupiter (#​10762) @​eddumelendez\nMove Qdrant tests to JUnit Jupiter (#​10760) @​eddumelendez\nMove Pulsar tests to JUnit Jupiter (#​10759) @​eddumelendez\nMove Pinecone tests to JUnit Jupiter (#​10758) @​eddumelendez\nMove OrientDB tests to JUnit Jupiter (#​10755) @​eddumelendez\nMove OpenFGA tests to JUnit Jupiter (#​10754) @​eddumelendez\nMove Ollama tests to JUnit Jupiter (#​10753) @​eddumelendez\nMove Nginx tests to JUnit Jupiter (#​10752) @​eddumelendez\nMove Neo4j tests to JUnit Jupiter (#​10751) @​eddumelendez\nMove MongoDB tests to JUnit Jupiter (#​10750) @​eddumelendez\nMove MockServer tests to JUnit Jupiter (#​10749) @​eddumelendez\nMove MinIO tests to JUnit Jupiter (#​10748) @​eddumelendez\nMove Milvus tests to JUnit Jupiter (#​10747) @​eddumelendez\nMove LocalStack tests to JUnit Jupiter (#​10746) @​eddumelendez\nUpdate ryuk version to 0.13.0 (#​10745) @​eddumelendez\nMove LDAP tests to JUnit Jupiter (#​10744) @​eddumelendez\nMove Kafka tests to JUnit Jupiter (#​10743) @​eddumelendez\nMove K6 tests to JUnit Jupiter (#​10742) @​eddumelendez\nMove K3s tests to JUnit Jupiter (#​10741) @​eddumelendez\nMove InfluxDB tests to JUnit Jupiter (#​10738) @​eddumelendez\nMove Grafana tests to JUnit Jupiter (#​10737) @​eddumelendez\nMove GCloud tests to JUnit Jupiter (#​10736) @​eddumelendez\nMove Elasticsearch tests to JUnit Jupiter (#​10735) @​eddumelendez\nMove Couchbase tests to JUnit Jupiter (#​10734) @​eddumelendez\nMove Consul tests to JUnit Jupiter (#​10732) @​eddumelendez\nMove ChromaDB tests to JUnit Jupiter (#​10730) @​eddumelendez\nMove Cassandra tests to JUnit Jupiter (#​10728) @​eddumelendez\nMove Azure tests to JUnit Jupiter (#​10727) @​eddumelendez\nMove ActiveMQ tests to JUnit Jupiter (#​10726) @​eddumelendez\nAdd testcontainers prefix to modules (#​10591) @​eddumelendez\nUse azure-sdk-bom (#​10480) @​eddumelendez\nUpdate Weaviate to v1.29.0 (#​10066) @​antas-marcin\n[Bug]: SolaceContainer misses permissions when using non-default VPN … (#​10450) @​infoShare\nRemove dynalite module (#​10384) @​eddumelendez\nMove cucumber example to junit5 (#​10383) @​eddumelendez\nUpdate testcontainers version to 1.21.3 (#​10379) @​github-actions[bot]\nUpdate docs version to 1.21.3 (#​10380) @​github-actions[bot]\n\n⚠️ Breaking API changes\n\nAdd support for specifying Docker image in DockerComposeContainer and ComposeContainer (#​9871) @​fokion\nRemove JUnit 4 support (#​10805) @​eddumelendez\nMake Neo4jContainer generic and drop deprecated method (#​10388) @​eddumelendez\nDrop module's default constructors (#​10385) @​eddumelendez\nRemove LinkableContainer from NginxContainer (#​10386) @​eddumelendez\n\n🚀 Features \u0026 Enhancements\n\nExpose gRPC endpoint from BigQueryEmulator (#​10779) @​Eliassen-Steinar\nAdd method getHttpUrl for ClickHouseContainer (#​10526) @​sbushmelev\n\n🐛 Bug Fixes\n\nFix Kafka listeners and advertised listeners config to come out of sync (#​11068) @​ThomasKasene\nFix support to set a custom database name in Host-less JDBC urls (#​10603) @​maxhov\nMake MySQLContainer compatible with mysql:9.3.0 (#​10185) @​livk-cloud\n\n📖 Documentation\n\nFix CassandraContainer wait strategy when SSL is configured (#​9419) @​maximevw\nAdd Solr container implementation under org.testcontainers.solr (#​11104) @​eddumelendez\nAdd OrientDB container implementation under org.testcontainers.orientdb (#​11098) @​eddumelendez\nAdd Neo4J container implementation under org.testcontainers.neo4j (#​11097) @​eddumelendez\nAdd Selenium container implementation under org.testcontainers.selenium (#​11096) @​eddumelendez\nAdd MongoDB container implementation under org.testcontainers.mongodb (#​11095) @​eddumelendez\nAdd DB2 container implementation under org.testcontainers.db2 (#​11094) @​eddumelendez\nMove TiDB tests under org.testcontainers.tidb (#​11093) @​eddumelendez\nAdd Trino container implementation under org.testcontainers.trino (#​11092) @​eddumelendez\nAdd Toxiproxy container implementation under org.testcontainers.toxiproxy (#​11091) @​eddumelendez\nAdd RabbitMQ container implementation under org.testcontainers.rabbitmq (#​11090) @​eddumelendez\nAdd Pulsar container implementation under org.testcontainers.pulsar (#​11089) @​eddumelendez\nAdd PostgreSQL container implementation under org.testcontainers.postgresql (#​11088) @​eddumelendez\nAdd Nginx container implementation under org.testcontainers.nginx (#​11087) @​eddumelendez\nAdd MySQL container implementation under org.testcontainers.mysql (#​11086) @​eddumelendez\nAdd MSSQLServer container implementation under org.testcontainers.mssqlserver (#​11085) @​eddumelendez\nAdd MockServer container implementation under org.testcontainers.mockserver (#​11084) @​eddumelendez\nAdd MariaDB container implementation under org.testcontainers.mariadb (#​11083) @​eddumelendez\nAdd LocalStack container implementation under org.testcontainers.localstack (#​11082) @​eddumelendez\nAdd GCloud container implementations under org.testcontainers.gcloud (#​11081) @​eddumelendez\nAdd CockroachDB container implementation under org.testcontainers.cockroachdb (#​11080) @​eddumelendez\nRemoving doc examples of the deprecated kafka container  (#​10712) @​etrandafir93\nAdd Testcontainers JDBC URL section to modules (#​10609) @​eddumelendez\nFix JDBC docs (#​10608) @​eddumelendez\nImprove database docs (#​10607) @​eddumelendez\nFix redpanda docs link (#​10606) @​eddumelendez\nFix grafana docs (#​10605) @​eddumelendez\nMove localstack's tests to aws sdk v2 (#​10592) @​eddumelendez\n\n🧹 Housekeeping\n\nCentralize junit jupiter and assertj dependencies (#​11067) @​eddumelendez\nFix javadoc ConfluentKafkaContainer.java (#​10714) @​gusega\nRemove httpclient5 dependency from clickhouse (#​10610) @​eddumelendez\nFix parameter check in Kafka cluster examples (#​10361) @​winfriedgerlach\nImplement AutoCloseable for TestcontainersExtension$StoreAdapter (#​10529) @​linghengqian\nUse rest-assured in mockserver module (#​10523) @​eddumelendez\nRestore JibTest (#​10520) @​eddumelendez\nRemove support for docker/agents_gateway (#​10473) @​eddumelendez\n\n📦 Dependency updates\n\n46 changes\n\nCombined dependencies PR (#​11077) @​eddumelendez\nCombined dependencies PR (#​11076) @​eddumelendez\nCombined dependencies PR (#​11075) @​eddumelendez\nCombined dependencies PR (#​11071) @​eddumelendez\nCombined dependencies PR (#​11070) @​eddumelendez\nCombined dependencies PR (#​11069) @​eddumelendez\nCombined dependencies PR (#​10800) @​eddumelendez\nCombined dependencies PR (#​10798) @​eddumelendez\nCombined dependencies PR (#​10722) @​eddumelendez\nCombined dependencies PR (#​10721) @​eddumelendez\nCombined dependencies PR (#​10720) @​eddumelendez\nCombined dependencies PR (#​10717) @​eddumelendez\nCombined dependencies PR (#​10716) @​eddumelendez\nCombined dependencies PR (#​10715) @​eddumelendez\nCombined dependencies PR (#​10709) @​eddumelendez\nCombined dependencies PR (#​10602) @​eddumelendez\nUpdate clickhouse version to 0.9.1 (#​10593) @​eddumelendez\nMove localstack's tests to aws sdk v2 (#​10592) @​eddumelendez\nCombined dependencies PR (#​10589) @​eddumelendez\nCombined dependencies PR (#​10587) @​eddumelendez\nCombined dependencies PR (#​10560) @​eddumelendez\nCombined dependencies PR (#​10559) @​eddumelendez\nRemove junit-toolbox dependency (#​10522) @​eddumelendez\nCombined dependencies PR (#​10521) @​eddumelendez\nCombined dependencies PR (#​10519) @​eddumelendez\nUpdate jackson, snakeyaml and docker-java versions (#​10258) @​ZachChuba\nUpdate org.questdb:questdb version to 9.0.0 (#​10486) @​eddumelendez\nUpdate com.google.cloud:libraries-bom version to 26.63.0 (#​10485) @​eddumelendez\nCombined dependencies PR (#​10484) @​eddumelendez\nCombined dependencies PR (#​10483) @​eddumelendez\nCombined dependencies PR (#​10482) @​eddumelendez\nCombined dependencies PR (#​10481) @​eddumelendez\nCombined dependencies PR (#​10474) @​eddumelendez\nCombined dependencies PR (#​10472) @​eddumelendez\nCombined dependencies PR (#​10471) @​eddumelendez\nCombined dependencies PR (#​10469) @​eddumelendez\nCombined dependencies PR (#​10468) @​eddumelendez\nCombined dependencies PR (#​10467) @​eddumelendez\nCombined dependencies PR (#​10466) @​eddumelendez\nCombined dependencies PR (#​10464) @​eddumelendez\nCombined dependencies PR (#​10463) @​eddumelendez\nCombined dependencies PR (#​10462) @​eddumelendez\nCombined dependencies PR (#​10460) @​eddumelendez\nCombined dependencies PR (#​10459) @​eddumelendez\nCombined dependencies PR (#​10456) @​eddumelendez\nUpdate Gradle Wrapper from undefined to 8.14.3 (#​10452) @​github-actions[bot]\n\n\n\n\nConfiguration\n📅 Schedule: Branch creation - Between 12:00 AM and 03:59 AM, on day 1 of the month ( * 0-3 1 * * ) (UTC), Automerge - At any time (no schedule defined).\n🚦 Automerge: Disabled by config. Please merge this manually once you are satisfied.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about this update again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
+      "createdAt": "2026-01-11T07:17:40Z"
     },
     {
       "title": "Update dependency org.springframework:spring-framework-bom to v7",
@@ -7231,19 +7241,6 @@
     },
     {
       "title": "Migrate tests to JUnit Jupiter",
-      "url": "https://github.com/jenkinsci/gerrit-trigger-plugin/pull/1016",
-      "repository": "jenkinsci/gerrit-trigger-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": [
-        "chore",
-        "tests"
-      ],
-      "body": "This PR aims to migrate all tests to JUnit Jupiter. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\nBan JUnit4 imports\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2026-06-26T07:46:10Z"
-    },
-    {
-      "title": "Migrate tests to JUnit Jupiter",
       "url": "https://github.com/jenkinsci/contrast-continuous-application-security-plugin/pull/95",
       "repository": "jenkinsci/contrast-continuous-application-security-plugin",
       "state": "OPEN",
@@ -7273,16 +7270,6 @@
       "labels": null,
       "body": "This PR aims to migrate all tests to JUnit Jupiter. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\nBan JUnit4 imports\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2026-03-26T16:06:21Z"
-    },
-    {
-      "title": "Migrate tests to JUnit Jupiter",
-      "url": "https://github.com/jenkinsci/pipeline-build-step-plugin/pull/170",
-      "repository": "jenkinsci/pipeline-build-step-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "This PR aims to migrate all tests to JUnit Jupiter. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\nBan JUnit4 imports\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-10-28T08:11:05Z"
     },
     {
       "title": "Migrate tests to JUnit Jupiter",
@@ -7446,6 +7433,19 @@
     },
     {
       "title": "Migrate tests to JUnit Jupiter",
+      "url": "https://github.com/jenkinsci/gerrit-trigger-plugin/pull/1016",
+      "repository": "jenkinsci/gerrit-trigger-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": [
+        "chore",
+        "tests"
+      ],
+      "body": "This PR aims to migrate all tests to JUnit Jupiter. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\nBan JUnit4 imports\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2026-06-26T07:46:10Z"
+    },
+    {
+      "title": "Migrate tests to JUnit Jupiter",
       "url": "https://github.com/jenkinsci/anything-goes-formatter-plugin/pull/28",
       "repository": "jenkinsci/anything-goes-formatter-plugin",
       "state": "MERGED",
@@ -7466,6 +7466,18 @@
       "labels": null,
       "body": "This PR aims to migrate all tests to JUnit Jupiter. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\nBan JUnit4 imports\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2026-04-07T09:34:30Z"
+    },
+    {
+      "title": "Migrate tests to JUnit Jupiter",
+      "url": "https://github.com/jenkinsci/pipeline-build-step-plugin/pull/170",
+      "repository": "jenkinsci/pipeline-build-step-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": [
+        "test"
+      ],
+      "body": "This PR aims to migrate all tests to JUnit Jupiter. Changes include:\n\nMigrate annotations and imports\nMigrate assertions\nRemove public visibility for test classes and methods\nMinor clean up\nBan JUnit4 imports\n\nI am well aware that this is a quite large changeset however I hope that there is still interest in this PR and it will be reviewed.\nIf there are any questions, please do not hesitate to ping me.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-10-28T08:11:05Z"
     },
     {
       "title": "Migrate tests to JUnit Jupiter",
@@ -8532,6 +8544,16 @@
       "createdAt": "2025-11-20T08:17:55Z"
     },
     {
+      "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/snyk-security-scanner-plugin/pull/164",
+      "repository": "jenkinsci/snyk-security-scanner-plugin",
+      "state": "OPEN",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-08-26T13:20:57Z"
+    },
+    {
       "title": "Update junit-framework monorepo to v6.1.2",
       "url": "https://github.com/jenkinsci/incrementals-tools/pull/171",
       "repository": "jenkinsci/incrementals-tools",
@@ -8542,16 +8564,6 @@
       ],
       "body": "This PR contains the following updates:\n\n\n\nPackage\nChange\nAge\nConfidence\n\n\n\n\norg.junit.jupiter:junit-jupiter-api (source)\n6.1.1 → 6.1.2\n\n\n\n\norg.junit.vintage:junit-vintage-engine (source)\n6.1.1 → 6.1.2\n\n\n\n\norg.junit.jupiter:junit-jupiter-params (source)\n6.1.1 → 6.1.2\n\n\n\n\n\n\nConfiguration\n📅 Schedule: (UTC)\n\nBranch creation\n\n\"every 2 weeks on monday\"\n\n\nAutomerge\n\nAt any time (no schedule defined)\n\n\n\n🚦 Automerge: Enabled.\n♻ Rebasing: Whenever PR becomes conflicted, or you tick the rebase/retry checkbox.\n🔕 Ignore: Close this PR and you won't be reminded about these updates again.\n\n\n If you want to rebase/retry this PR, check this box\n\n\nThis PR was generated by Mend Renovate. View the repository job log.",
       "createdAt": "2026-07-13T01:28:13Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/snyk-security-scanner-plugin/pull/164",
-      "repository": "jenkinsci/snyk-security-scanner-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-08-26T13:20:57Z"
     },
     {
       "title": "Ban JUnit 4 imports",
@@ -8577,16 +8589,6 @@
     },
     {
       "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/codesonar-plugin/pull/31",
-      "repository": "jenkinsci/codesonar-plugin",
-      "state": "OPEN",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-08-19T06:57:27Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
       "url": "https://github.com/jenkinsci/postbuildscript-plugin/pull/267",
       "repository": "jenkinsci/postbuildscript-plugin",
       "state": "OPEN",
@@ -8594,6 +8596,16 @@
       "labels": null,
       "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-08-15T13:09:21Z"
+    },
+    {
+      "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/codesonar-plugin/pull/31",
+      "repository": "jenkinsci/codesonar-plugin",
+      "state": "OPEN",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-08-19T06:57:27Z"
     },
     {
       "title": "Update junit-framework monorepo to v6.1.1",
@@ -9049,16 +9061,6 @@
     },
     {
       "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/disk-usage-plugin/pull/106",
-      "repository": "jenkinsci/disk-usage-plugin",
-      "state": "CLOSED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2026-01-10T12:29:08Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
       "url": "https://github.com/jenkinsci/powershell-plugin/pull/38",
       "repository": "jenkinsci/powershell-plugin",
       "state": "MERGED",
@@ -9066,6 +9068,16 @@
       "labels": null,
       "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2026-01-09T10:30:53Z"
+    },
+    {
+      "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/disk-usage-plugin/pull/106",
+      "repository": "jenkinsci/disk-usage-plugin",
+      "state": "CLOSED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2026-01-10T12:29:08Z"
     },
     {
       "title": "Ban JUnit 4 imports",
@@ -9233,6 +9245,16 @@
     },
     {
       "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/extended-timer-trigger-plugin/pull/40",
+      "repository": "jenkinsci/extended-timer-trigger-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-12-21T21:14:29Z"
+    },
+    {
+      "title": "Ban JUnit 4 imports",
       "url": "https://github.com/jenkinsci/timestamper-plugin/pull/513",
       "repository": "jenkinsci/timestamper-plugin",
       "state": "MERGED",
@@ -9242,16 +9264,6 @@
       ],
       "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-12-22T14:28:43Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/extended-timer-trigger-plugin/pull/40",
-      "repository": "jenkinsci/extended-timer-trigger-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-12-21T21:14:29Z"
     },
     {
       "title": "Ban JUnit 4 imports",
@@ -9614,16 +9626,6 @@
     },
     {
       "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/pipeline-agent-build-history-plugin/pull/139",
-      "repository": "jenkinsci/pipeline-agent-build-history-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-10-13T07:18:29Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
       "url": "https://github.com/jenkinsci/lockable-resources-plugin/pull/819",
       "repository": "jenkinsci/lockable-resources-plugin",
       "state": "MERGED",
@@ -9633,6 +9635,16 @@
       ],
       "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-10-13T07:18:26Z"
+    },
+    {
+      "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/pipeline-agent-build-history-plugin/pull/139",
+      "repository": "jenkinsci/pipeline-agent-build-history-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-10-13T07:18:29Z"
     },
     {
       "title": "Ban JUnit 4 imports",
@@ -9697,16 +9709,6 @@
     },
     {
       "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/bitbucket-webhooks-plugin/pull/1",
-      "repository": "jenkinsci/bitbucket-webhooks-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": null,
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-10-07T08:55:10Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
       "url": "https://github.com/jenkinsci/robot-plugin/pull/88",
       "repository": "jenkinsci/robot-plugin",
       "state": "MERGED",
@@ -9716,6 +9718,16 @@
       ],
       "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-08-22T11:29:18Z"
+    },
+    {
+      "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/bitbucket-webhooks-plugin/pull/1",
+      "repository": "jenkinsci/bitbucket-webhooks-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": null,
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-10-07T08:55:10Z"
     },
     {
       "title": "Ban JUnit 4 imports",
@@ -9893,18 +9905,6 @@
     },
     {
       "title": "Ban JUnit 4 imports",
-      "url": "https://github.com/jenkinsci/artifactory-artifact-manager-plugin/pull/132",
-      "repository": "jenkinsci/artifactory-artifact-manager-plugin",
-      "state": "MERGED",
-      "author": "strangelookingnerd",
-      "labels": [
-        "chore"
-      ],
-      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
-      "createdAt": "2025-10-01T12:22:50Z"
-    },
-    {
-      "title": "Ban JUnit 4 imports",
       "url": "https://github.com/jenkinsci/database-mariadb-plugin/pull/95",
       "repository": "jenkinsci/database-mariadb-plugin",
       "state": "MERGED",
@@ -9914,6 +9914,18 @@
       ],
       "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
       "createdAt": "2025-10-01T07:22:42Z"
+    },
+    {
+      "title": "Ban JUnit 4 imports",
+      "url": "https://github.com/jenkinsci/artifactory-artifact-manager-plugin/pull/132",
+      "repository": "jenkinsci/artifactory-artifact-manager-plugin",
+      "state": "MERGED",
+      "author": "strangelookingnerd",
+      "labels": [
+        "chore"
+      ],
+      "body": "Ban JUnit 4 imports\nTo prevent regressions when adding new tests, jenkinsci/plugin-pom#1178 introduced a new flag that enables a Maven Enforcer rule banning org.junit.* imports while allowing org.junit.jupiter.*.\nWith this change, the build will fail if any org.junit.* imports are introduced.\nTesting done\nNone. Rely on ci.jenkins.io.\nSubmitter checklist\n\n Make sure you are opening from a topic/feature/bugfix branch (right side) and not your main branch!\n Ensure that the pull request title represents the desired changelog entry\n Please describe what you did\n Link to relevant issues in GitHub or Jira\n Link to relevant pull requests, esp. upstream and downstream changes\n Ensure you have provided tests that demonstrate the feature works or the issue is fixed",
+      "createdAt": "2025-10-01T12:22:50Z"
     },
     {
       "title": "Ban JUnit 4 imports",
