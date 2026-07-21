@@ -18,29 +18,30 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ commons-text-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ commons-text-api ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ commons-text-api ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 5: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 8: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ commons-text-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ commons-text-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ commons-text-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ commons-text-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ commons-text-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ commons-text-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ commons-text-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ commons-text-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ commons-text-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ commons-text-api ---
@@ -77,10 +78,10 @@
 [INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ commons-text-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.5:test (default-test) @ commons-text-api ---
+[INFO] --- surefire:3.5.6:test (default-test) @ commons-text-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:203.vffb_768f15d51:process (default) @ commons-text-api ---
+[INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ commons-text-api ---
 [INFO] Generated /tmp/plugin-builds/commons-text-api/target/commons-text-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ commons-text-api ---
@@ -98,18 +99,18 @@
 [INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ commons-text-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.3:check (spotbugs) > :spotbugs @ commons-text-api >>>
+[INFO] >>> spotbugs:4.10.2.0:check (spotbugs) > :spotbugs @ commons-text-api >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.3:spotbugs (spotbugs) @ commons-text-api ---
+[INFO] --- spotbugs:4.10.2.0:spotbugs (spotbugs) @ commons-text-api ---
 [INFO] No files found to run spotbugs; check compile phase has been run.
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.3:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.2.0:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.3:check (spotbugs) < :spotbugs @ commons-text-api <<<
+[INFO] <<< spotbugs:4.10.2.0:check (spotbugs) < :spotbugs @ commons-text-api <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.3:check (spotbugs) @ commons-text-api ---
+[INFO] --- spotbugs:4.10.2.0:check (spotbugs) @ commons-text-api ---
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ commons-text-api ---
+[INFO] --- spotless:3.8.0:check (default) @ commons-text-api ---
 [INFO] Spotless check skipped
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ commons-text-api ---
@@ -119,6 +120,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  28.892 s
-[INFO] Finished at: 2026-07-14T03:08:31Z
+[INFO] Total time:  17.884 s
+[INFO] Finished at: 2026-07-21T03:13:11Z
 [INFO] ------------------------------------------------------------------------

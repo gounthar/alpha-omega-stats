@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3267.va_a_ee2687b_0a_c
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3295.ve6518f5084b_e
 [WARNING] Failed to build parent project for io.jenkins.plugins:bootstrap5-api:hpi:5.3.8-999999-SNAPSHOT
 [INFO] 
 [INFO] -----------------< io.jenkins.plugins:bootstrap5-api >------------------
@@ -36,7 +36,7 @@
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ bootstrap5-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ bootstrap5-api ---
 [INFO] Installing node version v22.19.0
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/22.19.0/node-22.19.0-linux-x64.tar.gz into /tmp/plugin-builds/bootstrap5-api/node/tmp
 [INFO] Copying node binary from /tmp/plugin-builds/bootstrap5-api/node/tmp/node-v22.19.0-linux-x64/bin/node to /tmp/plugin-builds/bootstrap5-api/node/node
@@ -45,7 +45,7 @@
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/11.6.0/npm-11.6.0.tar.gz into /tmp/plugin-builds/bootstrap5-api/node/node_modules
 [INFO] Installed npm locally.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm install) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:npm (npm install) @ bootstrap5-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/bootstrap5-api
 [INFO] npm warn EBADENGINE Unsupported engine {
 [INFO] npm warn EBADENGINE   package: 'json-parse-even-better-errors@6.0.0',
@@ -73,12 +73,12 @@
 [INFO] npm warn EBADENGINE   current: { node: 'v22.19.0', npm: '11.6.0' }
 [INFO] npm warn EBADENGINE }
 [INFO] 
-[INFO] added 313 packages, and audited 314 packages in 8s
+[INFO] added 313 packages, and audited 314 packages in 7s
 [INFO] 
 [INFO] 146 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 2 moderate severity vulnerabilities
+[INFO] 3 vulnerabilities (1 moderate, 2 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -87,7 +87,7 @@
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ bootstrap5-api ---
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvnbuild) @ bootstrap5-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/bootstrap5-api
 [INFO] 
 [INFO] > bootstrap5-api@5.3.8 mvnbuild
@@ -664,11 +664,11 @@
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ bootstrap5-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ bootstrap5-api ---
 [INFO] Node v22.19.0 is already installed.
 [INFO] NPM 11.6.0 is already installed.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm install) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:npm (npm install) @ bootstrap5-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/bootstrap5-api
 [INFO] npm warn EBADENGINE Unsupported engine {
 [INFO] npm warn EBADENGINE   package: 'json-parse-even-better-errors@6.0.0',
@@ -696,12 +696,12 @@
 [INFO] npm warn EBADENGINE   current: { node: 'v22.19.0', npm: '11.6.0' }
 [INFO] npm warn EBADENGINE }
 [INFO] 
-[INFO] added 313 packages, and audited 314 packages in 8s
+[INFO] added 313 packages, and audited 314 packages in 7s
 [INFO] 
 [INFO] 146 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 2 moderate severity vulnerabilities
+[INFO] 3 vulnerabilities (1 moderate, 2 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -710,7 +710,7 @@
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ bootstrap5-api ---
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvnbuild) @ bootstrap5-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/bootstrap5-api
 [INFO] 
 [INFO] > bootstrap5-api@5.3.8 mvnbuild
@@ -1305,16 +1305,16 @@
 [INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ bootstrap5-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.14:prepare-agent (default) @ bootstrap5-api ---
-[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/bootstrap5-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
+[INFO] --- jacoco:0.8.15:prepare-agent (default) @ bootstrap5-api ---
+[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/tmp/plugin-builds/bootstrap5-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
-[INFO] --- surefire:3.5.5:test (default-test) @ bootstrap5-api ---
+[INFO] --- surefire:3.5.6:test (default-test) @ bootstrap5-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvntest) @ bootstrap5-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvntest) @ bootstrap5-api ---
 [INFO] Running 'npm run mvntest' in /tmp/plugin-builds/bootstrap5-api
 [INFO] 
-[INFO] --- license:203.vffb_768f15d51:process (default) @ bootstrap5-api ---
+[INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ bootstrap5-api ---
 [INFO] Generated /tmp/plugin-builds/bootstrap5-api/target/bootstrap5-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ bootstrap5-api ---
@@ -1334,11 +1334,11 @@
 [INFO] --- jar:3.5.0:test-jar (default) @ bootstrap5-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- failsafe:3.5.5:integration-test (default) @ bootstrap5-api ---
+[INFO] --- failsafe:3.5.6:integration-test (default) @ bootstrap5-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ bootstrap5-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ bootstrap5-api >>>
@@ -1355,7 +1355,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ bootstrap5-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ bootstrap5-api >>>
@@ -1372,7 +1372,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ bootstrap5-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-javascript) > :pmd @ bootstrap5-api >>>
@@ -1386,7 +1386,7 @@
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ bootstrap5-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ bootstrap5-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ bootstrap5-api ---
@@ -1410,13 +1410,13 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.5.1:check (default) @ bootstrap5-api ---
+[INFO] --- spotless:3.8.0:check (default) @ bootstrap5-api ---
 [INFO] Spotless check skipped
 [INFO] 
-[INFO] --- failsafe:3.5.5:verify (default) @ bootstrap5-api ---
+[INFO] --- failsafe:3.5.6:verify (default) @ bootstrap5-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.14:report (report) @ bootstrap5-api ---
+[INFO] --- jacoco:0.8.15:report (report) @ bootstrap5-api ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ bootstrap5-api ---
@@ -1431,6 +1431,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:07 min
-[INFO] Finished at: 2026-07-14T03:03:33Z
+[INFO] Total time:  01:35 min
+[INFO] Finished at: 2026-07-21T03:09:15Z
 [INFO] ------------------------------------------------------------------------
