@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3267.va_a_ee2687b_0a_c
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3295.ve6518f5084b_e
 [WARNING] Failed to build parent project for io.jenkins.plugins:prism-api:hpi:1.30.0-999999-SNAPSHOT
 [INFO] 
 [INFO] --------------------< io.jenkins.plugins:prism-api >--------------------
@@ -37,7 +37,7 @@
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ prism-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ prism-api ---
+[INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ prism-api ---
 [INFO] Installing node version v22.19.0
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/22.19.0/node-22.19.0-linux-x64.tar.gz into /tmp/plugin-builds/prism-api/node/tmp
 [INFO] Copying node binary from /tmp/plugin-builds/prism-api/node/tmp/node-v22.19.0-linux-x64/bin/node to /tmp/plugin-builds/prism-api/node/node
@@ -46,15 +46,15 @@
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/11.6.0/npm-11.6.0.tar.gz into /tmp/plugin-builds/prism-api/node/node_modules
 [INFO] Installed npm locally.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm install) @ prism-api ---
+[INFO] --- frontend:2.0.1:npm (npm install) @ prism-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/prism-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 6s
+[INFO] added 227 packages, and audited 228 packages in 3s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 5 vulnerabilities (2 moderate, 3 high)
+[INFO] 5 vulnerabilities (1 moderate, 4 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -63,7 +63,7 @@
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ prism-api ---
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ prism-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvnbuild) @ prism-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/prism-api
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ prism-api ---
@@ -93,19 +93,19 @@
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ prism-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ prism-api ---
+[INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ prism-api ---
 [INFO] Node v22.19.0 is already installed.
 [INFO] NPM 11.6.0 is already installed.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm install) @ prism-api ---
+[INFO] --- frontend:2.0.1:npm (npm install) @ prism-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/prism-api
 [INFO] 
-[INFO] added 227 packages, and audited 228 packages in 6s
+[INFO] added 227 packages, and audited 228 packages in 4s
 [INFO] 
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 5 vulnerabilities (2 moderate, 3 high)
+[INFO] 5 vulnerabilities (1 moderate, 4 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -114,7 +114,7 @@
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ prism-api ---
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ prism-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvnbuild) @ prism-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/prism-api
 [INFO] 
 [INFO] <<< javadoc:3.12.0:javadoc (default) < generate-sources @ prism-api <<<
@@ -174,16 +174,16 @@
 [INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ prism-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.14:prepare-agent (default) @ prism-api ---
-[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/prism-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
+[INFO] --- jacoco:0.8.15:prepare-agent (default) @ prism-api ---
+[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/tmp/plugin-builds/prism-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
-[INFO] --- surefire:3.5.5:test (default-test) @ prism-api ---
+[INFO] --- surefire:3.5.6:test (default-test) @ prism-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvntest) @ prism-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvntest) @ prism-api ---
 [INFO] Running 'npm run mvntest' in /tmp/plugin-builds/prism-api
 [INFO] 
-[INFO] --- license:203.vffb_768f15d51:process (default) @ prism-api ---
+[INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ prism-api ---
 [INFO] Generated /tmp/plugin-builds/prism-api/target/prism-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ prism-api ---
@@ -203,11 +203,11 @@
 [INFO] --- jar:3.5.0:test-jar (default) @ prism-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- failsafe:3.5.5:integration-test (default) @ prism-api ---
+[INFO] --- failsafe:3.5.6:integration-test (default) @ prism-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ prism-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-java) > :pmd @ prism-api >>>
@@ -224,7 +224,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ prism-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-tests) > :pmd @ prism-api >>>
@@ -241,7 +241,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ prism-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-javascript) > :pmd @ prism-api >>>
@@ -255,7 +255,7 @@
 [INFO] --- pmd:3.28.0:check (run-pmd-javascript) @ prism-api ---
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-metrics) @ prism-api ---
-[INFO] PMD version: 7.25.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ prism-api ---
@@ -279,13 +279,13 @@
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.5.1:check (default) @ prism-api ---
+[INFO] --- spotless:3.8.0:check (default) @ prism-api ---
 [INFO] Spotless check skipped
 [INFO] 
-[INFO] --- failsafe:3.5.5:verify (default) @ prism-api ---
+[INFO] --- failsafe:3.5.6:verify (default) @ prism-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.14:report (report) @ prism-api ---
+[INFO] --- jacoco:0.8.15:report (report) @ prism-api ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ prism-api ---
@@ -299,6 +299,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:01 min
-[INFO] Finished at: 2026-07-14T03:36:01Z
+[INFO] Total time:  01:33 min
+[INFO] Finished at: 2026-07-21T03:34:05Z
 [INFO] ------------------------------------------------------------------------
