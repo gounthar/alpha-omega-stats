@@ -4,7 +4,7 @@
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3202.v601fa_4082d0a_
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3295.ve6518f5084b_e
 [WARNING] Failed to build parent project for io.jenkins.plugins:jquery3-api:hpi:3.7.1-999999-SNAPSHOT
 [INFO] 
 [INFO] -------------------< io.jenkins.plugins:jquery3-api >-------------------
@@ -22,19 +22,20 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ jquery3-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ jquery3-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
-[INFO] Rule 2: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 3: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ jquery3-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ jquery3-api ---
 [INFO] Installing node version v22.19.0
 [INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v22.19.0/node-v22.19.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/22.19.0/node-22.19.0-linux-x64.tar.gz
 [INFO] No proxies configured
@@ -49,7 +50,7 @@
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/11.6.0/npm-11.6.0.tar.gz into /tmp/plugin-builds/jquery3-api/node/node_modules
 [INFO] Installed npm locally.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm install) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:npm (npm install) @ jquery3-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/jquery3-api
 [INFO] 
 [INFO] added 227 packages, and audited 228 packages in 7s
@@ -57,7 +58,7 @@
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 2 moderate severity vulnerabilities
+[INFO] 2 vulnerabilities (1 moderate, 1 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -66,16 +67,16 @@
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ jquery3-api ---
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvnbuild) @ jquery3-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/jquery3-api
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ jquery3-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ jquery3-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-deprecated-stapler-imports) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ jquery3-api ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] >>> javadoc:3.12.0:javadoc (default) > generate-sources @ jquery3-api >>>
@@ -84,20 +85,22 @@
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ jquery3-api ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ jquery3-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
-[INFO] Rule 4: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 6: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ jquery3-api ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ jquery3-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
-[INFO] --- frontend:2.0.0:install-node-and-npm (install node and npm) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ jquery3-api ---
 [INFO] Node v22.19.0 is already installed.
 [INFO] NPM 11.6.0 is already installed.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm install) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:npm (npm install) @ jquery3-api ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/jquery3-api
 [INFO] 
 [INFO] added 227 packages, and audited 228 packages in 4s
@@ -105,7 +108,7 @@
 [INFO] 113 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 2 moderate severity vulnerabilities
+[INFO] 2 vulnerabilities (1 moderate, 1 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -114,7 +117,7 @@
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ jquery3-api ---
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvnbuild) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvnbuild) @ jquery3-api ---
 [INFO] Running 'npm run mvnbuild' in /tmp/plugin-builds/jquery3-api
 [INFO] 
 [INFO] <<< javadoc:3.12.0:javadoc (default) < generate-sources @ jquery3-api <<<
@@ -160,16 +163,16 @@
 [INFO] --- hpi:3.1814.v77d15159f9b_d:test-runtime (default-test-runtime) @ jquery3-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.14:prepare-agent (default) @ jquery3-api ---
-[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.14/org.jacoco.agent-0.8.14-runtime.jar=destfile=/tmp/plugin-builds/jquery3-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
+[INFO] --- jacoco:0.8.15:prepare-agent (default) @ jquery3-api ---
+[INFO] argLine set to -javaagent:/home/runner/.m2/repository/org/jacoco/org.jacoco.agent/0.8.15/org.jacoco.agent-0.8.15-runtime.jar=destfile=/tmp/plugin-builds/jquery3-api/target/jacoco.exec,includes=io/jenkins/plugins/**/* -Xms768M -Xmx768M -XX:+HeapDumpOnOutOfMemoryError -XX:+TieredCompilation -XX:TieredStopAtLevel=1 @{jenkins.addOpens} @{jenkins.insaneHook} @{jenkins.javaAgent}
 [INFO] 
-[INFO] --- surefire:3.5.5:test (default-test) @ jquery3-api ---
+[INFO] --- surefire:3.5.6:test (default-test) @ jquery3-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- frontend:2.0.0:npm (npm mvntest) @ jquery3-api ---
+[INFO] --- frontend:2.0.1:npm (npm mvntest) @ jquery3-api ---
 [INFO] Running 'npm run mvntest' in /tmp/plugin-builds/jquery3-api
 [INFO] 
-[INFO] --- license:203.vffb_768f15d51:process (default) @ jquery3-api ---
+[INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ jquery3-api ---
 [INFO] Generated /tmp/plugin-builds/jquery3-api/target/jquery3-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ jquery3-api ---
@@ -189,11 +192,11 @@
 [INFO] --- jar:3.5.0:test-jar (default) @ jquery3-api ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] --- failsafe:3.5.5:integration-test (default) @ jquery3-api ---
+[INFO] --- failsafe:3.5.6:integration-test (default) @ jquery3-api ---
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-java) @ jquery3-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [WARNING] No files to analyze. Check input paths and exclude parameters, use --debug to see file collection traces.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
@@ -212,7 +215,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-tests) @ jquery3-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [WARNING] No files to analyze. Check input paths and exclude parameters, use --debug to see file collection traces.
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
@@ -231,7 +234,7 @@
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] --- pmd:3.28.0:pmd (run-pmd-javascript) @ jquery3-api ---
-[INFO] PMD version: 7.24.0-metrics
+[INFO] PMD version: 7.26.0-metrics
 [INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
 [INFO] 
 [INFO] >>> pmd:3.28.0:check (run-pmd-javascript) > :pmd @ jquery3-api >>>
@@ -264,13 +267,13 @@
 [INFO] 
 [INFO] --- spotbugs:4.9.6.0:check (spotbugs) @ jquery3-api ---
 [INFO] 
-[INFO] --- spotless:3.4.0:check (default) @ jquery3-api ---
+[INFO] --- spotless:3.8.0:check (default) @ jquery3-api ---
 [INFO] Spotless check skipped
 [INFO] 
-[INFO] --- failsafe:3.5.5:verify (default) @ jquery3-api ---
+[INFO] --- failsafe:3.5.6:verify (default) @ jquery3-api ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- jacoco:0.8.14:report (report) @ jquery3-api ---
+[INFO] --- jacoco:0.8.15:report (report) @ jquery3-api ---
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ jquery3-api ---
@@ -285,6 +288,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:39 min
-[INFO] Finished at: 2026-06-16T04:44:45Z
+[INFO] Total time:  01:43 min
+[INFO] Finished at: 2026-07-28T02:59:19Z
 [INFO] ------------------------------------------------------------------------
