@@ -1,0 +1,16 @@
+[
+  {
+    "number": 36,
+    "title": "chore: remove deprecated developers tag from pom",
+    "state": "MERGED",
+    "createdAt": "2026-07-26T10:16:36Z",
+    "updatedAt": "2026-07-26T10:53:05Z",
+    "user": "AronMav",
+    "repository": "jenkinsci/swarm-agents-cloud-plugin",
+    "pluginName": "swarm-agents-cloud",
+    "labels": null,
+    "url": "https://github.com/jenkinsci/swarm-agents-cloud-plugin/pull/36",
+    "description": "Reverts the <developers> section added in #35.\nWhy\nPer review feedback from @jonesbusy on #35: the <developers> tag in pom.xml has been deprecated for years. The source of truth for plugin maintainers/developers is the Repository Permission Updater (RPU), and this plugin is already correctly declared there:\n# jenkins-infra/repository-permissions-updater/permissions/plugin-swarm-agents-cloud.yml\ndevelopers:\n- \"aronmav\"\nThe plugin-modernizer-tool even ships an OpenRewrite recipe (RemoveDevelopersTag) that strips this tag, since it is redundant metadata that diverges from the RPU.\nSo the pom needs no <developers> section — removing it aligns the plugin with current Jenkins infrastructure standards.",
+    "checkStatus": "SUCCESS"
+  }
+]
