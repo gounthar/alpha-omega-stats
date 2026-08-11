@@ -35,9 +35,9 @@
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- frontend:2.0.1:install-node-and-npm (install node and npm) @ pipeline-graph-view ---
-[INFO] Installing node version v24.18.1
-[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.18.1/node-24.18.1-linux-x64.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/tmp
-[INFO] Copying node binary from /tmp/plugin-builds/pipeline-graph-view/node/tmp/node-v24.18.1-linux-x64/bin/node to /tmp/plugin-builds/pipeline-graph-view/node/node
+[INFO] Installing node version v24.19.0
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.19.0/node-24.19.0-linux-x64.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/pipeline-graph-view/node/tmp/node-v24.19.0-linux-x64/bin/node to /tmp/plugin-builds/pipeline-graph-view/node/node
 [INFO] Installed node locally.
 [INFO] Installing npm version 12.0.2
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/12.0.2/npm-12.0.2.tar.gz into /tmp/plugin-builds/pipeline-graph-view/node/node_modules
@@ -46,12 +46,12 @@
 [INFO] --- frontend:2.0.1:npm (npm install) @ pipeline-graph-view ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/pipeline-graph-view
 [INFO] 
-[INFO] added 434 packages, and audited 435 packages in 29s
+[INFO] added 434 packages, and audited 435 packages in 23s
 [INFO] 
 [INFO] 171 packages are looking for funding
 [INFO]   run `npm fund` for details
 [INFO] 
-[INFO] 5 vulnerabilities (1 low, 4 high)
+[INFO] 7 vulnerabilities (1 low, 6 high)
 [INFO] 
 [INFO] To address all issues, run:
 [INFO]   npm audit fix
@@ -70,20 +70,20 @@
 [INFO] npm notice run npm run build
 [INFO] npm notice run pipeline-graph-view-plugin@1.0.0 build
 [INFO] npm notice run vite build --mode production
-[INFO] vite v8.2.0 building client environment for production...
+[INFO] vite v8.2.1 building client environment for production...
 [INFO] 
 [INFO] transforming...✓ 169 modules transformed.rendering chunks...
 [INFO] computing gzip size...
 [INFO] src/main/webapp/js/bundles/pipeline-graph-view-bundle.js          1.77 kB │ gzip:   0.92 kB │ map:     5.78 kB
-[INFO] src/main/webapp/js/bundles/assets/dropdown-portal-C6TAXqaT.js     1.95 kB │ gzip:   0.88 kB │ map:     6.79 kB
-[INFO] src/main/webapp/js/bundles/multi-pipeline-graph-view-bundle.js   10.28 kB │ gzip:   3.21 kB │ map:    18.64 kB
+[INFO] src/main/webapp/js/bundles/assets/dropdown-portal-bzdc57it.js     1.95 kB │ gzip:   0.88 kB │ map:     6.79 kB
+[INFO] src/main/webapp/js/bundles/multi-pipeline-graph-view-bundle.js   10.28 kB │ gzip:   3.20 kB │ map:    18.64 kB
 [INFO] src/main/webapp/js/bundles/assets/linkify-js-BciFVvzb.js         16.80 kB │ gzip:   9.58 kB │ map:    83.26 kB
-[INFO] src/main/webapp/js/bundles/assets/console-log-card-C2PS7Vaf.js   19.84 kB │ gzip:   5.60 kB │ map:    26.24 kB
-[INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-DqpTaJE_.js   22.53 kB │ gzip:   5.45 kB │ map:    75.58 kB
-[INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js       54.87 kB │ gzip:  15.01 kB │ map:   139.55 kB
-[INFO] src/main/webapp/js/bundles/assets/tree-api-B79hz2wx.js          387.81 kB │ gzip: 118.20 kB │ map: 1,672.14 kB
+[INFO] src/main/webapp/js/bundles/assets/console-log-card-fxrjKCkD.js   19.72 kB │ gzip:   5.60 kB │ map:    26.24 kB
+[INFO] src/main/webapp/js/bundles/assets/ConsoleLogStream-DIlO4oMy.js   22.53 kB │ gzip:   5.44 kB │ map:    75.58 kB
+[INFO] src/main/webapp/js/bundles/pipeline-console-view-bundle.js       54.82 kB │ gzip:  14.98 kB │ map:   139.56 kB
+[INFO] src/main/webapp/js/bundles/assets/tree-api-CBKtnc4y.js          387.89 kB │ gzip: 118.19 kB │ map: 1,672.53 kB
 [INFO] 
-[INFO] ✓ built in 2.76s
+[INFO] ✓ built in 1.23s
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ pipeline-graph-view ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -140,19 +140,19 @@
 [INFO] Executed tasks
 [INFO] 
 [INFO] --- exec:3.6.3:java (install-playwright-chromium) @ pipeline-graph-view ---
-Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-linux64.zip
-|                                                                                |   0% of 177 MiB
-|■■■■■■■■                                                                        |  10% of 177 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 177 MiB
-Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to /home/runner/.cache/ms-playwright/chromium-1228
+Downloading Chrome for Testing 151.0.7922.34 (playwright chromium v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-linux64.zip
+|                                                                                |   0% of 184.3 MiB
+|■■■■■■■■                                                                        |  10% of 184.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 184.3 MiB
+Chrome for Testing 151.0.7922.34 (playwright chromium v1234) downloaded to /home/runner/.cache/ms-playwright/chromium-1234
 Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
 |                                                                                |   0% of 2.3 MiB
 |■■■■■■■■                                                                        |  10% of 2.3 MiB
@@ -166,19 +166,19 @@ Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dba
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
 FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
-Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-headless-shell-linux64.zip
-|                                                                                |   0% of 114.2 MiB
-|■■■■■■■■                                                                        |  10% of 114.2 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.2 MiB
-Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1228
+Downloading Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-headless-shell-linux64.zip
+|                                                                                |   0% of 114.7 MiB
+|■■■■■■■■                                                                        |  10% of 114.7 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.7 MiB
+Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1234
 [INFO] System::exit was called with return code 0
 [INFO] 
 [INFO] --- resources:3.5.0:testResources (default-testResources) @ pipeline-graph-view ---
@@ -215,10 +215,9 @@ Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) d
 [INFO] 
 [INFO]  RUN  v4.1.10 /tmp/plugin-builds/pipeline-graph-view/src/main/frontend
 [INFO] 
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (13 tests) 27ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/NestedPipelineGraphLayout.spec.ts (20 tests) 194ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1236ms
-[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 613ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/NestedPipelineGraphLayout.spec.ts (20 tests) 187ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/PipelineGraphLayout.spec.ts (13 tests) 49ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/hooks/use-steps-poller.spec.ts (16 tests) 1347ms
 [INFO] stderr | pipeline-graph-view/pipeline-graph/main/support/labels.spec.tsx > SequentialContainerLabel > renders label text without badge for leaf stage
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] tippy.js
@@ -230,16 +229,15 @@ Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) d
 [INFO] 
 [INFO] 👷‍ This is a development-only message. It will be removed in production.
 [INFO] 
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/labels.spec.tsx (13 tests) 965ms
-[INFO]      ✓ renders collapse badge when stage has parallel children  336ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/useCollapsedStages.spec.ts (9 tests) 17ms
+[INFO]  ✓ common/utils/timings.spec.tsx (12 tests) 354ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/labels.spec.tsx (13 tests) 755ms
+[INFO]      ✓ renders collapse badge when stage has parallel children  303ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/useCollapsedStages.spec.ts (9 tests) 21ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/PipelineConsole.spec.tsx > PipelineConsole — queued placeholder fallback > renders StageDetails + NoStageStepsFallback when only stage is a queued placeholder
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/PipelineConsole.spec.tsx (3 tests) 1291ms
-[INFO]      ✓ renders StageDetails + NoStageStepsFallback when only stage is a queued placeholder  794ms
 [INFO] stderr | common/tree-api.spec.ts > useRunPoller > should ignore fetch error for previous
 [INFO] Fetch previous run Error: foo
 [INFO]     at /tmp/plugin-builds/pipeline-graph-view/src/main/frontend/common/tree-api.spec.ts:104:19
@@ -260,65 +258,60 @@ Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) d
 [INFO]     at commitHookPassiveMountEffects (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:13336:11)
 [INFO]     at commitPassiveMountOnFiber (/tmp/plugin-builds/pipeline-graph-view/node_modules/react-dom/cjs/react-dom-client.development.js:15484:13)
 [INFO] 
-[INFO]  ✓ common/tree-api.spec.ts (6 tests) 883ms
-[INFO]      ✓ should merge stages when not complete  338ms
-[INFO]  ✓ common/components/status-icon.spec.tsx (16 tests) 765ms
-[INFO]        ✓ renders with the accent color class  587ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/PipelineConsole.spec.tsx (3 tests) 447ms
+[INFO]  ✓ common/tree-api.spec.ts (6 tests) 774ms
+[INFO]  ✓ common/components/status-icon.spec.tsx (16 tests) 441ms
+[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 21ms
 [INFO] stderr | pipeline-graph-view/pipeline-graph/main/support/nodes.spec.tsx > Counter node with 50+ parallel stages > counter node tooltip rendering > renders counter node showing stage count
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ common/utils/refresh-stages-from-steps.spec.ts (6 tests) 25ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/nodes.spec.tsx (6 tests) 3260ms
-[INFO]        ✓ renders counter node showing stage count  747ms
-[INFO]        ✓ renders tooltip with all 55 stages as links  1386ms
-[INFO]        ✓ renders tooltip with 100 stages without dropping any  1075ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/stage-details.spec.tsx > StageDetails > renders stage name and status color class
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (9 tests) 2070ms
-[INFO]      ✓ renders stage name and status color class  1103ms
-[INFO]  ✓ common/utils/stage-merge.spec.ts (4 tests) 45ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/stage-details.spec.tsx (9 tests) 621ms
+[INFO]      ✓ renders stage name and status color class  330ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/nodes.spec.tsx (6 tests) 2012ms
+[INFO]        ✓ renders counter node showing stage count  568ms
+[INFO]        ✓ renders tooltip with all 55 stages as links  785ms
+[INFO]        ✓ renders tooltip with 100 stages without dropping any  611ms
+[INFO]  ✓ common/utils/stage-merge.spec.ts (4 tests) 16ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx > ConsoleLogCard > renders step header only when not expanded
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 615ms
-[INFO]      ✓ renders step header only when not expanded  349ms
-[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 79ms
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/components/stages-customization.spec.tsx (5 tests) 328ms
-[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 128ms
-[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 27ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogCard.spec.tsx (4 tests) 304ms
+[INFO]  ✓ common/user/user-permissions-provider.spec.tsx (5 tests) 165ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/components/stages-customization.spec.tsx (5 tests) 143ms
+[INFO]  ✓ common/i18n/messages.spec.ts (4 tests) 25ms
+[INFO]  ✓ common/i18n/message-format.spec.ts (10 tests) 57ms
 [INFO] stderr | pipeline-console-view/pipeline-console/main/StageView.spec.tsx > StageView > renders StageDetails and StageSteps with provided props
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 922ms
-[INFO]      ✓ renders StageDetails and StageSteps with provided props  918ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/StageView.spec.tsx (1 test) 776ms
+[INFO]      ✓ renders StageDetails and StageSteps with provided props  769ms
 [INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx > SettingsButton > should render settings button in portal
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 439ms
-[INFO]      ✓ renders step console  380ms
-[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 1273ms
-[INFO]      ✓ should toggle dropdown when clicking settings button  674ms
-[INFO]      ✓ should update preferences when toggling checkboxes  364ms
+[INFO]  ✓ pipeline-console-view/pipeline-console/main/ConsoleLogStream.spec.tsx (2 tests) 214ms
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/settings-button.spec.tsx (3 tests) 821ms
+[INFO]      ✓ should toggle dropdown when clicking settings button  427ms
 [INFO] stderr | multi-pipeline-graph-view/multi-pipeline-graph/main/overflow-dropdown.spec.tsx > OverflowDropdown > should render dropdown button
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [INFO] 
-[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/overflow-dropdown.spec.tsx (3 tests) 1308ms
-[INFO]      ✓ should render dropdown button  343ms
-[INFO]      ✓ should show all checkboxes when opened  750ms
-[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 7ms
+[INFO]  ✓ multi-pipeline-graph-view/multi-pipeline-graph/main/overflow-dropdown.spec.tsx (3 tests) 574ms
+[INFO]      ✓ should show all checkboxes when opened  381ms
+[INFO]  ✓ pipeline-graph-view/pipeline-graph/main/support/convertLabelToTooltip.spec.tsx (2 tests) 12ms
 [INFO] 
 [INFO]  Test Files  23 passed (23)
 [INFO]       Tests  172 passed (172)
-[INFO]    Start at  03:24:02
-[INFO]    Duration  38.12s (transform 3.61s, setup 8.09s, import 8.45s, tests 16.52s, environment 64.51s)
+[INFO]    Start at  02:32:00
+[INFO]    Duration  24.98s (transform 2.70s, setup 5.16s, import 5.97s, tests 10.14s, environment 42.21s)
 [INFO] 
 [INFO] JUNIT report written to /tmp/plugin-builds/pipeline-graph-view/target/surefire-reports/vitest-junit.xml
 [INFO] 
@@ -361,7 +354,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotle
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 90 files clean - 0 needs changes to be clean, 90 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom9762288560132602925.xml
+[INFO] Sorting file /tmp/pom3796005237187527329.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -372,6 +365,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  04:15 min
-[INFO] Finished at: 2026-08-04T03:25:38Z
+[INFO] Total time:  03:21 min
+[INFO] Finished at: 2026-08-11T02:33:04Z
 [INFO] ------------------------------------------------------------------------
