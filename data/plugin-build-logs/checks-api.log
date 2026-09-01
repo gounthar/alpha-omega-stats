@@ -14,7 +14,10 @@
 [INFO] --- clean:3.5.0:clean (default-clean) @ checks-api ---
 [INFO] 
 [INFO] --- hpi:3.1837.v072a_33082b_16:validate (default-validate) @ checks-api ---
-[INFO] Created marker file /tmp/plugin-builds/checks-api/target/java-level/17
+[INFO] Created marker file /tmp/plugin-builds/checks-api/target/java-level/21
+[INFO] Setting maven.compiler.release to 21
+[INFO] Setting maven.compiler.testRelease to 21
+[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
 [INFO] --- hpi:3.1837.v072a_33082b_16:validate-hpi (default-validate-hpi) @ checks-api ---
 [INFO] 
@@ -23,13 +26,12 @@
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] banObsoleteDependencyOverrides skipped
-[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
+[INFO] Rule 7: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ checks-api ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -53,7 +55,10 @@
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ checks-api ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 25 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 25 source files with javac [debug parameters release 21] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
 [INFO] io.jenkins.plugins.checks.status.BuildStatusChecksPublisher.JobScheduledListener indexed under hudson.Extension
 [INFO] io.jenkins.plugins.checks.status.BuildStatusChecksPublisher.JobCheckoutListener indexed under hudson.Extension
 [INFO] io.jenkins.plugins.checks.status.BuildStatusChecksPublisher.JobCompletedListener indexed under hudson.Extension
@@ -66,6 +71,12 @@
 [INFO] /tmp/plugin-builds/checks-api/src/main/java/io/jenkins/plugins/checks/steps/PublishChecksStep.java:[410,16] Generating io/jenkins/plugins/checks/steps/PublishChecksStep/StepChecksAction.stapler
 [INFO] /tmp/plugin-builds/checks-api/src/main/java/io/jenkins/plugins/checks/steps/PublishChecksStep.java:[44,12] Generating io/jenkins/plugins/checks/steps/PublishChecksStep.stapler
 [INFO] /tmp/plugin-builds/checks-api/src/main/java/io/jenkins/plugins/checks/steps/WithChecksStep.java:[47,12] Generating io/jenkins/plugins/checks/steps/WithChecksStep.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
 [INFO] /tmp/plugin-builds/checks-api/src/main/java/io/jenkins/plugins/checks/api/ChecksOutput.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/checks-api/src/main/java/io/jenkins/plugins/checks/api/ChecksOutput.java: Recompile with -Xlint:deprecation for details.
 [INFO] 
@@ -143,6 +154,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  49.388 s
-[INFO] Finished at: 2026-08-25T01:39:01Z
+[INFO] Total time:  01:12 min
+[INFO] Finished at: 2026-09-01T04:31:35Z
 [INFO] ------------------------------------------------------------------------
