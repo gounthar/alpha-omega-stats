@@ -14,7 +14,10 @@
 [INFO] --- clean:3.5.0:clean (default-clean) @ workflow-multibranch ---
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate (default-validate) @ workflow-multibranch ---
-[INFO] Created marker file /tmp/plugin-builds/workflow-multibranch/target/java-level/17
+[INFO] Created marker file /tmp/plugin-builds/workflow-multibranch/target/java-level/21
+[INFO] Setting maven.compiler.release to 21
+[INFO] Setting maven.compiler.testRelease to 21
+[WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ workflow-multibranch ---
 [INFO] 
@@ -23,13 +26,12 @@
 [INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
-[INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
+[INFO] Rule 4: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Rule 5: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
-[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
-[INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
 [INFO] banObsoleteDependencyOverrides skipped
-[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
+[INFO] Rule 7: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ workflow-multibranch ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
@@ -53,7 +55,7 @@
 [INFO] 
 [INFO] --- compiler:3.15.0:compile (default-compile) @ workflow-multibranch ---
 [INFO] Recompiling the module because of changed source code.
-[INFO] Compiling 14 source files with javac [debug parameters release 17] to target/classes
+[INFO] Compiling 14 source files with javac [debug parameters release 21] to target/classes
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -77,11 +79,11 @@
 [INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/DurabilityHintBranchProperty.java:[46,12] Generating org/jenkinsci/plugins/workflow/multibranch/DurabilityHintBranchProperty.stapler
 [INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/JobPropertyStep.java:[75,34] Generating org/jenkinsci/plugins/workflow/multibranch/JobPropertyStep.stapler
 [INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/ReadTrustedStep.java:[81,34] Generating org/jenkinsci/plugins/workflow/multibranch/ReadTrustedStep.stapler
-[INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep.java:[92,12] Generating org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep.stapler
+[INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep.java:[90,12] Generating org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep.stapler
 [INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/WorkflowBranchProjectFactory.java:[52,34] Generating org/jenkinsci/plugins/workflow/multibranch/WorkflowBranchProjectFactory.stapler
 [INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/WorkflowMultiBranchProjectFactory.java:[61,34] Generating org/jenkinsci/plugins/workflow/multibranch/WorkflowMultiBranchProjectFactory.stapler
 [INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/BranchJobProperty.java:[46,8] Generating org/jenkinsci/plugins/workflow/multibranch/BranchJobProperty.javadoc
-[INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep.java:[219,31] Generating org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep/DescriptorImpl/doCheckTarget.stapler
+[INFO] /tmp/plugin-builds/workflow-multibranch/src/main/java/org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep.java:[217,31] Generating org/jenkinsci/plugins/workflow/multibranch/ResolveScmStep/DescriptorImpl/doCheckTarget.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -162,6 +164,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  49.878 s
-[INFO] Finished at: 2026-09-15T04:11:03Z
+[INFO] Total time:  32.284 s
+[INFO] Finished at: 2026-09-22T04:03:22Z
 [INFO] ------------------------------------------------------------------------
