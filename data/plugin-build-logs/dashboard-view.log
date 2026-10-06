@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1801.v26037216c7d3 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.jenkins-ci.plugins:dashboard-view:hpi:2.999999-SNAPSHOT
 [INFO] 
 [INFO] ---------------< org.jenkins-ci.plugins:dashboard-view >----------------
@@ -13,14 +13,14 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ dashboard-view ---
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:validate (default-validate) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:validate (default-validate) @ dashboard-view ---
 [INFO] Created marker file /tmp/plugin-builds/dashboard-view/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:validate-hpi (default-validate-hpi) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:validate-hpi (default-validate-hpi) @ dashboard-view ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (display-info) @ dashboard-view ---
-[INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
-[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] --- enforcer:3.6.3:enforce (display-info) @ dashboard-view ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 2: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
 [INFO] Rule 4: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
@@ -28,27 +28,34 @@
 [INFO] Rule 6: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] Ignoring requireUpperBoundDeps in org.ow2.asm:asm
 [INFO] Rule 7: org.apache.maven.enforcer.rules.dependency.RequireUpperBoundDeps passed
+[INFO] banObsoleteDependencyOverrides skipped
+[INFO] Rule 8: io.jenkins.tools.maven.jenkins_enforcer_rules.BanObsoleteDependencyOverrides passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (no-snapshots-in-release) @ dashboard-view ---
+[INFO] --- enforcer:3.6.3:enforce (no-snapshots-in-release) @ dashboard-view ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.RequireReleaseDeps passed
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ dashboard-view ---
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-junit-imports) @ dashboard-view ---
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ dashboard-view ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
-[INFO] --- enforcer:3.6.2:enforce (check-commons-lang-imports) @ dashboard-view ---
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ dashboard-view ---
 [INFO] Skipping Rule Enforcement.
 [INFO] 
-[INFO] --- resources:3.4.0:resources (default-resources) @ dashboard-view ---
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ dashboard-view ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ dashboard-view ---
 [INFO] Copying 92 resources from src/main/resources to target/classes
 [INFO] 
-[INFO] --- flatten:1.7.3:flatten (flatten) @ dashboard-view ---
+[INFO] --- flatten:1.8.0:flatten (flatten) @ dashboard-view ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:dashboard-view:hpi:2.999999-SNAPSHOT...
 [INFO] 
-[INFO] --- compiler:3.14.1:compile (default-compile) @ dashboard-view ---
+[INFO] --- compiler:3.16.0:compile (default-compile) @ dashboard-view ---
 [INFO] Recompiling the module because of changed source code.
 [INFO] Compiling 20 source files with javac [debug parameters release 17] to target/classes
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
 [INFO] hudson.plugins.view.dashboard.Dashboard.DescriptorImpl indexed under hudson.Extension
 [INFO] hudson.plugins.view.dashboard.builds.LatestBuilds.DescriptorImpl indexed under hudson.Extension
 [INFO] hudson.plugins.view.dashboard.core.HudsonStdJobsPortlet.DescriptorImpl indexed under hudson.Extension
@@ -73,11 +80,15 @@
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/stats/StatJobs.java:[23,12] Generating hudson/plugins/view/dashboard/stats/StatJobs.stapler
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/stats/StatSlaves.java:[21,12] Generating hudson/plugins/view/dashboard/stats/StatSlaves.stapler
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/test/TestStatisticsChart.java:[25,12] Generating hudson/plugins/view/dashboard/test/TestStatisticsChart.stapler
-[INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/test/TestStatisticsPortlet.java:[28,12] Generating hudson/plugins/view/dashboard/test/TestStatisticsPortlet.stapler
+[INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/test/TestStatisticsPortlet.java:[39,12] Generating hudson/plugins/view/dashboard/test/TestStatisticsPortlet.stapler
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/test/TestTrendChart.java:[74,12] Generating hudson/plugins/view/dashboard/test/TestTrendChart.stapler
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/stats/StatSlaves.java:[26,25] Generating hudson/plugins/view/dashboard/stats/StatSlaves/AgentStats.javadoc
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/core/ImagePortlet.java:[62,31] Generating hudson/plugins/view/dashboard/core/ImagePortlet/DescriptorImpl/doCheckImageUrl.stapler
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/core/IframePortlet.java:[99,31] Generating hudson/plugins/view/dashboard/core/IframePortlet/DescriptorImpl/doCheckIframeSource.stapler
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
+[WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
+  reason: class file for javax.annotation.meta.When not found
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/stats/StatSlaves.java: /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/stats/StatSlaves.java uses or overrides a deprecated API.
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/stats/StatSlaves.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/dashboard-view/src/main/java/hudson/plugins/view/dashboard/DashboardPortlet.java: Some input files use unchecked or unsafe operations.
@@ -87,37 +98,37 @@
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ dashboard-view ---
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:insert-test (default-insert-test) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:insert-test (default-insert-test) @ dashboard-view ---
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ dashboard-view ---
 [INFO] Executing tasks
 [INFO]     [mkdir] Created dir: /tmp/plugin-builds/dashboard-view/target/tmp
 [INFO] Executed tasks
 [INFO] 
-[INFO] --- resources:3.4.0:testResources (default-testResources) @ dashboard-view ---
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ dashboard-view ---
 [INFO] Not copying test resources
 [INFO] 
-[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ dashboard-view ---
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ dashboard-view ---
 [INFO] Not compiling test sources
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:test-hpl (default-test-hpl) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:test-hpl (default-test-hpl) @ dashboard-view ---
 [INFO] Generating /tmp/plugin-builds/dashboard-view/target/test-classes/the.hpl
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:resolve-test-dependencies (default-resolve-test-dependencies) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:resolve-test-dependencies (default-resolve-test-dependencies) @ dashboard-view ---
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:test-runtime (default-test-runtime) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:test-runtime (default-test-runtime) @ dashboard-view ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.4:test (default-test) @ dashboard-view ---
+[INFO] --- surefire:3.6.0:test (default-test) @ dashboard-view ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- surefire:3.5.4:test (without-optional-test) @ dashboard-view ---
+[INFO] --- surefire:3.6.0:test (without-optional-test) @ dashboard-view ---
 [INFO] Tests are skipped.
 [INFO] 
-[INFO] --- license:203.vffb_768f15d51:process (default) @ dashboard-view ---
+[INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ dashboard-view ---
 [INFO] Generated /tmp/plugin-builds/dashboard-view/target/dashboard-view/WEB-INF/licenses.xml
 [INFO] 
-[INFO] --- hpi:3.1801.v26037216c7d3:hpi (default-hpi) @ dashboard-view ---
+[INFO] --- hpi:3.1838.va_13472137a_6a_:hpi (default-hpi) @ dashboard-view ---
 [INFO] Generating /tmp/plugin-builds/dashboard-view/target/dashboard-view/META-INF/MANIFEST.MF
 [INFO] Checking for attached .jar artifact ...
 [INFO] Generating jar /tmp/plugin-builds/dashboard-view/target/dashboard-view.jar
@@ -128,32 +139,31 @@
 [INFO] Generating hpi /tmp/plugin-builds/dashboard-view/target/dashboard-view.hpi
 [INFO] Building jar: /tmp/plugin-builds/dashboard-view/target/dashboard-view.hpi
 [INFO] 
-[INFO] --- jar:3.5.0:test-jar (maybe-test-jar) @ dashboard-view ---
+[INFO] --- jar:3.5.1:test-jar (maybe-test-jar) @ dashboard-view ---
 [INFO] Skipping packaging of the test-jar
 [INFO] 
-[INFO] >>> spotbugs:4.9.8.2:check (spotbugs) > :spotbugs @ dashboard-view >>>
+[INFO] >>> spotbugs:4.10.4.1:check (spotbugs) > :spotbugs @ dashboard-view >>>
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:spotbugs (spotbugs) @ dashboard-view ---
-[INFO] Fork Value is true
+[INFO] --- spotbugs:4.10.4.1:spotbugs (spotbugs) @ dashboard-view ---
 [INFO] Done SpotBugs Analysis....
-[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.9.8.2:spotbugs report goal
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.4.1:spotbugs report goal
 [INFO] 
-[INFO] <<< spotbugs:4.9.8.2:check (spotbugs) < :spotbugs @ dashboard-view <<<
+[INFO] <<< spotbugs:4.10.4.1:check (spotbugs) < :spotbugs @ dashboard-view <<<
 [INFO] 
 [INFO] 
-[INFO] --- spotbugs:4.9.8.2:check (spotbugs) @ dashboard-view ---
+[INFO] --- spotbugs:4.10.4.1:check (spotbugs) @ dashboard-view ---
 [INFO] BugInstance size is 0
 [INFO] Error size is 0
 [INFO] No errors/warnings found
 [INFO] 
-[INFO] --- spotless:3.2.0:check (default) @ dashboard-view ---
+[INFO] --- spotless:3.10.2:check (default) @ dashboard-view ---
 [INFO] Index file does not exist. Fallback to an empty index
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.2.0/spotless-lib-4.2.0.jar)
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.10.2/spotless-lib-4.10.2.jar)
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 30 files clean - 0 needs changes to be clean, 30 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom4807948645503812296.xml
+[INFO] Sorting file /tmp/pom11154932484117160580.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -164,6 +174,6 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:00 min
-[INFO] Finished at: 2026-09-29T05:43:18Z
+[INFO] Total time:  01:21 min
+[INFO] Finished at: 2026-10-06T01:49:38Z
 [INFO] ------------------------------------------------------------------------

@@ -55,7 +55,7 @@
 [INFO] --- frontend:2.0.2:npm (npm install) @ role-strategy ---
 [INFO] Running 'npm ci' in /tmp/plugin-builds/role-strategy
 [INFO] 
-[INFO] added 123 packages, and audited 124 packages in 9s
+[INFO] added 121 packages, and audited 122 packages in 12s
 [INFO] 
 [INFO] 28 packages are looking for funding
 [INFO]   run `npm fund` for details
@@ -81,14 +81,17 @@
 [INFO] 
 [INFO] vite v8.3.0 building client environment for production...
 [INFO] transforming...
-[INFO] ✓ 102 modules transformed.
+[INFO] ✓ 110 modules transformed.
 [INFO] rendering chunks...
 [INFO] computing gzip size...
-[INFO] src/main/webapp/js/bundles/permission-templates-bundle.js       6.01 kB │ gzip:  2.26 kB │ map:    20.29 kB
-[INFO] src/main/webapp/js/bundles/manage-roles-bundle.js              12.23 kB │ gzip:  4.36 kB │ map:    42.84 kB
-[INFO] src/main/webapp/js/bundles/assets/PermissionList-BbdQh11J.js  281.69 kB │ gzip: 88.52 kB │ map: 1,247.58 kB
+[INFO] src/main/webapp/js/bundles/assets/validation-B8T9o7rW.js        1.63 kB │ gzip:  0.87 kB │ map:     5.73 kB
+[INFO] src/main/webapp/js/bundles/assets/PermissionList-C21C7mIQ.js    2.96 kB │ gzip:  1.09 kB │ map:    11.11 kB
+[INFO] src/main/webapp/js/bundles/permission-templates-bundle.js       6.05 kB │ gzip:  2.27 kB │ map:    20.29 kB
+[INFO] src/main/webapp/js/bundles/manage-roles-bundle.js              11.16 kB │ gzip:  3.92 kB │ map:    38.33 kB
+[INFO] src/main/webapp/js/bundles/assign-roles-bundle.js              17.69 kB │ gzip:  6.20 kB │ map:    63.67 kB
+[INFO] src/main/webapp/js/bundles/assets/Dialog-BslPFCk6.js          281.69 kB │ gzip: 88.42 kB │ map: 1,241.33 kB
 [INFO] 
-[INFO] ✓ built in 621ms
+[INFO] ✓ built in 493ms
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ role-strategy ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -100,7 +103,7 @@
 [INFO] Skipping Rule Enforcement.
 [INFO] 
 [INFO] --- resources:3.5.0:resources (default-resources) @ role-strategy ---
-[INFO] Copying 37 resources from src/main/resources to target/classes
+[INFO] Copying 31 resources from src/main/resources to target/classes
 [INFO] 
 [INFO] --- flatten:1.8.0:flatten (flatten) @ role-strategy ---
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:role-strategy:hpi:999999-SNAPSHOT...
@@ -135,28 +138,29 @@
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/org/jenkinsci/plugins/rolestrategy/casc/RoleDefinition.java:[58,10] Generating org/jenkinsci/plugins/rolestrategy/casc/RoleDefinition.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/org/jenkinsci/plugins/rolestrategy/pipeline/UserGlobalRoles.java:[20,10] Generating org/jenkinsci/plugins/rolestrategy/pipeline/UserGlobalRoles.stapler
 [INFO] /tmp/plugin-builds/role-strategy/src/main/java/org/jenkinsci/plugins/rolestrategy/pipeline/UserItemRoles.java:[30,10] Generating org/jenkinsci/plugins/rolestrategy/pipeline/UserItemRoles.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1778,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[878,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignUserRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[802,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteUser.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[512,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddTemplate.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[781,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteSid.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[823,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteGroup.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[850,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[754,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignGroupRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[664,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doRemoveRoles.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1098,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRoleAssignments.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1436,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckForWhitespace.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[906,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignGroupRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1049,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetAllRoles.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[726,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignUserRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1139,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingJobs.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[698,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[541,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doRemoveTemplates.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[943,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetTemplate.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[997,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[586,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddRole.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1170,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingAgents.stapler
-[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1758,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckPattern.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1167,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetSidsInfo.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1835,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckPattern.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[704,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[808,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteUser.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[885,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignUserRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1004,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[857,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[913,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doUnassignGroupRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1105,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetRoleAssignments.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[787,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteSid.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1306,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingAgents.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[760,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignGroupRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1056,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetAllRoles.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[829,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doDeleteGroup.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1857,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckSidName.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[591,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1275,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetMatchingJobs.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[517,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAddTemplate.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[950,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doGetTemplate.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[732,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doAssignUserRole.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[669,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doRemoveRoles.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[546,15] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/doRemoveTemplates.stapler
+[INFO] /tmp/plugin-builds/role-strategy/src/main/java/com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy.java:[1572,27] Generating com/michelin/cio/hudson/plugins/rolestrategy/RoleBasedAuthorizationStrategy/DescriptorImpl/doCheckForWhitespace.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -215,7 +219,7 @@ Audit done.
 [INFO] > role-strategy-plugin@1.0.0 format:check
 [INFO] > biome format .
 [INFO] 
-[INFO] Checked 47 files in 81ms. No fixes applied.
+[INFO] Checked 57 files in 91ms. No fixes applied.
 [INFO] 
 [INFO] > role-strategy-plugin@1.0.0 tsc:check
 [INFO] > tsc
@@ -224,6 +228,8 @@ Audit done.
 [INFO] > role-strategy-plugin@1.0.0 biome:mvn
 [INFO] > biome lint .
 [INFO] 
+[INFO] Checked 56 files in 194ms. No fixes applied.
+[INFO] Found 1 info.
 [ERROR] biome.json:2:14 deserialize ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 [ERROR] 
 [ERROR]   i The configuration schema version does not match the CLI version 2.5.14
@@ -241,8 +247,6 @@ Audit done.
 [ERROR]   i Run the command biome migrate to migrate the configuration file.
 [ERROR]   
 [ERROR] 
-[INFO] Checked 46 files in 83ms. No fixes applied.
-[INFO] Found 1 info.
 [INFO] 
 [INFO] > role-strategy-plugin@1.0.0 vitest:mvn
 [INFO] > vitest run --reporter default --reporter junit --outputFile "$PWD/target/surefire-reports/vitest-junit.xml" || ([ -n "$CI" ] && [ -f target/surefire-reports/vitest-junit.xml ])
@@ -250,26 +254,75 @@ Audit done.
 [INFO] 
 [INFO]  RUN  v4.1.11 /tmp/plugin-builds/role-strategy/src/main/frontend
 [INFO] 
-[INFO]  ✓ common/utils/impliedPermissions.spec.ts (4 tests) 7ms
-[ERROR] stderr | manage-roles/ManageRolesPage.spec.tsx > ManageRolesPage > renders a tab per visible role type and switches between them
+[ERROR] stderr | assign-roles/AssignRolesPage.spec.tsx > AssignRolesPage > renders entries per tab and switches between them
 [ERROR] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [ERROR] 
 [ERROR] stderr | manage-roles/ManageRolesPage.spec.tsx > ManageRolesPage > renders a tab per visible role type and switches between them
 [ERROR] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
 [ERROR] 
-[INFO]  ✓ common/utils/permissionSummary.spec.ts (4 tests) 5ms
-[INFO]  ✓ manage-roles/RoleDialog.spec.tsx (8 tests) 1656ms
-[INFO]      ✓ disables submit until the name is filled  331ms
-[INFO]      ✓ shows the server message on blur for an invalid pattern and clears it on edit  366ms
-[INFO]  ✓ manage-roles/ManageRolesPage.spec.tsx (12 tests) 2623ms
-[INFO]      ✓ renders a tab per visible role type and switches between them  757ms
-[INFO]      ✓ adds a role through the dialog and shows it in the list  537ms
-[INFO]      ✓ opens the matching dialog from the pattern chip with the keyboard  354ms
+[ERROR] stderr | manage-roles/ManageRolesPage.spec.tsx > ManageRolesPage > renders a tab per visible role type and switches between them
+[ERROR] Accessing element.ref was removed in React 19. ref is now a regular prop. It will be removed from the JSX Element type in a future release.
+[ERROR] 
+[ERROR] stderr | assign-roles/AssignRolesPage.spec.tsx > AssignRolesPage > always shows the built-in anonymous and authenticated entries
+[ERROR] An update to AssignRolesPage inside a test was not wrapped in act(...).
+[ERROR] 
+[ERROR] When testing, code that causes React state updates should be wrapped into act(...):
+[ERROR] 
+[ERROR] act(() => {
+[ERROR]   /* fire events that update state */
+[ERROR] });
+[ERROR] /* assert on the output */
+[ERROR] 
+[ERROR] This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+[ERROR] 
+[INFO]  ✓ manage-roles/RoleDialog.spec.tsx (8 tests) 2763ms
+[INFO]      ✓ disables submit until the name is filled  1057ms
+[INFO]      ✓ keeps submit enabled while a pattern check is still in flight  360ms
+[INFO]      ✓ shows the server message on blur for an invalid pattern and clears it on edit  424ms
+[INFO]      ✓ binding a template shows its permissions read-only and submits the template  370ms
+[INFO]  ✓ manage-roles/ManageRolesPage.spec.tsx (12 tests) 3906ms
+[INFO]      ✓ renders a tab per visible role type and switches between them  1084ms
+[INFO]      ✓ adds a role through the dialog and shows it in the list  560ms
+[INFO]      ✓ resets search when switching tabs  351ms
+[INFO]      ✓ opens the matching dialog from the pattern chip with the keyboard  880ms
+[INFO]  ✓ common/utils/impliedPermissions.spec.ts (4 tests) 14ms
+[INFO]  ✓ common/utils/permissionSummary.spec.ts (4 tests) 11ms
+[ERROR] stderr | assign-roles/AssignRolesPage.spec.tsx > AssignRolesPage > renders read-only when the type is not editable
+[ERROR] An update to AssignRolesPage inside a test was not wrapped in act(...).
+[ERROR] 
+[ERROR] When testing, code that causes React state updates should be wrapped into act(...):
+[ERROR] 
+[ERROR] act(() => {
+[ERROR]   /* fire events that update state */
+[ERROR] });
+[ERROR] /* assert on the output */
+[ERROR] 
+[ERROR] This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act
+[ERROR] 
+[INFO]  ✓ assign-roles/AssignRolesPage.spec.tsx (28 tests) 17784ms
+[INFO]      ✓ renders entries per tab and switches between them  1246ms
+[INFO]      ✓ shows a role's permissions in a tooltip next to its chip and in the role picker  464ms
+[INFO]      ✓ assigns and unassigns roles through the edit dialog  692ms
+[INFO]      ✓ dispatches group edits to the group endpoint  606ms
+[INFO]      ✓ shows the error in the dialog and resyncs when saving fails  448ms
+[INFO]      ✓ requires at least one role to add an entry  588ms
+[INFO]      ✓ allows saving an empty role selection when editing a built-in entry  541ms
+[INFO]      ✓ shows the server-rendered name lookup snippet after leaving the field  522ms
+[INFO]      ✓ re-runs the name lookup when the type changes  405ms
+[INFO]      ✓ adds a user with roles selected in the dialog  657ms
+[INFO]      ✓ adds a group by switching the type in the dialog  672ms
+[INFO]      ✓ filters ambiguous entries from the filter dropdown  323ms
+[INFO]      ✓ does not confuse a role named like the ambiguous filter with the ambiguous filter itself  371ms
+[INFO]        ✓ pages long lists and navigates between pages  2701ms
+[INFO]        ✓ resets to the first page when searching  2239ms
+[INFO]        ✓ does not widen sid resolution beyond the current page when searching  647ms
+[INFO]        ✓ resolves sids one page at a time  1517ms
+[INFO]        ✓ jumps to the page containing a newly added entry  1489ms
 [INFO] 
-[INFO]  Test Files  4 passed (4)
-[INFO]       Tests  28 passed (28)
-[INFO]    Start at  05:20:21
-[INFO]    Duration  5.29s (transform 507ms, setup 489ms, import 951ms, tests 4.29s, environment 6.91s)
+[INFO]  Test Files  5 passed (5)
+[INFO]       Tests  56 passed (56)
+[INFO]    Start at  01:20:04
+[INFO]    Duration  22.21s (transform 2.07s, setup 1.78s, import 3.43s, tests 24.48s, environment 12.36s)
 [INFO] 
 [INFO] JUNIT report written to /tmp/plugin-builds/role-strategy/target/surefire-reports/vitest-junit.xml
 [INFO] 
@@ -319,6 +372,6 @@ Audit done.
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:33 min
-[INFO] Finished at: 2026-09-29T05:20:53Z
+[INFO] Total time:  02:13 min
+[INFO] Finished at: 2026-10-06T01:21:00Z
 [INFO] ------------------------------------------------------------------------
