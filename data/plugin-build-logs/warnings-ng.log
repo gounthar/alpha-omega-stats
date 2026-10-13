@@ -1,10 +1,14 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is missing, no dependency information available
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3357.v7597b_eb_9174c
+[WARNING] Failed to build parent project for org.jvnet.hudson.plugins:analysis-pom:pom:12.3362.vd97f455460a_2
 [WARNING] Failed to build parent project for io.jenkins.plugins:warnings-ng-parent:pom:13.999999-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
@@ -16,6 +20,7 @@
 [INFO] Building Aggregator for Warnings Plugin 13.999999-SNAPSHOT         [1/2]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ warnings-ng-parent ---
 [INFO] 
@@ -68,6 +73,7 @@
 [INFO] Generating flattened POM of project io.jenkins.plugins:warnings-ng-parent:pom:13.999999-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ warnings-ng-parent ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ warnings-ng-parent ---
 [INFO] Executing tasks
@@ -138,6 +144,7 @@
 [INFO] Skipping org.apache.maven.plugins:maven-pmd-plugin:3.28.0:pmd report goal
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-java) @ warnings-ng-parent ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] You have 0 Checkstyle violations.
 [INFO] 
 [INFO] --- checkstyle:3.6.0:check (run-checkstyle-tests) @ warnings-ng-parent ---
@@ -155,7 +162,10 @@
 [INFO] --- spotbugs:4.10.4.1:check (spotbugs) @ warnings-ng-parent ---
 [INFO] 
 [INFO] --- spotless:3.10.2:check (default) @ warnings-ng-parent ---
-[INFO] Spotless check skipped
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] Sorting file /tmp/pom12823308496647996320.xml
+[INFO] Pom file is already sorted, exiting
+[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- failsafe:3.5.6:verify (default) @ warnings-ng-parent ---
 [INFO] Tests are skipped.
@@ -164,7 +174,6 @@
 [INFO] Skipping JaCoCo execution due to missing execution data file.
 [INFO] 
 [INFO] --- revapi:0.15.1:check (run-revapi) @ warnings-ng-parent ---
-[WARNING] 1 problem was encountered while building the effective model for org.jboss:jboss-dmr:jar:1.2.0.Final during dependency collection step for plugin (use -X to see details)
 [INFO] API checks completed without failures.
 [INFO] 
 [INFO] --- install:3.1.4:install (default-install) @ warnings-ng-parent ---
@@ -174,6 +183,55 @@
 [INFO] Building Warnings Plugin 13.999999-SNAPSHOT                        [2/2]
 [INFO]   from plugin/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] org.springframework:spring-framework-bom:pom:5.3.29 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-generator:pom:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.springframework.security:spring-security-bom:pom:5.6.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.xmlunit:xmlunit-assertj:pom:2.14.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.springframework.security:spring-security-bom:pom:5.8.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-module-jackson:pom:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.mockito:mockito-bom:pom:5.10.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-module-swagger-2:pom:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-generator-parent:pom:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.modelcontextprotocol.sdk:mcp:pom:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.swagger.core.v3:swagger-annotations:pom:2.2.54 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.modelcontextprotocol.sdk:mcp-json-jackson3:pom:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-generator-bom:pom:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] tools.jackson:jackson-bom:pom:3.0.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.swagger.core.v3:swagger-project:pom:2.2.54 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.everit.json:org.everit.json.schema:pom:1.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.commonmark:commonmark:pom:0.21.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.springframework.security:spring-security-bom:pom:5.6.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.commonmark:commonmark-parent:pom:0.21.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.jsoup:jsoup:pom:1.17.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.parasoft:parasoft-findings-utils:pom:1.0.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.sf.saxon:Saxon-HE:pom:12.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.modelcontextprotocol.sdk:mcp-core:pom:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] commons-validator:commons-validator:pom:1.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.networknt:json-schema-validator:pom:3.0.6 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml:classmate:pom:1.7.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml:oss-parent:pom:74 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] commons-digester:commons-digester:pom:1.8.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.projectreactor:reactor-core:pom:3.7.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.springframework.security:spring-security-bom:pom:5.5.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.sf.saxon:Saxon-HE:pom:10.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] edu.hm.hafner:analysis-model:jar:tests:14.18.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.xmlunit:xmlunit-assertj:jar:2.14.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-generator:jar:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-module-jackson:jar:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.victools:jsonschema-module-swagger-2:jar:5.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.modelcontextprotocol.sdk:mcp:jar:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.modelcontextprotocol.sdk:mcp-json-jackson3:jar:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.swagger.core.v3:swagger-annotations:jar:2.2.54 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.everit.json:org.everit.json.schema:jar:1.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.commonmark:commonmark:jar:0.21.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.parasoft:parasoft-findings-utils:jar:1.0.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.sf.saxon:Saxon-HE:jar:12.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml:classmate:jar:1.7.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.modelcontextprotocol.sdk:mcp-core:jar:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.networknt:json-schema-validator:jar:3.0.6 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] commons-validator:commons-validator:jar:1.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.projectreactor:reactor-core:jar:3.7.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] commons-digester:commons-digester:jar:1.8.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ warnings-ng ---
 [INFO] 
@@ -184,6 +242,8 @@
 [WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
 [INFO] --- hpi:3.1838.va_13472137a_6a_:validate-hpi (default-validate-hpi) @ warnings-ng ---
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository maven-central-repository (prefixes-maven-central-repository.txt)
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ warnings-ng ---
 [INFO] Ignoring requireUpperBoundDeps in com.google.code.findbugs:jsr305
@@ -413,197 +473,197 @@
 [INFO] io.jenkins.plugins.analysis.warnings.groovy.ParserConfiguration indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.warnings.groovy.ParserConfiguration.ParserFactory indexed under hudson.Extension
 [INFO] io.jenkins.plugins.analysis.warnings.tasks.OpenTasks.Descriptor indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.java:[57,12] Generating io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.java:[47,12] Generating io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeCategory.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeCategory.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeFile.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeFile.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeMessage.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeMessage.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeModule.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeModule.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludePackage.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludePackage.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeType.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeType.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeCategory.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeCategory.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeFile.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeFile.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeMessage.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeMessage.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeModule.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeModule.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludePackage.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludePackage.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeType.java:[32,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeType.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[39,12] Generating io/jenkins/plugins/analysis/core/model/ToolSelection.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.java:[50,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.java:[53,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[149,12] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[97,12] Generating io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[115,12] Generating io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[60,12] Generating io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[29,12] Generating io/jenkins/plugins/analysis/core/steps/ToolProxy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[44,12] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AcuCobol.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/AcuCobol.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Ajc.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Ajc.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AnchoreCtl.java:[21,12] Generating io/jenkins/plugins/analysis/warnings/AnchoreCtl.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AndroidLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/AndroidLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AnsibleLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/AnsibleLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AquaScanner.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/AquaScanner.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ArmCc.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/ArmCc.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/BluePearl.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/BluePearl.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Brakeman.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Brakeman.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Buckminster.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Buckminster.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cadence.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Cadence.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cargo.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Cargo.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Ccm.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Ccm.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CheckStyle.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/CheckStyle.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Clair.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Clair.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Clang.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Clang.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ClangAnalyzer.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/ClangAnalyzer.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ClangTidy.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/ClangTidy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cmake.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Cmake.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeAnalysis.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/CodeAnalysis.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeChecker.java:[21,12] Generating io/jenkins/plugins/analysis/warnings/CodeChecker.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeGenerator.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/CodeGenerator.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeNarc.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/CodeNarc.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Coolflux.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Coolflux.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cpd.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/Cpd.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CppCheck.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/CppCheck.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CppLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/CppLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CrossCoreEmbeddedStudio.java:[21,12] Generating io/jenkins/plugins/analysis/warnings/CrossCoreEmbeddedStudio.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CssLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/CssLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DScanner.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/DScanner.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Dart.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Dart.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Detekt.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Detekt.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DiabC.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/DiabC.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DocFx.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/DocFx.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DockerLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/DockerLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Doxygen.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Doxygen.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DrMemory.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/DrMemory.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DupFinder.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/DupFinder.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Eclipse.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Eclipse.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/EmbeddedEngineer.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/EmbeddedEngineer.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Erlc.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Erlc.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ErrorProne.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/ErrorProne.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/EsLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/EsLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/FindBugs.java:[30,12] Generating io/jenkins/plugins/analysis/warnings/FindBugs.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Flake8.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Flake8.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Flawfinder.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Flawfinder.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/FlexSdk.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/FlexSdk.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Fxcop.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Fxcop.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gcc3.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Gcc3.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gcc4.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Gcc4.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gendarme.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Gendarme.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GhsMulti.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/GhsMulti.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gnat.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Gnat.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GnuFortran.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/GnuFortran.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GoLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/GoLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GoVet.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/GoVet.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GrepParser.java:[171,12] Generating io/jenkins/plugins/analysis/warnings/GrepParser.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Grype.java:[21,12] Generating io/jenkins/plugins/analysis/warnings/Grype.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/HadoLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/HadoLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Iar.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Iar.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/IarCstat.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/IarCstat.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/IbLinter.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/IbLinter.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/IdeaInspection.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/IdeaInspection.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Infer.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Infer.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Intel.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Intel.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Invalids.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Invalids.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JUnit.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/JUnit.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Java.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/Java.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JavaDoc.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/JavaDoc.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JcReport.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/JcReport.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JsHint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/JsHint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JsLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/JsLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/KlocWork.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/KlocWork.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Kotlin.java:[27,12] Generating io/jenkins/plugins/analysis/warnings/Kotlin.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/KtLint.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/KtLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MavenConsole.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/MavenConsole.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MentorGraphics.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/MentorGraphics.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MetrowerksCodeWarrior.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/MetrowerksCodeWarrior.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MsBuild.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/MsBuild.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MyPy.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/MyPy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/NagFortran.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/NagFortran.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.java:[53,12] Generating io/jenkins/plugins/analysis/core/columns/IssuesTotalColumn.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.java:[45,12] Generating io/jenkins/plugins/analysis/core/columns/WarningsAppearanceConfiguration.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeCategory.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeCategory.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeFile.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeFile.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeMessage.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeMessage.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeModule.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeModule.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludePackage.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludePackage.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/ExcludeType.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/ExcludeType.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeCategory.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeCategory.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeFile.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeFile.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeMessage.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeMessage.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeModule.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeModule.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludePackage.java:[27,12] Generating io/jenkins/plugins/analysis/core/filter/IncludePackage.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/IncludeType.java:[29,12] Generating io/jenkins/plugins/analysis/core/filter/IncludeType.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ToolSelection.java:[35,12] Generating io/jenkins/plugins/analysis/core/model/ToolSelection.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.java:[47,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesChartPortlet.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.java:[49,12] Generating io/jenkins/plugins/analysis/core/portlets/IssuesTablePortlet.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[154,12] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.java:[94,12] Generating io/jenkins/plugins/analysis/core/steps/PublishIssuesStep.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.java:[118,12] Generating io/jenkins/plugins/analysis/core/steps/RecordIssuesStep.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.java:[57,12] Generating io/jenkins/plugins/analysis/core/steps/ScanForIssuesStep.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/ToolProxy.java:[26,12] Generating io/jenkins/plugins/analysis/core/steps/ToolProxy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[41,12] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AcuCobol.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/AcuCobol.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Ajc.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Ajc.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AnchoreCtl.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/AnchoreCtl.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AndroidLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/AndroidLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AnsibleLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/AnsibleLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/AquaScanner.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/AquaScanner.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ArmCc.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/ArmCc.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/BluePearl.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/BluePearl.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Brakeman.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Brakeman.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Buckminster.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Buckminster.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cadence.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Cadence.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cargo.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Cargo.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Ccm.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Ccm.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CheckStyle.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/CheckStyle.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Clair.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Clair.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Clang.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Clang.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ClangAnalyzer.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/ClangAnalyzer.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ClangTidy.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/ClangTidy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cmake.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Cmake.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeAnalysis.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/CodeAnalysis.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeChecker.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/CodeChecker.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeGenerator.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/CodeGenerator.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CodeNarc.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/CodeNarc.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Coolflux.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Coolflux.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Cpd.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Cpd.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CppCheck.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/CppCheck.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CppLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/CppLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CrossCoreEmbeddedStudio.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/CrossCoreEmbeddedStudio.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/CssLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/CssLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DScanner.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/DScanner.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Dart.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Dart.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Detekt.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Detekt.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DiabC.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/DiabC.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DocFx.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/DocFx.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DockerLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/DockerLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Doxygen.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Doxygen.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DrMemory.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/DrMemory.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DupFinder.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/DupFinder.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Eclipse.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Eclipse.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/EmbeddedEngineer.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/EmbeddedEngineer.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Erlc.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Erlc.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ErrorProne.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/ErrorProne.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/EsLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/EsLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/FindBugs.java:[28,12] Generating io/jenkins/plugins/analysis/warnings/FindBugs.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Flake8.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Flake8.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Flawfinder.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Flawfinder.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/FlexSdk.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/FlexSdk.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Fxcop.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Fxcop.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gcc3.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Gcc3.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gcc4.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Gcc4.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gendarme.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Gendarme.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GhsMulti.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/GhsMulti.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Gnat.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Gnat.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GnuFortran.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/GnuFortran.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GoLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/GoLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GoVet.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/GoVet.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GrepParser.java:[167,12] Generating io/jenkins/plugins/analysis/warnings/GrepParser.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Grype.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/Grype.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/HadoLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/HadoLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Iar.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Iar.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/IarCstat.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/IarCstat.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/IbLinter.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/IbLinter.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/IdeaInspection.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/IdeaInspection.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Infer.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Infer.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Intel.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Intel.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Invalids.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Invalids.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JUnit.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/JUnit.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Java.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Java.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JavaDoc.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/JavaDoc.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JcReport.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/JcReport.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JsHint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/JsHint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/JsLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/JsLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/KlocWork.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/KlocWork.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Kotlin.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/Kotlin.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/KtLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/KtLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MavenConsole.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/MavenConsole.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MentorGraphics.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/MentorGraphics.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MetrowerksCodeWarrior.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/MetrowerksCodeWarrior.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MsBuild.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/MsBuild.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/MyPy.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/MyPy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/NagFortran.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/NagFortran.stapler
 [INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/NpmAudit.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/NpmAudit.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/OELintAdv.java:[21,12] Generating io/jenkins/plugins/analysis/warnings/OELintAdv.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/OTDockerLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/OTDockerLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/OwaspDependencyCheck.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/OwaspDependencyCheck.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PVSStudio.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/PVSStudio.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PcLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/PcLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Pep8.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Pep8.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Perforce.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Perforce.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PerlCritic.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/PerlCritic.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Php.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Php.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PhpCodeSniffer.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/PhpCodeSniffer.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PhpStan.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/PhpStan.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Pit.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/Pit.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Pmd.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/Pmd.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Polyspace.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Polyspace.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PreFast.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/PreFast.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ProtoLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/ProtoLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PuppetLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/PuppetLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PyDocStyle.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/PyDocStyle.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PyLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/PyLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/QacSourceCodeAnalyser.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/QacSourceCodeAnalyser.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/QtTranslation.java:[28,12] Generating io/jenkins/plugins/analysis/warnings/QtTranslation.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RegisteredParser.java:[49,12] Generating io/jenkins/plugins/analysis/warnings/RegisteredParser.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ResharperInspectCode.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/ResharperInspectCode.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RevApi.java:[38,12] Generating io/jenkins/plugins/analysis/warnings/RevApi.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RfLint.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/RfLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Robocopy.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Robocopy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RuboCop.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/RuboCop.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Sarif.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Sarif.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Scala.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/Scala.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Simian.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Simian.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SimulinkCheck.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/SimulinkCheck.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SonarQube.java:[26,12] Generating io/jenkins/plugins/analysis/warnings/SonarQube.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SphinxBuild.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/SphinxBuild.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SpotBugs.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/SpotBugs.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/StyleCop.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/StyleCop.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/StyleLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/StyleLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SunC.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/SunC.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SwiftLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/SwiftLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TagList.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/TagList.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TaskingVx.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/TaskingVx.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TiCss.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/TiCss.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Tnsdl.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Tnsdl.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Trivy.java:[33,12] Generating io/jenkins/plugins/analysis/warnings/Trivy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TsLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/TsLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Vale.java:[21,12] Generating io/jenkins/plugins/analysis/warnings/Vale.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Valgrind.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/Valgrind.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/VeraCodePipelineScanner.java:[28,12] Generating io/jenkins/plugins/analysis/warnings/VeraCodePipelineScanner.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/WarningsPlugin.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/WarningsPlugin.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Xlc.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/Xlc.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/XmlLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/XmlLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YamlLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/YamlLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YoctoScanner.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/YoctoScanner.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YuiCompressor.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/YuiCompressor.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ZptLint.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/ZptLint.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[82,12] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[74,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.java:[48,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[184,12] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ToolApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/ToolApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/IssueApi.java:[17,8] Generating io/jenkins/plugins/analysis/core/restapi/IssueApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ReportApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/ReportApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AggregationApi.java:[16,8] Generating io/jenkins/plugins/analysis/core/restapi/AggregationApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.java:[21,8] Generating io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.javadoc
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[276,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1012,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckId.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[74,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckReportEncoding.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[339,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckScript.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[348,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckCredentialsId.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GrepParser.java:[358,31] Generating io/jenkins/plugins/analysis/warnings/GrepParser/Descriptor/doCheckExample.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1116,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckHealthy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[94,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckSourceCodeEncoding.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[241,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckIncludePattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[286,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckProjectUrl.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1137,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckUnhealthy.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GrepParser.java:[302,31] Generating io/jenkins/plugins/analysis/warnings/GrepParser/Descriptor/doCheckRegexp.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[261,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExcludePattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[291,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExample.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[193,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckHighThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/filter/RegexpFilter.java:[95,31] Generating io/jenkins/plugins/analysis/core/filter/RegexpFilter/RegexpFilterDescriptor/doCheckPattern.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[319,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckBasedir.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[383,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckExample.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[215,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckNormalThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[228,31] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate/WarningsQualityGateDescriptor/doCheckThreshold.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[389,29] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doFillCredentialsIdItems.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[159,27] Generating io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration/doCheckConsoleLogScanningPermitted.stapler
-[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportScanningTool.java:[330,31] Generating io/jenkins/plugins/analysis/core/model/ReportScanningTool/ReportScanningToolDescriptor/doCheckLinesLookAhead.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/OELintAdv.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/OELintAdv.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/OTDockerLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/OTDockerLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/OwaspDependencyCheck.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/OwaspDependencyCheck.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PVSStudio.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/PVSStudio.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PcLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/PcLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Pep8.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Pep8.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Perforce.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Perforce.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PerlCritic.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/PerlCritic.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Php.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Php.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PhpCodeSniffer.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/PhpCodeSniffer.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PhpStan.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/PhpStan.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Pit.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Pit.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Pmd.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Pmd.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Polyspace.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Polyspace.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PreFast.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/PreFast.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ProtoLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/ProtoLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PuppetLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/PuppetLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PyDocStyle.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/PyDocStyle.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/PyLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/PyLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/QacSourceCodeAnalyser.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/QacSourceCodeAnalyser.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/QtTranslation.java:[27,12] Generating io/jenkins/plugins/analysis/warnings/QtTranslation.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RegisteredParser.java:[45,12] Generating io/jenkins/plugins/analysis/warnings/RegisteredParser.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ResharperInspectCode.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/ResharperInspectCode.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RevApi.java:[36,12] Generating io/jenkins/plugins/analysis/warnings/RevApi.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RfLint.java:[25,12] Generating io/jenkins/plugins/analysis/warnings/RfLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Robocopy.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Robocopy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/RuboCop.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/RuboCop.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Sarif.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Sarif.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Scala.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Scala.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Simian.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Simian.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SimulinkCheck.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/SimulinkCheck.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SonarQube.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/SonarQube.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SphinxBuild.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/SphinxBuild.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SpotBugs.java:[23,12] Generating io/jenkins/plugins/analysis/warnings/SpotBugs.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/StyleCop.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/StyleCop.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/StyleLint.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/StyleLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SunC.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/SunC.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/SwiftLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/SwiftLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TagList.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/TagList.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TaskingVx.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/TaskingVx.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TiCss.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/TiCss.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Tnsdl.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Tnsdl.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Trivy.java:[32,12] Generating io/jenkins/plugins/analysis/warnings/Trivy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/TsLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/TsLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Vale.java:[20,12] Generating io/jenkins/plugins/analysis/warnings/Vale.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Valgrind.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/Valgrind.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/VeraCodePipelineScanner.java:[27,12] Generating io/jenkins/plugins/analysis/warnings/VeraCodePipelineScanner.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/WarningsPlugin.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/WarningsPlugin.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/Xlc.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/Xlc.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/XmlLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/XmlLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YamlLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/YamlLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YoctoScanner.java:[24,12] Generating io/jenkins/plugins/analysis/warnings/YoctoScanner.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/YuiCompressor.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/YuiCompressor.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/ZptLint.java:[22,12] Generating io/jenkins/plugins/analysis/warnings/ZptLint.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[78,12] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[71,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.java:[46,12] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyScript.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[183,12] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.java:[18,8] Generating io/jenkins/plugins/analysis/core/restapi/AnalysisResultApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/AggregationApi.java:[15,8] Generating io/jenkins/plugins/analysis/core/restapi/AggregationApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ToolApi.java:[15,8] Generating io/jenkins/plugins/analysis/core/restapi/ToolApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/ReportApi.java:[18,8] Generating io/jenkins/plugins/analysis/core/restapi/ReportApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/restapi/IssueApi.java:[15,8] Generating io/jenkins/plugins/analysis/core/restapi/IssueApi.javadoc
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GrepParser.java:[350,31] Generating io/jenkins/plugins/analysis/warnings/GrepParser/Descriptor/doCheckExample.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/IssuesRecorder.java:[1055,31] Generating io/jenkins/plugins/analysis/core/steps/IssuesRecorder/Descriptor/doCheckId.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[272,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckProjectUrl.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportScanningTool.java:[345,31] Generating io/jenkins/plugins/analysis/core/model/ReportScanningTool/ReportScanningToolDescriptor/doCheckPattern.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[299,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckRegexp.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[377,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckExample.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[293,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckExample.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[163,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckUnhealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[211,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckNormalThreshold.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportScanningTool.java:[303,31] Generating io/jenkins/plugins/analysis/core/model/ReportScanningTool/ReportScanningToolDescriptor/doCheckReportEncoding.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[91,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckSourceCodeEncoding.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/tasks/OpenTasks.java:[243,31] Generating io/jenkins/plugins/analysis/warnings/tasks/OpenTasks/Descriptor/doCheckIncludePattern.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[368,29] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doFillCredentialsIdItems.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[304,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckBasedir.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner.java:[188,31] Generating io/jenkins/plugins/analysis/warnings/DuplicateCodeScanner/DuplicateCodeDescriptor/doCheckHighThreshold.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor.java:[140,27] Generating io/jenkins/plugins/analysis/core/steps/AnalysisStepDescriptor/doCheckHealthy.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/util/WarningsQualityGate.java:[223,31] Generating io/jenkins/plugins/analysis/core/util/WarningsQualityGate/WarningsQualityGateDescriptor/doCheckThreshold.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration.java:[155,27] Generating io/jenkins/plugins/analysis/warnings/groovy/ParserConfiguration/doCheckConsoleLogScanningPermitted.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[272,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckName.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/GrepParser.java:[275,31] Generating io/jenkins/plugins/analysis/warnings/GrepParser/Descriptor/doCheckExcludePattern.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/core/model/ReportScanningTool.java:[322,31] Generating io/jenkins/plugins/analysis/core/model/ReportScanningTool/ReportScanningToolDescriptor/doCheckLinesLookAhead.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/groovy/GroovyParser.java:[334,31] Generating io/jenkins/plugins/analysis/warnings/groovy/GroovyParser/DescriptorImpl/doCheckScript.stapler
+[INFO] /tmp/plugin-builds/warnings-ng/plugin/src/main/java/io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite.java:[332,31] Generating io/jenkins/plugins/analysis/warnings/axivion/AxivionSuite/AxivionSuiteToolDescriptor/doCheckCredentialsId.stapler
 [WARNING] No processor claimed any of these annotations: /org.jenkinsci.plugins.tokenmacro.DataBoundTokenMacro.Parameter,/io.jenkins.plugins.mcp.server.annotation.ToolParam,/hudson.init.Initializer,/edu.umd.cs.findbugs.annotations.NonNull,/org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.Whitelisted,/org.jenkinsci.plugins.variant.OptionalExtension,/org.kohsuke.stapler.DataBoundSetter,/com.google.errorprone.annotations.MustBeClosed,/edu.umd.cs.findbugs.annotations.CheckForNull,/org.kohsuke.stapler.bind.JavaScriptMethod,/org.kohsuke.stapler.AncestorInPath,/edu.hm.hafner.util.Generated,/org.kohsuke.stapler.verb.POST,/edu.hm.hafner.util.VisibleForTesting,/io.jenkins.plugins.mcp.server.annotation.Tool,/org.kohsuke.stapler.export.ExportedBean,/org.kohsuke.stapler.DataBoundConstructor,/org.kohsuke.accmod.Restricted,/org.kohsuke.stapler.QueryParameter,/com.google.errorprone.annotations.CheckReturnValue,/org.jenkinsci.Symbol,/edu.umd.cs.findbugs.annotations.SuppressFBWarnings,/org.kohsuke.stapler.export.Exported,/com.google.errorprone.annotations.FormatMethod,/edu.umd.cs.findbugs.annotations.DefaultAnnotation,/hudson.Extension
 [INFO] 
 [INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ warnings-ng ---
@@ -732,7 +792,15 @@
 [INFO] You have 0 Checkstyle violations.
 [INFO] 
 [INFO] --- spotless:3.10.2:check (default) @ warnings-ng ---
-[INFO] Spotless check skipped
+[INFO] Index file does not exist. Fallback to an empty index
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/4.10.2/spotless-lib-4.10.2.jar)
+WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Spotless.Java is keeping 405 files clean - 0 needs changes to be clean, 405 were already clean, 0 were skipped because caching determined they were already clean
+[INFO] Sorting file /tmp/pom3901496130736001255.xml
+[INFO] Pom file is already sorted, exiting
+[INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- failsafe:3.5.6:verify (default) @ warnings-ng ---
 [INFO] Tests are skipped.
@@ -750,11 +818,11 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Aggregator for Warnings Plugin 13.999999-SNAPSHOT:
 [INFO] 
-[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 20.888 s]
-[INFO] Warnings Plugin .................................... SUCCESS [02:36 min]
+[INFO] Aggregator for Warnings Plugin ..................... SUCCESS [ 26.603 s]
+[INFO] Warnings Plugin .................................... SUCCESS [02:51 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:59 min
-[INFO] Finished at: 2026-10-06T01:57:20Z
+[INFO] Total time:  03:20 min
+[INFO] Finished at: 2026-10-13T02:06:29Z
 [INFO] ------------------------------------------------------------------------

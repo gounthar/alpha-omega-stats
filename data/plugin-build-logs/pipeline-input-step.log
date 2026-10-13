@@ -1,4 +1,8 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is missing, no dependency information available
@@ -10,6 +14,7 @@
 [INFO] Building Pipeline: Input Step 999999-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-input-step ---
 [INFO] 
@@ -17,6 +22,8 @@
 [INFO] Created marker file /tmp/plugin-builds/pipeline-input-step/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1838.va_13472137a_6a_:validate-hpi (default-validate-hpi) @ pipeline-input-step ---
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ pipeline-input-step ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
@@ -55,10 +62,10 @@
 [INFO] Compiling 9 source files with javac [debug parameters release 17] to target/classes
 [INFO] org.jenkinsci.plugins.workflow.support.steps.input.InputStep.DescriptorImpl indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputStep.java:[90,12] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputStep.stapler
-[INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/Rejection.java:[11,14] Generating org/jenkinsci/plugins/workflow/support/steps/input/Rejection.javadoc
-[INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputStepExecution.java:[68,8] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputStepExecution.javadoc
-[INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputStep.java:[52,8] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputStep.javadoc
 [INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputAction.java:[26,8] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputAction.javadoc
+[INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputStepExecution.java:[68,8] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputStepExecution.javadoc
+[INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/Rejection.java:[11,14] Generating org/jenkinsci/plugins/workflow/support/steps/input/Rejection.javadoc
+[INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputStep.java:[52,8] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputStep.javadoc
 [INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/ApproverAction.java:[41,8] Generating org/jenkinsci/plugins/workflow/support/steps/input/ApproverAction.javadoc
 [INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/InputStep.java:[327,31] Generating org/jenkinsci/plugins/workflow/support/steps/input/InputStep/DescriptorImpl/doCheckId.stapler
 [INFO] /tmp/plugin-builds/pipeline-input-step/src/main/java/org/jenkinsci/plugins/workflow/support/steps/input/ApproverAction.java: Some input files use or override a deprecated API.
@@ -135,6 +142,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  45.396 s
-[INFO] Finished at: 2026-10-06T00:54:56Z
+[INFO] Total time:  46.950 s
+[INFO] Finished at: 2026-10-13T00:59:07Z
 [INFO] ------------------------------------------------------------------------

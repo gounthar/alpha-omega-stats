@@ -1,4 +1,8 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1838.va_13472137a_6a_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1838.va_13472137a_6a_ is missing, no dependency information available
@@ -16,6 +20,7 @@
 [INFO] Building Pipeline Stage View Plugin: Parent POM 2.42-SNAPSHOT      [1/3]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ parent-pom ---
 [INFO] 
@@ -49,6 +54,7 @@
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins.pipeline-stage-view:parent-pom:pom:2.42-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ parent-pom ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ parent-pom ---
 [INFO] Executing tasks
@@ -89,6 +95,8 @@
 [INFO] Created marker file /tmp/plugin-builds/pipeline-rest-api/rest-api/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1838.va_13472137a_6a_:validate-hpi (default-validate-hpi) @ pipeline-rest-api ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ pipeline-rest-api ---
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
@@ -164,6 +172,9 @@
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ pipeline-rest-api ---
+[WARNING] Some problems were encountered while processing the POMs:
+[ERROR] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.moditect:moditect-maven-plugin @ line 196, column 21
+
 [INFO] Generated /tmp/plugin-builds/pipeline-rest-api/rest-api/target/pipeline-rest-api/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1838.va_13472137a_6a_:hpi (default-hpi) @ pipeline-rest-api ---
@@ -209,6 +220,144 @@
 [INFO] Building Pipeline: Stage View Plugin 2.42-SNAPSHOT                 [3/3]
 [INFO]   from ui/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] com.github.klieber:phantomjs-maven-plugin:pom:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-plugin:pom:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven:pom:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven:pom:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-plugin:jar:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-plugin:jar:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-java:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-java:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v130:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v130:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-api:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-api:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chrome-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chrome-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v132:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v132:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v85:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v85:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v131:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v131:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-edge-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-edge-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-firefox-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-firefox-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-ie-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-ie-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-remote-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-remote-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-safari-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-safari-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-support:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-support:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-json:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-json:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chromium-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chromium-driver:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-manager:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-manager:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-http:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-http:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry.semconv:opentelemetry-semconv:pom:1.28.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry.semconv:opentelemetry-semconv:pom:1.28.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-context:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-context:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-exporter-logging:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-exporter-logging:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-common:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-common:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.bytebuddy:byte-buddy:pom:1.15.11 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.bytebuddy:byte-buddy:pom:1.15.11 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-trace:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-trace:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.checkerframework:checker-qual:pom:3.43.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.checkerframework:checker-qual:pom:3.43.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.bytebuddy:byte-buddy-parent:pom:1.15.11 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.bytebuddy:byte-buddy-parent:pom:1.15.11 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-os:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-os:pom:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api-incubator:pom:1.46.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api-incubator:pom:1.46.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-metrics:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-metrics:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-logs:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-logs:pom:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-exec:pom:1.4.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-exec:pom:1.4.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-java:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-java:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-api:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-api:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chrome-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chrome-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v130:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v130:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v131:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v131:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v132:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v132:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v85:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-devtools-v85:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-edge-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-edge-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-firefox-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-firefox-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-ie-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-ie-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-remote-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-remote-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-safari-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-safari-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-support:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-support:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chromium-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-chromium-driver:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-json:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-json:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-manager:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-manager:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-http:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-http:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry.semconv:opentelemetry-semconv:jar:1.28.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry.semconv:opentelemetry-semconv:jar:1.28.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-context:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-context:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-exporter-logging:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-exporter-logging:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-common:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-common:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure-spi:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-trace:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-trace:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.bytebuddy:byte-buddy:jar:1.15.11 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.bytebuddy:byte-buddy:jar:1.15.11 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-os:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.seleniumhq.selenium:selenium-os:jar:4.28.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api-incubator:jar:1.46.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-api-incubator:jar:1.46.0-alpha was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-metrics:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-metrics:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-logs:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] io.opentelemetry:opentelemetry-sdk-logs:jar:1.46.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-exec:jar:1.4.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-exec:jar:1.4.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-stage-view ---
 [INFO] 
@@ -261,15 +410,15 @@
 [ERROR]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
 [INFO] Bundling...
 [INFO] Packaging & Optimizing...
-[INFO] ✨ Built in 8.51s
+[INFO] ✨ Built in 6.92s
 [INFO] 
-[INFO] src/main/webapp/jsmodules/stageview.js                                  286.48 KB    3.18s
-[INFO] src/main/webapp/jsmodules/stageview.css                                  57.14 KB    1.54s
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.76f64001.eot      19.86 KB    1.46s
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.61249189.woff     22.77 KB    1.46s
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.1a88f5c8.ttf      40.31 KB    1.47s
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.e72c5eba.svg      52.54 KB    1.71s
-[INFO] src/main/webapp/jsmodules/loading.406e174f.gif                            33.6 KB    1.47s
+[INFO] src/main/webapp/jsmodules/stageview.js                                  286.48 KB    2.48s
+[INFO] src/main/webapp/jsmodules/stageview.css                                  57.14 KB    1.06s
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.76f64001.eot      19.86 KB    1.01s
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.61249189.woff     22.77 KB    1.01s
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.1a88f5c8.ttf      40.31 KB    1.01s
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.e72c5eba.svg      52.54 KB    1.37s
+[INFO] src/main/webapp/jsmodules/loading.406e174f.gif                            33.6 KB    1.01s
 [INFO] Building...
 [ERROR] Browserslist: caniuse-lite is outdated. Please run:
 [ERROR]   npx update-browserslist-db@latest
@@ -279,9 +428,9 @@
 [ERROR] Browserslist: caniuse-lite is outdated. Please run:
 [ERROR]   npx update-browserslist-db@latest
 [ERROR]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
-[INFO] ✨ Built in 2.00s
+[INFO] ✨ Built in 1.21s
 [INFO] 
-[INFO] target/generated-adjuncts/org/jenkinsci/pipeline/stageview_adjunct.js    10.25 KB    186ms
+[INFO] target/generated-adjuncts/org/jenkinsci/pipeline/stageview_adjunct.js    10.25 KB    102ms
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ pipeline-stage-view ---
 [INFO] Skipping Rule Enforcement.
@@ -321,6 +470,156 @@
 [INFO] Not copying test resources
 [INFO] 
 [INFO] --- phantomjs:0.7:install (default) @ pipeline-stage-view ---
+[WARNING] org.slf4j:slf4j-api:pom:1.7.12 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.slf4j:slf4j-api:pom:1.7.12 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-plugin-api:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-plugin-api:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-core:pom:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-core:pom:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-api:pom:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-api:pom:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether:pom:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether:pom:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-core:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-core:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.slf4j:slf4j-parent:pom:1.7.12 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.slf4j:slf4j-parent:pom:1.7.12 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-util:pom:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-util:pom:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-zip:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-zip:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-tar:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-tar:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-file:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-file:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings-builder:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings-builder:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.java.truecommons:truecommons-parent:pom:92 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] net.java.truecommons:truecommons-parent:pom:92 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-repository-metadata:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-repository-metadata:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model-builder:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model-builder:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-interpolation:pom:1.19 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-interpolation:pom:1.19 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-compress:pom:1.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-compress:pom:1.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-impl:pom:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-impl:pom:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-aether-provider:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-aether-provider:pom:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-swing:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-swing:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether:pom:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether:pom:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.tukaani:xz:pom:1.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.tukaani:xz:pom:1.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-kernel:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-kernel:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.bouncycastle:bcprov-jdk15on:pom:1.51 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.bouncycastle:bcprov-jdk15on:pom:1.51 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-file:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-file:pom:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.guava:guava:pom:10.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.guava:guava:pom:10.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.sonatype.sisu:sisu-guice:pom:3.1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.sonatype.sisu:sisu-guice:pom:3.1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:org.eclipse.sisu.inject:pom:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:org.eclipse.sisu.inject:pom:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-classworlds:pom:2.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-classworlds:pom:2.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-spi:pom:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-spi:pom:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.guava:guava-parent:pom:10.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.guava:guava-parent:pom:10.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.sonatype.sisu.inject:guice-parent:pom:3.1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.sonatype.sisu.inject:guice-parent:pom:3.1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:sisu-inject:pom:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:sisu-inject:pom:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:annotations:pom:3.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:annotations:pom:3.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:jsr305:pom:1.3.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:jsr305:pom:1.3.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-core:jar:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs-maven-core:jar:0.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-plugin-api:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-plugin-api:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-api:jar:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-api:jar:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.slf4j:slf4j-api:jar:1.7.12 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.slf4j:slf4j-api:jar:1.7.12 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-core:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-core:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-utils:jar:3.0.22 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-utils:jar:3.0.22 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-util:jar:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-util:jar:0.9.1.v20140329 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-zip:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-zip:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-tar:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-tar:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-file:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-file:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:org.eclipse.sisu.plexus:jar:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings-builder:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings-builder:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-repository-metadata:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-repository-metadata:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model-builder:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model-builder:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-aether-provider:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-aether-provider:jar:3.2.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-impl:jar:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-impl:jar:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-interpolation:jar:1.19 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-interpolation:jar:1.19 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-classworlds:jar:2.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-classworlds:jar:2.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-swing:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-swing:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-compress:jar:1.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.commons:commons-compress:jar:1.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.bouncycastle:bcprov-jdk15on:jar:1.51 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.bouncycastle:bcprov-jdk15on:jar:1.51 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-kernel:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-kernel:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.tukaani:xz:jar:1.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.tukaani:xz:jar:1.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-file:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] de.schlichtherle.truezip:truezip-driver-file:jar:7.7.8 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.guava:guava:jar:10.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.guava:guava:jar:10.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.sonatype.sisu:sisu-guice:jar:no_aop:3.1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.sonatype.sisu:sisu-guice:jar:no_aop:3.1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.sisu:org.eclipse.sisu.inject:jar:0.0.0.M5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-spi:jar:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.aether:aether-spi:jar:0.9.0.M2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:annotations:jar:3.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:annotations:jar:3.0.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:jsr305:jar:1.3.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.google.code.findbugs:jsr305:jar:1.3.9 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs:tar.bz2:linux-x86_64:1.9.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.klieber:phantomjs:tar.bz2:linux-x86_64:1.9.7 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
 [INFO] Resolved artifact /home/runner/.m2/repository/com/github/klieber/phantomjs/1.9.7/phantomjs-1.9.7-linux-x86_64.tar.bz2 from central (https://repo.maven.apache.org/maven2, default, releases)
 [INFO] Extracting /home/runner/.m2/repository/com/github/klieber/phantomjs/1.9.7/phantomjs-1.9.7-linux-x86_64.tar.bz2/phantomjs-1.9.7-linux-x86_64/bin/phantomjs to /tmp/plugin-builds/pipeline-rest-api/ui/target/phantomjs-maven-plugin/phantomjs-1.9.7-linux-x86_64/bin/phantomjs
 [INFO] 
@@ -344,20 +643,20 @@
 [INFO] > pipeline-stage-view@0.0.1 mvntest
 [INFO] > jest --ci --config=jest.config.json
 [INFO] 
-[INFO] PASS src/test/js/view/run-input-required.spec.js (9.574s)
-[INFO] PASS src/test/js/view/pipeline-staged.spec.js (12.54s)
+[INFO] PASS src/test/js/view/run-input-required.spec.js (11.583s)
+[INFO] PASS src/test/js/view/pipeline-staged.spec.js (14.567s)
 [INFO]   ● Console
 [INFO] 
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -371,13 +670,13 @@
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -391,13 +690,13 @@
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -411,13 +710,13 @@
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -431,13 +730,13 @@
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -451,13 +750,13 @@
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -471,13 +770,13 @@
 [INFO]     console.error
 [INFO]       No controller named 'stage-actions-popover'.
 [INFO] 
-[INFO]       78 |                     });
-[INFO]       79 |                 } else {
-[INFO]     > 80 |                     console.error("No controller named '" + controllerName + "'.");
-[INFO]          |                             ^
-[INFO]       81 |                 }
-[INFO]       82 |             } else {
-[INFO]       83 |                 console.error("'widget-element' must define 'controller'.");
+[INFO]     [0m [90m 78 |[39m                     })[33m;[39m
+[INFO]      [90m 79 |[39m                 } [36melse[39m {
+[INFO]     [31m[1m>[22m[39m[90m 80 |[39m                     console[33m.[39merror([32m"No controller named '"[39m [33m+[39m controllerName [33m+[39m [32m"'."[39m)[33m;[39m
+[INFO]      [90m    |[39m                             [31m[1m^[22m[39m
+[INFO]      [90m 81 |[39m                 }
+[INFO]      [90m 82 |[39m             } [36melse[39m {
+[INFO]      [90m 83 |[39m                 console[33m.[39merror([32m"'widget-element' must define 'controller'."[39m)[33m;[39m[0m
 [INFO] 
 [INFO]       at func (src/main/js/mvc/index.js:80:29)
 [INFO]       at HTMLDivElement.<anonymous> (src/main/js/jQuery/index.js:59:9)
@@ -491,13 +790,13 @@
 [INFO]     console.warn
 [INFO]       No "data-runId" on run.
 [INFO] 
-[INFO]       149 |
-[INFO]       150 |         if (!runId) {
-[INFO]     > 151 |             console.warn('No "data-runId" on run.');
-[INFO]           |                     ^
-[INFO]       152 |             return;
-[INFO]       153 |         }
-[INFO]       154 |
+[INFO]     [0m [90m 149 |[39m
+[INFO]      [90m 150 |[39m         [36mif[39m ([33m![39mrunId) {
+[INFO]     [31m[1m>[22m[39m[90m 151 |[39m             console[33m.[39mwarn([32m'No "data-runId" on run.'[39m)[33m;[39m
+[INFO]      [90m     |[39m                     [31m[1m^[22m[39m
+[INFO]      [90m 152 |[39m             [36mreturn[39m[33m;[39m
+[INFO]      [90m 153 |[39m         }
+[INFO]      [90m 154 |[39m[0m
 [INFO] 
 [INFO]       at HTMLTableRowElement.<anonymous> (src/main/js/view/pipeline-staged.js:151:21)
 [INFO]       at Function.each (node_modules/jquery/dist/jquery.js:383:19)
@@ -511,13 +810,13 @@
 [INFO]     console.warn
 [INFO]       No "data-runId" on run.
 [INFO] 
-[INFO]       149 |
-[INFO]       150 |         if (!runId) {
-[INFO]     > 151 |             console.warn('No "data-runId" on run.');
-[INFO]           |                     ^
-[INFO]       152 |             return;
-[INFO]       153 |         }
-[INFO]       154 |
+[INFO]     [0m [90m 149 |[39m
+[INFO]      [90m 150 |[39m         [36mif[39m ([33m![39mrunId) {
+[INFO]     [31m[1m>[22m[39m[90m 151 |[39m             console[33m.[39mwarn([32m'No "data-runId" on run.'[39m)[33m;[39m
+[INFO]      [90m     |[39m                     [31m[1m^[22m[39m
+[INFO]      [90m 152 |[39m             [36mreturn[39m[33m;[39m
+[INFO]      [90m 153 |[39m         }
+[INFO]      [90m 154 |[39m[0m
 [INFO] 
 [INFO]       at HTMLTableRowElement.<anonymous> (src/main/js/view/pipeline-staged.js:151:21)
 [INFO]       at Function.each (node_modules/jquery/dist/jquery.js:383:19)
@@ -531,13 +830,13 @@
 [INFO]     console.warn
 [INFO]       No "data-runId" on run.
 [INFO] 
-[INFO]       149 |
-[INFO]       150 |         if (!runId) {
-[INFO]     > 151 |             console.warn('No "data-runId" on run.');
-[INFO]           |                     ^
-[INFO]       152 |             return;
-[INFO]       153 |         }
-[INFO]       154 |
+[INFO]     [0m [90m 149 |[39m
+[INFO]      [90m 150 |[39m         [36mif[39m ([33m![39mrunId) {
+[INFO]     [31m[1m>[22m[39m[90m 151 |[39m             console[33m.[39mwarn([32m'No "data-runId" on run.'[39m)[33m;[39m
+[INFO]      [90m     |[39m                     [31m[1m^[22m[39m
+[INFO]      [90m 152 |[39m             [36mreturn[39m[33m;[39m
+[INFO]      [90m 153 |[39m         }
+[INFO]      [90m 154 |[39m[0m
 [INFO] 
 [INFO]       at HTMLTableRowElement.<anonymous> (src/main/js/view/pipeline-staged.js:151:21)
 [INFO]       at Function.each (node_modules/jquery/dist/jquery.js:383:19)
@@ -556,13 +855,13 @@
 [INFO]     console.warn
 [INFO]       No "data-stageId" on stage.
 [INFO] 
-[INFO]       171 |
-[INFO]       172 |             if (!stageId) {
-[INFO]     > 173 |                 console.warn('No "data-stageId" on stage.');
-[INFO]           |                         ^
-[INFO]       174 |                 return;
-[INFO]       175 |             }
-[INFO]       176 |
+[INFO]     [0m [90m 171 |[39m
+[INFO]      [90m 172 |[39m             [36mif[39m ([33m![39mstageId) {
+[INFO]     [31m[1m>[22m[39m[90m 173 |[39m                 console[33m.[39mwarn([32m'No "data-stageId" on stage.'[39m)[33m;[39m
+[INFO]      [90m     |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 174 |[39m                 [36mreturn[39m[33m;[39m
+[INFO]      [90m 175 |[39m             }
+[INFO]      [90m 176 |[39m[0m
 [INFO] 
 [INFO]       at HTMLTableCellElement.<anonymous> (src/main/js/view/pipeline-staged.js:173:25)
 [INFO]       at Function.each (node_modules/jquery/dist/jquery.js:383:19)
@@ -589,41 +888,41 @@
 [INFO]       at Object.compareMultilineText (src/test/js/helper.js:144:13)
 [INFO] 
 [INFO] PASS src/test/js/model/job-history-listener.spec.js
-[INFO] PASS src/test/js/jQuery/index.spec.js (14.163s)
+[INFO] PASS src/test/js/util/timeout.spec.js
+[INFO] PASS src/test/js/jQuery/index.spec.js (17.259s)
 [INFO]   ● Console
 [INFO] 
 [INFO]     console.error
 [INFO]       Required attribute 'x' not defined on element.
 [INFO] 
-[INFO]       206 |         for (var i = 0; i < requiredAttrs.length; i++) {
-[INFO]       207 |             if (!exports.attrToObject(element, requiredAttrs[i], object)) {
-[INFO]     > 208 |                 console.error("Required attribute '" + requiredAttrs[i] + "' not defined on element.");
-[INFO]           |                         ^
-[INFO]       209 |             }
-[INFO]       210 |         }
-[INFO]       211 |     }
+[INFO]     [0m [90m 206 |[39m         [36mfor[39m ([36mvar[39m i [33m=[39m [35m0[39m[33m;[39m i [33m<[39m requiredAttrs[33m.[39mlength[33m;[39m i[33m++[39m) {
+[INFO]      [90m 207 |[39m             [36mif[39m ([33m![39mexports[33m.[39mattrToObject(element[33m,[39m requiredAttrs[i][33m,[39m object)) {
+[INFO]     [31m[1m>[22m[39m[90m 208 |[39m                 console[33m.[39merror([32m"Required attribute '"[39m [33m+[39m requiredAttrs[i] [33m+[39m [32m"' not defined on element."[39m)[33m;[39m
+[INFO]      [90m     |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 209 |[39m             }
+[INFO]      [90m 210 |[39m         }
+[INFO]      [90m 211 |[39m     }[0m
 [INFO] 
 [INFO]       at Object.toObject (src/main/js/jQuery/index.js:208:25)
 [INFO]       at testFunc (src/test/js/jQuery/index.spec.js:37:25)
 [INFO]       at Object.testWithJQuery (src/test/js/helper.js:226:9)
 [INFO]       at Object.<anonymous> (src/test/js/jQuery/index.spec.js:33:16)
 [INFO] 
-[INFO] PASS src/test/js/util/timeout.spec.js
 [INFO] PASS src/test/js/util/formatters.spec.js
 [INFO] PASS src/test/js/util/url.spec.js
-[INFO] PASS src/test/js/model/runs-stage-grouped.spec.js (7.857s)
+[INFO] PASS src/test/js/model/runs-stage-grouped.spec.js (8.274s)
 [INFO]   ● Console
 [INFO] 
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -634,13 +933,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -651,13 +950,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -668,13 +967,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -685,13 +984,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -702,13 +1001,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -719,13 +1018,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -736,13 +1035,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -753,13 +1052,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -770,13 +1069,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -787,13 +1086,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -804,13 +1103,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -821,13 +1120,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -838,13 +1137,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -855,13 +1154,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -872,13 +1171,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -889,13 +1188,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -906,13 +1205,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -923,13 +1222,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -940,13 +1239,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -957,13 +1256,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -974,13 +1273,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -991,13 +1290,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -1008,13 +1307,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -1025,13 +1324,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -1042,13 +1341,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -1059,13 +1358,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -1076,13 +1375,13 @@
 [INFO]     console.error
 [INFO]       Stage with no link to it
 [INFO] 
-[INFO]       47 |                 addCacheEntry(stage._links.self.href, stage);
-[INFO]       48 |             } catch (e) {
-[INFO]     > 49 |                 console.error("Stage with no link to it");
-[INFO]          |                         ^
-[INFO]       50 |             }
-[INFO]       51 |         }
-[INFO]       52 |     }
+[INFO]     [0m [90m 47 |[39m                 addCacheEntry(stage[33m.[39m_links[33m.[39mself[33m.[39mhref[33m,[39m stage)[33m;[39m
+[INFO]      [90m 48 |[39m             } [36mcatch[39m (e) {
+[INFO]     [31m[1m>[22m[39m[90m 49 |[39m                 console[33m.[39merror([32m"Stage with no link to it"[39m)[33m;[39m
+[INFO]      [90m    |[39m                         [31m[1m^[22m[39m
+[INFO]      [90m 50 |[39m             }
+[INFO]      [90m 51 |[39m         }
+[INFO]      [90m 52 |[39m     }[0m
 [INFO] 
 [INFO]       at cacheRunStages (src/main/js/model/rest-api.js:49:25)
 [INFO]       at callback (src/main/js/model/rest-api.js:59:13)
@@ -1096,9 +1395,12 @@
 [INFO] Test Suites: 11 passed, 11 total
 [INFO] Tests:       41 passed, 41 total
 [INFO] Snapshots:   0 total
-[INFO] Time:        22.116s
+[INFO] Time:        26.364s
 [INFO] 
 [INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ pipeline-stage-view ---
+[WARNING] Some problems were encountered while processing the POMs:
+[ERROR] 'build.plugins.plugin.(groupId:artifactId)' must be unique but found duplicate declaration of plugin org.moditect:moditect-maven-plugin @ line 196, column 21
+
 [INFO] Generated /tmp/plugin-builds/pipeline-rest-api/ui/target/pipeline-stage-view/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1838.va_13472137a_6a_:hpi (default-hpi) @ pipeline-stage-view ---
@@ -1139,12 +1441,12 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline Stage View Plugin: Parent POM 2.42-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline Stage View Plugin: Parent POM ............. SUCCESS [ 16.815 s]
-[INFO] Pipeline: REST API Plugin .......................... SUCCESS [ 40.386 s]
-[INFO] Pipeline: Stage View Plugin ........................ SUCCESS [02:36 min]
+[INFO] Pipeline Stage View Plugin: Parent POM ............. SUCCESS [ 15.267 s]
+[INFO] Pipeline: REST API Plugin .......................... SUCCESS [ 45.936 s]
+[INFO] Pipeline: Stage View Plugin ........................ SUCCESS [02:32 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:38 min
-[INFO] Finished at: 2026-10-06T01:15:36Z
+[INFO] Total time:  03:37 min
+[INFO] Finished at: 2026-10-13T01:21:37Z
 [INFO] ------------------------------------------------------------------------

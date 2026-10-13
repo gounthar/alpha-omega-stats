@@ -1,4 +1,8 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
@@ -18,6 +22,7 @@
 [INFO] Building Pipeline Maven Integration Plugin Parent 999999-SNAPSHOT  [1/5]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-maven-parent ---
 [INFO] 
@@ -51,6 +56,7 @@
 [INFO] Generating flattened POM of project org.jenkins-ci.plugins:pipeline-maven-parent:pom:999999-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ pipeline-maven-parent ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
 [INFO] 
 [INFO] --- antrun:3.2.0:run (createTempDir) @ pipeline-maven-parent ---
 [INFO] Executing tasks
@@ -79,8 +85,8 @@
 [INFO] 
 [INFO] --- spotless:3.8.0:check (default) @ pipeline-maven-parent ---
 [INFO] Index file does not exist. Fallback to an empty index
-[INFO] Sorting file /tmp/pom4429605954632034302.xml
-[INFO] Saved sorted pom file to /tmp/pom4429605954632034302.xml
+[INFO] Sorting file /tmp/pom12974600774682971172.xml
+[INFO] Saved sorted pom file to /tmp/pom12974600774682971172.xml
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
 [INFO] --- failsafe:3.5.6:verify (default) @ pipeline-maven-parent ---
@@ -100,6 +106,7 @@
 [INFO] Created marker file /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-api/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ pipeline-maven-api ---
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ pipeline-maven-api ---
 [INFO] Rule 3: org.apache.maven.enforcer.rules.RequirePluginVersions passed
@@ -216,7 +223,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotle
 WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
 WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Spotless.Java is keeping 9 files clean - 0 needs changes to be clean, 9 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom7704178542530277974.xml
+[INFO] Sorting file /tmp/pom4020732441650163667.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -279,7 +286,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.UNKNOWN
-[INFO] /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-spy/src/main/java/org/jenkinsci/plugins/pipeline/maven/eventspy/handler/DeployDeployExecutionHandler.java: /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-spy/src/main/java/org/jenkinsci/plugins/pipeline/maven/eventspy/handler/DeployDeployExecutionHandler.java uses or overrides a deprecated API.
+[INFO] /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-spy/src/main/java/org/jenkinsci/plugins/pipeline/maven/eventspy/handler/DeployDeployExecutionHandler.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-spy/src/main/java/org/jenkinsci/plugins/pipeline/maven/eventspy/handler/DeployDeployExecutionHandler.java: Recompile with -Xlint:deprecation for details.
 [INFO] /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-spy/src/main/java/org/jenkinsci/plugins/pipeline/maven/eventspy/JenkinsMavenEventSpy.java: Some input files use unchecked or unsafe operations.
 [INFO] /tmp/plugin-builds/pipeline-maven-api/pipeline-maven-spy/src/main/java/org/jenkinsci/plugins/pipeline/maven/eventspy/JenkinsMavenEventSpy.java: Recompile with -Xlint:unchecked for details.
@@ -332,7 +339,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.8.0:check (default) @ pipeline-maven-spy ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 33 files clean - 0 needs changes to be clean, 33 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom15867850977175939435.xml
+[INFO] Sorting file /tmp/pom13966043224233162093.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -347,6 +354,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Building Pipeline Maven Integration Plugin 999999-SNAPSHOT         [4/5]
 [INFO]   from pipeline-maven/pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[INFO] Loaded 74 auto-discovered prefixes for remote repository ApacheSnapshot (prefixes-ApacheSnapshot.txt)
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-maven ---
 [INFO] 
@@ -354,6 +362,8 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Created marker file /tmp/plugin-builds/pipeline-maven-api/pipeline-maven/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ pipeline-maven ---
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository maven-central-repository (prefixes-maven-central-repository.txt)
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ pipeline-maven ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
@@ -472,6 +482,15 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] Tests are skipped.
 [INFO] 
 [INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ pipeline-maven ---
+[WARNING] Failed to build parent project for org.jvnet.hudson:extras:pom:1.7
+[WARNING] Failed to build parent project for org.jvnet.hudson:maven2.1-interceptor:jar:1.2
+[WARNING] Some problems were encountered while processing the POMs:
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-compiler-plugin is missing. @ 
+[WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-enforcer-plugin is missing. @ 
+[ERROR] 'distributionManagement.snapshotRepository.id' must not be 'local', this identifier is reserved for the local repository, using it for other repositories will corrupt your repository metadata. @ 
+
+[WARNING] Failed to build parent project for org.jvnet.hudson:lib:pom:1.7
+[WARNING] Failed to build parent project for org.jenkins-ci.lib:lib-jenkins-maven-artifact-manager:jar:1.2
 [INFO] Generated /tmp/plugin-builds/pipeline-maven-api/pipeline-maven/target/pipeline-maven/WEB-INF/licenses.xml
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:hpi (default-hpi) @ pipeline-maven ---
@@ -509,7 +528,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.8.0:check (default) @ pipeline-maven ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 100 files clean - 0 needs changes to be clean, 100 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom6554116846846278516.xml
+[INFO] Sorting file /tmp/pom8403258350614638931.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -649,7 +668,7 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] --- spotless:3.8.0:check (default) @ pipeline-maven-database ---
 [INFO] Index file does not exist. Fallback to an empty index
 [INFO] Spotless.Java is keeping 24 files clean - 0 needs changes to be clean, 24 were already clean, 0 were skipped because caching determined they were already clean
-[INFO] Sorting file /tmp/pom3706917355834412763.xml
+[INFO] Sorting file /tmp/pom3565883459727484638.xml
 [INFO] Pom file is already sorted, exiting
 [INFO] Spotless.Pom is keeping 1 files clean - 0 needs changes to be clean, 1 were already clean, 0 were skipped because caching determined they were already clean
 [INFO] 
@@ -663,14 +682,14 @@ WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline Maven Integration Plugin Parent 999999-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline Maven Integration Plugin Parent ........... SUCCESS [ 18.749 s]
-[INFO] Pipeline Maven Plugin API .......................... SUCCESS [ 33.692 s]
-[INFO] Maven Spy for the Pipeline Maven Integration Plugin  SUCCESS [ 27.218 s]
-[INFO] Pipeline Maven Integration Plugin .................. SUCCESS [01:06 min]
-[INFO] Pipeline Maven Plugin Database ..................... SUCCESS [ 34.822 s]
+[INFO] Pipeline Maven Integration Plugin Parent ........... SUCCESS [ 17.580 s]
+[INFO] Pipeline Maven Plugin API .......................... SUCCESS [ 36.494 s]
+[INFO] Maven Spy for the Pipeline Maven Integration Plugin  SUCCESS [ 27.516 s]
+[INFO] Pipeline Maven Integration Plugin .................. SUCCESS [01:16 min]
+[INFO] Pipeline Maven Plugin Database ..................... SUCCESS [ 35.946 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:04 min
-[INFO] Finished at: 2026-10-06T02:00:33Z
+[INFO] Total time:  03:17 min
+[INFO] Finished at: 2026-10-13T02:09:58Z
 [INFO] ------------------------------------------------------------------------
