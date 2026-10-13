@@ -1,4 +1,8 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1802.v14f4709445a_b_ is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1802.v14f4709445a_b_ is missing, no dependency information available
@@ -10,6 +14,8 @@
 [INFO] Building Metrics Plugin 4.2.37-999999-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[INFO] Loaded 74 auto-discovered prefixes for remote repository ApacheSnapshot (prefixes-ApacheSnapshot.txt)
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ metrics ---
 [INFO] 
@@ -17,6 +23,9 @@
 [INFO] Created marker file /tmp/plugin-builds/metrics/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1802.v14f4709445a_b_:validate-hpi (default-validate-hpi) @ metrics ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-releases (https://maven.java.net/content/repositories/releases/): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- enforcer:3.6.2:enforce (display-info) @ metrics ---
 [INFO] Rule 0: io.jenkins.tools.incrementals.enforcer.RequireExtensionVersion passed
@@ -70,11 +79,11 @@
 [INFO] jenkins.metrics.util.AutoSamplingHistogram.PeriodicWorkImpl indexed under hudson.Extension
 [INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsAccessKey.java:[113,12] Generating jenkins/metrics/api/MetricsAccessKey.stapler
 [INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/impl/TimeInQueueAction.java:[43,8] Generating jenkins/metrics/impl/TimeInQueueAction.javadoc
-[INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[286,25] Generating jenkins/metrics/api/MetricsRootAction/doHealthcheck.stapler
 [INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[349,25] Generating jenkins/metrics/api/MetricsRootAction/doMetrics.stapler
-[INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[393,25] Generating jenkins/metrics/api/MetricsRootAction/doPing.stapler
 [INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[414,25] Generating jenkins/metrics/api/MetricsRootAction/doThreads.stapler
 [INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[369,25] Generating jenkins/metrics/api/MetricsRootAction/doMetricsHistory.stapler
+[INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[286,25] Generating jenkins/metrics/api/MetricsRootAction/doHealthcheck.stapler
+[INFO] /tmp/plugin-builds/metrics/src/main/java/jenkins/metrics/api/MetricsRootAction.java:[393,25] Generating jenkins/metrics/api/MetricsRootAction/doPing.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
@@ -164,6 +173,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:10 min
-[INFO] Finished at: 2026-10-06T01:15:50Z
+[INFO] Total time:  01:16 min
+[INFO] Finished at: 2026-10-13T01:21:59Z
 [INFO] ------------------------------------------------------------------------

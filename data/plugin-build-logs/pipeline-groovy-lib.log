@@ -1,4 +1,8 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1814.v77d15159f9b_d is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1814.v77d15159f9b_d is missing, no dependency information available
@@ -10,6 +14,7 @@
 [INFO] Building Pipeline: Groovy Libraries 999999-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ hpi ]---------------------------------
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ pipeline-groovy-lib ---
 [INFO] 
@@ -20,6 +25,8 @@
 [WARNING] Skipping enforceBytecodeVersion; will run on next invocation.
 [INFO] 
 [INFO] --- hpi:3.1814.v77d15159f9b_d:validate-hpi (default-validate-hpi) @ pipeline-groovy-lib ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ pipeline-groovy-lib ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
@@ -37,7 +44,7 @@
 [INFO] --- localizer:1.31:generate (default) @ pipeline-groovy-lib ---
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ pipeline-groovy-lib ---
-[INFO] Skipping Rule Enforcement.
+[INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ pipeline-groovy-lib ---
 [INFO] Skipping Rule Enforcement.
@@ -88,13 +95,13 @@
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/ResourceStep.java:[51,34] Generating org/jenkinsci/plugins/workflow/libs/ResourceStep.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMRetriever.java:[56,34] Generating org/jenkinsci/plugins/workflow/libs/SCMRetriever.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMSourceRetriever.java:[63,34] Generating org/jenkinsci/plugins/workflow/libs/SCMSourceRetriever.stapler
-[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryRecord.java:[42,14] Generating org/jenkinsci/plugins/workflow/libs/LibraryRecord.javadoc
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibrariesAction.java:[43,8] Generating org/jenkinsci/plugins/workflow/libs/LibrariesAction.javadoc
-[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryStep.java:[144,41] Generating org/jenkinsci/plugins/workflow/libs/LibraryStep/DescriptorImpl/doAutoCompleteIdentifier.stapler
+[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryRecord.java:[42,14] Generating org/jenkinsci/plugins/workflow/libs/LibraryRecord.javadoc
+[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever.java:[391,31] Generating org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever/SCMBasedRetrieverDescriptor/doCheckLibraryPath.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryConfiguration.java:[166,31] Generating org/jenkinsci/plugins/workflow/libs/LibraryConfiguration/DescriptorImpl/doCheckName.stapler
-[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever.java:[374,31] Generating org/jenkinsci/plugins/workflow/libs/SCMBasedRetriever/SCMBasedRetrieverDescriptor/doCheckLibraryPath.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryConfiguration.java:[175,31] Generating org/jenkinsci/plugins/workflow/libs/LibraryConfiguration/DescriptorImpl/doCheckDefaultVersion.stapler
 [INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryCachingConfiguration.java:[120,31] Generating org/jenkinsci/plugins/workflow/libs/LibraryCachingConfiguration/DescriptorImpl/doClearCache.stapler
+[INFO] /tmp/plugin-builds/pipeline-groovy-lib/src/main/java/org/jenkinsci/plugins/workflow/libs/LibraryStep.java:[144,41] Generating org/jenkinsci/plugins/workflow/libs/LibraryStep/DescriptorImpl/doAutoCompleteIdentifier.stapler
 [WARNING] unknown enum constant javax.annotation.meta.When.MAYBE
   reason: class file for javax.annotation.meta.When not found
 [WARNING] unknown enum constant javax.annotation.meta.When.ALWAYS
@@ -175,6 +182,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  01:11 min
-[INFO] Finished at: 2026-10-06T01:10:53Z
+[INFO] Total time:  01:13 min
+[INFO] Finished at: 2026-10-13T01:16:37Z
 [INFO] ------------------------------------------------------------------------

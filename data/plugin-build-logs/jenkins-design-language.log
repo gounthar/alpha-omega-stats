@@ -1,4 +1,8 @@
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Scanning for projects...
+[INFO] Loaded 24069 auto-discovered prefixes for remote repository central (prefixes-central.txt)
+[INFO] Loaded 74 auto-discovered prefixes for remote repository apache.snapshots (prefixes-apache.snapshots.txt)
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1746.v2e9fe7dc4d95 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1746.v2e9fe7dc4d95 is missing, no dependency information available
@@ -35,6 +39,8 @@
 [INFO] Building Blue Ocean Parent 1.27.27-SNAPSHOT                       [1/22]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
+[WARNING] net.bytebuddy:byte-buddy-parent:pom:1.17.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ blueocean-parent ---
 [INFO] 
@@ -65,6 +71,7 @@
 [INFO] Generating flattened POM of project io.jenkins.blueocean:blueocean-parent:pom:1.27.27-SNAPSHOT...
 [INFO] 
 [INFO] --- bridge-method-injector:1.32:process (default) @ blueocean-parent ---
+[INFO] Loaded 50 auto-discovered prefixes for remote repository ow2-snapshot (prefixes-ow2-snapshot.txt)
 [INFO] 
 [INFO] --- antrun:3.1.0:run (createTempDir) @ blueocean-parent ---
 [INFO] Executing tasks
@@ -104,6 +111,7 @@
 [INFO] Created marker file /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/target/java-level/17
 [INFO] 
 [INFO] --- hpi:3.1746.v2e9fe7dc4d95:validate-hpi (default-validate-hpi) @ jenkins-design-language ---
+[WARNING] /.meta/prefixes.txt failed to transfer from https://maven.java.net/content/repositories/snapshots during a previous attempt. This failure was cached in the local repository and resolution will not be reattempted until the update interval of jvnet-nexus-snapshots has elapsed or updates are forced. Original error: Could not transfer metadata /.meta/prefixes.txt from/to jvnet-nexus-snapshots (https://maven.java.net/content/repositories/snapshots): (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
 [INFO] 
 [INFO] --- enforcer:3.6.1:enforce (display-info) @ jenkins-design-language ---
 [INFO] Rule 3: org.codehaus.mojo.extraenforcer.dependencies.EnforceBytecodeVersion passed
@@ -118,26 +126,77 @@
 [INFO] Rule 0: org.apache.maven.enforcer.rules.dependency.BannedDependencies passed
 [INFO] 
 [INFO] --- blueocean:0.0.3:process-node-dependencies (upstream-dependencies) @ jenkins-design-language ---
+[WARNING] org.apache.maven:maven-artifact-manager:pom:2.2.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-profile:pom:2.2.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-plugin-registry:pom:2.2.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:pom:2.2.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-project:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-project:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:pom:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:pom:2.0.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-http:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-server:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-server:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:apache-jsp:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:apache-jsp:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-io:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-io:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-sink-api:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-sink-api:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-parent:pom:21 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-parent:pom:21 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings:pom:3.6.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-settings:pom:3.6.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-resolver-provider:pom:3.6.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-resolver-provider:pom:3.6.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-security:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty:jetty-security:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] javax.annotation:javax.annotation-api:pom:1.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] javax.annotation:javax.annotation-api:pom:1.3 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty.websocket:websocket-client:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty.websocket:websocket-client:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-sink-api:pom:1.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-sink-api:pom:1.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-site-renderer:pom:1.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-site-renderer:pom:1.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-logging-api:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-sitetools:pom:1.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-sitetools:pom:1.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-modules:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven.doxia:doxia-modules:pom:1.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.ow2.asm:asm:pom:5.0.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.ow2.asm:asm:pom:5.0.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-utils:pom:1.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.codehaus.plexus:plexus-utils:pom:1.5.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:pom:2.0.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-model:pom:2.0.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:pom:2.0.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.apache.maven:maven-artifact:pom:2.0.5 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty.websocket:websocket-api:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] org.eclipse.jetty.websocket:websocket-api:pom:9.4.32.v20200930 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] xml-apis:xml-apis:pom:1.3.04 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] xml-apis:xml-apis:pom:1.3.04 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] commons-logging:commons-logging:pom:1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] commons-logging:commons-logging:pom:1.0 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
 [INFO] No upstream blueocean dependencies found for: jenkins-design-language
 [INFO] 
 [INFO] --- frontend:1.15.1:install-node-and-npm (install node and npm) @ jenkins-design-language ---
+[WARNING] com.github.eirslett:frontend-plugin-core:pom:1.15.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.github.eirslett:frontend-plugin-core:pom:1.15.1 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml.jackson.core:jackson-databind:pom:2.13.4.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml.jackson.core:jackson-databind:pom:2.13.4.2 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml.jackson.core:jackson-core:pom:2.13.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/public/; expiring the cached not-found so that repository is checked again on the next resolution
+[WARNING] com.fasterxml.jackson.core:jackson-core:pom:2.13.4 was downloaded from https://repo.maven.apache.org/maven2 while a cached not-found from a previous attempt suppresses re-checking https://repo.jenkins-ci.org/incrementals/; expiring the cached not-found so that repository is checked again on the next resolution
 [INFO] Installing node version v10.13.0
 [INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v10.13.0/node-v10.13.0-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz
 [INFO] No proxies configured
 [INFO] No proxy was configured, downloading directly
 [INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp
-[INFO] Copying node binary from /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/tmp/node-v10.13.0-linux-x64/bin/node to /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node
-[INFO] Installed node locally.
-[INFO] Installing npm version 6.14.4
-[INFO] Downloading https://repo.jenkins-ci.org/npm-dist/npm-6.14.4.tgz to /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz
-[INFO] No proxies configured
-[INFO] No proxy was configured, downloading directly
-[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz into /tmp/plugin-builds/jenkins-design-language/jenkins-design-language/node/node_modules
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Blue Ocean Parent 1.27.27-SNAPSHOT:
 [INFO] 
-[INFO] Blue Ocean Parent .................................. SUCCESS [  8.589 s]
-[INFO] Jenkins Design Language ............................ FAILURE [ 17.268 s]
 [INFO] Blue Ocean Core JS ................................. SKIPPED
 [INFO] Common API for Blue Ocean .......................... SKIPPED
 [INFO] REST API for Blue Ocean ............................ SKIPPED
@@ -158,13 +217,15 @@
 [INFO] DEPRECATED Blue Ocean Executor Info ................ SKIPPED
 [INFO] Blue Ocean ......................................... SKIPPED
 [INFO] JIRA Integration for Blue Ocean .................... SKIPPED
+[INFO] Blue Ocean Parent .................................. SUCCESS [ 15.194 s]
+[ERROR] Jenkins Design Language ............................ FAILURE [ 17.822 s]
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[ERROR] BUILD FAILURE
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  28.085 s
-[INFO] Finished at: 2026-10-06T01:23:37Z
+[INFO] Total time:  37.168 s
+[INFO] Finished at: 2026-10-13T01:30:17Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:install-node-and-npm (install node and npm) on project jenkins-design-language: Could not extract the npm archive: Could not extract archive: '/home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz': /home/runner/.m2/repository/com/github/eirslett/npm/6.14.4/npm-6.14.4.tar.gz (No such file or directory) -> [Help 1]
+[ERROR] Failed to execute goal com.github.eirslett:frontend-maven-plugin:1.15.1:install-node-and-npm (install node and npm) on project jenkins-design-language: Could not extract the Node archive: Could not extract archive: '/home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz': /home/runner/.m2/repository/com/github/eirslett/node/10.13.0/node-10.13.0-linux-x64.tar.gz (No such file or directory) -> [Help 1]
 [ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
