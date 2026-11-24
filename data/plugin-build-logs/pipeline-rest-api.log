@@ -127,8 +127,8 @@
 [INFO] com.cloudbees.workflow.rest.endpoints.FlowNodeAPI indexed under hudson.Extension
 [INFO] com.cloudbees.workflow.rest.endpoints.JobAPI indexed under hudson.Extension
 [INFO] com.cloudbees.workflow.rest.endpoints.RunAPI indexed under hudson.Extension
-[INFO] /tmp/plugin-builds/pipeline-rest-api/rest-api/src/main/java/com/cloudbees/workflow/rest/endpoints/JobAPI.java:[68,25] Generating com/cloudbees/workflow/rest/endpoints/JobAPI/doRuns.stapler
 [INFO] /tmp/plugin-builds/pipeline-rest-api/rest-api/src/main/java/com/cloudbees/workflow/rest/endpoints/RunAPI.java:[114,19] Generating com/cloudbees/workflow/rest/endpoints/RunAPI/doDescribe.stapler
+[INFO] /tmp/plugin-builds/pipeline-rest-api/rest-api/src/main/java/com/cloudbees/workflow/rest/endpoints/JobAPI.java:[68,25] Generating com/cloudbees/workflow/rest/endpoints/JobAPI/doRuns.stapler
 [INFO] /tmp/plugin-builds/pipeline-rest-api/rest-api/src/main/java/com/cloudbees/workflow/rest/endpoints/RunAPI.java:[194,17] Generating com/cloudbees/workflow/rest/endpoints/RunAPI/doInputSubmit.stapler
 [INFO] /tmp/plugin-builds/pipeline-rest-api/rest-api/src/main/java/com/cloudbees/workflow/rest/AbstractFlowNodeActionHandler.java: Some input files use or override a deprecated API.
 [INFO] /tmp/plugin-builds/pipeline-rest-api/rest-api/src/main/java/com/cloudbees/workflow/rest/AbstractFlowNodeActionHandler.java: Recompile with -Xlint:deprecation for details.
@@ -261,15 +261,15 @@
 [ERROR]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
 [INFO] Bundling...
 [INFO] Packaging & Optimizing...
-[INFO] ✨ Built in 5.39s
+[INFO] ✨ Built in 2.99s
 [INFO] 
-[INFO] src/main/webapp/jsmodules/stageview.js                                  286.48 KB    1.93s
-[INFO] src/main/webapp/jsmodules/stageview.css                                  57.14 KB    876ms
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.76f64001.eot      19.86 KB    704ms
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.61249189.woff     22.77 KB    705ms
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.1a88f5c8.ttf      40.31 KB    705ms
-[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.e72c5eba.svg      52.54 KB    1.07s
-[INFO] src/main/webapp/jsmodules/loading.406e174f.gif                            33.6 KB    706ms
+[INFO] src/main/webapp/jsmodules/stageview.js                                  286.48 KB    1.16s
+[INFO] src/main/webapp/jsmodules/stageview.css                                  57.14 KB    494ms
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.76f64001.eot      19.86 KB    473ms
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.61249189.woff     22.77 KB    474ms
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.1a88f5c8.ttf      40.31 KB    474ms
+[INFO] src/main/webapp/jsmodules/glyphicons-halflings-regular.e72c5eba.svg      52.54 KB    940ms
+[INFO] src/main/webapp/jsmodules/loading.406e174f.gif                            33.6 KB    474ms
 [INFO] Building...
 [ERROR] Browserslist: caniuse-lite is outdated. Please run:
 [ERROR]   npx update-browserslist-db@latest
@@ -279,9 +279,9 @@
 [ERROR] Browserslist: caniuse-lite is outdated. Please run:
 [ERROR]   npx update-browserslist-db@latest
 [ERROR]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
-[INFO] ✨ Built in 1.47s
+[INFO] ✨ Built in 1.48s
 [INFO] 
-[INFO] target/generated-adjuncts/org/jenkinsci/pipeline/stageview_adjunct.js    10.25 KB    210ms
+[INFO] target/generated-adjuncts/org/jenkinsci/pipeline/stageview_adjunct.js    10.25 KB    164ms
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ pipeline-stage-view ---
 [INFO] Skipping Rule Enforcement.
@@ -344,8 +344,8 @@
 [INFO] > pipeline-stage-view@0.0.1 mvntest
 [INFO] > jest --ci --config=jest.config.json
 [INFO] 
-[INFO] PASS src/test/js/view/run-input-required.spec.js (10.314s)
-[INFO] PASS src/test/js/view/pipeline-staged.spec.js (13.135s)
+[INFO] PASS src/test/js/view/run-input-required.spec.js (5.402s)
+[INFO] PASS src/test/js/view/pipeline-staged.spec.js (5.052s)
 [INFO]   ● Console
 [INFO] 
 [INFO]     console.error
@@ -590,7 +590,7 @@
 [INFO] 
 [INFO] PASS src/test/js/model/job-history-listener.spec.js
 [INFO] PASS src/test/js/util/timeout.spec.js
-[INFO] PASS src/test/js/jQuery/index.spec.js (16.894s)
+[INFO] PASS src/test/js/jQuery/index.spec.js (8.367s)
 [INFO]   ● Console
 [INFO] 
 [INFO]     console.error
@@ -609,7 +609,9 @@
 [INFO]       at Object.testWithJQuery (src/test/js/helper.js:226:9)
 [INFO]       at Object.<anonymous> (src/test/js/jQuery/index.spec.js:33:16)
 [INFO] 
-[INFO] PASS src/test/js/model/runs-stage-grouped.spec.js (7.666s)
+[INFO] PASS src/test/js/util/formatters.spec.js
+[INFO] PASS src/test/js/util/url.spec.js
+[INFO] PASS src/test/js/model/runs-stage-grouped.spec.js
 [INFO]   ● Console
 [INFO] 
 [INFO]     console.error
@@ -1088,15 +1090,13 @@
 [INFO]       at Object.getJobRuns (src/main/js/model/rest-api.js:56:10)
 [INFO]       at Object.<anonymous>.exports.listen (src/main/js/model/job-history-listener.js:28:13)
 [INFO] 
-[INFO] PASS src/test/js/util/formatters.spec.js
-[INFO] PASS src/test/js/util/url.spec.js
 [INFO] PASS src/test/js/view/info-action-popover.spec.js
 [INFO] PASS src/test/js/model/run-changesets.spec.js
 [INFO] PASS src/test/js/view/run-changesets.spec.js
 [INFO] Test Suites: 11 passed, 11 total
 [INFO] Tests:       41 passed, 41 total
 [INFO] Snapshots:   0 total
-[INFO] Time:        22.748s
+[INFO] Time:        11.338s
 [INFO] 
 [INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ pipeline-stage-view ---
 [INFO] Generated /tmp/plugin-builds/pipeline-rest-api/ui/target/pipeline-stage-view/WEB-INF/licenses.xml
@@ -1139,12 +1139,12 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for Pipeline Stage View Plugin: Parent POM 2.42-SNAPSHOT:
 [INFO] 
-[INFO] Pipeline Stage View Plugin: Parent POM ............. SUCCESS [ 12.511 s]
-[INFO] Pipeline: REST API Plugin .......................... SUCCESS [ 40.125 s]
-[INFO] Pipeline: Stage View Plugin ........................ SUCCESS [02:15 min]
+[INFO] Pipeline Stage View Plugin: Parent POM ............. SUCCESS [  7.733 s]
+[INFO] Pipeline: REST API Plugin .......................... SUCCESS [ 29.352 s]
+[INFO] Pipeline: Stage View Plugin ........................ SUCCESS [01:22 min]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  03:10 min
-[INFO] Finished at: 2026-11-17T00:55:51Z
+[INFO] Total time:  02:02 min
+[INFO] Finished at: 2026-11-24T00:43:12Z
 [INFO] ------------------------------------------------------------------------
