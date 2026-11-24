@@ -1,9 +1,9 @@
 [INFO] Scanning for projects...
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1837.v072a_33082b_16 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1837.v072a_33082b_16 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1837.v072a_33082b_16 is missing, no dependency information available
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1837.v072a_33082b_16 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
-[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1837.v072a_33082b_16 is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1841.va_2f3e25d3a_5f is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:pom:3.1841.va_2f3e25d3a_5f is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[WARNING] The POM for org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1841.va_2f3e25d3a_5f is missing, no dependency information available
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1841.va_2f3e25d3a_5f is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
+[INFO] Artifact org.jenkins-ci.tools:maven-hpi-plugin:jar:3.1841.va_2f3e25d3a_5f is present in the local repository, but cached from a remote repository ID that is unavailable in current build context, verifying that is downloadable from [incrementals (https://repo.jenkins-ci.org/incrementals/, default, releases), central (https://repo.maven.apache.org/maven2, default, releases)]
 [WARNING] Failed to build parent project for org.allurereport.jenkins:allure-jenkins-plugin:hpi:3.1-SNAPSHOT
 [INFO] 
 [INFO] -----------< org.allurereport.jenkins:allure-jenkins-plugin >-----------
@@ -13,10 +13,10 @@
 [INFO] 
 [INFO] --- clean:3.5.0:clean (default-clean) @ allure-jenkins-plugin ---
 [INFO] 
-[INFO] --- hpi:3.1837.v072a_33082b_16:validate (default-validate) @ allure-jenkins-plugin ---
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:validate (default-validate) @ allure-jenkins-plugin ---
 [INFO] Created marker file /tmp/plugin-builds/allure-jenkins-plugin/target/java-level/17
 [INFO] 
-[INFO] --- hpi:3.1837.v072a_33082b_16:validate-hpi (default-validate-hpi) @ allure-jenkins-plugin ---
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:validate-hpi (default-validate-hpi) @ allure-jenkins-plugin ---
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (display-info) @ allure-jenkins-plugin ---
 [INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
@@ -38,29 +38,196 @@
 Audit done.
 [INFO] You have 0 Checkstyle violations.
 [INFO] 
-[INFO] >>> pmd:3.20.0:check (validate) > :pmd @ allure-jenkins-plugin >>>
+[INFO] >>> spotbugs:4.10.5.0:check (validate) > :spotbugs @ allure-jenkins-plugin >>>
 [INFO] 
-[INFO] --- pmd:3.20.0:pmd (pmd) @ allure-jenkins-plugin ---
-[WARNING] Unable to locate Source XRef to link to - DISABLED
-[INFO] PMD version: 6.53.0
-[INFO] Rendering content with org.apache.maven.skins:maven-default-skin:jar:1.3 skin.
+[INFO] --- spotbugs:4.10.5.0:spotbugs (spotbugs) @ allure-jenkins-plugin ---
+[WARNING] No files found to generate report on. Check if compile phase has been run.
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.5.0:spotbugs report goal
 [INFO] 
-[INFO] <<< pmd:3.20.0:check (validate) < :pmd @ allure-jenkins-plugin <<<
+[INFO] <<< spotbugs:4.10.5.0:check (validate) < :spotbugs @ allure-jenkins-plugin <<<
 [INFO] 
 [INFO] 
-[INFO] --- pmd:3.20.0:check (validate) @ allure-jenkins-plugin ---
-[INFO] PMD version: 6.53.0
-[INFO] PMD Failure: org.allurereport.jenkins.tools.AllureManagedInstaller$RunProcess:898 Rule:CloseResource Priority:3 Ensure that resources like this ExecutorService object are closed after use.
+[INFO] --- spotbugs:4.10.5.0:check (validate) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- resources:3.5.0:copy-resources (prepare-allure3-runtime) @ allure-jenkins-plugin ---
+[INFO] Copying 2 resources from src/main/allure3-runtime to target/allure3-runtime
+[INFO] 
+[INFO] --- localizer:1.31:generate (default) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ allure-jenkins-plugin ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.3:enforce (check-commons-lang-imports) @ allure-jenkins-plugin ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- enforcer:3.6.3:enforce (check-deprecated-stapler-imports) @ allure-jenkins-plugin ---
+[INFO] Skipping Rule Enforcement.
+[INFO] 
+[INFO] --- spotless:2.43.0:check (check-formatting) @ allure-jenkins-plugin ---
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.diffplug.spotless.java.ModuleHelper (file:/home/runner/.m2/repository/com/diffplug/spotless/spotless-lib/2.45.0/spotless-lib-2.45.0.jar)
+WARNING: Please consider reporting this to the maintainers of class com.diffplug.spotless.java.ModuleHelper
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Index file does not exist. Fallback to an empty index
+[INFO] 
+[INFO] --- frontend:2.0.2:install-node-and-npm (install-node-for-allure3-runtime) @ allure-jenkins-plugin ---
+[INFO] Installing node version v24.14.1
+[INFO] Downloading https://repo.jenkins-ci.org/nodejs-dist/v24.14.1/node-v24.14.1-linux-x64.tar.gz to /home/runner/.m2/repository/com/github/eirslett/node/24.14.1/node-24.14.1-linux-x64.tar.gz
+[INFO] No proxies configured
+[INFO] No proxy was configured, downloading directly
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/node/24.14.1/node-24.14.1-linux-x64.tar.gz into /tmp/plugin-builds/allure-jenkins-plugin/target/allure3-build-node/node/tmp
+[INFO] Copying node binary from /tmp/plugin-builds/allure-jenkins-plugin/target/allure3-build-node/node/tmp/node-v24.14.1-linux-x64/bin/node to /tmp/plugin-builds/allure-jenkins-plugin/target/allure3-build-node/node/node
+[INFO] Installed node locally.
+[INFO] Installing npm version 11.6.2
+[INFO] Unpacking /home/runner/.m2/repository/com/github/eirslett/npm/11.6.2/npm-11.6.2.tar.gz into /tmp/plugin-builds/allure-jenkins-plugin/target/allure3-build-node/node/node_modules
+[INFO] Installed npm locally.
+[INFO] 
+[INFO] --- frontend:2.0.2:npm (install-allure3-runtime) @ allure-jenkins-plugin ---
+[INFO] Running 'npm ci --omit=dev --ignore-scripts --no-audit --no-fund' in /tmp/plugin-builds/allure-jenkins-plugin/target/allure3-runtime
+[INFO] 
+[INFO] added 158 packages in 4s
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ allure-jenkins-plugin ---
+[INFO] Copying 23 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- flatten:1.8.0:flatten (flatten) @ allure-jenkins-plugin ---
+[INFO] Generating flattened POM of project org.allurereport.jenkins:allure-jenkins-plugin:hpi:3.1-SNAPSHOT...
+[INFO] 
+[INFO] --- antrun:3.2.0:run (bundle-allure3-runtime) @ allure-jenkins-plugin ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/allure-jenkins-plugin/target/classes/org/allurereport/jenkins/tools/runtime
+[INFO]       [zip] Building zip: /tmp/plugin-builds/allure-jenkins-plugin/target/classes/org/allurereport/jenkins/tools/runtime/allure-3.33.0.zip
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- compiler:3.16.0:compile (default-compile) @ allure-jenkins-plugin ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 58 source files with javac [debug parameters release 17] to target/classes
+[INFO] org.allurereport.jenkins.AllureMatrixAggregatable indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.AllureReportPublisherDescriptor indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.dsl.AllurePluginJobDslExtension indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.Allure3Installation.DescriptorImpl indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.Allure3Installation.LegacyDescriptorVisibilityFilter indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.AllureCommandlineDirectInstaller.DescriptorImpl indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.AllureCommandlineInstallation.DescriptorImpl indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.AllureCommandlineInstaller.DescriptorImpl indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.AllureManagedInstaller.DescriptorImpl indexed under hudson.Extension
+[INFO] org.allurereport.jenkins.tools.LegacyAllureCommandlineInstallerDownloadable indexed under hudson.Extension
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/AllureReportPublisher.java:[204,12] Generating org/allurereport/jenkins/AllureReportPublisher.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/config/AllureReportConfig.java:[54,12] Generating org/allurereport/jenkins/config/AllureReportConfig.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/config/PropertyConfig.java:[35,12] Generating org/allurereport/jenkins/config/PropertyConfig.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/config/ResultsConfig.java:[31,12] Generating org/allurereport/jenkins/config/ResultsConfig.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/Allure3Installation.java:[64,12] Generating org/allurereport/jenkins/tools/Allure3Installation.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/AllureCommandlineDirectInstaller.java:[121,12] Generating org/allurereport/jenkins/tools/AllureCommandlineDirectInstaller.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/AllureCommandlineInstallation.java:[61,12] Generating org/allurereport/jenkins/tools/AllureCommandlineInstallation.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/AllureCommandlineInstaller.java:[39,12] Generating org/allurereport/jenkins/tools/AllureCommandlineInstaller.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/AllureManagedInstaller.java:[144,12] Generating org/allurereport/jenkins/tools/AllureManagedInstaller.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/Allure3Installation.java:[231,31] Generating org/allurereport/jenkins/tools/Allure3Installation/DescriptorImpl/doCheckHome.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/tools/AllureManagedInstaller.java:[985,31] Generating org/allurereport/jenkins/tools/AllureManagedInstaller/DescriptorImpl/doCheckVersion.stapler
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/AllureMatrixAggregatable.java: Some input files use or override a deprecated API.
+[INFO] /tmp/plugin-builds/allure-jenkins-plugin/src/main/java/org/allurereport/jenkins/AllureMatrixAggregatable.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- access-modifier-checker:1.35:enforce (default-enforce) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] >>> pmd:3.28.0:check (check-pmd) > :pmd @ allure-jenkins-plugin >>>
+[INFO] 
+[INFO] --- pmd:3.28.0:pmd (pmd) @ allure-jenkins-plugin ---
+[WARNING] Unable to locate Source XRef to link to -- DISABLED
+[WARNING] Unable to locate Source XRef to link to -- DISABLED
+[WARNING] Unable to locate Source XRef to link to -- DISABLED
+[INFO] PMD version: 7.17.0
+[INFO] Rendering content with org.apache.maven.skins:maven-fluido-skin:jar:2.0.0-M9 skin
+[INFO] 
+[INFO] <<< pmd:3.28.0:check (check-pmd) < :pmd @ allure-jenkins-plugin <<<
+[INFO] 
+[INFO] 
+[INFO] --- pmd:3.28.0:check (check-pmd) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- bridge-method-injector:1.32:process (default) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:insert-test (default-insert-test) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- antrun:3.2.0:run (createTempDir) @ allure-jenkins-plugin ---
+[INFO] Executing tasks
+[INFO]     [mkdir] Created dir: /tmp/plugin-builds/allure-jenkins-plugin/target/tmp
+[INFO] Executed tasks
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ allure-jenkins-plugin ---
+[INFO] Not copying test resources
+[INFO] 
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ allure-jenkins-plugin ---
+[INFO] Not compiling test sources
+[INFO] 
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:test-hpl (default-test-hpl) @ allure-jenkins-plugin ---
+[INFO] Generating /tmp/plugin-builds/allure-jenkins-plugin/target/test-classes/the.hpl
+[INFO] 
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:resolve-test-dependencies (default-resolve-test-dependencies) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:test-runtime (default-test-runtime) @ allure-jenkins-plugin ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- surefire:3.6.1:test (default-test) @ allure-jenkins-plugin ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ allure-jenkins-plugin ---
+[INFO] Generated /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin/WEB-INF/licenses.xml
+[INFO] 
+[INFO] --- hpi:3.1841.va_2f3e25d3a_5f:hpi (default-hpi) @ allure-jenkins-plugin ---
+[INFO] Generating /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin/META-INF/MANIFEST.MF
+[INFO] Checking for attached .jar artifact ...
+[INFO] Generating jar /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin.jar
+[INFO] Building jar: /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin.jar
+[INFO] Exploding webapp...
+[INFO] Copy webapp webResources to /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin
+[INFO] Assembling webapp allure-jenkins-plugin in /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin
+[INFO] Bundling transitive dependency annotations-3.0.0.jar (via truezip-driver-zip)
+[INFO] Bundling transitive dependency commons-codec-1.20.0.jar (via commons-compress)
+[INFO] Bundling transitive dependency commons-io-2.20.0.jar (via commons-compress)
+[INFO] Bundling transitive dependency truezip-driver-file-7.7.10.jar (via truezip-file)
+[INFO] Bundling direct dependency truezip-driver-zip-7.7.10.jar
+[INFO] Bundling direct dependency truezip-file-7.7.10.jar
+[INFO] Bundling transitive dependency truezip-kernel-7.7.10.jar (via truezip-driver-zip)
+[INFO] Bundling transitive dependency truezip-swing-7.7.10.jar (via truezip-driver-zip)
+[INFO] Bundling direct dependency commons-compress-1.28.0.jar
+[WARNING] Expected list of bundled artifacts [] did not match actual list of bundled artifacts [annotations, commons-codec, commons-compress, commons-io, truezip-driver-file, truezip-driver-zip, truezip-file, truezip-kernel, truezip-swing]. Review the bundled artifacts and add `<hpi.bundledArtifacts>annotations,commons-codec,commons-compress,commons-io,truezip-driver-file,truezip-driver-zip,truezip-file,truezip-kernel,truezip-swing</hpi.bundledArtifacts>` to `<properties>` in pom.xml if the actual list is correct. If the actual list is not correct, add `<exclusion>`s or modify dependencies as needed to prevent the artifacts from being bundled. Review https://www.jenkins.io/doc/developer/plugin-development/dependencies-and-class-loading/#bundling-third-party-libraries for more details. Enable strict checks by adding `<hpi.strictBundledArtifacts>true</hpi.strictBundledArtifacts>` to pom.xml
+[INFO] Generating hpi /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin.hpi
+[INFO] Building jar: /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin.hpi
+[INFO] 
+[INFO] --- jar:3.5.1:test-jar (maybe-test-jar) @ allure-jenkins-plugin ---
+[INFO] Skipping packaging of the test-jar
+[INFO] 
+[INFO] --- download:1.13.0:wget (download-commandline) @ allure-jenkins-plugin ---
+Nov 24, 2026 1:15:37 AM org.apache.http.client.protocol.ResponseProcessCookies processCookies
+WARNING: Invalid cookie header: "set-cookie: __cf_bm=dol.NiFOXwz1RV9PXYF1Lqk9QC03cNNxel2AIaWssAY-1795482937.779756-1.0.1.1-kdFPLfwD8TLUOh.f7ZQIDdat4j2PY85.866FpoltgLR5ZWzWkilCMwEURP6cweIBs6b3Y4ncXCbHSsLCg5MHdzRe_qkFiLRlf_wYuWFWDSBWyLhvpe.7U5UscWNAR6Mr; HttpOnly; SameSite=None; Partitioned; Secure; Path=/; Domain=maven.org; Expires=Tue, 24 Nov 2026 01:45:37 GMT". Invalid 'expires' attribute: Tue, 24 Nov 2026 01:45:37 GMT
+[INFO] 
+[INFO] --- failsafe:3.6.1:integration-test (default) @ allure-jenkins-plugin ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] >>> spotbugs:4.10.5.0:check (spotbugs) > :spotbugs @ allure-jenkins-plugin >>>
+[INFO] 
+[INFO] --- spotbugs:4.10.5.0:spotbugs (spotbugs) @ allure-jenkins-plugin ---
+[INFO] Done SpotBugs Analysis....
+[INFO] Skipping com.github.spotbugs:spotbugs-maven-plugin:4.10.5.0:spotbugs report goal
+[INFO] 
+[INFO] <<< spotbugs:4.10.5.0:check (spotbugs) < :spotbugs @ allure-jenkins-plugin <<<
+[INFO] 
+[INFO] 
+[INFO] --- spotbugs:4.10.5.0:check (spotbugs) @ allure-jenkins-plugin ---
+[INFO] BugInstance size is 0
+[INFO] Error size is 0
+[INFO] No errors/warnings found
+[INFO] 
+[INFO] --- spotless:2.43.0:check (default) @ allure-jenkins-plugin ---
+[INFO] 
+[INFO] --- failsafe:3.6.1:verify (default) @ allure-jenkins-plugin ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- install:3.2.0:install (default-install) @ allure-jenkins-plugin ---
+[INFO] Installing /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin-3.1-SNAPSHOT.pom to /home/runner/.m2/repository/org/allurereport/jenkins/allure-jenkins-plugin/3.1-SNAPSHOT/allure-jenkins-plugin-3.1-SNAPSHOT.pom
+[INFO] Installing /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin.hpi to /home/runner/.m2/repository/org/allurereport/jenkins/allure-jenkins-plugin/3.1-SNAPSHOT/allure-jenkins-plugin-3.1-SNAPSHOT.hpi
+[INFO] Installing /tmp/plugin-builds/allure-jenkins-plugin/target/allure-jenkins-plugin.jar to /home/runner/.m2/repository/org/allurereport/jenkins/allure-jenkins-plugin/3.1-SNAPSHOT/allure-jenkins-plugin-3.1-SNAPSHOT.jar
 [INFO] ------------------------------------------------------------------------
-[INFO] BUILD FAILURE
+[INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  47.427 s
-[INFO] Finished at: 2026-11-17T01:41:12Z
+[INFO] Total time:  01:23 min
+[INFO] Finished at: 2026-11-24T01:15:50Z
 [INFO] ------------------------------------------------------------------------
-[ERROR] Failed to execute goal org.apache.maven.plugins:maven-pmd-plugin:3.20.0:check (validate) on project allure-jenkins-plugin: You have 1 PMD violation. For more details see: /tmp/plugin-builds/allure-jenkins-plugin/target/pmd.xml -> [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

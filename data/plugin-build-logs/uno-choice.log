@@ -60,7 +60,7 @@
 [ERROR] warning Workspaces can only be enabled in private projects.
 [ERROR] warning Workspaces can only be enabled in private projects.
 [INFO] [4/4] Building fresh packages...
-[INFO] Done in 20.80s.
+[INFO] Done in 13.56s.
 [INFO] 
 [INFO] --- localizer:1.31:generate (default) @ uno-choice ---
 [INFO] 
@@ -77,8 +77,8 @@
 [INFO] cacheable modules 65.3 KiB
 [INFO]   ./src/main/js/UnoChoice.es6 + 1 modules 59.5 KiB [built] [code generated]
 [INFO]   ./src/main/js/Util.ts 5.74 KiB [built] [code generated]
-[INFO] webpack 5.112.2 compiled successfully in 6506 ms
-[INFO] Done in 7.78s.
+[INFO] webpack 5.112.2 compiled successfully in 7295 ms
+[INFO] Done in 9.84s.
 [INFO] 
 [INFO] --- enforcer:3.6.3:enforce (check-junit-imports) @ uno-choice ---
 [INFO] Rule 0: org.apache.maven.plugins.enforcer.RestrictImports passed
@@ -157,56 +157,56 @@
 [INFO] yarn run v1.22.22
 [INFO] $ yarn test
 [INFO] $ jest --colors
-[ERROR]  PASS  src/test/js/LoadingGuard.test.ts
-[ERROR]   LoadingGuard
-[ERROR]     ✓ disables Build while an update is pending and re-enables it once done (174 ms)
-[ERROR]     ✓ stays disabled until the last of overlapping updates is done (27 ms)
-[ERROR]     ✓ a release function counts only once (18 ms)
-[ERROR]     ✓ a failure keeps Build disabled after all updates are done (26 ms)
-[ERROR]     ✓ buttons inside a parameter are left alone (29 ms)
-[ERROR]     ✓ a button disabled by someone else stays disabled (15 ms)
-[ERROR]     ✓ blocks submitting the form while busy (26 ms)
-[ERROR]     ✓ ignores updates of elements outside a form (8 ms)
-[ERROR] 
 [ERROR]  PASS  src/test/js/Util.test.ts
 [ERROR]   makeRadio
-[ERROR]     ✓ When only value and name are provided, a valid checkbox is built (46 ms)
-[ERROR]     ✓ When checked is specified, it is set (10 ms)
-[ERROR]     ✓ When disabled is specified, it is set (2 ms)
+[ERROR]     ✓ When only value and name are provided, a valid checkbox is built (17 ms)
+[ERROR]     ✓ When checked is specified, it is set (1 ms)
+[ERROR]     ✓ When disabled is specified, it is set (4 ms)
 [ERROR]   makeCheckbox
-[ERROR]     ✓ When only value is provided, a valid checkbox is built (12 ms)
-[ERROR]     ✓ When checked is specified, it is set (2 ms)
-[ERROR]     ✓ When disabled is specified, it is set (10 ms)
+[ERROR]     ✓ When only value is provided, a valid checkbox is built
+[ERROR]     ✓ When checked is specified, it is set
+[ERROR]     ✓ When disabled is specified, it is set
 [ERROR]   makeHidden
-[ERROR]     ✓ a valid hidden input is produced (10 ms)
+[ERROR]     ✓ a valid hidden input is produced (1 ms)
 [ERROR]   makeTd
-[ERROR]     ✓ when no elements are provided, a valid td is produced (2 ms)
-[ERROR]     ✓ when 1 element is provided, a valid td is produced (7 ms)
-[ERROR]     ✓ when 2 elements are provided, a valid td is produced (1 ms)
+[ERROR]     ✓ when no elements are provided, a valid td is produced (3 ms)
+[ERROR]     ✓ when 1 element is provided, a valid td is produced (1 ms)
+[ERROR]     ✓ when 2 elements are provided, a valid td is produced (16 ms)
 [ERROR]   makeTr
-[ERROR]     ✓ creates a valid tr with undefined id (9 ms)
-[ERROR]     ✓ creates a valid tr with valid id (1 ms)
+[ERROR]     ✓ creates a valid tr with undefined id (17 ms)
+[ERROR]     ✓ creates a valid tr with valid id (2 ms)
 [ERROR]   makeLabel
-[ERROR]     ✓ creates a valid label with title (19 ms)
-[ERROR]     ✓ creates a valid label without title (7 ms)
+[ERROR]     ✓ creates a valid label with title (28 ms)
+[ERROR]     ✓ creates a valid label without title (1 ms)
 [ERROR]   getSelectValues
 [ERROR]     ✓ returns empty array when no option is selected (36 ms)
-[ERROR]     ✓ returns singleton array when one option is selected (12 ms)
-[ERROR]     ✓ returns all selected options when multiple are selected (12 ms)
+[ERROR]     ✓ returns singleton array when one option is selected (6 ms)
+[ERROR]     ✓ returns all selected options when multiple are selected (5 ms)
 [ERROR]   getElementValue
 [ERROR]     When HTML Select is passed
-[ERROR]       ✓ returns empty array when no option is selected (10 ms)
-[ERROR]       ✓ returns singleton array when one option is selected (8 ms)
-[ERROR]       ✓ returns all selected options when multiple are selected (2 ms)
+[ERROR]       ✓ returns empty array when no option is selected (2 ms)
+[ERROR]       ✓ returns singleton array when one option is selected (7 ms)
+[ERROR]       ✓ returns all selected options when multiple are selected (5 ms)
 [ERROR]     When checkbox is passed
-[ERROR]       ✓ returns empty string when no option is selected (5 ms)
+[ERROR]       ✓ returns empty string when no option is selected (1 ms)
 [ERROR]       ✓ returns value when checkbox is selected (1 ms)
 [ERROR]     When radio is passed
 [ERROR]       ✓ returns empty string when no option is selected (1 ms)
 [ERROR]       ✓ returns value when radio is selected (1 ms)
 [ERROR]     When text is passed
-[ERROR]       ✓ returns empty string no input is provided (1 ms)
-[ERROR]       ✓ returns value when text is provided (11 ms)
+[ERROR]       ✓ returns empty string no input is provided (5 ms)
+[ERROR]       ✓ returns value when text is provided (1 ms)
+[ERROR] 
+[ERROR]  PASS  src/test/js/LoadingGuard.test.ts
+[ERROR]   LoadingGuard
+[ERROR]     ✓ disables Build while an update is pending and re-enables it once done (42 ms)
+[ERROR]     ✓ stays disabled until the last of overlapping updates is done (6 ms)
+[ERROR]     ✓ a release function counts only once (5 ms)
+[ERROR]     ✓ a failure keeps Build disabled after all updates are done (5 ms)
+[ERROR]     ✓ buttons inside a parameter are left alone (3 ms)
+[ERROR]     ✓ a button disabled by someone else stays disabled (6 ms)
+[ERROR]     ✓ blocks submitting the form while busy (3 ms)
+[ERROR]     ✓ ignores updates of elements outside a form (4 ms)
 [ERROR] 
 [INFO]   console.log
 [INFO]     [Service] - renderCascadeChoiceParameter - Could not find element by name, perhaps it is a DIV?
@@ -244,14 +244,19 @@
 [INFO]       at CascadeParameter.log (src/main/js/UnoChoice.es6:193:17)
 [INFO] 
 [INFO]   console.log
+[INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
+[INFO] 
+[INFO]       at log (src/main/js/UnoChoice.es6:215:17)
+[INFO] 
+[INFO]   console.log
 [INFO]     [Service] - CascadeParameter#update - Calling Java server code to update HTML elements...
 [INFO] 
 [INFO]       at log (src/main/js/UnoChoice.es6:215:17)
 [INFO] 
 [INFO]   console.log
-[INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
+[INFO]     [Version] - CascadeParameter#update - Values returned from server: -v1,-v1
 [INFO] 
-[INFO]       at log (src/main/js/UnoChoice.es6:215:17)
+[INFO]       at log (src/main/js/UnoChoice.es6:218:21)
 [INFO] 
 [INFO]   console.log
 [INFO]     [Service] - CascadeParameter#update - Values returned from server: a-svc1,a-svc2,a-svc1,a-svc2
@@ -267,11 +272,6 @@
 [INFO]     [Version] - CascadeParameter#update - Values retrieved from Referenced Parameters: Service=a-svc1
 [INFO] 
 [INFO]       at CascadeParameter.log (src/main/js/UnoChoice.es6:193:17)
-[INFO] 
-[INFO]   console.log
-[INFO]     [Version] - CascadeParameter#update - Values returned from server: -v1,-v1
-[INFO] 
-[INFO]       at log (src/main/js/UnoChoice.es6:218:21)
 [INFO] 
 [INFO]   console.log
 [INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
@@ -434,14 +434,19 @@
 [INFO]       at CascadeParameter.log (src/main/js/UnoChoice.es6:193:17)
 [INFO] 
 [INFO]   console.log
+[INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
+[INFO] 
+[INFO]       at log (src/main/js/UnoChoice.es6:215:17)
+[INFO] 
+[INFO]   console.log
 [INFO]     [Service] - CascadeParameter#update - Calling Java server code to update HTML elements...
 [INFO] 
 [INFO]       at log (src/main/js/UnoChoice.es6:215:17)
 [INFO] 
 [INFO]   console.log
-[INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
+[INFO]     [Version] - CascadeParameter#update - Values returned from server: -v1,-v1
 [INFO] 
-[INFO]       at log (src/main/js/UnoChoice.es6:215:17)
+[INFO]       at log (src/main/js/UnoChoice.es6:218:21)
 [INFO] 
 [INFO]   console.log
 [INFO]     [Service] - CascadeParameter#update - Values returned from server: a-svc1,a-svc2,a-svc1,a-svc2
@@ -457,11 +462,6 @@
 [INFO]     [Version] - CascadeParameter#update - Values retrieved from Referenced Parameters: Service=a-svc1
 [INFO] 
 [INFO]       at CascadeParameter.log (src/main/js/UnoChoice.es6:193:17)
-[INFO] 
-[INFO]   console.log
-[INFO]     [Version] - CascadeParameter#update - Values returned from server: -v1,-v1
-[INFO] 
-[INFO]       at log (src/main/js/UnoChoice.es6:218:21)
 [INFO] 
 [INFO]   console.log
 [INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
@@ -519,6 +519,11 @@
 [INFO]       at log (src/main/js/UnoChoice.es6:215:17)
 [INFO] 
 [INFO]   console.log
+[INFO]     [Version] - CascadeParameter#update - Values returned from server: -v1,-v1
+[INFO] 
+[INFO]       at log (src/main/js/UnoChoice.es6:218:21)
+[INFO] 
+[INFO]   console.log
 [INFO]     [Service] - CascadeParameter#update - Values returned from server: a-svc1,a-svc2,a-svc1,a-svc2
 [INFO] 
 [INFO]       at log (src/main/js/UnoChoice.es6:218:21)
@@ -532,11 +537,6 @@
 [INFO]     [Version] - CascadeParameter#update - Values retrieved from Referenced Parameters: Service=a-svc1
 [INFO] 
 [INFO]       at CascadeParameter.log (src/main/js/UnoChoice.es6:193:17)
-[INFO] 
-[INFO]   console.log
-[INFO]     [Version] - CascadeParameter#update - Values returned from server: -v1,-v1
-[INFO] 
-[INFO]       at log (src/main/js/UnoChoice.es6:218:21)
 [INFO] 
 [INFO]   console.log
 [INFO]     [Version] - CascadeParameter#update - Calling Java server code to update HTML elements...
@@ -597,19 +597,19 @@
 [INFO]       at error (src/main/js/UnoChoice.es6:935:29)
 [INFO]       at failed (src/main/js/UnoChoice.es6:969:25)
 [INFO] 
-[ERROR]  PASS  src/test/js/UnoChoice.test.ts (7.687 s)
+[ERROR]  PASS  src/test/js/UnoChoice.test.ts (6.005 s)
 [ERROR]   Build button while cascading parameters update (JENKINS-73556)
-[ERROR]     ✓ is disabled as soon as the initial updates are scheduled, until the whole cascade has rendered (918 ms)
-[ERROR]     ✓ is disabled while a change cascades through dependent parameters (849 ms)
-[ERROR]     ✓ blocks form submission while updating (533 ms)
-[ERROR]     ✓ stays disabled with a reload message when an update fails (859 ms)
+[ERROR]     ✓ is disabled as soon as the initial updates are scheduled, until the whole cascade has rendered (647 ms)
+[ERROR]     ✓ is disabled while a change cascades through dependent parameters (836 ms)
+[ERROR]     ✓ blocks form submission while updating (522 ms)
+[ERROR]     ✓ stays disabled with a reload message when an update fails (821 ms)
 [ERROR] 
 [ERROR] Test Suites: 3 passed, 3 total
 [ERROR] Tests:       38 passed, 38 total
 [ERROR] Snapshots:   0 total
-[ERROR] Time:        9.432 s
+[ERROR] Time:        7.516 s
 [ERROR] Ran all test suites.
-[INFO] Done in 10.70s.
+[INFO] Done in 8.96s.
 [INFO] 
 [INFO] --- license:210.v568d0b_a_2b_e44:process (default) @ uno-choice ---
 [INFO] Generated /tmp/plugin-builds/uno-choice/target/uno-choice/WEB-INF/licenses.xml
@@ -652,6 +652,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  02:03 min
-[INFO] Finished at: 2026-11-17T01:20:09Z
+[INFO] Total time:  01:36 min
+[INFO] Finished at: 2026-11-24T00:59:50Z
 [INFO] ------------------------------------------------------------------------
